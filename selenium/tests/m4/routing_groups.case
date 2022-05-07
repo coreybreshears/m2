@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>routing_groups</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">routing_groups</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--~~~M4~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form[8]/b</td>
+	<td>M4 Functionality:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m4_functionality</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<!--~~~~~~~-->
+<!--Create-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Add&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>New Routing Group</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group must have name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>test_comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group must have name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>d test_group_1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Routing Groups Refine Results Add new Routing Group</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Routing Groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12002</td>
+	<td>d test_group_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12002</td>
+	<td>test_comment</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>Testing comment 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12003</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12003</td>
+	<td>Testing comment 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<!--Edit-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Routing Group edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=routing_group_parent_routing_group_id</td>
+	<td>None 01232ąčęė!@#$%^*()?сти́льную صباح الخير Test RG</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group must have name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group must have name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>Testing comment 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=routing_group_parent_routing_group_id</td>
+	<td>label=01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12002</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12002</td>
+	<td>Testing comment 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>d test_group_1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12002</td>
+	<td>d test_group_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12002</td>
+	<td>comment</td>
+</tr>
+<!--DP list-->
+<tr>
+	<td>open</td>
+	<td>billing/routing_groups/rgroup_dpeers_list/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Assigned Dial Peers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2 &gt; div</td>
+	<td>d test_group_1 Dial Peers List</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>refine</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=assign-button</td>
+	<td>Assign</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>test_dp</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/routing_groups/rgroup_dpeers_list/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Dial Peer successfully assigned</td>
+	<td>Dial Peer successfully assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name1</td>
+	<td>test_dp</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dial_peers_12002</td>
+	<td>DP LIST*(1)</td>
+</tr>
+<!--Rikiavimas-->
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.0</td>
+	<td>12001</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.0</td>
+	<td>12002</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.0</td>
+	<td>12003</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.1</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.1</td>
+	<td>d test_group_1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.1</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.2</td>
+	<td>exact:Testing comment 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.3</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.4</td>
+	<td>DP LIST*(0)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.4</td>
+	<td>DP LIST*(1)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.4</td>
+	<td>DP LIST*(0)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.0</td>
+	<td>12003</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.0</td>
+	<td>12002</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.0</td>
+	<td>12001</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.0</td>
+	<td>12001</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.0</td>
+	<td>12002</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.0</td>
+	<td>12003</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.1</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.1</td>
+	<td>d test_group_1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.1</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.1</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.1</td>
+	<td>d test_group_1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.1</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>exact:Testing comment 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.2</td>
+	<td>exact:Testing comment 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=FAILOVER RG</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.3</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=FAILOVER RG</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.3</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Dial Peers')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.4</td>
+	<td>DP LIST*(1)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.4</td>
+	<td>DP LIST*(0)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.4</td>
+	<td>DP LIST*(0)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Dial Peers')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.4</td>
+	<td>DP LIST*(0)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.4</td>
+	<td>DP LIST*(0)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.4</td>
+	<td>DP LIST*(1)</td>
+</tr>
+<!--Delete-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/show_devices/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td>Add new Connection Point</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>test_device</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=routing_group_parent_routing_group_id</td>
+	<td>exact:None 01232ąčęė!@#$%^*()?сти́льную صباح الخير d test_group_1 Test RG</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group is used in Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/routing_groups/edit/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th</td>
+	<td>Used in Connection Points:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test FAX device</td>
+	<td>Test FAX device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1/127.0.1.2</td>
+	<td>Test User #1/127.0.1.2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Admin</td>
+	<td>Test Device for Admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Reseller</td>
+	<td>Test Device for Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Resellers User</td>
+	<td>Test Device for Resellers User</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>label=d test_group_1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>label=d test_group_1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group is used in Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/routing_groups/edit/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th</td>
+	<td>Used in Connection Points:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test FAX device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1/127.0.1.2</td>
+	<td>Test User #1/127.0.1.2</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Reseller</td>
+	<td>Test Device for Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Resellers User</td>
+	<td>Test Device for Resellers User</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>b test_group_2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>label=b test_group_2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12004</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group is used in Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/routing_groups/edit/12004</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th</td>
+	<td>Used in Connection Points:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=test_device</td>
+	<td>test_device</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/devices/device_edit/8')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test FAX device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device for Reseller</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group is used in Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/routing_groups/edit/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th</td>
+	<td>Used in Connection Points:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test FAX device</td>
+	<td>Test FAX device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Admin</td>
+	<td>Test Device for Admin</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device for Reseller</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>test_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group is used in Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/routing_groups/edit/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th</td>
+	<td>Used in Connection Points:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test FAX device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1/127.0.1.2</td>
+	<td>Test User #1/127.0.1.2</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Reseller</td>
+	<td>Test Device for Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device for Resellers User</td>
+	<td>Test Device for Resellers User</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>label=b test_group_2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12003</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group successfully deleted</td>
+	<td></td>
+</tr>
+<!--Direct link tests-->
+<!--User-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/delete/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

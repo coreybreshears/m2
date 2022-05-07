@@ -1,0 +1,1775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/es_remote_33.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/aggregates_es</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/manager/manager_16001/create_permission_group.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/aggregate_templates/index')]</td>
+	<td>Templates</td>
+</tr>
+<!--* Aggregate Search Templates /billing/aggregates/list-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list?date_from[year]=2012</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=use_real_billsec_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=from_user_perspective_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=answered_calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=price_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=billed_time_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=duration_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=calls_answered_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=calls_total_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=group_by_dst_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=group_by_originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=price_term_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=billed_time_term_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=acd_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=asr_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=pdd_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=group_by_dst</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=group_by_op</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=group_by_tp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=profit_percent_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=td.request_notice</td>
+	<td>Template name cannot be empty</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=tr.templates_form &gt; td.bottom_border &gt; b</td>
+	<td>Templates:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=template</td>
+	<td>None Profit/Duration by Prefix Originator Info Terminator Info Account Manager Revenue and Profit</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_name</td>
+	<td>Search Template 1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=td.request_notice</td>
+	<td>Aggregate Template successfully created</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=template</td>
+	<td>None Profit/Duration by Prefix Originator Info Terminator Info Account Manager Revenue and Profit Search Template 1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template</td>
+	<td>label=Search Template 1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_manager</td>
+	<td>All Test User 106</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=answered_calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=profit_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_terminator</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst_group</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=pdd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_op</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_tp</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=profit_percent_show</td>
+	<td>on</td>
+</tr>
+<!--* Aggregate Search Templates page -->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregate_templates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Templates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Add new Template</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_5</td>
+	<td>EDIT</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_5</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>Search Template 1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregate_templates/edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_originator_id').value='103'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_originator</td>
+	<td>Test User 103</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_op_device</td>
+	<td>All device_1003</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_op_device</td>
+	<td>label=device_1003</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_op_device</td>
+	<td>device_1003</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_terminator_id').value='104'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_terminator</td>
+	<td>Test User 104</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_tp_device</td>
+	<td>All device_1008</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_tp_device</td>
+	<td>label=device_1008</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_tp_device</td>
+	<td>device_1008</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=src</td>
+	<td>3701234567</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst</td>
+	<td>3707654321</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_duration</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=use_real_billsec_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=from_user_perspective_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=answered_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=price_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=billed_time_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=duration_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=calls_answered_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=calls_total_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=profit_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_dst_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Aggregate Template successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=answered_calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_terminator</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst_group</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_manager</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_op</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_tp</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=td.request_notice</td>
+	<td>Template name cannot be empty</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=tr.templates_form &gt; td.bottom_border &gt; b</td>
+	<td>Templates:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=template</td>
+	<td>None Profit/Duration by Prefix Originator Info Terminator Info Account Manager Revenue and Profit Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=template</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template</td>
+	<td>label=Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=template</td>
+	<td>Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=s_op_device</td>
+	<td>device_1003</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=s_tp_device</td>
+	<td>device_1008</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_originator</td>
+	<td>Test User 103</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_op_device</td>
+	<td>device_1003</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_terminator</td>
+	<td>Test User 104</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_tp_device</td>
+	<td>device_1008</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=src</td>
+	<td>3701234567</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dst</td>
+	<td>3707654321</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_duration</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dst_group</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=answered_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=profit_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_originator</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_terminator</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst_group</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_manager</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_op</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_tp</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template</td>
+	<td>label=Account Manager Revenue and Profit</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=profit_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=pdd_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=profit_percent_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_originator</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_op</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_terminator</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_tp</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst_group</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_manager</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Aggregates_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Aggregate_Templates_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Aggregate_Auto_Export_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/106</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manager_manager_group_id</td>
+	<td>label=permissions1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>Manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>Manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>Manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/aggregate_templates')]</td>
+	<td>Templates</td>
+</tr>
+<!--* Aggregate Search Templates /billing/aggregates/list-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list?date_from[year]=2012</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=use_real_billsec_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=from_user_perspective_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=answered_calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=price_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=billed_time_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=duration_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=calls_answered_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=calls_total_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=group_by_dst_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=group_by_originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=price_term_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=billed_time_term_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=acd_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=asr_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=pdd_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=group_by_dst</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=group_by_op</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=group_by_tp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=td.request_notice</td>
+	<td>Template name cannot be empty</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=tr.templates_form &gt; td.bottom_border &gt; b</td>
+	<td>Templates:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=template</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_name</td>
+	<td>Search Template 1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=td.request_notice</td>
+	<td>Aggregate Template successfully created</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=template</td>
+	<td>None Search Template 1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template</td>
+	<td>label=Search Template 1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=answered_calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=profit_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_terminator</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst_group</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=pdd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_op</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_tp</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst</td>
+	<td>on</td>
+</tr>
+<!--* Aggregate Search Templates page -->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregate_templates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Templates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Add new Template</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_6</td>
+	<td>EDIT</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_6</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Search Template 1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregate_templates/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_originator_id').value='103'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_originator</td>
+	<td>Test User 103</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_op_device</td>
+	<td>All device_1003</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_op_device</td>
+	<td>label=device_1003</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_op_device</td>
+	<td>device_1003</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_terminator_id').value='104'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_terminator</td>
+	<td>Test User 104</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_tp_device</td>
+	<td>All device_1008</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_tp_device</td>
+	<td>label=device_1008</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_tp_device</td>
+	<td>device_1008</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=src</td>
+	<td>3701234567</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst</td>
+	<td>3707654321</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_duration</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=use_real_billsec_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=from_user_perspective_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=answered_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=price_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=billed_time_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=duration_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=calls_answered_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=calls_total_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=profit_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_dst_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Aggregate Template successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=answered_calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_terminator</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst_group</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_op</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_tp</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=td.request_notice</td>
+	<td>Template name cannot be empty</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=tr.templates_form &gt; td.bottom_border &gt; b</td>
+	<td>Templates:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=template</td>
+	<td>None Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=template</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template</td>
+	<td>label=Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=template</td>
+	<td>Search Template 1 edited</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=s_op_device</td>
+	<td>device_1003</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=s_tp_device</td>
+	<td>device_1008</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_originator</td>
+	<td>Test User 103</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_op_device</td>
+	<td>device_1003</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_terminator</td>
+	<td>Test User 104</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_tp_device</td>
+	<td>device_1008</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=src</td>
+	<td>3701234567</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dst</td>
+	<td>3707654321</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_duration</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dst_group</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=answered_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=profit_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_originator</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_terminator</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst_group</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_op</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_tp</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_by_dst</td>
+	<td>off</td>
+</tr>
+</tbody></table>
+</body>
+</html>

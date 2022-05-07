@@ -1,0 +1,40 @@
+<table class="nb" width="100%">
+  <tr>
+    <td width="45%" valign="top" id="hello">
+      <br/>
+      <%= _('hello') %>, <%= @username %>
+      <br/>
+      <br/>
+
+      <%= raw session[:frontpage_text].to_s.html_safe.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?") %>
+
+    </td>
+
+    <td valign="top">
+
+
+      <div id="quick_stats">
+        <b><%= _('Quick_stats') %></b> <%= link_to b_refresh+_('Refresh'), '?refresh_stats', onclick: "reload_stats();" %><br/><br/>
+        <table id="quick" class="nb" width="50%">
+          <%= image_tag("290.gif", alt: 'loading', id: 'stat_spinner', border: 0, style: 'margin: 200px; display: none;') %>
+          <% if params.key? :refresh_stats %>
+              <tbody id='quick_stat'>
+              <% if load_ok? %>
+                  <%= render 'quick_stat', quick_stats: @quick_stats, ex: @ex, user: @user %>
+              <% end %>
+              </tbody>
+          <% end %>
+          <script type="text/javascript">
+              function reload_stats() {
+                  this.document.getElementById('stat_spinner').style.display = 'block';
+                  if (this.document.getElementById('quick_stat')){
+                      this.document.getElementById('quick_stat').style.display = 'none';
+                  };
+              }
+          </script>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<% @temp %>

@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>calls_list_search</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">calls_list_search</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=show_device_and_cid_in_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/delete_last_calls_parametres</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=s_origination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=s_termination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_user_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_user_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>user_admin1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td>Test User</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>#1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>user_admin_t</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>user_admin1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td>Test User</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>Terminator #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=s_origination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>Test User #1Test User Terminator #1</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=s_termination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_user_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user_terminator</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user_terminator</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_terminator_list</td>
+	<td>Test User #1Test User Terminator #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>Test Device OP</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>Test Device TP</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_origination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_termination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<!--TEST USER #1 ID YRA 6, O NE 2-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='6'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_origination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=s_origination_point</td>
+	<td>All Test Device OP</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>Test User #1Test User Terminator #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_origination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_termination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_user_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_terminator_id').value='7'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user_terminator</td>
+	<td>Test User Terminator #1</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_termination_point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=s_termination_point</td>
+	<td>All Test Device TP</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user_terminator</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user_terminator</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_terminator_list</td>
+	<td>Test User #1Test User Terminator #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=year</td>
+	<td>year</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=day</td>
+	<td>day</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2010</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>2010</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td>January</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>2010</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td>January</td>
+</tr>
+<!--buvo taip, kad paspaudus save changes nusiresetindavo paieska-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>2010</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td>January</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${year}</td>
+</tr>
+<!--stripinimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2008&amp;s_source=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;37046246362&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;date_from[month]=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total calls: 9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=src_26</td>
+	<td>37046246362</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=src_13</td>
+	<td>37046246362</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;37063042438&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dst_26</td>
+	<td>37063042438</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dst_15</td>
+	<td>37063042438</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td>${day}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_minute</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_day</td>
+	<td>${day}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_hour</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_minute</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_origination_point</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_termination_point</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_call_type</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_destination</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

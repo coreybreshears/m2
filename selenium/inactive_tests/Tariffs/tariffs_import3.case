@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>tariffs_import3</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tariffs_import3</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--DB lieka tik destinations.prefix 370, 3706 ištrintas for testing purposes. 370 prefixo name paupdeitintas į Lithuania iš Lithuania proper-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/delete_destination_prefix_3706</td>
+	<td></td>
+</tr>
+<!--Use Destination Names from CSV file OFF-->
+<!--1. Importuojame 3706 į tuščią tarifa  SK: Sukuriamas rate, 3706, kur name "Lithuania"-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.2356</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_rates_to_create</td>
+	<td>New Rates to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_new_rates_created &gt; b</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (1/1)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_503</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_503</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_503</td>
+	<td>0.2356</td>
+</tr>
+<!--2. Importuojame 3706 į tarifą, kuriame yra 3706 be vardo. SK: rate 3706 updeitinamas su name "Lithuania"-->
+<!--ištrinamas vardas destinations.name prefixui 3706 -->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/delete_name_for_rate_prefix_3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.2356</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_rates_to_create</td>
+	<td>New Rates to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (1/1)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_503</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_503</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_503</td>
+	<td>0.2356</td>
+</tr>
+<!--3.1. bad destination, nes tokio nėra destinations lentoje atitinkančio net trumpesnio-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_bad_destination.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.2365</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination not recognized by Prefix</td>
+	<td></td>
+</tr>
+<!--=========-->
+<!--Use Destination Names from CSV file ON-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_all_link_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: All rates deleted</td>
+</tr>
+<!--4. Importuojame 3706, "Lietuva" į tuščią tarifą   SK: sukuriamas rate 3706, "Lietuva"-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_rates2.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.546</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_rates_to_create</td>
+	<td>New Rates to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination names updated: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_new_rates_created &gt; b</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (1/1)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Lietuva</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_504</td>
+	<td>0.5460</td>
+</tr>
+<!--5. Importuojame 3706, "Lietuva" į tarifą, kuriame yra 3706 be vardo. SK: rate 3706 updeitinamas su vardu "Lietuva"-->
+<!--ištrinamas vardas rates.name prefixui 3706 ir ištrinamas destinations įrašas, kurio prefix 3706, kad updeitintų pagal 370-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/delete_name_for_rate_prefix_3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_rates2.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.546</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_rates_to_create</td>
+	<td>New Rates to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination names updated: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (1/1)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Lietuva</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_504</td>
+	<td>0.5460</td>
+</tr>
+<!--3.2. bad destination, nes tokio nėra destinations lentoje atitinkančio net trumpesnio-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_bad_destination.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.2365</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination not recognized by Prefix</td>
+	<td></td>
+</tr>
+<!--6. Importuojame 3706 į tarifą, kuriame yra 3706 be vardo SK: updeitinamas 3706 rate su name "Lithuania"-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/delete_name_for_rate_prefix_3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.2356</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_rates_to_create</td>
+	<td>New Rates to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (1/1)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<!--pagal destinations lenta-->
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_504</td>
+	<td>0.2356</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_all_link_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: All rates deleted</td>
+</tr>
+<!--7. Importuojame 3706 į tuščią tarifą SK: rate 3706 "Lithuania" sukuriamas-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.2356</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_rates_to_create</td>
+	<td>New Rates to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_to_update</td>
+	<td>Rates to update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (1/1)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_505</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_505</td>
+	<td>0.2356</td>
+</tr>
+</tbody></table>
+</body>
+</html>

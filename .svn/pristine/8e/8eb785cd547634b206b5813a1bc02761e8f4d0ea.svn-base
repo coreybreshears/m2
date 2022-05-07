@@ -1,0 +1,1233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>active_calls</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">active_calls</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/active_calls_pop_up</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/update_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=show_active_calls_for_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=active_calls_show_server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>active_calls_interval</td>
+	<td>-9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>active_calls_interval</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>active_calls_interval</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>active_calls_interval</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>active_calls_interval</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>active_calls_interval</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>active_calls_interval</td>
+	<td>444</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>active_calls_interval</td>
+	<td>444</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/active_call</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/set_calls_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>duration_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='row2active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Philippines</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='row10active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>link=Status</td>
+	<td>Status</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableactive_calls']/div[4]/div/div/span</td>
+	<td>Source (Caller)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableactive_calls']/div[5]/div/div/span</td>
+	<td>Destination (Callee)</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row0active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Calls Active Calls Refine Results</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Active Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_count</td>
+	<td>11 / 10</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[4]/div</td>
+	<td>306984327348 / 1013_device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2active_calls']/div[4]/div</td>
+	<td>306984327348 / 1004_device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row5active_calls']/div[4]/div</td>
+	<td>306984327349 / Test FAX device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row9active_calls']/div[4]/div</td>
+	<td>306984327349 / Test Device for cs_user 1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row10active_calls']/div[4]/div</td>
+	<td>306984327345 / Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row4active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row9active_calls']/div[5]/div</td>
+	<td>63727007889 ()</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row10active_calls']/div[5]/div</td>
+	<td>63727007886 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='columntableactive_calls']/div[6]/div/div/span</td>
+	<td>Server</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[6]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row5active_calls']/div[6]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_device</td>
+	<td>All</td>
+</tr>
+<!--Termination points-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=add_to_servers_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>abcdf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_src_deny_regexp</td>
+	<td>fdhjgfhnfgh</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_device</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/active_call_tp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/update_currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--set rates-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row0active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>user[currency_id]</td>
+	<td>label=ALL</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='confirm_without_message']/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>user[currency_id]</td>
+	<td>label=LABAS</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='confirm_without_message']/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>user[currency_id]</td>
+	<td>label=DZD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='confirm_without_message']/input</td>
+	<td></td>
+</tr>
+<!--set curencies to tariffs-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/sell_tariff_2/set_currency_dzd</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row1active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test Accountant / 1006_device</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row1active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row13active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>user[currency_id]</td>
+	<td>label=DZD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Personal details changed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row1active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>DZD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row13active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>DZD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>user[currency_id]</td>
+	<td>label=ALL</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Personal details changed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row1active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>ALL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row13active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>WzBoDyI</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>ALL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='row0active_calls']/div[2]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls_count</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_link</td>
+	<td>14 / 10</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327349</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327348</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_comment</td>
+	<td>Test Server</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls_per_server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Active Calls Per Server</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_info</td>
+	<td>Page refreshes every: 444 s</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0ac_ps_grid']/div/div</td>
+	<td>exact:ID: 1, IP: 127.0.0.1 (main system)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0ac_ps_grid']/div[2]/div</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0ac_ps_grid']/div[3]/div</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0ac_ps_grid']/div[4]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1ac_ps_grid']/div</td>
+	<td>exact:ID: 2, IP: 127.0.0.2 (Test Server)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1ac_ps_grid']/div[2]/div</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1ac_ps_grid']/div[3]/div</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1ac_ps_grid']/div[4]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/update_activecalls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007888 Philippines proper (63) Test User #1 / 1004_device</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row1active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Server: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User rate: 0.0 ALL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//div[@id='row1active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row2active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Server: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User rate: 0.0 ALL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//div[@id='row2active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<!--logout-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=start_time_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>Login</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls_count</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>Login</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Start time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>Login</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>src_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/delete_from_activecalls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls_count</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_link</td>
+	<td>0 / 0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327349</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327348</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/active_call</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/set_calls_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007887 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[@id='row0active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Server: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//div[@id='row0active_calls']/div/div/span</td>
+	<td></td>
+</tr>
+<!--matomi tik 2 calls, nes kiti paslepti-->
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_count</td>
+	<td>2 / 2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/set_infinity_for_hide_active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[2]/div</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0active_calls']/div[6]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727007887 ()</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_count</td>
+	<td>5 / 5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2active_calls']/div[5]/div</td>
+	<td>63727007887 ()</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1active_calls']/div[5]/div</td>
+	<td>63727212554 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3active_calls']/div[5]/div</td>
+	<td>63727007887 Philippines proper (63)</td>
+</tr>
+<!--Tuo atveju, jeigu nėra įrašo conflinuose arba jis lygus 0, tada apribojimas galioja 24 valandoms-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/set_zero_for_hide_active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>4 / 4</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>63727212554 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2active_calls']/div[5]/div</td>
+	<td>63727007887 Philippines proper (63)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1active_calls']/div[5]/div</td>
+	<td>63727007887 ()</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/active_calls_count</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--quick stats atsižvelginės tik į šitą conflines reikšmę-->
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_link</td>
+	<td>4 / 4</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls_count</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_link</td>
+	<td>4 / 4</td>
+</tr>
+</tbody></table>
+</body>
+</html>

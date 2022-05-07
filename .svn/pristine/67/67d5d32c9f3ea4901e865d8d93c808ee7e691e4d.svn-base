@@ -1,0 +1,19 @@
+<html>
+<head>
+  <%= stylesheet_link_tag "mor" %>
+</head>
+<body <%= "OnLoad='compt=setTimeout(\"self.close();\",2000)'".html_safe unless @errors_present %> >
+<% if @errors_present %>
+    <div id="notice"><%= flash[:notice].html_safe %></div>
+    <br/>
+    <% flash[:notice] = '' %>
+<% end %>
+<table class="simple" witdh="100%">
+  <tr>
+    <td align="center">
+      <%= b_hangup+_('Hangup') %>...
+    </td>
+  </tr>
+</table>
+</body>
+</html>

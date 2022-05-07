@@ -1,0 +1,171 @@
+<% no_load = load_ok? %>
+<% flash_present = flash[:notice].present? || flash[:status].present? || flash[:first_login].present? %>
+
+<div class="content-box">
+  <div class="hello-box">
+    <div><%= _('hello') %>, <%= @username %></div>
+    <br>
+    <br>
+    <div><b><%= _('Download_Rates') %></b></div>
+    <% @tariffs.each_with_index do |tariff, index| %>
+        <div class="download_rates"><%= link_to b_xlsx + "Tariff #{index.to_i + 1}", '#', {id: tariff['id'], class: 'download_rates'}%></div>
+        <span id="xlsx_pending_<%= tariff['id'] %>" hidden="" class="download_rates">
+          <%= b_xlsx + _('Generating_file_Please_wait') %> &nbsp;<%= image_tag('indicator.gif', border: 0) %>&nbsp;&nbsp;
+        </span>
+
+    <% end %>
+    <% if Confline.get_value('enable_paypal_addon').to_i == 1 && Confline.get_value('paypal_payments_activated').to_i == 1 && current_user.blocked.to_i != 1 %>
+        <br/>
+
+        <div id="pp_payment" class="details-form">
+          <fieldset style="width: 100%; float: left">
+            <h1><%= _('Payment') %></h1>
+            <br/>
+
+            <div class="row">
+              <div class="col" style="width: 70%">
+                <div class="input-row" style="padding: 5px">
+                  <div class="label-col">
+                    <label style="color: #565759"><strong><%= _('Amount in') %>
+                      :</strong> <%= session[:show_currency].to_s %></label>
+                  </div>
+                  <div class="input-col">
+                    <input id="amount_yo_pay" type="number" min="1" placeholder="Amount" value="1"/>
+                  </div>
+                  <em>* be aware that customers have to pay paypal fees</em>
+                </div>
+                <% paypal_client_id = Confline.get_value('paypal_client_id').to_s %>
+                <% if paypal_client_id.present? %>
+                    <script type="text/javascript"
+                            src="https://www.paypal.com/sdk/js?client-id=<%= paypal_client_id %>&currency=<%= session[:show_currency].to_s %>">
+                    </script>
+                    <div id="paypal-button-container"></div>
+                    <script>
+                        try {
+                            paypal.Buttons({
+                                createOrder: function (data, actions) {
+                                    return actions.order.create({
+                                        purchase_units: [
+                                            {
+                                                amount: {
+                                                    value: document.getElementById('amount_yo_pay').value
+                                                }
+                                            }
+                                        ]
+                                    });
+                                },
+                                onApprove: function (data, actions) {
+                                    return actions.order.capture().then(function (details) {
+                                        location.assign('<%= Web_Dir %>/paypal/payment/' + details.id)
+                                    });
+                                }
+                            }).render('#paypal-button-container');
+                            $('#amount_yo_pay').bind('change keyup', function () {
+                                const value = parseFloat(this.value).toFixed(2);
+                                if (!value || isNaN(value)) {
+                                    $('#paypal-button-container').css('display', 'none');
+                                }
+                                else {
+                                    $('#paypal-button-container').css('display', 'block');
+                                }
+                            });
+                        }
+                        catch (err) {
+                            console.log(err)
+                            $('#pp_payment').css('display', 'none');
+                        }
+                    </script>
+                <% end %>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+    <% end %>
+  </div>
+  <div class="quick-stats-box">
+    <% if user? %>
+        <div id="quick_stats">
+          <b><%= _('Quick_stats') %></b>&nbsp;<%= link_to(b_refresh + _('Refresh'), '#', id: 'qs_refresh') if flash_present %>
+          <br/>
+          <% if no_load %>
+              <div id='quick_stat'>
+                <div id='show_quick_stats'></div>
+                <div id='quick_stats_active_calls'></div>
+                <div class="quick-stats-row" id="quick-stats-user">
+                  <div class="title-col"><%= _('Finances') %>:</div>
+                </div>
+                <div class="quick-stats-row" id="quick-stats-user">
+                  <div class="label-col"><%= _('Balance') %>:</div>
+                  <div id="balance" class="value-col">
+                    <%= nice_currency(current_user.raw_balance, Currency.find_by(name: session[:show_currency]).exchange_rate, show_symb: 1) %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    if (<%= !flash_present %>) {
+        $('#show_quick_stats').load('<%= Web_Dir %>/callc/show_quick_stats', function () {
+            active_calls_refresh();
+        });
+    } else {
+        $('#qs_refresh').click(function () {
+            $('#show_quick_stats').load('<%= Web_Dir %>/callc/show_quick_stats', function () {
+                active_calls_refresh();
+            });
+        });
+    }
+
+    $('a.download_rates').each(function (i, element) {
+        element.onclick = function () {
+            var id = element.id;
+            $(element).hide();
+            $('#xlsx_pending_' + id).show();
+            $.fileDownload('<%= Web_Dir%>/tariffs/generate_personal_rates_xlsx?tariff_id=' + id, {
+                successCallback: function () {
+                    $(element).show();
+                    $('#xlsx_pending_' + id).hide();
+                },
+                failCallback: function (html, url) {
+                    $(element).show();
+                    $('#xlsx_pending_' + id).hide();
+                    alert('Download failed');
+                }
+            });
+        };
+    });
+
+    <% if no_load %>
+    setInterval(function () {
+        $.ajax({
+            url: '<%= Web_Dir %>/callc/show_quick_stats',
+            type: 'get',
+            cache: false,
+            success: function (returnData) {
+                $("#show_quick_stats").html(returnData);
+            }
+        });
+    }, 10000);
+    <% end %>
+
+    function active_calls_refresh() {
+        <% if no_load && Confline.get_value('Show_Active_Calls_for_Users').to_i == 1 %>
+        $('#quick_stats_active_calls').load('<%= Web_Dir %>/callc/quick_stats_user_ac');
+        setInterval(function () {
+                    $.ajax({
+                        url: '<%= Web_Dir %>/callc/quick_stats_user_ac',
+                        type: 'get',
+                        cache: false,
+                        success: function (returnData) {
+                            $('#quick_stats_active_calls').html(returnData);
+                        }
+                    });
+                }, <%= (session[:active_calls_refresh_interval].to_i < 3 ? 3 : session[:active_calls_refresh_interval].to_i) * 1000 %>
+        );
+        <% end %>
+    }
+</script>

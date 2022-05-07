@@ -1,0 +1,143 @@
+<%= javascript_include_tag 'google_charts/loader.js' %>
+<% content_for :search_form do %>
+<%= form_tag({action: :load_stats}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+<fieldset>
+  <%= hidden_field_tag 'search_on', 1 %>
+  <div class="column date-col calendar-holder">
+    <%= label_tag 'from', _('Date') %>
+    <div class="row">
+      <div class="calendar-col">
+        <%= text_field_tag 'date_from', formatted_date_as_given(@options_date), class: 'checkin default', id: 'from' %>
+        <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+      </div>
+      <div class="time-col" style="visibility: hidden">
+            <%= text_field_tag 'time_from', formatted_time_as_given(@options_date), disabled: 1 %>
+            <%= hidden_field_tag 'time_from' %>
+            <%= hidden_field_tag 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+      </div>
+    </div>
+  </div>
+  <div class="column source-col">
+      <div class="row">
+      <%= label_tag 'Originator', _('User') %>
+      <%= render('shared/m2_live_search_field',
+       object: params[:s_user].to_s,
+       object_id: @options[:s_user] || -2,
+       object_name: 'User',
+       action_url: {controller: :users, action: :get_users_map, options: {show_admin: true}}
+       )
+       %>
+     </div>
+    <div class="row">
+      <%= label_tag 's_server', _('Server') %>
+      <%= select_tag('s_server', options_for_select([[_('All'), -1]] + @servers.map { |server| [server.nice_description, server.id]}, @options[:s_server].to_i)) %>
+    </div>
+   </div>
+   <div class="column source-col">
+    <div class="row" <%= tooltip(_('Info'), _('Select_User_first_to_select_its_Connection_Points')) %>>
+      <%= label_tag 's_device', _('Connection_Points') %>
+      <%= select_tag('s_device', options_for_select([[_('All'), -1]] + (@devices.present? ? (@devices.map { |device| [nice_device_no_pic(device), device.id]}) : []), @options[:s_device])) %>
+    </div>
+  </div>
+  <div class="column buttons-col">
+    <div class="row payment-buttons-row">
+      <%= clear_button_tag _('clear') %>
+      <%= submit_button_tag _('refine') %>
+    </div>
+  </div>
+</fieldset>
+<% end %>
+<% end %>
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Load_stats')  %></h2>
+    <div id="core_chart" style=" height: 500px;"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  google.charts.load('42', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('timeofday', 'date');
+    data.addColumn('number', '<%= _('Simultaneous_Calls') %>');
+    data.addColumn('number', '<%= _('Call_Attempts') %>');
+    data.addRows(<%= @calls_graph  %>);
+
+    var options = {
+     'chartArea': {
+       'width': '90%',
+       'height': '70%',
+       'top': '40',
+       'left': '75',
+       'backgroundColor': {'stroke': '#00000'}
+     },
+     'series': {
+       0: { 'color': '#7BA1CE', type: 'area' },
+       1: { 'color': '#A6EDAC', type: 'line' }
+     },
+     'legend': {'position': 'top','textStyle': {'fontSize': 12} },
+     'vAxis': { 'gridlines': { 'count': 10 }, 'color': '#000000', 'format': '#', 'minValue':0, 'maxValue' :9, 'textStyle': {'fontSize': 12}},
+     'hAxis': {
+       'color': '#00FFFF',
+       'gridlines': { 'count': 24},
+       'slantedText': true, 'slantedTextAngle': 90,
+       'maxValue': [23, 59, 60],
+       'textStyle': {'fontSize': 12}
+     },
+     explorer: {
+      actions: ['dragToZoom', 'rightClickToReset'],
+      axis: 'horizontal',
+      keepInBounds: true,
+      maxZoomIn: 10.0
+    }
+  };
+
+  var chart = new google.visualization.ComboChart(document.getElementById('core_chart'));
+  chart.draw(data, options);
+  jQuery(window).resize(function(){
+  drawChart();
+
+});
+}
+
+</script>
+
+
+<script>jQuery(document).ready(function ($) {
+   $(".checkin").datepicker("option", "showTimepicker", false);
+  function updateDevicesList() {
+    var s_user_id = $("#s_user_id").val();
+    $.ajax({
+                      // Request destination
+                      url: "<%= Web_Dir %>" + "/devices/ajax_get_user_devices",
+                      data: {
+                        user_id: s_user_id == '-1' ? '-2' : s_user_id,
+                        all: true,
+                        fax: true
+                      },
+                      // Type of request
+                      type: "GET",
+                      dataType: "html",
+                      // Update the table with a json response
+                      success: function (data) {
+                        $("#s_device").replaceWith(data);
+                          // We need this one live, so select each time
+                          $("#s_device").siblings("span").remove();
+                          jcf.customForms.replaceAll();
+                        },
+                      // Clean up and get ready for a successor request
+                      complete: function () {
+                        $("#s_device").val("<%= @options[:s_device] || '' %>");
+                        $("#s_device")[0].jcf.refreshState();
+                      }
+                    });
+  }
+  $("#s_user_id").on('change keyup paste', function(){
+    updateDevicesList()
+  });
+})
+</script>

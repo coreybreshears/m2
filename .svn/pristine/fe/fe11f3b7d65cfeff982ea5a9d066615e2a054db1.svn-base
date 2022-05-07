@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <%= render 'form_general', f: f, manager: manager, manager_groups: form_data[:manager_groups] %>
+  </div>
+  <div class="col">
+    <%= render 'form_details', f: f, manager: manager,
+                                     active_currencies: form_data[:active_currencies],
+                                     time_zones: form_data[:time_zones]
+    %>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <%= render 'form_comment', f: f, manager: manager %>
+  </div>
+</div>

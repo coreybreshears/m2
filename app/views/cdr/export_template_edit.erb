@@ -1,0 +1,14 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= "#{_('CDR_Export_Template_Settings')} - #{@template.name}" %></h2>
+    <%= form_for :template, url: {action: :export_template_update, id: @template.id}, html: {class: 'details-form'} do |f| %>
+        <fieldset>
+          <%= render 'export_template_form', f: f, template: @template %>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/cdr/export_templates'" %>
+            <%= submit_tag _('UPDATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

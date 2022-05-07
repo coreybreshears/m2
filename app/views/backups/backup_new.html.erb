@@ -1,0 +1,16 @@
+<%= form_tag action: :backup_create, id: @back do %>
+    <table>
+      <tr>
+        <td><%= _('Comment') %>:</td>
+      </tr>
+      <tr>
+        <td><%= text_area_tag('comment', '', class: 'input', rows: 3, cols: 100) %></td>
+      </tr>
+    </table>
+    <br/>
+    <br/>
+    <%= submit_tag _('Create'),
+                   onclick: "var confirmed; confirmed = confirm('#{_('Backup_creation_might_be_very_slow_are_you_sure')}'); if(confirmed) jQuery('#spinner2').show(); return confirmed;",
+                   data: {disable_with: _('Processing..')}
+    %>
+<% end %>

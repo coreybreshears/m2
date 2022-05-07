@@ -1,0 +1,2 @@
+INSERT IGNORE INTO conflines (name, value) SELECT 'show_tariff_import_menu', 1 FROM dual WHERE NOT EXISTS (SELECT * FROM conflines WHERE name = 'show_tariff_import_menu');
+UPDATE conflines SET value = 1 WHERE name like 'show_tariff_import_menu';

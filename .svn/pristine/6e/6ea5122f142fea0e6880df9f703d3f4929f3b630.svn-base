@@ -1,0 +1,6 @@
+<% if !@destination %>
+    <%= _("Destination_not_found") %>
+<% else %>
+	<%= "#{@destination.prefix} - #{draw_flag(@destination.direction_code.to_s)} #{@destination.name}".html_safe %>
+<% end %>
+

@@ -1,0 +1,50 @@
+<table>
+  <% if alert_dependencies %>
+    <% alert_dependencies.each do |alert| %>
+        <tr>
+          <td>
+            <%= nice_alert(Alert.where(id: alert.alert_id).first) %>
+          </td>
+          <td>
+            <%= link_to b_delete, "javascript:void(0);", id: "delete_dependency_#{alert.id}",
+              :onclick => "jQuery.ajax({
+                            url: '#{Web_Dir}/alerts/remove_alert_from_group/#{alert.id.to_s}',
+                            data: {alert_id: #{alert.alert_id}, check_type: jQuery('#alert_check_type').val() == undefined ? $('#object_type').attr('value') : jQuery('#alert_check_type').val()},
+                            async: false,
+                            success: function(rezult){
+                              jQuery('#group_selector').html(rezult);
+                              jcf.customForms.replaceAll();
+                            }
+                          });"
+
+            %>
+          </td>
+        </tr>
+    <% end %>
+  <% end %>
+  <tr>
+    <% alerts = reject_with_circles(alerts) %>
+    <% if alerts.size > 0 %>
+      <td>
+        <%= select_tag('', options_for_select(alerts.map { |alert| [alert.name, alert.id]}.sort), :id => 'alert_id', :style => "width:100%") %>
+      </td>
+      <td>
+        <%= link_to b_add, "javascript:void(0);", :onclick => "jQuery.ajax({
+                                                                url: '#{Web_Dir}/alerts/add_alert_to_group',
+                                                                data: {alert_id: jQuery('#alert_id').val(),
+                                                                  check_type: jQuery('#alert_check_type').val() == undefined ? $('#object_type').attr('value') : jQuery('#alert_check_type').val()},
+                                                                async: false,
+                                                                success: function(rezult){
+                                                                  jQuery('#group_selector').html(rezult);
+                                                                  jcf.customForms.replaceAll();
+                                                                }
+                                                              });"
+        %>
+      </td>
+    <% else %>
+      <td>
+        <%= select_tag('', options_for_select([_('None')]), :id => 'alert_id', :style => "width:100%") %>
+      </td>
+    <% end %>
+  </tr>
+</table>

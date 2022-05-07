@@ -1,0 +1,405 @@
+<!-- header of the page -->
+<header id="header">
+  <div class="header-holder">
+    <strong>
+     <% if m4_functionality? %>
+        <div class="logo-picture<%= correct_logo_css %>">
+          <a id='m2switch' href="<%= Web_Dir %>/">
+            <%= image_tag('/white_label/white_label_logo', style: 'visibility: hidden;') if white_label_logo_present? %>
+          </a>
+        </div>
+        <div class="logo-version">
+          2.<%= m2_version? %>
+        </div>
+     <% else %>
+        <div class="logo-picture">
+          <a id='m2switch' href="<%= Web_Dir %>/"></a>
+        </div>
+        <div class="logo-version">
+          1.<%= m2_version? %>
+        </div>
+     <% end %>
+    </strong>
+
+    <!-- main navigation of the page -->
+    <nav id="nav" class="open-close">
+      <a class="opener" href="#">Menu</a>
+      <ul class="slide">
+        <% users_list = authorize_manager_permissions({controller: :users, action: :list, no_redirect_return: 1}) %>
+        <% if users_list || authorize_manager_permissions({controller: :devices, action: :devices_all, no_redirect_return: 1}) %>
+            <li <%= check_active('users', 'menu', parent) %>>
+              <a href="<%= authorize_manager_permissions({controller: :users, action: :list, no_redirect_return: 1}) ? "#{Web_Dir}/users/list" : '#' %>" class="accounts"><%= _('USERS') %></a>
+              <ul>
+                <% if authorize_manager_permissions({controller: :users, action: :list, no_redirect_return: 1}) %>
+                    <li><a href="<%= Web_Dir %>/users/list"><%= _('Users') %></a></li>
+                <% end %>
+                <% if authorize_manager_permissions({controller: :devices, action: :devices_all, no_redirect_return: 1}) %>
+                    <li><a href="<%= Web_Dir %>/devices/devices_all"><%= _('connection_points') %></a></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+
+        <% tariffs_list = authorize_manager_permissions({controller: :tariffs, action: :list, no_redirect_return: 1}) %>
+        <% tariffs_rate_notifications_list = authorize_manager_permissions({controller: :tariff_rate_notifications, action: :list, no_redirect_return: 1}) %>
+        <% custom_tariffs = authorize_manager_permissions({controller: :tariffs, action: :custom_tariffs, no_redirect_return: 1}) %>
+        <% cdr_import_csv = authorize_manager_permissions({controller: :cdr, action: :import_csv, no_redirect_return: 1}) %>
+        <% cdr_rerating = authorize_manager_permissions({controller: :cdr, action: :rerating, no_redirect_return: 1}) %>
+        <% tariff_import = (tariff_inbox_permission || tariff_jobs_permission || tariff_import_rules_permission || tariff_rate_import_rules_permission || tariff_templates_permission || tariff_link_attachment_rules_permission) && tariff_import_active? %>
+        <% if tariffs_list || cdr_import_csv || cdr_rerating || custom_tariffs || tariffs_rate_notifications_list || tariff_import %>
+          <li <%= check_active('billing', 'menu', parent) %>>
+            <a href="#" class="billing"><%= _('BILLING') %></a>
+            <ul>
+              <% if tariffs_list %>
+                <li>
+                  <a href="<%= (tariffs_list ? "#{Web_Dir}/tariffs/list" : '#').html_safe %>"><%= _('Tariffs') %></a>
+                </li>
+              <% end %>
+              <% if tariff_import %>
+                <li>
+                  <a href="#"><%= _('Tariff_Import') %><span class="menu-arrow">&#x25B6;</span></a>
+                  <ul>
+                    <% if tariff_inbox_permission %>
+                      <li><a href="<%= Web_Dir %>/tariff_inbox/inbox"><%= _('Inbox') %></a></li>
+                    <% end %>
+
+                    <% if tariff_jobs_permission %>
+                      <li><a href="<%= Web_Dir %>/tariff_jobs/list"><%= _('Jobs') %></a></li>
+                    <% end %>
+
+                    <% if tariff_import_rules_permission %>
+                      <li><a href="<%= Web_Dir %>/tariff_import_rules/list"><%= _('Import_Rules') %></a></li>
+                    <% end %>
+
+                    <% if tariff_rate_import_rules_permission %>
+                      <li><a href="<%= Web_Dir %>/tariff_rate_import_rules/list"><%= _('Rate_Import_Rules') %></a></li>
+                    <% end %>
+
+                    <% if tariff_templates_permission %>
+                      <li><a href="<%= Web_Dir %>/tariff_templates/list"><%= _('Templates') %></a></li>
+                    <% end %>
+
+                    <% if tariff_link_attachment_rules_permission %>
+                      <li><a href="<%= Web_Dir %>/tariff_link_attachment_rules/list"><%= _('Link_Attachment_Rules') %></a></li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+              <% if tariffs_rate_notifications_list %>
+                <li>
+                  <a href="<%= Web_Dir %>/tariff_rate_notifications/list"><%= _('Rate_Notifications') %><span class="menu-arrow">&#x25B6;</span></a>
+                  <ul>
+                    <li><a href="<%= Web_Dir %>/tariff_rate_notification_jobs/list"><%= _('Jobs') %></a></li>
+                    <li><a href="<%= Web_Dir %>/tariff_rate_notification_templates/list"><%= _('Templates') %></a></li>
+                  </ul>
+                </li>
+              <% end %>
+              <% if custom_tariffs %>
+                <li>
+                  <a href="<%= Web_Dir %>/tariffs/custom_tariffs"><%= _('Custom_tariffs') %></a>
+                </li>
+              <% end %>
+              <% if cdr_import_csv || cdr_rerating %>
+                <li>
+                  <a href="#"><%= _('CDR') %><span class="menu-arrow">&#x25B6;</span></a>
+                  <ul>
+                    <% if cdr_import_csv %>
+                      <li><a href="<%= Web_Dir %>/cdr/import_csv"><%= _('Import') %></a></li>
+                    <% end %>
+                    <% if cdr_rerating %>
+                      <li><a href="<%= Web_Dir %>/cdr/rerating"><%= _('Rerating') %></a></li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+
+        <% routing_groups_list = authorize_manager_permissions({controller: :routing_groups, action: :list, no_redirect_return: 1}) %>
+        <% dial_peers_list = authorize_manager_permissions({controller: :dial_peers, action: :list, no_redirect_return: 1}) %>
+
+        <% if routing_groups_list || dial_peers_list %>
+            <li <%= check_active('routing', 'menu', parent) %>>
+              <a href="#" class="routing"><%= _('ROUTING') %></a>
+              <ul>
+                <% if routing_groups_list %>
+                    <li><a href="<%= Web_Dir %>/routing_groups/list"><%= _('routing_groups') %></a></li>
+                <% end %>
+                <% if dial_peers_list %>
+                    <li><a href="<%= Web_Dir %>/dial_peers/list"><%= _('dial_peers') %></a></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+
+        <% financial_statuses_list = authorize_manager_permissions({controller: :financial_statuses, action: :list, no_redirect_return: 1}) %>
+        <% payments_list           = authorize_manager_permissions({controller: :payments, action: :list, no_redirect_return: 1}) %>
+        <% m2_invoices_list        = authorize_manager_permissions({controller: :m2_invoices, action: :list, no_redirect_return: 1}) %>
+        <% balance_reports_list    = authorize_manager_permissions({controller: :balance_reports, action: :list, no_redirect_return: 1}) %>
+        <% if financial_statuses_list || payments_list || m2_invoices_list || balance_reports_list %>
+            <li <%= check_active('accounting', 'menu', parent) %>>
+              <a href="<%= financial_statuses_list ? "#{Web_Dir}/financial_statuses/list" : '#' %>" class="accounting"><%= _('ACCOUNTING') %></a>
+              <ul>
+                <% if financial_statuses_list %>
+                    <li><a href="<%= Web_Dir %>/financial_statuses/list"><%= _('financial_status') %></a></li>
+                <% end %>
+                <% if payments_list %>
+                    <li><a href="<%= Web_Dir %>/payments/list"><%= _('Payments') %></a></li>
+                <% end %>
+                <% if m2_invoices_list %>
+                    <li><a href="<%= Web_Dir %>/m2_invoices/list"><%= _('Customer_Invoices') %></a></li>
+                <% end %>
+                <% if balance_reports_list %>
+                    <li><a href="<%= Web_Dir %>/balance_reports/list"><%= _('balance_report') %></a></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+
+        <%
+          security_integrity_check = authorize_manager_permissions({controller: :functions, action: :integrity_check, no_redirect_return: 1})
+          security_list = authorize_manager_permissions({controller: :alerts, action: :list, no_redirect_return: 1})
+          security_check = authorize_manager_permissions({controller: :alerts, action: :contacts, no_redirect_return: 1})
+          security_schedules = authorize_manager_permissions({controller: :alerts, action: :schedules, no_redirect_return: 1})
+          security_groups = authorize_manager_permissions({controller: :alerts, action: :groups, no_redirect_return: 1})
+          security_blocked_ips = authorize_manager_permissions({controller: :monitorings, action: :blocked_ips, no_redirect_return: 1})
+        %>
+        <% if security_integrity_check || security_list || security_check || security_schedules || security_groups || security_blocked_ips %>
+            <li <%= check_active('security', 'menu', parent) %>>
+              <a href="#" class="security"><%= _('SECURITY') %></a>
+              <ul>
+                <% if security_integrity_check %>
+                    <li><a href="<%= Web_Dir %>/functions/integrity_check"><%= _('Integrity_Check') %></a></li>
+                <% end %>
+                <li>
+                  <% if security_list %>
+                      <a href="<%= Web_Dir %>/alerts"><%= _('Alerts') %>
+                      <% if all_security_on(security_check, security_schedules, security_groups) %>
+                          <span class="menu-arrow">&#x25B6;</span>
+                      <% end %>
+                      </a>
+                  <% else %>
+                      <% if security_list || security_check || security_schedules || security_groups %>
+                          <a href="#"><%= _('Alerts') %>
+                          <% if all_security_on(security_check, security_schedules, security_groups) %>
+                              <span class="menu-arrow">&#x25B6;</span>
+                          <% end %>
+                          </a>
+                      <% end %>
+                  <% end %>
+                  <% if all_security_on(security_check, security_schedules, security_groups) %>
+                    <ul>
+                      <% if security_check %>
+                          <li><a href="<%= Web_Dir %>/alerts/contacts"><%= _('Contacts') %></a></li>
+                      <% end %>
+                      <% if security_schedules %>
+                          <li><a href="<%= Web_Dir %>/alerts/schedules"><%= _('schedules') %></a></li>
+                      <% end %>
+                      <% if security_groups %>
+                          <li><a href="<%= Web_Dir %>/alerts/groups"><%= _('groups') %></a></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+                </li>
+                <% if security_blocked_ips %>
+                    <li><a href="<%= Web_Dir %>/monitorings/blocked_ips"><%= _('Blocked_IPs') %></a></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+
+        <% stats_show_user_stats   = authorize_manager_permissions({controller: :stats, action: :show_user_stats, no_redirect_return: 1}) %>
+        <% aggregates_list         = authorize_manager_permissions({controller: :aggregates, action: :list, no_redirect_return: 1}) %>
+        <% aggregate_template      = authorize_manager_permissions({controller: :aggregate_templates, action: :index, no_redirect_return: 1}) %>
+        <% auto_agg_export         = authorize_manager_permissions({controller: :aggregate_export, action: :index, no_redirect_return: 1}) %>
+        <% stats_calls_list        = authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1}) %>
+        <% stats_old_calls         = authorize_manager_permissions({controller: :stats, action: :old_calls_stats, no_redirect_return: 1}) %>
+        <% stats_active_calls      = authorize_manager_permissions({controller: :stats, action: :active_calls, no_redirect_return: 1}) %>
+        <% stats_calls_dashboard   = authorize_manager_permissions({controller: :stats, action: :calls_dashboard, no_redirect_return: 1}) %>
+        <% stats_hangup_cause_codes_stats = authorize_manager_permissions({controller: :stats, action: :hangup_cause_codes_stats, no_redirect_return: 1}) %>
+        <% stats_destination_groups = authorize_manager_permissions({controller: :stats, action: :country_stats, no_redirect_return: 1}) %>
+        <% stats_load_stats        = authorize_manager_permissions({controller: :stats, action: :load_stats, no_redirect_return: 1}) %>
+        <% stats_action_log        = authorize_manager_permissions({controller: :stats, action: :action_log, no_redirect_return: 1}) %>
+        <% stats_search            = authorize_manager_permissions({controller: :stats, action: :search, no_redirect_return: 1}) %>
+        <% tp_deviations           = authorize_manager_permissions({controller: :tp_deviations, action: :list, no_redirect_return: 1}) %>
+        <% functions_settings = authorize_manager_permissions({controller: :functions, action: :settings, no_redirect_return: 1}) %>
+        <% users_default_user = authorize_manager_permissions({controller: :users, action: :default_user, no_redirect_return: 1}) %>
+        <% devices_default_device = authorize_manager_permissions({controller: :devices, action: :default_device, no_redirect_return: 1}) %>
+        <% currencies_currencies = authorize_manager_permissions({controller: :currencies, action: :currencies, no_redirect_return: 1}) %>
+        <% emails_list = authorize_manager_permissions({controller: :emails, action: :list, no_redirect_return: 1}) %>
+        <% backups_backup_manager = authorize_manager_permissions({controller: :backups, action: :backup_manager, no_redirect_return: 1}) %>
+        <% functions_background_tasks = authorize_manager_permissions({controller: :functions, action: :background_tasks, no_redirect_return: 1}) %>
+        <% servers_list = authorize_manager_permissions({controller: :servers, action: :list, no_redirect_return: 1}) %>
+        <% number_pools_pool_list = authorize_manager_permissions({controller: :number_pools, action: :pool_list, no_redirect_return: 1}) %>
+        <% directions = authorize_manager_permissions({controller: :directions, action: :list, no_redirect_return: 1}) %>
+        <% direction_groups = authorize_manager_permissions({controller: :destination_groups, action: :list, no_redirect_return: 1}) %>
+        <% stats_calls_per_hour = authorize_manager_permissions({controller: :aggregates, action: :calls_per_hour, no_redirect_return: 1}) %>
+        <% if stats_show_user_stats || aggregates_list || stats_calls_list || stats_old_calls || stats_active_calls || stats_hangup_cause_codes_stats ||
+              stats_destination_groups || stats_load_stats || stats_action_log || stats_search || stats_calls_dashboard || stats_calls_per_hour ||
+              (tp_deviations && dial_peers_list && emails_list && users_list) %>
+            <li <%= check_active('reports', 'menu', parent) %>>
+              <a href="#" class="reports"><%= _('REPORTS') %></a>
+              <ul>
+                <% if stats_active_calls %>
+                    <li>
+                      <a href="<%= Web_Dir %>/stats/active_calls"><%= _('Active_Calls') %>
+                        <span class="menu-arrow">&#x25B6;</span>
+                      </a>
+                      <ul>
+                        <li><a href="<%= Web_Dir %>/stats/active_calls_per_server"><%= _('Per_Server') %></a></li>
+                        <li><a href="<%= Web_Dir %>/stats/active_calls_per_user_op"><%= _('Per_User_Op') %></a></li>
+                        <li><a href="<%= Web_Dir %>/stats/terminator_active_calls"><%= _('Per_Terminator') %></a></li>
+                      </ul>
+                    </li>
+                <% end %>
+                <% if stats_calls_list && stats_old_calls %>
+                    <li>
+                      <a href="<%= Web_Dir %>/stats/calls_list"><%= _('calls_list') %><span class="menu-arrow">&#x25B6;</span></a>
+                      <ul>
+                        <li><a href="<%= Web_Dir %>/stats/old_calls_stats"><%= _('Old_Calls') %></a></li>
+                      </ul>
+                    </li>
+                <% elsif stats_calls_list %>
+                    <li><a href="<%= Web_Dir %>/stats/calls_list"><%= _('calls_list') %></a></li>
+                <% elsif stats_old_calls %>
+                    <li><a href="<%= Web_Dir %>/stats/old_calls_stats"><%= _('Old_Calls') %></a></li>
+                <% end %>
+                <% if stats_show_user_stats %>
+                    <li>
+                      <a href="<%= Web_Dir %>/stats/show_user_stats"><%= _('Calls_by_clients') %><span class="menu-arrow">&#x25B6;</span></a>
+                      <ul>
+                        <li><a href="<%= Web_Dir %>/stats/user_stats"><%= _('Detailed') %></a></li>
+                      </ul>
+                    </li>
+                <% end %>
+                <% if stats_calls_per_hour %>
+                    <li><a href="<%= Web_Dir %>/aggregates/calls_per_hour"><%= _('Calls_Per_Hour') %></a></li>
+                <% end %>
+                <% if stats_calls_dashboard %>
+                    <li><a href="<%= Web_Dir %>/stats/calls_dashboard"><%= _('Calls_Dashboard') %></a></li>
+                <% end %>
+                <% if aggregates_list %>
+                    <li><a href="<%= Web_Dir %>/aggregates/list"><%= _('Aggregate') %>
+                    <% if aggregate_template || auto_agg_export %>
+                      <span class="menu-arrow">&#x25B6;</span></a>
+                    <% end %> </a>
+                    <% if aggregate_template && auto_agg_export %>
+                      <ul>
+                        <li><a href="<%= Web_Dir %>/aggregate_templates/index"><%= _('Templates') %></a></li>
+                        <li><a href="<%= Web_Dir %>/aggregate_export/index"><%= _('Auto_Export') %></a></li>
+                      </ul>
+                    <% elsif auto_agg_export %>
+                      <ul>
+                        <li><a href="<%= Web_Dir %>/aggregate_export/index"><%= _('Auto_Export') %></a></li>
+                      </ul>
+                    <% elsif aggregate_template %>
+                      <ul>
+                        <li><a href="<%= Web_Dir %>/aggregate_templates/index"><%= _('Templates') %></a></li>
+                      </ul>
+                    <% end %>
+                    </li>
+                <% end %>
+                <% if stats_hangup_cause_codes_stats %>
+                    <li><a href="<%= Web_Dir %>/stats/hangup_cause_codes_stats"><%= _('Hangup_cause') %></a></li>
+                <% end %>
+                <% if stats_destination_groups %>
+                    <li><a href="<%= Web_Dir %>/stats/country_stats"><%= _('Destination_Groups') %></a></li>
+                <% end %>
+                <% if stats_load_stats %>
+                    <li><a href="<%= Web_Dir %>/stats/load_stats"><%= _('Load_stats') %></a></li>
+                <% end %>
+                <% if tp_deviations && dial_peers_list && emails_list && users_list %>
+                    <li><a href="<%= Web_Dir %>/tp_deviations/list"><%= _('TP_Deviations') %></a></li>
+                <% end %>
+                <% if stats_action_log %>
+                    <li><a href="<%= Web_Dir %>/stats/action_log"><%= _('Action_log') %></a></li>
+                <% end %>
+                <% if stats_search %>
+                    <li><a href="<%= Web_Dir %>/stats/search"><%= _('Search') %></a></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+        <% if functions_settings || users_default_user || devices_default_device || currencies_currencies ||
+          emails_list || backups_backup_manager || functions_background_tasks || servers_list ||
+          number_pools_pool_list || directions || direction_groups %>
+          <li <%= check_active('maintenance', 'menu', parent) %>>
+            <a href="#" class="maintenance"><%= _('MAINTENANCE') %></a>
+            <ul>
+              <% if functions_settings || users_default_user || devices_default_device || currencies_currencies %>
+                <li>
+                  <a href="<%= functions_settings ? "#{Web_Dir}/functions/settings" : '#' %>"><%= _('Settings') %>
+                  <span class="menu-arrow">&#x25B6;</span></a>
+                  <% if users_default_user || devices_default_device || currencies_currencies %>
+                    <ul>
+                      <% if users_default_user %>
+                        <li><a href="<%= Web_Dir %>/users/default_user"><%= _('Default_user') %></a></li>
+                      <% end %>
+                      <% if devices_default_device %>
+                        <li><a href="<%= Web_Dir %>/devices/default_device"><%= _('Default_device') %></a></li>
+                      <% end %>
+                      <% if currencies_currencies %>
+                        <li><a href="<%= Web_Dir %>/currencies/currencies"><%= _('Currencies') %></a></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+                </li>
+              <% end %>
+              <% if emails_list %>
+                <li><a href="<%= Web_Dir %>/emails/list"><%= _('Emails') %></a></li>
+              <% end %>
+              <% if backups_backup_manager %>
+                <li><a href="<%= Web_Dir %>/backups/backup_manager"><%= _('Backups') %></a></li>
+              <% end %>
+              <% if functions_background_tasks %>
+                <li><a href="<%= Web_Dir %>/functions/background_tasks"><%= _('Background_tasks') %></a></li>
+              <% end %>
+              <% if servers_list %>
+                <li><a href="<%= Web_Dir %>/servers/list"><%= _('Servers') %></a></li>
+              <% end %>
+              <% if number_pools_pool_list %>
+                <li><a href="<%= Web_Dir %>/number_pools/pool_list"><%= _('Number_Pools') %></a></li>
+              <% end %>
+
+              <% if directions && direction_groups%>
+                <li>
+                  <a href="<%= Web_Dir %>/directions/list"><%= _('Directions') %>
+                    <span class="menu-arrow">&#x25B6;</span>
+                  </a>
+                  <ul>
+                    <li><a href="<%= Web_Dir %>/destination_groups/list"><%= _('Groups') %></a></li>
+                  </ul>
+                </li>
+              <% elsif directions %>
+                  <li><a href="<%= Web_Dir %>/directions/pool_list"><%= _('Directions') %></a></li>
+              <% elsif direction_groups %>
+                  <li><a href="<%= Web_Dir %>/destination_groups/list"><%= _('destinations_groups') %></a></li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <ul class="lang-list">
+      <% if show_active_currency? %>
+        <li>
+          <a id="active-currency" href="#" class="currency-link"><%= session[:show_currency] %></a>
+          <ul class="currency-drop">
+            <% Currency.get_active.each do |currency| %>
+                <li><%= link_to currency.name, controller: 'callc', action: 'change_currency', url: currency_change_url, currency: currency.name %></li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+      <li>
+        <a href="#"><div><%= nice_user(current_user) %></div></a>
+        <ul>
+          <li><a href="<%= Web_Dir %>/users/personal_details"><%= _('Personal_Details') %></a></li>
+          <li><a href="<%= Web_Dir %>/callc/logout"><%= _('Logout') %></a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header>

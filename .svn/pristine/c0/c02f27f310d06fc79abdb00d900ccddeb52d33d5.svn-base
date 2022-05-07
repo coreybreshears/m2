@@ -1,0 +1,7 @@
+/home/mor/selenium/tests/db_update_check.case
+# NEVER DELETE THIS ^^^^^^^^ STATEMENT
+
+/home/mor/selenium/tests/exceptions.case
+/home/mor/selenium/tests/check_post.case
+/home/mor/selenium/tests/backups.case
+/home/mor/selenium/tests/asterisk_servers.case

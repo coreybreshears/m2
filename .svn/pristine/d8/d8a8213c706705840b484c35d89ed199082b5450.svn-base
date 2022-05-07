@@ -1,0 +1,60 @@
+<%= content_for :head do %>
+    <%= javascript_include_tag 'routing_groups_management' %>
+<% end %>
+
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('Routing_Groups_Management_for_Dial_Peer') %>:&nbsp;<%= link_to(@dial_peer.name, controller: :dial_peers, action: :edit, id: @dial_peer.id) %></h2>
+
+    <%= form_tag url_for(action: 'routing_groups_management', id: @dial_peer.id),
+                 class: 'details-form hidden-form rg-dp-management-form',
+                 'dp-routing-groups-url' => url_for(controller: :dial_peers, action: :retrieve_routing_groups_management_remote),
+                 'rg-dial-peers-assignment-url' => url_for(controller: :routing_groups, action: :dial_peers_management_assignment_remote),
+                 'dial-peer-id' => @dial_peer.id do
+    %>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col one-third"><%= _('Filter') %>:</div>
+              <div class="input-col two-thirds" style="display: inline-flex;;">
+                <%= text_field_tag 'rg_name', '', id: 'rg-filter', class: 'rg-dp-management-dp-filter' %>
+                <%= button_tag _('clear'), id: 'rg-filter-clear', class: 'clear rg-dp-management-dp-filter-clear', name: 'clear', type: 'button' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-row">
+              <div class="narrow-label-col"><%= _('Routing_Groups_not_assigned_to_the_Dial_Peer') %></div>
+              <div class="narrow-label-col" id='rg-not-assigned-count'></div>
+              <div class="narrow-label-col" id='rg-assign-all-not-assigned'><%= _('Assign_all') %></div>
+            </div>
+            <div class="input-row">
+              <div class="rg-dp-management-table-container">
+                <table class="rg-dp-management-table" id="rg-not-assigned-table">
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="input-row">
+              <div class="narrow-label-col"><%= _('Routing_Groups_assigned_to_the_Dial_Peer') %></div>
+              <div class="narrow-label-col" id='rg-assigned-count'></div>
+              <div class="narrow-label-col" id='rg-unassign-all-assigned'><%= _('Unassign_all') %></div>
+            </div>
+            <div class="input-row">
+              <div class="rg-dp-management-table-container">
+                <table class="rg-dp-management-table" id="rg-assigned-table">
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+</div>

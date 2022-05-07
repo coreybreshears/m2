@@ -1,0 +1,409 @@
+<div class="row">
+  <div class="col col-width_43pc col-border-right">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :name, class: 'input', maxlength: 100, autocomplete: 'disabled' %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Rate_Import_Rules') %></label>
+      </div>
+      <div class="input-col">
+        <% if jobs_present && tariff_import_rule.tariff_rate_import_rule %>
+            <div class="not-input-col-just-text text-link">
+              <%= link_to(tariff_import_rule.tariff_rate_import_rule.name, {controller: :tariff_rate_import_rules, action: :edit, id: tariff_import_rule.tariff_rate_import_rule.id}) %>
+            </div>
+        <% elsif tariff_rate_import_rules_collection.present? %>
+            <%= f.collection_select(:tariff_rate_import_rule_id, tariff_rate_import_rules_collection, :id, :name) %>
+        <% else %>
+            <div class="not-input-col-just-text text-color-red text-link">
+              <%= link_to(_('Create_Rate_Import_Rules'), {controller: :tariff_rate_import_rules, action: :list}) %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Target_Tariff') %></label>
+      </div>
+      <div class="input-col">
+        <% if jobs_present && tariff_import_rule.tariff %>
+            <div class="not-input-col-just-text text-link">
+              <%= link_to(tariff_import_rule.tariff.name_with_currency, {controller: :tariffs, action: :edit, id: tariff_import_rule.tariff.id}) %>
+            </div>
+        <% elsif buy_tariffs_collection.present? %>
+            <%= f.collection_select(:tariff_id, buy_tariffs_collection, :id, :name_with_currency) %>
+        <% else %>
+            <div class="not-input-col-just-text text-color-red text-link">
+              <%= link_to(_('Create_Buy_Tariff'), {controller: :tariffs, action: :list}) %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Import_Type') %></label>
+      </div>
+      <div class="input-col">
+        <% if jobs_present %>
+            <div class="not-input-col-just-text">
+              <%= tariff_import_rule_type_nice(tariff_import_rule.import_type.to_s) %>
+            </div>
+        <% else %>
+            <%= f.select(:import_type, options_for_select(import_type_selection, tariff_import_rule.import_type), {}, {}) %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="import_type_add_update_options" style="display: none;">
+      <div class="input-row" <%= tooltip(_('Info'), _('Delete_Rates_for_Prefixes_which_are_not_present_in_imported_file').html_safe) %>>
+        <div class="label-col label-indent">
+          <label><%= _('Delete_Rates_if_not_present') %></label>
+        </div>
+        <div class="input-col input-col-radiobuttons">
+          <%= f.radio_button(:delete_rates_which_are_not_present_in_file, 0, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+          <div class="tariff_import_rules-radio_button_text">
+            <%= _('_No') %>
+          </div>
+          <div class="tariff_import_rules-radio_button_inbetween">&nbsp;</div>
+          <%= f.radio_button(:delete_rates_which_are_not_present_in_file, 1, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+          <div class="tariff_import_rules-radio_button_text">
+            <%= _('_Yes') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Import_Template') %></label>
+      </div>
+      <div class="input-col">
+        <% if jobs_present && tariff_import_rule.tariff_template %>
+            <div class="not-input-col-just-text text-link">
+              <%= link_to(tariff_import_rule.tariff_template.name, {controller: :tariff_templates, action: :edit, id: tariff_import_rule.tariff_template.id}) %>
+            </div>
+        <% elsif tariff_templates_collection.present? %>
+            <%= f.collection_select(:tariff_template_id, tariff_templates_collection, :id, :name) %>
+        <% else %>
+            <div class="not-input-col-just-text text-color-red text-link">
+              <%= link_to(_('Create_Tariff_Template'), {controller: :tariff_templates, action: :list}) %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Effective_Date') %></label>
+      </div>
+      <div class="input-col">
+        <% if jobs_present %>
+            <div class="not-input-col-just-text">
+              <%= tariff_import_rule_effective_date_nice(tariff_import_rule.effective_date_from.to_s) %>
+            </div>
+        <% else %>
+            <%= f.select(:effective_date_from, options_for_select(tariff_import_rules_effective_date_selection, tariff_import_rule.effective_date_from), {}, {}) %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="effective_date_options" style="display: none;">
+      <div class="input-row">
+        <div class="label-col label-indent">
+          <label><%= _('Prefix') %></label>
+        </div>
+        <div class="input-col">
+          <%= f.text_field :effective_date_prefix, class: 'input', maxlength: 256 %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col label-indent">
+          <label><%= _('Date_Format') %></label>
+        </div>
+        <div class="input-col">
+          <%= f.text_field :effective_date_format, class: 'input', maxlength: 256 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Manual_Review') %></label>
+      </div>
+      <div class="input-col input-col-radiobuttons">
+        <%= f.radio_button(:manual_review, 0, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('_No') %>
+        </div>
+        <div class="tariff_import_rules-radio_button_inbetween">&nbsp;</div>
+        <%= f.radio_button(:manual_review, 1, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('_Yes') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row" <%= tooltip(_('Info'), _('Tariff_Import_Rules_Reject_Import_if_errors_found_Tooltip_Info').html_safe) %>>
+      <div class="label-col">
+        <label><%= _('Reject_Import_if_errors_found') %></label>
+      </div>
+      <div class="input-col input-col-radiobuttons">
+        <%= f.radio_button(:reject_if_errors, 0, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('_No') %>
+        </div>
+        <div class="tariff_import_rules-radio_button_inbetween">&nbsp;</div>
+        <%= f.radio_button(:reject_if_errors, 1, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('_Yes') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Stop_processing_more_Rules') %></label>
+      </div>
+      <div class="input-col input-col-radiobuttons">
+        <%= f.radio_button(:stop_processing_more_rules, 0, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('_No') %>
+        </div>
+        <div class="tariff_import_rules-radio_button_inbetween">&nbsp;</div>
+        <%= f.radio_button(:stop_processing_more_rules, 1, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('_Yes') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row" <%= tooltip(_('Info'), _('Tariff_Import_Rules_Default_Effective_From_Tooltip_Info').html_safe) %>>
+      <div class="label-col">
+        <label><%= _('Default_Effective_From') %></label>
+      </div>
+      <div class="input-col input-col-radiobuttons">
+        <%= f.radio_button(:default_effective_from, 0, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('_Reject') %>
+        </div>
+        <div class="tariff_import_rules-radio_button_inbetween">&nbsp;</div>
+        <%= f.radio_button(:default_effective_from, 1, {class: 'tariff_import_rules-radio_button', disabled: jobs_present}) %>
+        <div class="tariff_import_rules-radio_button_text">
+          <%= _('Current_Time') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Default_Connection_Fee') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :default_connection_fee, class: 'input', maxlength: 31 %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Default_Increment') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :default_increment, class: 'input', maxlength: 10 %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Default_Minimal_Time') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :default_min_time, class: 'input', maxlength: 10 %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="input-row">
+      <div class="label-col">
+        <h3 style="margin: 0!important;"><%= _('Email__Attachment_Validation') %></h3>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Mail_From') %></label>
+      </div>
+      <div class="input-col" <%= tooltip(_('Info'), _('Tariff_Import_Rules_Mail_From_Tooltip_Info').html_safe) %>>
+        <%= f.text_field :mail_from, class: 'input _150pc', maxlength: 1024 %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Sender_Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :mail_sender, class: 'input _150pc', maxlength: 256 %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Mail_Subject') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :mail_subject, class: 'input _150pc', maxlength: 256 %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Mail_Text') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :mail_text, class: 'input _150pc', maxlength: 256 %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('File_Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :file_name, class: 'input _150pc', maxlength: 256 %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-width-max">
+    <div class="input-row max-width-max">
+      <h3 style="margin-bottom: 0!important;"><%= _('Email_Notifications') %></h3>
+    </div>
+
+    <div class="input-row max-width-max no-padding-bottom">
+      <div class="tariff_import_rules-email_notifications-import_trigger"><h4 style="margin: 0!important;"><%=  _('Import_Trigger') %></h4></div>
+      <div class="tariff_import_rules-email_notifications-email_notification"><h4 style="margin: 0!important;"><%=  _('Email_Notification') %></h4></div>
+      <div class="tariff_import_rules-email_notifications-subject"><h4 style="margin: 0!important;"><%=  _('Subject') %></h4></div>
+      <div class="tariff_import_rules-email_notifications-recipients"><h4 style="margin: 0!important;"><%=  _('Recipients') %></h4></div>
+      <!--div class="tariff_import_rules-email_notifications-attachment"><h4 style="margin: 0!important;"> <_%=# _('Attachment') %></h4></div hidden after #15392-->
+    </div>
+
+    <div id="div_email_notification_tariff_received" class="input-row max-width-max" <%= tooltip(_('Recipients'), _('Recipients_tooltip_info'))%>>
+      <div class="tariff_import_rules-email_notifications-import_trigger">
+        <%= _('Tariff_Received') %>
+      </div>
+      <%= f.collection_select(:trigger_received_email_notification_id, email_notifications_collection, :id, :name, {include_blank: _('None')}, {class: 'tariff_import_rules-email_notifications-email_notification'}) %>
+      <div class="tariff_import_rules-email_notifications-subject"></div>
+      <%= f.text_field(:trigger_received_email_notification_recipients, class: 'tariff_import_rules-email_notifications-recipients') %>
+      <!--div class="tariff_import_rules-email_notifications-attachment"></div hidden after #15392-->
+    </div>
+
+    <div id="div_email_notification_tariff_imported_for_review" class="input-row max-width-max" <%= tooltip(_('Recipients'), _('Recipients_tooltip_info'))%>>
+      <div class="tariff_import_rules-email_notifications-import_trigger">
+        <%= _('Tariff_Imported_for_Review') %>
+      </div>
+      <%= f.collection_select(:trigger_review_email_notification_id, email_notifications_collection, :id, :name, {include_blank: _('None')}, {class: 'tariff_import_rules-email_notifications-email_notification'}) %>
+      <div class="tariff_import_rules-email_notifications-subject"></div>
+      <%= f.text_field(:trigger_review_email_notification_recipients, class: 'tariff_import_rules-email_notifications-recipients') %>
+      <!--div class="tariff_import_rules-email_notifications-attachment"></div hidden after #15392-->
+    </div>
+
+    <div id="div_email_notification_tariff_imported" class="input-row max-width-max" <%= tooltip(_('Recipients'), _('Recipients_tooltip_info'))%>>
+      <div class="tariff_import_rules-email_notifications-import_trigger">
+        <%= _('Tariff_Imported') %>
+      </div>
+      <%= f.collection_select(:trigger_imported_email_notification_id, email_notifications_collection, :id, :name, {include_blank: _('None')}, {class: 'tariff_import_rules-email_notifications-email_notification'}) %>
+      <div class="tariff_import_rules-email_notifications-subject"></div>
+      <%= f.text_field(:trigger_imported_email_notification_recipients, class: 'tariff_import_rules-email_notifications-recipients') %>
+      <!--div class="tariff_import_rules-email_notifications-attachment"></div hidden after #15392-->
+    </div>
+
+    <div id="div_email_notification_tariff_imported_with_errors" class="input-row max-width-max" <%= tooltip(_('Recipients'), _('Recipients_tooltip_info'))%>>
+      <div class="tariff_import_rules-email_notifications-import_trigger">
+        <%= _('Tariff_Imported_with_Errors') %>
+      </div>
+      <%= f.collection_select(:trigger_errors_email_notification_id, email_notifications_collection, :id, :name, {include_blank: _('None')}, {class: 'tariff_import_rules-email_notifications-email_notification'}) %>
+      <div class="tariff_import_rules-email_notifications-subject"></div>
+      <%= f.text_field(:trigger_errors_email_notification_recipients, class: 'tariff_import_rules-email_notifications-recipients') %>
+      <!--div class="tariff_import_rules-email_notifications-attachment"></div hidden after #15392-->
+    </div>
+
+    <div id="div_email_notification_tariff_rejected" class="input-row max-width-max" <%= tooltip(_('Recipients'), _('Recipients_tooltip_info'))%>>
+      <div class="tariff_import_rules-email_notifications-import_trigger">
+        <%= _('Tariff_Rejected') %>
+      </div>
+      <%= f.collection_select(:trigger_rejected_email_notification_id, email_notifications_collection, :id, :name, {include_blank: _('None')}, {class: 'tariff_import_rules-email_notifications-email_notification'}) %>
+      <div class="tariff_import_rules-email_notifications-subject"></div>
+      <%= f.text_field(:trigger_rejected_email_notification_recipients, class: 'tariff_import_rules-email_notifications-recipients') %>
+      <!--div class="tariff_import_rules-email_notifications-attachment"></div hidden after #15392-->
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+                $("#tariff_import_rule_effective_date_from").change(function () {
+                    show_hide_effective_date_options();
+                }).trigger('change');
+
+                <% if jobs_present %>
+                    if ('<%= tariff_import_rule.import_type.to_s %>' == 'add_update') {
+                        $("#import_type_add_update_options").show();
+                    } else {
+                        $("#import_type_add_update_options").hide();
+                    }
+                <% else %>
+                    $("#tariff_import_rule_import_type").change(function () {
+                        show_hide_import_type_add_update_options();
+                    }).trigger('change');
+                <% end %>
+
+                var email_notifications_collection_json = <%= email_notifications_collection.to_json.html_safe %>;
+                var email_notification = {}, subject = '', attachment = '';
+
+                $("div[id^='div_email_notification_'] select[id^='tariff_import_rule_']").change(function () {
+                    if ($(this).val()) {
+                        email_notification = find_in_array_by_int(email_notifications_collection_json, 'id', $(this).val());
+                        subject = email_notification.subject || '';
+                        attachment = email_notification.attachment || '';
+                        $(this).parent().children('.tariff_import_rules-email_notifications-subject').text(subject);
+                        $(this).parent().children('.tariff_import_rules-email_notifications-attachment').text(attachment);
+                    } else {
+                        $(this).parent().children('.tariff_import_rules-email_notifications-subject').text('');
+                        $(this).parent().children('.tariff_import_rules-email_notifications-attachment').text('');
+                    }
+                }).trigger('change');
+            }
+    );
+
+    function show_hide_effective_date_options() {
+        var div_effective_date_options = $("#effective_date_options");
+
+        if ($("#tariff_import_rule_effective_date_from").val() == 'template') {
+            div_effective_date_options.hide();
+        } else {
+            div_effective_date_options.show();
+        }
+    }
+
+    function show_hide_import_type_add_update_options() {
+        var div_import_type_add_update_options = $("#import_type_add_update_options");
+
+        if ($("#tariff_import_rule_import_type").val() == 'add_update') {
+            div_import_type_add_update_options.show();
+        } else {
+            div_import_type_add_update_options.hide();
+        }
+    }
+</script>

@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/connection_points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Register:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Login/Username:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Password:</td>
+	<td></td>
+</tr>
+<!--galima updeitinti neparinkus register-->
+<tr>
+	<td>check</td>
+	<td>id=add_to_servers_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Login/Username:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Password:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Connection Point was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Username cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Password cannot be empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td>just some username</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Connection Point was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Password cannot be empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>* Username cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td>just some username</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_secret</td>
+	<td>just some password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td>just some password</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Connection Point was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>* Password cannot be empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Username cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td>just some username</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=add_to_servers_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Login/Username:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Password:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td>just some username</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td>just some password</td>
+</tr>
+<!--galima viena ištrinti ir nebus error-->
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td>just some username</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_insecure_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td>just some username</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td>just some password</td>
+</tr>
+<!--weak-->
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td>weak</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_secret</td>
+	<td>weak</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_insecure_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<!--nusiresetinimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td></td>
+</tr>
+<!--padarius act as OP/TP į "no" ir paspaudus save: turi nusiresetinti/išsitrinti visos kitos atitinkamo bloko reikšmės. (neturi nusiresetinti, kai padaroma active į "no").-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/routing_groups/simple_routing_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_tech_prefix</td>
+	<td>rqeterfqerfer</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>label=Percent</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>label=routing22</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_capacity</td>
+	<td>edc</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_src_regexp</td>
+	<td>wedc</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_src_deny_regexp</td>
+	<td>w545644464</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_capacity</td>
+	<td>edc8</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td>qwefqrefqer7578</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_capacity</td>
+	<td>500rwtgrt444</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>kjryujru</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_src_deny_regexp</td>
+	<td>yujryujryu</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td>jrujryuj</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_secret</td>
+	<td>ujryujū</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<!--(neturi nusiresetinti, kai padaroma active į "no").-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_active_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_0</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>Percent</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>routing22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_tariff_id</td>
+	<td>Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_capacity</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_src_regexp</td>
+	<td>wedc</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_src_deny_regexp</td>
+	<td>w545644464</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_0</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_active_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td>qwefqrefqer7578</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_capacity</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>kjryujru</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_deny_regexp</td>
+	<td>yujryujryu</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td>jrujryuj</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td>ujryujū</td>
+</tr>
+<!--resetinam-->
+<tr>
+	<td>click</td>
+	<td>id=device_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<!--turi buti defaultines reikšmės-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_tech_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>LCR</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>routing22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_tariff_id</td>
+	<td>Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_capacity</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_src_regexp</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_src_deny_regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_capacity</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_deny_regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_register</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>Test Tariff</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m2_blocked_rates_import</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m2_blocked_rates_import</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_BILLING_Tariffs_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>Tariff (Blocked rates)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff successfully created</td>
+</tr>
+<!--Rates blocking-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/rates_blocking.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Total file lines: 26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=blocked</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=blocked_row</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_1</td>
+	<td>block</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_2</td>
+	<td>blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_3</td>
+	<td>Block</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_4</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_5</td>
+	<td>BlOcK</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_6</td>
+	<td>BlOcKeD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_7</td>
+	<td>BLOCK</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_8</td>
+	<td>BLOCKED</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_lines</td>
+	<td>26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 20</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.5.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Tariff (Blocked rates)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (20)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/503</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.1111</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/504</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.2222</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/505</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.3333</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/506</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.4444</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/507</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.5555</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/508</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.6666</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/509</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.7777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/510</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.8888</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/511</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.9999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<!--Rates unblocking-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/rates_unblocking.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Total file lines: 26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=blocked</td>
+	<td>unblocked/blocked</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=blocked_row</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_1</td>
+	<td>unblocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_2</td>
+	<td>unblock</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_3</td>
+	<td>Unblocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_4</td>
+	<td>Unblock</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_5</td>
+	<td>UnBlOcKeD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_6</td>
+	<td>UnBlOcK</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_7</td>
+	<td>UNBLOCKED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_8</td>
+	<td>UNBLOCK</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_lines</td>
+	<td>26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated: 20</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.5.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Tariff (Blocked rates)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (20)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/503</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.1111</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/504</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.2222</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/505</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.3333</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/506</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.4444</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/507</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.5555</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/508</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.6666</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/509</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.7777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/510</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.8888</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/511</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.9999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=*Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Rates blocking-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/rates_blocking.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Total file lines: 26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=blocked</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=blocked_row</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_1</td>
+	<td>block</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_2</td>
+	<td>blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_3</td>
+	<td>Block</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_4</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_5</td>
+	<td>BlOcK</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_6</td>
+	<td>BlOcKeD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_7</td>
+	<td>BLOCK</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_8</td>
+	<td>BLOCKED</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_lines</td>
+	<td>26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#r_to_update &gt; b</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated: 20</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.5.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Tariff (Blocked rates)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (20)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/503</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.1111</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/504</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.2222</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/505</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.3333</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/506</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.4444</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/507</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.5555</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/508</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.6666</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/509</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.7777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/510</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.8888</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/511</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.9999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>on</td>
+</tr>
+<!--Rates unblocking-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/rates_unblocking.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Total file lines: 26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=blocked</td>
+	<td>unblocked/blocked</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=blocked_row</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_1</td>
+	<td>unblocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_2</td>
+	<td>unblock</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_3</td>
+	<td>Unblocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_4</td>
+	<td>Unblock</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_5</td>
+	<td>UnBlOcKeD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_6</td>
+	<td>UnBlOcK</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_7</td>
+	<td>UNBLOCKED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_blocked_8</td>
+	<td>UNBLOCK</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_lines</td>
+	<td>26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated: 20</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.5.11</td>
+	<td>Blocked value is invalid</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Tariff (Blocked rates)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (20)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/503</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.1111</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/504</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.2222</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/505</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.3333</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/506</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.4444</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/507</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.5555</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/508</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.6666</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/509</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.7777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/510</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.8888</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/511</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.9999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_blocked</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/rates_blocking.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Total file lines: 26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=blocked</td>
+	<td>Blocked</td>
+</tr>
+<!--Importuojanr Blocked arba -1 vietoj Rate, blocked reikšmė turi būti 1 ON-->
+<tr>
+	<td>select</td>
+	<td>id=blocked</td>
+	<td>label=regexp:\s</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Blocked</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=blocked</td>
+	<td>regexp:\s</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=rate_id</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_2</td>
+	<td>1242</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_2</td>
+	<td>blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_4</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_4</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_6</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_6</td>
+	<td>BlOcKeD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_new_rates_created &gt; b</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?rates=10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_534</td>
+	<td>1242</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_534</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img.b_blocked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/534</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination</td>
+	<td>Bahamas proper (1242)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_534</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=blocked_534</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/535</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination</td>
+	<td>Denmark proper (45)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_535</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=blocked_535</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/536</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination</td>
+	<td>Falkland isl proper (500)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_536</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=blocked_536</td>
+	<td>Yes</td>
+</tr>
+</tbody></table>
+</body>
+</html>

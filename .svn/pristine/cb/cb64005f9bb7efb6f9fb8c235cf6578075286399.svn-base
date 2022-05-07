@@ -1,0 +1,53 @@
+<div style='margin-left: 10px'>
+  <% if @rates.present? %>
+      <% default_currency_name = Currency.get_default.name %>
+      <b><%= _('Rates') %>:</b><br/><br/>
+      <% @rates.group_by { |rate| [rate['purpose']] }.map do |key, rates_grouped_by_purpose| %>
+          <% first_rate = rates_grouped_by_purpose[0] %>
+          <% first_rate_purpose = first_rate['purpose'].to_s %>
+          <% if first_rate_purpose.present? %>
+              <b style='text-decoration: underline;'>
+                <%= case first_rate_purpose
+                    when 'provider'
+                      _('Buy_tariffs')
+                    when 'user_wholesale'
+                      _('Sell_tariffs')
+                    when 'user_custom'
+                      _('Custom_Tariffs')
+                    end
+                %>:
+              </b>
+          <% end %>
+          <br/>
+          <br/>
+          <div style='margin-left: 10px'>
+            <% rates_grouped_by_purpose.group_by { |rate| [rate['tariffs_id']] }.map do |key, rates_grouped_by_tariff| %>
+                <% rates_grouped_by_tariff.group_by { |rate| [rate['prefix']] }.map do |key, rates_grouped| %>
+                    <% rates_grouped = mark_active_rates(rates_grouped) %>
+                    <% first_rate = rates_grouped[0] %>
+                    <b>
+                      <%= "#{first_rate['tariff_name']} (#{_('prefix')}: #{first_rate['prefix']}):" %>
+                    </b>
+                    <br/>
+                    <%= first_rate['name'].to_s %>
+                    <br/>
+                    <% rates_grouped.each do |r| %>
+                      <div style="<%= r['active'] == 0 ? 'color: #C0C0C0;' : '' %>" onclick="window.open('<%= Web_Dir %>/tariffs/<%= get_link_to_rate(r) %>');" class='max_paragraph_width' id="link_to_rate_<%= r['rate_id'] %>">
+                          <%= "#{nice_time2(r['start_time'])} - #{nice_time2(r['end_time'])} => #{r['rate']} (#{r['currency']})" %>
+                          <% if r['effective_from'].present? %>
+                            <%= "#{_('Effective_from')}: #{nice_date_time(r['effective_from'])}" %>
+                          <% end %>
+                          <% if r['currency'] != default_currency_name %>
+                              / <%= nice_number(r['rate'].to_f * Currency.count_exchange_rate(r['currency'],  default_currency_name)) %> (<%= default_currency_name %>)
+                          <% end %>
+                      </div>
+                    <% end %>
+                    <br/>
+                <% end %>
+            <% end %>
+          </div>
+      <% end %>
+  <% elsif params[:prefix].present? %>
+      <%= _('NO_RESULTS') %>
+  <% end %>
+</div>

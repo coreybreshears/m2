@@ -1,0 +1,42 @@
+<div class='content-box'>
+  <div class='table-box'>
+    <%= form_tag({action: :fake_call_log, id: `uuidgen`.gsub("\n", '')}, {class: 'tariff_gen-form'}) do %>
+        <%= hidden_field :call_data, :device_id, value: @device.id %>
+        <fieldset>
+          <h2><%= _('Call_Tracing') %></h2>
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Originator') %></label>
+            </div>
+            <div class='input-col'>
+              <%= "#{nice_user(@device.user)} - #{@device.description}" %>
+            </div>
+          </div>
+          <br/>
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('CallerID') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :call_data, :caller_id, type: :text,
+                             value: params[:call_data].try(:[], :caller_id).to_s
+              %>
+            </div>
+          </div>
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Destination') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :call_data, :destination, type: :text,
+                             value: params[:call_data].try(:[], :destination).to_s
+              %>
+            </div>
+          </div>
+          <div class='buttons-row'>
+            <%= submit_tag _('Trace_Call'), disable_with: 'Processing...' %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

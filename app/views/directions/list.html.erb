@@ -1,0 +1,38 @@
+<% if admin? || manager?%>
+    <%= link_to b_add + _('New_direction'), :action => 'new' %>
+	<%= link_to b_edit + _('Bulk_management'), :controller => 'destination_groups', :action => 'bulk', :saved => @saved %>
+<br/>
+<br/>
+<% end %>
+<% if @total_pages > 1 %>
+  <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>
+<br/>
+<table width="100%" class="maintable">
+  <tr>
+    <th align="left"><%= sortable_list_header("name", _('Name'), @options) %></th>
+    <th align="left"><%= sortable_list_header("code", _('Code'), @options) %></th>
+    <th align="left"><%= _('Destinations') %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% i = 0 %>
+  <% for direction in @directions %>
+      <tr class="row<%= (i % 2 + 1).to_s %>">
+
+        <td><%= draw_flag direction.code %> <%= direction.name %></td>
+        <td align="left"><%= direction.code.upcase %></td>
+        <td align="left"><%= link_to b_details + _('View'), :controller => :destinations, :action => :list, :id => direction.id %>
+          (<%= direction.dest_count %>)
+        </td>
+        <td align="center"><%= link_to _('EDIT'), :action => 'edit', :id => direction %></td>
+        <td align="center"><%= link_to _('DELETE'), {action: :destroy, id: direction}, data: { confirm: 'Are you sure?' }, method: :post, id: "destroy_img#{direction.id}" %></td>
+      </tr>
+      <% i += 1 %>
+  <% end %>
+</table>
+<br/>
+<% if @total_pages > 1 %>
+  <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>

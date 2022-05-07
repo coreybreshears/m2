@@ -1,0 +1,116 @@
+#-*- encoding : utf-8 -*-
+# ES module for Calls Dashboard statistics
+# V1.1
+# 2016-08-30
+module EsCallsDashboard
+  extend UniversalHelpers
+
+  module_function
+
+  # Returns aggragated statistics for Customers and Vendos
+  def stats(current_user)
+    @current_user = current_user
+    # Initial result format
+    result = {op:[], tp:[]}
+    # Perform ES query
+    response = Elasticsearch.safe_search_m2_calls(ElasticsearchQueries.dashboard_stats(default_options))
+    # ES issue, check log
+    return result unless response
+
+    # Non-zero-id Customer and Vendor aggregations
+    ops = response['aggregations']['valid_ops']['grouped_by_op_user']['buckets']
+    tps = response['aggregations']['valid_tps']['grouped_by_tp_user']['buckets']
+
+    # Cache for nice User names.
+    @data_cache = {users: []}
+
+    result[:op] = calculate_stats(ops)
+    result[:tp] = calculate_stats(tps)
+
+    result
+  end
+
+  # Callculates Total Attemps, Total Answered, Total Billsec, ASR, ACD, Margin
+  #   For the last day and hour. Takes resource as parameter (op or tp aggs)
+  def calculate_stats(rsource)
+    result = []
+
+    rsource.each do |res|
+      data_row = {}
+
+      # Nice user
+      user_id = res['key']
+      data_row[:user] = @data_cache[:users][user_id] ||= "#{nice_user(User.find_by(id: user_id))}\n#{user_id}"
+
+      # Last day statistics
+      last_day_stats = res['last_day']
+      data_row[:calls_last_day] = last_day_total = last_day_stats['doc_count']
+
+      # Do not calculate statistics when there are 0 attempts
+      if last_day_total > 0
+        data_row[:answered_last_day] = last_day_answered = last_day_stats['answered_calls']['doc_count']
+        last_day_sell = last_day_stats['user_price']['value']
+        last_day_buy = last_day_stats['provider_price']['value']
+        last_day_billsec = last_day_stats['billsec']['value']
+
+        # ASR = TOTAL ANSWERED / TOTAL ATTEMPTS * 100%
+        data_row[:asr_last_day] = (last_day_answered.to_f / last_day_total * 100).round
+        # ACD = TOTAL BILLSEC / TOTAL ANSWERED CALLS
+        data_row[:acd_last_day] = last_day_answered > 0 ? (last_day_billsec.to_f / last_day_answered).round : 0
+        # Margin = PROFIT / SELL * 100%
+        data_row[:margin_last_day] = last_day_sell > 0 ? ((last_day_sell - last_day_buy).to_f / last_day_sell * 100).round : 0
+      end
+
+      # Last hour statistics
+      last_hour_stats = res['last_hour']
+      data_row[:calls_last_hour] = last_hour_total = last_hour_stats['doc_count']
+
+      if last_hour_total > 0
+        data_row[:answered_last_hour] = last_hour_answered = last_hour_stats['answered_calls']['doc_count']
+        last_hour_sell = last_hour_stats['user_price']['value']
+        last_hour_buy = last_hour_stats['provider_price']['value']
+        last_hour_billsec = last_hour_stats['billsec']['value']
+
+        data_row[:asr_last_hour] = (last_hour_answered.to_f / last_hour_total * 100).round
+        data_row[:acd_last_hour] = last_hour_answered > 0 ? (last_hour_billsec.to_f / last_hour_answered).round : 0
+        data_row[:margin_last_hour] = last_hour_sell > 0 ? ((last_hour_sell - last_hour_buy).to_f / last_hour_sell * 100).round : 0
+      end
+
+      result << data_row
+    end
+    result
+  end
+
+  private
+
+  module_function
+
+  # Returns options for ES query
+  def default_options
+    # Current time in a Server time zone
+    server_now = Time.now
+    # Current time in a User time zone
+    user_now = ActiveSupport::TimeZone[@current_user.time_zone].now
+    return unless user_now
+
+    # Beginning of day in a User time zone
+    user_beginning_of_day = user_now.beginning_of_day
+    # Convert User time to Server time
+    beginning_of_day = Time.parse(user_beginning_of_day.to_s).strftime('%Y-%m-%dT%H:%M:%S')
+    assigned_users =
+      if @current_user.show_only_assigned_users == 1
+        User.where("users.responsible_accountant_id = #{@current_user.id}").pluck(:id)
+      end
+
+    {
+      # All time is converted to Server time
+      now: server_now.strftime('%Y-%m-%dT%H:%M:%S'),
+      # One hour AGO does not depend on timezones
+      last_hour: (server_now - 1.hour).strftime('%Y-%m-%dT%H:%M:%S'),
+      # User time zone beginning of day converted to Server time
+      last_day: beginning_of_day,
+      billsec_field: Confline.get_value('Invoice_user_billsec_show').to_i == 1 ? 'user_billsec' : 'billsec',
+      assigned_users: assigned_users
+    }
+  end
+end

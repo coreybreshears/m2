@@ -1,0 +1,335 @@
+<style>
+    #prefix-header, #rate-header, #increment-header, #connection_fee-header, #start_time-header, #end_time-header{
+        min-width: 70px;
+    }
+    #day_type-header{
+        min-width: 80px;
+    }
+    #active_from-header{
+        min-width: 120px;
+    }
+    .table-holder{
+        overflow-x: auto;
+    }
+    .table-with-edit-and-delete{
+        white-space: nowrap;
+    }
+</style>
+
+<% @create_button_name = _('Quick_Add_New_Rate') %>
+<% @refine_button_name = user? ? 'Refine Results' : _('Manage_Rates') %>
+
+<% content_for :head do %>
+  <%= javascript_include_tag 'rates_list' %>
+<% end %>
+
+<% content_for :additional_buttons do %>
+  <span>
+    <%= button_tag _('add_new_rates'), class: "search-form-button",
+      onclick: "location.href = '#{Web_Dir}/tariffs/rate_new?id=#{@tariff.id}&st=#{@st}'", id: 'add_new_rates' %>
+  </span>
+<% end %>
+
+<% content_for :create_form do %>
+  <%= form_for @quick_rate, url: {action: :rates_list, id: @tariff.id, st: @st}, html: {id: 'create-form', class: 'calls-form', visible: show_create, 'prefix-checker-url' => "#{Web_Dir}/tariffs/check_prefix_availability"} do |f| %>
+    <fieldset>
+      <table>
+        <tr>
+          <td>
+            <div class="column cause-col">
+                <%= f.hidden_field :tariff_id, value: @tariff.id %>
+                <%= f.label 'prefix', _('Prefix') %>
+                <div class="row half-width">
+                  <%= f.text_field :prefix, type: :text %>
+                </div>
+            </div>
+          </td>
+          <td>
+            <div class="column cause-col">
+              <%= f.label 'rate', _('Rate') %>
+              <div class="row half-width">
+                <%= f.text_field :rate, type: :text %>
+                <span class="currcol">&nbsp;<%=@tariff.currency%></span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <%= label_tag 'effective_from', _('Effective_From') %>
+            <div class="row date-col calendar-holder">
+              <div class="calendar-col" id="date">
+                <%= text_field_tag 'effective_date', formatted_date_in_user_tz(@effective_from), class: 'checkout default', id: 'till' %>
+                <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+              </div>
+              <div class="time-col" id="time">
+                <%= text_field_tag 'effective_time', formatted_time_in_user_tz(@effective_from), class: 'default', id: 'time2' %>
+                <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="column cause-col">
+        <div class="row aligned-first">
+          <span id="prefix-availability"></span>
+        </div>
+      </div>
+
+      <div class="column buttons-col">
+      <div>
+        <div class="row quick-add-buttons-row">
+          <%= f.submit _('Cancel'), type: :reset,
+                onClick: "$(\"#create-form\").toggle();pressed('#{Web_Dir}/callc/toggle_create', '#{params[:controller]}', '#{params[:action]}');$('#prefix-availability').val('');$('#prefix-availability').html('');", id: 'cancel_add_rate'
+          %>
+          <%= f.submit _('Add_rate'), id: 'add_rate', onClick: "this.disabled=true; this.value='Processing'; this.form.submit();" %>
+        </div>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+
+<% content_for :search_form do %>
+  <%= form_tag({ action: :rates_list }, { id: 'search-form', class: 'calls-form', visible: show_search }) do %>
+    <fieldset>
+
+      <div class="row">
+        <div class="column" style="width: 45%">
+          <div class="row">
+            <div class="column cause-col-double">
+              <%= label_tag 'destination', _('Destination') %>
+              <div class="row">
+                <%= text_field_tag :destination, @options[:destination] ||= '', type: :text, id: 'destination', class: 'manage_rates_destination', onkeyup: "update_destination_livesearch(this.value)", autocomplete: 'off' %>
+                <%= button_tag _('Lookup_Prefixes'), class: 'search-form-button lookup_codes_btn', type: 'button', onclick: "get_prefixes('#{Web_Dir}/destinations/get_prefixes_json', #{@tariff.id});" %>
+                <ul class="destination-livesearch"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column cause-col-double" <%= tooltip(_('Accepted_Prefixes_formats'), _('Accepted_Prefixes_formats_tooltip_info')) %>>
+              <%= label_tag 'prefix', _('Prefixes') %>
+              <div class="row">
+                <%= text_area_tag :prefix, @options[:prefix] ||= '', rows: 5, class: 'input', style: 'width:100%;', id: 'prefix' %>
+              </div>
+            </div>
+          </div>
+          <% if defined?(@bad_prefixes) && @bad_prefixes.present? %>
+              <div class="row">
+                <div class="column cause-col-double">
+                  <%= label_tag 'invalid_prefix', _('Invalid_Prefixes') %>
+                  <div class="row">
+                    <p style="color: red">
+                      <%= @bad_prefixes.join(', ') %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <% unless user? %>
+ <div class="row">
+                <div class="column cause-col-double">
+                  <%= label_tag 'show_only_active_rates', _('Show_only_Active_Rates') %>
+                  <div class="row">
+                    <%= hidden_field_tag :show_only_active_rates, value: '0' %>
+                    <%= check_box_tag :show_only_active_rates, '1', @options[:show_only_active_rates].to_i == 1 %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+        <% unless user? %>
+ <div class="column" style="width: 40%; float: right; white-space: nowrap;">
+              <div class="row">
+                <div class="column cause-col no-padding-right">
+                  <%= label_tag 'manage_rates_ratedetail_rate', _('Rate') %>
+                  <div class="row half-width">
+                    <%= text_field_tag 'manage_rates_ratedetail[rate]', @options[:manage_rates_ratedetail]['rate'] ||= '' %>
+                    <span class="currcol">&nbsp;<%= @tariff.currency %></span>
+                  </div>
+                </div>
+                <div class="column cause-col no-padding-right">
+                  <%= label_tag 'manage_rates_ratedetail_connection_fee', _('Connection_Fee') %>
+                  <div class="row half-width">
+                    <%= text_field_tag 'manage_rates_ratedetail[connection_fee]', @options[:manage_rates_ratedetail]['connection_fee'] ||= '' %>
+                    <span class="currcol">&nbsp;<%= @tariff.currency %></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column cause-col no-padding-right">
+                  <%= label_tag 'manage_rates_ratedetail_increment_s', _('Increment') %>
+                  <div class="row quarter-width">
+                    <%= text_field_tag 'manage_rates_ratedetail[increment_s]', @options[:manage_rates_ratedetail]['increment_s'] ||= '' %>
+                    <span class="currcol">&nbsp;S</span>
+                  </div>
+                </div>
+                <div class="column cause-col no-padding-right">
+                  <%= label_tag 'manage_rates_ratedetail_min_time', _('Minimal_Time') %>
+                  <div class="row quarter-width">
+                    <%= text_field_tag 'manage_rates_ratedetail[min_time]', @options[:manage_rates_ratedetail]['min_time'] ||= '' %>
+                    <span class="currcol">&nbsp;S</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column cause-col no-padding-right">
+                  <%= label_tag 'manage_rates_ratedetail_effective_from', _('Effective_From') %>
+                  <div class="row date-col calendar-holder">
+                    <div class="calendar-col" id="manage_rates_date">
+                      <%= text_field_tag 'manage_rates_ratedetail[effective_date]', formatted_date_in_user_tz(@manage_rates_effective_from), class: 'checkin default', id: 'from' %>
+                      <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+                    </div>
+                    <div class="time-col" id="manage_rates_time">
+                      <%= text_field_tag 'manage_rates_ratedetail[effective_time]', formatted_time_in_user_tz(@manage_rates_effective_from), class: 'default', id: 'time1' %>
+                      <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column cause-col no-padding-right">
+                  <%= label_tag 'manage_rates_ratedetail_blocked', _('Block') %>
+                  <div class="row half-width">
+                    <%= select_tag 'manage_rates_ratedetail[blocked]', options_for_select(manage_rates_blocked_options, @options[:manage_rates_ratedetail]['blocked'].to_i) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <% if user? %>
+            <div class="row payment-buttons-row" style="padding-top: 40px!important;">
+              <%= clear_button_tag _('Clear_search'), style: 'width: 120px;', id: 'clear_search' %>
+              <%= submit_button_tag _('rates_list_manage_rates_destination'), style: 'width:190px;', id: 'refine_destination' %>
+              <%= submit_button_tag _('rates_list_manage_rates_prefixes'), style: 'width:190px;', id: 'refine_prefix' %>
+            </div>
+        <% else %>
+            <div class="column">
+              <div class="row payment-buttons-row" style="padding-top: 40px!important;">
+                <%= clear_button_tag _('Clear_search'), style: 'width: 120px;', id: 'clear_search' %>
+                <%= submit_button_tag _('rates_list_manage_rates_destination'), style: 'width:190px;', id: 'refine_destination' %>
+                <%= submit_button_tag _('rates_list_manage_rates_prefixes'), style: 'width:190px;', id: 'refine_prefix' %>
+              </div>
+            </div>
+            <div class="column buttons-col">
+              <div class="row payment-buttons-row" style="padding-top: 40px!important;">
+                <%= clear_button_tag _('Clear_change_parameters'), hidden_input_value: 'clear_manage_rates', id: 'clear_manage_rates', style: 'width: 200px;', disable_onclick: true %>
+                <%= submit_button_tag _('rates_list_manage_rates_apply_changes'), style: 'width:120px;', disabled: @options[:searching_by].blank?, id: 'apply_changes',
+                                      onClick_prefix: "var confirmed; confirmed = confirm('#{_('rates_list_manage_rates_apply_changes_confirmation')}'); if(!confirmed) return false; $('#spinner2').show();"
+                %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><span><%= @options[:show_only_active_rates].to_i == 1 ? _('Active_Rates') : _('All_Rates') %></span> <span class="header-right"><%= "#{_('Total')}: #{@total_count}" %> </span></h2>
+    <%= render 'letter_select_header', local_variables_for_partial(self) if @options[:searching_by].blank? %>
+    <div class="table-holder" >
+      <table class="table-with-edit-and-delete">
+        <tr>
+          <%= sortable_header(_('Prefix'), 'prefix', class: 'left-item', id: 'prefix') %>
+          <%= sortable_header(_('Destination'), 'destinations.name', class: 'left-item', id: 'destination') %>
+          <%= sortable_header(_('Rate') + ' (' + @tariff.currency.to_s + ')', 'rate', class: 'left-item', id: 'rate') %>
+          <%= sortable_header(_('Conn_Fee'), 'connection_fee', class: 'left-item', id: 'connection_fee') %>
+          <%= sortable_header(_('Increment'), 'ratedetails.increment_s', class: 'left-item', id: 'increment') %>
+          <%= sortable_header(_('Minimal_Time'), 'ratedetails.min_time', class: 'left-item', id: 'minimal_time') %>
+          <%= sortable_header(_('Blocked'), 'ratedetails.blocked', class: 'left-item', id: 'blocked') %>
+          <!--
+          <%#= sortable_header(_('Start_Time'), 'ratedetails.start_time', class: 'left-item', id: 'start_time') %>
+          <%#= sortable_header(_('End_Time'), 'ratedetails.end_time', class: 'left-item', id: 'end_time') %>
+          <%#= sortable_header(_('Day_type'), 'ratedetails.daytype', class: 'left-item', id: 'day_type') %>
+          -->
+          <% unless user? %>
+              <%= sortable_header(_('Active_from'), 'effective_from', class: 'left-item', id: 'active_from') %>
+              <th style="min-width: 35px;"></th>
+              <th style="min-width: 35px;"></th>
+          <% end %>
+        </tr>
+        <% if @rates.present? %>
+            <% @rates.each_with_index do |rate, i| %>
+                <% rate_details = rate.ratedetails %>
+                <% if rate_details.present? %>
+                    <% rate_details.each_with_index do |rate_detail, i| %>
+                        <% if @active_rates.include?(rate.id) %>
+                            <% if rate_detail.blocked.to_i == 1 %>
+                              <tr class="inactive">
+                            <% else %>
+                              <tr>
+                            <% end %>
+                        <% else %>
+                            <tr class='inactive' <%= tooltip( _('Inactive_rate'), _('Rate_not_active')).html_safe %> >
+                        <% end %>
+                        <td class="left-item" id="prefix_<%= rate.id %>" width="5%" ><%= rate.prefix %></td>
+                        <td class="left-item" id="destination_<%= rate.id %>" width="25%" style="padding-right: 10px;"><%= rate.destinations_name %></td>
+
+                        <% if user? %>
+                          <td class="left-item" id="rate_<%= rate.id %>"><%= check_if_rate_blocked rate_detail.rate.to_f * current_user.get_tax_value.to_f %></td>
+                          <td class="left-item" id="connection_fee_<%= rate.id %>"><%= nice_number rate_detail.connection_fee.to_f * current_user.get_tax_value.to_f %></td>
+                        <% else %>
+                          <td class="left-item" id="rate_<%= rate.id %>"><%= check_if_rate_blocked rate_detail.rate.to_f %></td>
+                          <td class="left-item" id="connection_fee_<%= rate.id %>"><%= nice_number rate_detail.connection_fee.to_f %></td>
+                        <% end %>
+
+                        <td class="left-item" id="increment_s_<%= rate.id %>"><%= rate_detail.increment_s %></td>
+                        <td class="left-item" id="min_time_<%= rate.id %>"><%= rate_detail.min_time %></td>
+                        <td class="left-item" id="blocked_<%= rate.id %>"><%= b_blocked if rate_detail.blocked.to_i == 1 %></td>
+                        <!--
+                        <td class="left-item" id="start_time_<%#= rate.id %>"><%#= nice_time2(rate_detail.start_time) %></td>
+                        <td class="left-item user-rates-last-columns" id="end_time_<%#= rate.id %>"><%#= nice_time2(rate_detail.end_time) %></td>
+                        <td class="left-item user-rates-last-columns" id="day_type_<%#= rate.id %>"><%#= nice_daytype(rate_detail.daytype) %></td>
+                        -->
+                        <% unless user? %>
+                            <td class="left-item" id="effective_from_<%= rate.id %>" nowrap><%= nice_date_time rate.effective_from %></td>
+                            <td class="left-item" id="edit_<%= rate.id %>" align="right"><%= rate_edit_link(rate.id) %></td>
+                            <td class="left-item" id="destroy_<%= rate.id %>">
+                              <%= button_to 'DELETE', {action: 'rate_destroy', id: rate.id, tariff: @tariff.id}, data: { confirm: _('are_you_sure') }, class: 'delete_button move-right', method: :post, id: 'delete_link_' + rate.id.to_s %>
+                            </td>
+                        <% end %>
+                        </tr>
+                    <% end %>
+                <% else %>
+                    <% if @active_rates.include?(rate.id) %>
+                        <tr>
+                    <% else %>
+                        <tr class='inactive' <%= tooltip( _('Inactive_rate'), _('Rate_not_active')).html_safe %> >
+                    <% end %>
+                    <td class="left-item" id="prefix_<%= rate.id %>" ><%= rate.prefix %></td>
+                    <td class="left-item" style="padding-right: 10px;" id="destination_<%= rate.id %>" width="25%"><%= rate.destinations_name %> </td>
+                    <td class="left-item" id="rate_<%= rate.id %>"></td>
+                    <td class="left-item" id="connection_fee_<%= rate.id %>"></td>
+                    <td class="left-item" id="increment_s_<%= rate.id %>"></td>
+                    <td class="left-item" id="min_time_<%= rate.id %>"></td>
+                    <td class="left-item" id="blocked_<%= rate.id %>"></td>
+                    <!--
+                    <td class="left-item" id="start_time_<%#= rate.id %>"></td>
+                    <td class="left-item user-rates-last-columns" id="end_time_<%#= rate.id %>"></td>
+                    <td class="left-item user-rates-last-columns" id="day_type_<%#= rate.id %>"></td>
+                    -->
+                    <% unless user? %>
+                        <td class="left-item" id="effective_from_<%= rate.id %>" nowrap><%= nice_date_time rate.effective_from %></td>
+                        <td class="left-item" <%= tooltip(_('Warning!'), _('Missing_rate_details')) %> id="edit_<%= rate.id %>" align="right"><%= rate_edit_link(rate.id) %></td>
+                        <td class="left-item" id="destroy_<%= rate.id %>" >
+                          <%= button_to 'DELETE', {action: 'rate_destroy', id: rate.id, tariff: @tariff.id}, data: { confirm: _('are_you_sure') }, class: 'delete_button move-right', method: :post, id: 'delete_link_' + rate.id.to_s %>
+                        </td>
+                    <% end %>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
+      </table>
+    </div>
+
+    <%= paginate @rates_for_kaminari %>
+  </div>
+</div>
+<script type="text/javascript">
+  download_destinations('<%= Web_Dir %>/destinations/get_destinations_json', <%= @tariff.id %>);
+</script>

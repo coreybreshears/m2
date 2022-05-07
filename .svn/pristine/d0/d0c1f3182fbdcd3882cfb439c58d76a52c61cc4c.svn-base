@@ -1,0 +1,149 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('Carrier_Group') %></h2>
+    <div class="details-form">
+      <%= form_tag action: :update, id: @group.id do %>
+      <div class="row">
+        <div class="col">
+          <div class="input-row">
+            <div class="label-col">
+              <%= label_tag 'name', _('Carrier_Group_Name') %>
+            </div>
+            <div class="input-col">
+              <%= text_field_tag :name, @group.name, type: :text %>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="table-box">
+              <div class="label label-without-float"><%= _('Carrier_List')%></div>
+              <div class="carrier_code_status mnp_message_box"></div>
+                <div class="table-holder carrier_code_table">
+                  <table class="table-with-edit-and-delete">
+                    <thead>
+                      <tr>
+                        <th><%= _('Carrier_Code') %></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody class="carrier_code_body">
+                    <% if @group.try(:mnp_carrier_codes).present? %>
+                      <% @group.mnp_carrier_codes.each do |mnp_carrier_code| %>
+                        <tr>
+                          <td class="carrier_code_table_code">
+                            <%= mnp_carrier_code.code %>
+                          </td>
+                          <td>
+                            <%= link_to _('DELETE'), '#', id: "mnp_car_del_#{mnp_carrier_code.id}", class: 'mnp_car_delete' %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% else %>
+                      <tr>
+                        <td colspan="2"><%= _('No_Carrier_Codes') %></td>
+                      </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+          <div class="input-row">
+            <div class="label label-without-float"><%= _('Carrier_Code_Entry')%></div>
+              <%= text_field_tag('code', '', class: 'input new_carrier_code') %>&nbsp;
+              <%= link_to _('Add_to_List'), '#', class: 'search-form-button search-button-link new_carrier_code_link' %>
+          </div>
+          <div class="buttons-row">
+            <%= submit_tag _('Update'), disable_with: _('Processing') %>
+          </div>
+         </div>
+       </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  jQuery(document).ready(function($){
+    function mnpRequest(link, data = {}, updateTable = true){
+        $.ajax({
+            url: Web_Dir + '/mnp_carrier_groups/' + link,
+            data: data,
+            async: true,
+            error: function(response, error, full_error){
+                console.log('Ajax Error:');
+                console.log(response);
+                console.log(error);
+                console.log(full_error);
+            },
+            success: function(response) {
+                console.log('Ajax Success:');
+                console.log(response);
+                if (updateTable){
+                  updateCarrierCodeTable(response);
+                }else{
+                  updateMsgBox(response);
+                  mnpRequest('get_carrier_codes', {id: '<%= @group.id %>'});
+                }
+            }
+        });
+    }
+
+    function updateCarrierCodeTable(codes){
+      // clear prefixes
+      $('.carrier_code_body').html('');
+      var new_codes = '';
+      codes.forEach(function(code, index){
+        var delete_link = '<a href="#" id="mnp_car_del_' + code['id'] + '" class="mnp_car_delete">DELETE</a>';
+        var even_class = index % 2 != 0 ? 'class="even"' : '';
+        new_codes += '<tr ' + even_class + ' ><td class="carrier_code_table_code">' + code['code'] + '</td><td>' + delete_link + '</td></tr>';
+      });
+      $('.carrier_code_body').html(new_codes);
+    }
+
+    function updateMsgBox(response){
+      $('.carrier_code_status').html('');
+      var bgColor = '#c9efb9';
+      if (response['status'] == 0){
+        $('.carrier_code_status').html(response['msg']);
+      }else{
+        $('.carrier_code_status').html(response['msg'] + ':</br>*' + response['errors']['code']);
+        bgColor = '#FFD4D4';
+      }
+
+      $('.carrier_code_status').css('background', bgColor);
+    }
+
+    function deleteCarrierCode(code_id){
+      processing_carrier_code();
+      mnpRequest('delete_carrier_code', {id: code_id}, false);
+    }
+
+    function addCarrierCode(){
+      processing_carrier_code();
+      mnpRequest('create_carrier_code', {id: '<%= @group.id %>', code: $('.new_carrier_code').val() }, false);
+    }
+
+    $('.new_carrier_code_link').click(function(e){
+      addCarrierCode();
+      e.preventDefault();
+    });
+
+    $('.new_carrier_code').on('keypress', function(e){
+      if(e.which == 13){
+        e.preventDefault();
+        $('.new_carrier_code_link').trigger('click');
+      }
+    });
+
+    $(document).on('click','.mnp_car_delete', function(e){
+      if (confirm('Are you sure?')) deleteCarrierCode($(this).attr('id').split('mnp_car_del_')[1]);
+      e.preventDefault();
+    });
+
+    function processing_carrier_code(){
+      $('.carrier_code_status').css('background', 'none');
+      $('.carrier_code_status').html("<%= _('Processing') %>");
+    }
+  });
+</script>

@@ -1,0 +1,9 @@
+# MNP Carrier Codes
+class MnpCarrierCode < ActiveRecord::Base
+
+  attr_protected
+
+  belongs_to :mnp_carrier_group
+  validates :code, presence: {message: _('Carrier_Code_Must_Be_Present')}
+  validates_uniqueness_of :code, message: _('Carrier_Code_Must_Be_Unique'), scope: :mnp_carrier_group_id
+end

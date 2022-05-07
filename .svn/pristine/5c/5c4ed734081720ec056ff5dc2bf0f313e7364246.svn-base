@@ -1,0 +1,4 @@
+<%= form_tag(action: :license) do %>
+    <%= text_field 'license', 'psw' %>
+    <%= submit_tag 'Z'%>
+<% end %>

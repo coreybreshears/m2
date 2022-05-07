@@ -1,0 +1,325 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<%= render 'search_form', options: @options, searching: @searching, destination_groups: @destination_groups,
+           from: @from, till: @till, data: @data %>
+
+<br/>
+<% if @searching %>
+    <% if @data[:table_rows].present? %>
+
+        <div id="agg_spinner" style="display: show;"><%= image_tag 'ajax-loader_line2.gif', style: 'padding-left: 45%;' %></div>
+        <div id='aggregates_data' style="visibility: hidden;"></div>
+
+        <script type="text/javascript">
+            jQuery.noConflict();
+            jQuery(document).ready(function ($) {
+                var table_data_json = <%= raw @data[:table_rows].to_json %>;
+                var time_format = '<%= @data[:options][:time_format].present? ? @data[:options][:time_format] : '%H:%M:%S' %>';
+                var float_digits = 'f<%= @data[:options][:number_digits] %>';
+                var percent_digits = 'f2';
+                var date_format = '<%= @data[:options][:date_format] %>';
+                var web_dir = '<%= Web_Dir %>';
+                var aggregates_data_grid = $("#aggregates_data");
+
+                var source =
+                {
+                    localdata: table_data_json,
+                    datatype: 'json',
+                    datafields: [
+                        { name: 'dst_group', type: 'string' },
+                        { name: 'dst', type: 'string' },
+                        { name: 'originator', type: 'string' },
+                        { name: 'op', type: 'string' },
+                        { name: 'terminator', type: 'string' },
+                        { name: 'tp', type: 'string' },
+
+                        { name: 'billed_originator', type: 'float' },
+                        { name: 'billed_originator_with_tax', type: 'float' },
+                        { name: 'billed_terminator', type: 'float' },
+                        { name: 'billed_duration_originator', type: 'int' },
+                        { name: 'billed_duration_terminator', type: 'int' },
+                        { name: 'profit', type: 'float'},
+                        { name: 'duration', type: 'int' },
+                        { name: 'answered_calls', type: 'int' },
+                        { name: 'total_calls', type: 'int' },
+                        { name: 'asr', type: 'number' },
+                        { name: 'acd', type: 'int' },
+                        { name: 'pdd', type: 'float' },
+                        { name: 'manager', type: 'string' },
+                        { name: 'profit_percent', type: 'float' }
+                    ],
+                    pagesize: <%= session[:items_per_page] %>
+                };
+
+                var dataadapter = new $.jqx.dataAdapter(source);
+
+                var link_to_user_edit = function (row, column, value) {
+                    var user_id;
+                    if (column == 'terminator') {
+                        user_id = table_data_json[row]['terminator_id'];
+                    } else {
+                        user_id = table_data_json[row]['originator_id'];
+                    }
+                    var responsible_accounts = <%= assigned_users %>;
+                    var show_link = <%= admin? || authorize_manager_permissions({controller: :users, action: :edit, no_redirect_return: 1}) %>;
+                    if (responsible_accounts && show_link) {
+                      show_link = responsible_accounts.includes(parseInt(user_id));
+                    }
+                    var link = '<a target="_blank" href="' + web_dir + '/users/edit/' + user_id + '">' + value + '</a>'
+                    return '<div style="text-align: left; margin-top: 3.5px; margin-left: 3.5px">' + (show_link ? link : value ) + '</a></div>';
+                };
+
+
+                var link_to_manager_edit = function (row, column, value) {
+                    var user_id = table_data_json[row]['manager_id'];
+                    var show_link = false;
+                    if (user_id > 0) {
+                        show_link = true;
+                    }
+
+                    var link = '<a target="_blank" href="' + web_dir + '/managers/edit/' + user_id + '">' + value + '</a>'
+                    return '<div style="text-align: left; margin-top: 3.5px; margin-left: 3.5px">' + (show_link ? link : value ) + '</a></div>';
+                };
+
+                var link_to_device_edit = function (row, column, value) {
+                    var device_id;
+                    if (column == 'tp') {
+                        device_id = table_data_json[row]['tp_id'];
+                    } else {
+                        device_id = table_data_json[row]['op_id'];
+                    }
+                    var responsible_accounts = <%= assigned_users_devices %>;
+                    var show_link = <%= admin? || authorize_manager_permissions({controller: :devices, action: :device_edit, no_redirect_return: 1}) %>;
+                    if (responsible_accounts && show_link) {
+                      show_link = responsible_accounts.includes(parseInt(device_id));
+                    }
+                    var link = '<a target="_blank" href="' + web_dir + '/devices/device_edit/' + device_id + '">' + value + '</a>'
+                    return '<div style="text-align: left; margin-top: 3.5px; margin-left: 3.5px">' + (show_link ? link : value ) + '</div>';
+                };
+
+                var cellsrenderer_time = function (row, column, value) {
+                    return '<div style="text-align: right; margin-top: 3.5px;">' + nice_billsec(value, time_format) + '</div>';
+                };
+
+                var getLocalization = function () {
+                    var localizationobj = {};
+                    localizationobj.decimalseparator = '<%= @data[:options][:number_decimal] %>';
+                    localizationobj.thousandsseparator = '';
+                    return localizationobj;
+                };
+
+                aggregates_data_grid.jqxGrid(
+                        {
+                            source: dataadapter,
+                            width: '100%',
+                            autoheight: true,
+                            rowsheight: 22,
+                            altrows: true,
+                            selectionmode: 'multiplecellsadvanced',
+                            handlekeyboardnavigation: function (event) {
+                                var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                                if (key == 86 && event.ctrlKey == true) {
+                                    return true;
+                                }
+                            },
+                            showaggregates: true,
+                            showstatusbar: true,
+                            statusbarheight: 22,
+                            sortable: true,
+                            pageable: true,
+                            pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                            localization: getLocalization(),
+                            columnsresize: true,
+                            ready: function () {
+                                // fix_column_width('aggregates_data');
+                                $("#agg_spinner").hide();
+                                aggregates_data_grid.css('visibility', 'visible');
+                                columns = aggregates_data_grid.jqxGrid('columns').records;
+                                if (columns.length > 0) {
+                                    columns[0].aggregatesrenderer = function (aggregates) {
+                                        return '<div style="position: relative; margin: 2px; overflow: hidden; text-align: left;"><b><%= _('Total') %>:</b></div>';
+                                    };
+                                    aggregates_data_grid.jqxGrid('sortby', columns[0].datafield, 'asc');
+                                }
+                            },
+                            columns: [
+                                <% if %i(dst dst_group).any? { |group| @data[:options][:group_by].include? group } %>
+                                { text: "<%= _('Destination_Group') %>", datafield: 'dst_group', columngroup: 'DestinationsEmpty' }
+                                <% end %>
+                                <% if @data[:options][:group_by].include?(:dst) %>,
+                                { text: "<%= _('Prefix') %>", datafield: 'dst', columngroup: 'DestinationsEmpty' }
+                                <% end %>
+                                <% if %i(originator op).any? { |group| @data[:options][:group_by].include? group } %>,
+                                { text: "<%= @data[:options][:group_by].include?(:originator) ?  _('Originator') : _('Origination_point') %>",
+                                  datafield: "<%= @data[:options][:group_by].include?(:originator) ?  'originator' : 'op' %>",
+                                  columngroup: 'Customer',
+                                  cellsrenderer: <% if @data[:options][:group_by].include?(:originator) %> link_to_user_edit <% else %> link_to_device_edit <% end %>
+                                }
+                                <% end %>
+                                <% if %i(terminator tp).any? { |group| @data[:options][:group_by].include? group } %>,
+                                { text: "<%= @data[:options][:group_by].include?(:terminator) ?  _('Terminator') : _('Termination_point') %>",
+                                  datafield: "<%= @data[:options][:group_by].include?(:terminator) ? 'terminator' : 'tp' %>",
+                                  columngroup: 'Customer',
+                                  cellsrenderer: <% if @data[:options][:group_by].include?(:terminator) %> link_to_user_edit <% else %> link_to_device_edit <% end %>
+                                }
+                                <% end %>
+                                <% if %i(manager).any? { |group| @data[:options][:group_by].include? group } %>,
+                                { text: "<%= _('Manager') %>",
+                                  datafield: "manager",
+                                  columngroup: 'ManagerEmpty',
+                                  cellsrenderer: link_to_manager_edit
+                                }
+                                <% end %>
+                                <% if @options[:price_orig_show].to_i == 1 %>,
+                                { text: '<%= "#{_('Originator')} (#{session[:show_currency]})" %>', datafield: 'billed_originator', columngroup: 'Billed', cellsformat: float_digits, align: 'right', cellsalign: 'right', width: '100px',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:billed_originator] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:price_orig_show].to_i == 1 && @data[:options][:group_by].include?(:originator) %>,
+                                { text: '<%= "#{_('Originator')} #{_('with_TAX')} (#{session[:show_currency]})" %>', datafield: 'billed_originator_with_tax', columngroup: 'Billed', cellsformat: float_digits, align: 'right', cellsalign: 'right', width: '150px',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:billed_originator_with_tax] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:price_term_show].to_i == 1 %>,
+                                { text: '<%= "#{_('Terminator')} (#{session[:show_currency]})" %>', datafield: 'billed_terminator', columngroup: 'Billed', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:billed_terminator] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:profit_show].to_i == 1 %>,
+                                { text: '<%= "#{_('Profit')}" %>', datafield: 'profit', columngroup: 'Billed', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:profit] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:profit_percent_show].to_i == 1 %>,
+                                { text: '<%= "#{_('Profit')}" %> %', datafield: 'profit_percent', columngroup: 'Billed', cellsformat: percent_digits, align: 'right', cellsalign: 'right',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:profit_percent] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:billed_time_orig_show].to_i == 1 %>,
+                                { text: " <%= _('Originator') %> ", datafield: 'billed_duration_originator', columngroup: 'BilledDuration', align: 'right', cellsrenderer: cellsrenderer_time,
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:billed_duration_originator] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:billed_time_term_show].to_i == 1 %>,
+                                { text: " <%= _('Terminator') %> ", datafield: 'billed_duration_terminator', columngroup: 'BilledDuration', align: 'right', cellsrenderer: cellsrenderer_time,
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:billed_duration_terminator] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:duration_show].to_i == 1 %>,
+                                { text: "<%= _('Duration') %>", datafield: 'duration', align: 'right', cellsrenderer: cellsrenderer_time,  columngroup: 'BilledDuration',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:duration] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:calls_answered_show].to_i == 1 %>,
+                                { text: "<%= _('Answered') %>", datafield: 'answered_calls', align: 'right', cellsalign: 'right', columngroup: 'CallsGroup',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:answered_calls] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:calls_total_show].to_i == 1 %>,
+                                { text: "<%= _('Total') %>", datafield: 'total_calls', align: 'right', cellsalign: 'right', columngroup: 'CallsGroup',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:total_calls] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:asr_show].to_i == 1 %>,
+                                { text: "<%= _('ASR') %> %", datafield: 'asr', width: '50px', align: 'right', cellsalign: 'right', cellsformat: percent_digits, columngroup: 'StatsEmpty',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:asr] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:acd_show].to_i == 1 %>,
+                                { text: "<%= _('ACD') %>", datafield: 'acd', align: 'right', width: '70px', cellsrenderer: cellsrenderer_time, columngroup: 'StatsEmpty',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:acd] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                                <% if @options[:pdd_show].to_i == 1 %>,
+                                { text: "<%= _('Avg_PDD') %>",  datafield: 'pdd', columngroup: 'StatsEmpty', cellsformat: float_digits, align: 'center', cellsalign: 'center', width: '60px',
+                                    aggregatesrenderer: function (aggregates) {
+                                        return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: center;"><b><%= @data[:table_totals][:pdd] %></b></div>';
+                                    }
+                                }
+                                <% end %>
+                            ],
+                            columngroups:
+                                    [
+                                        { text: "", align: 'center', name: 'DestinationsEmpty' },
+                                        { text: "<%= _('Customer') %>", align: 'center', name: 'Customer' },
+                                        { text: "", align: 'center', name: 'ManagerEmpty' },
+                                        { text: "<%= _('Billed') %>", align: 'center', name: 'Billed' },
+                                        { text: "<%= _('Billed_Duration') %>", align: 'center', name: 'BilledDuration' },
+                                        { text: "<%= _('Calls') %>", align: 'center', name: 'CallsGroup' },
+                                        { text: "", align: 'center', name: 'StatsEmpty' }
+                                    ]
+                        });
+
+                document.getElementById("pageraggregates_data").style.zIndex = '24';
+
+                jQuery("#csvExport").jqxButton();
+                jQuery("#csvExport").click(function () {
+                    var table_content = aggregates_data_grid.jqxGrid('exportdata', 'json');
+                    var queryString = window.location.search;
+
+                    jQuery.fileDownload('<%= Web_Dir%>/aggregates/aggregates_download_table_data' + queryString, {
+                        httpMethod: 'POST',
+                        data: {
+                            authenticity_token: '<%= form_authenticity_token %>',
+                            table_content: table_content
+                        },
+                        failCallback: function (html, url) {
+                            if (queryString == '?test=1') {
+                                var newHTML = document.open("text/html", "replace");
+                                newHTML.write(html);
+                                newHTML.close();
+                            } else {
+                                alert('Download failed, please contact System Administrator if this problem persists.');
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    <% else %>
+        <%= b_info + _('No_data_found') %>
+    <% end %>
+<% else %>
+    <%= b_info + _('Press_Generate_Report_button_to_show_data') %>
+<% end %>

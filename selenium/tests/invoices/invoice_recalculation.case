@@ -1,0 +1,1218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>invoice_recalculation</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">invoice_recalculation</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/invoice_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>exact:00:14:14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>California 12 - 55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>California City</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>65497</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>23232323</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_end_1</td>
+	<td>2009-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_1</td>
+	<td>11.99</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_1</td>
+	<td>1.00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>number1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Accountant</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>11.11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=timezone_1</td>
+	<td>Vilnius</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>In process</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=m2_invoice_comment</td>
+	<td>Pirmas komentaras</td>
+</tr>
+<!--Turi atnaujinti User Details pagal esamą info atitinkamo user edite-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Invoice successfully recalculated</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_end_1</td>
+	<td>2009-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_1</td>
+	<td>11.99</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_1</td>
+	<td>1.00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>number1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Accountant</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>11.11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=timezone_1</td>
+	<td>Vilnius</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>In process</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=m2_invoice_comment</td>
+	<td>Pirmas komentaras</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>exact:00:14:14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>User #2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_address</td>
+	<td>Jasinskio g. 16G</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_postcode</td>
+	<td>10222</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_city</td>
+	<td>Vilnius</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_county</td>
+	<td>Lietuva</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_state</td>
+	<td>Vilniaus miestas</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=address[direction_id]</td>
+	<td>label=Lithuania</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_phone</td>
+	<td>37062666666</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_mob_phone</td>
+	<td>22222222222</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Invoice successfully recalculated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #2</td>
+	<td>Test User #2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>Test User #2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>Jasinskio g. 16G</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>Vilnius</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>10222</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>Vilniaus miestas</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>37062666666</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: accountant</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Invoice successfully recalculated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=accountant</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/recalculate_invoice/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Customer_Invoices_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td>Random</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>Name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_address</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_postcode</td>
+	<td>info</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_city</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_county</td>
+	<td>country</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_state</td>
+	<td>pam pam</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_phone</td>
+	<td>656965</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_mob_phone</td>
+	<td>212121241</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>exact:00:14:14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>Jasinskio g. 16G</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>Vilnius</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>10222</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>Vilniaus miestas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>37062666666</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_end_1</td>
+	<td>2009-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_1</td>
+	<td>11.99</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_1</td>
+	<td>1.00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>number1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Random Name</td>
+	<td>Random Name</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>11.11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=timezone_1</td>
+	<td>Vilnius</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>In process</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=m2_invoice_comment</td>
+	<td>Pirmas komentaras</td>
+</tr>
+<!--Turi atnaujinti User Details pagal esamą info atitinkamo user edite-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Invoice successfully recalculated</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=RECALCULATE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>Random Name</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>info</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>pam pam</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>656965</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_end_1</td>
+	<td>2009-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_1</td>
+	<td>11.99</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_1</td>
+	<td>1.00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>number1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Random Name</td>
+	<td>Random Name</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>11.11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=timezone_1</td>
+	<td>Vilnius</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>In process</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=m2_invoice_comment</td>
+	<td>Pirmas komentaras</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>exact:00:14:14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/recalculate_invoice/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/recalculate_invoice/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

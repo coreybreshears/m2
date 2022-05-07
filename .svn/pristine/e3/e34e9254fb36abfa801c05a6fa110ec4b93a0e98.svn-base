@@ -1,0 +1,30 @@
+<% unless lv_destination.new_record?
+     destinationgroup ||= lv_destination.destinationgroup
+     if destinationgroup
+       selected = [destinationgroup.name, destinationgroup.id]
+     else
+       selected = [_('Not_assigned'), 'none']
+     end
+%>
+    <p>
+      <%= _('Directions') %>
+      <br/>
+      <%= select_tag("destination[direction_code]", options_for_select(lv_direction.map { |lv_direction| [lv_direction.name, lv_direction.code] }, lv_destination.direction_code), {:id => "destination_direction_code", :style => "width : 250px"}) %>
+    </p>
+
+    <p>
+      <%= _('Destination_groups') %>
+      <br/>
+      <%= select_tag('destination[destinationgroup_id]', options_for_select(select_options.map { |dg| dg.reverse }, selected), { id: 'destination_destinationgroup_id', style: 'width : 250px' }) %>
+    </p>
+<% end %>
+<p>
+  <%= _('Prefix') %>
+  <br/>
+  <%= text_field 'destination', 'prefix', "class" => "input", :disabled => (params[:action] != 'new') %>
+</p>
+<p>
+  <%= _('Name') %>
+  <br/>
+  <%= text_field 'destination', 'name', { class: 'input', style: 'width : 240px' } %>
+</p>

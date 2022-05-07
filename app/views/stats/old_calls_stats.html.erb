@@ -1,0 +1,24 @@
+<%= javascript_include_tag "wz_tooltip" %>
+<div>
+  <span><%= b_currency + _('Currency') %>: <%= session[:show_currency] %></span>
+  <br>
+  <span>
+    <% if admin? && @searching && @options[:use_cloud] && @total_calls.to_i > 0 %>
+      <%= b_refresh %>&nbsp;<%= _('Last_sync_date') %>:&nbsp;
+      <strong><%= nice_date_time(Confline.get('AWS_DB_last_sync').try(:value)) %></strong>&nbsp;
+      <%= form_tag({action: :archived_calls_resync}, {style: 'display:inline;'}) do %>
+        <%= submit_tag(_('Resync'), disable_with: _('Processing..')) %>
+      <% end %>
+      <span style="position:relative;top:4px;" <%= tooltip(_('Synchronization_info'), _('Aurora_Archived_Calls_info', 1)) %>>
+        <%= b_info %>
+      </span>
+    <% end %>
+  </span>
+  <% if @searching %>
+    <br/>
+    <%= b_call + _('total_calls') %>: <b><%= @total_calls %></b>
+  <% end %>
+</div>
+<br/>
+<% assigned_partials = {'admin' => 'admin', 'reseller' => 'reseller', 'user' => 'user', 'manager' => 'admin'} -%>
+<%= render "last_calls_stats_#{assigned_partials[session[:usertype].to_s]}", local_variables_for_partial(self) %>

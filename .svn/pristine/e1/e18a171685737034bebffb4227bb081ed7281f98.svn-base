@@ -1,0 +1,5 @@
+<div class="row">
+  <%= raw setting_boolean(_('Activate_Paypal_Payments'), 'paypal_payments_activated', 'paypal_payments_activated') %>
+  <%= raw settings_string(_('Paypal_Client_ID'), 'paypal_client_id', 'paypal_client_id', 0, html: {size: 90, maxlength: 200, style: 'width: 85%'}) %>
+  <%= raw settings_string(_('Secret_Paypal_Key'), 'secret_paypal_key', 'secret_paypal_key', 0, html: {size: 90, maxlength: 200, style: 'width: 85%'}) %>
+</div>

@@ -1,0 +1,55 @@
+<% content_for :additional_buttons do %>
+    <span>
+    <%= button_tag _('Add_New_Manager'), class: "search-form-button",
+                   onclick: "location.href = '#{Web_Dir}/managers/new'" %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Managers_list') %></h2>
+    <div class="table-holder">
+      <% if @managers.present? %>
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <%= sortable_header(_('ID'), 'id', class: 'manager-id', id: 'id_header') %>
+              <%= sortable_header(_('Manager'), 'nice_user', class: 'manager-manager' , id: 'manager_header') %>
+              <%= sortable_header(_('Manager_Group'), 'group_name', class: 'manager-group', id: 'manager_group_header') %>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @managers.each do |manager| %>
+                <tr>
+                  <td id="id_<%= manager.id %>" class="manager-id_list">
+                    <%= manager.id %>
+                  </td>
+                  <td id="manager_<%= manager.id %>" class="manager-manager_list" <%= tooltip(_('Comment'), manager.comment.to_s) if manager.try(:comment).to_s.size > 0%>>
+                    <%= link_to manager.read_attribute(:nice_user).try(:to_s), {action: :edit, id: manager.id}, id: 'manager_link_' + manager.id.to_s %>
+                  </td>
+                  <td id="manager_group_<%= manager.id %>" class="manager-group_list">
+                    <%= link_to manager.try(:group_name).to_s, {controller: :manager_groups, action: :edit, id: manager.try(:group_id).to_i}, id: 'manager_group_link_' + manager.id.to_s %>
+                  </td>
+                  <td id='login_as_<%= manager.id %>'>
+                    <%= button_to('LOGIN AS', {controller: :functions, action: :login_as_execute, user: manager}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: 'login_as_link_' + manager.id.to_s) unless [0, current_user.id].member?(manager.id) %>
+                  </td>
+                  <td id='action_log_<%= manager.id %>'>
+                    <%= link_to 'LOG', {controller: :stats, action: :action_log, user_id: manager}, id: 'action_log_link_' + manager.id.to_s %>
+                  </td>
+                  <td id="edit_<%= manager.id %>">
+                    <%= link_to 'EDIT', {action: :edit, id: manager.id}, id: 'edit_link_' + manager.id.to_s %>
+                  </td>
+                  <td id="destroy_<%= manager.id %>">
+                    <%= button_to 'DELETE', {action: :destroy, id: manager.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: 'delete_link_' + manager.id.to_s %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Managers') %>
+      <% end %>
+    </div>
+    <%= paginate @managers %>
+  </div>
+</div>

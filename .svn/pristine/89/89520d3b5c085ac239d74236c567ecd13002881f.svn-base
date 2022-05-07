@@ -1,0 +1,71 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Invoice_List') %></h2>
+    <div class="table-holder">
+      <% if @invoices.present? %>
+          <table>
+            <tr>
+              <th class="user-invoice-id"><%= _('Number') %></th>
+              <th class="user-invoice-status"><%= _('Status') %></th>
+              <th class="user-invoice-period-start"><%= _('period_start') %></th>
+              <th class="user-invoice-period-end"><%= _('period_end') %></th>
+              <th class="user-invoice-issue-date"><%= _('issue_date') %></th>
+              <th class="user-invoice-price"><%= _('Price') %></th>
+              <th class="user-invoice-price-with-tax"><%= _('price_with_tax') %></th>
+              <th class="user-invoice-currency"><%= _('currency') %></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @invoices.each do |invoice| %>
+                <tr>
+                  <td id="id_<%= invoice.id %>" class="user-invoice-id_list">
+                    <%= invoice.number.to_s %>
+                  </td>
+                  <td id="staus_<%= invoice.id %>" class="user-invoice-status_list">
+                    <%= invoice.status.to_s %>
+                  </td>
+                  <td id="period_start_<%= invoice.id %>" class="user-invoice-period-start_list">
+                    <%= invoice.period_start.try(:strftime, '%Y-%m-%d') %>
+                  </td>
+                  <td id="period_end_<%= invoice.id %>" class="user-invoice-period-end_list">
+                    <%= invoice.period_end.try(:strftime, '%Y-%m-%d') %>
+                  </td>
+                  <td id="issue_date_<%= invoice.id %>" class="user-invoice-issue-date_list">
+                    <%= invoice.issue_date.try(:strftime, '%Y-%m-%d') %>
+                  </td>
+                  <td id="price_<%= invoice.id %>" class="user-invoice-price_list">
+                    <%= nice_currency(invoice.total_amount.to_d, invoice.exchange_rate) %>
+                  </td>
+                  <td id="price_with_tax_<%= invoice.id %>" class="user-invoice-price-with-tax_list">
+                    <%= nice_currency(invoice.total_amount_with_taxes.to_d, invoice.exchange_rate) %>
+                  </td>
+                  <td id="currency_<%= invoice.id %>" class="user-invoice-currency_list">
+                    <%= invoice.currency.to_s.upcase %>
+                  </td>
+                  <td id="xlsx_<%= invoice.id %>" class="user-invoice-xlsx_list">
+                    <%= link_to 'XLSX', {action: :export_to_xlsx, id: invoice.id}, id: 'xlsx_link_' + invoice.id.to_s %>
+                  </td>
+                  <td id="pdf_<%= invoice.id %>" class="user-invoice-pdf_list">
+                    <%= link_to 'PDF', {action: :export_to_xlsx, id: invoice.id, as_pdf: 1}, id: 'pdf_link_' + invoice.id.to_s %>
+                  </td>
+                  <td id="details_<%= invoice.id %>" class="user-invoice-details_list">
+                    <%= link_to 'DETAILS', {action: :user_invoice_details, id: invoice.id}, id: 'details_link_' + invoice.id.to_s %>
+                  </td>
+                </tr>
+            <% end %>
+            <tr class="total">
+              <td class="total"><%= _('TOTAL') %></td>
+              <td colspan='4'></td>
+              <td class="user-invoice-total-amount" id="total_amount"><%= nice_currency(@invoice_totals[:total_amount]) %></td>
+              <td class="user-invoice-total-amount" id="total_amount_with_tax"><%= nice_currency(@invoice_totals[:total_amount_with_tax]) %></td>
+              <td class="user-invoice-total-currency" id="total_currency"><%= session[:show_currency].to_s.upcase %></td>
+              <td colspan='2'></td>
+            </tr>
+          </table>
+      <% else %>
+          <%= _('No_Invoices') %>...
+      <% end %>
+    </div>
+  </div>
+</div>

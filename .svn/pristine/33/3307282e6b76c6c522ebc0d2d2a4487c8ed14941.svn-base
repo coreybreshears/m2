@@ -1,0 +1,239 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<% content_for :search_form do %>
+  <%= form_tag({action: :show_user_stats}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <%= hidden_field_tag 'page', 1 %>
+    <fieldset>
+      <div class="column date-col calendar-holder">
+        <%= label_tag 'from', _('From') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_from', formatted_date_as_given(@options[:from]), class: 'checkin default', id: 'from' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_from', formatted_time_as_given(@options[:from]), class: 'default', id: 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <%= label_tag 'to', _('To') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_till', formatted_date_as_given(@options[:till]), class: 'checkout default', id: 'till' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_till', formatted_time_as_given(@options[:till]), class: 'default', id: 'time2' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+</br>
+
+<div class="content-box">
+  <div class="table-box">
+    <div id="calls_by_user"></div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var table_data_json = <%= raw @data[:table_rows].to_json %>;
+        var time_format = '<%= @data[:options][:time_format] %>';
+        var source =
+        {
+            localdata: table_data_json,
+            datatype: 'json',
+            datafields: [
+                { name: 'user_id', type: 'int' },
+                { name: 'nice_user_and_id', type: 'string' },
+                { name: 'balance', type: 'float' },
+                { name: 'answered_calls', type: 'int' },
+                { name: 'call_attempts', type: 'int' },
+                { name: 'billsec', type: 'int' },
+                { name: 'acd', type: 'int' },
+                { name: 'pdd', type: 'float' },
+                { name: 'asr', type: 'number' },
+                { name: 'price', type: 'float' },
+                { name: 'provider_price', type: 'float' },
+                { name: 'profit', type: 'float' },
+                { name: 'margin', type: 'number' },
+                { name: 'markup', type: 'number' }
+            ],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+
+        var cellsrenderer_time = function (row, column, value) {
+            return '<div style="text-align: center; margin-top: 3.5px;">' + nice_billsec(value, time_format) + '</div>';
+        };
+
+        var nice_user_link_renderer = function (row, column, value) {
+            return '<div style="text-align: left; margin-top: 5px; margin-left: 2px">' + nice_user_link(value, '<%= Web_Dir %>') + '</div>';
+        };
+
+        var link_to_last_calls_renderer = function (row, column, value) {
+            var user_and_id = table_data_json[row]['nice_user_and_id'].split(' ');
+            var id = user_and_id.pop();
+            var nice_name = user_and_id.join(" ");
+
+            var str = '<div style="text-align: right; margin-top: 5px;">' + '<a href="<%= Web_Dir %>/stats/calls_list?s_user=' +
+            encodeURIComponent(nice_name) + '&s_user_id=' + id + '">'+ value + '</a></div>';
+            return str;
+        };
+
+        var cellsrenderer_userstats = function (row, column, value) {
+             var str =  '<div style="text-align: center; margin-top: 5px;">' + '<a href="<%= Web_Dir %>/stats/user_stats?s_user_id=' + value + '"> <img alt="Chart bar" src="<%= Web_Dir %>/images/icons/chart_bar.png"> </a>' + '</div>';
+             return str;
+        };
+
+        var float_digits = 'f<%= @data[:options][:number_digits] %>';
+        var percent_digits = 'f2';
+
+        var getLocalization = function () {
+            var localizationobj = {};
+            localizationobj.decimalseparator = '<%= @data[:options][:number_decimal] %>';
+            localizationobj.thousandsseparator = '';
+            return localizationobj;
+        };
+
+        var balance = {
+                       text: "<%= _('Balance') %>", datafield: 'balance', width: '7%', align: 'right', cellsalign: 'right', cellsformat: float_digits,
+                           aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:balance] %></b></div>';
+                            }
+                       };
+        var price = {
+                    text: "<%= _('Price') %>", datafield: 'price', width: '9%', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                        aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%=@data[:table_totals][:price] %></b></div>';
+                        }
+                    };
+        var prov_price = {
+                            text: "<%= _('Provider_price') %>", datafield: 'provider_price', width: '9%', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%=@data[:table_totals][:provider_price] %></b></div>';
+                            }
+                        };
+        var profit = {
+                     text: "<%= _('Profit') %>", datafield: 'profit', width: '7%', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%=@data[:table_totals][:profit] %></b></div>';
+                            }
+                        };
+        var margin = {
+                     text: "<%= _('Margin') %> %", datafield: 'margin', width: '7%', cellsformat: percent_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:margin] %></b></div>';
+                            }
+                     };
+        var markup = {
+                     text: "<%= _('Markup') %> %", datafield: 'markup', width: '7%', cellsformat: percent_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:markup] %></b></div>';
+                            }
+                    };
+
+        columns_array = [
+                        { text: "<%= _('User') %>", datafield: 'nice_user_and_id', width: '13%', align: 'center', cellsalign: 'center', cellsrenderer: nice_user_link_renderer,
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px; overflow: hidden; text-align: left;"><b><%= _('Total') %>:</b></div>';
+                            }
+                        },
+                        { text: "<%= _('Answered_calls') %>", datafield: 'answered_calls', width: '7%', align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:answered_calls] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('Call_Attempts') %>", datafield: 'call_attempts', width: '7%', align: 'right', cellsalign: 'right',
+                        cellsrenderer: link_to_last_calls_renderer,
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:call_attempts] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('Time') %>", datafield: 'billsec', width: '7%', align: 'center', cellsrenderer: cellsrenderer_time,
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="text-align: center; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:billsec] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('ACD') %>", datafield: 'acd', width: '6%', align: 'center', cellsrenderer: cellsrenderer_time,
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="text-align: center; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:acd] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('PDD') %>", datafield: 'pdd', width: '4%', align: 'right', cellsformat: float_digits, cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:pdd] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('ASR') %> %", datafield: 'asr', width: '6%', cellsformat: percent_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:asr] %></b></div>';
+                            }
+                        },
+                        { text: "  ", datafield: 'user_id', cellsrenderer: cellsrenderer_userstats, width: '2%', sortable: false }
+                        ];
+                columns_array.splice(1, 0, balance);
+                columns_array.splice(8, 0, price);
+                columns_array.splice(9, 0, prov_price);
+                columns_array.splice(10, 0, profit);
+                columns_array.splice(11, 0, margin);
+                columns_array.splice(12, 0, markup);
+        $("#calls_by_user").jqxGrid(
+                {
+                    source: dataadapter,
+                    width: '100%',
+                    autoheight: true,
+                    rowsheight: 22,
+                    altrows: true,
+                    selectionmode: 'multiplecellsadvanced',
+                    handlekeyboardnavigation: function (event) {
+                        var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                        if (key == 86 && event.ctrlKey == true) {
+                            return true;
+                        }
+                    },
+                    showaggregates: true,
+                    showstatusbar: true,
+                    statusbarheight: 22,
+                    sortable: true,
+                    pageable: true,
+                    pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                    localization: getLocalization(),
+                    ready: function () {
+                        fix_column_width("calls_by_user");
+                        $("#calls_by_user").jqxGrid('sortby', 'nice_user_and_id', 'asc');
+                    },
+                    columns: columns_array
+                });
+        document.getElementById("pagercalls_by_user").style.zIndex = '30';
+    });
+</script>

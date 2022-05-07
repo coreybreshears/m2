@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>default_user</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">default_user</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--turn off email sending-->
+<!--enter details for default user-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>call_list_link_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password_length</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_balance</td>
+	<td>2.2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_call_limit</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>warning_email_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance</td>
+	<td>5.5</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>sound_file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>user_warning_balance_sound_file_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=sound_file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_first_name</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_last_name</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_clientid</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_agreement_number</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_language</td>
+	<td>busmenu</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>user[taxation_country]</td>
+	<td>label=Barbados</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_vat_number</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_accounting_number</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_web_address</td>
+	<td>http://web.address</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tax1_value</td>
+	<td>2.1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_address</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_postcode</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_city</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_county</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_state</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>address[direction_id]</td>
+	<td>label=Barbados</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_phone</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_mob_phone</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_fax</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_email</td>
+	<td>default@example.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_warning_email_hour_-1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_user_warning_email_hour</td>
+	<td>label=09</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Default User saved</td>
+	<td></td>
+</tr>
+<!--Checking whether all data was changed-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_balance</td>
+	<td>2.2</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>user_hidden_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_call_limit</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>warning_email_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>warning_email_balance</td>
+	<td>5.5000</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>sound_file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>user_warning_balance_sound_file_id</td>
+	<td>silence/silence9.wav</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=sound_file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=user[generate_invoice]</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_first_name</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_last_name</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_clientid</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_agreement_number</td>
+	<td>0000000004</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_language</td>
+	<td>busmenu</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_vat_number</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_accounting_number</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_web_address</td>
+	<td>http://web.address</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>tax1_value</td>
+	<td>2.1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_address</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_postcode</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_city</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_county</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_state</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_phone</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_mob_phone</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_fax</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_email</td>
+	<td>default@example.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user[taxation_country]</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_warning_email_hour_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedValue</td>
+	<td>date_user_warning_email_hour</td>
+	<td>09</td>
+</tr>
+<!--===SECURITY TEST===-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--//===========-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--//=======-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedValue</td>
+	<td>date_user_warning_email_hour</td>
+	<td>09</td>
+</tr>
+<!--check if no params sent on update-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/fake_form?path_to_action=/billing/users/default_user_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

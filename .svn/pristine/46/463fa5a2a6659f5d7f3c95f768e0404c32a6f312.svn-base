@@ -1,0 +1,166 @@
+<table class='bordered'>
+  <tr>
+    <td>
+      <%= form_tag :action => 'list', :search_on => 1, :search_pressed => true do %>
+          <table class='simple'>
+            <tr>
+              <td>
+                <%= _('Period_start') %>:
+              </td>
+              <td align='right'>
+                <%= select_datetime(Time.mktime(session[:year_from], session[:month_from]), :end_year => Date.today.year+1, :prefix => 'date_from', :use_month_numbers => false, :discard_day => true, :discard_minute => true, :discard_hour => true) %>
+              </td>
+              <td align="right">
+                <%= (link_to b_cross + _('Clear_search'), :action => 'list', :clear => 1) if @clear_search %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= _('Period_end') %>:
+              </td>
+              <td align='right'>
+                <%= select_datetime(Time.mktime(session[:year_till], session[:month_till]), :end_year => Date.today.year+1, :prefix => 'date_till', :use_month_numbers => false, :discard_day => true, :discard_minute => true, :discard_hour => true) %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= _('timezone') %>:
+              </td>
+              <td align='right'>
+                <%= time_zone_select('time_zone', 'time_zone', ActiveSupport::TimeZone.all.sort, :default => "#{@options[:s_time_zone].to_s}") %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= _('Client') %>:
+              </td>
+              <td align='right'>
+                <%= render 'shared/live_search_field',
+                   object: @options[:s_user].to_s,
+                   object_id: @options[:s_user_id],
+                   object_name: 'user',
+                   left_margin: 110,
+                   action_url: {
+                     controller: :users,
+                     action: :get_users_map,
+                     options: {
+                      show_optionals: [_('All')]
+                    }
+                  }
+                %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= _('Show_Hidden_Users') %>:
+              </td>
+              <td align='left'>
+                <%= radio_button_tag 'show_hidden_users', 1, @options[:show_hidden_users].to_i == 1 %>
+                <%= _('Yes') %>
+                <%= radio_button_tag 'show_hidden_users', 0, @options[:show_hidden_users].to_i == 0 %>
+                <%= _('No') %>              </td>
+            </tr>
+            <tr>
+              <td colspan='2'>
+                <%= submit_tag _('Search'), :disable_with => _('Processing..') %>
+              </td>
+            </tr>
+          </table>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<br/><br/>
+
+<% if @total_pages > 1 %>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>
+
+<table class='maintable' width='100%'>
+  <tr>
+    <th align='left'>
+      <%= sortable_list_header('nice_user', _('User'), @options) %>
+    </th>
+    <th align='right'>
+      <%= sortable_list_header('traffic_to_us', _('traffic_to_us'), @options) %>
+    </th>
+    <th align='right'>
+      <%= sortable_list_header('we_invoiced', _('we_invoiced'), @options) %>
+    </th>
+    <th align='right'>
+      <%= sortable_list_header('paid_to_us', _('paid_to_us'), @options) %>
+    </th>
+    <th align='right'>
+      <%= sortable_list_header('debt', _('debt'), @options) %>
+    </th>
+    <th align='right'>
+      <%= sortable_list_header('traffic_from_us', _('traffic_from_us'), @options) %>
+    </th>
+<!--     <th align='right'>
+      <%= sortable_list_header('invoiced_to_us', _('invoiced_to_us'), @options) %>
+    </th> -->
+    <th align='right'>
+      <%= sortable_list_header('we_paid', _('we_paid'), @options) %>
+    </th>
+    <th align='right'>
+      <%= sortable_list_header('our_debt', _('our_debt'), @options) %>
+    </th>
+    <th align='right'>
+      <%= sortable_list_header('balance', _('balance'), @options) %>
+    </th>
+  </tr>
+  <% unless @balance_report_users_all.try(:size).to_i.zero? %>
+      <% @balance_report_users_all.each_with_index do |balance_report, i| %>
+          <tr class="row<%= (i % 2 + 1) %>">
+            <td id="user_<%= balance_report[:user_id].to_i %>" align="left"><%= link_to balance_report[:nice_user].to_s, {:action => 'user_statement_report', :id => balance_report[:user_id].to_i, :time_zone => ("#{params[:time_zone].blank? ? current_user.time_zone.to_s : params[:time_zone][:time_zone].to_s}")} %></td>
+            <td id="traffic_to_us_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:traffic_to_us].to_d == 0 ? '' : nice_currency(balance_report[:traffic_to_us].to_d, @options[:exchange_rate]) %></td>
+            <td id="we_invoiced_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:we_invoiced].to_d == 0 ? '' : nice_currency(balance_report[:we_invoiced].to_d) %></td>
+            <td id="paid_to_us_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:paid_to_us].to_d == 0 ? '' : nice_currency(balance_report[:paid_to_us].to_d, @options[:exchange_rate]) %></td>
+            <td id="debt_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:debt].to_d == 0 ? '' : nice_currency(balance_report[:debt].to_d, @options[:exchange_rate]) %></td>
+            <td id="traffic_from_us_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:traffic_from_us].to_d == 0 ? '' : nice_currency(balance_report[:traffic_from_us].to_d, @options[:exchange_rate]) %></td>
+            <!-- <td id="invoiced_to_us_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:invoiced_to_us].to_d == 0 ? '' : nice_currency(balance_report[:invoiced_to_us].to_d, @options[:exchange_rate]) %></td> -->
+            <td id="we_paid_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:we_paid].to_d == 0 ? '' : nice_currency(balance_report[:we_paid].to_d, @options[:exchange_rate]) %></td>
+            <td id="our_debt_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:our_debt].to_d == 0 ? '' : nice_currency(balance_report[:our_debt].to_d, @options[:exchange_rate]) %></td>
+            <td id="balance_<%= balance_report[:user_id].to_i %>" align="right"><%= balance_report[:balance].to_d == 0 ? '' : nice_currency(balance_report[:balance].to_d, @options[:exchange_rate]) %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <tr>
+    <th colspan='1' align='left'>
+      <%= _('Total') %>:
+    </th>
+    <th id='total_traffic_to_us' align='right'>
+      <%= nice_currency(@totals[:traffic_to_us].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_we_invoiced' align='right'>
+      <%= nice_currency(@totals[:we_invoiced].to_d) %>
+    </th>
+    <th id='total_paid_to_us' align='right'>
+      <%= nice_currency(@totals[:paid_to_us].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_debt' align='right'>
+      <%= nice_currency(@totals[:debt].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_traffic_from_us' align='right'>
+      <%= nice_currency(@totals[:traffic_from_us].to_d, @options[:exchange_rate]) %>
+    </th>
+<!--     <th id='total_invoiced_to_us' align='right'>
+      <%= nice_currency(@totals[:invoiced_to_us].to_d, @options[:exchange_rate]) %>
+    </th> -->
+    <th id='total_we_paid' align='right'>
+      <%= nice_currency(@totals[:we_paid].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_our_debt' align='right'>
+      <%= nice_currency(@totals[:our_debt].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_balance' align='right'>
+      <%= nice_currency(@totals[:balance].to_d, @options[:exchange_rate]) %>
+    </th>
+  </tr>
+</table>
+
+<% if @total_pages > 1 %>
+    </br>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>

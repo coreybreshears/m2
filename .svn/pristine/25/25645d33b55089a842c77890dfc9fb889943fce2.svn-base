@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Tariffs▶</td>
+	<td></td>
+</tr>
+<!--Buy tariffs-->
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Test Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>Test Tariff bad currency</td>
+</tr>
+<!--Sell tariffs-->
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_2/create_sip_2004</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>for testing</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully created</td>
+</tr>
+<!--same tariff, op ir tp-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2004</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>192.168.0.66</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--different tariff, op ir tp-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>device 2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.66</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--wholesale tariff, tik op-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>device 3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.66</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--wholesale tariff, tik tp-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>device 4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.66</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_1</td>
+	<td>2/0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_5</td>
+	<td>2/0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_2</td>
+	<td>0/9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2004</td>
+	<td>simple sip device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2006</td>
+	<td>device 3</td>
+</tr>
+<!--patikriname, ar keičiasi duomenys lentelėje-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2006</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_1</td>
+	<td>2/0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_5</td>
+	<td>3/0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_2</td>
+	<td>0/9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[5]</td>
+	<td>Add new Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[4]</td>
+	<td>Generate new Tariff</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Change Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td>Export Destinations to CSV</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Rates (251)</td>
+	<td>Rates (251)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/change_tariff_for_connection_points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Change Tariff for Connection Points</td>
+</tr>
+</tbody></table>
+</body>
+</html>

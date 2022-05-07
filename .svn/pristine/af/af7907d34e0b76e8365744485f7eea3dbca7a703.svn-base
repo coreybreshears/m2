@@ -1,0 +1,101 @@
+<% page_title, parent, page_path = get_page_title %>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= page_title %></title>
+  <!-- include the site fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <!-- include the site stylesheet -->
+  <%= stylesheet_link_tag "all.css" %>
+  <%= stylesheet_link_tag "user_styles.css" %>
+  <%= stylesheet_link_tag "jquery-ui-1.10.4.custom.min.css" %>
+  <script type="text/javascript">
+    var Web_Dir = "<%= Web_Dir || '' %>";
+  </script>
+  <!-- include jQuery library -->
+  <%= javascript_include_tag "jquery-1.8.3.min.js" %>
+  <script type="text/javascript">
+    document.write('<style type="text/css">body{display:none}</style>');
+    jQuery(function($) { $('body').css('display','block'); });
+  </script>
+  <%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+  <%= stylesheet_link_tag 'jqx.base.css' %>
+  <%= stylesheet_link_tag 'jqx.m2.css' %>
+  <!-- include custom JavaScript -->
+  <script type="text/javascript">var date_format = "<%= calendar_date_format %>";</script>
+  <%= javascript_include_tag "jquery.main.js" %>
+  <%= javascript_include_tag 'search_form_ajax' %>
+  <!-- include HTML5 IE enabling script and stylesheet for IE -->
+  <!--[if IE]><script type="text/javascript" src="<%=Web_Dir%>/assets/ie.js"></script><![endif]-->
+  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="<%=Web_Dir%>/assets/ie.css" media="screen"/><![endif]-->
+  <link rel="shortcut icon" href="<%= Web_Dir %>/<%= correct_favicon_folder %>favicon<%= correct_favicon_css %>.ico" />
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= javascript_include_tag 'wz_tooltip.js' %>
+  <!--#set var="activepage" value="reports" -->
+  <%
+    controller = params[:controller]
+    action     = params[:action]
+  %>
+  <!-- main container of all the page elements -->
+  <div id="wrapper">
+    <div class="w1">
+      <!-- header of the page -->
+      <%= render 'layouts/m2_user_header', parent: parent %>
+      <!-- contain main informative part of the site -->
+      <div id="main">
+      <!-- breadcrumbs -->
+        <div class="head-section">
+          <% if page_path.present? %>
+            <div class="breadcrumbs-col">
+              <div class="breadcrumbs-row">
+                  <ul class="breadcrumbs">
+                    <% page_path.each_with_index do |page, index| %>
+                      <li id="page_<%= index %>"><%= page %></li>
+                    <% end %>
+                    <span>
+                      <%= button_tag 'Refine Results',
+                          class: 'search-form-button',
+                          status: (show_search ? 'down' : 'up'),
+                          id: 'search-form-button',
+                          onClick: "jQuery(\"#search-form\").toggle(); pressed('#{Web_Dir}/callc/toggle_search',
+                                    '#{controller}', '#{action}');jcf.customForms.destroyAll();jcf.customForms.replaceAll();" if content_for?(:search_form)%>
+                    </span>
+                    <span><%= button_to 'Export to CSV', { action: @export_csv.try(:[], :action).to_s, id: @export_csv.try(:[], :id).to_i, csv: 1 }, class: 'search-form-button', status: 'up' unless @export_csv.blank? %></span>
+                  </ul>
+              </div>
+            </div>
+          <% end %>
+          <%= yield :search_form %>
+          <!--search should be here -->
+          <!-- render 'search_form' #, parameters -->
+          <% if flash[:status] %>
+            <div class="success-box">
+              <span class="text" id="status"><%= flash[:status].html_safe %></span>
+              <a href="#" class="close">Close</a>
+            </div>
+            <% flash[:status] = nil %>
+          <% end %>
+          <% if flash[:notice] %>
+            <div class="error-box">
+              <span class="text" id="status"><%= flash[:notice].html_safe %></span>
+              <a href="#" class="close">Close</a>
+            </div>
+            <% flash[:notice] = nil %>
+          <% end %>
+        </div>
+        <div class="nb">
+          <%= raw yield.html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- footer of the page -->
+  <%= render 'layouts/m2_user_footer' %>
+</body>
+</html>

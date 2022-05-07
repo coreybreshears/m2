@@ -1,0 +1,114 @@
+<table class="simple">
+  <% if params[:action] != 'personal_details' %>
+      <tr>
+        <td><%= _('Generate_invoices_automatically') %>:</td>
+        <td id='user_generate_invoice_automatically'><%= check_box_tag "user[generate_invoice]", "1", user.generate_invoice.to_i == 1 %></td>
+      </tr>
+      <tr>
+        <td><%= _('Generate_invoices_manually') %>:</td>
+        <td id='user_generate_invoice_manually'><%= check_box_tag "user[generate_invoice_manually]", "1", user.generate_invoice_manually.to_i == 1 %></td>
+      </tr>
+      <tr>
+        <td><%= "#{_('grace_period')} (#{_('Payment_Terms')})" %>:</td>
+        <td id='user_grace_period'><%= text_field_tag 'invoice_grace_period', user_invoice_grace_period(user, invoice_grace_period), "class" => "input", :size => "5", :maxlength => "10" %> <%= _('day_s') %></td>
+      </tr>
+      <tr id="generate_prepaid_invoice_tr">
+        <td width="250" nowrap><%= _('Generate_Prepaid_Invoice') %>: </td>
+        <td id='generate_prepaid_invoice'><%= check_box_tag 'user[generate_prepaid_invoice]', '1', user.generate_prepaid_invoice.to_i == 1 %></td>
+      </tr>
+      <tr>
+        <td><%= _('billing_period') %>:</td>
+        <td id='user_billing_period'><%= select_tag 'billing_period', options_for_billing_period(user.billing_period.to_s) %></td>
+      </tr>
+      <tr class="dynamic_invoice_setting dynamic_invoice_setting_date">
+        <td><%= _('First_Day_of_the_Period')%>:</td>
+        <td id="dynamc_period_first_day"></td>
+      </tr>
+      <tr class="dynamic_invoice_setting dynamic_invoice_setting_date">
+        <td><%= _('Last_Day_of_the_Period')%>:</td>
+        <td id="dynamc_period_last_day"></td>
+      </tr>
+      <tr class="dynamic_invoice_setting dynamic_invoice_setting_date">
+        <td><%= _('Invoiced_on')%>:</td>
+        <td id="dynamc_period_inoivced_on"></td>
+      </tr>
+      <tr id="dynamic_period_container" class="dynamic_invoice_setting" style = 'display: none'>
+        <td><%= _('Every') %>: </td>
+        <td><%= text_field_tag('billing_dynamic_days', user.billing_dynamic_days, class: 'input', size: 5, maxlength: 10) %> <%= _('days') %></td>
+      </tr>
+      <tr id="dynamic_period_time" class="dynamic_invoice_setting" style = 'display: none'>
+        <td><%= _('Generation_time') %>: </td>
+        <td> <%= select_tag('billing_dynamic_generation_time', options_for_select( (1..24).map { |i| [i, i]}, user.billing_dynamic_generation_time) ) %> <%= _('Hour') %></td>
+      </tr>
+      <tr id="dynamic_period_from" class="dynamic_invoice_setting" style = 'display: none'>
+        <td><%= _('From') %>: </td>
+        <td>
+            <% time_from = user.billing_dynamic_from %>
+            <%= select_datetime(time_from, start_year: dynamic_from_year(time_from), end_year: Date.today.year + 2, prefix: 'billing_dynamic_from', use_month_numbers: true) %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<script>
+  jQuery(document).ready( function($) {
+    var billing_period = $('#billing_period');
+    var billing_days = $('#dynamic_period_container');
+    var billing_from = $('#dynamic_period_from');
+    var billing_generation_time = $('#dynamic_period_time');
+    var dynamic_invoice_setting_date = $('.dynamic_invoice_setting_date');
+
+    toogle();
+    togglePeriods(billing_period.val());
+    billing_period.change(function(){
+      toogle();
+      togglePeriods($(this).val());
+    });
+
+    function toogle(){
+      if(billing_period.val() == 'dynamic'){
+        billing_days.show();
+        billing_from.show();
+        billing_generation_time.show();
+        dynamic_invoice_setting_date.hide();
+        // $('#billing_dynamic_days').css({'width':(billing_period.width()+'px')});
+      } else {
+        billing_days.hide();
+        billing_from.hide();
+        billing_generation_time.hide();
+        dynamic_invoice_setting_date.show();
+      }
+    }
+
+    function togglePeriods(val){
+      var firstDay = $('#dynamc_period_first_day');
+      var lastDay = $('#dynamc_period_last_day');
+      var invoicedOn = $('#dynamc_period_inoivced_on');
+      if (val == 'weekly'){
+        firstDay.text('<%= nice_date(DatePicker.next_week[0]) %>');
+        lastDay.text('<%= nice_date(DatePicker.next_week[1] - 1.day) %>');
+        invoicedOn.text('<%= nice_date(DatePicker.next_week[1]) %>');
+      }else if (val == 'bi-weekly'){
+        firstDay.text('<%= nice_date(DatePicker.next_bi_week[0]) %>');
+        lastDay.text('<%= nice_date(DatePicker.next_bi_week[1] - 1.day) %>');
+        invoicedOn.text('<%= nice_date(DatePicker.next_bi_week[1]) %>');
+      }else if (val == 'monthly'){
+        firstDay.text('<%= nice_date(DatePicker.next_month[0]) %>');
+        lastDay.text('<%= nice_date(DatePicker.next_month[1] - 1.day) %>');
+        invoicedOn.text('<%= nice_date(DatePicker.next_month[1]) %>');
+      }else if (val == 'bimonthly'){
+        firstDay.text('<%= nice_date(DatePicker.next_bi_month[0]) %>');
+        lastDay.text('<%= nice_date(DatePicker.next_bi_month[1] - 1.day) %>');
+        invoicedOn.text('<%= nice_date(DatePicker.next_bi_month[1]) %>');
+      }else if (val == 'quarterly'){
+        firstDay.text('<%= nice_date(DatePicker.next_quarter[0]) %>');
+        lastDay.text('<%= nice_date(DatePicker.next_quarter[1] - 1.day) %>');
+        invoicedOn.text('<%= nice_date(DatePicker.next_quarter[1]) %>');
+      }else if (val == 'halfyearly'){
+        firstDay.text('<%= nice_date(DatePicker.next_half_year[0]) %>');
+        lastDay.text('<%= nice_date(DatePicker.next_half_year[1] - 1.day) %>');
+        invoicedOn.text('<%= nice_date(DatePicker.next_half_year[1]) %>');
+      }
+    }
+
+  });
+</script>

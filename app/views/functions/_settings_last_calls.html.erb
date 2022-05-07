@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col extended">
+    <%= raw setting_boolean(_('show_device_and_cid_in_last_calls'), 'show_device_and_cid_in_last_calls', 'Show_device_and_cid_in_last_calls') %>
+    <%= raw setting_boolean(_('show_answer_time_last_calls'), 'show_answer_time_last_calls', 'Show_answer_time_last_calls') %>
+    <%= raw setting_boolean(_('show_end_time_last_calls'), 'show_end_time_last_calls', 'Show_end_time_last_calls') %>
+    <%= raw setting_boolean(_('show_PDD_last_calls'), 'show_PDD_last_calls', 'Show_PDD_last_calls') %>
+    <%= raw setting_boolean(_('show_terminated_by_last_calls'), 'show_terminated_by_last_calls', 'Show_terminated_by_last_calls') %>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'show_usernames_on_pdf_csv_export_files_in_last_calls', _('show_usernames_on_pdf_csv_export_files_in_last_calls') %>
+      </div>
+      <div class="input-col">
+        <%= check_box_tag 'show_usernames_on_pdf_csv_export_files_in_last_calls', '1', Confline.get_value('Show_Usernames_On_Pdf_Csv_Export_Files_In_Last_Calls').to_i == 1 %>
+      </div>
+    </div>
+    <%= raw setting_boolean(_('Show_Duration_in_Last_Calls'), 'show_duration_in_last_calls', 'Show_Duration_in_Last_Calls') %>
+    <%= raw setting_boolean(_('Retrieve_PCAP_files_from_the_Proxy_Server'), 'retrieve_pcap_files_from_the_proxy_server', 'Retrieve_PCAP_files_from_the_Proxy_Server') %>
+  </div>
+</div>

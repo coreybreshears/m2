@@ -1,0 +1,14 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('New_Automatic_CDR_Export') %></h2>
+    <%= form_for :automatic_cdr_export, url: {action: :automatic_export_create, id: @automatic_cdr_export.id}, html: {class: 'details-form'} do |f| %>
+        <fieldset>
+          <%= render 'automatic_export_form', f: f, automatic_cdr_export: @automatic_cdr_export %>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/cdr/automatic_export_list'" %>
+            <%= submit_tag _('CREATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

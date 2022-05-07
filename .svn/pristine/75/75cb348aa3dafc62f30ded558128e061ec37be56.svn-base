@@ -1,0 +1,35 @@
+<script>
+    var currencies = {};
+    <% currencies.each do |currency| %>
+    currencies['<%= currency.id %>'] = '<%= nice_separator(currency.exchange_rate) %>';
+    <% end %>
+    var users = {};
+    <% users.each do |user| %>
+    users['<%= user.id %>'] = '<%= user.currency_id %>';
+    <% end %>
+    document.observe("dom:loaded", function() {
+    <% if flash[:notice].blank? %>
+        var user_select = $('m2_payment_user_id');
+
+        selectCurrency(user_select.value);
+    <% else %>
+        var currency_select = $('m2_payment_currency_id');
+        updateExchangeRate(currency_select.value);
+    <% end %>
+    });
+    function selectCurrency(value) {
+        currency_id = users[value];
+        $('m2_payment_currency_id').value = currency_id;
+        updateExchangeRate(currency_id);
+    }
+
+    function updateExchangeRate(value) {
+        exchange_rate = currencies[value];
+        $('m2_payment_exchange_rate').value = exchange_rate;
+        if (value == 1) {
+          $('m2_payment_exchange_rate').disabled = true;
+        } else {
+          $('m2_payment_exchange_rate').disabled = false;
+        }
+    }
+</script>

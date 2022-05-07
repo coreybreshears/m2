@@ -1,0 +1,483 @@
+<script type="text/javascript">
+  var clear_fields = new Array(
+    $('alert_clear_if_less'),
+    $('alert_clear_if_more'),
+    $('alert_clear_after'),
+    $('alert_action_clear_enable_object'),
+    $('alert_enable_tp_in_dial_peer'),
+    $('alert_action_clear_email'));
+  var disable_clear = $('alert_disable_clear');
+
+  <% if ['alert_add', 'alert_new'].include?(action_link) %>
+    var user     = $('user');
+    var user_val = $('s_user');
+    var dev      = $('device');
+    var prov     = $('provider');
+    // var prov_val = $('alert_check_data2');
+    var dest     = $('destination');
+    var dest_val = $('alert_check_data3');
+    var dest_g   = $('destination_group');
+    var users_op = $('users_op');
+    var users_tp = $('users_tp');
+    var tp_device= $('tp_device');
+    var op_device= $('op_device');
+    var dest_g_val = $('alert_check_data4');
+    new Form.Element.EventObserver('s_device_op_user', function(element, value) {updateOP();})
+    new Form.Element.EventObserver('s_device_tp_user', function(element, value) {updateTP();})
+  <% end %>
+
+  var regexp = /^0*\.?0*$/;  // regex to detect blank string or zero float
+  var ail = $('alert_alert_if_less');
+  var aim = $('alert_alert_if_more');
+  var cil = $('alert_clear_if_less');
+  var cim = $('alert_clear_if_more');
+  var ca  = $('alert_clear_after');
+
+  function updateObjectNameFields(value) {
+    if (value == "user") {
+      user.style.display = 'block';
+      enable_field(user_val);
+    } else {
+      user.style.display = 'none';
+      disable_field(user_val);
+    }
+    if (value == "termination_point") {
+      prov.style.display = 'block';
+      jQuery('#tp_device').removeAttr('disabled');
+      jQuery('#s_device_tp_user').removeAttr('disabled');
+      updateTP();
+    } else {
+      prov.style.display = 'none';
+      jQuery('#tp_device').attr('disabled', 'disabled');
+      jQuery('#s_device_tp_user').attr('disabled', 'disabled');
+    }
+    if (value == "destination") {
+      dest.style.display = 'block';
+      enable_field(dest_val);
+    } else {
+      dest.style.display = 'none';
+      disable_field(dest_val);
+    }
+    if (value == "destination_group") {
+      dest_g.style.display = 'block';
+      enable_field(dest_g_val);
+    } else {
+      dest_g.style.display = 'none';
+      disable_field(dest_g_val);
+    }
+    if (value == "origination_point") {
+      dev.style.display = 'block'
+      jQuery('#op_device').removeAttr('disabled');
+      jQuery('#s_device_op_user').removeAttr('disabled');
+      updateOP();
+    } else {
+      dev.style.display = 'none';
+      jQuery('#op_device').attr('disabled', 'disabled');
+      jQuery('#s_device_op_user').attr('disabled', 'disabled');
+    }
+  }
+
+  function updateOP() {
+    new Ajax.Updater('users_op', '<%= Web_Dir %>/devices/origination_points_ajax',
+      { evalScripts:true,
+        onComplete:function(request){Element.hide('spinner'); jQuery('#op_device').change(); },
+        onLoading:function(request){Element.show('spinner');},
+        parameters:'id=' + ($('s_device_op_user').value == '' ? '' : $('s_device_op_user_id').value) +
+        '&device_id=' + <%= is_numeric?(alert.check_data) ? alert.check_data.to_s : "0" %>
+      })
+  }
+
+  function updateTP() {
+    new Ajax.Updater('users_tp', '<%= Web_Dir %>/devices/termination_points_ajax',
+      {
+        evalScripts:true,
+        onComplete:function(request){
+          Element.hide('spinner');
+          updateDialPeers();
+          check_prov_settings();
+        },
+        onLoading:function(request){Element.show('spinner');},
+        parameters:'id=' + ($('s_device_tp_user').value == '' ? '' : $('s_device_tp_user_id').value) +
+        '&device_id=' + <%= params[:tp_device] || '0' %>
+      })
+
+  }
+
+  function updateDialPeers() {
+    var selected_device = $('tp_device').value;
+    new Ajax.Updater('disable_tp_in_dial_peer', '<%= Web_Dir %>/alerts/ajax_get_dial_peers',
+      { evalScripts:true,
+        onComplete:function(request){Element.hide('spinner'); },
+        onLoading:function(request){Element.show('spinner');},
+        parameters: 'alert_id=' + '<%= alert.id.to_s %>' +
+        '&device_id=' + selected_device +
+        '&dis=<%= alert.disable_tp_in_dial_peer.to_s %>'
+      });
+  }
+
+  function disableObjectCheck() {
+    if ($('alert_action_alert_disable_object').checked && disable_clear.checked == false) {
+      enable_field($('alert_action_clear_enable_object'));
+    } else {
+      disable_field($('alert_action_clear_enable_object'));
+    }
+  }
+
+  function disableRoutingGroupOnAlert(check_type) {
+    if (check_type == 'origination_point') {
+      enable_field($('alert_action_alert_change_routing_group_id'));
+      enable_field($('alert_action_clear_change_routing_group_id'));
+    } else {
+      disable_field($('alert_action_alert_change_routing_group_id'));
+      disable_field($('alert_action_clear_change_routing_group_id'));
+    }
+  }
+
+  function enableClearFields() {
+      if (disable_clear.checked == true) {
+          for(var i=0,j=clear_fields.length; i<j; i++){
+              disable_field(clear_fields[i]);
+          };
+          cim.value     = "";
+          cil.value     = "";
+          ca.value      = "";
+          <% ['year', 'month', 'day', 'hour', 'minute'].each do |value| %>
+          disable_field($("clear_on_date_<%= value %>"));
+          <% end %>
+      } else {
+          for(var i=0,j=clear_fields.length; i<j; i++){
+              enable_field(clear_fields[i]);
+          };
+          <% ['year', 'month', 'day', 'hour', 'minute'].each do |value| %>
+          enable_field($("clear_on_date_<%= value %>"));
+          <% end %>
+          disableObjectCheck();
+      }
+      disable_enable_alerts_and_clears();
+  }
+
+  Event.observe(window, 'load', function () {
+    <% if ['alert_add', 'alert_new'].include?(action_link) %>
+      updateObjectNameFields($('alert_check_type').value);
+      disableObjectCheck();
+      check_alert_check_type();
+      updateAlertTypeParams();
+      changeIfParams();
+      update_user_info();
+      Event.observe($('s_user'), 'change', update_user_info);
+      Event.observe($('all_users'), 'change', function(){
+        clearLiveSearch();
+        update_user_info();
+      });
+      Event.observe($('alert_check_type'), 'change', function() {
+        updateAlertTypeParams();
+        changeIfParams();
+       });
+    <% else %>
+      change_counting('<%= alert.alert_type %>');
+    <% end %>
+    enableClearFields();
+    check_prov_settings();
+    disableRoutingGroupOnAlert('<%= alert.check_type.to_s %>');
+  });
+
+  function updateAlertTypeParams() {
+    select_html = '';
+
+    switch ($('alert_check_type').value) {
+      case 'user': select_html = '<%= generate_parameters(alert.alert_type, alert_type_parameters[:user]) %>';
+        break;
+      case 'termination_point': select_html = '<%= generate_parameters(alert.alert_type, alert_type_parameters[:termination_point]) %>';
+        break;
+      default: select_html = '<%= generate_parameters(alert.alert_type, alert_type_parameters[:base]) %>';
+    }
+
+    $('alert_type_parameters').innerHTML = select_html;
+
+    change_counting($('alert_type_parameters').value);
+
+    Event.observe($('alert_type_parameters'), 'change', function(){
+      change_counting($('alert_type_parameters').value);
+    });
+  }
+
+  function change_counting(value) {
+    groupSelected(false);
+    if ((value == "asr") || (value == 'hgc_percent')) {
+      $('params_counting').innerHTML = "%";
+    } else if (['calls_total', 'calls_answered', 'calls_not_answered', 'price_sum', 'sim_calls', 'hgc_absolute'].indexOf(value) > -1) {
+      $('params_counting').innerHTML = "unit";
+    } else if (value == "group") {
+      $('params_counting').innerHTML = '';
+      groupSelected(true);
+    } else {
+      $('params_counting').innerHTML = "seconds";
+    }
+
+      if ((<%= ['hgc_absolute', 'hgc_percent'].include?(alert.alert_type) and action_link.eql? 'alert_update'%>) ||
+              (value == 'hgc_percent') || (value == 'hgc_absolute')) {
+          $('hgc_input').style.display = '';
+      } else {
+          $('hgc_input').style.display = 'none';
+      }
+  }
+
+  function check_alert_check_type() {
+    if (['user','origination_point'].indexOf($('alert_check_type').value) > -1) {
+      enable_field($('alert_action_alert_disable_object'));
+      disableObjectCheck();
+    } else if ($('alert_check_type').value == 'termination_point') {
+      enable_field($('alert_action_alert_disable_object'));
+      disableObjectCheck();
+    } else {
+      disable_field($('alert_action_clear_enable_object'));
+      disable_field($('alert_action_alert_disable_object'));
+    }
+
+    disableRoutingGroupOnAlert($('alert_check_type').value);
+  }
+
+  function check_prov_settings() {
+    <% if action_link.eql? 'alert_update' %>
+      if (<%= alert.check_type.to_s == 'termination_point' and action_link.eql? 'alert_update'%>) {
+        enableDialPeerFields();
+      } else {
+        disableDialPeerFields();
+      }
+    <% else %>
+      if ($('alert_check_type').value == 'termination_point') {
+        enableDialPeerFields();
+      } else {
+        disableDialPeerFields();
+      }
+    <% end %>
+
+    if ((<%= (alert.check_type.to_s == 'user' or alert.check_type.to_s == 'origination_point' or alert.check_type.to_s == 'termination_point') and action_link.eql? 'alert_update'%>) || ($('alert_check_type') && $('alert_check_type').value == 'user' || $('alert_check_type').value == 'termination_point') || $('alert_check_type').value == 'origination_point') {
+      $('notify_to_user').style.display = '';
+    } else {
+      $('notify_to_user').style.display = 'none';
+    }
+  }
+
+  function enableDialPeerFields() {
+    $('prov_dp_settings1').style.display = '';
+    $('dp_tp_settings2').style.display = '';
+    enable_field($('alert_enable_tp_in_dial_peer'));
+    enable_field($('disable_tp_in_dial_peer'));
+  }
+
+  function disableDialPeerFields() {
+    $('prov_dp_settings1').style.display = 'none';
+    $('dp_tp_settings2').style.display = 'none';
+    disable_field($('alert_enable_tp_in_dial_peer'));
+    disable_field($('disable_tp_in_dial_peer'));
+  }
+
+
+  // function to disable aim,ail,cim,cil settings to protect client from logic mistakes.
+
+  function disable_enable_alerts_and_clears() {
+    enable_field(ail);
+    enable_field(aim);
+    if (disable_clear.checked == false) {
+      enable_field(cil);
+      enable_field(cim);
+    }
+
+    if (!regexp.test(ail.value) || !regexp.test(cim.value)) {
+      //disable alert >= clear <=.
+      disable_field(cil);
+      disable_field(aim);
+    } else if (!regexp.test(aim.value) || !regexp.test(cil.value)) {
+      //disable alert <= clear >=.
+      disable_field(ail);
+      disable_field(cim);
+    }
+  }
+
+  // function to disable other clear inputs then selected one
+  function clears_cond_basis_check() {
+    if (!regexp.test(cil.value) || !regexp.test(cim.value)) {
+      disable_field(ca);
+    } else if (!regexp.test(ca.value)) {
+      disable_field(cil);
+      disable_field(cim);
+    } else {
+      enable_field(ca);
+    }
+  }
+
+  // function to disable and put grey color on field
+  function disable_field(field) {
+    field.disabled = true;
+    if (field.type == 'checkbox') {
+      field.value = 1;
+    } else {
+      field.value = "";
+    }
+    field.style.backgroundColor = "#ebebeb";
+  }
+
+  // function to enable and take away grey color from the field
+  function enable_field(field) {
+    field.disabled = false;
+    field.style.backgroundColor = "";
+  }
+
+  function groupSelected(value){
+    if(value == true){
+      jQuery.ajax({
+        url: '<%= Web_Dir %>/alerts/update_dependency_selector',
+        data: {check_type: jQuery("#alert_check_type").val()},
+        success: function(rezult){
+          jQuery('#group_selector').html(rezult);
+          jQuery('.conditions').hide();
+          jQuery('.group :input').attr("disabled", false);
+          jQuery('.group').show();
+        }
+      });
+    } else {
+      jQuery('.conditions').show();
+      jQuery('.group').hide();
+      jQuery('.group :input').attr("disabled", true);
+    }
+  }
+
+  function update_user_info() {
+    if ((($('s_user_id').value < 0) || ($('s_user_id').value == '')) && !$('all_users').checked &&
+      $('s_user').value.toLowerCase() != 'postpaid' && $('s_user').value.toLowerCase() != 'prepaid') {
+      $('user_not_selected_info').show();
+    } else {
+      $('user_not_selected_info').hide();
+    }
+  }
+
+  function clearLiveSearch(){
+    if($('all_users').checked){
+      $('s_user').value = '';
+      $('s_user_id').value = '-2';
+      $('user_list').innerHTML  = '';
+      $('s_user').disabled = true;
+    } else {
+      $('s_user').disabled = false;
+    }
+  }
+
+  function changeTimeParams(){
+    jQuery('.time_param').html(jQuery('#alert_count_period option:selected').text());
+  }
+
+  function changeIfParams(){
+    jQuery('.if_param').html(jQuery('#alert_type_parameters option:selected').text());
+  }
+
+  function toggleSecondaryObject(value){
+    jQuery('#alert_check_type_secondary').prop('disabled', (value == 'origination_point' || value == 'termination_point') ? false : true);
+
+    if (value == 'origination_point' || value == 'termination_point'){
+      jQuery('#alert_check_data_secondary1').prop('disabled', false);
+      jQuery('#alert_check_data_secondary2').prop('disabled', false);
+      jQuery('#alert_check_type_secondary').change();
+    }else{
+      jQuery('#alert_check_data_secondary1').prop('disabled', true);
+      jQuery('#alert_check_data_secondary2').prop('disabled', true);
+    }
+    jQuery('#alert_action_clear_enable_dp_in_rg').prop('disabled', (value == 'origination_point' || value == 'termination_point') ? false : true);
+  }
+
+  function toggleCheckDataSecondary(value){
+    if (value == 'destination'){
+      jQuery('#destination_secondary').show();
+      jQuery('#destination_group_secondary').hide();
+      jQuery('#alert_check_data_secondary1').prop('disabled', false);
+      jQuery('#alert_check_data_secondary2').prop('disabled', true);
+    }
+    if (value == 'destination_group'){
+      jQuery('#destination_secondary').hide();
+      jQuery('#destination_group_secondary').show();
+      jQuery('#alert_check_data_secondary1').prop('disabled', true);
+      jQuery('#alert_check_data_secondary2').prop('disabled', false);
+    }
+
+    if (value == 'none'){
+      jQuery('#alert_check_data_secondary1').prop('disabled', true);
+      jQuery('#alert_check_data_secondary2').prop('disabled', true);
+    }
+  }
+
+  function get_routing_group_data(value){
+    jQuery.ajax({
+        url: '<%= "#{Web_Dir}/alerts/get_cp_routing_group_id" %>',
+        data: { device_id: value },
+        async: true,
+        error: function(err){
+            console.log(err);
+        },
+        success: function(response, val) {
+            if(val == 'success') {
+              get_cp_rg_dp(response['op_routing_group_id']);
+            } else {
+              console.log(val);
+            }
+        }
+    });
+  }
+
+  function get_cp_rg_dp(value){
+    jQuery.ajax({
+        url: '<%= "#{Web_Dir}/alerts/get_cp_rg_dial_peers" %>',
+        data: { routing_group_id: value },
+        async: true,
+        error: function(err){
+            console.log(err);
+        },
+        success: function(response, val) {
+            if(val == 'success') {
+              jQuery('.cp-rg').html(response['routing_group_name']);
+              if (response.hasOwnProperty('d_peers')) dpDropdown(response['d_peers']);
+            } else {
+              console.log(val);
+            }
+        }
+    });
+  }
+
+  function toggleDpInRG(value){
+    var dev_id = jQuery('#op_device option:first').val();
+    if (value == 'origination_point' && dev_id != 'all' && dev_id != '' && dev_id != undefined){
+      jQuery('.dp_in_rg').show();
+    }else{
+      jQuery('.dp_in_rg').hide();
+    }
+
+  }
+  var redirected = 1;
+  function dpDropdown(dial_peers){
+    option_string = "<option selected=\"selected\">None</option>"
+    dial_peers.forEach(function(dial_peer){
+      option_string += "<option value=\"" + dial_peer['id'] + "\"> " +  dial_peer['name'] + "</option>"
+    });
+    jQuery('.cp-rg-dp').html("<select id=\"dial_peer_id\" name=\"alert[dial_peer_id]\" onchange=\"updateActivateDP();\">" + option_string + "</select>");
+    <% if ['alert_add'].include?(action_link) %>
+    if (redirected == 1) {
+      jQuery('#dial_peer_id').val('<%= alert.dial_peer_id %>').change();
+      redirected = 0;
+    }
+    <% end %>
+  }
+
+  function updateActivateDP(){
+    jQuery('.cp-rg-dp-selected').html(jQuery('#dial_peer_id option:selected').text());
+  }
+
+
+  jQuery(document).ready(function(){
+    jQuery(this).on('change', '#op_device', function(){
+      var dev_id = jQuery('#op_device option:selected').val();
+      if (dev_id != 'all' && dev_id != '') get_routing_group_data(dev_id);
+      toggleDpInRG('origination_point');
+    });
+  });
+
+  changeTimeParams();
+</script>

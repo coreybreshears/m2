@@ -1,0 +1,2656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>calls_per_hour</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">calls_per_hour</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/edit/250</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>LithuaniaOK</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Destination group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/es_remote_33.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/aggregates_es</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--Checking what we see before searching-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/aggregates/calls_per_hour')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Reports Calls Per Hour Refine Results</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Calls Per Hour</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>From</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='search-form']/fieldset/div/label[2]</td>
+	<td>Till</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.row &gt; label</td>
+	<td>Originator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='search-form']/fieldset/div[2]/div[2]/label</td>
+	<td>Terminator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='search-form']/fieldset/div[3]/div/label</td>
+	<td>Prefix</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=prefix</td>
+	<td></td>
+</tr>
+<!--Checking what we see when there is no data for selected period-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2015&amp;date_from[month]=01&amp;date_from[day]=01&amp;date_till[year]=2015&amp;date_till[month]=01&amp;date_till[day]=01&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Press search button to show data.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<!--Checking what we see when there is some data for selected period-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2016&amp;date_from[month]=01&amp;date_from[day]=30&amp;date_till[year]=2016&amp;date_till[month]=01&amp;date_till[day]=30&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Pirmo stulpelio pavadinime atvaizduota išsiskleidimo tvarka-->
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[3]/td[2]</td>
+	<td>└ Time</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[2]/td</td>
+	<td>└ Originator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[3]/td[2]</td>
+	<td>└ Time</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[4]/td[3]</td>
+	<td>└ Destination</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[5]/td[4]</td>
+	<td>└ Terminator</td>
+</tr>
+<!--Daug eilučių su skirtingom datom, rikiavimas nuo naujausios, mažėjimo tvarka-->
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2016-01-30</td>
+</tr>
+<!--Pirma skiltis skirta info iš user perspektyvos-->
+<tr>
+	<td>assertText</td>
+	<td>id=from_user_perspective</td>
+	<td>From User perspective</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_call_attempts</td>
+	<td>Call Attempts</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_0</td>
+	<td>287</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>287</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_answered_calls</td>
+	<td>Answered Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_0</td>
+	<td>107</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>107</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_aggregates_acd</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_0</td>
+	<td>exact:00:02:39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:00:02:39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_aggregates_asr</td>
+	<td>ASR %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_0</td>
+	<td>37</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>37</td>
+</tr>
+<!--Antra skiltis skirta info iš admin perspektyvos-->
+<!--Teste ji sutampa su user perspektyva, nes parinkti duomenys tokie, lyg viskas veiktų tvarkingai-->
+<tr>
+	<td>assertText</td>
+	<td>id=from_admin_perspective</td>
+	<td>From Admin Perspective</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_call_attempts</td>
+	<td>Call Attempts</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_0</td>
+	<td>287</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>287</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_answered_calls</td>
+	<td>Answered Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_0</td>
+	<td>107</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>107</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_aggregates_acd</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_0</td>
+	<td>exact:00:02:39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:00:02:39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_aggregates_asr</td>
+	<td>ASR %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_0</td>
+	<td>37</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>37</td>
+</tr>
+<!--Bendra info-->
+<tr>
+	<td>assertText</td>
+	<td>id=aggregates_billsec</td>
+	<td>Avg. Retries</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_avgretries_0</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_day_avgretries</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='aggregates_billsec'])[2]</td>
+	<td>Duration</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_0</td>
+	<td>exact:04:44:46</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:04:44:46</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_list_link_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Calls List</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>2016</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td>January</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>2016</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_month</td>
+	<td>January</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_day</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_hour</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_minute</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_minute</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Search - FROM HERE-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2011&amp;date_from[month]=01&amp;date_from[day]=26&amp;date_till[year]=2015&amp;date_till[month]=12&amp;date_till[day]=31&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2013-04-09</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_11</td>
+	<td>2011-02-18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:00:01:52</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>61</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:00:01:52</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>31.15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:00:35:43</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2015</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Date from is greater than date till</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2010&amp;date_from[month]=11&amp;date_from[day]=25&amp;date_till[year]=2015&amp;date_till[month]=12&amp;date_till[day]=31&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=terminator</td>
+	<td>label=Terminator</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2012-11-30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3</td>
+	<td>2012-11-21</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_3 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3.0</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3.1</td>
+	<td>User Resellers</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_3 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3.0</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>kitas_useris</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>user1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>User Resellers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_0</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_3.0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:00:02:31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:00:02:31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>57.14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:00:20:08</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>655</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>%37</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>%3%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2012-11-30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1</td>
+	<td>2012-11-29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_2</td>
+	<td>2012-11-22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3</td>
+	<td>2012-11-21</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>3%</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=destination_group</td>
+	<td>label=LithuaniaOK</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2012-11-30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1</td>
+	<td>2012-11-29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_2</td>
+	<td>2012-11-22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3</td>
+	<td>2012-11-21</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>3%0</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=destination_group</td>
+	<td>label=Afghanistan</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>accountant1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Checking what we see before searching-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/aggregates/calls_per_hour')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;Chart bar&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Calls per Hour</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_from_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_from_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_from_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_till_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_till_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_till_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=terminator</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Press search button to show data. </td>
+	<td></td>
+</tr>
+<!--Checking what we see when there is no data for selected period-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2015&amp;date_from[month]=01&amp;date_from[day]=01&amp;date_till[year]=2015&amp;date_till[month]=01&amp;date_till[day]=01&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Press search button to show data.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=clear_search</td>
+	<td></td>
+</tr>
+<!--Checking what we see when there is some data for selected period-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2011&amp;date_from[month]=01&amp;date_from[day]=01&amp;date_till[year]=2015&amp;date_till[month]=12&amp;date_till[day]=31&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Pirmo stulpelio pavadinime atvaizduota išsiskleidimo tvarka-->
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[3]/td[2]</td>
+	<td>└ Time</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[2]/td</td>
+	<td>└ Originator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[3]/td[2]</td>
+	<td>└ Time</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[4]/td[3]</td>
+	<td>└ Destination</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='calls_per_hour']/tbody/tr/th/table/tbody/tr[5]/td[4]</td>
+	<td>└ Terminator</td>
+</tr>
+<!--Daug eilučių su skirtingom datom, rikiavimas nuo naujausios, mažėjimo tvarka-->
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2013-04-09</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1</td>
+	<td>2013-04-02</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_2</td>
+	<td>2013-03-08</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_10</td>
+	<td>2011-03-12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_13</td>
+	<td>2011-01-12</td>
+</tr>
+<!--Pirma skiltis skirta info iš user perspektyvos-->
+<tr>
+	<td>assertText</td>
+	<td>id=from_user_perspective</td>
+	<td>From User perspective</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_call_attempts</td>
+	<td>Call Attempts</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_6</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_13</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_answered_calls</td>
+	<td>Answered Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_6</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_12</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_aggregates_acd</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_0</td>
+	<td>exact:00:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_1</td>
+	<td>exact:00:01:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_3</td>
+	<td>exact:00:02:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_10</td>
+	<td>exact:00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:00:01:57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_aggregates_asr</td>
+	<td>ASR %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_0</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_10</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>0.00</td>
+</tr>
+<!--Antra skiltis skirta info iš admin perspektyvos-->
+<!--Teste ji sutampa su user perspektyva, nes parinkti duomenys tokie, lyg viskas veiktų tvarkingai-->
+<tr>
+	<td>assertText</td>
+	<td>id=from_admin_perspective</td>
+	<td>From Admin perspective</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_call_attempts</td>
+	<td>Call Attempts</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_0</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_3</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_9</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_answered_calls</td>
+	<td>Answered Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_3</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_6</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_aggregates_acd</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_0</td>
+	<td>exact:00:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1</td>
+	<td>exact:00:01:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_6</td>
+	<td>exact:00:01:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_12</td>
+	<td>exact:00:01:40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:00:01:57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=admin_aggregates_asr</td>
+	<td>ASR %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_0</td>
+	<td>25.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_4</td>
+	<td>100.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_9</td>
+	<td>50.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>30.30</td>
+</tr>
+<!--Bendra info-->
+<tr>
+	<td>assertText</td>
+	<td>id=aggregates_billsec</td>
+	<td>Duration</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_0</td>
+	<td>exact:00:06:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_3</td>
+	<td>exact:00:05:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_6</td>
+	<td>exact:00:07:24</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_12</td>
+	<td>exact:00:01:40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:00:39:03</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#call_list_link_2 &gt; img[alt=&quot;Call&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Last Calls</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>2013</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>2013</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_month</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_day</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_hour</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_minute</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_minute</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Search-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2011&amp;date_from[month]=01&amp;date_from[day]=26&amp;date_till[year]=2015&amp;date_till[month]=12&amp;date_till[day]=31&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2013-04-09</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_11</td>
+	<td>2011-02-18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:00:01:52</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>61</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:00:01:52</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>31.15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:00:35:43</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2015</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Date from is greater than date till</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2010&amp;date_from[month]=11&amp;date_from[day]=25&amp;date_till[year]=2015&amp;date_till[month]=12&amp;date_till[day]=31&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=terminator</td>
+	<td>label=Terminator</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2012-11-30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3</td>
+	<td>2012-11-21</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_3 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3.0</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3.1</td>
+	<td>User Resellers</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_3 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3.0</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>kitas_useris</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>user1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>User Resellers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_0</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_3.0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:00:02:31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:00:02:31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>57.14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:00:20:08</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>655</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>%37</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>%3%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2012-11-30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1</td>
+	<td>2012-11-29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_2</td>
+	<td>2012-11-22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3</td>
+	<td>2012-11-21</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>3%</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=destination_group</td>
+	<td>label=LithuaniaOK</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-11-05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_0</td>
+	<td>2012-11-30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1</td>
+	<td>2012-11-29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_2</td>
+	<td>2012-11-22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_3</td>
+	<td>2012-11-21</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>3%0</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=destination_group</td>
+	<td>label=Afghanistan</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No data found... </td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Visual tabo setingai-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_date_format_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_time_format_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_7_digits</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_semicolon_as_decimal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2011&amp;date_from[month]=01&amp;date_from[day]=01&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1</td>
+	<td>09,04,2013</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_14</td>
+	<td>12,01,2011</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_4</td>
+	<td>exact:02:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:02:04</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_1</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_2</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_1</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>87</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1</td>
+	<td>exact:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:02:04</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_1</td>
+	<td>25;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>33;33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_1</td>
+	<td>exact:06:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:60:09</td>
+</tr>
+<!--Time Zones-->
+<!--Skambučių turi 17-ta valanda-->
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_1 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//td[@id='cph_day_map_1.2']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1.2.6</td>
+	<td>Hour 17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1.2.6</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1.2.6</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1.2.6</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+06:00) Almaty</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--17-ta valanda skambučių nebeturi, turi 20-a-->
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_1 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//td[@id='cph_day_map_1.2']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1.2.3</td>
+	<td>Hour 20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_1.2.3</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_1.2.3</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_1.2.3</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1.2.3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1.2.3</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1.2.3</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_1.2.3</td>
+	<td>33;33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_1.2.3</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+13:00) Samoa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--persikelia į kitą dieną, bet lieka tam pačiam useriui -->
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_1 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//td[@id='cph_day_map_1.2']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1.2.20</td>
+	<td>Hour 3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_1.2.20</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_1.2.20</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_1.2.20</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_1.2.20</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1.2.20</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1.2.20</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1.2.20</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_1.2.20</td>
+	<td>33;33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_1.2.20</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/acc_groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/acc_all_permissions_write</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test Accountant</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>accountant1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour?date_from[year]=2012&amp;date_from[month]=01&amp;date_from[day]=01&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1</td>
+	<td>09,04,2013</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_7</td>
+	<td>21,11,2012</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_1</td>
+	<td>exact:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_7</td>
+	<td>exact:01:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_acd</td>
+	<td>exact:02:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_1</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_7</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_asr</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_user_call_attempts</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_1</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_answered_calls</td>
+	<td>26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_call_attempts</td>
+	<td>71</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//th[@id='totals_answered_calls'])[2]</td>
+	<td>26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1</td>
+	<td>exact:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_7</td>
+	<td>exact:01:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_acd</td>
+	<td>exact:02:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_1</td>
+	<td>25;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_7</td>
+	<td>44;44</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_admin_asr</td>
+	<td>36;62</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_1</td>
+	<td>exact:06:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_7</td>
+	<td>exact:07:24</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=totals_duration</td>
+	<td>exact:52:39</td>
+</tr>
+<!--Time Zones-->
+<!--Skambučių turi 17-ta valanda-->
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_1 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//td[@id='cph_day_map_1.2']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1.2.6</td>
+	<td>Hour 17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1.2.6</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1.2.6</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+06:00) Almaty</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--17-ta valanda skambučių nebeturi, turi 20-a-->
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_1 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//td[@id='cph_day_map_1.2']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1.2.3</td>
+	<td>Hour 20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_1.2.3</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_1.2.3</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_1.2.3</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_1.2.3</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1.2.3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1.2.3</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1.2.3</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_1.2.3</td>
+	<td>33;33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_1.2.3</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+13:00) Samoa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--persikelia į kitą dieną, bet lieka tam pačiam useriui -->
+<tr>
+	<td>click</td>
+	<td>css=#cph_day_map_1 &gt; span.indenter &gt; a[title=&quot;Expand&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//td[@id='cph_day_map_1.2']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_map_1.2.20</td>
+	<td>Hour 3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_call_attempts_1.2.20</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_answered_calls_1.2.20</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_acd_1.2.20</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_user_asr_1.2.20</td>
+	<td>0;00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_call_attempts_1.2.20</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_answered_calls_1.2.20</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_acd_1.2.20</td>
+	<td>exact:00:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_admin_asr_1.2.20</td>
+	<td>33;33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cph_day_duration_1.2.20</td>
+	<td>exact:00:42</td>
+</tr>
+<!--Pasiekiamumas-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_reseller</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_reseller1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>reseller</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>reseller1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/calls_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

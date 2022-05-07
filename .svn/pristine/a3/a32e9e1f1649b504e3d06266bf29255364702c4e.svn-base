@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>api_payment_create</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">api_payment_create</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;test=1&amp;hash=38282ca5e65e63746498ef5b39a2fe71c6448df4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>API Requests are disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/enable_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;test=1&amp;hash=38282ca5e65e63746498ef5b39a2fe71c6448df4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Payments are not allowed from API</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/allow_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;test=1&amp;hash=38282ca5e65e63746498ef5b39a2fe71c64485df4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Incorrect hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payment_createt&amp;u=admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payment_createt&amp;u=admin&amp;user_id=2&amp;amount=10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payment_createt&amp;u=admin&amp;user_id=2&amp;amount=10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash5</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payment_createt&amp;user_id=2&amp;u=admin&amp;amount=10&amp;currency=eur</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash3</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payment_createt&amp;u=admin&amp;user_id=2&amp;amount=10&amp;currency=eur&amp;amount_in_tax=1&amp;exchange_rate=0.111&amp;payment_to_provider=1&amp;comment=testest</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash4</td>
+</tr>
+<!--patikrinam kad cc_group_id neina i hash nes jis optional-->
+<tr>
+	<td>assertEval</td>
+	<td>storedVars['hash3']==storedVars['hash4']</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;test=1&amp;amount=10&amp;currency=eur&amp;hash=${hash3}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=status</td>
+	<td>ok</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=payment_id</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tax</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=amount</td>
+	<td>10.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=gross</td>
+	<td>10.0000</td>
+</tr>
+<!--pasikeites user editas-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_value</td>
+	<td>13.5404 USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;amount=10&amp;currency=eur&amp;amount_in_tax=1&amp;exchange_rate=0.111&amp;payment_to_provider=1&amp;comment=testest&amp;hash=${hash4}&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=status</td>
+	<td>ok</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tax</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=amount</td>
+	<td>-10.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=gross</td>
+	<td>-10.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/disable_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;test=1&amp;hash=38282ca5e65e63746498ef5b39a2fe71c6448df4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Amount was not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;test=1&amp;amount=10&amp;hash=${hash5}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Currency was not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=78yu&amp;p_currency=USD&amp;amount=55&amp;payer_email=agser@dzbsr.er&amp;test=1&amp;hash=9de7e12bd78741c3ca0ef1c4fff03cb7bc959be4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=5&amp;p_currency=USD&amp;amount=55&amp;payer_email=sdfg@sdfg.sd&amp;tax_in_amount=1&amp;test=1&amp;hash=8e0c988755b4283780b5b341c51d9829c7615657</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=user_admin&amp;user_id=5&amp;p_currency=USD&amp;amount=55&amp;payer_email=sdfg@sdfg.sd&amp;tax_in_amount=1&amp;test=1&amp;hash=8e0c988755b4283780b5b341c51d9829c7615657</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--Disable Hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/disable_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--payment_to_provider=1 padaro viska i minusa-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;amount=96&amp;currency=USD&amp;amount_in_tax=1&amp;exchange_rate=0.111&amp;payment_to_provider=1&amp;comment=testest&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=status</td>
+	<td>ok</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=payment_id</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tax</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=amount</td>
+	<td>-96.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=gross</td>
+	<td>-96.0000</td>
+</tr>
+<!--fake reiksmes ignoruojamos-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;amount=96&amp;currency=USD&amp;amount_in_tax=abc&amp;exchange_rate=abccc&amp;payment_to_provider=565&amp;comment=testest&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=status</td>
+	<td>ok</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=payment_id</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tax</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=amount</td>
+	<td>96.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=gross</td>
+	<td>96.0000</td>
+</tr>
+<!--tax-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/tax/set_tax1_50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_value</td>
+	<td>50.0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#confirm_without_message &gt; input[name=&quot;commit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User's settings successfully changed:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;amount=96&amp;currency=USD&amp;amount_in_tax=1&amp;exchange_rate=0.111&amp;payment_to_provider=1&amp;comment=testest&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>ok 5 -48.0000 -96.0000 -144.0000</td>
+</tr>
+<!--xml-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/enable_xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;amount=96&amp;currency=USD&amp;amount_in_tax=1&amp;exchange_rate=0.111&amp;payment_to_provider=1&amp;comment=testest&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>ok 6 -48.0000 -96.0000 -144.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/disallow_get</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payment_create?u=admin&amp;user_id=2&amp;amount=96&amp;currency=USD&amp;amount_in_tax=1&amp;exchange_rate=0.111&amp;payment_to_provider=1&amp;comment=testest&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>GET Requests are disabled</td>
+	<td></td>
+</tr>
+<!--fake forma-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/fake_form?path_to_action=/billing/api/payment_create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_1</td>
+	<td>user_id</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_1</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_1</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_2</td>
+	<td>u</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_2</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_2</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_3</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_3</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_3</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_4</td>
+	<td>currency</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_4</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_4</td>
+	<td>usd</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_5</td>
+	<td>amount</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_5</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_5</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>ok 7 22.5000 45.0000 67.5000</td>
+</tr>
+</tbody></table>
+</body>
+</html>

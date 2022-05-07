@@ -1,0 +1,281 @@
+<!-- JQXGRID PROCESSOR -->
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.grouping.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Active_Calls_per_User_Origination_Point') %></h2>
+    <div id="active_calls_info">
+      <!-- Info box -->
+      <%= _('Page_refreshes_every') %>:&nbsp;<%= @refresh_period > 0 ? @refresh_period : 5 %> s
+    </div>
+    <!-- Main View -->
+    <div id="ac_tables_container">
+      <div id="user_ac_container">
+        <div id="user_ac_grid"></div>
+      </div>
+      <div id="space"></div>
+      <div id="op_ac_container">
+        <div id="op_ac_grid"></div>
+      </div>
+    </div>
+    <!-- End of Main View -->
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+
+        // JQXGrid table class
+        var JQXTable = function(groupable, container) {
+            // PRIVATE ATTRIBUTES
+            // Table container
+            var ACallsGrid = $(container);
+
+            // Clumn width distribution
+            var col_distr = {
+                name: "46%", answered: "12%",
+                calls_limit: "15%", total: "12%", free_lines: "15%"
+            };
+
+            // Localization callback
+            var getLocalization = function () {
+                return {
+                    thousandsseparator: "",
+                    emptydatastring: "<%= _('No_data_found_no_dots') %>"
+                }
+            };
+
+            var customRenderer = function(row, column, value) {
+                return "<div style='text-align:right;margin:3.5px;overflow:hidden;text-overflow:ellipsis;'>" +
+                        (parseInt(value) <= 4294967295 ? value : "<%= _('Unlimited') %>") + "</div>";
+            };
+
+            // PUBLIC ATTRIBUTES
+            // Source data model
+            this.source = {
+                datatype: "json",
+                datafields: [
+                    { name: 'nicename', type: 'string'},
+                    { name: "name", type: "string" },
+                    { name: "total", type: "integer" },
+                    { name: "answered", type: "integer" },
+                    { name: "calls_limit", type: "integer" },
+                    { name: "free_lines", type: "integer" }
+                ],
+                pagesize: <%= session[:items_per_page] %>,
+                cache: true
+            };
+
+            var source = this.source;
+
+            // Table columns
+            this.columns = [
+                // Status column
+                {
+                    text: groupable ? '<%= _('User') %>' : '<%= _('origination_point') %>', datafield: "nicename",
+                    align: "left", cellsalign: "left", width: col_distr.name,
+                    cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+                        if(groupable){
+                            return '<a target="_blank" href="/billing/users/edit/' +
+                                    source.localdata[row]['user_id'] + '">' + defaulthtml + '</a>';
+                        }
+                        else {
+                            var div = '<div style="margin-left: 4px;">' + value + ' - ' + source.localdata[row]['name'] + '</div>';
+                            return '<a target="_blank" href="/billing/devices/device_edit/' +
+                                    source.localdata[row]['id'] + '">' + div + '</a>';
+                        }
+                    }
+                },
+
+                // Total Active Calls
+                {
+                    text: "<%= _('Active_Calls') %>", datafield: "total", align: "right",
+                    cellsalign: "right", width: col_distr.total
+                },
+
+                // Total Anwered Active Calls
+                {
+                    text: "<%= _('Answered') %>", datafield: "answered", align: "right",
+                    cellsalign: "right", width: col_distr.answered
+                },
+
+                // Call Limit
+                {
+                    text: "<%= _('Call_limit') %>", datafield: "calls_limit", align: "right",
+                    cellsalign: "right", width:  col_distr.calls_limit, cellsrenderer: customRenderer
+                },
+
+                // Free Lines
+                {
+                    text: "<%= _('Free_Lines') %>", datafield: "free_lines", align: "right",
+                    cellsalign: "right", width:  col_distr.free_lines, cellsrenderer: customRenderer
+                }
+            ];
+
+            // Updates the JQXGrid table
+            this.update = function(data, requestCount) {
+                this.source.localdata = data;
+                if (requestCount == 0) {
+                    ACallsGrid.jqxGrid({
+                        source: new $.jqx.dataAdapter(this.source),
+                        width: "45%",
+                        autoheight: true,
+                        rowsheight: 22,
+                        altrows: true,
+                        enablebrowserselection: true,
+                        selectionmode: 'none',
+                        statusbarheight: 22,
+                        sortable: true,
+                        pageable: true,
+                        enablebrowserselection: "true",
+                        pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                        localization: getLocalization(),
+                        columns: this.columns,
+                        handlekeyboardnavigation: function (event) {
+                            var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                            if (key == 86 && event.ctrlKey == true) {
+                                return true;
+                            }
+                        },
+                        ready: function() {
+                            rendered = true;
+                            // Default sort: duration
+                            ACallsGrid.jqxGrid("sortby", "name", "asc");
+                        }
+                    });
+                } else {
+                    // For later requests we maintain settings and update the data
+                    var sortColumnName = ACallsGrid.jqxGrid("getsortcolumn");
+                    var currentPage = ACallsGrid.jqxGrid("getdatainformation").paginginformation.pagenum;
+                    var sortOrder = ACallsGrid.jqxGrid("getsortinformation").sortdirection.ascending == true ? "asc" : "desc";
+                    ACallsGrid.jqxGrid({ source: new $.jqx.dataAdapter(this.source)});
+                    ACallsGrid.jqxGrid("sortby", sortColumnName, sortOrder);
+                    ACallsGrid.jqxGrid("gotopage", currentPage);
+                    // Update the table
+                    ACallsGrid.jqxGrid("updatebounddata", "sort");
+                }
+            };
+        };
+        // End of JQXGrid table class
+
+        // Data receiver class
+        //   Periodically receives data from server and
+        //   performs all the work
+        var DataReceiver = function() {
+            // PRIVATE ATTRIBUTES
+            var opTable = new JQXTable(false, '#op_ac_container');
+            var userTable = new JQXTable(true, '#user_ac_container');
+            var refreshPeriod = (parseInt("<%= @refresh_period %>") || 5) * 1000;
+            var requestCount = 0;
+            // Loading indicator
+            var spinner = $("#spinner");
+
+            function worker() {
+                // For the first time we do not need to ask the server
+                if (requestCount == 0) {
+                    // Updates the table
+                    opTable.update(<%= raw @data %>, requestCount);
+                    userTable.update(groupBy(<%= raw @data %>, 'nicename'), requestCount);
+                    requestCount++;
+                    setTimeout(worker, refreshPeriod);
+                } else {
+                    // Other iterations send periodic requests to the server
+                    sendRequest();
+                }
+            }
+
+            //Groups action calls data by key
+            function groupBy(data, key){
+                var groupsNames = new Map();
+                var index = 0;
+                return data.reduce(function(grouped, element){
+                    if(groupsNames.has(element[key])){
+                        var groupIndex = groupsNames.get(element[key]);
+                        grouped[groupIndex]['total'] += element['total'];
+                        grouped[groupIndex]['answered'] += element['answered'];
+                        grouped[groupIndex]['calls_limit'] += element['calls_limit'];
+                        grouped[groupIndex]['free_lines'] += element['free_lines'];
+                    }
+                    else{
+                        groupsNames.set(element[key], index);
+                        index++;
+                        grouped.push(element);
+                    }
+                    return grouped;
+                }, [])
+            }
+
+            // Performs an ajax call
+            var sendRequest = function() {
+                pendingRequest = $.ajax({
+                    // Request destination
+                    url: "<%= Web_Dir %>" + "/stats/active_calls_per_user_op",
+                    type: "GET",
+                    dataType: "json",
+                    // Updates the table with a json response
+                    success: function (data) {
+                        opTable.update(data, requestCount);
+                        userTable.update(groupBy(data, 'nicename'), requestCount);
+                    },
+                    // Cleans up and get ready for a successor request
+                    complete: function() {
+                        setTimeout(worker, refreshPeriod);
+                        requestCount++;
+                    }
+                });
+            };
+
+            // PUBLIC ATTRIBUTES
+            // Starts the periodic worker
+            this.start = function() {
+                worker();
+            }
+        };
+        // End of data receiver class
+
+        // Main part
+        DS = new DataReceiver();
+        // Start the work
+        DS.start();
+        // End of Main part
+
+    });
+</script>
+<style>
+    #ac_tables_container{
+        margin-left: 10px;
+    }
+    #op_ac_container, #user_ac_container{
+        display: inline-block;
+        vertical-align: top
+    }
+    #space{
+        display: inline-block;
+        width: 7%
+    }
+    @media only screen and (max-width:767px){
+        #op_ac_container, #user_ac_container{
+            overflow-x: auto;
+        }
+    }
+</style>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_BILLING_Tariffs_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_SECURITY_Integrity_Check_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Action_log_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manager_time_zone</td>
+	<td>label=(GMT+0?:00) Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/all_tariff_info.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=delete_unimported_prefix_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=effective_date_now</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=effective_date_today</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Created destinations: 13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination names updated: 7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 24</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Destinations not assigned to Destination Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Fix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_525</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_526</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=U</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_507</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_506</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=action_type</td>
+	<td>label=tariff_csv_import_completed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>*Test Manager*tariff_csv_import_completed*Tariff(5)*Name: Test Tariff bad currency*</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

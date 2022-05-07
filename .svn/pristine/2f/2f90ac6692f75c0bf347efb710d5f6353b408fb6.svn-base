@@ -1,0 +1,49 @@
+<% if @rate && @rate.is_a?(Rate) %>
+  <%= javascript_include_tag 'rate_details' %>
+
+  <%= hidden_field_tag :web_dir, Web_Dir, id: 'web_dir' %>
+  <%= hidden_field_tag :rate_id, @rate.id, id: 'rateId' %>
+
+  <div class="static-header">
+    <% if @destination && @destination.is_a?(Destination) %>
+      <div class="row" id="destination">
+        <% if @destination.direction %>
+          <%= destination_name(@destination.destination_name) %>
+        <%end%>
+        <%= "(#{@destination.prefix})" %>
+      </div>
+    <% end %>
+    <div class="column">
+      <div class="row">
+        <%= _('Currency') %>:
+      </div>
+      <div class="row">
+        <%= _('Effective_From') %>:
+      </div>
+    </div>
+    <div class="column padding-left-1 date-col calendar-holder">
+      <div class="row" id="currency">
+        <%= @tariff.try(:currency) %>
+      </div>
+      <div class="row">
+        <div class="calendar-col" id="date">
+          <% effective_date, effective_time = effective_date_values(@rate) %>
+          <%= text_field_tag 'date_from', effective_date, class: 'checkout-seconds hide_secs default', id: 'till' %>
+        </div>
+        <div class="time-col" id="time">
+          <%= text_field_tag 'time_from', effective_time, class: 'default', id: 'time2' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @wdfd %>
+    <%= render 'work_days_and_free_days', can_edit: @can_edit, rate_details: @rate_details, rate: @rate %>
+  <% else %>
+      <br/>
+    <%= render 'work_days', can_edit: @can_edit, wdrdetails: @WDrdetails, rate: @rate %>
+    <%= render 'free_days', can_edit: @can_edit, fdrdetails: @FDrdetails, rate: @rate  %>
+  <% end %>
+<% else %>
+  <p><%= _('Rate_was_not_found_please_contact_Kolmisoft_support') %></p>
+<% end %>

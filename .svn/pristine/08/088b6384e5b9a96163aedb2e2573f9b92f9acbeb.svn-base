@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_duration_in_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2012</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=October</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=time_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-21 1?:18:19&quot;,&quot;clid&quot;:&quot;\&quot;370600\&quot; \u003c370600\u003e&quot;,&quot;dst&quot;:&quot;37063042438&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:18.0,&quot;duration&quot;:20,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device_re&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;Test User #1&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;},{&quot;calldate2&quot;:&quot;2012-11-21 1?:19:48&quot;,&quot;clid&quot;:&quot;\&quot;40060\&quot; \u003c40060\u003e&quot;,&quot;dst&quot;:&quot;37093042422&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:13.0,&quot;duration&quot;:18,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;User Resellers&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=src_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-21 11:19:48&quot;,&quot;clid&quot;:&quot;\&quot;40060\&quot; \u003c40060\u003e&quot;,&quot;dst&quot;:&quot;37093042422&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:13.0,&quot;duration&quot;:18,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;User Resellers&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;},{&quot;calldate2&quot;:&quot;2012-11-21 11:28:02&quot;,&quot;clid&quot;:&quot;\&quot;40060\&quot; \u003c40060\u003e&quot;,&quot;dst&quot;:&quot;37093042422&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:168.0,&quot;duration&quot;:169,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;User Resellers&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=dst_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-21 11:31:04&quot;,&quot;clid&quot;:&quot;\&quot;370600\&quot; \u003c370600\u003e&quot;,&quot;dst&quot;:&quot;37060064753&quot;,&quot;prefix&quot;:&quot;3706&quot;,&quot;destination&quot;:&quot;Lithuania Lithuania mobile&quot;,&quot;nice_billsec&quot;:106.0,&quot;duration&quot;:112,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;/sip.ocean-tel.uk&quot;,&quot;provider_rate&quot;:&quot;0.1200&quot;,&quot;provider_price&quot;:&quot;0.2120&quot;,&quot;user&quot;:&quot;Test User #1&quot;,&quot;user_rate&quot;:&quot;0.5200&quot;,&quot;user_price&quot;:&quot;0.9187&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=nice_billsec_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-21 11:21:48&quot;,&quot;clid&quot;:&quot;\&quot;370600\&quot; \u003c370600\u003e&quot;,&quot;dst&quot;:&quot;37063042438&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:370.0,&quot;duration&quot;:372,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device_re&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;Test User #1&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=hgc_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-21 11:18:19&quot;,&quot;clid&quot;:&quot;\&quot;370600\&quot; \u003c370600\u003e&quot;,&quot;dst&quot;:&quot;37063042438&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:18.0,&quot;duration&quot;:20,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device_re&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;Test User #1&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=p_rate_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-30 19:07:24&quot;,&quot;clid&quot;:&quot;\&quot;370600\&quot; \u003c370600\u003e&quot;,&quot;dst&quot;:&quot;37060064753&quot;,&quot;prefix&quot;:&quot;3706&quot;,&quot;destination&quot;:&quot;Lithuania Lithuania mobile&quot;,&quot;nice_billsec&quot;:183.0,&quot;duration&quot;:190,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;/sip.ocean-tel.uk&quot;,&quot;provider_rate&quot;:&quot;0.1200&quot;,&quot;provider_price&quot;:&quot;0.3660&quot;,&quot;user&quot;:&quot;Test User #1&quot;,&quot;user_rate&quot;:&quot;0.5200&quot;,&quot;user_price&quot;:&quot;1.5860&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=p_price_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-30 19:16:26&quot;,&quot;clid&quot;:&quot;\&quot;40060\&quot; \u003c40060\u003e&quot;,&quot;dst&quot;:&quot;37093042422&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:156.0,&quot;duration&quot;:157,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;User Resellers&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=user_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-29 10:10:39&quot;,&quot;clid&quot;:&quot;\&quot;40060\&quot; \u003c40060\u003e&quot;,&quot;dst&quot;:&quot;37093042422&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:253.0,&quot;duration&quot;:254,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;User Resellers&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=u_rate_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-21 11:18:19&quot;,&quot;clid&quot;:&quot;\&quot;370600\&quot; \u003c370600\u003e&quot;,&quot;dst&quot;:&quot;37063042438&quot;,&quot;prefix&quot;:&quot;&quot;,&quot;destination&quot;:&quot; &quot;,&quot;nice_billsec&quot;:18.0,&quot;duration&quot;:20,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;SIP_device_re&quot;,&quot;provider_rate&quot;:&quot;0.0000&quot;,&quot;provider_price&quot;:&quot;0.0000&quot;,&quot;user&quot;:&quot;Test User #1&quot;,&quot;user_rate&quot;:&quot;0.0000&quot;,&quot;user_price&quot;:&quot;0.0000&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=u_price_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;calldate2&quot;:&quot;2012-11-30 19:07:24&quot;,&quot;clid&quot;:&quot;\&quot;370600\&quot; \u003c370600\u003e&quot;,&quot;dst&quot;:&quot;37060064753&quot;,&quot;prefix&quot;:&quot;3706&quot;,&quot;destination&quot;:&quot;Lithuania Lithuania mobile&quot;,&quot;nice_billsec&quot;:183.0,&quot;duration&quot;:190,&quot;dispod&quot;:&quot;ANSWERED(16)&quot;,&quot;provider&quot;:&quot;/sip.ocean-tel.uk&quot;,&quot;provider_rate&quot;:&quot;0.1200&quot;,&quot;provider_price&quot;:&quot;0.3660&quot;,&quot;user&quot;:&quot;Test User #1&quot;,&quot;user_rate&quot;:&quot;0.5200&quot;,&quot;user_price&quot;:&quot;1.5860&quot;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>OK</td>
+</tr>
+</tbody></table>
+</body>
+</html>

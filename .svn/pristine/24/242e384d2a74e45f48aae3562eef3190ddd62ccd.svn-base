@@ -1,0 +1,46 @@
+class DatePicker
+
+  def self.default_values
+    {
+        today: [Time.now.beginning_of_day, Time.now],
+        yesterday: last_days(1),
+        this_week: this_week,
+        last_week: last_weeks(1),
+        this_month: this_month,
+        last_month: last_months(1),
+        last_year: last_years(1),
+        year_to_date: year_to_date
+    }
+  end
+
+  def self.last_days(day_number)
+    [day_number.to_i.days.ago.beginning_of_day, 1.days.ago.end_of_day]
+  end
+
+  def self.last_weeks(week_number)
+    [week_number.to_i.weeks.ago.beginning_of_week, 1.weeks.ago.end_of_week]
+  end
+
+  def self.last_months(month_number)
+    [month_number.to_i.months.ago.beginning_of_month, 1.month.ago.end_of_month]
+  end
+
+  def self.last_years(year_number)
+    [year_number.to_i.years.ago.beginning_of_year, 1.years.ago.end_of_year]
+  end
+
+  def self.this_week
+    time_now = Time.now
+    [time_now.beginning_of_week, time_now.end_of_week]
+  end
+
+  def self.this_month
+    time_now = Time.now
+    [time_now.beginning_of_month, time_now.end_of_month]
+  end
+
+  def self.year_to_date
+    time_now = Time.now
+    [time_now.beginning_of_year, time_now]
+  end
+end

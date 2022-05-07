@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>stats</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">stats</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Creata hacking attempt by going to /billing/callc/logout-->
+<!--Action log-->
+<!--...Verify that all search fields are being stored-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='0'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>action_type</td>
+	<td>label=login</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>processed</td>
+	<td>label=not reviewed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>assertSelectedValue</td>
+	<td>action_type</td>
+	<td>login</td>
+</tr>
+<tr>
+	<td>assertSelectedValue</td>
+	<td>processed</td>
+	<td>0</td>
+</tr>
+<!--...Verify values-->
+<tr>
+	<td>assertText</td>
+	<td>type_3</td>
+	<td>login</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=System Admin</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>cross_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>user_3</td>
+	<td>System Admin</td>
+</tr>
+<!--Verify select time-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log?date_from[year]=2010&amp;date_from[month]=1&amp;date_from[day]=1&amp;date_till[year]=2010&amp;date_till[month]=1&amp;date_till[day]=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>action_type</td>
+	<td>label=test_time</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>type_1</td>
+	<td>test_time</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>type_2</td>
+	<td>test_time</td>
+</tr>
+<!--Verify select time-->
+<tr>
+	<td>open</td>
+	<td>billing/stats/first_activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_from_year</td>
+	<td>label=2006</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>2009-01-01 00:00:01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2009-01-01 00:00:02</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2009-01-01 00:00:03</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2009-01-01 00:00:04</td>
+	<td></td>
+</tr>
+<!--pagination-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/one_item_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/stats/first_activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>page_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>page_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/stats/first_activity?page=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>page_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/stats/first_activity?page=-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>page_1</td>
+	<td></td>
+</tr>
+<!--show_user_stats-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/show_user_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=time1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=time2</td>
+	<td></td>
+</tr>
+<!--Calls by Clients -> Detailed-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/user_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=from</td>
+	<td>2006-01-01</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>2006-01-01</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=date_till</td>
+	<td>2010-01-01</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=date_till</td>
+	<td>2010-01-01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.user_stats_box_line_number &gt; strong</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.user_stats_box_line_disp</td>
+	<td>ANSWERED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.user_stats_box_line_number</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_disp</td>
+	<td>NO ANSWER</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_number</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#busy_calls_line &gt; div.user_stats_box_line_disp</td>
+	<td>BUSY</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#busy_calls_line &gt; div.user_stats_box_line_number &gt; strong</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_disp</td>
+	<td>FAILED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_number &gt; strong</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_calls &gt; span</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_duration &gt; span</td>
+	<td>exact:08:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_acd &gt; span</td>
+	<td>exact:00:36</td>
+</tr>
+<!--hangupcase-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/hangup_calls?direction=-1&amp;hid=331&amp;provider_id=-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/hangup_cause_codes_stats?date_from[year]=2007&amp;date_till[year]=2010&amp;date_till[month]=5&amp;date_till[day]=21&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='0'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>s_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>100.0 %</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_device</td>
+	<td>All Test Device #1 Test FAX device Test User #1/127.0.1.2 Test Device for Admin</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_device</td>
+	<td>label=Test Device #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>100.0 %</td>
+	<td></td>
+</tr>
+<!--Quick stats TAX-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>amount</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tax1_value</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tax2_value</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>tax2_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tax2_name</td>
+	<td>tax2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='confirm_without_message']/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User's settings successfully changed: Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Application key']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hello, Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance</td>
+	<td>$ 100.00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>tax2_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tax1_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='confirm_without_message']/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--date fix-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/show_user_stats?date_from[year]=2008&amp;search_on=1</td>
+	<td></td>
+</tr>
+<!--Create accountant group.-->
+<!--action_log user-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>user_log_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>user_log_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>action_type</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>System Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=User</td>
+	<td></td>
+</tr>
+<!--user-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/user_device_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--Calls by Clients -> Detailed-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/user_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=time_format</td>
+	<td>label=H:M:S</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>action_type</td>
+	<td>label=hacking_attempt</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>&quot;controller&quot;=&gt;&quot;devices&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;id&quot;=&gt;&quot;5&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;action&quot;=&gt;&quot;user_device_edit&quot;</td>
+	<td></td>
+</tr>
+<!--users_finances-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/users_finances</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>user_id_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>s_balance_min</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>s_balance_min</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>s_balance_max</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>user_id_2</td>
+	<td></td>
+</tr>
+<!--prefix finder-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/prefix_finder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>search</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>results</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination group : Lithuania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Destination group : Lithuania</td>
+	<td></td>
+</tr>
+<!--active calls-->
+<!--Test users_finances pagination-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/users_finances</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_balance_min</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>user_id_0</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>user_id_4</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/users_finances</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>user_id_4</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>s_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>user_id_0</td>
+	<td>System Admin</td>
+</tr>
+<!--Calls by Clients -> Detailed-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/user_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_2</td>
+	<td>Detailed</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.user_stats_box_line_disp</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.user_stats_box_line_number &gt; strong</td>
+	<td>43</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.user_stats_box_line_number &gt; strong</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.user_stats_box_line_percent</td>
+	<td>67.4 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=no_answer_calls_line</td>
+	<td>NO ANSWER <br /> 0 <br /> 0.0 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>0.0 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#busy_calls_line &gt; div.user_stats_box_line_number &gt; strong</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#busy_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>14.0 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_number &gt; strong</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>18.6 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Detailed statistics for Users</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_calls &gt; span</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_duration &gt; span</td>
+	<td>exact:01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_acd &gt; span</td>
+	<td>exact:00:02:19</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2005-02-01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.user_stats_box_line_number</td>
+	<td>164</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.user_stats_box_line_number &gt; strong</td>
+	<td>104</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.user_stats_box_line_percent</td>
+	<td>63.4 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_number</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>1.8 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#busy_calls_line &gt; div.user_stats_box_line_number &gt; strong</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#busy_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>8.5 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_number &gt; strong</td>
+	<td>43</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>26.2 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_calls &gt; span</td>
+	<td>104</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_duration &gt; span</td>
+	<td>exact:02:52:41</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tab_acd &gt; span</td>
+	<td>exact:00:01:40</td>
+</tr>
+</tbody></table>
+</body>
+</html>

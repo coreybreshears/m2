@@ -1,0 +1,16 @@
+
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('New_Template') %></h2>
+    <%= form_for @rate_notification_template, url: {action: :create, id: @rate_notification_template}, html: {class: 'details-form details-form-tariff-import-templates', multipart: true} do |f| %>
+        <fieldset>
+          <%= render 'form', f: f, rate_notification_template: @rate_notification_template %>
+          <br/><br/>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariff_rate_notification_templates/list'" %>
+            <%= submit_tag _('CREATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

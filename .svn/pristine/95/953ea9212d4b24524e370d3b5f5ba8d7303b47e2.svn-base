@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>managers_list</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">managers_list</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_header-header</td>
+	<td>ID</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Manager</td>
+	<td>Manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Manager Group</td>
+	<td>Manager Group</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_first_name</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_comment</td>
+	<td>manager with +3 TZ</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager successfully updated</td>
+</tr>
+<!--# Rodomas tooltipas, nes yra komentaras-->
+<tr>
+	<td>mouseOver</td>
+	<td>id=manager_link_16001</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>manager with +3 TZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager successfully updated</td>
+</tr>
+<!--# Nerodomas tooltipas, nes komentaras tuščias-->
+<tr>
+	<td>mouseOver</td>
+	<td>id=manager_link_16001</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>waitForTextNotPresent</td>
+	<td>Comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>manager with +3 TZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_comment</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<%= select_tag(name || 'destination_group',
+               options_for_select(mapped_destination_groups(destinationgroups)),
+               style: 'width: 150px',
+               id: id ||'destination_group') %>

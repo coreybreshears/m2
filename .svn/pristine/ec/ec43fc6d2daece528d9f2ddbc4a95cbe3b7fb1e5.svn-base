@@ -1,0 +1,80 @@
+# -*- encoding : utf-8 -*-
+# M2 Background tasks for C
+class BackgroundTask < ActiveRecord::Base
+
+  attr_protected
+
+  belongs_to :user
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
+
+  def tariff_generation_validate_params(params)
+    # Validation
+    if params[:tariff].blank?
+      self.errors.add(:something_went_wrong_try_again, _('something_went_wrong_try_again'))
+    else
+      # Collect data from params
+      tariff = {
+          name: params[:tariff][:name].to_s.strip,
+          currency_id: params[:tariff][:currency_id].to_s,
+          profit_margin_at_least: params[:tariff][:profit_margin_at_least].to_s.strip,
+          profit_margin: params[:tariff][:profit_margin].to_s.strip,
+          tariffs_from: params[:tariff][:tariffs_from],
+          cheapest_rate: params[:tariff][:cheapest_rate],
+          date_time: "#{params[:date]} #{params[:time]}:00",
+          prefix_in_dg: (params[:tariff][:prefix_in_dg] ? 1 : 0)
+      }
+
+      Tariff.tariff_name_validation(tariff[:name], self)
+      Tariff.tariff_profit_margin_validation(tariff[:profit_margin_at_least], self)
+      Tariff.tariff_profit_margin_validation(tariff[:profit_margin], self)
+
+      # Selected dial peers/tariffs validation
+      case tariff[:tariffs_from]
+        when 'dial_peer'
+          if params[:dial_peer_id].blank?
+            self.errors.add(:dial_peer_must_be_selected, _('dial_peer_must_be_selected')) if tariff[:selected].blank?
+          else
+            tariff_ids = Tariff.select('DISTINCT(tariffs.id) AS id').
+                joins('JOIN devices ON devices.tp_tariff_id = tariffs.id ').
+                joins("JOIN dpeer_tpoints ON (dpeer_tpoints.dial_peer_id IN (#{params[:dial_peer_id].join(', ')}) AND dpeer_tpoints.device_id = devices.id)").
+                order(:id).to_a.map(&:id)
+          end
+          tariff[:selected] = tariff_ids || ''
+        when 'tariff'
+          tariff[:selected] = params[:tariff_id]
+          self.errors.add(:tariff_must_be_selected, _('tariff_must_be_selected')) if tariff[:selected].blank?
+        else
+          self.errors.add(:dial_peer_or_tariff_must_be_selected, _('dial_peer_or_tariff_must_be_selected')) if tariff[:selected].blank?
+      end
+    end
+
+    tariff
+  end
+
+  def self.generate_invoice_background(time, s_user_id, owner_id)
+     BackgroundTask.create(
+      task_id: 4,
+      created_at: Time.now,
+      owner_id: owner_id,
+      status: 'WAITING',
+      user_id: s_user_id.to_i,
+      data1: time[:from].to_s + ' 00:00:00',
+      data2: time[:till].to_s + ' 23:59:59',
+      data3: Time.parse(time[:issue]).to_s
+    )
+  end
+
+  def self.cdr_export_template(options = {})
+    BackgroundTask.create(
+        task_id: 7,
+        owner_id: options[:user_id],
+        user_id: options[:user_id],
+        created_at: Time.zone.now,
+        status: 'WAITING',
+        data1: options[:template_id],
+        data4: options[:from],
+        data5: options[:till],
+        data6: options[:sql]
+    )
+  end
+end

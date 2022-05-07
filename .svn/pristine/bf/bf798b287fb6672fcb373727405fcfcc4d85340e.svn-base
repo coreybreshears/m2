@@ -1,0 +1,1190 @@
+# This file is required to find a path to any action in system
+#
+# controller:                  - current controller
+#   action:                    - current action
+#     link:                    - if blank then not a link, just text
+#     name:                    - if blank then should be taken from params[:spec_param_for_layout_name]
+#     parent:                  - if blank then this should be a parent from menu, or it does not belongs to any
+#       controller:            - parent controller
+#       action:                - parent action
+#       not_showing:           - if false then do not show this parent in a path row
+# parent_controller:
+#   parent_action:
+#     link:
+#     name:
+#
+#
+# NOTE: if controller/action has no parent then this action is in the menu bar, or it does not belong to any.
+#
+# users_menu_structure:
+aggregate_templates:
+  index:
+    name: 'Templates'
+    parent:
+      controller: 'aggregates'
+      action: 'list'
+aggregate_export:
+  index:
+    name: 'Auto Export'
+    parent:
+      controller: 'aggregates'
+      action: 'list'
+  new:
+    name: 'New'
+    parent:
+      controller: 'aggregate_export'
+      action: 'index'
+  create:
+    name: 'New'
+    parent:
+      controller: 'aggregate_export'
+      action: 'index'
+  edit:
+    name: 'Edit'
+    parent:
+      controller: 'aggregate_export'
+      action: 'index'
+  update:
+    name: 'Edit'
+    parent:
+      controller: 'aggregate_export'
+      action: 'index'
+callc:
+  main:
+    link: "callc/main"
+    name: "Dashboard"
+blanks:
+  list:
+    name: "Blanks"
+  new:
+    name: "New Blank"
+  create:
+    name: "New Blank"
+  edit:
+    name: "Blank Edit"
+  update:
+    name: "Blank Edit"
+tariffs:
+  tariff_generator:
+    name: "Tariff Generator"
+    parent:
+      controller: "tariffs"
+      action: "list"
+  update_rates:
+    name: "Update Rates"
+    parent:
+      controller: "tariffs"
+      action: "list"
+  rate_check:
+    name: "Rate Check"
+    parent:
+      controller: "tariffs"
+      action: "list"
+  list:
+    name: "Tariffs"
+    link: "tariffs/list"
+    parent:
+      controller: 'billing'
+      action: 'menu'
+  custom_tariffs:
+    name: "Custom Tariffs"
+    link: "tariffs/custom_tariffs"
+    parent:
+      controller: 'billing'
+      action: 'menu'
+  conversion:
+    name: 'Conversion'
+    link: 'tariffs/conversion'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  conversion_request:
+    name: 'Conversion'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  rates_list:
+    parent:
+      controller: "tariffs"
+      action: "list"
+      # not_showing: true
+  rate_details:
+    name: 'Rate details'
+    link: 'tariffs/rate_details'
+    parent:
+      controller: 'tariffs'
+      action: 'rates_list'
+  ratedetail_edit:
+    name: 'Edit'
+    parent:
+      controller: 'tariffs'
+      action: 'rate_details'
+  change_tariff_for_connection_points:
+    name: 'Change Tariff for Connection Points'
+    link: 'tariffs/change_tariff_for_connection_points'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+tariff_rate_notifications:
+  list:
+    name: 'Rate Notifications'
+    link: 'tariff_rate_notifications/list'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  new:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_notifications'
+      action: 'list'
+tariff_rate_notification_jobs:
+  list:
+    name: 'Jobs'
+    link: 'tariff_rate_notification_jobs/list'
+    parent:
+      controller: 'tariff_rate_notifications'
+      action: 'list'
+tariff_rate_notification_templates:
+  list:
+    name: 'Templates'
+    link: 'tariff_rate_notification_templates/list'
+    parent:
+      controller: 'tariff_rate_notifications'
+      action: 'list'
+  new:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_notification_templates'
+      action: 'list'
+  create:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_notification_templates'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_notification_templates'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_notification_templates'
+      action: 'list'
+tariff_rate_import_rules:
+  list:
+    name: 'Rate Import Rules'
+    link: 'tariff_rate_import_rules/list'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  new:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_import_rules'
+      action: 'list'
+  create:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_import_rules'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_import_rules'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_rate_import_rules'
+      action: 'list'
+tariff_templates:
+  list:
+    name: 'Templates'
+    link: 'tariff_templates/list'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  new:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_templates'
+      action: 'list'
+  create:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_templates'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_templates'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_templates'
+      action: 'list'
+tariff_import_rules:
+  list:
+    name: 'Tariff Import Rules'
+    link: 'tariff_import_rules/list'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  new:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_import_rules'
+      action: 'list'
+  create:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_import_rules'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_import_rules'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_import_rules'
+      action: 'list'
+tariff_jobs:
+  list:
+    name: 'Tariff Jobs'
+    link: 'tariff_jobs/list'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+tariff_job_analysis:
+  list:
+    name: 'Tariff Job Analysis'
+    link: 'tariff_job_analysis/list'
+    parent:
+      controller: 'tariff_jobs'
+      action: 'list'
+tariff_link_attachment_rules:
+  list:
+    name: 'Tariff Link Attachment Rules'
+    link: 'tariff_link_attachment_rules/list'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  new:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_link_attachment_rules'
+      action: 'list'
+  create:
+    name: 'New'
+    link: '#'
+    parent:
+      controller: 'tariff_link_attachment_rules'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_link_attachment_rules'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: '#'
+    parent:
+      controller: 'tariff_link_attachment_rules'
+      action: 'list'
+directions:
+  code_decks:
+    name: "Code Decks"
+    parent:
+      controller: "tariffs"
+      action: "list"
+  list:
+    name: "Directions"
+    link: "directions/list"
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+      #not_showing: true
+destinations:
+  list:
+    name: "Destinations"
+    link: "destination/list"
+    parent:
+      controller: 'directions'
+      action: 'list'
+destination_groups:
+  list:
+    name: "Destinations Groups"
+    link: "destination_groups/list"
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+  destinations:
+    name: "Destinations Groups"
+    link: "destination_groups/destinations"
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+  csv_upload:
+    name: 'Import From CSV'
+    link: 'destination_groups/csv_upload'
+    parent:
+      controller: 'destination_groups'
+      action: 'list'
+  map_results:
+    name: 'Import From CSV'
+    link: 'destination_groups/map_results'
+    parent:
+      controller: 'destination_groups'
+      action: 'list'
+  invalid_lines:
+      name: 'Import From CSV'
+      link: 'destination_groups/invalid_lines'
+      parent:
+        controller: 'destination_groups'
+        action: 'list'
+users:
+  menu:
+    name: 'Users'
+    link: 'users/list'
+  default_user:
+    link: 'users/default_user'
+    parent:
+      controller: 'functions'
+      action: 'settings'
+  list:
+    name: 'Users'
+    link: 'users/list'
+    parent:
+      controller: 'users'
+      action: 'menu'
+  custom_invoice_xlsx_template:
+    name: 'Custom Invoice XLSX Template'
+    parent:
+      controller: 'users'
+      action: 'menu'
+  bulk_management:
+    name: 'Bulk Management'
+    link: 'users/bulk_management'
+    parent:
+      controller: 'users'
+      action: 'menu'
+  bulk_update:
+    name: 'Bulk Management'
+    link: 'users/bulk_update'
+    parent:
+      controller: 'users'
+      action: 'menu'
+devices:
+  default_device:
+    link: 'devices/default_device'
+    parent:
+      controller: 'functions'
+      action: 'settings'
+  devices_all:
+    name: 'Connection Points'
+    link: 'devices/devices_all'
+    first_link: 'devices/devices_all'
+    parent:
+      controller: 'users'
+      action: 'menu'
+  show_devices:
+    name: 'Connection Points'
+    link: 'devices/show_devices'
+    first_link: 'devices/devices_all'
+    parent:
+      controller: 'users'
+      action: 'menu'
+  devices_hidden:
+    name: 'Hidden'
+    link: 'devices/devices_hidden'
+    parent:
+      controller: 'devices'
+      action: 'devices_all'
+  disconnect_code_changes:
+    name: 'Disconnect Code Changes'
+    link: 'devices/disconnect_code_changes'
+    parent:
+      controller: 'devices'
+      action: 'devices_all'
+  cp_list:
+    name: 'Connection Points'
+    link: 'devices/cp_list'
+    parent:
+      controller: 'users'
+      action: 'menu'
+billing:
+  menu:
+    name: "Billing"
+maintenance:
+  menu:
+    name: "Maintenance"
+reports:
+  menu:
+    name: 'Reports'
+routing:
+  menu:
+    name: 'Routing'
+routing_groups:
+  list:
+    name: 'Routing Groups'
+    parent:
+      controller: 'routing'
+      action: 'menu'
+quality_routings:
+  list:
+    name: 'Quality Routing'
+    link: 'quality_routings/list'
+    parent:
+      controller: 'routing'
+      action: 'menu'
+  stats:
+    name: 'Stats'
+    link: 'quality_routings/stats'
+    parent:
+      controller: 'quality_routings'
+      action: 'list'
+  new:
+    name: 'New'
+    link: 'quality_routings/new'
+    parent:
+      controller: 'quality_routings'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: 'quality_routings/edit'
+    parent:
+      controller: 'quality_routings'
+      action: 'list'
+servers:
+  list:
+    name: "Servers"
+    link: "servers/list"
+    parent:
+      controller: "maintenance"
+      action: "menu"
+  edit:
+    name: 'Edit'
+    link: 'servers/edit'
+    parent:
+      controller: 'servers'
+      action: 'list'
+calls:
+  call_info:
+    name: 'Call Info'
+    link: 'calls/call_info'
+    parent:
+      controller: 'stats'
+      action: 'calls_list'
+managers:
+  list:
+    name: 'Managers'
+    link: 'managers/list'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+  new:
+    name: 'New'
+    link: 'managers/new'
+    parent:
+      controller: 'managers'
+      action: 'list'
+  edit:
+    name: 'Settings'
+    link: 'managers/edit'
+    parent:
+      controller: 'managers'
+      action: 'list'
+  create:
+    name: 'New'
+    link: 'managers/new'
+    parent:
+      controller: 'managers'
+      action: 'list'
+  update:
+    name: 'Settings'
+    link: 'managers/edit'
+    parent:
+      controller: 'managers'
+      action: 'list'
+manager_groups:
+  list:
+    name: 'Groups'
+    link: 'manager_groups/list'
+    parent:
+      controller: 'managers'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: 'manager_groups/edit'
+    parent:
+      controller: 'manager_groups'
+      action: 'list'
+stats:
+  action_log:
+    link: 'stats/action_log'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  active_calls:
+    name: 'Active Calls'
+    link: 'stats/active_calls'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  active_calls_graph:
+    name: 'Active Calls Graph'
+    link: 'stats/active_calls_graph'
+    parent:
+      controller: 'stats'
+      action: 'active_calls'
+  active_calls_cps_cc_live:
+    name: 'CPS/CC Live'
+    link: 'stats/active_calls_cps_cc_live'
+    parent:
+      controller: 'stats'
+      action: 'active_calls'
+  calls_dashboard:
+    name: 'Calls Dashboard'
+    link: 'stats/calls_dashboard'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  terminator_active_calls:
+    name: 'Active Calls Per Terminator'
+    link: 'stats/terminator_active_calls'
+    parent:
+      controller: 'stats'
+      action: 'active_calls'
+  active_calls_per_user_op:
+    name: 'Active Calls Per User/Origination Point'
+    link: 'stats/active_calls_per_user_op'
+    parent:
+      controller: 'stats'
+      action: 'active_calls'
+  active_calls_per_server:
+    name: 'Active Calls Per Server'
+    link: 'stats/active_calls_per_server'
+    parent:
+      controller: 'stats'
+      action: 'active_calls'
+  hangup_cause_codes_stats:
+    name: 'Hangup Cause'
+    link: 'stats/hangup_cause_codes_stats'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  load_stats:
+    name: 'Load Stats'
+    link: 'stats/load_stats'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  old_calls_stats:
+    name: 'Archived Calls'
+    link: 'stats/old_calls_stats'
+    parent:
+      controller: 'stats'
+      action: 'calls_list'
+  files:
+    name: 'Files'
+    link: 'stats/files'
+    parent:
+      controller: 'stats'
+      action: 'old_calls_stats'
+  search:
+    link: 'stats/search'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  show_user_stats:
+    link: 'stats/show_user_stats'
+    name: 'Calls by Clients'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  user_stats:
+    link: 'stats/user_stats'
+    name: 'Detailed'
+    parent:
+      controller: 'stats'
+      action: 'show_user_stats'
+  country_stats:
+    link: 'stats/country_stats'
+    name: 'Destination Groups Stats'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  calls_list:
+    name: 'Calls List'
+    link: 'stats/calls_list'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  server_load:
+    name: "Server Load Stats"
+    link: "stats/server_load"
+    parent:
+      controller: "servers"
+      action: "list"
+call_tracing:
+  call_log:
+    name: 'Call Tracing'
+    link: 'call_tracing/call_log'
+    parent:
+      controller: 'stats'
+      action: 'calls_list'
+  call_tracing:
+    name: 'Call Tracing'
+    link: 'call_tracing/call_tracing'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  fake_call_log:
+    name: 'Call Tracing'
+    link: 'call_tracing/fake_call_log'
+    parent:
+      controller: 'stats'
+      action: 'calls_list'
+security:
+  menu:
+    name: "Security"
+monitorings:
+  blocked_ips:
+    name: 'Blocked IPs'
+    link: 'monitorings/blocked_ips'
+    parent:
+      controller: 'security'
+      action: 'menu'
+  blocked_countries:
+    name: 'Blocked Countries'
+    link: 'monitorings/blocked_countries'
+    parent:
+      controller: 'security'
+      action: 'menu'
+alerts:
+  list:
+    name: "Alerts"
+    link: "alerts/list"
+    parent:
+      controller: "security"
+      action: "menu"
+  alert_edit:
+    name: "Alert Settings"
+    link: "alerts/alert_edit"
+    parent:
+      controller: "alerts"
+      action: "list"
+  contacts:
+    link: 'alerts/contacts'
+    parent:
+      controller: 'security'
+      action: 'menu'
+  groups:
+    link: 'alerts/groups'
+    parent:
+      controller: 'security'
+      action: 'menu'
+  schedules:
+    link: 'alerts/schedules'
+    parent:
+      controller: 'security'
+      action: 'menu'
+dial_peers:
+  list:
+    name: 'Dial Peers'
+    link: 'dial_peers/list'
+    parent:
+      controller: 'routing'
+      action: 'menu'
+  new:
+    name: 'New'
+    link: 'dial_peers/new'
+    parent:
+      controller: 'dial_peers'
+      action: 'list'
+  edit:
+    name: 'Dial Peer Settings'
+    link: 'dial_peers/edit'
+    parent:
+      controller: 'dial_peers'
+      action: 'list'
+  create:
+    name: 'New'
+    link: 'dial_peers/new'
+    parent:
+      controller: 'dial_peers'
+      action: 'list'
+  update:
+    name: 'Dial Peer Settings'
+    link: 'dial_peers/edit'
+    parent:
+      controller: 'dial_peers'
+      action: 'list'
+  termination_points_list:
+    name: 'Assigned Termination Points'
+    link: 'dial_peers/termination_points_list'
+    parent:
+      controller: 'dial_peers'
+      action: 'list'
+  routing_groups_management:
+    name: 'Routing Groups Management'
+    parent:
+      controller: 'dial_peers'
+      action: 'list'
+routing_groups:
+    list:
+      name: 'Routing Groups'
+      link: 'routing_groups/list'
+      parent:
+        controller: 'routing'
+        action: 'menu'
+    rgroup_dpeers_list:
+      name: 'Assigned Dial Peers'
+      parent:
+        controller: 'routing_groups'
+        action: 'list'
+    dial_peers_management:
+      name: 'Dial Peers Management'
+      parent:
+        controller: 'routing_groups'
+        action: 'list'
+financial_statuses:
+    list:
+      link: 'financial_statuses/list'
+      parent:
+        controller: 'accounting'
+        action: 'menu'
+payments:
+    list:
+      link: 'payments/list'
+      parent:
+        controller: 'accounting'
+        action: 'menu'
+accounting:
+  menu:
+    name: 'Accounting'
+m2_invoices:
+  list:
+    name: 'Customer Invoices'
+    link: 'm2_invoices/list'
+    parent:
+      controller: 'accounting'
+      action: 'menu'
+balance_reports:
+  list:
+    link: 'balance_reports/list'
+    parent:
+      controller: 'accounting'
+      action: 'menu'
+functions:
+  background_tasks:
+    name: 'Background Tasks'
+    link: 'functions/background_tasks'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+  integrity_check:
+    link: 'functions/integrity_check'
+    parent:
+      controller: 'security'
+      action: 'menu'
+  settings:
+    name: 'Settings'
+    link: 'functions/settings'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+aggregates:
+  list:
+    name: 'Aggregate'
+    link: 'aggregates/list'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  calls_per_hour:
+    name: 'Calls Per Hour'
+    link: 'aggregates/calls_per_hour'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+emails:
+  list:
+    name: 'Emails'
+    link: 'emails/list'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+  show_emails:
+      name: 'Show Emails'
+      link: 'emails/show_emails'
+      parent:
+        controller: 'emails'
+        action: 'list'
+  new:
+    name: 'New'
+    link: 'emails/new'
+    parent:
+      controller: 'emails'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: 'emails/edit'
+    parent:
+      controller: 'emails'
+      action: 'list'
+backups:
+  backup_manager:
+    link: 'backups/backup_manager'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+number_pools:
+  pool_list:
+    link: 'number_pools/pool_list'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+currencies:
+  currencies:
+    link: 'currencies/currencies'
+    parent:
+      controller: 'functions'
+      action: 'settings'
+cdr:
+  import_csv:
+    link: 'cdr/import_csv'
+    parent:
+      controller: 'billing'
+      action: 'menu'
+  rerating:
+    link: 'cdr/rerating'
+    parent:
+      controller: 'billing'
+      action: 'menu'
+  _cdr:
+    name: 'CDR'
+    parent:
+      controller: 'billing'
+      action: 'menu'
+  _export:
+    name: 'Export'
+    parent:
+      controller: 'cdr'
+      action: '_cdr'
+  _import:
+    name: 'Import'
+    parent:
+      controller: 'cdr'
+      action: '_cdr'
+  import_templates:
+    name: 'Templates'
+    link: 'cdr/import_templates'
+    parent:
+      controller: 'cdr'
+      action: '_import'
+  import_template_new:
+    name: 'New'
+    link: 'cdr/import_templates_new'
+    parent:
+      controller: 'cdr'
+      action: 'import_templates'
+  import_template_create:
+    name: 'New'
+    link: 'cdr/import_templates_create'
+    parent:
+      controller: 'cdr'
+      action: 'import_templates'
+  import_template_edit:
+    name: 'Settings'
+    link: 'cdr/import_templates_edit'
+    parent:
+      controller: 'cdr'
+      action: 'import_templates'
+  import_template_update:
+    name: 'Settings'
+    link: 'cdr/import_templates_edit'
+    parent:
+      controller: 'cdr'
+      action: 'import_templates'
+  export_template_create:
+    name: 'New'
+    link: 'cdr/export_templates_create'
+    parent:
+      controller: 'cdr'
+      action: 'import_templates'
+  export_templates:
+    name: 'Templates'
+    link: 'cdr/export_templates'
+    parent:
+      controller: 'cdr'
+      action: '_export'
+  export_template_new:
+    name: 'New'
+    link: 'cdr/export_templates_new'
+    parent:
+      controller: 'cdr'
+      action: 'export_templates'
+  export_template_create:
+    name: 'New'
+    link: 'cdr/export_templates_new'
+    parent:
+      controller: 'cdr'
+      action: 'export_templates'
+  export_template_edit:
+    name: 'Settings'
+    link: 'cdr/export_templates_edit'
+    parent:
+      controller: 'cdr'
+      action: 'export_templates'
+  export_template_update:
+    name: 'Settings'
+    link: 'cdr/export_templates_edit'
+    parent:
+      controller: 'cdr'
+      action: 'export_templates'
+  automatic_export_list:
+    name: 'Automatic'
+    link: 'cdr/automatic_export_list'
+    parent:
+      controller: 'cdr'
+      action: '_export'
+  automatic_export_new:
+    name: 'New'
+    link: 'cdr/automatic_export_new'
+    parent:
+      controller: 'cdr'
+      action: 'automatic_export_list'
+  automatic_export_create:
+    name: 'New'
+    link: 'cdr/automatic_export_new'
+    parent:
+      controller: 'cdr'
+      action: 'automatic_export_list'
+  automatic_export_edit:
+    name: 'Settings'
+    link: 'cdr/automatic_export_edit'
+    parent:
+      controller: 'cdr'
+      action: 'automatic_export_list'
+  automatic_export_update:
+    name: 'Settings'
+    link: 'cdr/automatic_export_edit'
+    parent:
+      controller: 'cdr'
+      action: 'automatic_export_list'
+cdr_disputes:
+  list:
+    name: 'Disputes'
+    link: 'cdr_disputes/list'
+    parent:
+      controller: 'cdr'
+      action: '_cdr'
+  new:
+    name: 'New'
+    link: 'cdr_disputes/new'
+    parent:
+      controller: 'cdr_disputes'
+      action: 'list'
+  create:
+    name: 'New'
+    link: 'cdr_disputes/create'
+    parent:
+      controller: 'cdr_disputes'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: 'cdr_disputes/edit'
+    parent:
+      controller: 'cdr_disputes'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: 'cdr_disputes/update'
+    parent:
+      controller: 'cdr_disputes'
+      action: 'list'
+  report:
+    name: 'Report'
+    link: 'cdr_disputes/report'
+    parent:
+      controller: 'cdr_disputes'
+      action: 'list'
+  detailed_report:
+    name: 'Detailed Report'
+    link: 'cdr_disputes/detailed_report'
+    parent:
+      controller: 'cdr_disputes'
+      action: 'list'
+tp_deviations:
+  list:
+    name: 'TP Deviation Observers'
+    link: 'tp_deviations/list'
+    parent:
+      controller: 'reports'
+      action: 'menu'
+  new:
+    name: 'New'
+    link: 'tp_deviations/new'
+    parent:
+      controller: 'tp_deviations'
+      action: 'list'
+  create:
+    name: 'New'
+    link: 'tp_deviations/create'
+    parent:
+      controller: 'tp_deviations'
+      action: 'list'
+  edit:
+    name: 'Edit'
+    link: 'tp_deviations/edit'
+    parent:
+      controller: 'tp_deviations'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: 'tp_deviations/update'
+    parent:
+      controller: 'tp_deviations'
+      action: 'list'
+  details:
+    name: 'Details'
+    link: 'tp_deviations/details'
+    parent:
+      controller: 'tp_deviations'
+      action: 'list'
+tariff_inbox:
+  inbox:
+    name: 'Inbox'
+    link: 'tariff_inbox/inbox'
+    parent:
+      controller: 'tariffs'
+      action: 'list'
+  show_source:
+    name: 'Show Source'
+    link: 'tariff_inbox/show_source'
+    parent:
+      controller: 'tariff_inbox'
+      action: 'inbox'
+mnp_carrier_groups:
+  list:
+    name: 'MNP Carrier Groups'
+    link: 'mnp_carrier_groups/list'
+    parent:
+      controller: 'routing'
+      action: 'menu'
+  create:
+    name: 'MNP Carrier Groups'
+    link: 'mnp_carrier_groups/create'
+    parent:
+      controller: 'routing'
+      action: 'menu'
+  edit:
+    name: 'Edit'
+    link: 'mnp_carrier_groups/edit'
+    parent:
+      controller: 'mnp_carrier_groups'
+      action: 'list'
+  update:
+    name: 'Edit'
+    link: 'mnp_carrier_groups/update'
+    parent:
+      controller: 'mnp_carrier_groups'
+      action: 'list'
+disconnect_codes:
+  list:
+    name: 'Disconnect Codes'
+    link: 'disconnect_codes/list'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+  add_new_group:
+    name: 'Disconnect Codes'
+    link: 'disconnect_codes/add_new_group'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+  update_group:
+    name: 'Disconnect Codes'
+    link: 'disconnect_codes/update_group'
+    parent:
+      controller: 'maintenance'
+      action: 'menu'
+dids:
+  dids:
+    name: 'DIDs'
+    link: 'dids/dids'
+    parent:
+      controller: 'routing'
+      action: 'menu'
+  inventory:
+    name: 'Inventory'
+    link: 'dids/inventory'
+    parent:
+      controller: 'dids'
+      action: 'dids'
+  buying_pricing_groups:
+    name: 'Buying Pricing Groups'
+    link: 'dids/buying_pricing_groups'
+    parent:
+      controller: 'dids'
+      action: 'dids'
+  selling_pricing_groups:
+    name: 'Selling Pricing Groups'
+    link: 'dids/selling_pricing_groups'
+    parent:
+      controller: 'dids'
+      action: 'dids'
+  tags:
+    name: 'Tags'
+    link: 'dids/tags'
+    parent:
+      controller: 'dids'
+      action: 'dids'
+did_tags:
+  new:
+    name: 'New'
+    link: 'did_tags/new'
+    parent:
+      controller: 'dids'
+      action: 'tags'
+  create:
+    name: 'New'
+    link: 'did_tags/new'
+    parent:
+      controller: 'dids'
+      action: 'tags'
+  edit:
+    name: 'Edit'
+    link: 'did_tags/edit'
+    parent:
+      controller: 'dids'
+      action: 'tags'
+  update:
+    name: 'Edit'
+    link: 'did_tags/edit'
+    parent:
+      controller: 'dids'
+      action: 'tags'

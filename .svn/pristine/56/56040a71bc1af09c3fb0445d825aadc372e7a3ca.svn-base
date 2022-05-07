@@ -1,0 +1,130 @@
+<%= stylesheet_link_tag 'settings' %>
+<%= form_tag({action: 'settings_change'}, multipart: true, class: 'details-form', id: 'settings-form') do %>
+
+    <fieldset>
+      <% titles = ['Invoices', 'Emails', 'Tax', 'Security', 'Active Calls', 'Last Calls', 'Calls Dashboard',
+                   'CDR Management', 'Visual', 'Various',  'API', 'Backups', 'CSV Settings', 'Server Load',
+                   'Privacy', 'FTP', 'Mobile Number Portability'] %>
+      <% tabs = ['invoices', 'emails', 'tax', 'security', 'active_calls', 'last_calls', 'calls_dashboard', 'archived_calls',
+                 'visual', 'various', 'api', 'backups', 'csv', 'server_load', 'privacy', 'ftp', 'number_portability'] %>
+      <% if Confline.get_value('enable_paypal_addon').to_i == 1 %>
+        <% titles.insert(-2, 'Payments') %>
+        <% tabs.insert(-2, 'payments') %>
+      <% end %>
+      <% tabs.each_with_index do |tab, index| %>
+
+            <div class="titled-box" style="margin-bottom: 14px;">
+              <h2 class="heading2" style="border-right: none; border-left: none; border-top:none; "> <%= titles[index] %> <span class="toggle-tab">Click to expand</span></h2>
+
+                <% if tab == 'various' %>
+                  <%= render "settings_#{tab.to_s}", servers: @servers %>
+                <% elsif tab == 'archived_calls' %>
+                  <%= render "settings_#{tab.to_s}", archive_at_hour: @archive_at_hour, archive_till_minute:
+                          @archive_till_minute, archive_at_minute: @archive_at_minute, archive_till_hour: @archive_till_hour %>
+                <% elsif tab == 'number_portability' %>
+                  <%= render "settings_#{tab.to_s}", mnp_prefixes: @mnp_prefixes %>
+                <% else %>
+                  <%= render "settings_#{tab.to_s}" %>
+                <% end %>
+          </div>
+      <% end %>
+    </fieldset>
+<% end %>
+
+<% content_for :additional_buttons do %>
+   <%= submit_tag _('Save_changes'), disable_with: _('Processing..'), class: 'settings-submit', form: 'settings-form'  %>
+   <%= submit_tag _('Expand all'), disable_with: _('Processing..'), id: 'all-tabs', class: 'search-form-button' %>
+<% end %>
+
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        if (<%= params[:open_all_tabs].to_i == 1 %>) {
+            open_all_tabs();
+        } else {
+            open_all_tabs();open_all_tabs();
+        }
+    });
+
+    var openTabs = 0;
+    var allTabs = $('.titled-box').length;
+
+  $(".titled-box .heading2").click(function(){
+      $(this).siblings().toggle();
+      var tab = $(this).find(".toggle-tab");
+      if (tab.text() == "Click to expand"){
+          tab.text("Click to collapse");
+          openTabs++;
+      }else{
+          openTabs--;
+          tab.text("Click to expand");
+      }
+
+      if (openTabs == allTabs){
+          $("#all-tabs").attr('value', "Collapse all");
+      }else{
+          $("#all-tabs").attr('value', "Expand all")
+      }
+  });
+
+  $("#all-tabs").click(function(){
+       open_all_tabs();
+  });
+
+  function open_all_tabs() {
+      var btn = $("#all-tabs");
+
+      if (btn.attr('value') == "Expand all"){
+          $(".titled-box .heading2").siblings().show();
+          btn.attr('value', "Collapse all");
+          $(".toggle-tab").text("Click to collapse");
+          openTabs = allTabs;
+      }else{
+          btn.attr('value', "Expand all");
+          $(".toggle-tab").text("Click to expand");
+          $(".titled-box .heading2").siblings().hide();
+          openTabs = 0;
+      }
+  }
+</script>
+<!-- disable text select -->
+<script type="text/javascript">
+  if(typeof document.onselect!="undefined"){
+      document.onselectstart = new Function ("return false");
+  }
+  else{
+      document.onmousedown = Function("return false");
+      document.onmouseup = Function("return true");
+  }
+</script>
+ <script type="text/javascript">
+  // Select API tab's elements
+  var allow_api = $('#allow_api');
+  var input_fields = [$('#allow_get_api'),
+      $('#api_secret_key'),
+      $('#xml_api_extension'),
+      $('#api_login_redirect_to_main'),
+      $('#api_allow_payments'),
+      $('#devices_check_ballance'),
+      $('#api_disable_hash_checking')];
+
+  change_inputs_state();
+
+  function change_inputs_state() {
+      if (allow_api.is(':checked') == true) {
+          for(var i=0,j=input_fields.length; i<j; i++){
+              input_fields[i].prop('disabled', false);
+          };
+      } else {
+          for(var i=0,j=input_fields.length; i<j; i++){
+              input_fields[i].prop('disabled', true);
+          };
+      };
+  }
+
+  allow_api.change(function() {
+      change_inputs_state();
+  });
+
+ </script>
+

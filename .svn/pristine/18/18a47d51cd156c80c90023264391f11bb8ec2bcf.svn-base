@@ -1,0 +1,163 @@
+<b><%= _('Type_Prefix_To_Get_Destination') %></b>:
+<%= text_field_tag :search, '', class: 'input', onkeyup: 'get_prefix(this.value);' %>
+<br/>
+<br/>
+<div id='results'></div>
+<br/>
+<b><%= _('Type_Country') %></b>:
+<%= text_field_tag :country_search, '', class: 'input', onkeyup: 'get_country(this.value);' %>
+<div id='country_results'></div>
+<br/>
+<br/>
+<b><%= _('Type_number_To_Get_Rate') %></b>:
+<%= text_field_tag :rate_search, '', class: 'input', onkeyup: 'get_rate(this.value);' %>
+<br/>
+<br/>
+<div id='rate_results'></div>
+<% if admin? || manager? %>
+    <br/>
+    <b><%= _('enter_ip_to_get_connection_points') %></b>:
+    <%= text_field_tag :ip_search, '', class: 'input', onkeyup: 'get_ip(this.value);' %>
+    <br/>
+    <br/>
+    <div id='ip_results'></div>
+<% end %>
+
+<script type="text/javascript">
+    // On onkeyup event start querying result
+    //   if new event triggered, check whether old one was completed
+    //     if old one was completed, proceed querying result with new input
+    //     else store last triggered input into memory and query it when old event data received
+
+    var loading_prefix = false, loading_country = false, loading_rate = false, loading_ip = false;
+    var queue_prefix = '', queue_country = '', queue_rate = '', queue_ip = '';
+    var timer;
+
+    function get_prefix(value) {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            if (loading_prefix == true) {
+                queue_prefix = value;
+            } else {
+                new Ajax.Updater('results', '<%= Web_Dir %>/stats/prefix_finder_find?prefix=' + encodeURIComponent(value),
+                        {
+                            asynchronous: true,
+                            evalScripts: true,
+                            onComplete: function (request)
+                            {
+                                loading_prefix = false;
+                                Element.hide('spinner');
+                                Element.toggle('spinner2');
+                                if (queue_prefix != '') {
+                                    get_prefix(queue_prefix)
+                                }
+                                queue_prefix = '';
+                            },
+                            onLoading: function (request)
+                            {
+                                loading_prefix = true;
+                                Element.show('spinner');
+                                Element.toggle('spinner2');
+                            }
+                        }
+                )
+            }
+        }, 1000);
+    }
+
+    function get_country(value) {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            if (loading_country == true) {
+                queue_country = value;
+            } else {
+                new Ajax.Updater('country_results', '<%= Web_Dir %>/stats/prefix_finder_find_country?prefix=' + encodeURIComponent(value),
+                        {
+                            asynchronous: true,
+                            evalScripts: true,
+                            onComplete: function (request)
+                            {
+                                loading_country = false;
+                                Element.hide('spinner');
+                                Element.toggle('spinner2');
+                                if (queue_country != '') {
+                                    get_country(queue_country)
+                                }
+                                queue_country = '';
+                            },
+                            onLoading: function (request)
+                            {
+                                loading_country = true;
+                                Element.show('spinner');
+                                Element.toggle('spinner2');
+                            }
+                        }
+                )
+            }
+        }, 1000);
+    }
+
+    function get_rate(value) {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            if (loading_rate == true) {
+                queue_rate = value;
+            } else {
+                new Ajax.Updater('rate_results', '<%= Web_Dir %>/stats/rate_finder_find?prefix=' + encodeURIComponent(value),
+                        {
+                            asynchronous: true,
+                            evalScripts: true,
+                            onComplete: function (request)
+                            {
+                                loading_rate = false;
+                                Element.hide('spinner');
+                                Element.toggle('spinner2');
+                                if (queue_rate != '') {
+                                    get_rate(queue_rate)
+                                }
+                                queue_rate = '';
+                            },
+                            onLoading: function (request)
+                            {
+                                loading_rate = true;
+                                Element.show('spinner');
+                                Element.toggle('spinner2');
+                            }
+                        }
+                )
+            }
+        }, 1000);
+    }
+
+    function get_ip(value) {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            if (loading_ip == true) {
+                queue_ip = value;
+            } else {
+                new Ajax.Updater('ip_results', '<%= Web_Dir %>/stats/ip_finder_find?ip=' + encodeURIComponent(value),
+                        {
+                            asynchronous: true,
+                            evalScripts: true,
+                            onComplete: function (request)
+                            {
+                                loading_ip = false;
+                                Element.hide('spinner');
+                                Element.toggle('spinner2');
+                                if (queue_ip != '') {
+                                    get_ip(queue_ip)
+                                }
+                                queue_ip = '';
+                            },
+                            onLoading: function (request)
+                            {
+                                loading_ip = true;
+                                Element.show('spinner');
+                                Element.toggle('spinner2');
+                            }
+                        }
+                )
+            }
+        }, 1000);
+    }
+</script>

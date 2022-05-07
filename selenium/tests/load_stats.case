@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=all-tabs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server Load is too high when one of these conditions are met</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>GUI Server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>HDD utilisation higher than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CPU General load higher than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CPU Load Stats 1 higher than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CPU MySQL process higher than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CPU Asterisk process (if present) higher than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Database Server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Delete Server Load Stats older than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CPU Freeswitch process (if present) higher than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>80</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>80</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_general_load</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_server_load_stats</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>dfdsf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>sdfsdf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>dfsd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>dfsdf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>sdfsdf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>sdfdsf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_general_load</td>
+	<td>sdfsd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>0dsfs</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>sf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>0sdf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_server_load_stats</td>
+	<td>sdf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>dfgdh</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>jhgj</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_general_load</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>0.125</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_server_load_stats</td>
+	<td>-560</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>-656</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>0,68</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>-5,9898989</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>8,8888</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>35</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_general_load</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>0.656555555555555555555555</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>-9999,9999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>-9999,9999</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_server_load_stats</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>35</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_general_load</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>0.7</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>-9999.9999</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=universal_bundles/visual_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>9;2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>999;99999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>999;99999999</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>9.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>9,255</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>1324564,979464</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>1324564,979464</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>9.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>1000</td>
+</tr>
+<!--SERVER LIST -->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=gui_1</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=db_1</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=core_1</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<!--enable differenrt server as db-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#db_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_1 &gt; a</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<!--enable differenrt server as gui-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#gui_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#gui_1 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#gui_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<!--enable differenrt server as core. bet kiek core serveriu-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=core_1</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#core_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<!--turi neleisti trinti serverio, kuris yra ir GUI ir DB. -->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server is used as GUI, DB or Core</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#db_3 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_1 &gt; a</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<!--turi neleisti trinti serverio, kuris yra GUI-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server is used as GUI, DB or Core</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#core_2 &gt; a</td>
+	<td>NO</td>
+</tr>
+<!--turi neleisti trinti serverio, kuris yra DB-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server is used as GUI, DB or Core</td>
+	<td></td>
+</tr>
+<!--turi neleisti trinti serverio, kuris yra CORE-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#db_3 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_3 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server is used as GUI, DB or Core</td>
+	<td></td>
+</tr>
+<!--GRAFIKAI-->
+<tr>
+	<td>assertText</td>
+	<td>id=stats_1</td>
+	<td>STATS</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=STATS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Server Load Stats</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server Load Stats for*Information is displayed in Server's Time zone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> Server ID: 1*IP: 127.0.0.1*main system </td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2009-09-03</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>2009-09-03</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server Load Stats for </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2009-09-03</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Information is displayed in Server's Time zone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>99999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_general_load</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>99999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_server_load_stats</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>999999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>50.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_general_load</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>50.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_server_load_stats</td>
+	<td>9999999999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_comment</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_server_server_type</td>
+	<td>label=freeswitch</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/server/load_stats_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#gui_4 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_4 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>stats_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>CPU Freeswitch Process Load: 50.0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>stats_4</td>
+	<td></td>
+</tr>
+<!--buvo metamas error, jog end date ankstesne nei from date, nors end date pasirinkimo nera-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2009&amp;date_till[year]=2012</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/load_stats</td>
+	<td></td>
+</tr>
+<!--Client dropdowne neturi būti test managerio-->
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2013-11-03</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--till yra - pasirinktos dienos 23:59-->
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2014-12-31</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--till yra - pasirinktos dienos 23:59-->
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<!--TZ-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT-11:00) American Samoa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/load_stats?date_from[year]=2012</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<!--some calls-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+13:00) Tokelau Is.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/load_stats?date_from[year]=2012</td>
+	<td></td>
+</tr>
+<!--some calls-->
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2012-11-22</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Tes</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Test AccountantTest ResellerTest User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.0.0</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.2.0</td>
+	<td>Test User #1</td>
+</tr>
+<!--broken call duration for specific date-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/set_broken_duration</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/load_stats?date_from[year]=2012</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2012-11-29</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Database Error: Broken Call Duration</td>
+</tr>
+</tbody></table>
+</body>
+</html>

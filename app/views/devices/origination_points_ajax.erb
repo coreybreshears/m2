@@ -1,0 +1,9 @@
+<% if params[:id] && !params[:id].blank? %>
+  <% if @devices.size > 0 %>
+    <%= select_tag('op_device', options_for_select(@devices.map { |dev| [nice_device(dev), dev.id] }.sort, @device_selected)) %>
+  <% else %>
+    <%= select_tag('op_device', options_for_select([[_('No_Origination_points'), '']])) %>
+  <% end %>
+<% else %>
+    <%= select_tag('op_device', options_for_select([[_('All_Origination_points'), 'all']])) %>
+<% end %>

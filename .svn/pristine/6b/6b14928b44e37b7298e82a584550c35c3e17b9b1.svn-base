@@ -1,0 +1,5 @@
+<p><%= _('Name') %><br/>
+  <%= text_field 'dg', 'name', "class" => "input" %></p>
+
+<p><%= _('Flag') %><br/>
+  <%= text_field 'dg', 'flag', "class" => "input" %></p>

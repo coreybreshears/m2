@@ -1,0 +1,1380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/invoice_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=m2_invoices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=mailed_to_user_value</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=confirmed_to_send_to_user_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=m2_invoice_confirmed_to_send_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tax Registration Number:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details7</td>
+	<td>987654321</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Invoice successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=m2_invoices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=mailed_to_user_value</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=confirmed_to_send_to_user_value</td>
+	<td>1</td>
+</tr>
+<!--kai confirmed_to_send_to_user_value=1, tai checkbox nėra-->
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_2</td>
+	<td>45.98</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_2</td>
+	<td>2.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>44.44</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=m2_invoice_confirmed_to_send_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Confirmed to Send via Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/set_invoice_mailed_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--kai confirmed_to_send_to_user_value=1 ir mailed_to_user=1, tai checkbox nėra-->
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=m2_invoice_confirmed_to_send_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sent by Email</td>
+	<td></td>
+</tr>
+<!--SIMPLE USER INVOICES-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_2/set_invoices_user_id_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/m2_invoices/user_invoices')]</td>
+	<td>INVOICES</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=INVOICES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Invoices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Invoice List</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-id</td>
+	<td>Number</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-status</td>
+	<td>Status</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-period-start</td>
+	<td>Period Start</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-period-end</td>
+	<td>Period End</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-issue-date</td>
+	<td>Issue Date</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-price</td>
+	<td>Price</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-price-with-tax</td>
+	<td>Price with TAX</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice-currency</td>
+	<td>Currency</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>number444</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=staus_4</td>
+	<td>Accepted</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_start_4</td>
+	<td>2014-03-21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_end_4</td>
+	<td>2014-03-25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=issue_date_4</td>
+	<td>2014-03-20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>22.22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_4</td>
+	<td>22.50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_4</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=xlsx_link_4</td>
+	<td>XLSX</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=details_link_4</td>
+	<td>DETAILS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.total</td>
+	<td>TOTAL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>233.31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>236.94</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>USD</td>
+</tr>
+<!--rusiavimas - pagal status changed at-->
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.0</td>
+	<td>number444</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.2.0</td>
+	<td>number66</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.3.0</td>
+	<td>number3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.0</td>
+	<td>number22</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.5.0</td>
+	<td>number5</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.6.0</td>
+	<td>number1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/4?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>{&quot;A1&quot;=&gt;&quot;Kaunas&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;A4&quot;=&gt;&quot;LTL 22,22&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>44,44</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=details_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Invoices Details</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>number444 Details</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/user_invoices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>22.22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_4</td>
+	<td>22.50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_4</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_5</td>
+	<td>166.65</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_5</td>
+	<td>167.97</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_5</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>288.87</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>292.95</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LTL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>22.22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_4</td>
+	<td>22.50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_4</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_5</td>
+	<td>166.65</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_5</td>
+	<td>167.97</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_5</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>305.54</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>310.45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<!--admin turi matyti tokias pačias kainas kaip useris-->
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active-currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=b</td>
+	<td>233.31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div/b</td>
+	<td>236.94</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=b</td>
+	<td>288.86</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div/b</td>
+	<td>292.93</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LTL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=b</td>
+	<td>305.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div/b</td>
+	<td>310.42</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_0_digits</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=b</td>
+	<td>233.31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div/b</td>
+	<td>236.94</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[11]/div/b</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=b</td>
+	<td>288.86</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div</td>
+	<td>292.93</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LTL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=b</td>
+	<td>305.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div/b</td>
+	<td>310.42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[11]/div/b</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>44.44</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_2</td>
+	<td>45.98</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_2</td>
+	<td>2.00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/m2_invoices/invoice_lines/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>20.20</td>
+</tr>
+<!--kainų atvaizdavimas neturi priklausyti nuo setingų-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=universal_bundles/visual_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/user_invoices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>22,22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_4</td>
+	<td>22,50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_4</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_5</td>
+	<td>166,65</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_5</td>
+	<td>167,97</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_5</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>288,87</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>292,95</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>22,22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_4</td>
+	<td>22,50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_4</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_5</td>
+	<td>166,65</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_5</td>
+	<td>167,97</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_5</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>233,31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>236,94</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LTL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>22,22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_4</td>
+	<td>22,50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_4</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_5</td>
+	<td>166,65</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_5</td>
+	<td>167,97</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_5</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>305,54</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>310,45</td>
+</tr>
+<!--Invoices details-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=details_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Invoices Details</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>number1 Details</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>number1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Invoice Number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Period</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Issue Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Invoice Status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Price</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sent via Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2009-03-21 - 2009-03-25</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2013-03-20</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>In process</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11,11 USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Date Due</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Status changed at</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Price with TAX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2014-03-20</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2009-03-22</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11,99 USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-destination</td>
+	<td>Destination</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-price</td>
+	<td>Price (USD)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-rate</td>
+	<td>Rate (USD)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_1</td>
+	<td>3.70</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>exact:00:14:14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1,10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.total</td>
+	<td>TOTAL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_time</td>
+	<td>exact:00:16:57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>2,40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>Showing 1 to 1 of 3 entries</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.paging</td>
+	<td>1 <br /> 2 <br /> 3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_2</td>
+	<td>3.70</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_2</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_2</td>
+	<td>exact:00:01:18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>1,20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_time</td>
+	<td>exact:00:16:57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>2,40</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_time</td>
+	<td>exact:00:16:57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>2,40</td>
+</tr>
+<!--Puslapio valiuta visada tokia kaip m2_invoices lentoje atitinkamo invoice currency, nepaisant to kas pasirinkta viršutiniame dešiniąjame kampe.-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11,11 USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11,99 USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-price</td>
+	<td>Price (USD)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-rate</td>
+	<td>Rate (USD)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11,11 USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11,99 USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-price</td>
+	<td>Price (USD)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-rate</td>
+	<td>Rate (USD)</td>
+</tr>
+<!--kai mailed_to_user=0, tai  Not sent via Email-->
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/user_invoice_details/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Not sent via Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sent via Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/user_invoice_details/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-price</td>
+	<td>Price (EUR)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-rate</td>
+	<td>Rate (EUR)</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>44,44 EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>45,98 EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LTL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-price</td>
+	<td>Price (EUR)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-rate</td>
+	<td>Rate (EUR)</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>44,44 EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>45,98 EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-price</td>
+	<td>Price (EUR)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.user-invoice_lines-rate</td>
+	<td>Rate (EUR)</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>44,44 EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>45,98 EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/invoices/set_change_date_null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/invoices/set_issue_date_null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Customer Invoices</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0customer_invoices_list']/div[5]/div</td>
+	<td>21/03/2009 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0customer_invoices_list']/div[6]/div</td>
+	<td>25/03/2009 23:59:59</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Invoice Edit: number1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Invoice details</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/user_invoices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Invoice List</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=issue_date_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=issue_date_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/user_invoice_details/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Details</td>
+</tr>
+</tbody></table>
+</body>
+</html>

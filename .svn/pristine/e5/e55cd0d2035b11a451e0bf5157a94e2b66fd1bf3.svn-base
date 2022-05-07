@@ -1,0 +1,24 @@
+<% content_for :additional_buttons do %>
+  <span id="tariff_template_show_additional_interval_options_button" style="display: none;">
+    <%= button_tag _('Show_Additional_Interval_Options'), class: 'search-form-button' %>
+  </span>
+  <span id="tariff_template_hide_additional_interval_options_button" style="display: none;">
+    <%= button_tag _('Hide_Additional_Interval_Options'), class: 'search-form-button' %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= "#{_('Template')} - #{@tariff_template.try(:name)}" %></h2>
+    <%= form_for @tariff_template, url: {action: :update, id: @tariff_template}, html: {class: 'details-form details-form-tariff-import-templates'}, method: :post do |f| %>
+        <fieldset>
+          <%= render 'form', f: f, tariff_template: @tariff_template %>
+          <br/><br/>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariff_templates/list'" %>
+            <%= submit_tag _('UPDATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

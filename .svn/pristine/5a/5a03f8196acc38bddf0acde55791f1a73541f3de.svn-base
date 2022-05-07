@@ -1,0 +1,129 @@
+<%= stylesheet_link_tag 'jquery-ui-1.12.1.min' %>
+<%= javascript_include_tag 'jquery-ui-1.12.1.min' %>
+
+<% content_for :additional_buttons do %>
+    <span>
+    <%= button_tag(
+                _('Add_New_Tariff_Import_Rules'), class: 'search-form-button',
+                onclick: "location.href = '#{Web_Dir}/tariff_import_rules/new'"
+        )
+    %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Tariff_Import_Rules') %></h2>
+    <div class="table-holder">
+      <% if @tariff_import_rules.present? %>
+          <table id="tariff_import_rules_list_table">
+            <tr>
+              <th class="tariff_import_rules-active"><%= _('Active?') %></th>
+              <th class="tariff_import_rules-name"><%= _('Name') %></th>
+              <th class="tariff_import_rules-tariff"><%= _('Tariff') %></th>
+              <th class="tariff_import_rules-type"><%= _('Type') %></th>
+              <th class="tariff_import_rules-from"><%= _('From') %></th>
+              <th class="tariff_import_rules-sender"><%= _('Sender') %></th>
+              <th class="tariff_import_rules-subject"><%= _('Subject') %></th>
+              <th class="tariff_import_rules-message"><%= _('Message') %></th>
+              <th class="tariff_import_rules-file_name"><%= _('File_Name') %></th>
+              <th class="tariff_import_rules-edit"></th>
+              <th class="tariff_import_rules-delete"></th>
+            </tr>
+            <% @tariff_import_rules.each do |tariff_import_rule| %>
+                <tr id="<%= tariff_import_rule.id %>">
+                  <td id="active_<%= tariff_import_rule.id %>" class="tariff_import_rules-active_list">
+                    <%= tariff_import_rule_active_status_change_links(tariff_import_rule) %>
+                  </td>
+                  <td id="name_<%= tariff_import_rule.id %>" class="tariff_import_rules-name_list">
+                    <%= tariff_import_rule.name %>
+                  </td>
+                  <td id="tariff_<%= tariff_import_rule.id %>" class="tariff_import_rules-tariff_list">
+                    <%= tariff_import_rule.tariff.try(:name_with_currency) %>
+                  </td>
+                  <td id="type_<%= tariff_import_rule.id %>" class="tariff_import_rules-type_list">
+                    <%= tariff_import_rule_type_nice(tariff_import_rule.import_type) %>
+                  </td>
+                  <td id="from_<%= tariff_import_rule.id %>" class="tariff_import_rules-from_list">
+                    <%= tariff_import_rule.mail_from %>
+                  </td>
+                  <td id="sender_<%= tariff_import_rule.id %>" class="tariff_import_rules-sender_list">
+                    <%= tariff_import_rule.mail_sender %>
+                  </td>
+                  <td id="subject_<%= tariff_import_rule.id %>" class="tariff_import_rules-subject_list">
+                    <%= tariff_import_rule.mail_subject %>
+                  </td>
+                  <td id="message_<%= tariff_import_rule.id %>" class="tariff_import_rules-message_list">
+                    <%= tariff_import_rule.mail_text %>
+                  </td>
+                  <td id="file_name_<%= tariff_import_rule.id %>" class="tariff_import_rules-file_name_list">
+                    <%= tariff_import_rule.file_name %>
+                  </td>
+                  <td id="edit_<%= tariff_import_rule.id %>" class="tariff_import_rules-edit_list">
+                    <%= link_to 'EDIT', {action: :edit, id: tariff_import_rule.id}, id: "edit_link_#{tariff_import_rule.id}" %>
+                  </td>
+                  <td id="destroy_<%= tariff_import_rule.id %>" class="tariff_import_rules-delete_list">
+                    <%= button_to 'DELETE', {action: :destroy, id: tariff_import_rule.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: "delete_link_#{tariff_import_rule.id}" %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Tariff_Import_Rules') %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+                $('#tariff_import_rules_list_table tbody').sortable(
+                        {
+                            items: 'tr:not(:first)',
+                            cursor: 'grabbing',
+                            helper: fixWidthHelper,
+                            update: function(event, ui) {
+                                var result = $(this).sortable('toArray');
+
+                                $.ajax({
+                                    url: '<%= Web_Dir %>/tariff_import_rules/priority_update',
+                                    data: {
+                                        priorities: result
+                                    },
+                                    type: 'POST',
+                                    cache: false,
+                                    beforeSend: function (xhr) {
+                                        // Security concerns
+                                        xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"));
+                                    },
+                                    success: function(returnData) {
+                                        switch (returnData) {
+                                            case 'invalid':
+                                                alert('Invalid request');
+                                                break;
+                                            case 'refresh':
+                                                alert('<%= _('Tariff_Import_Rules_were_added_or_removed_please_refresh_page') %>');
+                                                break;
+                                            case 'ok':
+                                                break;
+                                            default:
+                                                alert('<%= _('Something_went_wrong_please_refresh_page') %>');
+                                        }
+                                    },
+                                    error: function() {
+                                        alert('<%= _('Something_went_wrong_please_refresh_page') %>');
+                                    }
+                                });
+                            }
+                        }
+                );
+            }
+    );
+
+    function fixWidthHelper(e, ui) {
+        ui.children().each(function() {
+            $(this).width($(this).width());
+        });
+        return ui;
+    }
+</script>

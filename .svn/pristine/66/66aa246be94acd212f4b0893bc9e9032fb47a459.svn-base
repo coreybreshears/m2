@@ -1,0 +1,92 @@
+<% name_downcase = object_name.to_s.downcase %>
+<% s_object =  "s_#{name_downcase}" %>
+<% object_list = "#{name_downcase}_list" %>
+<%= csrf_meta_tag %>
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function($) {
+
+        var liveInput = $("input#<%= s_object %>"); // Input field
+        var objectList = $("#<%= object_list %>");  // Drop down
+        var params = {};                            // Request params object
+
+        // Handle a user interactivity
+        liveInput.on("focus", function() {
+            // User just focuses on typing
+            // Show them we are alive
+            if (!liveInput.val()) {
+                params = { empty_click: true }
+                performLiveSearch();
+            }
+            liveInput.on("input", function() {
+                // User is now typing. Respond accordingly
+                params = { livesearch: liveInput.val() }
+                if (liveInput.val() == ""){
+                    $("#<%= s_object %>_id").val("-1");
+                    liveInput.blur();
+                }
+                performLiveSearch();
+            });
+            $("#<%= s_object %>_id").trigger("change");
+        });
+
+        // After getting a response user can select
+        function handleUserSelects() {
+            var row;
+            var object = $("#<%= s_object %>_id");
+            object.val('-2');
+            if (liveInput.val() == "") object.val("-1").trigger("change");
+            $("#<%= object_list %> td").on('click', function() {
+                row = $(this);
+                if (!row.attr("id").match(/-1|-2/)) {
+                    liveInput.val(row.html());
+                    object.val(row.attr("id")).trigger("change");
+                } else {
+                    liveInput.val("");
+                    object.val("-1").trigger("change");
+                }
+                objectList.empty();
+            });
+        };
+
+        // Hide livesearch dropdown by clicking anywhere
+        jQuery(document).click(function( event ) {
+           if((event.target.id) != "<%= s_object %>") objectList.empty();
+        });
+
+        // Perform the asynchronus requests
+        function performLiveSearch() {
+            // Preapre an action url
+            var url = '<%= "#{Web_Dir}/#{action_url[:controller].to_s}/#{action_url[:action].to_s}"\
+                "?#{{options: action_url[:options]}.to_param}" %>';
+            url = unescape(url);
+            // Make an asynchronus call
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "text",
+                data: params,
+                beforeSend: function(xhr) {
+                    $("#spinner2").show();
+                    // Protect from forgery, else rails will kill the session
+                    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+                },
+                success: function(data) {
+                    objectList.empty().append(data);
+                },
+                complete: function() {
+                    $("#spinner2").hide();
+                    handleUserSelects();
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        };
+    });
+</script>
+
+<input type="text" id="<%= s_object %>" name="<%= s_object %>" autocomplete="off" value="<%= object %>">
+<table id="<%= object_list %>" class="livesearch-dropdown"></table>
+<%= hidden_field_tag "#{s_object}_id", object_id %>

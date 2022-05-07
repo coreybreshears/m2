@@ -1,0 +1,149 @@
+<% confirmation_message = "Are you sure you want to confirm Action #{tariff_import_rule_type_nice(@tariff_job.try(:tariff_import_rule).try(:import_type))} for Tariff #{tariff_name(@tariff_job)}?" %>
+<% cancellation_message = "Are you sure you want to cancel Action #{tariff_import_rule_type_nice(@tariff_job.try(:tariff_import_rule).try(:import_type))} for Tariff #{tariff_name(@tariff_job)}?" %>
+<% content_for :additional_buttons do %>
+  <span>
+      <%= button_to _('Confirm'), { action: :confirm, id: @tariff_job.id }, class: "search-form-button",
+                    data: {confirm: confirmation_message }, disable_with: _('Processing..'), method: :post,
+                    disabled: @tariff_job.reviewed == 1 %>
+  </span>
+  <span>
+    <%= button_to _('Cancel'), { action: :cancel, id: @tariff_job.id }, class: "search-form-button",
+        data: {confirm: cancellation_message }, disable_with: _('Processing..'), method: :post,
+        disabled: @tariff_job.reviewed == 1 %>
+  </span>
+<% end %>
+
+<% if @tariff_job.show_schedule_form? %>
+    <% @create_button_name = 'Schedule' %>
+    <% content_for :create_form do %>
+        <%= form_tag({action: :schedule_confirm, id: @tariff_job.id}, {id: 'create-form', class: 'calls-form', visible: show_create}) do |f| %>
+            <fieldset>
+              <div class="column date-col calendar-holder">
+                <div class="row">
+                  <%= label_tag 'schedule_import_at', _('Schedule_Import_from') %>
+                  <br/>
+                  <div class="calendar-col">
+                    <%= text_field_tag 'date', (@tariff_job.schedule_import_at.present? ? @tariff_job.schedule_import_at.strftime('%Y-%m-%d') : nice_date(Time.now.in_time_zone(user_tz))), class: 'checkout default no-past', id: 'till' %>
+                    <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+                  </div>
+                  <div class="time-col">
+                    <%= text_field_tag 'time', (@tariff_job.schedule_import_at.present? ? @tariff_job.schedule_import_at.strftime('%H:%M') : Time.now.in_time_zone(user_tz).strftime('%H:%M')), class: 'default', id: 'time2' %>
+                    <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+                  </div>
+                </div>
+              </div>
+
+              <br/>
+              <div>
+                <div class="column buttons-col">
+                  <div class="row payment-buttons-row">
+                    <br/>
+                    <%= submit_tag _('Cancel'), type: :reset, onClick: "$(\"#create-form\").toggle();pressed_create('#{Web_Dir}/callc/toggle_create', '#{params[:controller]}', '#{params[:action]}');" %>
+                    <%= submit_tag _('Confirm'), data: {confirm: confirmation_message}, disable_with: _('Processing..'), method: :post %>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+        <% end %>
+    <% end %>
+<% end %>
+
+<% content_for :search_form do %>
+  <%= form_tag({action: :list}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <fieldset>
+      <%= hidden_field_tag 'search_on', 1 %>
+      <div class="row">
+       <% %w[good alerted rejected].each_with_index do |rate_status, index| %>
+          <div class="column cause-col tariff_job_analysis_search">
+            <%= label_tag "show_only_#{rate_status}", _("Show_only_#{rate_status}") %>
+            <div class="row show-only">
+              <%= check_box_tag "search[show_only[#{rate_status}]]", index, session[:tariff_job_analysis_search][:show_only]["#{rate_status}".to_sym].try(:to_i) == index, class: rate_status %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <% import_rule_columns.each do |col| %>
+        <% label_col = col.gsub('import_rule_', '').titleize.gsub(' ', '_') %>
+        <div class="column cause-col tariff_job_analysis_search" >
+          <%= label_tag "#{col}", _(label_col) %>
+          <div class="row">
+            <%= select_tag "search[#{col}]", options_for_select(import_rule_search_options, search_present? ? session[:tariff_job_analysis_search]["#{col}"] : 'all') %>
+          </div>
+        </div>
+      <% end %>
+
+     <div class="column cause-col tariff_job_analysis_search">
+        <%= label_tag 'non_importable_reasons', _('Non_Importable_Reasons') %>
+        <div class="row">
+          <%= select_tag 'search[non_importable_reasons]', options_for_select(non_importable_options, search_present? ? session[:tariff_job_analysis_search][:non_importable_reasons] : -1), class: 'tariff_job_analysis_search_select' %>
+        </div>
+      </div>
+
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box tariff_job_analysis">
+    <h2>
+      <span><%= _('Tariff_Job_Analysis') %></span>
+      <span class="tariff_job_analysis_header_tariff_link"><%= link_to tariff_name(@tariff_job), { controller: :tariffs, action: :edit, id: tariff_id(@tariff_job) }, { target: :blank } %></span>
+    </h2>
+    <div class="table-holder">
+      <% if @analysis_results.present? %>
+        <table id="tariff_job_analysis_list_table">
+            <tr>
+              <%= sortable_header(_('Prefix'), 'prefix', class: 'tariff_job_analysis-prefix left-item') %>
+              <%= sortable_header(_('Destination'), 'destination', class: 'tariff_job_analysis-destination left-item') %>
+              <%= sortable_header(_('Rate'), 'rate', class: 'tariff_job_analysis-rate left-item') %>
+              <%= sortable_header(_('Connection_Fee'), 'connection_fee', class: 'tariff_job_analysis-connection_fee left-item') %>
+              <%= sortable_header(_('Increment'), 'increment', class: 'tariff_job_analysis-increment left-item') %>
+              <%= sortable_header(_('Min_Time'), 'min_time', class: 'tariff_job_analysis-min_time left-item') %>
+              <%= sortable_header(_('Effective_From'), 'effective_from', class: 'tariff_job_analysis-effective_from left-item') %>
+            </tr>
+            <% @analysis_results.each do |analysis_result| %>
+              <tr id="tariff_job_analysis-result_<%= analysis_result['id'] %>" class="<%= column_with_errors(analysis_result) %> tariff_job_analysis-row">
+                <% if analysis_result['new_destination_name'].present? && analysis_result['new_destination_direction_code'].present? && analysis_result['non_importable'].try(:to_i) == 0 %>
+                  <td id="prefix_<%= analysis_result['id'] %>" class="tariff_job_analysis-prefix left-item" <%= tooltip(_('New_Destination'), "New Destination: #{analysis_result['new_destination_name']}") %>>
+                    <%= analysis_result['prefix'] %>&nbsp;*
+                  </td>
+                <% else %>
+                  <td id="prefix_<%= analysis_result['id'] %>" class="tariff_job_analysis-prefix left-item" <%= tariff_job_analysis_tooltip_for_list(analysis_result) %>>
+                    <%= analysis_result['prefix'] %>
+                  </td>
+                <% end %>
+                <td id="destination_<%= analysis_result['id'] %>" class="tariff_job_analysis-destination left-item" <%= tariff_job_analysis_tooltip_for_list(analysis_result) %>>
+                  <%= analysis_result['destination'] %>
+                </td>
+                <td id="rate_<%= analysis_result['id'] %>" class="tariff_job_analysis-rate left-item" <%= tariff_job_analysis_tooltip_for_list(analysis_result) %>>
+                  <%= nice_number(analysis_result['rate']) %>
+                </td>
+                <td id="connection_fee_<%= analysis_result['id'] %>" class="tariff_job_analysis-connection_fee left-item" <%= tariff_job_analysis_tooltip_for_list(analysis_result) %>>
+                  <%= nice_number(analysis_result['connection_fee']) %>
+                </td>
+                <td id="increment_<%= analysis_result['id'] %>" class="tariff_job_analysis-increment left-item" <%= tariff_job_analysis_tooltip_for_list(analysis_result) %>>
+                  <%= analysis_result['increment'] %>
+                </td>
+                <td id="min_time_<%= analysis_result['id'] %>" class="tariff_job_analysis-min_time left-item" <%= tariff_job_analysis_tooltip_for_list(analysis_result) %>>
+                  <%= analysis_result['min_time'] %>
+                </td>
+                <td id="effective_from_<%= analysis_result['id'] %>" class="tariff_job_analysis-effective_from left-item" <%= tariff_job_analysis_tooltip_for_list(analysis_result) %>>
+                  <%= nice_date_time(analysis_result['effective_from']) %>
+                </td>
+              </tr>
+            <% end %>
+        </table>
+      <% else %>
+       <%= _('No_data') %>
+      <% end %>
+    </div>
+    <%= paginate @analysis_results %>
+  </div>
+</div>

@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>manager_groups</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">manager_groups</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/list</td>
+	<td></td>
+</tr>
+<!--pagrindinio lango isdestym-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Manager Groups </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Manager Groups List</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Name</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_manager_group_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_manager_group_comment</td>
+	<td></td>
+</tr>
+<!--kurimas-->
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_name</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_comment</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group successfully created</td>
+	<td></td>
+</tr>
+<!--kruiam vienoda-->
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_name</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_comment</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group was not created</td>
+	<td></td>
+</tr>
+<!--neturi leisti kurti name su tarpais (turi ignoruoti tarpus) -->
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_name</td>
+	<td>vienas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_comment</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group was not created</td>
+	<td></td>
+</tr>
+<!--ivairus-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_name</td>
+	<td>01232ąčęė!@#$%*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_comment</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>01232ąčęė!@#$%*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<!--sutarpais pradzioje -->
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_name</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;du&nbsp;&nbsp;įėę</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_comment</td>
+	<td>vienasdfgqgqrfreferqfqerfre</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group successfully created</td>
+	<td></td>
+</tr>
+<!-- tuscias name -->
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_manager_group_comment</td>
+	<td>vienasdfgqgqrfreferqfqerfre</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Manager Group name cannot be blank</td>
+	<td></td>
+</tr>
+<!--Trinimas -->
+<!--sql su manager useriais, jiem prisikirtas 1 groupsas-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/manager_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/list</td>
+	<td></td>
+</tr>
+<!--turi istrinti-->
+<tr>
+	<td>click</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Manager Group successfully deleted</td>
+	<td></td>
+</tr>
+<!--neturi istrinti nes priskirta useriui-->
+<tr>
+	<td>click</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Manager Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* it has assigned Managers</td>
+	<td></td>
+</tr>
+<!--tiesiogines nuorodos-->
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--edit turi nueiti i permisions -->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Permissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_group_name</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_group_comment</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Permissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Group Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Description</td>
+	<td></td>
+</tr>
+<!--permissionu puslapis-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>USERS &gt; Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>USERS &gt; Connection Points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>BILLING &gt; Tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>BILLING &gt; CDR &gt; Import</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>BILLING &gt; CDR &gt; Rerating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ROUTING &gt; Dial Peers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ROUTING &gt; Routing Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ACCOUNTING &gt; Financial Status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ACCOUNTING &gt; Payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ACCOUNTING &gt; Customer Invoices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ACCOUNTING &gt; Balance Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SECURITY &gt; Integrity Check</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SECURITY &gt; Alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SECURITY &gt; Alerts &gt; Contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SECURITY &gt; Alerts &gt; Schedules</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SECURITY &gt; Alerts &gt; Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Calls by Clients</td>
+	<td>REPORTS &gt; Calls by Clients</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Aggregates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Calls List</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Calls List &gt; Archived Calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Active Calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Hangup Cause</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Load Stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Action log</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Default User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Default Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Emails</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Backups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Background Tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Servers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Number Pools</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_group_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Manager Group name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_group_name</td>
+	<td>vienasvienas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_group_comment</td>
+	<td>geras komentaras</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>vienasvienas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_1</td>
+	<td>geras komentaras</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_group_name</td>
+	<td>01232ąčęė!@#$%*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Financial_Status_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_SECURITY_Alerts_Schedules_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Default_User_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Servers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Currencies_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=reset</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_ACCOUNTING_Financial_Status_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_SECURITY_Alerts_Schedules_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_MAINTENANCE_Default_User_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_MAINTENANCE_Servers_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_MAINTENANCE_Currencies_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_group_name</td>
+	<td>vienasvienas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_group_comment</td>
+	<td>geras komentaras</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_group_name</td>
+	<td>edited name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_group_comment</td>
+	<td>edited description</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Financial_Status_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_SECURITY_Alerts_Schedules_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Default_User_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Servers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Currencies_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>01232ąčęė!@#$%*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_ACCOUNTING_Financial_Status_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_SECURITY_Alerts_Schedules_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_MAINTENANCE_Default_User_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_MAINTENANCE_Servers_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>permissions_MAINTENANCE_Currencies_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_group_name</td>
+	<td>edited name</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_group_comment</td>
+	<td>edited description</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=manager_group_rights</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_value</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=manager_group_id_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=manager_right_id_value</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--Permissions edit-->
+</tbody></table>
+</body>
+</html>

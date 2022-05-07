@@ -1,0 +1,410 @@
+<div class="row">
+  <div class="col col-width_43pc col-border-right">
+    <div class="row">
+      <div class="col col-width-max">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Name') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <% if rate_notification_template.is_default? %>
+                <div class="not-input-col-just-text">Default</div>
+            <% else %>
+                <%= f.text_field(:name, class: 'input', maxlength: 100, autocomplete: 'disabled') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-width-max <%= 'no-padding-bottom' unless %w[new create].include?(params[:action]) %>">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('XLSX_Template') %></label>
+          </div>
+          <div class="input-col two-thirds file-input-no-margin">
+            <%= file_field_tag 'xlsx_template_file', disabled: rate_notification_template.is_default? %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% unless %w[new create].include?(params[:action]) %>
+        <div class="row">
+          <div class="col col-width-max">
+            <div class="input-row">
+              <div class="label-col one-third"></div>
+              <div class="input-col two-thirds">
+                <div class="not-input-col-just-text text-link">
+                  <%= link_to(_('Download_current_XLSX_Template'), {controller: :tariff_rate_notification_templates, action: :download_current_xlsx_template, id: rate_notification_template.id}, id: "download_current_xlsx_template_#{rate_notification_template.id}") %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col col-width-max">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Headers_Row') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <%= f.text_field(:header_rows, class: 'tariff_templates-column1', maxlength: 5) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Client') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Row', '') %>><%= f.text_field(:client_row, class: 'tariff_templates-column1', maxlength: 5) %></span>
+            <span class="tariff_templates-select_inbetween">:</span>
+            <span <%= tooltip('Column', '') %>><%= f.select(:client_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.client_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Currency') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Row', '') %>><%= f.text_field(:currency_row, class: 'tariff_templates-column1', maxlength: 5) %></span>
+            <span class="tariff_templates-select_inbetween">:</span>
+            <span <%= tooltip('Column', '') %>><%= f.select(:currency_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.currency_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Timezone') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Row', '') %>><%= f.text_field(:timezone_row, class: 'tariff_templates-column1', maxlength: 5) %></span>
+            <span class="tariff_templates-select_inbetween">:</span>
+            <span <%= tooltip('Column', '') %>><%= f.select(:timezone_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.timezone_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Footer') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip(_('Rows_after_last_Rate_row'), '') %>><%= f.text_field(:footer_row, class: 'tariff_templates-column1', maxlength: 5) %></span>
+            <span class="tariff_templates-select_inbetween">:</span>
+            <span <%= tooltip('Column', '') %>><%= f.select(:footer_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.footer_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third"></div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Text', '') %>><%= f.text_field(:footer_text, class: 'input', maxlength: 512, autocomplete: 'disabled') %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-border-left col-width_56pc">
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Destination_Group') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:destination_group_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.destination_group_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:destination_group_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Destination') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:destination_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.destination_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:destination_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Dial_Code_Prefix') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:prefix_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.prefix_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:prefix_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Rate') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:rate_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.rate_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:rate_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Effective_From') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:effective_from_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.effective_from_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:effective_from_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Rate_Difference') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:rate_difference_raw_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.rate_difference_raw_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:rate_difference_raw_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Rate_Difference_%') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:rate_difference_percentage_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.rate_difference_percentage_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:rate_difference_percentage_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Connection_Fee') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:connection_fee_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.connection_fee_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:connection_fee_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Increment') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:increment_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.increment_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:increment_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Minimal_Time') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:minimal_time_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.minimal_time_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:minimal_time_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max no-padding-bottom">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Billing_Terms') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', 'Exports as:<br/>&nbsp;&nbsp;{Minimal Time}/{Increment}/0') %>><%= f.select(:billing_terms_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.billing_terms_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:billing_terms_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-width-max">
+        <div class="input-row">
+          <div class="label-col one-third">
+            <label><%= _('Status') %></label>
+          </div>
+          <div class="input-col two-thirds">
+            <span <%= tooltip('Column', '') %>><%= f.select(:status_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.status_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+            <span <%= tooltip('Header Name', '') %>><%= f.text_field(:status_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row col-border-top" style="padding-top: 30px;">
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third">
+              <label><%= _('Custom_Column') %> 1</label>
+            </div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Column', '') %>><%= f.select(:custom_column_1_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.custom_column_1_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+              <span <%= tooltip('Header Name', '') %>><%= f.text_field(:custom_column_1_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third"></div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Value', '') %>><%= f.text_field(:custom_column_1_text, class: 'tariff_templates-input2', maxlength: 255, autocomplete: 'disabled') %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third">
+              <label><%= _('Custom_Column') %> 2</label>
+            </div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Column', '') %>><%= f.select(:custom_column_2_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.custom_column_2_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+              <span <%= tooltip('Header Name', '') %>><%= f.text_field(:custom_column_2_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third"></div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Value', '') %>><%= f.text_field(:custom_column_2_text, class: 'tariff_templates-input2', maxlength: 255, autocomplete: 'disabled') %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third">
+              <label><%= _('Custom_Column') %> 3</label>
+            </div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Column', '') %>><%= f.select(:custom_column_3_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.custom_column_3_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+              <span <%= tooltip('Header Name', '') %>><%= f.text_field(:custom_column_3_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third"></div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Value', '') %>><%= f.text_field(:custom_column_3_text, class: 'tariff_templates-input2', maxlength: 255, autocomplete: 'disabled') %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third">
+              <label><%= _('Custom_Column') %> 4</label>
+            </div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Column', '') %>><%= f.select(:custom_column_4_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.custom_column_4_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+              <span <%= tooltip('Header Name', '') %>><%= f.text_field(:custom_column_4_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third"></div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Value', '') %>><%= f.text_field(:custom_column_4_text, class: 'tariff_templates-input2', maxlength: 255, autocomplete: 'disabled') %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third">
+              <label><%= _('Custom_Column') %> 5</label>
+            </div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Column', '') %>><%= f.select(:custom_column_5_column, options_for_select(tariff_template_columns_selection(true), rate_notification_template.custom_column_5_column), {}, {class: 'tariff_templates-select_column'}) %></span>
+              <span <%= tooltip('Header Name', '') %>><%= f.text_field(:custom_column_5_header_name, class: 'tariff_templates-input', maxlength: 50) %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-width-max no-padding-bottom">
+          <div class="input-row">
+            <div class="label-col one-third"></div>
+            <div class="input-col two-thirds">
+              <span <%= tooltip('Value', '') %>><%= f.text_field(:custom_column_5_text, class: 'tariff_templates-input2', maxlength: 255, autocomplete: 'disabled') %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

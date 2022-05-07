@@ -1,0 +1,1962 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>cdr_disputes</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">cdr_disputes</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Insert Local Calls-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/cdr/cdr_import_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--Insert CDR Import Template-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/cdr/cdr_import_template</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=dispute_direction_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=s_originator</td>
+	<td></td>
+</tr>
+<!--User = Test User #1-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_originator_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_originator').value='Test User #1'}</td>
+	<td></td>
+</tr>
+<!--Period start = 2017-03-01 00:00-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('from').value='2017-03-01';this.browserbot.getCurrentWindow().document.getElementById('time1').value='00:00'}</td>
+	<td></td>
+</tr>
+<!--Period end = 2017-07-01 23:59-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('till').value='2017-07-01';this.browserbot.getCurrentWindow().document.getElementById('time2').value='23:59'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=new_template</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=template_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=dispute[template_name]</td>
+	<td>CDR Dispute Options template</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tolerance Options</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dispute_billsec_tolerance</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dispute_cost_tolerance</td>
+	<td>0.001</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Dispute Options</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dispute_cmp_last_src_digits</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dispute_cmp_last_dst_digits</td>
+	<td>9</td>
+</tr>
+<!--Exchange Rate = 1.354039-->
+<tr>
+	<td>select</td>
+	<td>id=dispute_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dispute_exchange_rate</td>
+	<td>1.354039</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#template_row &gt; div.label-col &gt; label</td>
+	<td>Template</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CDR Dispute Options template</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_billsec_tolerance</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_cost_tolerance</td>
+	<td>0.0001</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_cmp_last_src_digits</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_cmp_last_dst_digits</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dispute_currency_id</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_exchange_rate</td>
+	<td>1.0</td>
+</tr>
+<!--Tikrinam ar užpildo reikšmes iš template-->
+<tr>
+	<td>select</td>
+	<td>id=dispute_dispute_template_id</td>
+	<td>label=CDR Dispute Options template</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=dispute_billsec_tolerance</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_cost_tolerance</td>
+	<td>0.001</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_cmp_last_src_digits</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_cmp_last_dst_digits</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dispute_currency_id</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=dispute_exchange_rate</td>
+	<td>1.354039</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dispute_currency_id</td>
+	<td>label=USD</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dispute_exchange_rate</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dispute_currency_id</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dispute_exchange_rate</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=cdr_import</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=cdr_import_id</td>
+	<td>label=CDR Import Template</td>
+</tr>
+<!--External skambučių importavimas-->
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/cdr_import_calls.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=cdr_import_id</td>
+	<td>CDR Import Template</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total file lines: 90</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=conf</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>CDR Import for Dispute will be completed in a few minutes, you can check progress by clicking here.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-id</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-start</td>
+	<td>2017-03-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-end</td>
+	<td>2017-07-01 23:59:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-details</td>
+	<td>IN PROGRESS</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_1</td>
+	<td>Delete</td>
+</tr>
+<!--background task-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Background Tasks</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#user_2 &gt; a</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=task_2</td>
+	<td>CDR Dispute</td>
+</tr>
+<!--NElaukiam kol prasisuks, nes scriptai braine neleidžiami-->
+<!--CDR Dispute SQL-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/cdr/cdr_dispute_report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-tz</td>
+	<td>GMT + 01:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-time-shift</td>
+	<td>exact:-01:00:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-total-local</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=1-total-external</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Details</td>
+	<td>Details</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_1</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/report/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>CDR Dispute Report</td>
+</tr>
+<!--Total Calls - visi susumuoti-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-TT-mismatch</td>
+	<td>Total Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TT-calls</td>
+	<td>190</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TT-calls-perc</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TT-loc-calls</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TT-dt-calls</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=TT&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Connected Calls - visi answered susumuoti-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-TC-mismatch</td>
+	<td>Total Connected</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TC-calls</td>
+	<td>119</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TC-calls-perc</td>
+	<td>63</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TC-loc-calls</td>
+	<td>62</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TC-ext-calls</td>
+	<td>57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TC-dt-calls</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=TC&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Visada turi būti nuliai-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-mismatch</td>
+	<td>Not Compared</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-code</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-calls-perc</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-loc-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-ext-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-dt-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-loc-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-ext-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-00-dt-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=00&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Exact Match - viskas sutampa idealiai, nenaudojant Tolerance intervalų		-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-mismatch</td>
+	<td>Exact Match</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-code</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-calls</td>
+	<td>156</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-calls-perc</td>
+	<td>82</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-loc-calls</td>
+	<td>78</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-ext-calls</td>
+	<td>78</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-loc-billsec</td>
+	<td>exact:284:23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-ext-billsec</td>
+	<td>exact:284:23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-dt-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-loc-price</td>
+	<td>202.6864</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-ext-price</td>
+	<td>202.6864</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-10-dt-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=10&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Tolerated Mismatch - pataiko į tolerance ribas	-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-mismatch</td>
+	<td>Tolerated Mismatch</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-calls</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-calls-perc</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-loc-calls</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-ext-calls</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-loc-billsec</td>
+	<td>exact:39:39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-ext-billsec</td>
+	<td>exact:39:33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-dt-billsec</td>
+	<td>exact:00:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-loc-price</td>
+	<td>23.3841</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-ext-price</td>
+	<td>23.3840</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-TM-dt-price</td>
+	<td>0.0001</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=TM&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--by price - billsec idealiai atitinka, price pataiko į tolerance ribas		-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-mismatch</td>
+	<td>Tolerated mismatch by Price</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-code</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-calls</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-calls-perc</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-loc-calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-ext-calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-loc-billsec</td>
+	<td>exact:09:26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-ext-billsec</td>
+	<td>exact:09:26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-dt-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-loc-price</td>
+	<td>5.1678</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-ext-price</td>
+	<td>5.1677</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-21-dt-price</td>
+	<td>0.0001</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=21&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--by billsec	- price idealiai atitinka, billsec pataiko į tolerance ribas		-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-mismatch</td>
+	<td>Tolerated mismatch by Billsec</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-code</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-calls</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-calls-perc</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-loc-calls</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-ext-calls</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-loc-billsec</td>
+	<td>exact:30:13</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-ext-billsec</td>
+	<td>exact:30:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-dt-billsec</td>
+	<td>exact:00:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-loc-price</td>
+	<td>18.2163</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-ext-price</td>
+	<td>18.2163</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-22-dt-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=22&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--by price+billsec - ir price ir billsec idealiai neatitinka, bet pataiko į tolerance ribas		-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-mismatch</td>
+	<td>Tolerated mismatch by Price and Billsec</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-code</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-calls-perc</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-loc-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-ext-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-dt-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-loc-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-ext-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-23-dt-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=23&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Mismatch - nors vienas rodiklis išeina iš tolerance ribų, kitas tada jau nebesvarbu			-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-mismatch</td>
+	<td>Mismatch</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-calls</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-calls-perc</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-loc-calls</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-ext-calls</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-dt-calls</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-loc-billsec</td>
+	<td>exact:38:13</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-ext-billsec</td>
+	<td>exact:16:25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-dt-billsec</td>
+	<td>exact:21:48</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-loc-price</td>
+	<td>33.5607</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-ext-price</td>
+	<td>15.6140</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-NM-dt-price</td>
+	<td>17.9467</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=NM&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--by price - price už tolerance ribų-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-31-mismatch</td>
+	<td>Mismatch by Price</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-31-code</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-31-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-31-calls-perc</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-31-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-31-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-31-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=31&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--by billsec - billsec už tolerance ribų-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-mismatch</td>
+	<td>Mismatch by Billsec</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-code</td>
+	<td>32</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-calls</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-calls-perc</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-loc-calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-ext-calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-loc-billsec</td>
+	<td>exact:04:11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-dt-billsec</td>
+	<td>-00:04</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-loc-price</td>
+	<td>0.8255</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-ext-price</td>
+	<td>0.8255</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-32-dt-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=32&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--by price+billsec - abu už tolerance ribų-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-33-mismatch</td>
+	<td>Mismatch by Price and Billsec</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-33-code</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-33-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-33-calls-perc</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-33-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-33-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-33-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=33&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Connected only locally - pas mus answered, pas importuotus ne answered	-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-40-mismatch</td>
+	<td>Connected only locally</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-40-code</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-40-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-40-calls-perc</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-40-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-40-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-40-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=40&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Connected only externally - pas mus not answered, importuotose answered	-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-42-mismatch</td>
+	<td>Connected only externally</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-42-code</td>
+	<td>42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-42-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-42-calls-perc</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-42-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-42-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-42-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=42&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Duplicates Local - jei kartojasi pas mus-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-mismatch</td>
+	<td>Local duplicate</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-code</td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-calls</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-calls-perc</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-loc-calls</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-dt-calls</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-loc-billsec</td>
+	<td>exact:04:03</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-ext-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-dt-billsec</td>
+	<td>exact:04:03</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-loc-price</td>
+	<td>2.4673</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-ext-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-70-dt-price</td>
+	<td>2.4673</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=70&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Duplicates External	 - jei kartojasi importuoti-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-72-mismatch</td>
+	<td>External duplicate</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-72-code</td>
+	<td>72</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-72-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-72-calls-perc</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-72-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-72-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-72-dt-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=72&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--No match by any field - tie, kurių neradome porų iš viso	-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-mismatch</td>
+	<td>Not matched by any field</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-code</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-calls</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-calls-perc</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-loc-calls</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-ext-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-dt-calls</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-loc-billsec</td>
+	<td>exact:29:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-ext-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-dt-billsec</td>
+	<td>exact:29:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-loc-price</td>
+	<td>30.2679</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-ext-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-90-dt-price</td>
+	<td>30.2679</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=90&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--Errors - kažkokios klaidos, kai cdr nepanašus į cdr	-->
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-mismatch</td>
+	<td>Errors</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-code</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-calls</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-calls-perc</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-loc-calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-ext-calls</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-dt-calls</td>
+	<td>-5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-loc-billsec</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-ext-billsec</td>
+	<td>exact:12:10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-dt-billsec</td>
+	<td>-12:10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-loc-price</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-ext-price</td>
+	<td>14.7885</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group-99-dt-price</td>
+	<td>-14.7885</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/cdr_disputes/detailed_report/1?code=99&amp;order_by=l_start_time&amp;page=1&amp;search_on=1')]</td>
+	<td>DETAILS</td>
+</tr>
+<!--DETAILS-->
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=TT&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>Total Calls</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=TC&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>Total Connected</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=00&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>00 - Not Compared</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=10&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>10 - Exact Match</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=TM&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>Tolerated Mismatch</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=21&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>21 - Tolerated mismatch by Price</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=22&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>22 - Tolerated mismatch by Billsec</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=23&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>23 - Tolerated mismatch by Price and Billsec</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=NM&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>Mismatch</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=31&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>31 - Mismatch by Price</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=32&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>32 - Mismatch by Billsec</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=33&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>33 - Mismatch by Price and Billsec</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=40&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>40 - Connected only locally</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=42&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>42 - Connected only externally</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=70&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>70 - Local duplicate</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=72&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>72 - External duplicate</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=90&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>90 - Not matched by any field</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?code=99&amp;order_by=l_start_time&amp;page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>99 - Errors</td>
+</tr>
+<!--Filtras-->
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/detailed_report/1?page=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=src</td>
+	<td>5%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst</td>
+	<td>6%</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=code</td>
+	<td>label=Total Calls</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.0</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.1</td>
+	<td>5220525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.2</td>
+	<td>5220525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.3</td>
+	<td>65666110400</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.4</td>
+	<td>65666110400</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.3.0</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.3.1</td>
+	<td>53512241100</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.3.2</td>
+	<td>53512241100</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.3.3</td>
+	<td>630355</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.3.4</td>
+	<td>630355</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.4.0</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.4.1</td>
+	<td>53024514</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.4.2</td>
+	<td>-</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.4.3</td>
+	<td>63023</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.4.3</td>
+	<td>63023</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.5.0</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.5.1</td>
+	<td>5110364356</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.5.2</td>
+	<td>5110364356</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.5.3</td>
+	<td>63354113536</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.5.4</td>
+	<td>63354113536</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=code</td>
+	<td>label=90 - Not matched by any field</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.0</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.1</td>
+	<td>53024514</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.2</td>
+	<td>-</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table.2.3</td>
+	<td>63023</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>90 - Not matched by any field</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=src</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dst</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=code</td>
+	<td>Total Calls</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=disputed_cdrs</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dispute_id_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dispute_id_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dispute_id_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr_disputes/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Dispute successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=disputed_cdrs</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body &gt; p</td>
+	<td>Not found</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body &gt; p</td>
+	<td>Not found</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body &gt; p</td>
+	<td>Not found</td>
+</tr>
+</tbody></table>
+</body>
+</html>

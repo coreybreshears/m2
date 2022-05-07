@@ -1,0 +1,2276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Custom Tariff</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=Add_Tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Custom Tariff successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Import from CSV</td>
+	<td>Import from CSV</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/lithuania_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=destination_id</td>
+	<td>Destination</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=increment_id</td>
+	<td>Increment</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=effective_from</td>
+	<td>Effective from</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=prefix_id</td>
+	<td>Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=regexp:\s</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=increment_id</td>
+	<td>label=regexp:\s</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=regexp:\s</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_2</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.123</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_2</td>
+	<td>0.124</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<!--Reitai neįkeliami, nes jie sutampa-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[2]/td[10]</td>
+	<td>Duplicate Field</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[10]</td>
+	<td>Duplicate Field</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--neturi čia kažką kurti, nes reitai sutampa, turi būti 0-->
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (0)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/lithuania_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=Effective from</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=delete_unimported_prefix_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (2)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/6?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff name</td>
+	<td>Custom Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_503</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_504</td>
+	<td>0.1240</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_503</td>
+	<td>0.1230</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/503</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_503</td>
+	<td>0.1230</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=rate_506</td>
+	<td></td>
+</tr>
+<!--Rates import testavimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Custom Tariff 2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=Add_Tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Custom Tariff successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_7</td>
+	<td>Custom Tariff 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_7</td>
+	<td>Rates (0)</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Import from CSV</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#import_csv_7 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import2.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.3</td>
+	<td>Default</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.4</td>
+	<td>Additional</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_year</td>
+	<td>*2020 2021 2022 2023 2024 2025*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_month</td>
+	<td>January February March April May June July August September October November December</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_day</td>
+	<td>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_hour</td>
+	<td>00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_minute</td>
+	<td>00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_minute</td>
+	<td></td>
+</tr>
+<!--Dabartinis laikas yra default effective from-->
+<tr>
+	<td>storeText</td>
+	<td>//tr[4]/td[4]</td>
+	<td>defaultEffectiveFrom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_date_format</td>
+	<td>Y-m-d Y/m/d Y,m,d Y.m.d d-m-Y d/m/Y d,m,Y d.m.Y m-d-Y m/d/Y m,d,Y m.d.Y</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=effective_from_date_format</td>
+	<td>Y-m-d</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=prefix_id</td>
+	<td>Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=rate_id</td>
+	<td>Price</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.1670</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_1</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_12</td>
+	<td>35544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_12</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total file lines: 15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_13</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_14</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_lines</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=(Press here to get the list)</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#r_to_update &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates</td>
+	<td>Zero Rates in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_count</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_display</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/zero_rates_from_csv?csv2=1&amp;tariff_id=7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row0 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.0000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Next step: Creating destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Created destinations: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Next step: Creating new rates </td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_rates_updated &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_new_rates_created &gt; b</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 8&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating new rates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates</td>
+	<td>Zero Rates in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_count</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_display</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file! </td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/zero_rates_from_csv?csv2=1&amp;tariff_id=7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row0 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.0000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_7</td>
+	<td>Custom Tariff 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_7</td>
+	<td>Rates (14)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_506</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_511</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_506</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>Afghanistan mobile-Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_506</td>
+	<td>0.1670</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_518</td>
+	<td>Lithuania mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_519</td>
+	<td>Lithuania mobile-Tele2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_518</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_519</td>
+	<td>37060</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_518</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_519</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>355</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.789</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import3.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2010; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2010; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=April</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=19</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_hour</td>
+	<td>label=01</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_minute</td>
+	<td>label=02</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=delete_unimported_prefix_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_13</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_13</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates</td>
+	<td>Zero Rates in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_count</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_display</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/zero_rates_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Lithuania Tele2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>LTU</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated: 1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates</td>
+	<td>Zero Rates in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_count</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_display</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/zero_rates_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Lithuania Tele2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>LTU</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates</td>
+	<td>Zero Rates in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_count</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_display</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/zero_rates_from_csv?csv2=1&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Lithuania Tele2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>LTU</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/6?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.header-right</td>
+	<td>exact:Total: 16</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff name</td>
+	<td>Custom Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_534</td>
+	<td>Lithuania mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=refine</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_522</td>
+	<td>2010-04-19 01:02:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_523</td>
+	<td>2010-04-19 01:02:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_532</td>
+	<td>2010-04-19 01:02:00</td>
+</tr>
+<!--importas su effective from (pakeitus time zone ir datos format)-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_date_format_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT-07:00) Chihuahua</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=effective_from_506</td>
+	<td>LastEffectiveFrom1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import2.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//tr[4]/td[4]</td>
+	<td>LastEffectiveFrom2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2017</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>waitForEditable</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>${LastEffectiveFrom2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#r_to_update &gt; b</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>${LastEffectiveFrom1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>${LastEffectiveFrom2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>??/??/20?? ??:??:??</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>*-*-20?? *:*:*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>*,*,20?? *:*:*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>*.*.20?? *:*:*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>20??,*,* *:*:*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_522</td>
+	<td>18/04/2010 1?:02:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_526</td>
+	<td>18/04/2010 1?:02:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_532</td>
+	<td>18/04/2010 1?:02:00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/lithuania_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=Effective from</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2020</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from_date_format</td>
+	<td>label=m.d.Y</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bad Effective from date format</td>
+	<td></td>
+</tr>
+<!--Manager-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_BILLING_Custom_Tariffs_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Custom Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Rates (16)</td>
+	<td>Rates (16)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_7</td>
+	<td>Custom Tariff 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Rates (28)</td>
+	<td>Rates (28)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Custom Tariff 3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=Add_Tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Custom Tariff successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_8</td>
+	<td>Custom Tariff 3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Rates (0)</td>
+	<td>Rates (0)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Import from CSV</td>
+	<td>Import from CSV</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/lithuania_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=destination_id</td>
+	<td>Destination</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=increment_id</td>
+	<td>Increment</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=effective_from</td>
+	<td>Effective from</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=prefix_id</td>
+	<td>Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=regexp:\s</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=increment_id</td>
+	<td>label=regexp:\s</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=regexp:\s</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_2</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.123</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_2</td>
+	<td>0.124</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<!--Reitai neįkeliami, nes jie sutampa-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[2]/td[10]</td>
+	<td>Duplicate Field</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[10]</td>
+	<td>Duplicate Field</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--neturi čia kažką kurti, nes reitai sutampa, turi būti 0-->
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_8</td>
+	<td>Rates (0)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/lithuania_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=Effective from</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=delete_unimported_prefix_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_8</td>
+	<td>Rates (2)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/8?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff name</td>
+	<td>Custom Tariff 3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_554</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_553</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_554</td>
+	<td>0.1240</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_553</td>
+	<td>0.1230</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/553</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_552</td>
+	<td>0.1230</td>
+</tr>
+<!--Rates import testavimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import2.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.3</td>
+	<td>Default</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.4</td>
+	<td>Additional</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_year</td>
+	<td>*2020 2021 2022 2023 2024 2025*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_month</td>
+	<td>January February March April May June July August September October November December</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_day</td>
+	<td>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_hour</td>
+	<td>00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_from_minute</td>
+	<td>00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_minute</td>
+	<td></td>
+</tr>
+<!--Dabartinis laikas yra default effective from-->
+<tr>
+	<td>storeText</td>
+	<td>//tr[4]/td[4]</td>
+	<td>defaultEffectiveFrom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_date_format</td>
+	<td>Y-m-d Y/m/d Y,m,d Y.m.d d-m-Y d/m/Y d,m,Y d.m.Y m-d-Y m/d/Y m,d,Y m.d.Y</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=effective_from_date_format</td>
+	<td>Y-m-d</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=prefix_id</td>
+	<td>Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=rate_id</td>
+	<td>Price</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.1670</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_1</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_12</td>
+	<td>35544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_12</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total file lines: 15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_13</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_14</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_lines</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=(Press here to get the list)</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#r_to_update &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates</td>
+	<td>Zero Rates in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_count</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_display</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/zero_rates_from_csv?csv2=1&amp;tariff_id=8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row0 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.0000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Next step: Creating new rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_rates_updated &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_new_rates_created &gt; b</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 8&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating new rates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates</td>
+	<td>Zero Rates in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_count</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=zero_rates_display</td>
+	<td>(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file! </td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/zero_rates_from_csv?csv2=1&amp;tariff_id=8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row0 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3706</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.0000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>Lithuania Tele2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_8</td>
+	<td>Custom Tariff 3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_8</td>
+	<td>Rates (16)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_556</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_561</td>
+	<td>${defaultEffectiveFrom}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_556</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_556</td>
+	<td>Afghanistan mobile-Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_556</td>
+	<td>0.1670</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_568</td>
+	<td>Lithuania mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_569</td>
+	<td>Lithuania mobile-Tele2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_568</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_569</td>
+	<td>37060</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_568</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_569</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/custom_tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

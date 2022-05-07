@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>manager_create</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">manager_create</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You need to create at least one Manager Group in order to Add New Manager</td>
+	<td></td>
+</tr>
+<!--sql ikelia manager groups-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/manager_1601/manager_groups_create</td>
+	<td></td>
+</tr>
+<!--paprastas kurimas -->
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Stevaaas Jobsasss</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Stevas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>Stevas1Aw3</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manager_manager_group_id</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_phone</td>
+	<td>867765423578</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_main_email</td>
+	<td>stevukas@obuolys.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_comment</td>
+	<td>didelis didelis komentaras</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=manager_show_only_assigned_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=manager_link_6</td>
+	<td>Stevaaas Jobsasss</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=manager_link_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>didelis didelis komentaras</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=manager_link_6</td>
+	<td></td>
+</tr>
+<!--Assigned Users perkelta prie grupių-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/div/form/div[4]/div[2]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Show only assigned Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<!--kuriam toki pati-->
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Stevaaas Jobsasss</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Stevas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>Stevas1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manager_manager_group_id</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Username has already been taken</td>
+	<td></td>
+</tr>
+<!--edit-->
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_first_name</td>
+	<td>Stevaaas Jobsasss</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_username</td>
+	<td>Stevas</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manager_manager_group_id</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_comment</td>
+	<td>didelis didelis komentaras</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_phone</td>
+	<td>867765423578</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_main_email</td>
+	<td>stevukas@obuolys.com</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manager_currency_id</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manager_time_zone</td>
+	<td>(GMT+00:00) UTC</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=manager_show_only_assigned_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Stevas Wozniakasas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>wozniakas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>wozniakasAw3</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manager_manager_group_id</td>
+	<td>label=du</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_phone</td>
+	<td>sdfadsagf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_main_email</td>
+	<td>wozniakas@obuolys.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_comment</td>
+	<td>komeeeeeeeeeeeeeeeeeeeeeeeeeeeentaras&nbsp;&nbsp;01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manager_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manager_time_zone</td>
+	<td>label=(GMT+01:00) Amsterdam</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_first_name</td>
+	<td>Stevas Wozniakasas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_username</td>
+	<td>wozniakas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_phone</td>
+	<td>sdfadsagf</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=manager_main_email</td>
+	<td>wozniakas@obuolys.com</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manager_currency_id</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manager_time_zone</td>
+	<td>(GMT+01:00) Amsterdam</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=manager_comment</td>
+	<td>exact:komeeeeeeeeeeeeeeeeeeeeeeeeeeeentaras 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<!--kitokie kurimai-->
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Bilasas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>Gatesass</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Username cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Dzordzzius</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>washingtonsAw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Maiklys</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Dzordanasss</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Password must be longer than 7 characters</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Jonas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Jonaitis</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>jonaiciopaswrdas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_phone</td>
+	<td>7895654</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_main_email</td>
+	<td>tttttttttttttt4886786546</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_comment</td>
+	<td>komentaras komentaras</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Please enter correct email</td>
+	<td></td>
+</tr>
+<!--sukuriama daugiau managerių-->
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>manager1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Jonas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Jonaitis</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>jonaiciopaswrdasAw3</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manager_manager_group_id</td>
+	<td>label=du</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_first_name</td>
+	<td>Bilasas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_username</td>
+	<td>Gatesass</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manager_password</td>
+	<td>manager1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager successfully created</td>
+	<td></td>
+</tr>
+<!--Userio edite Responsible Manager turi būti rodomi visi manageriai-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Responsible Manager:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>Not selected Bilasas Jonas Test Stevas Wozniakasas</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>Not selected</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>label=Stevas Wozniakasas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User's settings successfully changed: Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Search')])[2]</td>
+	<td></td>
+</tr>
+<!--Responsible Manager dropdowne turi būti tik tas manageris, kuris priskirtas bent vienam useriui-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Responsible Manager :</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=responsible_accountant_id</td>
+	<td>All Stevas Wozniakasas</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/profit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Responsible Manager:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=responsible_accountant_id</td>
+	<td>All Stevas Wozniakasas</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/financial_statuses/list</td>
+	<td></td>
+</tr>
+<!--Responsible Manager turi būti rodomi visi manageriai-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Responsible Manager:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_accountant</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_accountant</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=accountant_list</td>
+	<td>AllBilasasJonasStevas WozniakasasTest</td>
+</tr>
+<!--Neturi leisti istrinti managerio kuris yra responsible-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>label=Bilasas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User's settings successfully changed: Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Manager is used as Responsible Manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>login_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

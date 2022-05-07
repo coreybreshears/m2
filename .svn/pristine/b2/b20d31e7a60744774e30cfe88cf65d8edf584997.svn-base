@@ -1,0 +1,50 @@
+<div class="content-box">
+  <div class="table-box">
+  	<h2><%= _('Permissions') %></h2>
+    <%= form_for :permissions, url: { action: 'update',  id: @manager_group.id}, html: {class: 'details-form'} do |group| %>
+	    <div class="input-row">
+	      <div class="label-col smaller table-alignment">
+	        <label><%= _('Group_name') %></label>
+	      </div>
+	      <div class="input-col">
+	        <%= text_field 'manager_group', 'name', "class" => "input" %>
+	      </div>
+	    </div>
+	    <div class="input-line">
+	      <div id='period_time' class="label-col smaller table-alignment">
+	        <label><%= _('Description') %></label>
+	      </div>
+	      <div class="input-area">
+		    <div class="large"><%= text_area_tag 'manager_group[comment]', @manager_group.try(:comment).to_s, :rows => '5', :class => "input large" %></div>
+	      </div>
+	    </div>
+	    <div style="clear: both;"/>
+	    <br/>
+    	<div class="table-holder permissions-holder">
+    		<table>
+    			<tbody>
+	    		<tr>
+		    		<th nowrap><%= _('Target') %></th>
+		    		<th><%= _('No Access') %></th>
+		    		<th><%= _('Can Manage') %></th>
+		    		<th style="width: 610px"/>
+	    		</tr>
+    			<% @rights.each do |right|%>
+		    		<tr>
+			    		<td nowrap><%= _(right[:name]) %></td>
+			    		<td><%= group.radio_button right[:name].to_sym, 0, :checked => (right[:value].to_i == 0) %></td>
+			    		<td><%= group.radio_button right[:name].to_sym, 2, :checked => (right[:value].to_i == 2) %></td>
+			    		<td style="width: 610px"/>
+			    	</tr>
+    			<% end %>
+    			</tbody>
+    		</table>
+    		<hr style="margin-right: 20px">
+    	</div>
+    	<div class="buttons-row">
+		  <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/manager_groups/list'", name: 'reset' %>
+		  <%= submit_tag _('UPDATE'), :disable_with => _('Processing..'), name: 'commit' %>
+		</div>
+    <% end %>
+  </div>
+</div>

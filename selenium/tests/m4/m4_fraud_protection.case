@@ -1,0 +1,1744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m4_fraud_protection</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m4_fraud_protection</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/m2_good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/call_tracing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Calls_List_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_USERS_Users_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>1.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M2 SWITCH by Kolmisoft 2006 - 202*System Time:*</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Documents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Documents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Documents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Country</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Responsible Manager</td>
+	<td></td>
+</tr>
+<!--~~~M4~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form[8]/b</td>
+	<td>M4 Functionality:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m4_functionality</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<!--~~~~~~~-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=m2switch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>2.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M4 SBC by Kolmisoft 2006 - 202*System Time:*</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>label=Test Manager</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[5]/td/b</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr/td</td>
+	<td>Enforce Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[2]/td</td>
+	<td>Daily Spend Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[3]/td</td>
+	<td>Daily Spend Warning:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[4]/td</td>
+	<td>Kill Calls In Progress:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[5]/td</td>
+	<td>Show Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[6]/td</td>
+	<td>Allow Customer To Edit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>blogai</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>blogai</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: test_customer_2</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>1.23451</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>4.32101</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: test_customer_2</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>1.2345</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>4.3210</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Documents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div[2]/form/table[2]/tbody/tr/td/table/tbody/tr[20]/td/b</td>
+	<td>Documents</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=no_document_label</td>
+	<td>No Documents...</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.user_doc_upload_th</td>
+	<td>exact:Description:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=document_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=document_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=upload_document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=upload_document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=document_notice_status</td>
+	<td>Please select a file</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=sbmt</td>
+	<td>Update</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[5]/td/b</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr/td</td>
+	<td>Enforce Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[2]/td</td>
+	<td>Daily Spend Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[3]/td</td>
+	<td>Daily Spend Warning:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[4]/td</td>
+	<td>Kill Calls In Progress:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[5]/td</td>
+	<td>Show Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[6]/td</td>
+	<td>Allow Customer To Edit:</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Documents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Documents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[5]/td/b</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr/td</td>
+	<td>Enforce Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[2]/td</td>
+	<td>Daily Spend Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[3]/td</td>
+	<td>Daily Spend Warning:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[4]/td</td>
+	<td>Kill Calls In Progress:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[5]/td</td>
+	<td>Show Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[6]/td</td>
+	<td>Allow Customer To Edit:</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>99.9999</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Default User saved</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[5]/td/b</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr/td</td>
+	<td>Enforce Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[2]/td</td>
+	<td>Daily Spend Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[3]/td</td>
+	<td>Daily Spend Warning:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[4]/td</td>
+	<td>Kill Calls In Progress:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[5]/td</td>
+	<td>Show Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[6]/td</td>
+	<td>Allow Customer To Edit:</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>100.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>99.9999</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Country</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Responsible Manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>4 / 0</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_manager</td>
+	<td>label=Test Manager</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>0 / 0</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_manager</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=clear_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>4 / 0</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_manager</td>
+	<td>All</td>
+</tr>
+<!--Manager-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_show_only_assigned_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Active_Calls_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.users-users-sub-permission.even &gt; td.sub-permission</td>
+	<td>Deny Balance range change</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/div/form/div[5]/div/table/tbody/tr[57]/td</td>
+	<td>Kill Calls</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_USERS_Users_Kill_Calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Documents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[20]/td</td>
+	<td>Documents</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=no_document_label</td>
+	<td>No Documents...</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.user_doc_upload_th</td>
+	<td>exact:Description:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=document_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=document_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=upload_document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=upload_document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=document_notice_status</td>
+	<td>Please select a file</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=sbmt</td>
+	<td>Update</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Country</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Responsible Manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>0 / 0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_show_only_assigned_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_USERS_Users_Kill_Calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=m2switch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>2.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M4 SBC by Kolmisoft 2006 - 202*System Time:*</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[5]/td/b</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr/td</td>
+	<td>Enforce Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[2]/td</td>
+	<td>Daily Spend Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[3]/td</td>
+	<td>Daily Spend Warning:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[4]/td</td>
+	<td>Kill Calls In Progress:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[5]/td</td>
+	<td>Show Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table[2]/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[6]/td</td>
+	<td>Allow Customer To Edit:</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>1.2345</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>4.3210</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>blogai</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>blogai</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: test_customer_2</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>1.23451</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>4.32101</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: test_customer_2</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>1.2345</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>4.3210</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[5]/td/b</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr/td</td>
+	<td>Enforce Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[2]/td</td>
+	<td>Daily Spend Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[3]/td</td>
+	<td>Daily Spend Warning:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[4]/td</td>
+	<td>Kill Calls In Progress:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[5]/td</td>
+	<td>Show Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[6]/td</td>
+	<td>Allow Customer To Edit:</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>100.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>99.9999</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[5]/td/b</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr/td</td>
+	<td>Enforce Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[2]/td</td>
+	<td>Daily Spend Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[3]/td</td>
+	<td>Daily Spend Warning:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[4]/td</td>
+	<td>Kill Calls In Progress:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[5]/td</td>
+	<td>Show Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[7]/td/table/tbody/tr[6]/td</td>
+	<td>Allow Customer To Edit:</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=kill-all-calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_enforce_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>100.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>99.9999</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_kill_calls_in_progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_show_daily_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Country</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Responsible Manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>4 / 0</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_manager</td>
+	<td>label=Test Manager</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>0 / 0</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_manager</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=clear_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>4 / 0</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_manager</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#login_as_link_10 &gt; img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='quick-stats-table-basic']/div[9]/div</td>
+	<td>Daily Limit:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_limit</td>
+	<td>$ 1.23</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col.table-holder &gt; h2</td>
+	<td>Documents</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.no_documents</td>
+	<td>No Documents...</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/h2</td>
+	<td>Fraud Protection</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div/div/label</td>
+	<td>Enforce Daily Limit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div[2]/div/label</td>
+	<td>Daily Spend Limit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div[3]/div/label</td>
+	<td>Daily Spend Warning</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div[4]/div/label</td>
+	<td>Kill Calls In Progress</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div[5]/div/label</td>
+	<td>Show Daily Limit</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div/div[2]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div[4]/div[2]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/form/fieldset/div[2]/div/div[5]/div[2]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_limit</td>
+	<td>17.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_daily_spend_warning</td>
+	<td>17.0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#quick-stats-user &gt; div.label-col</td>
+	<td>exact:Balance:</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='quick-stats-table-basic']/div[9]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>$ 17.00</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=user_allow_customer_to_edit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: test_customer_2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Fraud Protection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Enforce Daily Limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Daily Spend Limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Daily Spend Warning</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Kill Calls In Progress</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Show Daily Limit</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

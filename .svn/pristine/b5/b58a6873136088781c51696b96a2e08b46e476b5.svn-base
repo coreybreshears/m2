@@ -1,0 +1,47 @@
+<% gdpr_activated = !!gdpr_activated # To prevent crash, when rendering not from user edit %>
+<tr>
+  <td><%= _('Address') %>:</td>
+  <td id="address"><%= text_field 'address', 'address', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+<tr>
+  <td><%= _('Postcode') %>:</td>
+  <td id="postcode"><%= text_field 'address', 'postcode', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+<tr>
+  <td><%= _('City') %>:</td>
+  <td id="city"><%= text_field 'address', 'city', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+<tr>
+  <td><%= _('County') %>:</td>
+  <td id="country"><%= text_field 'address', 'county', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+<tr>
+  <td><%= _('State') %>:</td>
+  <td id="state"><%= text_field 'address', 'state', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+<tr>
+  <td><%= _('Country') %>:</td>
+  <td <%= 'class=gdpr_input_hidden' if gdpr_activated %>>
+    <div class="nb">
+      <select name="address[direction_id]">
+        <% countries.each do |country| %>
+            <% comp_country = (user.address ? user.address.direction_id : default_country_id) %>
+            <option value="<%= country.id %>" <%= 'selected' if country.id == comp_country %>><%= h(country.name[0, 22]) %></option>
+        <% end %>
+      </select>
+    </div>
+  </td>
+</tr>
+<tr>
+  <td><%= _('Phone') %>:</td>
+  <td id="phone"><%= text_field 'address', 'phone', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+<tr>
+  <td><%= _('Mob_phone') %>:</td>
+  <td id="mob_phone"><%= text_field 'address', 'mob_phone', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+<tr>
+  <td><%= _('Fax') %>:</td>
+  <td id="fax"><%= text_field 'address', 'fax', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+</tr>
+

@@ -1,0 +1,34 @@
+# -*- encoding : utf-8 -*-
+class RoutingGroup < ActiveRecord::Base
+  has_many :rgroup_dpeers, :dependent => :destroy
+  validates_presence_of :name, :message => _("routing_group_must_have_name")
+
+
+  attr_protected
+
+  before_destroy :validate_delete
+
+  def validate_delete
+    op = Device.where('op_routing_group_id = ? OR (mnp_use = 1 AND mnp_routing_group_id = ?)', id, id).first
+    errors.add(:device, _('routing_group_is_used_in_device')) if op
+
+    alert_action_alert = Alert.exists?(action_alert_change_routing_group_id: id)
+    alert_action_clear = Alert.exists?(action_alert_change_routing_group_id: id)
+    if alert_action_alert || alert_action_clear
+      errors.add(:device, _('routing_group_is_used_in_alerts'))
+    end
+
+    return errors.size > 0 ? false : true
+  end
+
+  def self.routing_group_list(options)
+    RoutingGroup.select('routing_groups.*, COUNT(dial_peers.id) AS grdp')
+      .joins('LEFT JOIN rgroup_dpeers ON (rgroup_dpeers.routing_group_id = routing_groups.id)')
+      .joins('LEFT JOIN dial_peers ON (dial_peers.id = rgroup_dpeers.dial_peer_id)')
+      .group('routing_groups.id')
+      .where('routing_groups.name LIKE ?',options[:wcard])
+      .order(options[:order_by])
+      .offset(options[:fpage])
+      .limit(options[:items_limit])
+  end
+end

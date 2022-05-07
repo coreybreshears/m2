@@ -1,0 +1,16 @@
+# API settings bundle
+# ----
+# allow api globally
+/settings/api/enable_0.sql
+# allow get api
+/settings/api/allow_get.sql
+# api secret key
+/settings/api/set_secret_key.sql
+# Allow API Login Redirect
+/settings/api/login_redirect.sql
+# API allow Registration
+/settings/api/allow_registration.sql
+# Disable hash checking
+/settings/api/disable_hash_0.sql
+# bundle loaded
+# ----

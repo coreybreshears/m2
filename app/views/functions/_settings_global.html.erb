@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col">
+
+      <div class="input-row">
+        <div class="label-col">
+            <%= label_tag 'company',_('Company') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('company', Confline.get_value("Company")) %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'company_email',_('Company_Email') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('company_email', Confline.get_value("Company_Email")) %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'version',_('Version') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('version', Confline.get_value("Version")) %>
+        </div>
+      </div>
+
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'copyright_title', _('Copyright_Title') %>
+        </div>
+        <div class="input-col">
+          <%= text_area_tag('copyright_title', h(Confline.get_value("Copyright_Title").try( :encode, "UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")), cols: '32', rows: '4') %>
+        </div>
+      </div>
+
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'admin_browser_title', _('Browser_Title') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('admin_browser_title', Confline.get_value("Admin_Browser_Title")) %>
+        </div>
+      </div>
+
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'front_page_text', _('Frontpage_Text') %>
+        </div>
+        <div class="input-col">
+          <%= text_area_tag('frontpage_text', h(Confline.get_value2("Frontpage_Text", session[:user_id]).encode("UTF-8", invalid: :replace, undef: :replace, replace: '?')),  cols: '32', rows: '4') %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'login_page_text', _('Login_page_Text') %>
+        </div>
+        <div class="input-col">
+          <%= text_area_tag('login_page_text', h(Confline.get_value2("Login_page_Text", session[:user_id])), cols: '32', rows: '4') %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'logo', _('Logo') %>
+        </div>
+        <div class="input-col">
+            <%= file_field_tag 'logo' %>
+        </div>
+      </div>
+
+      <%# logo = @logo %>
+      <div class="input-row">
+        <div class="label-col">
+        </div>
+        <div class="input-col">
+          <%= logo %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+        </div>
+        <div class="input-col">
+          <%= image_tag ("/images/" + logo), alt: 'Logo' %>
+        </div>
+      </div>
+    </div>
+</div>

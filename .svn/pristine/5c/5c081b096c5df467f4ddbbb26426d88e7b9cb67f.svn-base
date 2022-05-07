@@ -1,0 +1,397 @@
+<style>
+  .group{
+    display:none
+  }
+</style>
+
+<%= form_for :alert, url: { action: @action_link, id: @alert.id } do |a| %>
+    <table class="simple">
+    <tr>
+      <td class="bottom_border">
+        <b><%= _('General') %></b>
+      </td>
+    </tr>
+    <tr>
+      <td height="10"></td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td><%= _('Alert_Name') %></td>
+            <td><%= text_field 'alert', 'name', "class" => "input", style: "width: 100%;" %> </td>
+          </tr>
+          <tr>
+            <td height='10px'></td>
+          </tr>
+          <tr>
+            <td>
+              <span style="text-decoration: underline;"><%= _('Primary_Object') %></span>
+            </td>
+          </tr>
+          <tr height='20px'>
+            <td style="min-width:120px;"><%= _('object_type') %>:</td>
+            <% if @action_link.eql? 'alert_add' %>
+                <td>
+                  <%= select_tag("alert[check_type]", options_for_select(@check_types.map {|c_type| [_(c_type == 'user' ? 'Client' : c_type.capitalize), c_type]}, @alert.check_type.to_s), :onchange => "check_alert_check_type(); updateObjectNameFields(this.value);check_prov_settings(); toggleSecondaryObject(this.value); toggleDpInRG(this.value);") %>
+                </td>
+            <% else %>
+                <td id='object_type'>
+                  <%= _(@alert.check_type.to_s.capitalize) %>
+                </td>
+            <% end %>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('object_name') %>:</td>
+            <% if @action_link.eql? 'alert_add' %>
+                <td id="user" style="display:none">
+                  <%= render 'shared/live_search_field',
+                    object: params[:s_user],
+                    object_id: @alert.check_data.to_s,
+                    object_name: 'User',
+                    action_url: {
+                        controller: :users,
+                        action: :get_users_map,
+                        options: { show_admin: true, include_owner: true }
+                        } %>
+                  <%= check_box_tag 'all_users', '', params[:all_users] %>
+                  <%= _('All_Clients') %>
+                  <span id="user_not_selected_info"><%= b_exclamation + _('Please_select_Client') %></span>
+                </td>
+                <td id="provider" style="display:none">
+                  <div style="display:table-cell; vertical-align:middle"><%= _('User') %>: </div>
+                  <div style="display:table-cell; vertical-align:middle">
+                    <%= render 'shared/live_search_field',
+                      object: params[:s_device_tp_user],
+                      object_id: params[:s_device_tp_user_id] || -2,
+                      object_name: 'Device_tp_user',
+                      object_title: 'Device Termination Point User',
+                      action_url: {
+                          controller: :users,
+                          action: :get_users_map,
+                          options: { show_admin: true, include_owner: true }
+                          } %>
+                  </div>
+                  <div style="display:table-cell; vertical-align:middle">
+                    <%= _('termination_points') %>:
+                    <span id="users_tp"> </span>
+                  </div>
+                </td>
+                <td id="device" style="display:none">
+                  <div style="display:table-cell; vertical-align:middle"><%= _('User') %>: </div>
+                  <div style="display:table-cell; vertical-align:middle">
+                    <%= render 'shared/live_search_field',
+                      object: params[:s_device_op_user],
+                      object_id: params[:s_device_op_user_id] || -2,
+                      object_name: 'Device_op_user',
+                      object_title: 'Device Origination Point User',
+                      action_url: {
+                          controller: :users,
+                          action: :get_users_map,
+                          options: { show_admin: true, include_owner: true }
+                          } %>
+                  </div>
+                  <div style="display:table-cell; vertical-align:middle">
+                    <%= _('Origination_point') %>:
+                    <span id="users_op"> </span>
+                  </div>
+                </td>
+                <td id="destination" style="display:none"><%= text_field_tag "alert_check_data3", @alert.check_data.to_s, class: 'input', size: 30, :maxlength => 50 %></td>
+                <td id="destination_group" style="display:none">
+                  <%= select_tag("alert_check_data4", options_for_select([[_('All'), 'all']] + @destination_groups.map {|g| [link_to(g.gname, :controller => "destination_groups", :action => "edit", :id => g.id), g.id]}, @alert.check_data.to_s)) %>
+                </td>
+            <% else %>
+                <td id='object_name'>
+                  <%= generate_check_data(@alert) %>
+                </td>
+            <% end %>
+          </tr>
+          <tr>
+            <td height='10px'></td>
+          </tr>
+          <tr>
+            <td>
+              <span style="text-decoration: underline;"><%= _('Secondary_Object') %></span>
+            </td>
+          </tr>
+          <tr height='20px'>
+            <td style="min-width:120px;"><%= _('object_type') %>:</td>
+            <% if @action_link.eql? 'alert_add' %>
+                <td>
+                  <%= select_tag('alert[check_type_secondary]', options_for_select([[_('None'), 'none'], [_('destination'), 'destination'], [_('Destination_Group'),'destination_group']], @alert.check_type_secondary.to_s), disabled: %w[origination_point termination_point].exclude?(@alert.check_type.to_s), onchange: 'toggleCheckDataSecondary(this.value);') %>
+                </td>
+            <% else %>
+                <td id='object_type'>
+                  <%= _(@alert.check_type.secondary.to_s.capitalize) %>
+                </td>
+            <% end %>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('object_name') %>:</td>
+            <% if @action_link.eql? 'alert_add' %>
+                <td id="destination_secondary" >
+                  <%= text_field_tag 'alert[check_data_secondary1]', @alert.check_data_secondary.to_s, class: 'input', size: 30, maxlength: 50, disabled: %w[origination_point termination_point].exclude?(@alert.check_type.to_s) %>
+                </td>
+                <td id="destination_group_secondary" style="display:none;">
+                  <%= select_tag('alert[check_data_secondary2]', options_for_select([[_('All'), 'all']] + @destination_groups.map {|g| [link_to(g.gname, controller: :destination_groups, action: :edit, id: g.id), g.id]}, @alert.check_data_secondary.to_s), disabled: %w[origination_point termination_point].exclude?(@alert.check_type.to_s)) %>
+                </td>
+            <% else %>
+                <td id='object_name'>
+                  <%#= generate_check_data(@alert) %>
+                </td>
+            <% end %>
+          </tr>
+          <tr>
+            <td height='10px'></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('Parameter') %>:</td>
+            <% if @action_link.eql? 'alert_add' %>
+                <td>
+                <span id='parameters'>
+                  <%= select_tag('alert[alert_type]', options_for_select(@alert_type_parameters[:base].map {|a_type| [_(a_type.upcase), a_type]}, @alert_type), :id => 'alert_type_parameters', onchange: 'changeIfParams();') %>
+                </span>
+                  <span id='params_counting'></span>
+                </td>
+            <% else %>
+                <td id='parameter'>
+                  <%= _(@alert.alert_type.upcase) %>
+                  <span id='params_counting'></span>
+                </td>
+            <% end %>
+          </tr>
+          <tr height='20px' id='hgc_input' style="display:none">
+            <td><%= _('HGC') %>:</td>
+            <td><%= a.text_field :hgc, class: 'input', size: 10 %></td>
+          </tr>
+          <tr height='20px' style="display: none;">
+            <td><%= _('alert_type') %>:</td>
+            <% if @action_link.eql? 'alert_add' %>
+                <td>
+                  <%= select_tag("alert[alert_count_type]", options_for_select(@alert_count_type.map {|v| [_(v.upcase), v]}, @alert.alert_count_type.to_s)) %>
+                </td>
+            <% else %>
+                <td id='alert_type'>
+                  <%= @alert.alert_count_type %>
+                </td>
+            <% end %>
+          </tr>
+
+
+          <tr class="group">
+            <td><%= _('Group') %>:</td>
+          </tr>
+          <tr class="group">
+            <td id="group_selector">
+              <%= render 'alert_dependencies', alerts: @alerts_for_select, alert_dependencies: @alert_dependencies %>
+            </td>
+          </tr>
+
+          <tr height='20px'>
+            <td id='period_time' style="min-width:120px;"> <%= _('Check_last') %>: </td>
+            <td> <%= select_tag('alert[count_period]', options_for_select([5,10,15,20,30,45].map { |m| ["#{m} min", m] } + (1..24).map { |h| ["#{h} h", h*60] }, (params[:action] == 'alert_new' ? 60 : @alert.count_period)), onchange: 'changeTimeParams();')%> </td>
+          </tr>
+
+          <tr height='20px' class="conditions">
+            <td><%= _('Ignore_if_Calls') + " (in "%><span class="time_param"></span><%= ") <=" %>:</td>
+            <td><%= a.text_field :ignore_if_calls_less, class: 'input', size: 10 %></td>
+          </tr>
+          <tr height='20px' class="conditions">
+            <td><%= _('Ignore_if_Calls') + " (in "%><span class="time_param"></span><%= ") >=" %>:</td>
+            <td><%= a.text_field :ignore_if_calls_more, class: 'input', size: 10 %></td>
+          </tr>
+
+          <tr height='20px;'>
+            <td><%= _('Group_to_Notify') %>:</td>
+            <td>
+              <%= select_tag("alert[alert_groups_id]", options_for_select([['None']] + @groups.map {|g| [g.name, g.id]}.sort, @alert.alert_groups_id.to_i)) %>
+            </td>
+          </tr>
+          <tr height='20px;' id='notify_to_user' style="display:none">
+            <td><%= _('Notify_to_User') %>:</td>
+            <td>
+              <%= a.check_box :notify_to_user, {:checked => @alert.notify_to_user.to_i.equal?(1)} %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="20"></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="bottom_border">
+        <b><%= _('Alert') %></b>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" height="10"></td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr class="group">
+            <td><%= _('alert_when_more_then') %></td>
+            <td><%= a.text_field :alert_when_more_than, class: 'input', size: 3 %> <%= _('alerts_are_active') %></td>
+          </tr>
+          <tr height='20px' class="conditions">
+            <td style="min-width:120px;"><%= "#{_('alert_if')} " %> <span class="if_param"></span> <%= " <=" %>:</td>
+            <td><%= a.text_field :alert_if_less, class: 'input', size: 10, onkeyup: "disable_enable_alerts_and_clears()" %></td>
+          </tr>
+          <tr height='20px' class="conditions">
+            <td><%= "#{_('alert_if')} " %> <span class="if_param"></span> <%= " >=" %>:</td>
+            <td><%= a.text_field :alert_if_more, class: 'input', size: 10, onkeyup: "disable_enable_alerts_and_clears()" %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('Disable_Primary_Object') %>:</td>
+            <td><%= a.check_box :action_alert_disable_object, {:checked => @alert.action_alert_disable_object.to_i.equal?(1), :onclick => "disableObjectCheck();"} %></td>
+          </tr>
+          <tr height='20px' id='prov_dp_settings1' style="display:none">
+            <td><%= _('Disable_tp_in_dial_peer') %>:</td>
+            <td id="disable_tp_in_dial_peer"></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('Routing_Group') %>:</td>
+            <td>
+              <%= select_tag("alert[action_alert_change_routing_group_id]", options_for_select([['None']] + @routing_groups.map {|rg| [rg.name, rg.id]}.sort, @alert.action_alert_change_routing_group_id)) %>
+            </td>
+          </tr>
+
+          <tr height='20px' class="dp_in_rg" style="<%= 'display: none;' if hide_dp_in_rg?(@alert) %>">
+            <td><%= _('Deactivate_DP_in_RG') %>:</td>
+            <td>
+            <%= _('Routing_Group')  %>: <span class="cp-rg"></span>&nbsp;
+            <%= _('Dial_Peer')  %>: <span class="cp-rg-dp"></span>
+            </td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('notify_on_alert_via_email') %>:</td>
+            <td><%= a.check_box :action_alert_email, {:checked => @alert.action_alert_email.to_i.equal?(1)} %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('notify_on_alert_via_sms') %>:</td>
+            <td><%= a.check_box :action_alert_sms, {checked: @alert.action_alert_sms.to_i.equal?(1)} %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('SMS_Alert_Text') %>:</td>
+            <td><%= a.text_field :action_alert_sms_text, class: 'input', size: 30, maxlength: 160 %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="20"></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="bottom_border">
+        <b><%= _('Clear') %></b>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" height="10"></td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr height='20px'>
+            <td><%= _('disable_clear') %>:</td>
+            <td><%= a.check_box :disable_clear, {:checked => @alert.disable_clear.to_i.equal?(1), :onclick => 'enableClearFields();'} %></td>
+          </tr>
+          <tr class="group">
+            <td><%= _('clear_when_less_then') %></td>
+            <td><%= a.text_field :clear_when_less_than, class: 'input', size: 3 %> <%= _('alerts_are_active') %></td>
+          </tr>
+          <tr height='20px' class="conditions">
+            <td><%= _('Clear_on_condition') %>:</td>
+            <td></td>
+          </tr>
+          <tr height='20px' class="conditions">
+            <td style="min-width:120px;padding-left: 27px;"><%= "#{_('clear_if')} " %> <span class="if_param"></span> <%= " <=" %>:</td>
+            <td><%= a.text_field :clear_if_less, class: 'input', size: 10, onkeyup: "disable_enable_alerts_and_clears();" %></td>
+          </tr>
+          <tr height='20px' class="conditions">
+            <td style="min-width:120px;padding-left: 27px;"><%= "#{_('alert_if')} " %> <span class="if_param"></span> <%= " >=" %>:</td>
+            <td><%= a.text_field :clear_if_more, class: 'input', size: 10, onkeyup: "disable_enable_alerts_and_clears();" %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('Clear_on_time_basis') %>:</td>
+            <td></td>
+          </tr>
+          <tr height='20px'>
+            <td style="min-width:120px;padding-left: 27px;"><%= _('clear_after') %>:</td>
+            <td><%= a.text_field :clear_after, class: 'input', size: 10, onkeyup: "disable_enable_alerts_and_clears();" %> <%= _('minutes') %></td>
+          </tr>
+          <tr height='20px'>
+            <td style="min-width:120px;padding-left: 27px;"><%= _('clear_on_date') %>:</td>
+            <td><%= select_datetime(@alert.clear_on_date, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+5, :prefix => "clear_on_date", :use_month_numbers => false, :include_blank => true) %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('Enable_Primary_Object') %>:</td>
+            <td><%= a.check_box :action_clear_enable_object, {:checked => @alert.action_clear_enable_object.to_i.equal?(1)} %></td>
+          </tr>
+          <tr height='20px' id='dp_tp_settings2' style="display:none">
+            <td><%= _('Enable_tp_in_dial_peer') %>:</td>
+            <td><%= a.check_box :enable_tp_in_dial_peer, {:checked => @alert.enable_tp_in_dial_peer.to_i.equal?(1)} %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('Routing_Group') %>:</td>
+            <td>
+              <%= select_tag("alert[action_clear_change_routing_group_id]", options_for_select([['None'],[_('restore_orig'), -1]] + @routing_groups.map {|rg| [rg.name, rg.id]}.sort, @alert.action_clear_change_routing_group_id)) %>
+            </td>
+          </tr>
+          <tr height='20px' class="dp_in_rg" style="<%= 'display: none;' if hide_dp_in_rg?(@alert) %>">
+            <td><%= _('Activate_DP_in_RG') %>:</td>
+            <td >
+              <%= a.check_box :action_clear_enable_dp_in_rg, {checked: @alert.action_clear_enable_dp_in_rg.to_i.equal?(1), disabled: %w[origination_point].exclude?(@alert.check_type.to_s)} %>
+              <%= _('Routing_Group')  %>: <span class="cp-rg"></span>&nbsp;
+              <%= _('Dial_Peer')  %>: <span class="cp-rg-dp-selected"></span>
+            </td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('notify_on_clear_via_email') %>:</td>
+            <td><%= a.check_box :action_clear_email, {:checked => @alert.action_clear_email.to_i.equal?(1)} %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('notify_on_clear_via_sms') %>:</td>
+            <td><%= a.check_box :action_clear_sms, {checked: @alert.action_clear_sms.to_i.equal?(1)} %></td>
+          </tr>
+          <tr height='20px'>
+            <td><%= _('SMS_Clear_Text') %>:</td>
+            <td><%= a.text_field :action_clear_sms_text, class: 'input', size: 30, maxlength: 160 %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="20"></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="bottom_border">
+        <b><%= _('Comment') %></b>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" height="10"></td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td style="min-width:285px;">
+              <%= a.text_area :comment, :rows => '5', :class => "input", :maxlength => 250, :style => 'min-width: 285px' %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+    <br />
+    <% if @alert %>
+        <%= submit_tag _('Save_changes'), :disable_with => _('Processing..') %>
+    <% else %>
+        <%= submit_tag _('Create'), :disable_with => _('Processing..') %>
+    <% end %>
+<% end %>
+
+<%= render 'alert_new_js', alert: @alert, action_link: @action_link,
+           alert_type_parameters: @alert_type_parameters %>

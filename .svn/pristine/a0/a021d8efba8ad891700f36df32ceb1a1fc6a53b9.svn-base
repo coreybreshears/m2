@@ -1,0 +1,14 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('dial_peer_new') %></h2>
+    <%= form_for :dial_peer, url: {:action => 'create', id: @dial_peer.id},
+                  html: {'class' => 'details-form',
+                         'data-remote-dg-url' => "#{Web_Dir}/destination_groups/retrieve_groups_remote"} do |f| %>
+        <%= render 'form', :f => f, :dp => @dial_peer, destination_groups: @destination_groups, prov_tariffs_device: @prov_tariffs_device %>
+        <div class="buttons-row">
+          <%= f.submit _('CANCEL'), name: 'cancel', type: 'reset', onclick: "location.href = '#{Web_Dir}/dial_peers/list'" %>
+          <%= f.submit _('CREATE'), :disable_with => 'Processing...' %>
+        </div>
+    <% end %>
+  </div>
+</div>

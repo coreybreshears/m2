@@ -1,0 +1,1534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m4_functionality</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m4_functionality</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/m2_good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/call_tracing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Calls_List_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>1.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M2 SWITCH by Kolmisoft 2006 - 202?</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Inherit leg B Codecs:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_inherit_codec_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_inherit_codec_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> Custom SIP Header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=custom_sip_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Disable Q.850 Reason:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Forward RPID:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Forward PAI:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bypass Media:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Ignore SIP 183 without SDP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_disable_q850_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_disable_q850_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_rpid_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_rpid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_pai_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_pai_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_ignore_183nosdp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_ignore_183nosdp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Change RPID/PAI host:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Use Destination from INVITE request:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Ring instead Session Progress:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Send CallerID in Contact header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Use PAI Number for Routing:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Send PAI Number as CallerID to TP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_insecure_no</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_insecure_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_change_rpidpai_host_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_change_rpidpai_host_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_use_invite_dst_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_use_invite_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_ring_instead_progress_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_ring_instead_progress_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_set_sip_contact_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_set_sip_contact_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_use_pai_number_for_routing</td>
+	<td>Never Always If FROM is Anonymous If FROM is not Anonymous</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_send_pai_number_as_caller_id_to_tp</td>
+	<td>Never Always If FROM is Anonymous If FROM is not Anonymous</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>originator_1 Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder</td>
+	<td>No Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Register:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Enforce same Codecs as on Leg A:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_enforce_lega_codecs_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_enforce_lega_codecs_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> Custom SIP Header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=custom_sip_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Disable Q.850 Reason:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Forward RPID:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Forward PAI:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bypass Media:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Ignore SIP 183 without SDP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_disable_q850_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_disable_q850_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_rpid_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_rpid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_pai_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_forward_pai_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_ignore_183nosdp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_ignore_183nosdp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sticky Contact:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Disable SIP URI encoding:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Use PAI if CallerID is anonymous:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=sticky_contact</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_disable_sip_uri_encoding_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_disable_sip_uri_encoding_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_use_pai_if_cid_anonymous_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_use_pai_if_cid_anonymous_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>terminator_1 Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder</td>
+	<td>No Disconnect Code Changes</td>
+</tr>
+<!--~~~M4~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form[8]/b</td>
+	<td>M4 Functionality:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m4_functionality</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<!--~~~~~~~-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=m2switch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>2.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M4 SBC by Kolmisoft 2006 - 202?</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Inherit leg B Codecs:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_inherit_codec_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_inherit_codec_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td> Custom SIP Header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=custom_sip_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disable Q.850 Reason:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward RPID:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward PAI:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bypass Media:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Force Proxy Media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Bypass Media will be enabled if TP Allows Media from any IP address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Ignore SIP 183 without SDP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Change RPID/PAI host:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Use Destination from INVITE request:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Ring instead Session Progress:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Send CallerID in Contact header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Use PAI Number for Routing:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Send PAI Number as CallerID to TP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_insecure_no</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_insecure_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_change_rpidpai_host_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_change_rpidpai_host_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_invite_dst_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_invite_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ring_instead_progress_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ring_instead_progress_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_set_sip_contact_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_set_sip_contact_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_op_use_pai_number_for_routing</td>
+	<td>Never Always If FROM is Anonymous If FROM is not Anonymous</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_op_send_pai_number_as_caller_id_to_tp</td>
+	<td>Never Always If FROM is Anonymous If FROM is not Anonymous</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Register:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Enforce same Codecs as on Leg A:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_enforce_lega_codecs_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_enforce_lega_codecs_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td> Custom SIP Header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=custom_sip_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disable Q.850 Reason:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward RPID:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward PAI:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Bypass Media:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>TP Allows Media from any IP address:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Force Proxy Media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Bypass Media will be enabled if OP has Bypass Media enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Ignore SIP 183 without SDP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sticky Contact:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disable SIP URI encoding:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Use PAI if CallerID is anonymous:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>name=sticky_contact</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_sip_uri_encoding_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_sip_uri_encoding_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_pai_if_cid_anonymous_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_pai_if_cid_anonymous_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--Manager-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=m2switch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>2.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M4 SBC by Kolmisoft 2006 - 202?</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Inherit leg B Codecs:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_inherit_codec_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_inherit_codec_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td> Custom SIP Header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=custom_sip_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disable Q.850 Reason:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward RPID:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward PAI:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bypass Media:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Force Proxy Media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Bypass Media will be enabled if TP Allows Media from any IP address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_bypass_media_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=device_bypass_media_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Ignore SIP 183 without SDP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Change RPID/PAI host:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Use Destination from INVITE request:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Ring instead Session Progress:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Send CallerID in Contact header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Use PAI Number for Routing:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Send PAI Number as CallerID to TP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_insecure_no</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_insecure_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_change_rpidpai_host_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_change_rpidpai_host_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_invite_dst_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_invite_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ring_instead_progress_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ring_instead_progress_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_set_sip_contact_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_set_sip_contact_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_op_use_pai_number_for_routing</td>
+	<td>Never Always If FROM is Anonymous If FROM is not Anonymous</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_op_send_pai_number_as_caller_id_to_tp</td>
+	<td>Never Always If FROM is Anonymous If FROM is not Anonymous</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Register:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Enforce same Codecs as on Leg A:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_enforce_lega_codecs_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_enforce_lega_codecs_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td> Custom SIP Header:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=custom_sip_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disable Q.850 Reason:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward RPID:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Forward PAI:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Bypass Media:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>TP Allows Media from any IP address:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Force Proxy Media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Bypass Media will be enabled if OP has Bypass Media enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=device_bypass_media_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_bypass_media_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Ignore SIP 183 without SDP:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_q850_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_rpid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_forward_pai_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_ignore_183nosdp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sticky Contact:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disable SIP URI encoding:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Use PAI if CallerID is anonymous:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>name=sticky_contact</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_sip_uri_encoding_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_disable_sip_uri_encoding_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_pai_if_cid_anonymous_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=device_use_pai_if_cid_anonymous_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

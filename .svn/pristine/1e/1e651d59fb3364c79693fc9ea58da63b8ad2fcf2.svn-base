@@ -1,0 +1,16 @@
+<center>
+  <p>
+    <label for="body" valign="Top">
+      <%= _('hello') %>, <%= @username %>
+    </label>
+  </p>
+  <p>
+    <label for="body" valign="Top">
+      <%= form_tag(:action => 'logout') do %>
+          <%= submit_tag _('logout'), :disable_with => _('Processing..') %>
+      <% end %>
+    </label>
+  </p>
+</center>
+
+

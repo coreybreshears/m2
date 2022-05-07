@@ -1,0 +1,16 @@
+<table>
+    <tr>
+      <% if @devices.present? %>
+        <td valign=top><b><%= _('connection_point_s') %>:</b></td>
+        <td>
+          <% @devices.each do |device| %>
+            <%= @users_scope.include?(device.user_id) ? link_nice_device(device) : device_with_owner(device) %><br/>
+          <% end %>
+        </td>
+      <% elsif params[:ip].present? %>
+        <td valign=top><%= _('No_Connection_Points_found') %></td>
+      <% end %>
+    </tr>
+  <br/>
+  <br/>
+</table>

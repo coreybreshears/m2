@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>./basic.case</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">./basic.case</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_DASHBOARD_Quick_Stats_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Verify that quick stats are shown in main page, and there's no link to quick stats-->
+<tr>
+	<td>open</td>
+	<td>/billing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>quick_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_calls</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_duration</td>
+	<td>01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_calls</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_duration</td>
+	<td>exact:01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+0?:00) Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_calls</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_duration</td>
+	<td>01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_calls</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_duration</td>
+	<td>exact:01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<!--Kita valiuta-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>1.87 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>8.39 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>6.52 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=img[alt=&quot;Arrow refresh&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>01:07:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>1.87 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>8.39 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>6.52 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_selfcost</td>
+	<td>1.87 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>8.39 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>6.52 €</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=img[alt=&quot;Arrow refresh&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8.83</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=time_format</td>
+	<td>label=M:S</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_number_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_currency_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>label=;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>exact:67:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2;532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11;358665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8;826665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=inv_user_billsec</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>exact:67:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/set_billsec_zero</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<!--billsec nustatytas i 0, bet kaina turi nepasikeisti-->
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>67:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<!--papildomi active calls skambučiai, kad patikrintume, ar tikrai ima iš active calls lentos-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/active_calls_count</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_link</td>
+	<td>4 / 0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Calls_List_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=day_duration</td>
+	<td>exact:67:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_selfcost</td>
+	<td>$ 2;532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_cost</td>
+	<td>$ 11;358665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_profit</td>
+	<td>$ 8;826665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#day_calls &gt; a</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=29</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_duration</td>
+	<td>exact:67:07</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_selfcost</td>
+	<td>$ 2;532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_profit</td>
+	<td>$ 8;826665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_margin</td>
+	<td>78 %</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Quick stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=9</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_duration</td>
+	<td>exact:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=month_price</td>
+	<td>$ 2;532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#day_calls &gt; a</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_duration</td>
+	<td>exact:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_price</td>
+	<td>$ 2;532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance</td>
+	<td>$ 0;000000</td>
+</tr>
+</tbody></table>
+</body>
+</html>

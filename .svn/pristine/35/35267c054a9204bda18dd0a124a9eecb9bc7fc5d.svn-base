@@ -1,0 +1,360 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'aggregate_export_form' %>
+    <%= stylesheet_link_tag "aggregate_export.css" %>
+<% end %>
+
+<div class="row">
+  <div class="col">
+    <h2><%= _('General') %></h2>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :name, class: 'input', size: 27, maxlength: 255 %>
+      </div>
+    </div>
+    <div class="column date-col calendar-holder">
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'from', _('aggregate_export_active_from') %>
+      </div>
+      <div class="input-col">
+        <div >
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'date_from', nice_date(options[:from], 0), class: 'checkin default', id: 'from' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'time_from', options[:from].strftime("%H:%M"), id: 'time1' %>
+              <%= hidden_field_tag 'time1' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'till', _('aggregate_export_active_till') %>
+      </div>
+      <div class="input-col">
+        <div >
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'date_till', nice_date(options[:till], 0), class: 'checkout default' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'time_till', options[:till].strftime("%H:%M"), id: 'time2' %>
+              <%= hidden_field_tag 'time2' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Email_send_time') %></label>
+      </div>
+      <div class="input-col" id="div_cdr_export_at_datetime">
+        <div class="column timepicker-col time-holder">
+          <div class="row">
+            <div class="time-col" style="width: 60px;">
+              <%= text_field_tag 'auto_aggregate_export[email_send_time]', '%02d' % auto_aggregate_export.email_send_time, class: 'checkin2 default _noMinutes', id: 'time12' %>
+              <%= link_to 'clock', {}, class: 'clock-link2', href: '#' %>
+            </div>
+            <div class="label-col" style="width: auto;"><label>&nbsp;:00:00</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Template') %></label>
+      </div>
+      <div class="input-col">
+       <%= f.select(:template_id, options_for_search_template(auto_aggregate_export.template_id)) %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+         <%= f.label :send_auto_agg, _('Send_aggregates_to') %>:
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col pushed left">
+        <%= f.label :send_auto_agg_to_user, _('User') %>
+      </div>
+      <div class="input-col">
+            <%= render 'shared/m2_live_search_field',
+                        object: options[:s_user],
+                        object_id: options[:s_user_id],
+                        object_name: 'User',
+                        action_url: {
+                          controller: :users, action: :get_users_map,
+                          options: {
+                            show_admin_only_for_admin: true,
+                            show_managers: true
+                          }
+                        }
+            %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col pushed left">
+        <%= f.label :send_auto_agg_to_user_email, _('Email') %>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :email, class: 'input', size: 27, maxlength: 255 %>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+
+    <h2><%= _('Aggregate_Date') %></h2>
+    <div class="input-row" style="padding: 0 0 0px 20px;">
+      <div class="label-col">
+        <label><%= _('aggregates_period') %></label>
+      </div>
+      <div class="input-col" style="position:relative; bottom: 10px">
+        <div class="only-one-line">
+          Last &nbsp;
+        </div>
+        <div class="number-input">
+          <%= f.text_field :period, class: 'input', size: 8, maxlength: 255 %>
+        </div>
+        <div class="only-one-line select-input">
+        <%= f.select(:period_type, options_for_agg_period(auto_aggregate_export.period_type)) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row hours_of_day">
+      <div class="label-col">
+        <label><%= _('aggregates_from') %></label>
+      </div>
+      <div class="input-col" id="div_cdr_export_at_datetime">
+        <div class="column timepicker-col time-holder">
+          <div class="row">
+            <div class="time-col" style="width: 60px;">
+              <%= text_field_tag 'auto_aggregate_export[from_time]', '%02d' % auto_aggregate_export.from_time, class: 'checkin2 default _noMinutes', id: 'time12' %>
+              <%= link_to 'clock', {}, class: 'clock-link2', href: '#' %>
+            </div>
+            <div class="label-col" style="width: auto;"><label>&nbsp;:00:00</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row hours_of_day">
+      <div class="label-col">
+        <label><%= _('aggregates_till') %></label>
+      </div>
+      <div class="input-col" id="div_cdr_export_at_datetime">
+        <div class="column timepicker-col time-holder">
+          <div class="row">
+            <div class="time-col" style="width: 60px;">
+              <%= text_field_tag 'auto_aggregate_export[till_time]', '%02d' % auto_aggregate_export.till_time, class: 'checkin2 default _noMinutes', id: 'time12' %>
+              <%= link_to 'clock', {}, class: 'clock-link2', href: '#' %>
+            </div>
+            <div class="label-col" style="width: auto;"><label>&nbsp;:59:59</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <h2><%= _('Recurrence_pattern') %></h2>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Recurrence_type') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.select(:recurrence_type, options_for_rec_type(auto_aggregate_export.recurrence_type)) %>
+      </div>
+    </div>
+
+    <!-- HOURLY -->
+    <div class="hourly" style="padding-left: 7.5%;">
+      <div class="one-line">
+        <div class="one-line">
+          <label><%= _('Every') %></label>&nbsp;
+        </div>
+        <div class="number-input fre_type_1_daily">
+          <%= f.text_field :frequency, class: 'input', size: 8, maxlength: 255 %>
+        </div>
+        <div class="one-line">
+          <label>&nbsp;<%= _('hours(s)') %></label>&nbsp;
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY -->
+
+    <div class="daily" style="padding-left: 7.5%;">
+      <div class="one-line">
+        <%= f.radio_button(:frequency_type, '1', class: 'auto_aggregate_export_frequency_type_1') %>
+      </div>
+      <div class="fre_type_1_daily one-line">
+        <div class="one-line">
+          <label><%= _('Every') %></label>&nbsp;
+        </div>
+        <div class="number-input fre_type_1_daily">
+          <%= f.text_field :frequency, class: 'input', size: 8, maxlength: 255 %>
+        </div>
+        <div class="one-line">
+          <label>&nbsp;<%= _('day(s)') %></label>&nbsp;
+        </div>
+      </div>
+    </div>
+
+    <div class="daily" style="padding-left: 7.5%;">
+      <div class="one-line">
+        <%= f.radio_button(:frequency_type, '2', class: 'auto_aggregate_export_frequency_type_2') %>
+      </div>
+      <div class="fre_type_2_daily one-line">
+        <div class="one-line">
+          <label><%= _('Every_weekday') %></label>&nbsp;
+        </div>
+      </div>
+    </div>
+
+
+    <!-- END OF DAILY -->
+
+    <!-- WEEKLY -->
+
+    <div class="weekly" style="padding-left: 7.5%; position:relative; top: -10px;">
+      <div class="one-line">
+        <label><%= _('Recur_every') %></label>&nbsp;
+      </div>
+      <div class="number-input">
+        <%= f.text_field :frequency, class: 'input', size: 8, maxlength: 255 %>
+      </div>
+      <div class="one-line">
+        <label>&nbsp;<%= _('week(s)') %></label>&nbsp;
+      </div>
+      <div class="one-line">
+        <label>&nbsp;<%= _('on') %></label>&nbsp;
+      </div>
+      <div class="one-line select-input">
+        <%= f.select(:day_of_week, options_for_day_of_week(auto_aggregate_export.day_of_week)) %>
+      </div>
+    </div>
+
+    <!-- END OF WEEKLY -->
+
+    <!-- MONTHLY -->
+
+    <div class="monthly" style="padding-left: 7.5%;">
+      <div class="one-line">
+        <%= f.radio_button(:frequency_type, '21', class: 'auto_aggregate_export_frequency_type_1') %>
+      </div>
+      <div class="fre_type_1_monthly one-line">
+        <div class="one-line">
+          <label><%= _('Day') %></label>&nbsp;
+        </div>
+        <div class="number-input fre_type_1_monthly">
+          <%= f.text_field :day, class: 'input', size: 8, maxlength: 255 %>
+        </div>
+        <div class="one-line">
+          <label>&nbsp;<%= _('of_every') %></label>&nbsp;
+        </div>
+        <div class="number-input fre_type_1_monthly">
+          <%= f.text_field :month, class: 'input', size: 8, maxlength: 255 %>
+        </div>
+        <div class="one-line">
+          <label>&nbsp;<%= _('month(s)') %></label>&nbsp;
+        </div>
+      </div>
+    </div>
+
+    <div class="monthly" style="padding-left: 7.5%;">
+      <div class="one-line">
+        <%= f.radio_button(:frequency_type, '22', class: 'auto_aggregate_export_frequency_type_2') %>
+      </div>
+      <div class="fre_type_2_monthly one-line">
+        <div class="one-line">
+          <label><%= _('The') %></label>&nbsp;
+        </div>
+        <div class="one-line select-input">
+          <%= f.select(:day, options_for_days(auto_aggregate_export.day)) %>
+        </div>
+        <div class="one-line select-input" style="padding-left: 2px;">
+          <%= f.select(:day_of_week, options_for_day_of_week(auto_aggregate_export.day_of_week)) %>
+        </div>
+        <div class="one-line">
+          <label style="white-space: nowrap;"><%= _('of_every') %></label>&nbsp;
+        </div>
+        <div class="number-input fre_type_2_monthly">
+          <%= f.text_field :month, class: 'input', size: 8, maxlength: 255 %>
+        </div>
+        <div class="one-line">
+          <label>&nbsp;<%= _('month(s)') %></label>&nbsp;
+        </div>
+      </div>
+    </div>
+
+    <!-- END OF MONTHLY -->
+
+    <!-- YEARLY -->
+
+    <div class="yearly" style="padding-left: 7.5%">
+      <div class="one-line">
+        <label><%= _('Recur_every') %></label>&nbsp;
+      </div>
+      <div class="number-input">
+        <%= f.text_field :frequency, class: 'input', size: 8, maxlength: 255 %>
+      </div>
+      <div class="one-line">
+        <label>&nbsp;<%= _('year(s)') %></label>&nbsp;
+      </div>
+    </div>
+
+    <div class="yearly" style="padding-left: 13.5%;">
+      <div class="one-line">
+        <%= f.radio_button(:frequency_type, '31', class: 'auto_aggregate_export_frequency_type_1') %>
+      </div>
+      <div class="fre_type_1_yearly one-line">
+        <div class="one-line">
+          <label><%= _('On') %></label>&nbsp;
+        </div>
+        <div class="one-line select-input fre_type_1_yearly">
+          <%= f.select(:month, options_for_months(auto_aggregate_export.month)) %>
+        </div>
+        <div class="number-input fre_type_1_yearly" style="padding-left: 2px;">
+          <%= f.text_field :day, class: 'input', size: 8, maxlength: 255 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="yearly" style="padding-left: 13.5%;">
+      <div class="one-line">
+        <%= f.radio_button(:frequency_type, '32', class: 'auto_aggregate_export_frequency_type_2') %>
+      </div>
+      <div class="fre_type_2_yearly one-line">
+        <div class="one-line">
+          <label><%= _('On_The') %></label>&nbsp;
+        </div>
+        <div class="one-line select-input fre_type_2_yearly">
+          <%= f.select(:day, options_for_days(auto_aggregate_export.day)) %>
+        </div>
+        <div class="one-line select-input fre_type_2_yearly" style="padding-left: 2px;">
+          <%= f.select(:day_of_week, options_for_day_of_week(auto_aggregate_export.day_of_week)) %>
+        </div>
+        <div class="one-line">
+          <label><%= _('of') %></label>&nbsp;
+        </div>
+        <div class="one-line select-input fre_type_2_yearly">
+          <%= f.select(:month, options_for_months(auto_aggregate_export.month), class: 'tests') %>
+        </div>
+      </div>
+    </div>
+
+    <!-- END OF YEARLY -->
+  </div>
+</div>

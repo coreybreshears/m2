@@ -1,0 +1,168 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'dpeer_tpoints' %>
+<% end %>
+
+<% @create_button_name = 'assign_termination_point' %>
+<% content_for :create_form do %>
+    <%= form_tag({action: :assign_termination_point, id: @dial_peer.id}, {id: 'create-form', class: 'calls-form', visible: show_create}) do %>
+        <fieldset>
+          <div style="min-width: 286px; max-width: 496px;" id="new_termination_point_device_id_style" class="column cause-col">
+            <%= label_tag 'name', _('termination_point') %>
+            <div class="row">
+              <%= select :new_termination_point, :device_id,
+                         options_for_select((@active_devices.blank? ? [[_('None'), -1]] : @active_devices.visible.map { |device| [nice_device_dp(device, {image: false}), device.id] }.sort),
+                                            params[:new_termination_point].try(:[], :device_id).to_s)
+              %>
+            </div>
+          </div>
+          <div class="column cause-col-quarter column-quarter">
+            <%= label_tag 'name', _('Percent') %>
+            <div class="row-quarter">
+              <%= text_field :new_termination_point, :tp_percent,
+                             type: :text, size: 15,
+                             value: params[:new_termination_point].try(:[], :tp_percent).to_s,
+                             :placeholder => '100',
+                             class: 'text-quarter'
+              %><div class="row-quarter-suffix">&nbsp;%</div>
+            </div>
+          </div>
+          <div class="column cause-col-quarter column-quarter">
+            <%= label_tag 'description', _('weight') %>
+            <div class="row-quarter">
+              <%= text_field :new_termination_point, :tp_weight,
+                             type: :text, size: 30,
+                             value: params[:new_termination_point].try(:[], :tp_weight).to_s,
+                             :placeholder => '1',
+                             class: 'text-quarter'
+              %>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= submit_tag _('Cancel'), type: :reset,
+                             onClick: "$('#new_termination_point_device_id').prop('selectedIndex', 0);
+                                       $('#new_termination_point_device_id')[0].jcf.buildDropdown();
+                                       $('#new_termination_point_device_id')[0].jcf.refreshState();
+                                       $(\"#create-form\").toggle();"
+              %>
+              <%= submit_tag _('Assign'), onClick: "this.disabled=true; this.value='Processing'; this.form.submit();", id: 'assign-button' %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<div class="content-box" style="overflow:auto;">
+  <div class="table-box" style="min-width: 700px;">
+    <h2 style="padding: 3px 23px 3px;">
+      <table style="min-width: 650px;">
+        <tr>
+          <td style="text-align: left; padding-left: 0;">
+            <%= _('dial_peer_colon') %><%= link_nice_dial_peer(@dial_peer) %> <%= ' - ' %> <%= _('termination_point') %>
+          </td>
+          <td style="font-size: 11px; text-align: right; padding: 0; color: #565759; white-space: nowrap; text-overflow:ellipsis; overflow:hidden; max-width: 150px;" <%= tooltip(_('Dst_regexp').upcase, @dial_peer.dst_regexp.to_s.scan(/.{80}/).join('<br/>')) if @dial_peer.dst_regexp.present?%> >
+            <b><%= _('Dst_regexp').upcase + ': ' if @dial_peer.dst_regexp.present? %></b>
+            <span style="font-size: 13px; font-weight: 400;"><%= @dial_peer.dst_regexp.to_s %></span>
+          </td>
+          <td style="font-size: 11px; text-align: left; padding: 0 0 0 25px; width: 100px; color: #565759; white-space: nowrap; ">
+            <b><%= _('tp_priority').upcase %>: </b>
+            <span style="font-size: 13px; font-weight: 400;"><%= @dial_peer.tp_priority.to_s %></span>
+          </td>
+        </tr>
+      </table>
+    </h2>
+    <div class="table-holder">
+      <% if @dial_peer.dpeer_tpoints.blank? %>
+          <%= _('No_Assigned_Termination_Points') %>
+      <% else %>
+          <table class="table-with-delete">
+            <tr>
+              <th class="dptp-active" ><%= _('Active_in_dial_peer') %></th>
+              <th class="dptp-active" ><%= _('Active') %></th>
+              <th class="dptp-name"><%= _('Name') %></th>
+              <th class="dptp-percent"><%= _('Call_limit') %></th>
+              <th class="dptp-percent"><%= _('CPS_Limit') %></th>
+              <th class="dptp-percent"><%= _('Percent') %></th>
+              <th class="dptp-weight"><%= _('weight') %></th>
+              <th></th>
+            </tr>
+            <% @dial_peer.dpeer_tpoints.each do |dptp| %>
+                <tr>
+                  <td id="active_<%= dptp.id %>" class="dptp-active_list">
+                    <%= link_to(_('_Yes').upcase, {action: :change_status_termination_point, id: dptp.id},
+                                {method: :post}) if dptp.active == 1
+                    %>
+                    <%= link_to(_('_No').upcase, {action: :change_status_termination_point, id: dptp.id},
+                                {method: :post, style: 'color:#D8D8D8;'}) if dptp.active == 0
+                    %>
+                  </td>
+                  <td id="active_tp<%= dptp.id %>" class="dptp-active_list">
+                    <% tp_active = dptp.device.tp_active.to_i %>
+                    <%= _('Yes').upcase unless  tp_active.zero? %>
+                    <%= _('No').upcase if tp_active.zero? %>
+                  </td>
+                  <td id="name_<%= dptp.id %>" class="dptp-name_list">
+                    <%= termination_point_name(dptp, {link: true}) %>
+                  </td>
+                  <td class="dptp-call_limit_list">
+                    <%= text_field_tag "call_limit", dptp.tp_call_limit.to_i < 0 ? '' : dptp.tp_call_limit.to_i, class: 'dptp-call_limit_imput', id: "call_limit_#{dptp.id}" %>
+                  </td>
+                  <td class="dptp-cps_list">
+                    <%= text_field_tag "cps", dptp.tp_cps.to_i < 0 ? '' : dptp.tp_cps.to_i, class: 'dptp-cps_imput', id: "cps_#{dptp.id}" %>
+                  </td>
+                  <td class="dptp-percent_list">
+                    <%= text_field_tag "percent", dptp.tp_percent.to_i, class: 'dptp-percent_imput', id: "percent_#{dptp.id}" %><%= ' %'%>
+                  </td>
+                  <td class="dptp-weight_list">
+                    <%= text_field_tag "weight", dptp.tp_weight.to_i, class: 'dptp-weight_imput', id: "weight_#{dptp.id}" %>
+                  </td>
+                  <td id="destroy_<%= dptp.id %>" class="dptp-delete">
+
+                    <%= button_to 'REMOVE', {action: :remove_termination_point,
+                                             id: @dial_peer.id, tp_id: dptp.id},
+                                  onclick: "return confirm('Are you sure?')",
+                                  class: 'delete_button',
+                                  method: :post, id: 'delete_link_' + dptp.id.to_s
+                    %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    function EnableDisable() {
+        if ($('#new_termination_point_device_id').val() == -1) {
+            Disable()
+        } else {
+            Enable()
+        }
+    }
+
+    EnableDisable();
+
+    $('#new_termination_point_device_id').on("change", function() { EnableDisable(); });
+
+    function Enable() { $('#assign-button').removeAttr('disabled'); }
+    function Disable() { $('#assign-button').attr('disabled', true); }
+
+    function change_size() {
+        var string = document.getElementById('new_termination_point_device_id');
+        var max_length = 0;
+        var length, width_size;
+
+        for (var i = 0; i < string.length; ++i) {
+            length = string.options[i].text.length;
+            if (max_length < length) {
+                max_length = length
+            }
+        }
+        width_size = (max_length * 8) + "px";
+        $('#new_termination_point_device_id_style').css({width: width_size})
+    }
+
+    change_size();
+</script>

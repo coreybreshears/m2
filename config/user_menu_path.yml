@@ -1,0 +1,79 @@
+# This file is required to find a path to any action in system
+#
+# controller:                  - current controller
+#   action:                    - current action
+#     link:                    - if blank then not a link, just text
+#     name:                    - if blank then should be taken from params[:spec_param_for_layout_name]
+#     parent:                  - if blank then this should be a parent from menu, or it does not belongs to any
+#       controller:            - parent controller
+#       action:                - parent action
+#       not_showing:           - if false then do not show this parent in a path row
+# parent_controller:
+#   parent_action:
+#     link:
+#     name:
+#
+#
+# NOTE: if controller/action has no parent then this action is in the menu bar, or it does not belong to any.
+#
+# users_menu_structure:
+callc:
+  main:
+    link: "callc/main"
+    name: "Dashboard"
+calls:
+  menu:
+    name: 'Calls'
+payments:
+  personal_payments:
+    link: "payments/personal_payments"
+    name: "Payments"
+stats:
+  calls_list:
+    name: 'Calls List'
+    link: 'stats/calls_list'
+    parent:
+      controller: 'calls'
+      action: 'menu'
+  active_calls:
+    name: 'Active Calls'
+    link: 'stats/active_calls'
+    parent:
+      controller: 'calls'
+      action: 'menu'
+  country_stats:
+    link: "stats/country_stats"
+    name: "Destination Groups Stats"
+devices:
+  user_devices:
+    link: "devices/user_devices"
+    name: "Connection Points"
+m2_invoices:
+  user_invoices:
+    link: 'm2_invoices/user_invoices'
+    name: 'Invoices'
+  user_invoice_details:
+    link: 'm2_invoices/user_invoice_details'
+    name: 'Details'
+    parent:
+      controller: 'm2_invoices'
+      action: 'user_invoices'
+users:
+  personal_details:
+    link: "users/personal_details"
+    name: "Personal Details"
+  update_user_personal_details:
+    link: 'users/update_user_personal_details'
+    name: 'Personal Details'
+tariffs:
+  rates:
+    name: "Tariff"
+    parent:
+      controller: "devices"
+      action: "user_devices"
+      not_showing: true
+  rates_list:
+    name: "Tariff Rates"
+    parent:
+      controller: "devices"
+      action: "user_devices"

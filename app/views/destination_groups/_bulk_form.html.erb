@@ -1,0 +1,67 @@
+<div class="form_background">
+  <%= form_tag :controller => :destination_groups, :action => :bulk_rename_confirm do %>
+      <b>
+        <%= _('Prefix') %>:
+		<%= text_field_tag 'prefix', saved[:prefix_1], "class" => "input", :size => "20", :maxlength => "40", :id => "destination_prefix" %>
+        <%= _('Destination_details') %>: <%= text_field_tag 'destination', saved[:destination], "class" => "input", :size => "20", :maxlength => "40", :id => "destination_name" %>
+      </b>
+      <%= submit_tag _('Rename'), :disable_with => _('Processing..') %>
+  <% end %>
+
+  <br/>
+
+  <%= form_tag(:controller => :destination_groups, :action => :bulk_management_confirmation) do %>
+      <b>
+        <%= _('Prefix') %>:
+        <%= text_field_tag 'prefix',  saved[:prefix_2], "class" => "input", :size => "20", :maxlength => "40", :id => "prefix_bulk" %>
+        <% content_for :scripts do %>
+            <script type="text/javascript">
+			   $j('document').ready (function() {
+                var dg = $j("#destination_destinationgroup_id");
+                var orig_dg = '<%= [_('Not_assigned'), ""] %>';
+                var dg_path = '<%= [Web_Dir, "/destination_groups/list_json"].map{|d| d unless d.blank?}.compact.join("") %>';
+                 mor_functions["populateSelect"](dg_path, dg, orig_dg);
+			   });
+            </script>
+        <% end %>
+        <%= _('Assign_to_group') %>:
+        <%= select_tag 'id', options_for_select([[_('Not_assigned'), ""]]), {:id => "destination_destinationgroup_id", :style => "width : 250px"} %>
+        <%= submit_tag _('Reassign'), :disable_with => _('Processing..') %>
+        <p><%= _('How_to_use_destinations_bulk_management') %></p>
+      </b>
+
+      <p><%= _('Supported_regexp_symbols') %>:</p>
+
+      <p>
+        % - <%= _('matches_any_symbol_any_number_of_times') %>
+        <br/>
+        [1,2,3,4]% - <%= _('matches_destinations_beginning_whit_1_2_3_and_4') %>
+      </p>
+
+      <p><%= _('Examples') %>:</p>
+
+      <p>
+        370% - <%= _('will_match_numbers') %> 370xxxxxxxxx
+        <br/>
+        370[1,3,9]% - <%= _('will_match_numbers') %> 3701xxxxxxxx, 3703xxxxxxxx <%= _('and') %> 3709xxxxxxxx
+      </p>
+
+  <% end %>
+
+  <br/>
+
+  <%= form_tag(controller: :destination_groups, action: :bulk_management_merge_confirmation) do %>
+      <b>
+        <%= _('Merge') %>
+        <%= select_tag 'bulk_merge_from_dg_id', options_from_collection_for_select(Destinationgroup.order(:name).all, :id, :name, saved[:bulk_merge_from_dg_id].to_i), {id: 'bulk_merge_from_dg_id', style: 'width: 250px;'} %>
+        <%= _('to') %>
+        <%= select_tag 'bulk_merge_to_dg_id', options_from_collection_for_select(Destinationgroup.order(:name).all, :id, :name, saved[:bulk_merge_to_dg_id].to_i), {id: 'bulk_merge_to_dg_id', style: 'width: 250px;'} %>
+        <%= submit_tag _('Merge'), disable_with: _('Processing..') %>
+      </b>
+      <p style="color: grey;">
+        <%= _('All_prefixes_will_be_moved_from_one_Destination_Group_to_another') %>
+        <br/>
+        <%= _('First_DestGroup_will_be_deleted') %>
+      </p>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+<tr>
+  <td height="20"></td>
+</tr>
+
+<tr id="servers_checkbox_title">
+  <td class="bottom_border">
+    <b><%= b_server + _('Servers') %></b>
+  </td>
+</tr>
+<tr>
+  <td height="10"></td>
+</tr>
+<tr id="servers_checkboxes">
+  <td colspan="2">
+    <table id="servers" name="servers" width="100%" style="...">
+      <% servers.each { |serv| %>
+          <tr>
+            <td><%= nice_server(serv) %></td>
+            <td>
+              <% if serv.try(:server_type).to_s == 'sip_proxy' %>
+                <%= b_server + _('sip_proxy') %>
+              <% else %>
+                <%= check_box_tag "add_to_servers[#{serv.id}]", 1,
+                  server_devices[serv.id].to_i == 1, disabled: !serv.active? %>
+              <% end %>
+            </td>
+          </tr>
+      <% } %>
+    </table>
+  </td>
+</tr>

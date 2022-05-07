@@ -1,0 +1,49 @@
+<% if admin? || manager?%>
+    <%= link_to_function(b_edit + _('Bulk_management'), "Element.toggle('search_details')") %>
+    <%= link_to b_csv + _('Import_CSV'), {action: :csv_upload}, class: 'dst_group_import_from_csv_link' %>
+    <br/>
+    <div id="search_details" style='display:none;'>
+      <br/>
+      <%= render 'bulk_form', saved: @saved %>
+    </div>
+    <br/>
+<% end %>
+<%= render 'letter_select_header', st: @st, letter_select_header_id: @letter_select_header_id%>
+
+<br/>
+<table width="100%" class="maintable">
+  <tr>
+    <th id="name" align="left"><%= _('Name') %></th>
+    <th id="destinations" align="left"><%= _('Destinations') %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @destinationgroups.each_with_index do |dg, index| %>
+      <tr class="row<%= (index % 2 + 1).to_s %>">
+        <td id="name_<%=dg.id %>"><%= draw_flag_by_code dg.flag %> <%= h dg.name %></td>
+        <td id="destinations_<%=dg.id %>" align="left"><%= link_to b_view + _('View'), :action => 'destinations', :id => dg.id %>
+          (<%= dg.destinations.count %>)
+        </td>
+        <td id="edit_<%=dg.id %>" align="center"><%= link_to b_edit, :action => 'edit', :id => dg.id %></td>
+        <td id="delete_<%=dg.id %>" align="center"><%= link_to b_delete, { action: :destroy, id: dg.id }, data: { confirm: _('Are_you_sure') }, method: :post, id: "destroy_img#{dg.id}" %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+<%= render 'letter_select_header', st: @st, letter_select_header_id: @letter_select_header_id%>
+<br/>
+
+<%= link_to b_add + _('New_destination_group'), :action => 'new' %>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        var show_bulk_management = false;
+        show_bulk_management = <%= !!params[:show_bulk_management] %>;
+
+        if (show_bulk_management) {
+            Element.toggle('search_details');
+        }
+    })
+</script>

@@ -1,0 +1,31 @@
+<% if disconnect_codes.present? %>
+  <table class="maintable disconnect_codes_table">
+    <thead>
+      <th class="left-item disconnect_codes-namespace"><%= _('Namespace') %></th>
+      <th class="left-item left-item disconnect_codes-code"><%= _('Code') %></th>
+      <th class="left-item disconnect_codes-reason"><%= _('Reason') %></th>
+      <th class="left-item disconnect_codes-changed_code_reason code_reason-header"><%= _('Changed_Code') %>/<%= _('Reason') %></th>
+      <!-- <th class="left-item disconnect_codes-success_when_non_zero_billsec"><%= _('Success_when_non_zero_billsec') %></th> -->
+      <th class="left-item disconnect_codes-q_850"><%= _('Q_850') %></th>
+      <th class="left-item disconnect_codes-reroute"><%= _('Reroute') %></th>
+      <th class="left-item disconnect_codes-save_cdr"><%= _('Save_CDR') %></th>
+      <th class="left-item disconnect_codes-pass_reason_header"><%= _('Reason_header') %></th>
+      <th class="disconnect_codes-action_header">
+        <% if dc_group_id == 1 || dc_group_id == 2 %>
+          <div <%= 'class="disconnect-codes-disabled-link"'.html_safe if dc_group_id == 1 %>><%= _('Reset') %></div>
+        <% else %>
+          <%= _('Delete') %>
+        <% end %>
+      </th>
+    </thead>
+    <tbody>
+        <% disconnect_codes.each_with_index do |code, index| %>
+            <tr id="disconnect_code_<%= code.code %>"<%= 'class="even"'.html_safe if (index + 1) % 2 == 0 %>>
+              <%= render 'disconnect_codes_list_row', code: code, dc_group_id: dc_group_id %>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= _('No_disconnect_codes_found') %>
+<% end %>

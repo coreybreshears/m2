@@ -1,0 +1,8 @@
+<% if @destination.blank? %>
+    <%= _('Destination_not_found') %>
+<% elsif @destination.prefix.to_i.to_s != @destination.prefix.to_s %>
+    <%= _('Destination_Prefix_is_not_numeric') %>
+<% else %>
+	<%= "#{@destination.prefix} - #{draw_flag(@destination.direction_code.to_s)} #{@destination.name}".html_safe %>
+<% end %>
+

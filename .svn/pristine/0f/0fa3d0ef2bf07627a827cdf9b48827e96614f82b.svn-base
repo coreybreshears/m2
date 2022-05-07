@@ -1,0 +1,333 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxcheckbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.edit.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<% content_for :create_form do %>
+  <%= form_tag({action: :generate_invoices_status}, {id: 'create-form', class: 'calls-form', visible: show_create && !show_search}) do |f| %>
+  <fieldset>
+   <div class="column cause-col">
+        <div class="row">
+          <%= label_tag 'user', _('User') %>
+            <div class="row">
+            <div class="col">
+            <tr><td>
+                <%= render('shared/m2_live_search_field',
+                   object: @options[:s_user].to_s,
+                   object_id: @options[:s_user_id],
+                       object_name: 'User',
+                       action_url: {
+                            controller: :users, action: :get_users_map,
+                            options: { show_users_only: true,
+                            show_optionals: [_('All')]}
+                       }
+                    )
+                %>
+            </td></tr>
+            </div>
+        </div>
+       </div>
+      </div>
+      <%= render 'shared/date_picker', options: {
+                                                  name: 'invoice_period',
+                                                  date_from: @options[:from],
+                                                  date_till: @options[:till],
+                                                  prefix_from: 'period_start',
+                                                  prefix_till: 'date_till',
+                                                  id_from: 'from',
+                                                  id_till: 'till',
+                                                  class_from: 'checkin3 default',
+                                                  class_till: 'checkout3 default',
+                                                  select_values: DatePicker.default_values.except(:today, :this_week, :this_month, :this_year, :year_to_date)
+                                                }%>
+
+    <div class="column date-col calendar-holder">
+      <div class="row">
+        <%= label_tag 'issue', _('issue_date') %>
+        </br>
+        <div class="calendar-col" >
+          <%= text_field_tag 'issue', formatted_date_as_given(@options[:issue]), class: 'issue3 default', id: 'issue' %>
+          <%= link_to 'date', {}, class: 'date-link', href: '#' %>
+        </div>
+      </div>
+      </div>
+      </br>
+      <div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          </br>
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('Generate') %>
+        </div>
+      </div>
+      </div>
+  </fieldset>
+  <% end %>
+<% end %>
+
+<% content_for :search_form do %>
+    <%= form_tag({action: :list}, {id: 'search-form', class: 'calls-form customer-invoice',  visible: show_search && !show_create}) do %>
+      <fieldset>
+      <div class="column cause-col">
+        <div class="row">
+          <%= label_tag 'user', _('User') %>
+          <%= text_field_tag 's_nice_user', @options[:s_nice_user], "class" => "input", :size => "15", :maxlength => "30" %>
+          </br>
+          <%= label_tag 'number', _('Number') %>
+          <%= text_field_tag 's_number', @options[:s_number], "class" => "input", :size => "15", :maxlength => "30" %>
+        </div>
+      </div>
+      <div class="column cause-col">
+        <div class="row">
+          <%= label_tag 'period_start', _('period_start') %>
+          <%= select_tag("s_period_start", select_period_start, :style => "width: 105px") %>
+          </br>
+          <%= label_tag 'issue_date', _('issue_date') %>
+          <%= select_tag("s_issue_date", select_issue_date, :style => "width: 105px") %>
+        </div>
+      </div>
+      <div class="column cause-col">
+        <div class="row">
+          <%= label_tag 'period_end', _('period_end') %>
+          <%= select_tag("s_period_end", select_period_end, :style => "width: 105px") %>
+          </br>
+          <%= label_tag 'status', _('Status') %>
+          <%= select_tag("s_status", select_status(@options[:s_status]), :style => "width: 105px") %>
+        </div>
+      </div>
+      <div class="column cause-col" id="price-between">
+        <%= label_tag 'price_between', _('price_between') %>
+        <div class="row">
+          <div class="price-col" style="padding-right: 5%;">
+            <%= text_field_tag 's_min_amount', @options[:s_min_amount], "class" => "default", :size => "7", :maxlength => "20" %>
+          </div>
+          <div class="price-dash">-</div>
+          <div class="price-col" style="padding-left: 2%;">
+            <%= text_field_tag 's_max_amount', @options[:s_max_amount], "class" => "default", :size => "7", :maxlength => "20" %>
+          </div>
+          <div class="price-col" style="margin-top: -4px;">
+            </br>
+            <%= label_tag 'currency', _('Currency') %>
+            <%= select_tag("s_currency", select_currency, :style => "width: 55px") %>
+          </div>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row invoice-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('refine') %>
+        </div>
+      </div>
+      </fieldset>
+    <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Customer_invoices_list') %></h2>
+    <div id="customer_invoices_list"></div>
+      <%= form_tag( {action: :customer_invoices_recalculate}, {id: 'customer_invoices_form_id', class: 'calls-form customer-invoice-recalculating'} ) do %>
+        <%= hidden_field_tag 'invoices_ids', '', id: 'invoices_ids' %>
+        <%= hidden_field_tag 'invoices_numbers', '', id: 'invoices_numbers' %>
+        <div class="customer-invoice-recalculating">
+          <%= submit_tag _('Recalculate_selected') %>
+          <%= submit_tag _('send_selected') %>
+          <%= submit_tag _('delete_selected') %>
+        </div>
+      <% end %>
+  </div>
+</div>
+
+<style type="text/css">
+    .jqx-grid-column-header:nth-child(2)
+    {
+        margin-left: 0.25%;
+    }
+</style>
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        var table_data_json = <%= customer_invoices_json(@m2_invoices_all, @float_digits) %>;
+        var source =
+        {
+            localdata: table_data_json,
+            datatype: 'json',
+            datafields: [
+                { name: 'id', type: 'integer'},
+                { name: 'user_id', type: 'integer' },
+                { name: 'user_name', type: 'string'},
+                { name: 'number', type: 'string' },
+                { name: 'status', type: 'string' },
+                { name: 'period_start', type: 'date' },
+                { name: 'period_end', type: 'date' },
+                { name: 'issue_date', type: 'date' },
+                { name: 'timezone', type: 'string' },
+                { name: 'total_amount', type: 'float' },
+                { name: 'total_amount_with_taxes', type: 'float' },
+                { name: 'currency', type: 'string' },
+                { name: 'xlsx_name', type: 'string' },
+                { name: 'pdf_name', type: 'string' },
+                { name: 'details', type: 'string' },
+                { name: 'delete', type: 'string' }
+            ],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        // A simple clipboard selection handler
+        var copyText = '';
+        // Get the selected text
+        document.addEventListener('mouseup', function() {
+            if (window.getSelection) copyText = window.getSelection().toString();
+        }, false);
+        // On copy event put it on clipboard
+        document.addEventListener('copy', function(event) {
+            event.clipboardData.setData('text/plain', copyText);
+            // Prevent from getting any other selections
+            event.preventDefault();
+        });
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+        var date_time_format = "<%= session[:date_time_format].present? ? session[:date_time_format].gsub('%Y', 'yyyy').gsub('%m', 'MM').gsub('%d', 'dd').gsub('%H', 'HH').gsub('%M', 'mm').gsub('%S', 'ss') : 'yyyy-MM-dd' %>"
+
+        var change_separator = function (row, column, value) {
+            var separator = '<%= session[:global_decimal] %>';
+            var return_val = value.toString();
+            var digits = parseInt('<%= session[:nice_currency_digits] || Confline.get_value('Nice_Currency_Digits') || 2 %>');
+            if (!isNaN(digits)) {
+                var val = parseFloat(value);
+                if (!isNaN(val)) {
+                    return_val = val.toFixed(digits).toString();
+                }
+            }
+            return '<div style="text-align: right; margin-top: 10px; margin-right: 3px">' + return_val.replace('.', separator) + '</div>';
+        };
+
+        var linkrenderer_user = function (row, column, value) {
+                var user_id = source.localdata[row].user_id;
+                return '<div style="text-align: left; margin-top: 10px; margin-left: 7px; max-width: 15%">' + "<a href='/billing/users/edit/" + user_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_xlsx = function (row, column, value) {
+                var id = source.localdata[row].id;
+                return '<div style="text-align: center; margin-top: 10px; margin-left: 2px">' + "<a href='/billing/m2_invoices/export_to_xlsx/" + id + "'>" + value + "</a></div>";
+        };
+
+        var linkrenderer_pdf = function (row, column, value) {
+                var id = source.localdata[row].id;
+                return '<div style="text-align: center; margin-top: 10px; margin-left: 2px">' + "<a href='/billing/m2_invoices/export_to_xlsx/" + id + "?as_pdf=1'>" + value + "</a></div>";
+        };
+
+        var linkrenderer_details = function (row, column, value) {
+                var id = source.localdata[row].id;
+                return '<div style="text-align: center; margin-top: 10px; margin-left: 2px">' + "<a href='/billing/m2_invoices/edit/" + id + "'>" + value + "</a></div>";
+        };
+
+        var linkrenderer_delete = function (row, column, value) {
+                var id = source.localdata[row].id;
+                var number = source.localdata[row].number;
+                return '<form class="button_to" method="post" action="/billing/m2_invoices/destroy/' + id + '?number=' + number + '"><div><input id="delete_link_' + id + '" class="delete_button" style="text-align: center; margin-top: 9px; font: 13px/18px \'Open Sans\',Arial,Helvetica,sans-serif;" type="submit" value="DELETE" onclick="return confirm(\'Are you sure?\')"><input type="hidden" value="' + "<%= form_authenticity_token %>" + '" name="authenticity_token"></div></form>';
+        };
+
+        var griddata;
+        $("#customer_invoices_list").jqxGrid(
+                {
+                    source: dataadapter,
+                    width: '100%',
+                    autoheight: true,
+                    rowsheight: 35,
+                    altrows: true,
+                    selectionmode: 'checkbox',
+                    enablebrowserselection: 'true',
+                    enabletooltips: true,
+                    showaggregates: true,
+                    showstatusbar: true,
+                    statusbarheight: 30,
+                    sortable: true,
+                    pageable: true,
+                    columnsresize: true,
+                    pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                    ready: function () {
+                        griddata = $('#customer_invoices_list').jqxGrid('getrows');
+
+                        session_sorting(
+                                'customer_invoices_list',
+                                '<%= Web_Dir %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}customer_invoices_list"][:column].to_s %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}customer_invoices_list"][:direction].to_s %>',
+                                '<%= params[:controller].to_s %>',
+                                '<%= params[:action].to_s %>'
+                        );
+
+                        if(jQuery('.content-box').data('ResizeBox')) {
+                            jQuery('.content-box').data('ResizeBox').getResize();
+                        }
+                    },
+                    columns: [
+                              { text: "<%= _('User') %>", datafield: 'user_name', width: '13.225%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_user, enabletooltips: false },
+                              { text: "<%= _('Number') %>", datafield: 'number', width: '7%', align: 'center', cellsalign: 'center', enabletooltips: false },
+                              { text: "<%= _('Status') %>", datafield: 'status', width: '7%', align: 'center', cellsalign: 'center', enabletooltips: false },
+                              { text: "<%= _('period_start') %>", datafield: 'period_start', width: '10%', align: 'center', cellsformat: date_time_format, cellsalign: 'center', enabletooltips: false },
+                              { text: "<%= _('period_end') %>", datafield: 'period_end', width: '10%', align: 'center', cellsformat: date_time_format, cellsalign: 'center', enabletooltips: false },
+                              { text: "<%= _('issue_date') %>", datafield: 'issue_date', width: '10%', align: 'center', cellsformat: date_time_format, cellsalign: 'center', enabletooltips: false },
+                              { text: "<%= _('timezone') %>", datafield: 'timezone', width: '8%', align: 'center', cellsalign: 'center' },
+                              { text: "<%= _('Price') %>", datafield: 'total_amount', width: '6.5%', align: 'right', cellsrenderer: change_separator, cellsalign: 'right', enabletooltips: false,
+                                  aggregatesrenderer: function (aggregates) {
+                                    return '<div style="text-align: right; margin-top: 6px; margin-left: 2px"><b><%= nice_currency(@totals[:amount]) %></b></div>';
+                                  }
+                              },
+                              { text: "<%= _('price_with_tax') %>", datafield: 'total_amount_with_taxes', width: '7%', align: 'right', cellsrenderer: change_separator, cellsalign: 'right', enabletooltips: false,
+                                  aggregatesrenderer: function (aggregates) {
+                                    return '<div style="text-align: right; margin-top: 6px; margin-left: 2px"><b><%= nice_currency(@totals[:amount_with_tax]) %></b></div>';
+                                  }
+                              },
+                              { text: "<%= _('currency') %>", datafield: 'currency', width: '4.5%', align: 'center', cellsalign: 'center', enabletooltips: false,
+                                  aggregatesrenderer: function (aggregates) {
+                                    return '<div style="text-align: center; margin-top: 6px; margin-left: 2px"><b><%= session[:show_currency] %></b></div>';
+                                 }
+                              },
+                              { text: " ", datafield: 'xlsx_name', width: '3%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_xlsx, enabletooltips: false },
+                              { text: " ", datafield: 'pdf_name', width: '2.5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_pdf, enabletooltips: false },
+                              { text: " ", datafield: 'details', width: '4.5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_details, enabletooltips: false },
+                              { text: " ", datafield: 'delete', width: '4.5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_delete, enabletooltips: false }
+                             ]
+                });
+
+
+
+        $('#customer_invoices_form_id').on('submit', function(event) {
+            var ids_input = $('#invoices_ids'), numbers_input = $('#invoices_numbers');
+            ids_input.empty(); numbers_input.empty();
+            var ids_result = '', numbers_result = '';
+            var getselectedrowindexes = $('#customer_invoices_list').jqxGrid('getselectedrowindexes');
+            var rows = griddata;
+            for (var i = 0, len = getselectedrowindexes.length; i < len; i++) {
+                ids_result += rows[getselectedrowindexes[i]].id + ' ';
+                numbers_result += rows[getselectedrowindexes[i]].number + ' ';
+            }
+            if (confirm(i + " <%= _('Invoices_selected_are_you_sure') %>")) {
+                ids_input.val(ids_result);
+                numbers_input.val(numbers_result);
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
+</script>

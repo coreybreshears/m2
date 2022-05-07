@@ -1,0 +1,315 @@
+<div class="content-box">
+<%= form_tag({action: 'update_user_personal_details', id: @user}, { class: 'details-form'}) do %>
+	<fieldset>
+		<div class="row">
+			<div class="col">
+				<h2><%= _('General') %></h2>
+				<div class="input-row">
+					<div class="label-col">
+						<label><%= _('Username') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'username', 'type' => 'text' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="password"><%= _('Password') %></label>
+					</div>
+					<div class="input-col">
+						<%= password_field 'user', 'password', 'type' => 'password' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<span class="label"><%= _('Balance') %></span>
+					</div>
+					<div class="input-col">
+						<span id="balance" class="text">
+							<%= nice_number(@user.balance) %> <%= @currency_name %>
+						</span>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<span class="label"><%= _('Credit') %></span>
+					</div>
+					<div class="input-col">
+						<span id="balance" class="text">
+							<%= nice_number(@user.balance_min) %> <%= @currency_name %>
+						</span>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="currency"><%= _('Default_currency') %></label>
+					</div>
+					<div class="input-col">
+						<%= select_tag('user[currency_id]', options_for_select(currencies, @user.try(:currency_id)),
+							{:class => 'currency', :disabled => 'disabled'}) %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="time-zone"><%= _('Time_zone') %></label>
+					</div>
+					<div class="input-col">
+						<%= collection_select(:user, :time_zone, time_zones, :name, :to_s, {}, {:disabled => 'disabled'}) %>
+					</div>
+				</div>
+				<% if balance_check_hash %>
+				<div class="input-row">
+					<div class="label-col">
+						<span class="label"><%= _("Link_to_check_balance") %></span>
+					</div>
+					<div class="input-col">
+						<span id="balance" class="text"><%= h("#{Web_URL}#{Web_Dir}/api/simple_balance/#{@user.get_hash}") %></span>
+					</div>
+				</div>
+				<% end %>
+			</div>
+			<div class="col">
+				<h2><%= _('Warning_Balance_Email') %></h2>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="status"><%= _('Status') %></label>
+					</div>
+					<div class="input-col">
+						<%= select_tag('user[warning_email_active]',
+							options_for_select(
+								warning_email_options,
+								@user.warning_email_active.to_i),
+							{:class => 'balance', :disabled => 'disabled'}) %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="balance"><%= _('Balance_Value') %></label>
+					</div>
+					<div class="input-col">
+						<%= text_field_tag('user[warning_email_balance]',
+							@user.warning_email_balance,
+							:class => 'balance',
+							:maxlength => '15', :disabled => 'disabled') %>
+						<span class="currency-text"><%= @currency_name %></span>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="balance"><%= _('Trigger') %></label>
+					</div>
+					<div class="input-col">
+						<div class="radio-row">
+							<%= radio_button_tag('user[warning_email_hour]', '-1',
+								(warning_email_hour == -1), :disabled => 'disabled') %>
+							<label for="when"><%= _('When_balance_drops_below_set_value') %></label>
+						</div>
+						<div class="radio-row">
+							<%= radio_button_tag('user[warning_email_hour]', '0',
+								(warning_email_hour > -1), :disabled => 'disabled') %>
+							<label for="day"><%= _('Every_day_at') %></label>
+							<%= select_hour(warning_email_hour == -1 ? 0 : warning_email_hour, {},
+								{:class => 'hour',
+								:field_name => 'user_warning_email_hour', :disabled => 'disabled'}) %>
+							<label><%= _('hour') %></label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col"></div>
+			<div class="col">
+				<h2><%= _('company_emails') %></h2>
+				<div class="input-row">
+					<div class="label-col">
+						<label><%= _('main_email') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'main_email', 'type' => 'text' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label><%= _('noc_email') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'noc_email', 'type' => 'text' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label><%= _('billing_email') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'billing_email', 'type' => 'text' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label><%= _('rates_email') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'rates_email', 'type' => 'text' %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h2>Details</h2>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="first-name"><%= _('first_name_company_name') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'first_name', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="last-name"><%= _('Last_Name') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'last_name', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="personal-id"><%= _('company_personal_id') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'clientid', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<span class="label agreement-text"><%= _('Agreement_number') %></span>
+					</div>
+					<div id="agreement_number" class="input-col">
+						<%= @user.agreement_number %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<span class="label"><%= _('Agreement_date') %></span>
+					</div>
+					<div class="input-col">
+						<span id="agreement_date" class="text"><%= nice_date(agreement_date) %></span>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="country1"><%= _('Country_of_Taxation') %></label>
+					</div>
+					<div class="input-col">
+						<select name="user[taxation_country]" disabled>
+							<% for country in @countries %>
+								<option value="<%= country.id %>"
+								<%= 'selected' if @user.taxation_country == country.id %>>
+									<%= h(country.name[0, 22]) %>
+								</option>
+							<% end %>
+						</select>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="number"><%= _('tax_reg_number') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'user', 'vat_number', 'class' => 'input' %>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<h2><%= _('Registration_address') %></h2>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="address"><%= _('Address') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'address', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="zip"><%= _('postcode_zip') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'postcode', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="city"><%= _('City') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'city', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="state"><%= _('State') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'state', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="country2"><%= _('Country') %></label>
+					</div>
+					<div class="input-col">
+						<select name="address[direction_id]" disabled>
+							<% for country in @countries %>
+								<% comp_country = user_address ? user_address.direction_id : @default_country_id %>
+								<option value="<%= country.id %>"
+								<%= 'selected' if  country.id == comp_country %>>
+									<%= h(country.name[0, 22]) %>
+								</option>
+							<% end %>
+						</select>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="phone"><%= _('Phone') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'phone', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="mobile"><%= _('Mob_phone') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'mob_phone', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="fax"><%= _('Fax') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'fax', 'class' => 'input' %>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="label-col">
+						<label for="email"><%= _('Email') %></label>
+					</div>
+					<div class="input-col disabled">
+						<%= text_field 'address', 'email', 'class' => 'input' %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="buttons-row">
+			<%= submit_tag _('CANCEL'), type: 'reset', onclick: "location.href = '#{Web_Dir}/callc/main'" %>
+			<%= submit_tag _('UPDATE'), :disable_with => 'Processing...' %>
+		</div>
+	</fieldset>
+<% end %>
+</div>

@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col extended">
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'allow_api', _('Allow_API_globally') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'allow_api', value = "1", Confline.get_value('Allow_API').to_i == 1 %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'allow_get_api', _('Allow_GET_API') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'allow_get_api', value = "1", Confline.get_value('Allow_GET_API').to_i == 1 %>
+        </div>
+      </div>
+
+      <div class="input-row" <%= tooltip(_('API_Secret_Key'), _('API_Secret_Key_Explanation')).html_safe %>>
+        <div class="label-col">
+          <%= label_tag 'api_secret_key', _('API_Secret_Key') %>
+        </div>
+        <div class="input-col api-key">
+          <%= text_field_tag('api_secret_key', Confline.get_value("API_Secret_Key") )%>
+        </div>
+      </div>
+
+      <div class="input-row" <%= tooltip(_('XML_API_Extension'), _('XML_API_Extension_Explanation')).html_safe %>>
+        <div class="label-col">
+          <%= label_tag 'xml_api_extension', _('XML_API_Extension') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'xml_api_extension', value = "1", (Confline.get_value("XML_API_Extension").to_i == 1) %>
+        </div>
+      </div>
+
+      <div class="input-row" <%= tooltip(_('API_Login_Redirect_to_Main'), _('API_Login_Redirect_Explanation')).html_safe %>>
+        <div class="label-col">
+          <%= label_tag 'api_login_redirect_to_main', _('API_Login_Redirect_to_Main') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'api_login_redirect_to_main', 1, (Confline.get_value("API_Login_Redirect_to_Main").to_i == 1) %>
+        </div>
+      </div>
+
+      <div class="input-row" <%= tooltip(_('API_allow_Payments'), _('API_allow_Payments_Explanation')).html_safe %>>
+        <div class="label-col">
+          <%= label_tag 'api_allow_payments', _('API_allow_Payments') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'api_allow_payments', 1, (Confline.get_value("API_Allow_payments_ower_API").to_i == 1) %>
+        </div>
+      </div>
+
+       <%= raw setting_boolean(_('Allow_Devices_To_Check_Ballance'), 'devices_check_ballance', "Devices_Check_Ballance") %>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'api_disable_hash_checking', _('Disable_hash_checking') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'api_disable_hash_checking', 1, (Confline.get_value("API_Disable_hash_checking").to_i == 1) %>
+          <span class="info"><%= b_info %> <%= _('api_disable_hash_checking_notification') %></span>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag _('Uniquehash') %>
+        </div>
+        <div class="input-col">
+          <span id="uniquehash" class="text"><%= current_user.uniquehash %></span>
+        </div>
+      </div>
+    </div>
+</div>

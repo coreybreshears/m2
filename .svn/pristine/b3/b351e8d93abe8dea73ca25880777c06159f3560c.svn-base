@@ -1,0 +1,1 @@
+$("#disconnect_codes_table").html("<%= escape_javascript(render 'disconnect_codes', disconnect_codes: @disconnect_codes, dc_group_id: @dc_group_id) %>");

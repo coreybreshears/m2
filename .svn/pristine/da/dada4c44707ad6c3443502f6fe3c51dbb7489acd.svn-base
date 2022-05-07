@@ -1,0 +1,272 @@
+  <%= stylesheet_link_tag "jquery.treetable.css" %>
+  <%= stylesheet_link_tag "jquery.treetable.theme.default.css" %>
+  <%= javascript_include_tag "jquery.treetable.js" %>
+<% content_for :search_form do %>
+<%= form_tag({action: :calls_per_hour}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+<fieldset>
+<div class="column date-col calendar-holder">
+        <%= label_tag 'from', _('From') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_from', formatted_date_as_given(@options_from), class: 'checkin default', id: 'from' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+                <div class="time-col" style="visibility: hidden">
+            <%= text_field_tag 'time_from', formatted_time_as_given(@options_from), disabled: 1 %>
+            <%= hidden_field_tag 'time_from' %>
+            <%= hidden_field_tag 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+      </div>
+
+        </div>
+        <%= label_tag 'till', _('Till') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_till', formatted_date_as_given(@options_till), class: 'checkout default' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+                <div class="time-col" style="visibility: hidden">
+
+            <%= hidden_field_tag 'time_till', '23:59:59' %>
+
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+      </div>
+        </div>
+	</div>
+	<div class="column source-col">
+    <div class="row">
+      <%= label_tag 'user', _('Originator') %>
+      <%= render('shared/m2_live_search_field',
+       object: @options[:s_user].to_s,
+       object_id: @options[:s_user_id] || -2,
+       object_name: 'User',
+       action_url: {controller: :users, action: :get_users_map, options: {show_admin: true}}
+       )
+       %>
+     </div>
+     <div class="row">
+       <%= label_tag 'terminator', _('Terminator') %>
+       <td>
+        <%=
+        render 'shared/m2_live_search_field',
+        object: @options[:s_terminator].to_s,
+        object_id: @options[:s_terminator_id] || -2,
+        object_name: 'Terminator',
+        action_url: {
+          controller: :users,
+          action: :get_users_map,
+          options: {
+            users_to_get: 'terminators'
+          }
+        }
+        %>
+
+     </div>
+  </div>
+  <div class="column source-col">
+  	<div class="row">
+  	  <%= label_tag 'prefix', _('Prefix') %>
+  		<%= text_field_tag :prefix, @options[:prefix], type: :text %>
+  	</div>
+  </div>
+		<div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('refine') %>
+        </div>
+      </div>
+	</fieldset>
+	<% end %>
+	<% end %>
+
+	<fieldset>
+  <div class="content-box">
+   <div class="table-box">
+    <h2> <%= _('Calls_Per_Hour') %></h2>
+        <table class="table" width="100%" id="calls_per_hour" style = "border: none; margin-top: -14px;">
+          <tr style = "background-color: #fff">
+            <th rowspan="2" style = "width: 70%; line-height: 0px;" class="side">
+              <table style="margin-top: 0px; width: 100%;" >
+                <tr  style = "background-color: #fff"><td style="text-align: left;" colspan="5"><%= _('Date') %></td></tr>
+                <tr  style = "background-color: #fff"><td style="text-align: left;" colspan="5">└&nbsp;<%= _('Originator') %></td></tr>
+                <tr  style = "background-color: #fff"><td style="width: 8px;"></td><td style="text-align: left;" colspan="4">└&nbsp;<%= _('Time') %></td></tr>
+                <tr  style = "background-color: #fff"><td style="width: 8px;"><td style="width: 8px;"></td></td><td style="text-align: left;" colspan="3">└&nbsp;<%= _('Destination') %></td></tr>
+                <tr  style = "background-color: #fff"><td style="width: 8px;"></td><td style="width: 8px;"></td><td style="width: 8px;"></td><td style="text-align: left;" colspan="2">└&nbsp;<%= _('Terminator') %></td></tr>
+              </table>
+            </th>
+            <th id='from_user_perspective' colspan="4" class="side" style="text-align: center;"><%= _('from_user_perspective') %></th>
+            <th id="from_admin_perspective" colspan="4" class="side" style="text-align: center;"><%= _('from_admin_perspective') %></th>
+            <th id='aggregates_billsec' rowspan="2" class="side" style="text-align: center;"><%= _('Avg_retries') %></th>
+            <th id='aggregates_billsec' rowspan="2" class="side" style="text-align: center; min-width: 100px"><%= _('Duration') %></th>
+            <th rowspan="2" style="min-width: 100px"></th>
+          </tr>
+          <tr style = "background-color: #fff">
+            <th id="user_call_attempts" style="text-align: right; min-width: 100px"><%= _('Call_Attempts') %></th>
+            <th id="user_answered_calls" style="text-align: right;min-width: 100px"><%= _('answered_calls') %></th>
+            <th id="user_aggregates_acd" style="text-align: center;min-width: 100px"><%= _('ACD') %></th>
+            <th id="user_aggregates_asr" style="text-align: right; border-right: 1px solid #d2d4d6; "><%= "#{_('ASR')} %" %></th>
+            <th id="admin_call_attempts" style="text-align: right;min-width: 100px"><%= _('Call_Attempts') %></th>
+            <th id="admin_answered_calls" style="text-align: right;min-width: 100px"><%= _('answered_calls') %></th>
+            <th id="admin_aggregates_acd" style="text-align: center;min-width: 100px"><%= _('ACD') %></th>
+            <th id="admin_aggregates_asr" style="text-align: right;border-right: 1px solid #d2d4d6;"><%= "#{_('ASR')} %" %></th>
+          </tr>
+
+           <% if @es_calls_per_hour[:table_rows].present? %>
+          <% @es_calls_per_hour[:table_rows].each_with_index do |call, index| %>
+              <tr data-tt-id="<%= index %>" data-tt-branch="true">
+                <td id="cph_day_map_<%= index %>" class="side" style="text-align: left;"><%= nice_date(call[:branch], 0) %></td>
+                <td id="cph_day_user_call_attempts_<%= index %>" style="text-align: right;"><%= call[:user_call_attempts] %></td>
+                <td id="cph_day_user_answered_calls_<%= index %>" style="text-align: right;"><%= call[:answered_calls] %></td>
+                <td id="cph_day_user_acd_<%= index %>" style="text-align: center;"><%= nice_time(call[:user_acd], show_zero: true) %></td>
+                <td id="cph_day_user_asr_<%= index %>" class="side" style="text-align: right;"><%= call[:user_asr].to_f.round %></td>
+                <td id="cph_day_admin_call_attempts_<%= index %>" style="text-align: right;"><%= call[:admin_call_attempts] %></td>
+                <td id="cph_day_admin_answered_calls_<%= index %>" style="text-align: right;"><%= call[:answered_calls] %></td>
+                <td id="cph_day_admin_acd_<%= index %>" style="text-align: center;"><%= nice_time(call[:admin_acd], show_zero: true) %></td>
+                <td id="cph_day_admin_asr_<%= index %>" class="side" style="text-align: right;"><%= call[:admin_asr].to_f.round%></td>
+                <td id="cph_day_avgretries_<%= index %>" class="side" style="text-align: right;"><%= nice_number(call[:user_call_attempts].to_f.zero? ? 0 : call[:admin_call_attempts].to_f / call[:user_call_attempts].to_f, nice_number_digits: 2) %></td>
+                <td id="cph_day_duration_<%= index %>" class="side" style="text-align: center;"><%= nice_time(call[:duration], show_zero: true) %></td>
+                <td id="cph_day_call_list_link_<%= index %>" style="text-align: center;">
+                  <%= link_to(_('Calls_List'),
+                              {controller: :stats, action: :calls_list,
+                               date_from: { year: call[:branch][0..3], month: call[:branch][5..6], day: call[:branch][8..9], hour: 0, minute: 0 },
+                               date_till: { year: call[:branch][0..3], month: call[:branch][5..6], day: call[:branch][8..9], hour: 23, minute: 59 },
+                               s_destination: '', s_user: '', s_user_id: '-2', search_on: 1
+                              },
+                              id: "call_list_link_#{index}"
+                      ) %>
+                </td>
+              </tr>
+          <% end %>
+
+          <tr style="border-top: 1px solid #d2d4d6;">
+            <th id="totals" class="side" style="text-align: right;"><%= "#{_('Total')}:" %></th>
+            <th id="totals_user_call_attempts" style="text-align: right;"><%= @es_calls_per_hour[:table_totals][:user_call_attempts] %></th>
+            <th id="totals_answered_calls" style="text-align: right;"><%= @es_calls_per_hour[:table_totals][:answered_calls] %></th>
+            <th id="totals_user_acd" style="text-align: center;"><%= @es_calls_per_hour[:table_totals][:user_acd] %></th>
+            <th id="totals_user_asr" class="side" style="text-align: right;"><%= @es_calls_per_hour[:table_totals][:user_asr].to_i.round %></th>
+            <th id="totals_admin_call_attempts" style="text-align: right;"><%= @es_calls_per_hour[:table_totals][:admin_call_attempts] %></th>
+            <th id="totals_answered_calls" style="text-align: right;"><%= @es_calls_per_hour[:table_totals][:answered_calls] %></th>
+            <th id="totals_admin_acd" style="text-align: center;"><%= @es_calls_per_hour[:table_totals][:admin_acd] %></th>
+            <th id="totals_admin_asr" class="side" style="text-align: right;"><%= @es_calls_per_hour[:table_totals][:admin_asr].to_i.round %></th>
+            <th id="totals_day_avgretries" class="side" style="text-align: right;"><%= nice_number(@es_calls_per_hour[:table_totals][:user_call_attempts].to_f.zero? ? 0 : @es_calls_per_hour[:table_totals][:admin_call_attempts].to_f / @es_calls_per_hour[:table_totals][:user_call_attempts].to_f, nice_number_digits: 2) %></td>
+            <th id="totals_duration" class="side" style="text-align: center;"><%= @es_calls_per_hour[:table_totals][:duration] %></th>
+            <th></th>
+          </tr>
+          <% else %>
+              </table><br/>
+    <div class="cause-codes-description" style="text-align: center" >
+      <%= _('No_data_found_no_dots') %>
+    </div>
+              <% end %>
+
+        </table>
+
+
+
+
+    </div>
+  	</div>
+  </fieldset>
+  <script type="text/javascript">
+  jQuery(document).ready(function () {
+    jQuery('.table-box table tbody').children(':nth-child(even)').removeClass('even');
+    jQuery(".checkin").datepicker("option", "showTimepicker", false);
+    jQuery(".checkout").datepicker("option", "showTimepicker", false);
+    check_call_list_permission();
+  });
+  var cph_table = jQuery("#calls_per_hour");
+  function cph_check_if_child_exist(cph_id) {
+      var cph_child_id = String(cph_id) + ".0";
+      var cph_child_presence = cph_table.find('[data-tt-id="' + String(cph_child_id) + '" ] td:first').length;
+      return (cph_child_presence == 1)
+  }
+
+  function cph_find_value(cph_id, level) {
+      if(typeof(level)==='undefined') level = 1;
+      var id_array = String(cph_id).split('.');
+      var id = [];
+      for (var i = 1; i <= level; i++) {
+          id.push( id_array[i-1] )
+      }
+      id = id.join('.');
+
+      var result;
+      if (level == 2) {
+          result = cph_table.find('[data-tt-id="' + id + '" ]').data('ttUser_id')
+      } else {
+          result = cph_table.find('[data-tt-id="' + id + '" ] td:first').html().split("</span>").pop();
+      }
+      return result
+  }
+  function check_call_list_permission()
+  {
+    var permission = <%= !manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1}) %>;
+    if (!permission)
+    {
+      jQuery("a[id^='call_list_link']").hide();
+    }
+  }
+
+  function cph_conditions(cph) {
+      var cph_id = cph.id;
+      var level = (String(cph_id).match(/\./g) || []).length;
+
+      switch (level) {
+          case 0:
+              return {day: cph_find_value(cph_id, 1)};
+          case 1:
+              return {day: cph_find_value(cph_id, 1),
+                  originator: cph_find_value(cph_id, 2)
+              };
+          case 2:
+              return {day: cph_find_value(cph_id, 1),
+                  originator: cph_find_value(cph_id, 2),
+                  time: cph_find_value(cph_id, 3)
+              };
+          case 3:
+              return {day: cph_find_value(cph_id, 1),
+                  originator: cph_find_value(cph_id, 2),
+                  time: cph_find_value(cph_id, 3),
+                  destination: cph_find_value(cph_id, 4)
+              };
+          case 4:
+              return {day: cph_find_value(cph_id, 1),
+                  originator: cph_find_value(cph_id, 2),
+                  time: cph_find_value(cph_id, 3),
+                  destination: cph_find_value(cph_id, 4),
+                  terminator: cph_find_value(cph_id, 5)
+              };
+      }
+  }
+
+  cph_table.treetable({
+        expandable: true,
+
+        onNodeExpand: function() {
+            var cph = this;
+
+            if (!cph_check_if_child_exist(cph.id)) {
+                var conditions = cph_conditions(cph);
+                conditions['row_id'] = cph.id;
+                conditions['search_user'] = '<%= @options[:s_user_id] %>';
+                conditions['search_terminator'] = '<%= @options[:s_terminator_id] %>';
+                conditions['search_dg'] = '<%= @options[:destination_group] %>';
+                conditions['search_prefix'] = '<%= @options[:prefix] %>';
+
+                jQuery.ajax({
+                    async: false,
+                    data: conditions,
+                    url: '<%= Web_Dir %>/aggregates/calls_per_hour_data_expand'
+                }).done(function(request) {
+
+
+                    var rows = jQuery(request).filter("tr");
+
+                    cph_table.treetable("loadBranch", cph, rows);
+                    check_call_list_permission();
+
+                });
+            }
+        }
+    });
+</script>

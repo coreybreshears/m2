@@ -1,0 +1,1506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/sell_tariff_a_12007/create.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/sell_tariff_b_12008/create.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/sell_tariff_c_12009/create.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Sell Tariff A</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Sell Tariff B</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Sell Tariff C</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--#Rate Notification Email Templates #15596-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=subject_tariff_rate_notification</td>
+	<td>Tariff Rate Notification</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_tariff_rate_notification</td>
+	<td>tariff_rate_notification</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=subject_tariff_rate_notification</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>&lt;%= rate_notification_url_agree %&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&lt;%= rate_notification_url_disagree %&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>id=subject_tariff_rate_notification</td>
+	<td></td>
+</tr>
+<!--#Rate Notification Selection Page #15594-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/edit/12007</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/edit/12008</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/edit/12009</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Rate Notifications</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariffs Rate Notifications List</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.1</td>
+	<td>Sell Tariff A</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.2.1</td>
+	<td>Sell Tariff B</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.2.2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.3.1</td>
+	<td>Sell Tariff C</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.3.2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.1</td>
+	<td>Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>Set</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>At least one Tariff User association must be selected</td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<!--#Rate Notification Sending Page #15595-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/new?tariff_user_ids[2-2]=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.not-input-col-just-text</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_rate_notification_job_options_rate_notification_type</td>
+	<td>Delta Only</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_rate_notification_job_options_agreement_timeout_days</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=reset</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//th[@id='chk-col']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A*Test User #1*Sell Tariff B*Test User #1*Sell Tariff C*Test User #1*Test Tariff for Users*Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate notifications</td>
+	<td>Rate Notifications</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_3</td>
+	<td>New</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>New Tariff Rate Notification Jobs</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Selected Tariffs - Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Options*Email Template*Rate Notification Type*Agreement Timeout in days</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_rate_notification_job_options_email_id</td>
+	<td>label=tariff_rate_notification</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_rate_notification_job_options_rate_notification_type</td>
+	<td>label=Full</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_rate_notification_job_options_agreement_timeout_days</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>tariff_rate_notification_job_options_send_once_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job(s) successfully created</td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<!--#Rate Notification Jobs Page #15597-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate notifications</td>
+	<td>Rate Notifications</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_3</td>
+	<td>Jobs</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Tariffs Rate Notification Jobs</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Id*Created at*Status*Tariff*User*Email*Type*Timeout*Send Email*Response*Responded on</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2*Assigned*Sell Tariff B*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>4*Assigned*Test Tariff for Users*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Id*Created at*Status*Tariff*User*Email*Type*Timeout*Response*Responded on</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2*Assigned*Sell Tariff B*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>4*Assigned*Test Tariff for Users*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job successfully deleted</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>2*Assigned*Sell Tariff B*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>4*Assigned*Test Tariff for Users*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>1*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job successfully deleted</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>3*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>4*Assigned*Test Tariff for Users*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>1*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2*Assigned*Sell Tariff B*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job successfully deleted</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>4*Assigned*Test Tariff for Users*Test User #1*tariff_rate_notification*Full*Every day*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>1*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2*Assigned*Sell Tariff B*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>3*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job successfully deleted</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>1*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2*Assigned*Sell Tariff B*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>3*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>4*Assigned*Test Tariff for Users*Test User #1*tariff_rate_notification*Full*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/new?tariff_user_ids[2-2]=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/new?tariff_user_ids[2-2]=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--M4 Functionality-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refresh</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariff_rate_notifications/list')]</td>
+	<td>Rate Notifications*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariff_rate_notification_jobs/list')]</td>
+	<td>Jobs</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12007-2</td>
+	<td>Sell Tariff A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12008-2</td>
+	<td>Sell Tariff B</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12009-2</td>
+	<td>Sell Tariff C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_2-2</td>
+	<td>Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=tariff_user_ids_12007-2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=tariff_user_ids_12009-2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sell Tariff A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_rate_notification_job_options_email_id</td>
+	<td>tariff_rate_notification</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_rate_notification_job_options_rate_notification_type</td>
+	<td>Full</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_rate_notification_job_options_agreement_timeout_days</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>tariff_rate_notification_job_options_send_once_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>tariff_rate_notification_job_options_send_once_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>tariff_rate_notification_job_options_send_once_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job(s) successfully created</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=contenttabletariff_rate_notification_jobs_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>5*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*Once*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>6*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*Once*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Sell Tariff B</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job successfully deleted</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>5*Assigned*Sell Tariff A*Test User #1*tariff_rate_notification*Full*Once*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>6*Assigned*Sell Tariff C*Test User #1*tariff_rate_notification*Full*Once*No Response</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff Rate Notification Job successfully deleted</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>No data to display</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/new?tariff_user_ids[2-2]=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/new?tariff_user_ids[2-2]=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_BILLING_Tariffs_Rate_Notifications_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariff_rate_notification_jobs/list')]</td>
+	<td>Jobs</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariff_rate_notification_templates/list')]</td>
+	<td>Templates</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2 &gt; span</td>
+	<td>Sell Tariffs Rate Notifications List</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//th[@id='chk-col']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>New Tariff Rate Notification Jobs</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notifications/new?tariff_user_ids[2-2]=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>New Tariff Rate Notification Jobs</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_jobs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Tariffs Rate Notification Jobs</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_notification_templates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Templates</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Template - Default</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<%= form_tag :action => 'backup_create', :id => @back do %>
+    <table>
+      <tr>
+        <td> <%= _('Comment') %>:</td>
+      </tr>
+      <tr>
+        <td> <%= text_area_tag('comment', '', "class" => "input", :rows => 3, :cols => 100) %>  </td>
+      </tr>
+    </table>
+    <br/>
+    <br/>
+    <%= submit_tag _('Create'), :disable_with => _('Processing..') %>
+<% end %>
+<br/>
+<br/>

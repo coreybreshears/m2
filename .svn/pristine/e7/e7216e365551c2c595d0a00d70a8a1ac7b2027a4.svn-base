@@ -1,0 +1,73 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxcolorpicker.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownbutton.js' %>
+
+<div class="row">
+	<div class="col">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= form.text_field(:name, class: 'input', maxlength: 255, autocomplete: 'disabled') %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Comment') %></label>
+      </div>
+      <div class="input-col">
+        <%= form.text_field(:comment, class: 'input', maxlength: 255, autocomplete: 'disabled') %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Text_Color') %></label>
+      </div>
+      <div class="input-col" class="picker_container">
+        <%= form.text_field(:color_text, class: 'input', maxlength: 7, autocomplete: 'disabled') %>
+        <div id="color_text_Dropdown" class="c_picker">
+          <div id="color_text_picker"></div>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Background_Color') %></label>
+      </div>
+      <div class="input-col" class="picker_container">
+        <%= form.text_field(:color_bg, class: 'input', maxlength: 7, autocomplete: 'disabled') %>
+        <div id="color_bg_Dropdown" class="c_picker">
+          <div id="color_bg_picker"></div>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+      $("#color_text_picker").on('colorchange', function (event) {
+          $('#did_tag_color_text').val('#' + event.args.color.hex);
+      });
+
+      $("#color_bg_picker").on('colorchange', function (event) {
+          $('#did_tag_color_bg').val('#' + event.args.color.hex);
+      });
+      $("#color_text_picker").jqxColorPicker({ color: "<%= did_tag.color_text.gsub('#', '') %>", colorMode: 'hue', width: 220, height: 220});
+      $("#color_bg_picker").jqxColorPicker({ color: "<%= did_tag.color_bg.gsub('#', '') %>", colorMode: 'hue', width: 220, height: 220});
+
+      $("#color_text_Dropdown").jqxDropDownButton({ width: 220, animationType: 'none' });
+      $("#color_bg_Dropdown").jqxDropDownButton({ width: 220, animationType: 'none' });
+      $('#did_tag_color_bg, #did_tag_color_text').click(function(){
+        $(this).next().jqxDropDownButton('open');
+      });
+
+
+      $(document).on('keydown', function(event) {
+       if (event.key == "Escape") {
+        $("#color_text_Dropdown").jqxDropDownButton('close');
+        $("#color_bg_Dropdown").jqxDropDownButton('close');
+       }
+      });
+  });
+</script>

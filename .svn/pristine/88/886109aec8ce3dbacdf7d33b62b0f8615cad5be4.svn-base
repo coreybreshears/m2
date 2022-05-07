@@ -1,0 +1,75 @@
+<tr class='op_setting'>
+  <td colspan="2" height="20"></td>
+</tr>
+<tr <%= tooltip(_('Advanced_OP'), _('Advanced_Options_Notice')) %> class='op_setting'>
+  <td colspan="2" class="bottom_border">
+    <b><%= _('Advanced_OP') %></b>
+  </td>
+</tr>
+<tr class='op_setting'>
+  <td colspan="2" height="10"></td>
+</tr>
+<tr class='op_setting' >
+  <td> <%= _('Accept_calls_from_any_port') %>:</td>
+  <% if params[:action] == 'default_device' or !ccl_active? %>
+    <td>
+      <%= radio_button_tag('device[insecure]', 'no', !device.insecure.to_s.include?('port')) %> <%= _('_No') %>
+      <%= radio_button_tag('device[insecure]', 'port', device.insecure.to_s.include?('port')) %> <%= _('_Yes') %>
+    </td>
+  <% else %>
+    <td>
+      <%= radio_button_tag('device[insecure]', 'no', !device.insecure.to_s.include?('port')) %> <%= _('_No') %>
+      <%= radio_button_tag('device[insecure]', 'port', device.insecure.to_s.include?('port')) %> <%= _('_Yes') %>
+    </td>
+  <% end %>
+</tr>
+<tr class='op_setting'>
+  <td><%=  _('Change_RPID_PAI_host') %>:</td>
+  <td>
+    <%= radio_button_tag('device[change_rpidpai_host]', '0', device.change_rpidpai_host == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[change_rpidpai_host]', '1', device.change_rpidpai_host == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr class='op_setting'>
+  <td><%=  _('Use_Destination_from_INVITE_request') %>:</td>
+  <td>
+    <%= radio_button_tag('device[use_invite_dst]', '0', device.use_invite_dst == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[use_invite_dst]', '1', device.use_invite_dst == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<% if params[:action].to_s != 'default_device' %>
+  <tr class='op_setting'>
+    <td><%=  _('Ring_instead_Session_Progress') %>:</td>
+    <td>
+      <%= radio_button_tag('device[ring_instead_progress]', '0', device.ring_instead_progress == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[ring_instead_progress]', '1', device.ring_instead_progress == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+<% end %>
+<tr class='op_setting'>
+  <td><%=  _('Send_CallerID_in_Contact_header') %>:</td>
+  <td>
+    <%= radio_button_tag('device[set_sip_contact]', '0', device.set_sip_contact == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[set_sip_contact]', '1', device.set_sip_contact == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr class='op_setting'>
+  <td><%=  _('Use_PAI_Number_for_Routing') %>:</td>
+  <td>
+    <%= select_tag 'device[op_use_pai_number_for_routing]', options_for_select(Device.op_pai_dropdown.map { |key, value| [value, key.to_s] }, device.op_use_pai_number_for_routing) %>
+  </td>
+</tr>
+<tr class='op_setting'>
+  <td><%=  _('Send_PAI_Number_as_CallerID_to_TP') %>:</td>
+  <td>
+    <%= select_tag 'device[op_send_pai_number_as_caller_id_to_tp]', options_for_select(Device.op_pai_dropdown.map { |key, value| [value, key.to_s] }, device.op_send_pai_number_as_caller_id_to_tp) %>
+  </td>
+</tr>
+<tr class='op_setting'>
+  <td colspan="2">
+    <div class='link_to'>
+      <br/>
+      <%= link_to b_rules + _('Disconnect_Code_Changes'), {action: :disconnect_code_changes, id: device.id} %>
+    </div>
+  </td>
+</tr>

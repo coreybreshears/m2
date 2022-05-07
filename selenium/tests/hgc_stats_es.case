@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>hgc_stats</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">hgc_stats</td></tr>
+</thead><tbody>
+<!--~~~Elastic Search ~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--assert couse codes-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/users_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--~~~~~~~~~~~~~~~~~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/hangup_cause_codes_stats?date_from[year]=2010&amp;date_till[year]=2015</td>
+	<td></td>
+</tr>
+<!--#dropdowne neturi būti managerių-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=-2</td>
+	<td>Enter value here</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>9 - Preemption - circuit reserved for reuse</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>16 - Normal call clearing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>17 - User busy</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>18 - No user responding</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>19 - No answer from user (user alerted)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3.7 %</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>47.7 %</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/hangup_cause_codes_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=-2</td>
+	<td>Enter value here</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Tes</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=-2</td>
+	<td>Found 12 more</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.0.0</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.2.0</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>t</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=-2</td>
+	<td>Found 12 more</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test AccountantTest ResellerTest User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=-2</td>
+	<td>No value found</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>16 - Normal call clearing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=s_device</td>
+	<td>All Test Device #1 Test FAX device Test User #1/127.0.1.2 Test Device for Admin</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>16 - Normal call clearing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>9 - Preemption - circuit reserved for reuse</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='0'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>16 - Normal call clearing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>9 - Preemption - circuit reserved for reuse</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1testusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestuserFound 13 more</td>
+</tr>
+<!--all-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='-2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>16 - Normal call clearing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/hangup_cause_codes_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/delete_from_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2012&amp;date_from[month]=11&amp;date_from[day]=21&amp;date_till[year]=2012&amp;date_till[month]=11&amp;date_till[day]=31</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_origination_point</td>
+	<td>label=SIP_device</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total calls: 24</td>
+	<td></td>
+</tr>
+<!--~~~~~~~~~~~~~~~~~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/hangup_cause_codes_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_device</td>
+	<td>label=SIP_device</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--viso 24-->
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.4.2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/hangup_cause_codes_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--viso 49-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Devices:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>29</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.4.2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.5.2</td>
+	<td>2</td>
+</tr>
+<!--suma turi sutapti su last calls esančia-->
+</tbody></table>
+</body>
+</html>

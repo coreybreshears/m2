@@ -1,0 +1,3 @@
+INSERT INTO `aggregates` (`id`, `uniqueid`, `direction`, `destination`, `prefix`, `tp_user_id`, `op_user_id`, `reseller_id`, `time_period_id`, `op_user_billed`, `op_user_billed_with_tax`, `tp_user_billed`, `op_user_billed_billsec`, `tp_user_billed_billsec`, `billsec`, `real_billsec`, `answered_calls`, `total_calls`, `total_calls_for_user`, `variation`) VALUES
+(200, 200, '', '', '', 4, 1004, 0, 2, 65.000000000000000, 65.000000000000000, 23.000000000000000, 12, 52, 52, 51.000000000000000, 34, 30, 15, 1),
+(201, 201, '', '', '', 4, 1004, 0, 1, 2.000000000000000, 2.000000000000000, 1.000000000000000, 16, 16, 16, 16.000000000000000, 8, 13, 11, 1);

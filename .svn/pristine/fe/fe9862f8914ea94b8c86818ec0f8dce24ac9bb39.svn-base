@@ -1,0 +1,80 @@
+<% content_for :search_form do %>
+  <%= form_tag({action: :invalid_lines}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <fieldset>
+      <%= hidden_field_tag 'search_on', 1 %>
+      <div class="column source-col">
+        <%= label_tag 'prefix', _('Prefix') %>
+        <div class="row">
+          <%= text_field_tag('search[s_prefix]', @options[:s_prefix], class: 'input', size: 15, maxlength: 30) %>
+        </div>
+        <%= label_tag 'action', _('Action') %>
+        <div class="row">
+          <%= select_tag('search[s_action]', options_for_select([[_('All'), 'all'], [_('Add'), 'add'], [_('Remove'), 'remove']], @options[:s_action])) %>
+        </div>
+      </div>
+      <div class="column source-col" style="width: 250px;">
+        <%= label_tag 'destination_group', _('Destination_group') %>
+        <div class="row" style="width: 192px;">
+          <%= text_field_tag('search[s_dst_group]', @options[:s_dst_group], class: 'input', size: 15, maxlength: 30) %>
+        </div>
+        <%= label_tag 'reason', _('Reason') %>
+        <div class="row">
+          <%= select_tag('search[s_reason]', options_for_select(Destinationgroup.reasons_dropdown, @options[:s_reason])) %>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Invalid_Lines') %></h2>
+    <div class="details-form" style="overflow: hidden;">
+      <div class="row">
+        <div class="col prefix-imp-invalid-col" style="width: 100%">
+          <table>
+            <tr>
+              <th width="10%" class="prefix-imp-invalid-prefix left-item" nowrap><%= _('Prefix') %></th>
+              <th width="20%" class="prefix-imp-invalid-dst_group left-item" nowrap><%= _('Destination_group') %></th>
+              <th width="10%" class="prefix-imp-invalid-action" nowrap><%= _('Action') %></th>
+              <th width="20%" class="prefix-imp-invalid-reason"><%= _('Reason') %></th>
+              <th width="40%"></th>
+            </tr>
+            <% @invalid.each do |inv| %>
+              <tr>
+                <td class="prefix-imp-invalid-prefix left-item"><%= inv[1] %></td>
+                <td class="prefix-imp-invalid-dst_group left-item"><%= inv[3] %></td>
+                <td class="prefix-imp-invalid-action"><%= inv[2] %></td>
+                <td class="prefix-imp-invalid-reason"><%= inv[4].split(',').map { |reason| _(reason) }.join(',</br>').html_safe %></td>
+                <td></td>
+              </tr>
+            <% end %>
+          </table>
+          <br/>
+          <div class="map_results-buttons buttons-row">
+            <%= button_to _('Back_to_Map_Results'), {action: :map_results}, class: 'map_results-back-btn', style: 'width: 150px;', data: { disable_with: _('Processing..') } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= paginate @invalid %>
+  </div>
+</div>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    $('.map_results-back-btn').click(function(event){
+      var confimation = confirm("<%= _('Are_you_sure') %>");
+      if(confimation){
+        $("#spinner2").show();
+      }else{
+        event.preventDefault();
+      }
+    })
+  });
+</script>

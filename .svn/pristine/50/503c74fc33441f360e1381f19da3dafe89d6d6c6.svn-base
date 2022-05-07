@@ -1,0 +1,90 @@
+<b><%= _('Parameters') %></b>
+<table class="maintable" width="50%">
+  <tr class="row1" width="">
+    <td id="rate_day_type" width="50%"><%= _("Rate_day_type") %></td>
+    <td id="imp_rate_day_type" align="right" width="15%"><%= {"all" => _("All"), "wd" => _("Work_Days"), "fd" => _("Free_Days")}[session[:imp_date_day_type]] %>         </td>
+    <td width="35%"></td>
+  </tr>
+</table>
+<br/>
+<b><%= _('Tariff_analysis') %></b>
+<table class="maintable painted_rows" width="50%">
+  <tr>
+    <td id="tariff_rates">                <%= _('Tariff_rates') %>        </td>
+    <td id="rates" align="right">         <%= tariff_analize[:tariff_rates] %>          </td>
+    <td></td>
+  </tr>
+</table>
+<br/>
+<b><%= _('CSV_file_analysis') %></b>
+<table class="maintable painted_rows" width="50%">
+  <tr>
+    <td id="file_size" width="50%">                <%= _('File_size') %>    </td>
+    <td id="f_size" align="right" width="15%">     <%= session[:file_size] %>            </td>
+    <td width="35%" align="center"> <%= _('bytes') %></td>
+  </tr>
+  <tr>
+    <td id="total_file_lines">                <%= _('Total_file_lines') %>   </td>
+    <td id="file_lines" align="right">     <%= session["tariff_import_csv2_#{tariff.id}".to_sym][:file_lines] %>         </td>
+    <td></td>
+  </tr>
+  <tr class="row1">
+    <td id="not_imported_lines"><%= _('not_importable_lines') %></td>
+    <td id="bad_lines" align="right"><%= tariff_analize[:bad_destinations] %></td>
+    <td id="bad_lines_reason" align="center"><%= link_to "(#{_('Press_here_to_get_list')})", {:action => "bad_rows_from_csv", :csv2 => 1, :tariff_id => tariff.id}, :onclick => "window.open(this.href,'new_window','status=1,resizable=1,scrollbars=1,menubar=1,height=400,width=600');return false;" %></td>
+  </tr>
+  <% if tariff_analize[:high_rates].to_i > 0 %>
+    <tr>
+      <td id="high_rates"><%= _('High_Rates') %></td>
+      <td id="high_rates_count" align="right"><%= tariff_analize[:high_rates] %></td>
+      <td id="high_rates_list" align="center"><%= link_to "(#{_('Press_here_to_get_list')})", {action: :high_rates, tariff_id: tariff.id}, onclick: 'window.open(this.href,"new_window","status=1,resizable=1,scrollbars=1,menubar=1,height=400,width=600");return false;' %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td id="new_destinations_in_csv"><%= _('New_destinations_in_csv_file') %></td>
+    <td id="new_dest_in_csv" align="right"><%= tariff_analize[:new_destinations_in_csv_file] %></td>
+    <td id="bad_dest" align="center"></td>
+  </tr>
+  <% if tariff_analize[:zero_rates].to_i > 0 %>
+    <tr class="row2">
+      <td id="zero_rates"><%= _('Zero_rates_csv') %></td>
+      <td id="zero_rates_count" align="right"><%= tariff_analize[:zero_rates] %></td>
+      <td id="zero_rates_display" align="center"><%= link_to "(#{_('Press_here_to_get_list')})", {:action => "zero_rates_from_csv", :csv2 => 1, :tariff_id => tariff.id}, :onclick => "window.open(this.href,'new_window','status=1,resizable=1,scrollbars=1,menubar=1,height=400,width=600');return false;" %></td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+<b><%= _('To_do') %></b>
+<table class="maintable painted_rows" width="50%">
+  <tr>
+    <td id="destinations_to_create" width="50%"><%= _('Destinations_to_create') %> </td>
+    <td id="dest_to_create" align="right" width="15%"><b><%= tariff_analize[:destinations_to_create] %> </b></td>
+    <td id="new_dest_to_create_step" align="center"></td>
+  </tr>
+  <% if session["tariff_import_csv2_#{tariff.id}".to_sym][:imp_update_dest_names].to_i == 1 %>
+    <tr>
+      <td id="destinations_to_update" width="50%"><%= _('Destination_names_to_update') %></td>
+      <td id="dest_to_update" align="right" width="15%">
+        <b><%= tariff_analize[:destinations_to_update].to_i %> </b></td>
+      <td id="new_dest_to_update_step" align="center"></td>
+    </tr>
+  <% end %>
+  <% if session["tariff_import_csv2_#{tariff.id}".to_sym][:imp_delete_unimported_prefix_rates].to_i == 1 ||
+        tariff_analize[:rates_to_delete].to_i > 0 %>
+    <tr>
+      <td id="delete_unimported_prefix_rates" width="50%"><%= _('rates_to_delete') %></td>
+      <td id="rates_to_delete" align="right" width="15%"><b><%= tariff_analize[:rates_to_delete].to_i %> </b></td>
+      <td id="new_r_to_delete_step" align="center"></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td id="rates_to_update">                <%= _('Rates_to_update') %> </td>
+    <td id="r_to_update" align="right"><b><%= tariff_analize[:rates_to_update] %></b></td>
+    <td id="r_to_update_step" align="center"></td>
+  </tr>
+  <tr>
+    <td id="new_rates_to_create">                <%= _('New_rates_to_create') %> </td>
+    <td id="new_r_to_create" align="right"><b><%= tariff_analize[:new_rates_to_create] %></b></td>
+    <td id="new_r_to_create_step" align="center"></td>
+  </tr>
+</table>

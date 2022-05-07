@@ -1,0 +1,36 @@
+<% if devices.try(:size).to_i > 0 %>
+
+    <%= page_select_header(options[:page], total_pages) if total_pages > 1 %>
+
+    <table width="100%" class="maintable">
+      <tr>
+        <th><%= _('Device') %></th>
+        <th><%= _('User') %></th>
+        <th><%= _('User_Owner') %></th>
+        <th></th>
+      </tr>
+      <% devices.each_with_index { |d, i| %>
+          <tr class="row<%= (i % 2 + 1).to_s %>">
+            <td id="device_id_<%= d.id %>">
+              <% if d.user_id.to_i == -1 %>
+                  <%= raw link_nice_device(d).html_safe %>
+              <% else %>
+                  <% if d.user && (d.user.owner_id == current_user.id || manager?) %>
+                      <%= raw link_nice_device(d).html_safe %>
+                  <% else %>
+                      <%= nice_device(d, {:image => true, :tech => true}) %>
+                  <% end %>
+              <% end %>
+            </td>
+            <% user = d.user %>
+            <td id="device_user_<%= d.id %>">
+              <%= h nice_user(user) if user %>
+            </td>
+            <td id="device_user_owner_<%= d.id %>"><%= h (user && (user.owner_id.to_i != 0)) ? link_nice_user(user.owner) : '' %></td>
+            <td align="center" id="edit_<%= d.id %>">
+              <%= link_to b_edit, {:action => :device_edit, :id => d.id}, :id => "edit_device_#{d.id}" if d.user_id.to_i == -1 || (user.try(:owner_id).to_i == current_user.id) || manager? %>
+            </td>
+          </tr>
+      <% } %>
+    </table>
+<% end %>

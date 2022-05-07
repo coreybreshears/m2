@@ -1,0 +1,1 @@
+INSERT INTO `tariffs` (`id`, `currency`, `name`, `purpose`) VALUES (12006, 'USD', 'Buy Tariff C', 'provider');

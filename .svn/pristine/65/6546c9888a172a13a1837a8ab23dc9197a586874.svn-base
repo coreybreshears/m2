@@ -1,0 +1,139 @@
+<%= stylesheet_link_tag 'jquery-ui-1.12.1.min' %>
+<%= javascript_include_tag 'jquery-ui-1.12.1.min' %>
+
+<% content_for :additional_buttons do %>
+    <span>
+    <%= button_tag(
+                _('Add_New_Tariff_Link_Attachment_Rule'), class: 'search-form-button',
+                onclick: "location.href = '#{Web_Dir}/tariff_link_attachment_rules/new'"
+        )
+    %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Tariff_Link_Attachment_Rules') %></h2>
+    <div class="table-holder">
+      <% if @rules.present? %>
+          <table id="tariff_link_attachment_rules_list_table">
+            <tr>
+              <th class="tariff_link_attachment_rules-name"><%= _('Name') %></th>
+              <th class="tariff_link_attachment_rules-string_start"><%= _('String_Start') %></th>
+              <th class="tariff_link_attachment_rules-string_end"><%= _('String_End') %></th>
+              <th class="tariff_link_attachment_rules-link_pattern"><%= _('Link_Pattern') %></th>
+              <th class="tariff_link_attachment_rules-priority"><%= _('Priority') %></th>
+              <th class="tariff_link_attachment_rules-edit"></th>
+              <th class="tariff_link_attachment_rules-delete"></th>
+            </tr>
+            <% @rules.each do |rule| %>
+                <tr id="<%= rule.id %>">
+                  <td id="name_<%= rule.id %>" class="tariff_link_attachment_rules-name_list" <%= tooltip(_('Name'), break_tooltip_text(rule.name))%>>
+                    <%= rule.name %>
+                  </td>
+                  <td id="string_start_<%= rule.id %>" class="tariff_link_attachment_rules-string_start_list" <%= tooltip(_('String_Start'), break_tooltip_text(rule.string_start))%>>
+                    <%= rule.string_start %>
+                  </td>
+                  <td id="string_end_<%= rule.id %>" class="tariff_link_attachment_rules-string_end_list" <%= tooltip(_('String_End'), break_tooltip_text(rule.string_end))%>>
+                    <%= rule.string_end %>
+                  </td>
+                  <td id="string_end_<%= rule.id %>" class="tariff_link_attachment_rules-link_pattern_list" <%= tooltip(_('Link_Pattern'), break_tooltip_text(rule.link_pattern))%>>
+                    <%= rule.link_pattern %>
+                  </td>
+                  <td id="priority_<%= rule.id %>" class="tariff_link_attachment_rules-priority_list">
+                    <%= rule.priority %>
+                  </td>
+                  <td id="edit_<%= rule.id %>" class="tariff_link_attachment_rules-edit_list">
+                    <%= link_to 'EDIT', {action: :edit, id: rule.id}, id: "edit_link_#{rule.id}" %>
+                  </td>
+                  <td id="destroy_<%= rule.id %>" class="tariff_link_attachment_rules-delete_list">
+                    <%= button_to 'DELETE', {action: :destroy, id: rule.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: "delete_link_#{rule.id}" %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Tariff_Link_Attachment_Rules') %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+                $('#tariff_link_attachment_rules_list_table tbody').sortable(
+                        {
+                            items: 'tr:not(:first)',
+                            cursor: 'grabbing',
+                            helper: fixWidthHelper,
+                            update: function(event, ui) {
+                                var result = $(this).sortable('toArray');
+
+                                $.ajax({
+                                    url: '<%= Web_Dir %>/tariff_link_attachment_rules/priority_update',
+                                    data: {
+                                        priorities: result
+                                    },
+                                    type: 'POST',
+                                    cache: false,
+                                    beforeSend: function (xhr) {
+                                        // Security concerns
+                                        xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"));
+                                    },
+                                    success: function(returnData) {
+                                        switch (returnData) {
+                                            case 'invalid':
+                                                alert('Invalid request');
+                                                break;
+                                            case 'refresh':
+                                                alert('<%= _('Tariff_Import_Rules_were_added_or_removed_please_refresh_page') %>');
+                                                break;
+                                            case 'ok':
+                                                update_priorities();
+                                                break;
+                                            default:
+                                                alert('<%= _('Something_went_wrong_please_refresh_page') %>');
+                                        }
+                                    },
+                                    error: function() {
+                                        alert('<%= _('Something_went_wrong_please_refresh_page') %>');
+                                    }
+                                });
+                            }
+                        }
+                );
+            }
+    );
+
+    function update_priorities(){
+      $.ajax({
+          url: '<%= Web_Dir %>/tariff_link_attachment_rules/get_priorities',
+
+          type: 'GET',
+          cache: false,
+          beforeSend: function (xhr) {
+              // Security concerns
+              xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"));
+          },
+          success: function(returnData) {
+            if (returnData.hasOwnProperty('data')){
+              returnData['data'].forEach(function(data){
+                $('#priority_' + data['id']).html(data['priority']);
+              });
+            }else{
+              alert('<%= _('Something_went_wrong_please_refresh_page') %>');
+            }
+          },
+          error: function() {
+              alert('<%= _('Something_went_wrong_please_refresh_page') %>');
+          }
+      });
+    }
+
+    function fixWidthHelper(e, ui) {
+        ui.children().each(function() {
+            $(this).width($(this).width());
+        });
+        return ui;
+    }
+</script>

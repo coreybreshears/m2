@@ -1,0 +1,210 @@
+// M2 JS HELPERS v1.1
+
+// Universal/General helper class
+function JSUniversalHelper() {
+  // Web root path
+  JSUniversalHelper.root = "<%= Web_Dir %>";
+
+  // Info icon
+  JSUniversalHelper.infoIcon = function () {
+    return "<img src= '" + JSUniversalHelper.root + "/images/icons/information.png' title='<%= _('Info') %>'/>";
+  };
+
+  // New window renderer
+  JSUniversalHelper.newWindow = function(link) {
+    window.open(link.href,"new_window","height=40,width=300");
+    return false;
+  };
+
+  // Confirm popup
+  JSUniversalHelper.confirm = function(link) {
+    if (confirm("<%= _('are_you_sure') %>")) {
+      window.open(link.href,"new_window","height=50,width=200");
+    }
+    return false;
+  };
+
+  // Soft hangup button
+  JSUniversalHelper.softHangup = function (call) {
+    return "<a href='" + JSUniversalHelper.root + "/calls/active_call_soft_hangup?channel=" + call.channel +
+        "&server_id=" + call.server_id + "&uniqueid=" + call.uniqueid + "' onclick='return JSUniversalHelper.confirm(this)'><%= j b_hangup.html_safe %></a>";
+  }
+}
+
+// Users helper class
+function JSUsersHelper() {
+  // Current user's id
+  JSUsersHelper.currentUserId = parseInt("<%= current_user.try(:id) %>");
+  // Current user devices
+  JSUsersHelper.curency = "<%= current_user.currency.try(:name) if current_user %>";
+  // Array of current user's devices id
+  JSUsersHelper.devices = <%= current_user.try(:devices) ? current_user.devices.map(&:id) : [] %>;
+  // Current user type checkers
+  JSUsersHelper.isAdmin = <%= admin? %>;
+  JSUsersHelper.isManager = <%= manager? %>;
+  JSUsersHelper.isUser = <%= user? %>;
+
+  // Generates a nice User tag from data
+  JSUsersHelper.niceUser = function(username, firstName, lastName, options) {
+    var niceUser = "";
+    if (firstName.length + lastName.length > 0) {
+      niceUser = (firstName || "") + " " + (lastName || "");
+    } else {
+      niceUser = username || "";
+    }
+    options = options || {};
+    if (options.link && parseInt(options.user_id) >= 0) {
+      niceUser = "<a href='" + JSUniversalHelper.root + "/users/edit/" + options.user_id + "'>" + niceUser + "</a>";
+    }
+    return niceUser;
+  }
+}
+
+// Servers helper class
+function JSServersHelper() {
+  // Generates a nice Server tag from data
+  JSServersHelper.niceServer = function(server, options) {
+    var niceServer = server || "";
+    options = options || {};
+    if (options.link && parseInt(options.server_id) > 0) {
+      niceServer = "<a href='" + JSUniversalHelper.root + "/servers/edit/" + options.server_id + "'>" + niceServer + "</a>";
+    }
+    return niceServer;
+  }
+}
+// Number formating helper
+function JSNumberHelper()
+{
+  JSNumberHelper.niceNumber = function(number){
+    <% nice_number_digits = (session and session[:nice_number_digits]) or Confline.get_value("Nice_Number_Digits")
+      nice_number_digits = 2 if nice_number_digits.blank? %>
+      var niceNumberDigits = <%= nice_number_digits %>
+      var globalDecimal = "<%= session[:global_decimal] || '.' %>"
+      return Number.parseFloat(number).toFixed(niceNumberDigits).toString().replace(".", globalDecimal.toString());
+  }
+}
+
+// Time helper class
+function JSTimeHelper() {
+  // User time zone offset from UTC
+  JSTimeHelper.userOffset = parseInt("<%= Time.zone.now.utc_offset().second %>");
+  // User time format
+  JSTimeHelper.userTimeFormat = "<%= Confline.get_value('time_format', current_user.owner_id) %>" || "<%= Confline.get_value('time_format', 0) %>";
+
+  // Generates a nice month/day notation 5 -> 05 etc.
+  JSTimeHelper.goodDate = function(date) {
+    return date.toString().length < 2 ? ("0" + date) : date;
+  };
+  //
+  // Generates a nice time string
+  JSTimeHelper.niceTime = function(time, showZeroes) {
+    if (!time) return "";
+    showZeroes = showZeroes || false;
+
+    if (time == 0 && !showZeroes) return '';
+
+    var result = "";
+    var h, m, s;
+    if (JSTimeHelper.userTimeFormat == "%M:%S") {
+      h = Math.floor(time / 3600);
+      m = Math.floor((time - 3600 * h) / 60);
+      s = Math.floor(time - 3600 * h - 60 * m);
+      result = JSTimeHelper.goodDate(m + h * 60) + ':' + JSTimeHelper.goodDate(s);
+    } else {
+      h = Math.floor(time / 3600);
+      m = Math.floor((time - (3600 * h)) / 60);
+      s = Math.floor(time - (3600 * h) - (60 * m));
+      result = JSTimeHelper.goodDate(h) + ":" + JSTimeHelper.goodDate(m) + ":" + JSTimeHelper.goodDate(s);
+    }
+    return result;
+  };
+
+  // Convert a date to User time (apply offset)
+  JSTimeHelper.toUserTime = function(date) {
+    var drop_offset = new Date().getTimezoneOffset() * 60 * 1000;
+    var result = new Date(new Date(date).getTime() + drop_offset + JSTimeHelper.userOffset * 1000);
+    return !isNaN(result.getTime()) ? result : "";
+  };
+
+  // Extract time from date
+  JSTimeHelper.niceTimeFromDate = function(date) {
+    return date ? JSTimeHelper.goodDate(date.getHours()) + ":" + JSTimeHelper.goodDate(date.getMinutes()) +
+    ":" + JSTimeHelper.goodDate(date.getSeconds()) : "";
+  };
+}
+
+// Active calls helper class
+function JSActiveCallsHelper() {
+  // Call status bullets
+  var greenBullet = "<%= j icon('bullet_green').html_safe %>";
+  var yellowBullet = "<%= j icon('bullet_yellow').html_safe %>";
+
+  // Generate a status bullet
+  JSActiveCallsHelper.activeCallBullet = function(status) {
+    return status ? greenBullet : yellowBullet;
+  };
+
+  // Tooltip for a status of an active call
+  JSActiveCallsHelper.activeCallTooltip = function(call, maActive) {
+    var lega = "";
+    var legb = "";
+    var pdd = "";
+    if (maActive) {
+      lega = call.lega_codec ? "<%= _('LegA_Codec') %>" + ": " + call.lega_codec : "";
+      if (call.answer_time) {
+        legb = call.legb_codec ? "<%= _('LegB_Codec') %>" + ": " + call.legb_codec : "";
+        pdd = call.pdd ? "<%= _('PDD') %>" + ": " + parseFloat(call.pdd).toFixed(1) + " s" : "";
+      }
+    }
+    var result = [
+      (JSUsersHelper.isAdmin || JSUsersHelper.isManager) && call.server_id ? "<%= _('Server') %>" + ": " + call.server_id : "",
+      call.uniqueid ? "<%= _('UniqueID') %>" + ": " + call.uniqueid : "",
+      call.user_rate ? "<%= _('User_rate') %>" + ": " + call.user_rate + " " + JSUsersHelper.curency : ""
+    ];
+    if (call.lega_codec) result.push(lega);
+    if (call.legb_codec) result.push(legb);
+    if (call.pdd) result.push(pdd);
+    return result.filter(function(n){ return n }).join("<br/>");
+  };
+}
+
+// Destinations helper class
+function JSDestinationsHelper() {
+  // Draws a flag tag for a country code
+  JSDestinationsHelper.drawFlag = function(country_code) {
+    if (country_code) {
+      return "<img src= '" + JSUniversalHelper.root + "/images/flags/" + country_code.toLowerCase() + ".jpg" +
+          "' style='border-style: none' title='" + country_code.toUpperCase() + "'/>";
+    }
+    return "";
+  }
+}
+
+// Devices helper calss
+function JSDevicesHelper() {
+  // Generates a nice Device tag from data
+  JSDevicesHelper.niceDeviceFromData = function (dev_type, dev_desc, dev_host, user_username,
+                                                 user_first_name, user_last_name, options) {
+    device = "";
+    options = options || {};
+    if (dev_desc) {
+      device = dev_desc
+    } else {
+      device = JSUsersHelper.niceUser(user_username, user_first_name, user_last_name) + dev_host
+    }
+
+    if (options.link && parseInt(options.device_id) > 0) {
+      device = "<a href='" + JSUniversalHelper.root + "/devices/device_edit/" + options.device_id + "'>" + device + "</a>";
+    }
+    return device;
+  };
+}
+
+var device = new JSDevicesHelper();
+var user = new JSUsersHelper();
+var time = new JSTimeHelper();
+var destination = new JSDestinationsHelper();
+var activeCall = new JSActiveCallsHelper();
+var server = new JSServersHelper();
+var uni = new JSUniversalHelper();
+var number = new JSNumberHelper();

@@ -1,0 +1,143 @@
+<table width="100%">
+  <tr>
+    <td align="left"><%= link_to b_add + _('New_payment'), :action => 'new' %></td>
+  </tr>
+</table>
+
+<br/>
+
+<%= form_tag :action => 'list', :search_pressed => true do %>
+    <table class="bordered">
+      <tr>
+        <td>
+          <%= _('From') %>:
+        </td>
+        <td colspan="3">
+          <%= select_datetime(Time.mktime(session[:year_from], session[:month_from], session[:day_from], session[:hour_from], session[:minute_from]), :end_year => Date.today.year+1, :prefix => "date_from", :use_month_numbers => false) %>
+        </td>
+        <td align="right" colspan="2">
+          <%= (link_to b_cross + _('Clear_search'), :action => 'list', :clear => 1) if @m2payments[:clear_search] %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= _('To') %>:
+        </td>
+        <td colspan="6">
+          <%= select_datetime(Time.mktime(session[:year_till], session[:month_till], session[:day_till], session[:hour_till], session[:minute_till]), :end_year => Date.today.year+1, :prefix => "date_till", :use_month_numbers => false) %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= _('Client') %>:
+        </td>
+        <td>
+          <%= render 'shared/live_search_field', object: @options[:s_user], object_id: @options[:s_user_id] || '-2', object_name: 'User', action_url: {controller: :users, action: :get_users_map, options: {inner_join_m2_payments: true} } %>
+        </td>
+        <td></td>
+        <td>
+          <%= _('Currency') %>:
+          <%= select_tag("s_currency_id", options_for_select( [[_('All'), '']] + @m2payments[:currencies].map{ |payment| [currency_by_id(payment.currency_id), payment.currency_id]}, @options[:s_currency_id]), :style => "width: 55px") %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <%= _('Amount_between') %>:
+          <%= text_field_tag 's_amount_min', @options[:s_amount_min], "class" => "input", :size => "7", :maxlength => "20" %>
+          -
+          <%= text_field_tag 's_amount_max', @options[:s_amount_max], "class" => "input", :size => "7", :maxlength => "20" %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <%= submit_tag _('Search'), :disable_with => _('Processing..') %>
+        </td>
+      </tr>
+    </table>
+<% end %>
+
+<br/><br/>
+
+<% if @total_pages > 1 %>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>
+
+<% multi_currencies_present = (@m2payments[:searched].map { |payment| payment.try(:currency_id).to_i }.compact - [Currency.get_default.id]).present? %>
+
+<table class="maintable last_calls" width="100%" style="table-layout: fixed;">
+  <tr>
+    <th align="left"><%= sortable_list_header("date", _('Date'), @options) %></th>
+    <th align="left"><%= sortable_list_header("user_id", _('Client'), @options) %></th>
+    <th align="right"><%= "#{_('Balance_before_Payment')} (#{Currency.get_default.name})" %></th>
+    <th align="right"><%= "#{_('Balance_after_Payment')} (#{Currency.get_default.name})" %></th>
+    <th align="right"><%= sortable_list_header('amount', "#{_('Amount')} (#{Currency.get_default.name})", @options) %></th>
+    <th align="right"><%= sortable_list_header('amount_with_tax', "#{_('Amount_with_VAT')} (#{Currency.get_default.name})", @options) %></th>
+    <% if multi_currencies_present %>
+        <th align="right" style="color:#A0A0A0!important;"><%= _('Amount') %></th>
+        <th align="right" style="color:#A0A0A0!important;"><%= _('Amount_with_VAT') %></th>
+        <th align="right" style="color:#A0A0A0!important;"><%= _('Exchange_rate') %></th>
+    <% end %>
+    <th width="50px"></th>
+    <th width="50px"></th>
+  </tr>
+  <% if @m2payments[:searched] %>
+      <% @m2payments[:searched].each_with_index do |m2payment, i| %>
+      <!-- Ticket #13094 explains why there is no currency change in this page
+           There must be shown payments in default system currency and
+           currency in which that payment was made. We do not want to show different
+           exchange rates or show exchange rates that changed over the time,
+           only the one that payment was made with -->
+          <tr class="row<%= (i % 2 + 1).to_s %>">
+            <td id="date_<%= m2payment.id %>" align="left"><%= nice_user_timezone(m2payment.date) if m2payment.date %></td>
+            <td id="user_<%= m2payment.id %>" align="left"><%= link_nice_user_by_id(m2payment.user_id.to_i) %></td>
+            <% payment_exchange_rate = m2payment.currency_id == @current_user.active_currency.id ? m2payment.exchange_rate : @current_user.active_currency.exchange_rate %>
+            <td id="user_balance_before_system_<%= m2payment.id %>" align="right"><%= nice_currency(m2payment.user_balance_before.to_d) if m2payment.user_balance_before %></td>
+            <td id="user_balance_after_system_<%= m2payment.id %>" align="right"><%= nice_currency(m2payment.user_balance_after.to_d) if m2payment.user_balance_after %></td>
+            <td id="amount_system_<%= m2payment.id %>" align="right"><%= nice_currency(m2payment.amount.to_d) if m2payment.amount %></td>
+            <td id="amount_with_tax_system_<%= m2payment.id %>" align="right"><%= nice_currency(m2payment.amount_with_tax.to_d) if m2payment.amount_with_tax %></td>
+            <% if multi_currencies_present && m2payment.try(:currency_id).to_i == 1%>
+              <td colspan="3"></td>
+
+            <% elsif multi_currencies_present  %>
+                <td id="amount_<%= m2payment.id %>" align="right" style="color:#A0A0A0!important;"><%= nice_currency(m2payment.amount.to_d, m2payment.exchange_rate) if m2payment.amount %><%= " #{currency_by_id(m2payment.currency_id.to_i) if m2payment.currency_id}" %></td>
+                <td id="amount_with_tax_<%= m2payment.id %>" align="right" style="color:#A0A0A0!important;"><%= nice_currency(m2payment.amount_with_tax.to_d, m2payment.exchange_rate) if m2payment.amount_with_tax %><%= " #{currency_by_id(m2payment.currency_id.to_i) if m2payment.currency_id}" %></td>
+                <td id="exchange_rate_<%= m2payment.id %>" align="right" style="color:#A0A0A0!important;">
+                <%= nice_number(m2payment.exchange_rate) %> <%= ("#{Currency.get_default.name}#{currency_by_id(m2payment.currency_id.to_i) if m2payment.currency_id}" if m2payment.exchange_rate) %></td>
+            <% end %>
+            <td align="center" width="50px"><%= render 'payment_comment', payment: m2payment %></td>
+            <td align="center" id="destroy_<%= m2payment.id %>" width="50px"><%= link_to b_delete, {action: 'destroy', id: m2payment.id}, { data: {confirm:  _('Are_you_sure') }, method: :post, id: "delete_link_#{m2payment.id}"} %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <tr>
+    <th id="total" align="left" colspan="4"><%= _('Total') %>:</th>
+    <th id="total_amount" align="right"><%= nice_currency(@totals[:amount]) %></th>
+    <th id="total_amount_with_tax" align="right"><%= nice_currency(@totals[:amount_with_tax]) %></th>
+    <th align="center" colspan="<%= multi_currencies_present ? '5' : '2' %>"></th>
+  </tr>
+</table>
+
+<% if @total_pages > 1 %>
+    <br/>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>
+
+<script>
+    function updateFields(id) {
+        var updateUrl = "<%= raw Web_Dir + "/payments/change_comment/" %>" + id;
+        new Ajax.Request(updateUrl, {
+            asynchronous: false,
+            evalScripts: true,
+            parameters: { comment: $('payment_comment_tag_' + id).value },
+
+            onSuccess:function (transport) {
+                Element.toggle('payment_comment_' + id);
+                Element.toggle('payment_comment_link_' + id);
+
+            },
+            onFailure:function () {
+                console.log("failure");
+            }
+        });
+    }
+</script>

@@ -1,0 +1,15 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('New_DID_Tag') %></h2>
+    <%= form_for @did_tag, url: {action: :create, id: @did_tag}, html: {class: 'details-form'} do |form| %>
+        <fieldset>
+          <%= render 'form', form: form, did_tag: @did_tag %>
+          <br/><br/>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/dids/tags'" %>
+            <%= submit_tag _('CREATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

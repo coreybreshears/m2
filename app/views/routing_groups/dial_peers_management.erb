@@ -1,0 +1,60 @@
+<%= content_for :head do %>
+    <%= javascript_include_tag 'dial_peers_management' %>
+<% end %>
+
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('Dial_Peers_Management_for_Routing_Group') %>:&nbsp;<%= link_to(@routing_group.name, controller: :routing_groups, action: :edit, id: @routing_group.id) %></h2>
+
+    <%= form_tag url_for(action: 'dial_peers_management', id: @routing_group.id),
+                 class: 'details-form hidden-form rg-dp-management-form',
+                 'rg-dial-peers-url' => url_for(controller: :routing_groups, action: :retrieve_dial_peers_management_remote),
+                 'rg-dial-peers-assignment-url' => url_for(controller: :routing_groups, action: :dial_peers_management_assignment_remote),
+                 'routing-group-id' => @routing_group.id do
+    %>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col one-third"><%= _('Filter') %>:</div>
+              <div class="input-col two-thirds" style="display: inline-flex;;">
+                <%= text_field_tag 'dp_name', '', id: 'dp-filter', class: 'rg-dp-management-dp-filter' %>
+                <%= button_tag _('clear'), id: 'dp-filter-clear', class: 'clear rg-dp-management-dp-filter-clear', name: 'clear', type: 'button' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-row">
+              <div class="narrow-label-col"><%= _('Dial_Peers_not_assigned_to_the_Routing_Group') %></div>
+              <div class="narrow-label-col" id='dp-not-assigned-count'></div>
+              <button type="button" class="search-form-button" id='dp-assign-all-not-assigned'><%= _('Assign_all') %> >> </button>
+            </div>
+            <div class="input-row">
+              <div class="rg-dp-management-table-container">
+                <table class="rg-dp-management-table" id="dp-not-assigned-table">
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="input-row">
+              <div class="narrow-label-col"><%= _('Dial_Peers_assigned_to_the_Routing_Group') %></div>
+              <div class="narrow-label-col" id='dp-assigned-count'></div>
+              <button type="button" class="search-form-button" id='dp-unassign-all-assigned'> << <%= _('Unassign_all') %></button>
+            </div>
+            <div class="input-row">
+              <div class="rg-dp-management-table-container">
+                <table class="rg-dp-management-table" id="dp-assigned-table">
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+</div>

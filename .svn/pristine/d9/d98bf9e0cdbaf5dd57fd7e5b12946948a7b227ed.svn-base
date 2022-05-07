@@ -1,0 +1,2030 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Verify that tariff links are valid and working-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(@href, '/billing/tariffs/list')]</td>
+	<td>Tariffs</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Test Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_1</td>
+	<td>Rates (251)</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Import from CSV</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Update Rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_all_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=1/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=EDIT</td>
+	<td>EDIT</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_1</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EDIT</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Tariff Edit</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test Tariff (251)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Test Tariff</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>2135</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.22</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_1</td>
+	<td>Rates (252)</td>
+</tr>
+<!--create tariff-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>Test Tariff</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=tariff[currency]</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Name must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tariff_name</td>
+	<td>Buy Tariff</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff successfully created</td>
+	<td></td>
+</tr>
+<!--Rates list-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1?st=U</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_236</td>
+	<td>Uganda proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_236</td>
+	<td>256</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ratedetail_destroy_236</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=connection_fee_236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_236</td>
+	<td>00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_236</td>
+	<td>23:59:59</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>ratedetail_edit_236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_236</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Work Day and Free Day Rate Details Edit</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.26</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_236</td>
+	<td>0.2600</td>
+</tr>
+<!--isskaidyta dienom-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Split to Work Days and Free Days</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate details split</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_236</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_236</td>
+	<td>exact:23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_236</td>
+	<td>0.2600</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_504</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_504</td>
+	<td>exact:23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_504</td>
+	<td>0.2600</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1?st=U</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_236</td>
+	<td>0.2600</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Work Day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Free Day</td>
+	<td></td>
+</tr>
+<!--isskaidyta valandom-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/504</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time12</td>
+	<td>23:59:59</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time12</td>
+	<td>13:59:59</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_504</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_504</td>
+	<td>exact:13:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_505</td>
+	<td>exact:14:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_505</td>
+	<td>exact:23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_505</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_504</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=ratedetail_destroy_236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Cannot delete last rate detail</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/240</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.15</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_connection_fee</td>
+	<td>0.9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_increment_s</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_min_time</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=ratedetail_blocked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_240</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_240</td>
+	<td>exact:23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_240</td>
+	<td>0.1500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_240</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=increment_s_240</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=min_time_240</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=blocked_240</td>
+	<td>Yes</td>
+</tr>
+<!--combine-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time12</td>
+	<td>13:59:59</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Split to Work Days and Free Days</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=ratedetail_edit_505</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time12</td>
+	<td>20:59:59</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Combine to Work Days and Free Days</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate details combined</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Split to Work Days and Free Days</td>
+	<td>Split to Work Days and Free Days</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_236</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_236</td>
+	<td>exact:13:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_506</td>
+	<td>exact:14:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_506</td>
+	<td>exact:23:59:59</td>
+</tr>
+<!--ratedetails-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>ratedetail_destroy_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>ratedetail_destroy_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Cannot delete last rate detail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>ratedetail_edit_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time12</td>
+	<td>12:59:59</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate detail successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>start_time_7</td>
+	<td>00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>start_time_508</td>
+	<td>13:00:00</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ratedetail_destroy_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>ratedetail_destroy_508</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>ratedetail_edit_508</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time12</td>
+	<td>14:59:59</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>start_time_7</td>
+	<td>00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>start_time_508</td>
+	<td>13:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>start_time_509</td>
+	<td>15:00:00</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>ratedetail_destroy_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>ratedetail_destroy_508</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>ratedetail_destroy_509</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=ratedetail_destroy_509</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully deleted</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>ratedetail_destroy_508</td>
+	<td></td>
+</tr>
+<!--create rate-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_new/6?page=6&amp;st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate_5780</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>rates_6</td>
+	<td>Rates (1)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Buy Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_6</td>
+	<td>EUR</td>
+</tr>
+<!--Search by Prefix / Search by Destination-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=search-form-button</td>
+	<td>Manage Rates</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=clear_search</td>
+	<td>Clear search</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=refine_destination</td>
+	<td>Search by Destination</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=refine_prefix</td>
+	<td>Search by Prefixes</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>id=prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=refine_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_140</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_140</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Albania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>France</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>3%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=refine_prefix</td>
+	<td></td>
+</tr>
+<!--reikšmė lieka išsaugota ir laukas atidarytas-->
+<tr>
+	<td>assertValue</td>
+	<td>id=prefix</td>
+	<td>3%</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Albania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_83</td>
+	<td>France proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_83</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>355</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_140</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_140</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan</td>
+	<td></td>
+</tr>
+<!--Kai paspaudžiamas Clear, randa viską-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=div.paging</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_14</td>
+	<td>61</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>France</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination</td>
+	<td>%an%proper</td>
+</tr>
+<!--Lookup Codes-->
+<tr>
+	<td>assertValue</td>
+	<td>id=destination</td>
+	<td>%an%proper</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.row &gt; button[name=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=prefix</td>
+	<td>1264, 1268, 1345, 1670, 1684, 1809, 222, 233, 236, 244, 249, 250, 255, 256, 267, 268, 299, 31, 33, 353, 354, 355, 358, 370, 376, 378, 379, 40, 41, 48, 49, 500, 507, 592, 594, 599, 64, 66, 678, 731, 732, 76, 77, 81, 880, 886, 92, 93, 94, 95, 961, 962, 968, 975, 98, 992, 993, 994, 996, 998</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=refine_destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Albania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_83</td>
+	<td>France proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_83</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>355</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_140</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_140</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>33-93</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=refine_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_83</td>
+	<td>France proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_83</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Albania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prefix</td>
+	<td>%2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=div.paging</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_14</td>
+	<td>61</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>France</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania</td>
+	<td></td>
+</tr>
+<!--Quick Add New Rate-->
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>90592</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix-availability</td>
+	<td>90592 - Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>90594</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix-availability</td>
+	<td>90594 - Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>90596</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix-availability</td>
+	<td>90596 - Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<!--Manage Rates #16553-->
+<tr>
+	<td>type</td>
+	<td>id=destination</td>
+	<td>Turkey%Globalstar</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=refine_destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix_505</td>
+	<td>90592</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_505</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_506</td>
+	<td>90594</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_506</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_507</td>
+	<td>90596</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_507</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manage_rates_ratedetail_rate</td>
+	<td>0.6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manage_rates_ratedetail_increment_s</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manage_rates_ratedetail_rate</td>
+	<td>0.9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manage_rates_ratedetail_connection_fee</td>
+	<td>0.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manage_rates_ratedetail_min_time</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=apply_changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to apply these changes to refined results?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix_505</td>
+	<td>90592</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_505</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_506</td>
+	<td>90594</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_506</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_507</td>
+	<td>90596</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_507</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=blocked_505</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=blocked_506</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=blocked_507</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=apply_changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to apply these changes to refined results?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Refined Active Rates successfully updated to:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Rate: 0.9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Connection Fee: 0.5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Increment: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal Time: 7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Effective From: 20??-??-?? ??:??:??</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>* Unblocked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_505</td>
+	<td>90592</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_505</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_505</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=increment_s_505</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=min_time_505</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_506</td>
+	<td>90594</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_506</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_506</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=increment_s_506</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=min_time_506</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_507</td>
+	<td>90596</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>Turkey mobile-Globalstar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_507</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_507</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=increment_s_507</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=min_time_507</td>
+	<td>7</td>
+</tr>
+<!--Lookup Codes-->
+<tr>
+	<td>assertValue</td>
+	<td>id=destination</td>
+	<td>Turkey%Globalstar</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.row &gt; button[name=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=prefix</td>
+	<td>90592, 90594, 90596</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=clear_manage_rates</td>
+	<td></td>
+</tr>
+<!--Do not change Block status-->
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manage_rates_ratedetail_blocked</td>
+	<td>Do not change Block status</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination</td>
+	<td>USA%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=refine_destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=destination_240</td>
+	<td>USA proper</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img.b_blocked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=apply_changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to apply these changes to refined results?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=destination_240</td>
+	<td>USA proper</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img.b_blocked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manage_rates_ratedetail_blocked</td>
+	<td>label=Unblock</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=apply_changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to apply these changes to refined results?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=destination_240</td>
+	<td>USA proper</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=img.b_blocked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manage_rates_ratedetail_blocked</td>
+	<td>label=Block</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=apply_changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to apply these changes to refined results?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=destination_240</td>
+	<td>USA proper</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img.b_blocked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_240</td>
+	<td>0.1500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_240</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=increment_s_240</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=min_time_240</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=clear_search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=clear_manage_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=manage_rates_ratedetail_blocked</td>
+	<td>Do not change Block status</td>
+</tr>
+<!--1 per page -->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/one_item_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>Showing 1 to 1 of 16 Rates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_2</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_2</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_503</td>
+	<td>Algeria mobile-Wataniya</td>
+</tr>
+<!--Clean -->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_all_link_1</td>
+	<td>Delete all rates</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_all_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_1</td>
+	<td>Rates (0)</td>
+</tr>
+<!--~~~Blocked~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/50_items_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>Provider</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_new/7?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_2</td>
+	<td>-1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_7</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_8</td>
+	<td>blocked</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_5</td>
+	<td>BLOCKED</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_508</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_509</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_510</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_508</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>9350</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>-1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix-availability</td>
+	<td>9350 - Afghanistan Mazar-e-sharif</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_509</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>9360</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>BLOCKED</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix-availability</td>
+	<td>9360 - Afghanistan Jalalabad</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_510</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>9370</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>blocked</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix-availability</td>
+	<td>9370 - Afghanistan mobile</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_511</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/514</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>-1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_514</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=action_type</td>
+	<td>label=tariff_created</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>*System Admin*tariff_created*Tariff(6)*Name: Buy Tariff*System Admin*tariff_created*Tariff(7)*Name: Provider*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=action_type</td>
+	<td>label=tariff_deleted</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>*System Admin*tariff_deleted*Tariff(7)*Name: Provider*</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# ----
+# one item per page
+#
+settings/visual/one_item_per_page.sql
+# set 1 digit
+settings/visual/set_1_digits.sql
+# set comma as decimal
+settings/visual/set_comma_as_decimal.sql
+# bundle loaded

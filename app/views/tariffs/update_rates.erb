@@ -1,0 +1,50 @@
+<%= content_for :head do %>
+  <%= javascript_include_tag 'update_rates' %>
+<% end %>
+  <div class="content-box">
+    <div class="titled-box">
+      <h2><%= _('update_rates_by_destination_mask') %></h2>
+      <%= form_tag url_for(action: 'update_rates_by_destination_mask', id: @tariff.id), class: 'details-form hidden-form',
+                   'destination-groups-url' => url_for(controller: 'destination_groups', action: 'retrieve_groups_remote'),
+                   'destinations-url' => url_for(controller: 'destination_groups', action: 'retrieve_destinations_remote'),
+                   'tariff-id' => @tariff.id do %>
+        <div class="row">
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col"><%= _('Tariff') %></div>
+              <div class="label-col"><%= link_nice_tariff_if_own(@tariff)%></div>
+            </div>
+            <div class="input-row">
+              <div class="label-col"><%= _('Destination_mask') %></div>
+              <div class="input-col">
+                <%= text_field_tag 'dg_name', @rate_updater.dg_name, id: 'autocomplete' %>
+              </div>
+            </div>
+            <div class="input-row" id="rates-container">
+              <div class="label-col"><%= _('new_rate_for_all_destinations') %></div>
+              <div class="input-col" id="new-rate">
+                <%= text_field_tag 'new_rate', nice_number(@rate_updater.rate.to_d), class: 'balance'%>
+                <span class='currency-text'><%= @tariff.currency.to_s %></span>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-row">
+              <div class="narrow-label-col"><%= _('Destinations') %></div>
+              <div class="narrow-label-col" id='destination-count'></div>
+            </div>
+            <div class="input-row">
+              <div class="table-container-white">
+                <table class="unstyled-table" id="destinations-table">
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-row-bottom">
+          <%= submit_tag _('Cancel'), type: 'reset', onClick: "location.href = '#{Web_Dir}/tariffs/list'" %>
+          <%= submit_tag _('Update') %>
+        </div>
+      <% end %>
+    </div>
+  </div>

@@ -1,0 +1,245 @@
+<div class='content-box' style="min-width: 1000px">
+  <div class='table-box'>
+    <%= form_tag({action: :generate_request_for_tariff_generator, id: current_user_id}, {class: 'tariff_gen-form'}) do %>
+        <fieldset>
+          <h2><%= _('Details_for_Tariff_Generation') %></h2>
+
+          <% tariff_generation_for_radio_button_select = params[:tariff].try(:[], :tariff_generation_for) || 'new_tariff' %>
+          <div class='input-row'>
+            <div class="radio-row">
+              <label><%= _('Generate_a_New_Tariff') %>:&nbsp;</label><%= radio_button_tag('tariff[tariff_generation_for]', 'new_tariff', (tariff_generation_for_radio_button_select == 'new_tariff')) %>
+
+              <label style="padding: 0 0 0 30px;"><%= _('Generate_Rates_for_an_existing_Tariff') %>:&nbsp;</label><%= radio_button_tag('tariff[tariff_generation_for]', 'existing_tariff', (tariff_generation_for_radio_button_select == 'existing_tariff')) %>
+            </div>
+          </div>
+
+          <div id="div_new_tariff_name" class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Name') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :tariff, :name, type: :text,
+                             value: params[:tariff].try(:[], :name).to_s
+              %>
+            </div>
+          </div>
+
+          <div id="div_new_tariff_currency" class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Currency') %></label>
+            </div>
+            <div class='input-col'>
+              <%= select_tag('tariff[currency_id]',
+                             options_for_select(Currency.get_active.collect { |t| [t.name, t.id] },
+                                                (!params[:tariff].blank? && !params[:tariff][:currency_id].blank?) ?
+                                                        params[:tariff][:currency_id] :
+                                                        current_user.try(:currency_id)
+                             ),
+                             { class: 'currency' }
+                  ) %>
+            </div>
+          </div>
+
+          <div id="div_existing_tariff_id" class='input-row'>
+            <div class="label-col">
+              <label><%= _('Existing_Tariff') %></label>
+            </div>
+            <div class='input-col'>
+              <%= select_tag('tariff[tariff_generation_for_existing_tariff_id]',
+                             options_for_select(
+                                     @tariffs.map { |t| [t.name, t.id] },
+                                     params[:tariff][:tariff_generation_for_existing_tariff_id]
+                             ),
+                             { class: '' }
+                  ) %>
+            </div>
+          </div>
+
+          <br/><br/>
+
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Profit_Margin_at_least') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :tariff, :profit_margin_at_least,
+                             class: 'profit_margin',
+                             maxlength: 20,
+                             value:  (params[:tariff].blank? ? '0.00' : params[:tariff].try(:[], :profit_margin_at_least).to_s)
+              %>
+              <span class='profit-percent'><%= "% #{_('from_lowest_rate')}" %></span>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('profit_margin') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :tariff, :profit_margin,
+                             class: 'profit_margin',
+                             maxlength: 20,
+                             value:  (params[:tariff].blank? ? '0.00' : params[:tariff].try(:[], :profit_margin).to_s)
+              %>
+              <span class='profit-percent'><%= "% #{_('on')}" %></span>
+              <%= select_tag('tariff[cheapest_rate]', options_for_cheapest_rate, { class: 'priority' }) %>
+              <span class='profit-percent'><%= "#{_('cheapest_Rate')}" %></span>
+            </div>
+          </div>
+
+
+          <div class='input-row' <%= tooltip(_('Info'), _('If_value_is_0_then_this_setting_is_disabled')) %>>
+            <div class='label-col'>
+              <label><%= _('Do_not_add_a_Profit_Margin_if_Rate_more_than') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :tariff, :do_not_add_a_profit_margin_if_rate_more_than,
+                             class: 'profit_margin',
+                             maxlength: 20,
+                             value:  (params[:tariff].blank? ? '0.00' : params[:tariff].try(:[], :do_not_add_a_profit_margin_if_rate_more_than).to_s)
+              %>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="label-col">
+              <label><%= _('Effective_from') %></label>
+            </div>
+            <div class="input-col">
+              <div class="column date-col calendar-holder">
+                <div class="row">
+                  <div class="calendar-col">
+                    <%= text_field_tag 'date', params[:date] || nice_date(Time.now.in_time_zone(user_tz)), class: 'checkout default', id: 'till' %>
+                    <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+                  </div>
+                  <div class="time-col">
+                    <%= text_field_tag 'time', params[:time] || '00:00', class: 'default', id: 'time2' %>
+                    <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br/><br/>
+
+          <% radio_button_select = params[:tariff].try(:[], :tariffs_from) || 'dial_peer' %>
+          <div class='input-row'>
+            <div class="radio-row">
+              <%= radio_button_tag('tariff[tariffs_from]', 'dial_peer', (radio_button_select == 'dial_peer')) %>
+              <label><%= _('Select_from_which_Dial_Peers_to_generate_Tariff') %>:</label>
+            </div>
+          </div>
+          <div id="dial_peers_selection" class='check-row'>
+            <div class="input-row">
+              <% @dial_peers.each_with_index do |dial_peer, index| %>
+                  <div id="tariff_index_<%=dial_peer.id%>" class="input-col-tariffs">
+                    <%= check_box_tag 'dial_peer_id[]', dial_peer.id, (checked = true if (!params[:dial_peer_id].blank? && params[:dial_peer_id].include?(dial_peer.id.to_s))), class: 'checkbox_left' %>
+                    <span class="label" <%= tooltip(_('Tariffs'), dpeer_tpoints_tariffs(dial_peer.id)) %>><%= dial_peer.name.to_s %></span>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class="radio-row">
+              <%= radio_button_tag('tariff[tariffs_from]', 'tariff', (radio_button_select == 'tariff')) %>
+              <label><%= _('select_from_which_tariffs_to_generate_Tariff') %>:</label>
+            </div>
+          </div>
+          <div id="tariffs_selection" class='check-row'>
+            <div class="input-row">
+              <% @tariffs.each_with_index do |tariff, index| %>
+                <div id="tariff_index_<%=tariff.id%>" class="input-col-tariffs">
+                    <%= check_box_tag 'tariff_id[]', tariff.id, (checked = true if (!params[:tariff_id].blank? && params[:tariff_id].include?(tariff.id.to_s))), class: 'checkbox_left' %>
+                    <span class="label"><%= tariff.name.to_s %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <br/><br/>
+
+          <div class='input-row'>
+            <div class='label-col' whitespace-nowrap>
+              <span style="white-space: nowrap"><label><%= _('Prefixes_for_the_Generated_Tariff') %>:</label></span>
+            </div>
+          </div>
+
+          <% radio_button_select_prefixes_for_generated_tariff = params[:tariff].try(:[], :prefixes_for_generated_tariff) || 'use_prefix_from_tariff' %>
+          <div class='input-row'>
+            <div class="radio-row">
+              <%= radio_button_tag('tariff[prefixes_for_generated_tariff]', 'use_prefix_from_tariff', (radio_button_select_prefixes_for_generated_tariff == 'use_prefix_from_tariff')) %>
+              <label><%= _('Use_Prefixes_from_this_Tariff') %>:</label>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <%= select_tag('tariff[prefixes_for_generated_tariff_selected_tariff_id]',
+                             options_for_select(
+                                     @tariffs.map { |t| [t.name, t.id] },
+                                     params[:tariff][:prefixes_for_generated_tariff_selected_tariff_id]
+                             ),
+                             { class: 'prefixes_for_generated_tariff_selected_tariff_id' }
+                  ) %>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class="radio-row">
+              <%= radio_button_tag('tariff[prefixes_for_generated_tariff]', 'use_prefix_only_assigned_to_dg', (radio_button_select_prefixes_for_generated_tariff == 'use_prefix_only_assigned_to_dg')) %>
+              <label><%= _('Use_Prefixes_from_selected_Tariffs_DPs_and_assigned_to_Destination_Groups') %></label>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class="radio-row">
+              <%= radio_button_tag('tariff[prefixes_for_generated_tariff]', 'use_all_prefixes_in_the_system', (radio_button_select_prefixes_for_generated_tariff == 'use_all_prefixes_in_the_system')) %>
+              <label><%= _('Use_Prefixes_from_selected_Tariffs_DPs') %></label>
+            </div>
+          </div>
+
+          <div class='buttons-row'>
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariffs/list'" %>
+            <%= submit_tag _('GENERATE'), :disable_with => 'Processing...' %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        show_hide_selection_from_which_to_generate_tariff();
+        show_hide_selection_tariff_generation_for();
+
+        jQuery("#tariff_tariffs_from_dial_peer, #tariff_tariffs_from_tariff").change(function() { show_hide_selection_from_which_to_generate_tariff(); });
+
+        jQuery("#tariff_tariff_generation_for_new_tariff, #tariff_tariff_generation_for_existing_tariff").change(function() { show_hide_selection_tariff_generation_for(); });
+    });
+
+    function show_hide_selection_from_which_to_generate_tariff() {
+        switch (jQuery('#tariff_tariffs_from_dial_peer').is(':checked')) {
+            case true:
+                jQuery('#dial_peers_selection').show();
+                jQuery('#tariffs_selection').hide();
+                break;
+            case false:
+                jQuery('#dial_peers_selection').hide();
+                jQuery('#tariffs_selection').show();
+                break;
+        }
+    }
+
+    function show_hide_selection_tariff_generation_for() {
+        switch (jQuery('#tariff_tariff_generation_for_new_tariff').is(':checked')) {
+            case true:
+                jQuery('#div_existing_tariff_id').hide();
+                jQuery('#div_new_tariff_name').show();
+                jQuery('#div_new_tariff_currency').show();
+                break;
+            case false:
+                jQuery('#div_new_tariff_name').hide();
+                jQuery('#div_new_tariff_currency').hide();
+                jQuery('#div_existing_tariff_id').show();
+                break;
+        }
+    }
+</script>

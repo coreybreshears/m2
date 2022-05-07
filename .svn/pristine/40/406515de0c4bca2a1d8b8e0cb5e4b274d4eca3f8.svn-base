@@ -1,0 +1,60 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('change_tariff_for_connection_points') %></h2>
+  </div>
+
+  <%= form_tag({:action => 'update_tariff_for_conection_points'}, { class: 'details-form'}) do %>
+    <fieldset>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('change_tariff') %>:</label>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('For') %></label>
+        </div>
+        <div class="input-col">
+          <%= check_box_tag :change_for_op %>
+          <%= _('Origination_points') %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <label></label>
+        </div>
+        <div class="input-col">
+          <%= check_box_tag :change_for_tp %>
+          <%= _('Termination_points') %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('From') %></label>
+        </div>
+        <div class="input-col" id="from_dropdown">
+          <%= render 'tariff_change_dropdown', tariffs: @tariffs_from, name: 'tariff_from' %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('To') %></label>
+        </div>
+        <div class="input-col">
+          <%= render 'tariff_change_dropdown', tariffs: @tariffs_to, name: 'tariff_to' %>
+        </div>
+      </div>
+
+      <div class="buttons-row">
+        <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariffs/list'" %>
+        <%= submit_tag _('Change'), :disable_with => _('Processing..') %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
+
+<%= javascript_include_tag 'change_tariff_for_cp' %>

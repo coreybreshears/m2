@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<!--TEST CDR RERATING-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_new/1?st=U&amp;page=13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>9263</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_new/2?st=U&amp;page=13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>9263</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/user_rates_list/4?st=U</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate448</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate449</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Update']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rates updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2009&amp;date_from[month]=1&amp;date_from[day]=1&amp;date_till[year]=2009&amp;date_till[month]=10&amp;date_till[day]=28&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_12</td>
+	<td>exact:00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_12</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_12</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_12</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_12</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_12</td>
+	<td>5.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_12</td>
+	<td>5.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_11</td>
+	<td>exact:00:00:40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_11</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_11</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_11</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_11</td>
+	<td>4.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_10</td>
+	<td>exact:00:00:30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_10</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_10</td>
+	<td>User Resellers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_10</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_10</td>
+	<td>3.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_9</td>
+	<td>exact:00:00:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_9</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_9</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_9</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_9</td>
+	<td>2.0000</td>
+</tr>
+<tr>
+	<td></td>
+	<td>UPDATE `mor`.`devices` SET `op_active` = '1', `op_tariff_id` = '2' WHERE `devices`.`id` =2 LIMIT 1 ;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/rerating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForEditable</td>
+	<td>id=submit_bg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_bg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Background Task for Rerating successfully created</td>
+</tr>
+<!--====== paleisti scriptą  ======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_cdr_rerate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2009&amp;date_from[month]=1&amp;date_from[day]=1&amp;date_till[year]=2009&amp;date_till[month]=10&amp;date_till[day]=28&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_12</td>
+	<td>exact:00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_12</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_12</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_12</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_12</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_12</td>
+	<td>5.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_12</td>
+	<td>5.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_11</td>
+	<td>exact:00:00:40</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_11</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_11</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_11</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_11</td>
+	<td>4.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_10</td>
+	<td>exact:00:00:30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_10</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_10</td>
+	<td>User Resellers</td>
+</tr>
+<!--sitas laikas pasikeitė, kiti ne. -->
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_10</td>
+	<td>8.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_10</td>
+	<td>4.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_9</td>
+	<td>exact:00:00:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_9</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_9</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_9</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_9</td>
+	<td>2.0000</td>
+</tr>
+<!--all users-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2009&amp;date_from[month]=1&amp;date_from[day]=1&amp;date_till[year]=2010&amp;date_till[month]=6&amp;date_till[day]=30&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_10</td>
+	<td>exact:00:00:30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_10</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_10</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_10</td>
+	<td>8.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_10</td>
+	<td>4.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/rerating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_from_year</td>
+	<td>label=2009</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_till_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_till_month</td>
+	<td>label=June</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=all_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForEditable</td>
+	<td>id=submit_bg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_bg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Background Task for Rerating successfully created</td>
+</tr>
+<!--====== paleisti scriptą  ======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_cdr_rerate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2009&amp;date_from[month]=1&amp;date_from[day]=1&amp;date_till[year]=2010&amp;date_till[month]=6&amp;date_till[day]=30&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_10</td>
+	<td>exact:00:00:30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_10</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_10</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_10</td>
+	<td>8.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_10</td>
+	<td>4.0000</td>
+</tr>
+</tbody></table>
+</body>
+</html>

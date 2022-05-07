@@ -1,0 +1,85 @@
+<% content_for :search_form do %>
+    <%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+        <%= hidden_field_tag 'page', 1 %>
+        <fieldset>
+          <div class="column source-col">
+            <%= label_tag 'name', _('Name') %>
+            <div class="row">
+              <%= text_field_tag 's_name', @options[:s_name]%>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= clear_button_tag _('clear') %>
+              <%= submit_button_tag _('refine') %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+<% content_for :additional_buttons do %>
+    <span>
+<%= button_tag _('dial_peer_add'), class: "search-form-button",
+               onclick: "location.href = '#{Web_Dir}/dial_peers/new'" %>
+  </span>
+<% end %>
+<div class="content-box">
+  <div class="dial-peer table-box">
+    <h2><%= _('Dial_peers') %></h2>
+    <div class="dial-peer-overflow-content">
+        <table class="maintable" width="100%">
+          <tr>
+            <%= sortable_header(_('ID'), 'id', class: 'dial_peer-id', id: 'id') %>
+            <%= sortable_header(_('Active'), 'active', class: 'dial_peer-active', id: 'active') %>
+            <%= sortable_header(_('Name'), 'name', class: 'dial_peer-name', id: 'name') %>
+            <%= sortable_header(_('destination_regexp'), 'dst_regexp', class: 'dial_peer-dst_regexp', id: 'dst_regexp') %>
+            <%= sortable_header(_('Call_limit'), 'call_limit', class: 'dial_peer-call_limit', id: 'call_limit') %>
+            <%= sortable_header(_('stop_hunting'), 'stop_hunting', class: 'dial_peer-stop_hunting', id: 'stop_hunting') %>
+            <%= sortable_header(_('tp_priority'), 'tp_priority', class: 'dial_peer-tp_priority', id: 'tp_priority') %>
+            <%= sortable_header(_('tp_list'), 'tp_list', class: 'dial_peer-tp_list', id: 'tp_list') %>
+            <th></th>
+            <th></th>
+          </tr>
+          <% if @dial_peers %>
+            <% @dial_peers.each_with_index do |dp, i| %>
+              <tr class="row<%= (i % 2 + 1).to_s %>">
+                <td id="id_<%= dp.id %>" class = "dial_peer-id_list"><%= dp.id.to_i %></td>
+                <td id="active_<%= dp.id %>" class = "dial_peer-active_list">
+                  <%= _('No').upcase if dp.active.zero? %>
+                  <%= _('Yes').upcase if !dp.active.zero? %>
+                </td>
+                <td id="name_<%= dp.id %>" class = "dial_peer-name_list"<%= tooltip(_('Comment'), dp.comment) unless dp.comment.blank?%>>
+                  <%= link_to(dp.name.to_s, {action: 'edit', id: dp.id}) %>
+                </td>
+                <td id="dst_regexp_<%= dp.id %>" class = "dial_peer-dst_regexp_list" style="word-wrap: break-word; word-break: break-all">
+                  <%= dp.dst_mask.present? ? "#{_('By_Tariff').upcase} (#{dp.dst_mask})" : dp.dst_regexp %>
+                </td>
+                <td id="call_limit_<%= dp.id %>" class="dial_peer-call_limit left-item">
+                  <%= dp.call_limit.to_s %>
+                </td>
+                <td id="stop_hounting_<%= dp.id %>" class = "dial_peer-stop_hunting_list">
+                  <%= _('No').upcase if dp.stop_hunting.zero? %>
+                  <%= _('Yes').upcase if !dp.stop_hunting.zero? %>
+                </td>
+                <td id="tp_priority_<%= dp.id %>" class = "dial_peer-tp_priority_list">
+                  <%= dp.tp_priority.to_s %>
+                </td>
+                <td id="tp_list_<%= dp.id %>" class = "dial_peer-tp_list_list">
+                  <%= link_to _('LIST') + ' (' + dp.dpeer_tpoints.count.to_s + ')', {action: 'termination_points_list', id: dp.id} %>
+                </td>
+                <td id="edit_<%= dp.id %>" style="width: 6%; font-size: 11px">
+                  <%= link_to 'EDIT', {action: :edit, id: dp.id}, id: 'edit_link_' + dp.id.to_s %>
+                </td>
+                <td id="destroy_<%= dp.id %>" style="width: 6%; font-size: 11px">
+                  <%= button_to 'delete', {action: 'destroy', id: dp.id}, onclick: "return confirm('Are you sure?')",
+                   class: "delete_button", method: :post, id: 'delete_link_' + dp.id.to_s %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+    </div>
+<br/>
+<%= page_select_header(@options[:page], @total_pages, @options) if @total_pages > 1 %>
+</div>
+</div>

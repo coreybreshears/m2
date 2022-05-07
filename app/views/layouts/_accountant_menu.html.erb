@@ -1,0 +1,10 @@
+<script type="text/javascript">
+    acc_menu = new dTree('acc_menu');
+    acc_menu.config.inOrder = true;
+    acc_menu.add(0, -1, '<%= _('ACCOUNTANT_MENU') %>');
+
+    acc_menu.add(33,0,'<%= _('Accounting') %>');
+
+    $("accountant_menu_div").innerHTML = acc_menu.toString();
+</script>
+

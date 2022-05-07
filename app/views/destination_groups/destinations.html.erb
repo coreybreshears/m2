@@ -1,0 +1,47 @@
+<table class="simple">
+  <tr>
+    <td id="dest_group"><b><%= _('Destinations_group') %></b>:</td>
+    <td id="dest_group_info"><%= draw_flag_by_code @destgroup.flag %> <%= @destgroup.name %></td>
+  </tr>
+</table>
+
+<br/>
+
+<table width="100%" class="maintable">
+  <tr>
+
+    <th align="left"><%= _('Direction') %></th>
+    <th align="left"><%= _('Details') %></th>
+    <th align="left"><%= _('Prefix') %></th>
+    <% if admin? || manager? %>
+        <th></th>
+    <% end %>
+  </tr>
+
+  <% i = 0 %>
+  <% @destinations.each do |destination| %>
+      <tr class="row<%= (i % 2 + 1).to_s %>">
+        <td id="dir_<%= i %>"><%= draw_flag destination.direction.code if destination.direction %> <%= destination.direction.name if destination.direction %></td>
+        <td id="name_<%= i %>"><%= destination.name %></td>
+        <td id="prefix_<%= i %>"><%= destination.prefix %></td>
+        <% if admin? || manager? %>
+            <td align="center">
+              <% if admin? || manager? %>
+                  <%= link_to b_delete, {action: :dg_destination_delete, id: destination.id, dg_id: @destgroup.id}, id: "delete_img_#{i}", data: {confirm: _('Are_you_sure') }, method: :post %>
+              <% end %>
+            </td>
+        <% end %>
+      </tr>
+      <% i += 1 %>
+  <% end %>
+</table>
+
+<br/>
+
+<% if admin? || manager? %>
+
+    <%= link_to b_add + _('New_destinations'), :action => 'dg_new_destinations', :id => @destgroup, :st => @destgroup.name[0, 1] %>
+
+    <br/><br/>
+
+<% end %>

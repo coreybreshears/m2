@@ -1,0 +1,25 @@
+<% template_columns = template.columns_array %>
+<% select_columns = options_for_select_export_template_columns %>
+<div class="row">
+  <div class="col">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :name, class: 'input', size: 27, maxlength: 255 %>
+      </div>
+    </div>
+    <% cdr_export_template_column_headers.size.times do |index| %>
+        <div class="input-row">
+          <div class="label-col">
+            <label><%= "#{_('Column')} ##{index+1}:" %></label>
+          </div>
+          <div class="input-col">
+
+            <%= select_tag("columns[column_#{index}]", options_for_select(select_columns, template_columns[index])) %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

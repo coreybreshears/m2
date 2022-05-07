@@ -1,0 +1,5 @@
+<%= form_tag(:action => 'create') do %>
+  <%= render 'form', failover_routing_groups: @failover_routing_groups, is_rg_failover_possible: @is_rg_failover_possible, rg_cps: [], rg_cps_count: 0 %>
+  <%= submit_tag _('Create'), :disable_with => _('Processing..') %>
+<% end %>
+<br />

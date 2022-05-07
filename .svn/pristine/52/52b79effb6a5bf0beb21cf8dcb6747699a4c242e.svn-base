@@ -1,0 +1,139 @@
+
+
+<div class="hangup-cause-box">
+  <div class = "table-box">
+  <h2><%= _('Hangup_Cause_Graphs') %></h2>
+
+  <%= javascript_include_tag 'google_charts/loader.js' %>
+  <div class="row">
+    <% if calls[:calls].present? %>
+    <div style = "min-width:500px;   float:left" id="pieChart" ></div>
+    <br/>
+    <div style = "min-width:500px;   float:left" id="columnChart"></div>
+    <% else %>
+    <div id="No_data" style="width: 100%; text-align: center;float: left" ><%= _('No_data_found_no_dots') %> <br><br></div>
+    <% end %>
+  </div>
+  <div style="clear:both"></div>
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      var chart1;
+      var dateFormat = "<%= js_date_format %>";
+      var chart2;
+      var options1;
+      var options2;
+      var data1;
+      var data2;
+      google.charts.load('42', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(function () {
+        drawChart();
+      });
+
+      function drawChart() {
+          var dateFormat = "<%= js_date_format %>";
+        data1 = new google.visualization.DataTable();
+        data1.addColumn('date', 'date');
+        data1.addColumn('number', '<%= _('answered_calls') %>');
+        data1.addColumn('number', '<%= _('Failed_Calls') %>');
+        var hangupcousecode = <%= raw graph[:hangupcausecode] %>;
+        data1.addRows(hangupcousecode);
+        options1 = {
+          sliceVisibilityThreshold: 0,
+          chartArea: {
+            width: "70%",
+            height: "75%",
+            top: 10,
+            left:20
+          },
+          vAxis: {
+           format: "#"
+         },
+         hAxis : {
+          gridlines: { color: "#fff", count: 5, format: dateFormat },
+          format: dateFormat
+        },
+        backgroundColor: "transparent",
+        colors: ['#B9c8e1', '#ffd4d4']
+      };
+      if (hangupcousecode.length === 1) {
+        options1["hAxis"]["ticks"] = [hangupcousecode[0][0]];
+      }
+      var dateFormatter = new google.visualization.DateFormat({
+        pattern: dateFormat
+      });
+      var numberFormatter = new google.visualization.NumberFormat({
+        pattern: "#",
+        fractionDigits: 0
+      });
+      dateFormatter.format(data1, 0);
+      numberFormatter.format(data1, 1);
+      numberFormatter.format(data1, 2);
+      data2 = new google.visualization.DataTable();
+      data2.addColumn('string', 'HGC');
+      data2.addColumn('number', 'calls');
+      data2.addRows(<%= raw graph[:calls]%>);
+      options2 = {
+        pieHole: 0.4,
+        sliceVisibilityThreshold: 0,
+        chartArea: {
+         width: "100%",
+         height: "85%",
+         top: 20,
+         left: 70
+       },
+       backgroundColor: "transparent"
+     };
+     numberFormatter.format(data2, 1);
+     chart1 = new google.visualization.ColumnChart(document.getElementById('columnChart'));
+     chart1.draw(data1, options1);
+     chart2 = new google.visualization.PieChart(document.getElementById('pieChart'));
+     chart2.draw(data2, options2);
+
+   }
+   $(window).resize(function(){
+     drawChart();
+   });
+ });
+</script>
+</div>
+  </div>
+
+<div class="hangup-cause-box">
+  <div class = "table-box">
+    <h2><%= _('Hangup_cause_codes') %></h2>
+
+    <table width="100%" class="maintable">
+      <tr>
+        <%= sortable_header(_('Cause_code'), 'cause_code', {class: 'cause-codes-code'}, options) %>
+        <th class="cause-codes-description"><%= _('Description') %></th>
+        <%= sortable_header(_('Calls'), 'calls', {class: 'cause-codes-calls'}, options) %>
+        <th/>
+      </tr>
+
+      <% unless calls[:calls].present? %>
+          </table><br/>
+          <div class="cause-codes-description" style="text-align: center" >
+            <%= _('No_data_found_no_dots') %>
+          </div>
+      <% end %>
+
+      <% calls[:calls].each_with_index do |call, index| %>
+          <tr class="row<%= (index % 2 + 1).to_s %>">
+            <td class="cause-codes-code">
+              <%= call[:hc_code].to_s %>
+            </td>
+            <td class="cause-codes-description">
+              <%= call[:hc_description].to_s.html_safe %>
+            </td>
+            <td class="cause-codes-calls">
+              <%= link_to call[:calls].to_i.to_s, action: :calls_list, s_call_type: 'all', s_hgc: call[:hc_id], s_user: nice_user(search_data[:user]), s_user_id: (search_data[:user_id].to_s == '-1' ? '-2' : search_data[:user_id].to_s), s_device: (search_data[:device_id].to_s == '-1' ? 'all' : search_data[:device_id].to_s), search_on: 1 %>
+            </td>
+            <td class="cause-codes-percent">
+              <%= link_to ((call[:calls].to_f / calls[:total_calls].to_f) * 100).round(1).to_s + ' %', action: :calls_list, s_call_type: 'all', s_hgc: call[:hc_id], s_user: nice_user(search_data[:user]), s_user_id: (search_data[:user_id].to_s == '-1' ? '-2' : search_data[:user_id].to_s), s_device: (search_data[:device_id].to_s == '-1' ? 'all' : search_data[:device_id].to_s), search_on: 1 %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+  <br/>
+</div>

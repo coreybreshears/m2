@@ -1,0 +1,600 @@
+<%= stylesheet_link_tag 'slider-radio.css' %>
+<%= javascript_include_tag 'slider-radio.js' %>
+<tr>
+  <td height="20"></td>
+</tr>
+<% if !new_device %>
+    <tr>
+      <td class="bottom_border">
+        <b><%= _('Authentication') %></b>&nbsp;&nbsp;
+        <div class="slider-radio">
+          <%= radio_button_tag 'dev_auth_mode', 0, true, id: 'auth_type_simple' %><label for="auth_type_simple"><%= _('Simple') %></label>
+          <%= radio_button_tag 'dev_auth_mode', 1, false, id: 'auth_type_advanced' %><label for="auth_type_advanced"><%= _('Advanced') %></label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td height="10"></td>
+    </tr>
+
+    <tr>
+      <td valign="top">
+        <% device_blocked_ip_status = device.blocked_ip_status if admin? || (manager? && authorize_manager_permissions({controller: :monitorings, action: :blocked_ips, no_redirect_return: 1})) %>
+
+        <table>
+          <tr class="auth-advanced-setting">
+            <td colspan="2">
+              <div class="slider-radio">
+                <%= radio_button_tag 'protocol', 0, true, id: 'protocol_udp', disabled: true %><label for="protocol_udp"><%= _('UDP') %></label>
+                <%= radio_button_tag 'protocol', 1, false, id: 'protocol_tcp', disabled: true %><label for="protocol_tcp"><%= _('TCP') %></label>
+                <%= radio_button_tag 'protocol', 2, false, id: 'protocol_tls', disabled: true %><label for="protocol_tls"><%= _('TLS') %></label>
+                <%= radio_button_tag 'protocol', 3, false, id: 'protocol_tls_srtps', disabled: true %><label for="protocol_tls_srtps"><%= _('TLS_and_SRTP') %></label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="slider-radio">
+                <%= radio_button_tag 'device[dynamic]', '', !device.auth_dynamic?, id: 'static_ip_radio_button' %><label for="static_ip_radio_button"><%= _('Static_IP') %></label>
+                <% if allow_dynamic_op_auth_with_reg == 1 %>
+                  <%= radio_button_tag 'device[dynamic]', 'yes', device.auth_dynamic?, id: 'dynamic_ip_radio_button' %><label for="dynamic_ip_radio_button">
+                    <span id="auth_dynamic_warning_because_tp" style="display: none;" <%= tooltip("#{_('WARNING')}:", _('connection_point_dynamic_auth_disabled_because_tp_enabled_popup_warning')) %>><%= b_exclamation(width: 11, height: 11) %></span>
+                    <span <%= tooltip("#{_('WARNING')}:", _('Only_Origination_Point_Act_as_Termination_Point_will_be_disabled')) %>><%= _('Dynamic_IP') %></span>
+                  </label>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+          <tr><td height="5"></td></tr>
+          <tr id="authentication_static_ip">
+            <td id="static_ip_ip_address_title">
+              <%= link_to(b_exclamation, {controller: :monitorings, action: :blocked_ips}, link_tooltip(_('Device_IP_is_blocked'), _('More_details_in_SECURITY_Blocked_IPs_page'))) + ' ' if device_blocked_ip_status %>
+              <%= _('IP_Address') %>:
+            </td>
+            <td id="static_ip_ip_address_input">
+              <%= text_field_tag 'host', device.ipaddr, class: 'input', id: 'ip_add_value_ip' %>
+            </td>
+            <td id="static_ip_port_title"><%= _('Port') %></td>
+            <td id="static_ip_port_input">
+              <%= text_field_tag 'port', device.port, class: 'input', size: 5 %>
+              <% if m4_functionality? %>
+                  <% if device.periodic_check.to_i == 1 && device.alive.to_i == 0 %>
+                      &nbsp;&nbsp;&nbsp;<%= b_unreachable %>
+                  <% end %>
+              <% end %>
+              <span>
+                &nbsp;&nbsp;<%= _('Any_Port') %> &nbsp;
+                <%= hidden_field_tag 'device[insecure]', 'no' %>
+                <%= check_box_tag 'device[insecure]', 'port', device.insecure.to_s == 'port' %>
+              </span>
+            </td>
+          </tr>
+          <tr id='authentication_dynamic_ip_row_0' style="display: none;">
+            <td>
+              <%= _('Digest_Authentication') %>
+           </td>
+          </tr>
+          <tr id="authentication_dynamic_ip_row_2" style="display: none;">
+            <td id="dynamic_ip_username_title"><%= _('Username') %>:&nbsp;<%= text_field_tag 'op_username', device.op_username, class: 'input' %></td>
+            <td id="dynamic_ip_password_title"><%= _('Password') %>:&nbsp;<%= text_field_tag 'op_password', device.op_password, class: 'input' %></td>
+          </tr>
+          <tr id="authentication_dynamic_ip_row_1" style="display: none;">
+            <td id="dynamic_ip_registration_status" colspan="2">
+              <%= _('Status') %>: <%= device.auth_dynamic_reg_status %>
+              &nbsp;&nbsp;
+              <% if can_view_registration_info?(device) %>
+                <%= device.auth_dynamic? ? device.ipaddr : '' %>:<%= device.port %>
+
+                <span style="margin-left: 20px;" id="delete_reg_button" <%= tooltip(_('IP_Port_and_Registration_status_field_values_will_be_deleted'), '')%>>
+                  <%= link_to  _('UNREGISTER'), { action: :delete_dynamic_reg_info, id: device }, {method: 'post', class: 'reg_clear_btn'}%>
+                </span>
+              <% end %>
+            </td>
+          </tr>
+          <tr style="display: none;">
+            <td id="ipaddr_range_start"><%= device.ipaddr_range_start %></td>
+            <td id="ipaddr_range_end"><%= device.ipaddr_range_end %></td>
+          </tr>
+          <tr><td height="5"></td></tr>
+          <tr class='op_setting'>
+            <td colspan="2"><%= _('tech_prefix') %>:
+            <%= text_field_tag 'device[op_tech_prefix]', device.op_tech_prefix.to_s, class: 'input' %></td>
+          </tr>
+          <tr><td height="5"></td></tr>
+          <tr class="auth-advanced-setting">
+            <td colspan="4">
+              <table class="check-cli-settings">
+                <tr>
+                  <td class="auth-advanced-setting-label"><%= _('Check_A_Number_CLI_ANI') %>:</td>
+                  <td><%= check_box_tag 'device[auth_check_cli]', 1, device.auth_check_cli.to_i == 1 %></td>
+                </tr>
+                <tr class="cld-setting"><td height="5"></td></tr>
+                <tr class="cli-setting cli-setting-first-indent"><td><%= _('Get_CLI_ANI_from') %>:</td></tr>
+                <tr class="cli-setting cli-setting-second-indent">
+                  <td><%= _('Diversion') %>:</td>
+                  <td><%= check_box_tag 'device[cli_from_diversion]', 1, device.cli_from_diversion.to_i == 1 %></td>
+                </tr>
+                <tr class="cli-setting cli-setting-second-indent">
+                  <td><%= _('Remote_Party_ID_RPID') %>:</td>
+                  <td><%= check_box_tag 'device[cli_from_rpid]', 1, device.cli_from_rpid.to_i == 1 %></td>
+                </tr>
+                <tr class="cli-setting cli-setting-second-indent">
+                  <td><%= _('P_Asserted_Identity_PAI') %>:</td>
+                  <td><%= check_box_tag 'device[cli_from_pai]', 1, device.cli_from_pai.to_i == 1 %></td>
+                </tr>
+                <tr class="cli-setting cli-setting-second-indent">
+                  <td><%= _('P_Preferred_Identity_PPI') %>:</td>
+                  <td><%= check_box_tag 'device[cli_from_ppi]', 1, device.cli_from_ppi.to_i == 1 %></td>
+                </tr>
+                <tr class="cli-setting cli-setting-second-indent">
+                  <td><%= _('From') %>:</td>
+                  <td><%= check_box_tag 'device[cli_from_from]', 1, device.cli_from_from.to_i == 1 %></td>
+                </tr>
+                <tr class="cli-setting cli-setting-first-indent">
+                  <td><%= _('Use_PAI_if_CLI_empty_anonymous') %>:</td>
+                  <td><%= check_box_tag 'device[use_pai_if_cli_anonymous]', 1, device.use_pai_if_cli_anonymous.to_i == 1 %></td>
+                </tr>
+                <tr class="cli-setting"><td height="5"></td></tr>
+                <tr class="cli-setting cli-setting-first-indent">
+                  <td><%= _('Transformation_Rule') %>:</td>
+                </tr>
+                <tr class="cli-setting cli-setting-first-indent">
+                  <td colspan="2">
+                    <div class="slider-radio">
+                      <%= radio_button_tag 'device[cli_tr_rule_type]', 1, device.cli_tr_rule_type.to_i == 1 %><label for="device_cli_tr_rule_type_1"><%= _('Regexp') %></label>
+                      <%= radio_button_tag 'device[cli_tr_rule_type]', 2, device.cli_tr_rule_type.to_i == 2 %><label for="device_cli_tr_rule_type_2"><%= _('Old_Format') %></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="cli-setting cli_tr_rule_1 cli-setting-first-indent">
+                  <td colspan="2"><%= text_field_tag 'device[cli_regexp]', device.cli_regexp.to_s, class: 'input', maxlength: 1024, placeholder: _('regexp') %></td>
+                </tr>
+                <tr class='cli-setting cli_tr_rule_2 cli-setting-first-indent'>
+                  <td colspan="2"><%= text_field_tag 'device[op_source_transformation]', device.op_source_transformation.to_s, class: 'input', maxlength: 1024, placeholder: _('old_format_rules') %></td>
+                </tr>
+                <tr class="cli-setting"><td height="5"></td></tr>
+                <tr class="cli-setting cli-setting-first-indent">
+                  <td><%= _('Allow_Whitelist') %>:</td>
+                </tr>
+                <tr class="cli-setting cli-setting-first-indent">
+                  <td colspan="2">
+                    <div class="slider-radio">
+                      <%= radio_button_tag 'device[cli_allow_type]', 1, device.cli_allow_type.to_i == 1 %><label for="device_cli_allow_type_1"><%= _('A_Number_CLI_ANI') %></label>
+                      <%= radio_button_tag 'device[cli_allow_type]', 2, device.cli_allow_type.to_i == 2 %><label for="device_cli_allow_type_2"><%= _('From_Number_Pool') %></label>
+                      <%= radio_button_tag 'device[cli_allow_type]', 3, device.cli_allow_type.to_i == 3, disabled: true %><label for="cli_allow_type_3"><%= _('Assigned_DIDs') %></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="cli-setting cli_allow_type_1 cli-setting-first-indent">
+                  <td colspan="2"><%= text_field_tag 'device[op_src_regexp]', device.op_src_regexp.to_s, class: 'input', maxlength: 1024, placeholder: _('regexp_for_A_Number_CLI_ANI') %></td>
+                </tr>
+                <tr class='cli-setting cli_allow_type_2 cli-setting-first-indent'>
+                  <td colspan="2">
+                  <%= _('Number_Pool') %>:&nbsp;
+                  <%= select_tag 'device[cli_number_pool_allow_id]', options_for_select(number_pools, device.cli_number_pool_allow_id.to_i), class: "input #{'empty-number-pool' if number_pools.blank? }", disabled: number_pools.blank? %>
+                  </td>
+                </tr>
+                <tr class="cli-setting"><td height="5"></td></tr>
+                <tr class="cli-setting cli-setting-first-indent">
+                  <td><%= _('Deny_Blacklist') %>:</td>
+                </tr>
+                <tr class="cli-setting cli-setting-first-indent">
+                  <td colspan="2">
+                    <div class="slider-radio">
+                      <%= radio_button_tag 'device[cli_deny_type]', 1, device.cli_deny_type.to_i == 1 %><label for="device_cli_deny_type_1"><%= _('A_Number_CLI_ANI') %></label>
+                      <%= radio_button_tag 'device[cli_deny_type]', 2, device.cli_deny_type.to_i == 2 %><label for="device_cli_deny_type_2"><%= _('From_Number_Pool') %></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="cli-setting cli_deny_type_1 cli-setting-first-indent">
+                  <td colspan="2"><%= text_field_tag 'device[op_src_deny_regexp]', device.op_src_deny_regexp.to_s, class: 'input', maxlength: 1024, placeholder: _('regexp_for_A_Number_CLI_ANI') %></td>
+                </tr>
+                <tr class='cli-setting cli_deny_type_2 cli-setting-first-indent'>
+                  <td colspan="2">
+                  <%= _('Number_Pool') %>:&nbsp;
+                  <%= select_tag 'device[cli_number_pool_deny_id]', options_for_select(number_pools, device.cli_number_pool_deny_id.to_i), class: "input #{'empty-number-pool' if number_pools.blank? }", disabled: number_pools.blank? %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr class="auth-advanced-setting">
+            <td colspan="4">
+              <table class="check-cld-settings">
+                <tr>
+                  <td class="auth-advanced-setting-label"><%= _('Check_B_Number_CLD_DNIS') %>:</td>
+                  <td><%= check_box_tag 'device[auth_check_cld]', 1, device.auth_check_cld.to_i == 1 %></td>
+                </tr>
+                <tr class="cld-setting"><td height="5"></td></tr>
+                <tr class="cld-setting cld-setting-first-indent"><td><%= _('Get_CLD_DNIS_from') %>:</td></tr>
+                <tr class="cld-setting cld-setting-first-indent">
+                  <td colspan="2">
+                    <div class="slider-radio">
+                      <%= radio_button_tag 'device[cld_from_type]', 1, device.cld_from_type.to_i == 1 %><label for="device_cld_from_type_1"><%= _('Request_URI') %></label>
+                      <%= radio_button_tag 'device[cld_from_type]', 2, device.cld_from_type.to_i == 2 %><label for="device_cld_from_type_2"><%= _('To_Header') %></label>
+                      <%= radio_button_tag 'device[cld_from_type]', 3, device.cld_from_type.to_i == 3 %><label for="device_cld_from_type_3"><%= _('Contact_Header') %></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="cld-setting"><td height="5"></td></tr>
+                <tr class="cld-setting cld-setting-first-indent">
+                  <td><%= _('Transformation_Rule') %>:</td>
+                </tr>
+                <tr class="cld-setting cld-setting-first-indent">
+                  <td colspan="2">
+                    <div class="slider-radio">
+                      <%= radio_button_tag 'device[cld_tr_rule_type]', 1, device.cld_tr_rule_type.to_i == 1 %><label for="device_cld_tr_rule_type_1"><%= _('Regexp') %></label>
+                      <%= radio_button_tag 'device[cld_tr_rule_type]', 2, device.cld_tr_rule_type.to_i == 2 %><label for="device_cld_tr_rule_type_2"><%= _('Old_Format') %></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="cld-setting cld_tr_rule_1 cld-setting-first-indent">
+                  <td colspan="2"><%= text_field_tag 'device[cld_regexp]', device.cld_regexp.to_s, class: 'input', maxlength: 1024, placeholder: _('regexp') %></td>
+                </tr>
+                <tr class='cld-setting cld_tr_rule_2 cld-setting-first-indent'>
+                  <td colspan="2"><%= text_field_tag 'device[op_destination_transformation]', device.op_destination_transformation.to_s, class: 'input', maxlength: 1024, placeholder: _('old_format_rules') %></td>
+                </tr>
+                <tr class="cld-setting"><td height="5"></td></tr>
+                <tr class="cld-setting cld-setting-first-indent">
+                  <td><%= _('Allow_Whitelist') %>:</td>
+                </tr>
+                <tr class="cld-setting cld-setting-first-indent">
+                  <td colspan="2">
+                    <div class="slider-radio">
+                      <%= radio_button_tag 'device[cld_allow_type]', 1, device.cld_allow_type.to_i == 1 %><label for="device_cld_allow_type_1"><%= _('B_Number_CLD_DNIS') %></label>
+                      <%= radio_button_tag 'device[cld_allow_type]', 2, device.cld_allow_type.to_i == 2 %><label for="device_cld_allow_type_2"><%= _('From_Number_Pool') %></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="cld-setting cld_allow_type_1 cli-setting-first-indent">
+                  <td colspan="2"><%= text_field_tag 'device[cld_allow_regexp]', device.cld_allow_regexp.to_s, class: 'input', maxlength: 1024, placeholder: _('regexp_for_B_Number_CLD_DNIS') %></td>
+                </tr>
+                <tr class='cld-setting cld_allow_type_2 cli-setting-first-indent'>
+                  <td colspan="2">
+                  <%= _('Number_Pool') %>:&nbsp;
+                  <%= select_tag 'device[cld_number_pool_allow_id]', options_for_select(number_pools, device.cld_number_pool_allow_id.to_i), class: "input #{'empty-number-pool' if number_pools.blank? }", disabled: number_pools.blank? %>
+                  </td>
+                </tr>
+
+                <tr class="cld-setting"><td height="5"></td></tr>
+                <tr class="cld-setting cld-setting-first-indent">
+                  <td><%= _('Deny_Blacklist') %>:</td>
+                </tr>
+                <tr class="cld-setting cld-setting-first-indent">
+                  <td colspan="2">
+                    <div class="slider-radio">
+                      <%= radio_button_tag 'device[cld_deny_type]', 1, device.cld_deny_type.to_i == 1 %><label for="device_cld_deny_type_1"><%= _('B_Number_CLD_DNIS') %></label>
+                      <%= radio_button_tag 'device[cld_deny_type]', 2, device.cld_deny_type.to_i == 2 %><label for="device_cld_deny_type_2"><%= _('From_Number_Pool') %></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="cld-setting cld_deny_type_1 cli-setting-first-indent">
+                  <td colspan="2"><%= text_field_tag 'device[cld_deny_regexp]', device.cld_deny_regexp.to_s, placeholder: _('regexp_for_B_Number_CLD_DNIS'), class: 'input', maxlength: 1024 %></td>
+                </tr>
+                <tr class='cld-setting cld_deny_type_2 cli-setting-first-indent'>
+                  <td colspan="2">
+                  <%= _('Number_Pool') %>:&nbsp;
+                  <%= select_tag 'device[cld_number_pool_deny_id]', options_for_select(number_pools, device.cld_number_pool_deny_id.to_i), class: "input #{'empty-number-pool' if number_pools.blank? }", disabled: number_pools.blank? %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr class="auth-advanced-setting">
+            <td colspan="4">
+             <table class="domain-table">
+              <tr>
+                <td class="auth-advanced-setting-label"><%= _('Check_From_Domain') %>:</td>
+                <td>
+                  <%= check_box_tag 'device[auth_check_from_domain]', 1, device.auth_check_from_domain.to_i == 1 %>
+                &nbsp;<span class="domain_from_auth_setting"><%= text_field_tag 'device[domain_from_auth]', device.domain_from_auth.to_s, class: 'input',placeholder: _('domain') %></span>
+                </td>
+              </tr>
+              </table>
+            </td>
+          </tr>
+          <tr class="auth-advanced-setting">
+            <td colspan="4">
+            <table class="domain-table">
+             <tr>
+                <td class="auth-advanced-setting-label"><%= _('Check_To_Domain') %>:</td>
+                <td><%= check_box_tag 'device[auth_check_to_domain]', 1, device.auth_check_to_domain.to_i == 1 %>
+                &nbsp;<span class="domain_to_auth_setting"><%= text_field_tag 'device[domain_to_auth]', device.domain_to_auth.to_s, class: 'input', placeholder: _('domain') %></span></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                auth_show_dynamic_settings();
+
+                var mode_setting = jQuery('input[name="dev_auth_mode"]');
+                toggleAdvancedSettings(mode_setting);
+                mode_setting.change(function(){
+                  toggleAdvancedSettings(jQuery(this));
+                });
+
+                var anyPort = jQuery('input[name="device[insecure]"]');
+                toogleAnyPort(anyPort);
+                anyPort.change(function(){
+                  toogleAnyPort(jQuery(this));
+                });
+
+                var fromDomain = jQuery('input[name="device[auth_check_from_domain]"]');
+                var toDomain = jQuery('input[name="device[auth_check_to_domain]"]');
+                toggleFromDomain(fromDomain);
+                toggleToDomain(toDomain);
+
+                fromDomain.change(function(){
+                  toggleFromDomain(jQuery(this));
+                });
+
+
+                toDomain.change(function(){
+                  toggleToDomain(jQuery(this));
+                });
+
+
+                var cli = jQuery('input[name="device[auth_check_cli]"]');
+                var cld = jQuery('input[name="device[auth_check_cld]"]');
+                toggleCli(cli);
+                toggleCld(cld);
+
+                cli.change(function(){
+                  toggleCli(jQuery(this));
+                });
+
+
+                cld.change(function(){
+                  toggleCld(jQuery(this));
+                });
+
+                var cliTransformation = jQuery('input[name="device[cli_tr_rule_type]"]');
+
+                cliTransformation.change(function(){
+                  toogleCliTransfomation(jQuery(this));
+                });
+
+                var cliAllow = jQuery('input[name="device[cli_allow_type]"]');
+
+                cliAllow.change(function(){
+                  toogleAllow(jQuery(this));
+                });
+
+                var cliDeny = jQuery('input[name="device[cli_deny_type]"]');
+
+                cliDeny.change(function(){
+                  toogleDeny(jQuery(this));
+                });
+
+                var cldTransformation = jQuery('input[name="device[cld_tr_rule_type]"]');
+
+                cldTransformation.change(function(){
+                  toogleCldTransfomation(jQuery(this));
+                });
+
+                var cldAllow = jQuery('input[name="device[cld_allow_type]"]');
+
+                cldAllow.change(function(){
+                  toogleAllowCld(jQuery(this));
+                });
+
+                var cldDeny = jQuery('input[name="device[cld_deny_type]"]');
+
+                cldDeny.change(function(){
+                  toogleDenyCld(jQuery(this));
+                });
+            });
+
+            // Connection Point's logic which determines whether Dynamic Authentication selection is allowed and should be shown
+            function auth_show_dynamic_settings() {
+                var allow_dynamic_op_auth_with_reg = <%= allow_dynamic_op_auth_with_reg == 1 %>;
+
+                // Connection Point's logic for displaying whether Static or Dynamic configuration (in Authentication section),
+                //   depending on Radio Button selection
+                if (allow_dynamic_op_auth_with_reg) {
+                    var auth_dynamic_settings = jQuery('[id^=authentication_dynamic_ip_row_]');
+                    var static_ip_radio_button_input = jQuery('#static_ip_radio_button_input');
+                    var auth_radio_buttons = jQuery('input[type=radio][name="device[dynamic]"]');
+                    var auth_radio_buttons_checked = jQuery('input[type=radio][name="device[dynamic]"]:checked');
+
+                    auth_dynamic_settings.show(); static_ip_radio_button_input.show();
+
+                    authentication_radio_button_selection_update(auth_radio_buttons_checked.val());
+                    auth_radio_buttons.change(function() {
+                        authentication_radio_button_selection_update(this.value);
+                    });
+
+                    var tp_radio_buttons = jQuery('input[type=radio][name="device[tp]"]');
+                    var tp_radio_buttons_checked = jQuery('input[type=radio][name="device[tp]"]:checked');
+                    dynamic_auth_functionality_depending_on_tp(tp_radio_buttons_checked.val());
+                    tp_radio_buttons.change(function() {
+                        dynamic_auth_functionality_depending_on_tp(this.value);
+                    });
+                }
+            }
+
+            function authentication_radio_button_selection_update(auth_radio_button_value) {
+                var static_ip_settings = jQuery('#static_ip_ip_address_title, #static_ip_ip_address_input, #static_ip_port_title, #static_ip_port_input');
+                var dynamic_ip_settings = jQuery('#dynamic_ip_ip_address_title, #dynamic_ip_ip_address_input, #dynamic_ip_registration_status, #authentication_dynamic_ip_row_2, #authentication_dynamic_ip_row_0');
+                var tp_warning_because_auth_dynamic = jQuery('#tp_warning_because_auth_dynamic');
+                var tp_radio_button_settings = jQuery('#tp_radio_button_settings');
+
+
+                if (auth_radio_button_value == 'yes') {
+                    static_ip_settings.hide();
+                    dynamic_ip_settings.show();
+
+                    tp_radio_button_settings.hide();
+                    tp_warning_because_auth_dynamic.show();
+                }
+                else  {
+                    dynamic_ip_settings.hide();
+                    static_ip_settings.show();
+
+                    tp_warning_because_auth_dynamic.hide();
+                    tp_radio_button_settings.show();
+                }
+            }
+
+            // Disallow functionality if Act as Termination Point is enabled
+            function dynamic_auth_functionality_depending_on_tp(tp_radio_button_value) {
+                var auth_dynamic_warning_because_tp = jQuery('#auth_dynamic_warning_because_tp');
+                var dynamic_ip_radio_button = jQuery('#dynamic_ip_radio_button');
+
+                if (tp_radio_button_value == '1') {
+                    dynamic_ip_radio_button.prop('disabled', true);
+                    auth_dynamic_warning_because_tp.show();
+                } else {
+                    auth_dynamic_warning_because_tp.hide();
+                    // dynamic_ip_radio_button.show();
+                    dynamic_ip_radio_button.prop('disabled', false);
+                }
+            }
+
+            function toggleAdvancedSettings(mode_setting){
+              if (mode_setting.val() == '1'){
+                jQuery('.auth-advanced-setting').show();
+              }else{
+                jQuery('.auth-advanced-setting').hide();
+              }
+
+            }
+
+            function toggleCli(cli){
+              if(cli.is(':checked')){
+                jQuery('.cli-setting').show();
+                jQuery('.cli-setting input, .cli-setting select').not("#device_cli_allow_type_3, .empty-number-pool").prop('disabled', false);
+                toogleCliTransfomation(jQuery('input[name="device[cli_tr_rule_type]"]:checked'));
+                toogleAllow(jQuery('input[name="device[cli_allow_type]"]:checked'));
+                toogleDeny(jQuery('input[name="device[cli_deny_type]"]:checked'));
+                jQuery('.check-cli-settings').addClass('check-cli-settings-border');
+              }else{
+                jQuery('.check-cli-settings').removeClass('check-cli-settings-border');
+                jQuery('.cli-setting').hide();
+                jQuery('.cli-setting input, .cli-setting select').not("#device_cli_allow_type_3, .empty-number-pool").prop('disabled', true);
+              }
+
+            }
+
+            function toggleCld(cld){
+              if(cld.is(':checked')){
+                jQuery('.cld-setting').show();
+                jQuery('.cld-setting input, .cld-setting select').not('.empty-number-pool').prop('disabled', false)
+                toogleCldTransfomation(jQuery('input[name="device[cld_tr_rule_type]"]:checked'));
+                toogleAllowCld(jQuery('input[name="device[cld_allow_type]"]:checked'));
+                toogleDenyCld(jQuery('input[name="device[cld_deny_type]"]:checked'));
+                jQuery('.check-cld-settings').addClass('check-cld-settings-border');
+              }else{
+                jQuery('.check-cld-settings').removeClass('check-cld-settings-border');
+                jQuery('.cld-setting').hide();
+                jQuery('.cld-setting input, .cld-setting select').not('.empty-number-pool').prop('disabled', true);
+              }
+            }
+
+
+            function toggleFromDomain(fromDomain){
+                if(fromDomain.is(':checked')){
+                  jQuery('.domain_from_auth_setting').show();
+                  jQuery('#device_domain_from_auth').prop('disabled', false);
+                }else{
+                  jQuery('.domain_from_auth_setting').hide();
+                  jQuery('#device_domain_from_auth').prop('disabled', true);
+                }
+            }
+
+            function toggleToDomain(ToDomain){
+               if(ToDomain.is(':checked')){
+                  jQuery('.domain_to_auth_setting').show();
+                  jQuery('#device_domain_to_auth').prop('disabled', false);
+                }else{
+                  jQuery('.domain_to_auth_setting').hide();
+                  jQuery('#device_domain_to_auth').prop('disabled', true);
+                }
+            }
+
+            function toogleAnyPort(anyPort){
+              var port = jQuery('#port');
+                port.prop('disabled', anyPort.is(':checked'));
+                if(anyPort.is(':checked')){
+                  port.val('any');
+                  port.addClass('auth-port-disabled');
+                }else{
+                  port.val('<%= device.port %>');
+                  port.removeClass('auth-port-disabled');
+                }
+            }
+
+            function toogleCliTransfomation(cliTransformation){
+                if(cliTransformation.val() == '2'){
+                  jQuery('.cli_tr_rule_2').show();
+                  jQuery('.cli_tr_rule_1').hide();
+                }else{
+                  jQuery('.cli_tr_rule_2').hide();
+                  jQuery('.cli_tr_rule_1').show();
+                }
+            }
+
+            function toogleAllow(cliAllow){
+              if(cliAllow.val() == '2'){
+                jQuery('.cli_allow_type_2').show();
+                jQuery('#device_cli_number_pool_allow_id').prop('disabled', jQuery('#device_cli_number_pool_allow_id').has('option').length == 0);
+                jQuery('.cli_allow_type_1').hide();
+              }else{
+                jQuery('.cli_allow_type_2').hide();
+                jQuery('#device_cli_number_pool_allow_id').prop('disabled', true);
+                jQuery('.cli_allow_type_1').show();
+              }
+            }
+
+            function toogleDeny(cliDeny){
+              if(cliDeny.val() == '2'){
+                jQuery('.cli_deny_type_2').show();
+                jQuery('#device_cli_number_pool_deny_id').prop('disabled', jQuery('#device_cli_number_pool_deny_id').has('option').length == 0);
+                jQuery('.cli_deny_type_1').hide();
+              }else{
+                jQuery('.cli_deny_type_2').hide();
+                jQuery('#device_cli_number_pool_deny_id').prop('disabled', true);
+                jQuery('.cli_deny_type_1').show();
+              }
+            }
+
+            function toogleCldTransfomation(cldTransformation){
+                if(cldTransformation.val() == '2'){
+                  jQuery('.cld_tr_rule_2').show();
+                  jQuery('.cld_tr_rule_1').hide();
+                }else{
+                  jQuery('.cld_tr_rule_2').hide();
+                  jQuery('.cld_tr_rule_1').show();
+                }
+            }
+
+            function toogleAllowCld(cldAllow){
+              if(cldAllow.val() == '2'){
+                jQuery('.cld_allow_type_2').show();
+                jQuery('#device_cld_number_pool_allow_id').prop('disabled', jQuery('#device_cld_number_pool_allow_id').has('option').length == 0);
+                jQuery('.cld_allow_type_1').hide();
+              }else{
+                jQuery('.cld_allow_type_2').hide();
+                jQuery('#device_cld_number_pool_allow_id').prop('disabled', true);
+                jQuery('.cld_allow_type_1').show();
+              }
+            }
+
+            function toogleDenyCld(cldDeny){
+              if(cldDeny.val() == '2'){
+                jQuery('.cld_deny_type_2').show();
+                jQuery('#device_cld_number_pool_deny_id').prop('disabled', jQuery('#device_cld_number_pool_deny_id').has('option').length == 0);
+                jQuery('.cld_deny_type_1').hide();
+              }else{
+                jQuery('.cld_deny_type_2').hide();
+                jQuery('#device_cld_number_pool_deny_id').prop('disabled', true);
+                jQuery('.cld_deny_type_1').show();
+              }
+            }
+        </script>
+      </td>
+    </tr>
+<% end %>

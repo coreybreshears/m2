@@ -1,0 +1,6 @@
+# -*- encoding : utf-8 -*-
+module PaymentsHelper
+  def clear_search
+     M2Payment.search_options(@options)[0].present?
+  end
+end

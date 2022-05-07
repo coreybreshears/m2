@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hello, System Admin</td>
+	<td></td>
+</tr>
+<!--# Menu Activation-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff_import/menu_activation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariff_inbox/inbox')]</td>
+	<td>Inbox</td>
+</tr>
+<!--# Page Elements-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_inbox/inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>DELETE SELECTED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=search-form-button</td>
+	<td>Refine Results</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=select_button_invoice_period</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=search_from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=search_subject</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=search_message</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>css=div.row.payment-buttons-row &gt; input[name=&quot;commit&quot;]</td>
+	<td>refine</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=inbox_tab</td>
+	<td>Inbox</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=completed_tab</td>
+	<td>Completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=junk_tab</td>
+	<td>Junk</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder &gt; span</td>
+	<td>No Emails</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'Jobs')])[3]</td>
+	<td>Jobs</td>
+</tr>
+<!--# Inbox Data SQL-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff_import/tariff_emails</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff_import/tariff_attachments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--# Tariff Inbox-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_inbox/inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.7.1</td>
+	<td>2021-09-09<br />09:09:09</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.7.2</td>
+	<td>&quot;Rugilė&quot;&nbsp;&nbsp;&lt;test@gmail.com&gt; <br /> Tariff Import ZXC</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.7.3</td>
+	<td>TEST_IMPORT_111</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.7.4</td>
+	<td>csv</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.7.5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.7.6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.7.7</td>
+	<td>Import Rules Not Found</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.1</td>
+	<td>2021-09-19<br />09:19:00</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.2</td>
+	<td>&quot;Kolmisoft&quot;&nbsp;&nbsp;&lt;test@gmail.com&gt; <br /> Tariff Import XCZ</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.3</td>
+	<td>TEST_IMPORT_222</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.4</td>
+	<td>xls</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.4.7</td>
+	<td>Import Rules Not Found</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.1</td>
+	<td>2021-09-29<br />19:29:00</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.2</td>
+	<td>&quot;TestSoft&quot;&nbsp;&nbsp;&lt;test@gmail.com&gt; <br /> Tariff Import CZX</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.3</td>
+	<td>TEST_IMPORT_333</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.4</td>
+	<td>xlsx</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.7</td>
+	<td>Import Rules Not Found</td>
+</tr>
+<!--# Refine Results-->
+<tr>
+	<td>assertText</td>
+	<td>id=search-form-button</td>
+	<td>Refine Results</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=div.row.payment-buttons-row &gt; input[name=&quot;commit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search_from</td>
+	<td>Kolm%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search_from</td>
+	<td>%soft</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search_from</td>
+	<td>%i%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search_subject</td>
+	<td>%ZXC</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search_subject</td>
+	<td>%XC%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search_message</td>
+	<td>%222%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search_message</td>
+	<td>%B%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<!--# Clear Search-->
+<tr>
+	<td>assertValue</td>
+	<td>id=search_from</td>
+	<td>%i%</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=search_subject</td>
+	<td>%XC%</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=search_message</td>
+	<td>%B%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=search_from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=search_subject</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=search_message</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<!--# Email Details-->
+<tr>
+	<td>click</td>
+	<td>id=email_body_25</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Email Details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Automatic Tariff Import AAA 111 ABC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=TEST_IMPORT_111.csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'View Source')])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'Retry Rules mapping')])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'Delete')])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'View Source')])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/tariff_inbox/show_source?email_id=25</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.show-source-subject &gt; span</td>
+	<td>Tariff Import ZXC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=code</td>
+	<td>SOURCE: Test Automatic Tariff Import 123</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Back to inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_inbox/inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_body_26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Email Details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Automatic Tariff Import BBB 222 BCA</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=TEST_IMPORT_222.xls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'View Source')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'Retry Rules mapping')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'Delete')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'View Source')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/tariff_inbox/show_source?email_id=26</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.show-source-subject &gt; span</td>
+	<td>Tariff Import XCZ</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=code</td>
+	<td>SOURCE: Test Automatic Tariff Import 456</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Back to inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_inbox/inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_body_27</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Email Details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test Automatic Tariff Import CCC 333 CAB</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=TEST_IMPORT_333.xlsx</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=View Source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Retry Rules mapping</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Delete</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=View Source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/tariff_inbox/show_source?email_id=27</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_3</td>
+	<td>Show Source</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.show-source-subject &gt; span</td>
+	<td>Tariff Import CZX</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=code</td>
+	<td>SOURCE: Test Automatic Tariff Import 789</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Back to inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_inbox/inbox</td>
+	<td></td>
+</tr>
+<!--# Move to Junk-->
+<tr>
+	<td>click</td>
+	<td>link=Completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Emails</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Junk</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Emails</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@id='inbox_tab']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>id=email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>DELETE SELECTED</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Emails were successfully moved to junk</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Emails</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_inbox/inbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Junk</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<!--# Delete Emails-->
+<tr>
+	<td>clickAt</td>
+	<td>id=email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;TestSoft&quot;*Tariff Import CZX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Kolmisoft&quot;*Tariff Import XCZ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;Rugilė&quot;*Tariff Import ZXC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>DELETE SELECTED</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Emails were successfully deleted</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@id='inbox_tab']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Emails</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Emails</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Junk</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Emails</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

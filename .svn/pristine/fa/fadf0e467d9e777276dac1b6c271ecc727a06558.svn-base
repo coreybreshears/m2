@@ -1,0 +1,174 @@
+<div class="col">
+    <h2>Email Form</h2>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'type', _('Type') %>
+      </div>
+      <div class="input-col">
+        <div id="type_<%= email.name %>">
+          <%= select_tag 'email[email_type]', options_for_select([[_('Simple'), 0]], email.email_type) %>
+          <!-- select_tag 'email[email_type]', options_for_select([[_('Simple'), 0], [_('Rate_Import_Notification_Email'), 1]], email.email_type) hidden after #15392-->
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'name', _('Name') %>
+      </div>
+      <div class="input-col">
+        <div id="name_<%= email.name %>">
+          <%= text_field('email', 'name', class: 'input', size: 60) if email.template == 0 %>
+          <% if email.template == 1 %>
+            <input type="text" value="<%= email.name %>" class="input" disabled>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'from_email', _('From') %>
+      </div>
+      <div class="input-col">
+        <div id="from_email_<%= email.from_email %>">
+          <%= text_field 'email', 'from_email', class: 'input', style: 'width: 100%' %>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'subject', _('Subject') %>
+      </div>
+      <div class="input-col">
+        <div id="subject_<%= email.name %>">
+          <%= text_field 'email', 'subject', class: 'input', style: 'width: 100%' %>
+        </div>
+      </div>
+    </div>
+    <div class="input-row" style="line-height: 305px">
+      <div class="label-col" style="vertical-align: middle;">
+        <%= label_tag 'body', _('Message_text') %>
+      </div>
+      <div class="input-col">
+        <div id="message_<%= email.name %>">
+          <%= text_area 'email', 'body', class: 'input', style: 'width: 350px; height: 305px; resize: none;' %>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'format', _('Format') %>
+      </div>
+      <div class="input-col">
+        <div id="format_<%= email.name %>" class="format_inputs">
+          <span><%= radio_button_tag('email[format]', 'html', checked = (email[:format].to_s == 'html')) %>HTML&nbsp;&nbsp;</span>
+          <span><%= radio_button_tag('email[format]', 'plain', checked = (email[:format].to_s == 'plain')) %> PLAIN</span>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="col" id="tarrif_details">
+    <h2><%= _('Attachment') %></h2>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'attachment_type', _('Type') %>
+      </div>
+
+      <div class="input-col">
+        <%= select_tag 'tariff_details[attachment_type]', options_for_select([['XLSX', 'xlsx']], tariff_details.attachment_type) %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'date_format', _('Date_Format') %>
+      </div>
+
+      <div class="input-col">
+        <%= select_tag 'tariff_details[date_format]', options_for_select(%w[dd-mm-yyyy mm-dd-yyyy yyyy-mm-dd], tariff_details.date_format) %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'filename', _('Filename') %>
+      </div>
+
+      <div class="input-col">
+        <%= text_field 'tariff_details', 'filename', class: 'input' %>
+      </div>
+    </div>
+    <div class="input-row" style="line-height: 3;">
+      <div class="label-col" style="vertical-align: middle;">
+        <%= label_tag 'header', _('Header') %>
+      </div>
+
+      <div class="input-col">
+        <%= text_area 'tariff_details', 'header', class: 'input', style: 'width: 100%; resize: none;' %>
+      </div>
+    </div>
+    <div class="input-row" style="line-height: 3;">
+      <div class="label-col" style="vertical-align: middle;">
+        <%= label_tag 'footer', _('Footer') %>
+      </div>
+
+      <div class="input-col">
+        <%= text_area 'tariff_details', 'footer', class: 'input', style: 'width: 100%; resize: none;'  %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'level_of_detail', _('Level_of_Detail') %>
+      </div>
+
+      <div class="input-col">
+        <%= select_tag 'tariff_details[level_of_detail]', options_for_select([[_('Basic_Rate_Only'), 'basic'], [_('Rates_with_Changes'), 'normal'], [_('Full_Analysis'), 'full']], tariff_details.level_of_detail) %>
+      </div>
+    </div>
+
+    <% %w[import_details change_summary import_errors rate_changes notice_period_breaches rejected_rates].each do |setting| %>
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag  setting, _(setting.gsub('_', ' ').titleize.gsub(' ', '_')) %>
+        </div>
+
+        <div class="input-col">
+          <%= check_box_tag "tariff_details[#{setting}]", 1, tariff_details["#{setting}"] %>
+        </div>
+      </div>
+    <% end %>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    hide_tarrif_details();
+
+    $('#email_email_type').change(function() { hide_tarrif_details(); });
+
+    function hide_tarrif_details(){
+      $('#email_email_type').val() == 1 ? $('#tarrif_details').show() : $('#tarrif_details').hide();
+    }
+  });
+</script>
+
+<style>
+  .format_inputs > span{
+    float: left;
+  }
+  @media only screen and (max-width: 767px) {
+  .input-row{
+    line-height: 1!important;
+  }
+  .input{ width: 100%!important;}
+
+  .details-form input[type="submit"]{
+     display: block;
+    margin: 0 auto;
+    float: none;
+
+  }
+  .format_inputs{
+    display: block;
+    width: 150px;
+    margin: auto;
+  }
+}
+</style>

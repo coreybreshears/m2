@@ -1,0 +1,22 @@
+<% if @payments and @payments.size.to_i > 0 %>
+    <table width="100%" class="maintable">
+      <tr>
+        <th align="center"><%= _('Date') %></th>
+        <th align="right"><%= _('Amount') %></th>
+        <th align="right"><%= _('Amount_with_VAT') %></th>
+        <th align="center"><%= _('Currency') %></th>
+      </tr>
+      <% @payments.each_with_index { |payment, i| %>
+        <tr class="row<%= (i % 2 + 1).to_s %>">
+            <td id="date_<%= payment.id %>" align="center"><%= nice_user_timezone(payment.date) if !payment.date.nil? %></td>
+            <td id="amount_<%= payment.id %>" align="right"><%= nice_currency(payment.amount.to_d) if !payment.amount.nil? %></td>
+            <td id="amount_with_tax_<%= payment.id %>" align="right"><%= nice_currency(payment.amount_with_tax.to_d) if !payment.amount_with_tax.nil? %></td>
+            <td id="currency_<%= payment.id %>" align="center" <%= tooltip(_('Exchange_rate'), (nice_number(payment.exchange_rate.to_d) if !payment.exchange_rate.nil?)) %>>
+              <%= currency_by_id(payment.currency_id.to_i) if !payment.currency_id.nil? %>
+            </td>
+        </tr>
+      <% } %>
+    </table>
+<% else %>
+    <%= _('No_payments_found') %>
+<% end %>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>call_stats</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">call_stats</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/one_item_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/calls_per_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_per_day?date_from[year]=2011&amp;date_till[year]=2011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_from_year</td>
+	<td>label=2011</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_till_year</td>
+	<td>label=2011</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_calls</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_duration</td>
+	<td>00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_asr</td>
+	<td>0.0000 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_failed</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_failed_percent</td>
+	<td>100.0000 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_user_price</td>
+	<td>6.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_provider_price</td>
+	<td>3.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>total_profit</td>
+	<td>3.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_margi</td>
+	<td>50.0000 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_markup</td>
+	<td>100.0000 %</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>User: System Admin </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Tes</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>150000</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>150000</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test AccountantTest ResellerTest User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.0.0</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.2.0</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/call_list_to_csv/0?call_type=all&amp;date_from=2009-01-01+00%3A00%3A00&amp;date_till=2009-01-02+23%3A59%3A59&amp;direction=outgoing&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2009-01-01 00:00:01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/call_list_to_csv/0?call_type=all&amp;date_from=2009-01-01+00%3A00%3A00&amp;date_till=2009-01-02+23%3A59%3A59&amp;direction=outgoing&amp;test=1&amp;hgc=331</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>profit&quot;:&quot;1&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/call_list_to_csv/0?call_type=all&amp;date_from=2009-01-01+00%3A00%3A00&amp;date_till=2009-01-02+23%3A59%3A59&amp;direction=outgoing&amp;test=1&amp;hgc=332</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>&quot;profit&quot;=&gt;1.0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2012&amp;date_from[month]=6&amp;date_till[year]=2013&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_termination_point</td>
+	<td>label=/sip.ocean-tel.uk</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/users_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_per_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=-2</td>
+	<td>Enter value here</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Tes</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>150000</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>150000</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test AccountantTest ResellerTest User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.0.0</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=user_list.2.0</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>t</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>150000</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>150000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=-2</td>
+	<td>Found 12 more</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>150000</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=-2</td>
+	<td>No value found</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=asr_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=date_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User: Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_calls</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_duration</td>
+	<td>exact:00:40:12</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>system admin</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='0'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User: System Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1testusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestusertestuserFound 13 more</td>
+</tr>
+<!--all-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='-2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_calls</td>
+	<td>47</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_duration</td>
+	<td>exact:01:08:37</td>
+</tr>
+</tbody></table>
+</body>
+</html>

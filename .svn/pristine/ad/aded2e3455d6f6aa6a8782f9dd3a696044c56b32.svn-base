@@ -1,0 +1,1889 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/active_calls/active_calls_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/device/tp_capacity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=refresh_message</td>
+	<td>Page refreshes every: 5 s</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=pause_toggle_img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=refresh_message</td>
+	<td>Page refresh is stopped</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=s_user</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>Test User #1User Resellers</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_status</td>
+	<td>All Answered Ringing</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_country</td>
+	<td>All Afghanistan Albania Algeria American Samoa Andorra Angola Anguilla Antarctica Antigua And Barbuda Argentina Armenia Aruba Ascension Island Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin Bermuda Bhutan Bolivia Bosnia And Herzegovina Botswana Brazil Brunei Darussalam Bulgaria Burkina Faso Burundi Cambodia Cameroon Canada Cape Verde Cayman Islands Central African Republic Chad Chile China Christmas Island Cocos (Keeling) Islands Colombia Comoros Congo Congo, The Democratic Republic Of The Cook Islands Costa Rica Croatia Cuba Cyprus Czech Republic Denmark Diego Garcia Djibouti Dominica Dominican Republic East Timor Ecuador Egypt El Salvador Ellipso-3 Emsat Equatorial Guinea Eritrea Estonia Ethiopia Falkland Islands (Malvinas) Faroe Islands Fiji Finland France French Guiana French Polynesia Gabon Gambia Georgia Germany Ghana Gibraltar Globalstar Greece Greenland Grenada Guadeloupe Guam Guatemala Guinea Guinea-Bissau Guyana Haiti Honduras Hong Kong Hungary Iceland India Indonesia Inmarsat Iran Iraq Ireland Iridium Israel Italy Ivory Coast Jamaica Japan Jordan Kazakhstan Kenya Kiribati Korea, Democratic People's Republic Of Korea, Republic of Kosovo Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libyan Arab Jamahiriya Liechtenstein Lithuania Luxembourg Macao Macedonia Madagascar Malawi Malaysia Maldives Mali Malta Marshall islands Martinique Mauritania Mauritius Mayotte Mexico Micronesia Moldova Monaco Mongolia Montenegro Montserrat Morocco Mozambique Myanmar Namibia Nauru Nepal Netherlands Netherlands Antilles New Caledonia New Zealand Nicaragua Niger Nigeria Niue Norfolk Island Northern Mariana Islands Norway Oman Pakistan Palau Palestine Panama Papua New Guinea Paraguay Peru Philippines Poland Portugal Puerto Rico Qatar Reunion Romania Russian Federation Rwanda Saint Helena Saint Kitts And Nevis Saint Lucia Saint Pierre And Miquelon Saint Vincent And The Grenadines Samoa San Marino Sao Tome And Principe Saudi Arabia Senegal Serbia and Montenegro Seychelles Sierra Leone Singapore Slovakia Slovenia Solomon Islands Somalia South Africa South Sudan Spain Sri Lanka Sudan Suriname Swaziland Sweden Switzerland Syrian Arab Republic Taiwan Tajikistan Tanzania Thailand Thuraya Togo Tokelau Tonga Trinidad And Tobago Tunisia Turkey Turkmenistan Turks And Caicos Islands Tuvalu Uganda Ukraine United Arab Emirates United Kingdom United States Uruguay Uzbekistan Vanuatu Vatican City Venezuela Vietnam Virgin Islands, British Virgin Islands, U.S. Wallis And Futuna Yemen Zambia Zimbabwe</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0active_calls']/div[5]/div</td>
+	<td>37060011223 Lithuania proper (370) Test User #1 / Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1active_calls']/div[5]/div</td>
+	<td>123123 USA 231 Michigan (1231) Test User #1 / Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=s_device</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_destination</td>
+	<td></td>
+</tr>
+<!--paieska pagal source-->
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>0 / 0</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345&nbsp;&nbsp;Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td>306984327345</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>1 / 0</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<!--paieska pagal src su %-->
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td>30%</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>5 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327344 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td>%347</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>2 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td>%327%</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>5 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327344 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225 Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td>30%45</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>1 / 0</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<!--paieska pagal useri-->
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>6 / 3</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011223&nbsp;&nbsp;Lithuania proper (370)&nbsp;&nbsp;Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>123123&nbsp;&nbsp;USA 231 Michigan (1231)&nbsp;&nbsp;Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>63727007887&nbsp;&nbsp;Philippines proper (63)&nbsp;&nbsp;Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>63727007887&nbsp;&nbsp;Philippines proper (63)&nbsp;&nbsp;Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060011225 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='-2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<!--paieska pagal sali-->
+<tr>
+	<td>select</td>
+	<td>id=s_country</td>
+	<td>label=Philippines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>5 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327344 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<!--paieska pagal dst-->
+<tr>
+	<td>click</td>
+	<td>id=clear_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=s_country</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>63</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>0 / 0</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345&nbsp;&nbsp;Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>63727007887</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>2 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345&nbsp;&nbsp;Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>63%</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>5 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327344 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>%887</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>2 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>63727007887 Philippines proper (63)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345&nbsp;&nbsp;Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>%007%</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>5 / 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327344 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>%89</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>1 / 0</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345&nbsp;&nbsp;Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>6%886</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>1 / 0</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<!--paieska pagal termination pointą-->
+<tr>
+	<td>click</td>
+	<td>id=clear_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=s_destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_for_tp_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user_for_tp</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=s_device</td>
+	<td>All Test Device #1 Test Device for Admin Test User #1/127.0.1.2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_device</td>
+	<td>label=Test Device #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>2 / 2</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327347&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345&nbsp;&nbsp;Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060011234</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=clear_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>10 / 6</td>
+</tr>
+<!--paieska pagal status-->
+<tr>
+	<td>select</td>
+	<td>id=s_status</td>
+	<td>label=Ringing</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>4 / 0</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327344 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327343 Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327345 Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>555333327342</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011221&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011225&nbsp;&nbsp;Test User #1 / Test User #1/127.0.1.2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011234&nbsp;&nbsp;User Resellers / Test Device for Resellers User </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_status</td>
+	<td>label=Answered</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=active_calls_count</td>
+	<td>6 / 6</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>306984327347 User Resellers / Test Device for Resellers User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextNotPresent</td>
+	<td>306984327344&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327343&nbsp;&nbsp;Test User #1 / Test Device for Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>306984327345&nbsp;&nbsp;Test User #1 / Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060011238</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>37060011233</td>
+	<td></td>
+</tr>
+<!--clear search-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_status</td>
+	<td>label=Ringing</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_for_tp_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user_for_tp</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=s_device</td>
+	<td>All Test Device #1 Test Device for Admin Test User #1/127.0.1.2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_device</td>
+	<td>label=Test Device #1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_source</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_country</td>
+	<td>label=Afghanistan</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_destination</td>
+	<td>65</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=clear_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_status</td>
+	<td>Ringing</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_device</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_source</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_country</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_destination</td>
+	<td>65</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=clear_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_status</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_device</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=s_country</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Per Terminator</td>
+	<td>Per Terminator</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/terminator_active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Reports Active Calls Active Calls Per Terminator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Active Calls Per Terminator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_calls_info</td>
+	<td>Page refreshes every: 5 s</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.jqx-grid-column-header.jqx-widget-header &gt; div &gt; div &gt; span</td>
+	<td>Termination Point</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[2]/div/div/span</td>
+	<td>IP Address</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[3]/div/div/span</td>
+	<td>Total Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[4]/div/div/span</td>
+	<td>Answered</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[5]/div/div/span</td>
+	<td>Call Limit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[6]/div/div/span</td>
+	<td>Free Lines</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='pagertp_ac_grid']/div/div[3]</td>
+	<td>1-4 of 4</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.jqx-grid-column-header.jqx-widget-header &gt; div &gt; div &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div/a/div</td>
+	<td>Test Device for Resellers User</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div/a/div</td>
+	<td>Test Device for Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div/a/div</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div/a/div</td>
+	<td>127.0.1.2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[2]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[2]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[2]/div</td>
+	<td>127.0.1.1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[3]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[3]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[3]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[3]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[3]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[3]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[3]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[3]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[3]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[3]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[4]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[4]/div</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[4]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[4]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[4]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[4]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[4]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[4]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[4]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[4]/div</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[5]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[5]/div</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[5]/div</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[6]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[6]/div</td>
+	<td>497</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[6]/div</td>
+	<td>497</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[6]/div</td>
+	<td>498</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[6]/div</td>
+	<td>498</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntabletp_ac_grid']/div[6]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div[6]/div</td>
+	<td>498</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div[6]</td>
+	<td>498</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div[6]/div</td>
+	<td>497</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div[6]/div</td>
+	<td>497</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.jqx-grid-column-header.jqx-widget-header &gt; div &gt; div &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0tp_ac_grid']/div/div</td>
+	<td>127.0.1.2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1tp_ac_grid']/div/a/div</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2tp_ac_grid']/div/a/div</td>
+	<td>Test Device for Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3tp_ac_grid']/div/a/div</td>
+	<td>Test Device for Resellers User</td>
+</tr>
+</tbody></table>
+</body>
+</html>

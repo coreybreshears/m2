@@ -1,0 +1,215 @@
+<div class="row">
+  <div class="col">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :name, class: 'input', maxlength: 100, autocomplete: 'disabled' %>
+      </div>
+    </div>
+    <% unless %w[new create].include?(params[:action]) %>
+        <div class="input-row">
+          <div class="label-col">
+            <label><%= _('Last_Updated') %></label>
+          </div>
+          <div class="input-col not-input-col-just-text">
+            <%= nice_date_time(tariff_rate_import_rule.updated_at) %>
+          </div>
+        </div>
+    <% end %>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Comment') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :comment, class: 'input _150pc', maxlength: 256 %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="input-row">
+      <div class="label-col">
+        <h3><%= _('Rule') %></h3>
+      </div>
+      <div class="input-col">
+        <span class="rules_and_actions-value"><h3><%=  _('Value') %></h3></span>
+        <span class="rules_and_actions-inbetween">&nbsp;</span>
+        <span class="rules_and_actions-action"><h3><%=  _('Action') %></h3></span>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Rate_Increase') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:rate_increase_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween"><%= _('Day_s_') %></span>
+        <%= f.select(:rate_increase_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.rate_increase_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Rate_Decrease') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:rate_decrease_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween"><%= _('Day_s_') %></span>
+        <%= f.select(:rate_decrease_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.rate_decrease_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('New_Rate') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:new_rate_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween"><%= _('Day_s_') %></span>
+        <%= f.select(:new_rate_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.new_rate_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <!--
+    <div class="input-row">
+      <div class="label-col">
+        <label><%#= _('Rate_Deletion') %></label>
+      </div>
+      <div class="input-col">
+        <%#= f.text_field(:rate_deletion_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween"><%#= _('Day_s_') %></span>
+        <%#= f.select(:rate_deletion_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.rate_deletion_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%#= _('Rate_Blocked') %></label>
+      </div>
+      <div class="input-col">
+        <%#= f.text_field(:rate_blocked_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween"><%#= _('Day_s_') %></span>
+        <%#= f.select(:rate_blocked_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.rate_blocked_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+    -->
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Oldest_Effective_Date') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:oldest_effective_date_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween"><%= _('Day_s_') %></span>
+        <%= f.select(:oldest_effective_date_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.oldest_effective_date_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Maximum_Effective_Date') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:maximum_effective_date_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween"><%= _('Day_s_') %></span>
+        <%= f.select(:maximum_effective_date_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.maximum_effective_date_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Max_Increase') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:max_increase_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween">%</span>
+        <%= f.select(:max_increase_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.max_increase_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Max_Decrease') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:max_decrease_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween">%</span>
+        <%= f.select(:max_decrease_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.max_decrease_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Max_Rate') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:max_rate_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween">&nbsp;</span>
+        <%= f.select(:max_rate_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.max_rate_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Zero_Rate') %></label>
+      </div>
+      <div class="input-col">
+        <span class="rules_and_actions-value">&nbsp;</span>
+        <span class="rules_and_actions-inbetween">&nbsp;</span>
+        <%= f.select(:zero_rate_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.zero_rate_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <!--
+    <div class="input-row">
+      <div class="label-col">
+        <label><%#= _('Duplicate_Rate') %></label>
+      </div>
+      <div class="input-col">
+        <span class="rules_and_actions-value">&nbsp;</span>
+        <span class="rules_and_actions-inbetween">&nbsp;</span>
+        <%#= f.select(:duplicate_rate_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.duplicate_rate_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+    -->
+
+    <div class="input-row" <%= tooltip(_('Value_Format_Info'), _('Tariff_Rate_Import_Rules_Min_Times_Value_Format_Info_description')) %>>
+      <div class="label-col">
+        <label><%= _('Min_Times_Not_Equal') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:min_times_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween">&nbsp;</span>
+        <%= f.select(:min_times_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.min_times_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <div class="input-row" <%= tooltip(_('Value_Format_Info'), _('Tariff_Rate_Import_Rules_Increments_Value_Format_Info_description')) %>>
+      <div class="label-col">
+        <label><%= _('Increments_Not_Equal') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:increments_value, class: 'rules_and_actions-value', size: 50) %>
+        <span class="rules_and_actions-inbetween">&nbsp;</span>
+        <%= f.select(:increments_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.increments_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+
+    <!--
+    <div class="input-row">
+      <div class="label-col">
+        <label><%#= _('Code_Moved_to_New_Zone') %></label>
+      </div>
+      <div class="input-col">
+        <span class="rules_and_actions-value">&nbsp;</span>
+        <span class="rules_and_actions-inbetween">&nbsp;</span>
+        <%#= f.select(:code_moved_to_new_zone_action, options_for_select(tariff_rate_import_rules_actions_selection, tariff_rate_import_rule.code_moved_to_new_zone_action), {}, {class: 'rules_and_actions-action'}) %>
+      </div>
+    </div>
+    -->
+  </div>
+</div>

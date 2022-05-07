@@ -1,0 +1,4 @@
+<%= render 'device_list', devices: @devices,
+                          total_pages: @total_pages,
+                          options: @options
+                          %>

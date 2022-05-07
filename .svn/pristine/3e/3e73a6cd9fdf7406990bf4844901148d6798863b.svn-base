@@ -1,0 +1,41 @@
+<tr>
+  <td colspan="2" class="bottom_border">
+    <b><%= _('Codecs') %></b> &nbsp; (<%= _('Drag_and_drop') %>)
+  </td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+<tr>
+  <td valign="top">
+    <table class="simple" id="cod_cod" style="list-style-type: none;margin-left: 0px;padding-left: 0px;">
+      <tr>
+        <td>
+          <div class="simple"><%= _('Audio') %></div>
+        </td>
+      </tr>
+          <tr>
+            <td>
+              <%= render '/devices/device_codecs', :device => device, :codecs => audio_codecs, :ctype => 'audio' %>
+              <%= sortable_element('audio_sortable_list', :tag => 'li', :update => 'audio_items', :url => {:controller => :devices, :ctype => "audio", :action => :devicecodecs_sort, :id => params[:action] != 'default_device' ? device.id : -1}) %>
+            </td>
+          </tr>
+          <% unless m4_functionality? %>
+            <tr class='op_setting'>
+              <td><%= _('Inherit_leg_B_Codecs') %>:</td>
+              <td>
+                <%= radio_button_tag('device[inherit_codec]', '0', device.inherit_codec == 0) %> <%= _('_No') %>
+                <%= radio_button_tag('device[inherit_codec]', '1', device.inherit_codec == 1) %> <%= _('_Yes') %>
+              </td>
+            </tr>
+            <tr class='tp_setting'>
+              <td><%= _('Enforce_same_Codecs_as_on_Leg_A') %>:</td>
+              <td>
+                <%= radio_button_tag('device[enforce_lega_codecs]', '0', device.enforce_lega_codecs == 0) %> <%= _('_No') %>
+                <%= radio_button_tag('device[enforce_lega_codecs]', '1', device.enforce_lega_codecs == 1) %> <%= _('_Yes') %>
+              </td>
+            </tr>
+          <% end %>
+    </table>
+  </td>
+</tr>

@@ -1,0 +1,387 @@
+<!-- JQXGRID PROCESSOR -->
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+<%= javascript_include_tag 'google_charts/loader.js' %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Active_Calls_Per_Server') %></h2>
+    <div id="active_calls_info">
+      <!-- Info box -->
+      <%= _('Page_refreshes_every') %>:&nbsp;<%= @refresh_period > 0 ? @refresh_period : 5 %> s
+    </div>
+    <!-- Main View -->
+    <div id="ac_ps_container">
+      <div id="ac_ps_grid"></div>
+      <div id="ac_ps_answered_graph">
+        <div id="ac_ps_answered_graph_title"></div>
+        <div id="ac_ps_answered_graph_con"></div>
+      </div>
+      <div id="ac_ps_ringing_graph">
+        <div id="ac_ps_ringing_graph_title"></div>
+        <div id="ac_ps_ringing_graph_con"></div>
+      </div>
+    </div>
+    <!-- End of Main View -->
+  </div>
+</div>
+<style>
+  #ac_ps_container{
+      padding-left: 10px;
+      padding-right: 15px;
+      vertical-align: top;
+  }
+  #ac_ps_grid, #ac_ps_answered_graph, #ac_ps_ringing_graph{
+      display: inline-block;
+      width: 25%;
+  }
+  #ac_ps_answered_graph{
+      margin-left: 25px;
+  }
+  #ac_ps_ringing_graph{
+      margin-left: 10px;
+  }
+  #ac_ps_grid{
+    vertical-align: top;
+  }
+
+  #ac_ps_answered_graph_title,  #ac_ps_ringing_graph_title{
+      text-align: center;
+  }
+  #ac_ps_ringing_graph_title h3, #ac_ps_answered_graph_title h3{
+      margin-bottom: 2px;
+      margin-top: 0;
+  }
+  @media only screen and (max-width:850px){
+      #ac_ps_grid, #ac_ps_answered_graph, #ac_ps_ringing_graph{
+          width: 100%;
+          display: block;
+      }
+      #ac_ps_answered_graph, #ac_ps_ringing_graph{
+          margin-top: 25px;
+      }
+      #ac_ps_answered_graph{
+          margin-left: 0px;
+      }
+      #ac_ps_ringing_graph{
+          margin-left: 0px;
+      }
+  }
+</style>
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        google.charts.load('current', {'packages': ['corechart']});
+
+        var data = <%= raw @data %>;
+
+        google.charts.setOnLoadCallback(function () {
+            drawCharts(data);
+        });
+
+        var table_width = '45%';
+        resize_window($(window).width());
+        // JQXGrid table class
+        var JQXTable = function () {
+            // PRIVATE ATTRIBUTES
+            // Table container
+            var ACPSCallsGrid = $("#ac_ps_grid");
+
+            // Clumn width distribution
+            var col_distr = {
+                server: '50%', total: '10%', answered: '16%', ringing: '16%', asr: '8%'
+            };
+
+            // Localization callback
+            var getLocalization = function () {
+                return {
+                    thousandsseparator: "",
+                    emptydatastring: "<%= _('No_data_found_no_dots') %>"
+                }
+            };
+
+            // PUBLIC ATTRIBUTES
+            // Source data model
+            this.source = {
+                datatype: 'json',
+                datafields: [
+                    { name: 'server', type: 'string' },
+                    { name: 'total', type: 'integer' },
+                    { name: 'answered', type: 'integer' },
+                    { name: 'ringing', type: 'integer' },
+                    { name: 'asr', type: 'float' }
+                ],
+                pagesize: <%= session[:items_per_page] %>,
+                cache: true
+            };
+
+            // Table columns
+            this.columns = [
+                // Server column
+                {
+                    text: "<%= _('Server') %>", datafield: 'server',
+                    align: 'left', cellsalign: 'left', width: col_distr.server,
+                    aggregatesrenderer: function (aggregates) {
+                        return '<div style="position: relative; margin: 2px; overflow: hidden;"><b><%= _('Total') %>:</b></div>';
+                    }
+                },
+                // Total Active Calls per Server
+                {
+                    text: "<%= _('Total') %>", datafield: 'total', align: 'right',
+                    cellsalign: 'right', width: col_distr.total,
+                    aggregates: ['sum'],
+                    aggregatesrenderer: function (aggregates) {
+                        var renderstring = "";
+                        $.each(aggregates, function (key, value) {
+                            renderstring += '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b>' + value + '</b></div>';
+                        });
+                        return renderstring;
+                    }
+                },
+                // Answered Active Calls per Server
+                {
+                    text: "<%= _('Answered') %>", datafield: 'answered', align: 'right',
+                    cellsalign: 'right', width: col_distr.answered,
+                    aggregates: ['sum'],
+                    aggregatesrenderer: function (aggregates) {
+                        var renderstring = "";
+                        $.each(aggregates, function (key, value) {
+                            renderstring += '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b>' + value + '</b></div>';
+                        });
+                        return renderstring;
+                    }
+                },
+
+                // Ringing Active Calls per Server
+                {
+                    text: "<%= _('Ringing') %>", datafield: 'ringing', align: 'right',
+                    cellsalign: 'right', width: col_distr.ringing,
+                    aggregates: ['sum'],
+                    aggregatesrenderer: function (aggregates) {
+                        var renderstring = "";
+                        $.each(aggregates, function (key, value) {
+                            renderstring += '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b>' + value + '</b></div>';
+                        });
+                        return renderstring;
+                    }
+                },
+                {
+                    text: "<%= _('ASR') %> %", datafield: 'asr', align: 'right',
+                    cellsalign: 'right', width: col_distr.asr, cellsformat: 'f1',
+                    aggregatesrenderer: function (aggregates) {
+                        var sumAnswered = $("#ac_ps_grid").jqxGrid('getcolumnaggregateddata', 'answered', ['sum']);
+                        var sumRinging = $("#ac_ps_grid").jqxGrid('getcolumnaggregateddata', 'ringing', ['sum']);
+                        var asr = (sumAnswered['sum'] / (sumAnswered['sum'] + sumRinging['sum'])) * 100;
+                        if (asr !== asr){
+                            return '';
+                        }else{
+                            return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b>' + asr.toFixed(1) + '</b></div>';
+                        }
+                    }
+                }
+            ];
+
+            // Updates the JQXGrid table
+            this.update = function (data, requestCount) {
+                this.source.localdata = data;
+                if (requestCount == 0) {
+                    ACPSCallsGrid.jqxGrid({
+                        source: new $.jqx.dataAdapter(this.source),
+                        width: table_width,
+                        autoheight: true,
+                        rowsheight: 22,
+                        altrows: true,
+                        enablebrowserselection: true,
+                        selectionmode: 'none',
+                        showstatusbar: true,
+                        statusbarheight: 22,
+                        showaggregates: true,
+                        sortable: true,
+                        pageable: false,
+                        enablebrowserselection: "true",
+                        pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                        localization: getLocalization(),
+                        columns: this.columns,
+                        handlekeyboardnavigation: function (event) {
+                            var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                            if (key == 86 && event.ctrlKey == true) {
+                                return true;
+                            }
+                        },
+                        ready: function () {
+                            rendered = true;
+                            // Default sort: duration
+                            ACPSCallsGrid.jqxGrid("sortby", "server", "asc");
+                        }
+                    });
+                } else {
+                    // For later requests we maintain settings and update the data
+                    var sortColumnName = ACPSCallsGrid.jqxGrid("getsortcolumn");
+                    var currentPage = ACPSCallsGrid.jqxGrid("getdatainformation").paginginformation.pagenum;
+                    var sortOrder = ACPSCallsGrid.jqxGrid("getsortinformation").sortdirection.ascending == true ? "asc" : "desc";
+                    ACPSCallsGrid.jqxGrid({ source: new $.jqx.dataAdapter(this.source)});
+                    ACPSCallsGrid.jqxGrid("sortby", sortColumnName, sortOrder);
+                    ACPSCallsGrid.jqxGrid("gotopage", currentPage);
+                    // Update the table
+                    ACPSCallsGrid.jqxGrid("updatebounddata", "sort");
+                }
+            };
+        };
+        // End of JQXGrid table class
+
+        // Function for drawing column chart
+        function drawColumnChart(chartdata, id, max_value) {
+            max_value = max_value == 0 ? 2 : max_value
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'name');
+            data.addColumn('number', 'count');
+            console.log(max_value);
+            data.addRows(chartdata);
+            var options = {
+                'legend': {position: 'none'},
+                'chartArea': {
+                    'width': '100%',
+                    'left': '25',
+                    'top': '5',
+                    'right': '10'
+                },
+                vAxis: {
+                    scaleType: 'linear',
+                    viewWindow: {
+                        max: max_value,
+                        min: 0
+                    },
+                    gridlines: {count: max_value == 1 ? 2 : -1},
+                },
+                colors: ['#B9C8E1']
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById(id));
+            chart.draw(data, options);
+        }
+
+        function drawCharts(chart_data) {
+            var answered = [];
+            var ringing = [];
+            var ans_values = [];
+            var ring_values = [];
+
+            if (chart_data.length > 1) {
+                chart_data.forEach(function (data) {
+                    var server = data['server'] != null ? data['server'].split(',')[0].toLowerCase().replace(/\s/g,'') : '';
+                    var answered_value = data['answered'];
+                    var ringing_value = data['ringing'];
+                    answered.push([answered_value + ' (' + server + ')', answered_value]);
+                    ringing.push([ringing_value + ' (' + server + ')', ringing_value]);
+                    ans_values.push(data['answered']);
+                    ring_values.push(data['ringing']);
+                });
+
+                var max_ans = Math.max.apply(null, ans_values);
+                var max_ring = Math.max.apply(null, ring_values);
+
+                document.getElementById('ac_ps_answered_graph_title').innerHTML = "<h3><%= _('Answered') %></h3>";
+                drawColumnChart(answered, 'ac_ps_answered_graph_con', max_ans);
+
+                document.getElementById('ac_ps_ringing_graph_title').innerHTML = "<h3><%= _('Ringing') %></h3>";
+                drawColumnChart(ringing, 'ac_ps_ringing_graph_con', max_ring);
+            }else{
+                document.getElementById('ac_ps_answered_graph_title').innerHTML = "";
+                document.getElementById('ac_ps_answered_graph_con').innerHTML = "";
+                document.getElementById('ac_ps_ringing_graph_title').innerHTML = "";
+                document.getElementById('ac_ps_ringing_graph_con').innerHTML = "";
+            }
+        }
+
+        // Data receiver class
+        //   Periodically receives data from server and
+        //   performs all the work
+        var table = new JQXTable();
+        var response_data = <%= raw @data %>;
+        var DataReceiver = function () {
+            // PRIVATE ATTRIBUTES
+            var refreshPeriod = (parseInt("<%= @refresh_period %>") || 5) * 1000;
+            var requestCount = 0;
+            // Loading indicator
+            var spinner = $("#spinner");
+
+            function worker() {
+                // For the first time we do not need to ask the server
+                if (requestCount == 0) {
+                    // Updates the table
+                    table.update(response_data, requestCount);
+                    requestCount++;
+                    setTimeout(worker, refreshPeriod);
+                } else {
+                    // Other iterations send periodic requests to the server
+                    sendRequest();
+                }
+            }
+
+            // Performs an ajax call
+            var sendRequest = function () {
+                pendingRequest = $.ajax({
+                    // Request destination
+                    url: "<%= Web_Dir %>" + "/stats/active_calls_per_server",
+                    type: "GET",
+                    dataType: "json",
+                    // Updates the table with a json response
+                    success: function (data) {
+                        response_data = data;
+                        table.update(data, requestCount);
+                        drawCharts(data);
+                    },
+                    // Cleans up and get ready for a successor request
+                    complete: function () {
+                        setTimeout(worker, refreshPeriod);
+                        requestCount++;
+                    }
+                });
+            };
+
+            // PUBLIC ATTRIBUTES
+            // Starts the periodic worker
+            this.start = function () {
+                worker();
+            }
+        };
+        // End of data receiver class
+
+        // Main part
+        DS = new DataReceiver();
+        // Start the work
+        DS.start();
+        // End of Main part
+
+        // resize JQX grid on mobile devices
+        $(window).resize(function () {
+            var window_width = $(this).width();
+            resize_window(window_width);
+            drawCharts(response_data);
+            table.update(response_data, 0)
+        });
+
+        function resize_window(window_width){
+            if (window_width < 850) {
+                table_width = '100%';
+            } else {
+                table_width = '45%';
+            }
+        }
+    });
+</script>

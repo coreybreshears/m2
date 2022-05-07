@@ -1,0 +1,11 @@
+<div class="content-box">
+  <%= form_for :auto_aggregate_export, url: {action: 'update', id: @auto_aggregate_export.id}, html: {class: 'details-form'} do |f| %>
+      <fieldset>
+        <%= render 'form', f: f, auto_aggregate_export: @auto_aggregate_export, options: @options %>
+        <div class="buttons-row">
+          <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/aggregate_export/index'" %>
+          <%= submit_tag _('UPDATE'), :disable_with => _('Processing..') %>
+        </div>
+      </fieldset>
+  <% end %>
+</div>

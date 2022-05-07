@@ -1,0 +1,71 @@
+<table class="simple">
+  <tr>
+  	<td width="140px"><%= _('User') %>:</td>
+  	<td id="user_<%= m2_invoice.id %>" ><%= link_nice_user(m2_invoice_user) %></td>
+  	<td colspan="2"></td>
+  </tr>
+  <tr>
+  	<td><%= _('invoice_number') %>:</td>
+  	<td id="number_<%= m2_invoice.id %>" ><%= f.text_field :number, :class=>"input", :size=>"20" %></td>
+  	<td colspan="2"></td>
+  </tr>
+  <tr>
+  	<td><%= _('period_start') %>:</td>
+  	<td id="period_start_<%= m2_invoice.id %>" ><%= nice_date_time(m2_invoice.period_start, ofset=0) %></td>
+	 <td><%= _('issue_date') %>:</td>
+    <% if m2_invoice.issue_date.blank? %>
+      <td id="issue_date_<%= m2_invoice.id %>" ><%= f.datetime_select(:issue_date, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+5, :prefix => "issue_date", :use_month_numbers => false, include_blank: true ) %></td>
+    <% else %>
+      <td id="issue_date_<%= m2_invoice.id %>" ><%= f.datetime_select(:issue_date, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+5, :prefix => "issue_date", :use_month_numbers => false ) %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td><%= _('period_end') %>:</td>
+    <td id="period_end_<%= m2_invoice.id %>" ><%= nice_date_time(m2_invoice.period_end, ofset=0) %></td>
+  	<td><%= _('date_due') %>:</td>
+  	<td id="date_due_<%= m2_invoice.id %>" ><%= f.datetime_select(:due_date, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+5, :prefix => "due_date", :use_month_numbers => false ) %></td>
+  </tr>
+  <tr>
+  	<td><%= _('invoice_status') %>:</td>
+  	<td id="status_<%= m2_invoice.id %>" ><%= f.select :status, select_status_for_edit(m2_invoice.status) %></td>
+  	<td><%= _('status_changed_at') %>:</td>
+    <% if m2_invoice.status_changed.blank? %>
+    	<td id="status_changed_at_<%= m2_invoice.id %>" ><%= f.datetime_select(:status_changed, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+5, :prefix => "status_changed", :use_month_numbers => false, include_blank: true ) %></td>
+    <% else %>
+      <td id="status_changed_at_<%= m2_invoice.id %>" ><%= f.datetime_select(:status_changed, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+5, :prefix => "status_changed", :use_month_numbers => false ) %></td>
+    <% end %>
+  </tr>
+  <tr>
+  	<td><%= _('Price') %>:</td>
+  	<td id="price_<%= m2_invoice.id %>" ><%= nice_currency(m2_invoice.total_amount, m2_invoice.currency_exchange_rate) %></td>
+    <td><%= _('currency') %>:</td>
+    <td id="currency_<%= m2_invoice.id %>" ><%= m2_invoice.currency.upcase %></td>
+  </tr>
+  <tr>
+    <td><%= _('price_with_tax') %>:</td>
+    <td id="price_with_tax_<%= m2_invoice.id %>" ><%= nice_currency(m2_invoice.total_amount_with_taxes, m2_invoice.currency_exchange_rate) %></td>
+  	<td><%= _('Exchange_rate') %>:</td>
+  	<td id="exchange_rate_<%= m2_invoice.id %>" ><%= nice_number_n_digits(m2_invoice.currency_exchange_rate, 2) %></td>
+  </tr>
+  <tr>
+  	<td><%= _('timezone') %>:</td>
+  	<td id="timezone_<%= m2_invoice.id %>" ><%= m2_invoice.timezone %></td>
+  	<td colspan="2"></td>
+  </tr>
+  <tr>
+    <% if m2_invoice.confirmed_to_send_to_user.to_i.zero? and !m2_invoice.mailed_to_user %>
+      <td <%= tooltip(_('Description'), _('Send_this_Invoice_to_the_User_by_Email')) %>>
+        <%= _('Confirm_to_send_via_email') %>:</td>
+      <td id="send_via_email_<%= m2_invoice.id %>"<%= tooltip(_('Description'), _('Send_this_Invoice_to_the_User_by_Email')) %>>
+        <%= f.check_box :confirmed_to_send_to_user %>
+      </td>
+    <% elsif m2_invoice.confirmed_to_send_to_user.to_i > 0 and !m2_invoice.mailed_to_user %>
+      <td><%= _('Confirmed_to_send_via_email') %></td>
+      <td></td>
+    <% else %>
+      <td><%= _('Sent_by_Email') %></td>
+      <td></td>
+    <% end %>
+  	<td colspan="2"></td>
+  </tr>
+</table>

@@ -1,0 +1,24 @@
+.number-input {
+  display:inline-block !important;
+  width: 45px !important;
+  vertical-align:initial !important;
+}
+.one-line{
+  display:inline-block;
+  padding:4px 0 0;
+}
+.select-input{
+  position:relative;
+  min-width: 120px;
+  top: 10px;
+}
+.input {
+  display:inline-block !important;
+  vertical-align:initial !important;
+}
+.select-for-time{
+  min-width: 50px;
+}
+.only-one-line{
+  display:inline-block;
+}

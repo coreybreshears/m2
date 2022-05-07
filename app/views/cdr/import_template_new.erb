@@ -1,0 +1,14 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('New_CDR_Import_Template') %></h2>
+    <%= form_for :template, url: {action: :import_template_create, id: @template.id}, html: {class: 'details-form'} do |f| %>
+        <fieldset>
+          <%= render 'import_template_form', f: f, template: @template, columns: @columns %>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/cdr/import_templates'" %>
+            <%= submit_tag _('CREATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

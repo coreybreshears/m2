@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>API Requests are disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=nice_date</td>
+	<td>time</td>
+</tr>
+<!--Enable MOR API-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/enable_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<!--Sugeneruojami Hash'ai, currency ir rate ieina i hasha-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=exchange_rate_update&amp;currency=AMD&amp;rate=999</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=exchange_rate_update&amp;currency=ALL&amp;rate=321</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=exchange_rate_update&amp;currency=AMD&amp;rate=3?1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash3</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=exchange_rate_update&amp;currency=ALL&amp;rate=3?1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash4</td>
+</tr>
+<!--errors-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Incorrect hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Bad login</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=user_admin&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=partner&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Bad login</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=user_admin&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Incorrect hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=accountant&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;currency=ALL&amp;rate=321&amp;test=1&amp;hash=${hash2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Currency was not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;currency=AMD&amp;rate=3?1&amp;test=1&amp;hash=${hash3}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Exchange rate is invalid</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;currency=ALL&amp;rate=3?1&amp;test=1&amp;hash=${hash4}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Currency was not found</td>
+</tr>
+<!--success-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Currency successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cur_name_149</td>
+	<td>AMD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=AMD_exchange_rate</td>
+	<td>999.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/table/tbody/tr[4]/td[4]</td>
+	<td>${time}*</td>
+</tr>
+<!--acc mato ka adminas, tik jam reikai read arba write manage users persmissionu-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/permissions/accountant/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<!--duodam leidima read-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/permissions/accountant/manage_users_read</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=accountant&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Access Denied</td>
+</tr>
+<!--partner-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=partner&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Bad login</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/disable_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># disable hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/enable_xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;currency=AMD&amp;rate=999&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=page</td>
+	<td>Currency successfully updated</td>
+</tr>
+<!--Manager-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/manager/manager_16001/create_permission_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/manager/manager_16001/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=manager&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>You are not authorized to use this functionality</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/manager/manager_16001/all_permissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=manager&amp;currency=AMD&amp;rate=999&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Currency successfully updated</td>
+</tr>
+<!--Fake forma-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/disallow_get</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/exchange_rate_update?u=admin&amp;currency=AMD&amp;rate=999&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=status</td>
+	<td>GET Requests are disabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/fake_form?path_to_action=/billing/api/exchange_rate_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_1</td>
+	<td>u</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_1</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_1</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_2</td>
+	<td>currency</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_2</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_2</td>
+	<td>AMD</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_3</td>
+	<td>rate</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_3</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_3</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_4</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_4</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_4</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=page</td>
+	<td>Currency successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cur_name_149</td>
+	<td>AMD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cur_full_name_149</td>
+	<td>Armenian Dram</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=AMD_exchange_rate</td>
+	<td>777.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/table/tbody/tr[4]/td[4]</td>
+	<td>${time}*</td>
+</tr>
+</tbody></table>
+</body>
+</html>

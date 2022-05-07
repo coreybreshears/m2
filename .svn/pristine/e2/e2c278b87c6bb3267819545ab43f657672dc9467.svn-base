@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<!--Ne rspro ir acc nemato ip search: -->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>accountant1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=ip_search</td>
+	<td>22.33.44.5</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search</td>
+	<td>370%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Lithuania Lithuania proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search</td>
+	<td>ėįšėįųęė370</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Lithuania Lithuania proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search</td>
+	<td>?сти́льную 370صباح الخير</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Lithuania Lithuania proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=country_search</td>
+	<td>Mexico%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=country_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=country_search</td>
+	<td>ėįšėįųęėMexico</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=country_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=country_search</td>
+	<td>?сти́льную 370صباح الخير</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=country_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_search</td>
+	<td>370%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=rate_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Test Tariff (prefix: 370)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_search</td>
+	<td>ėįšėįųęė93</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=rate_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Test Tariff (prefix: 93)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_search</td>
+	<td>?сти́льную 6240صباح الخير</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=rate_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Test Tariff (prefix: 62)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_search</td>
+	<td>0.0.0%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=ip_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_search</td>
+	<td>ėįšėįųęė0.0.0.0</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=ip_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_search</td>
+	<td>?сти́льную 6240صباح الخير</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=ip_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>search</td>
+	<td>37'0</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>results</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Internal Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>search</td>
+	<td>370'</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>results</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Internal Error</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>search</td>
+	<td>'370</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>results</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Internal Error</td>
+	<td></td>
+</tr>
+<!--naujas paieškos laukas ip_search-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>192.168.26.59</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/search</td>
+	<td></td>
+</tr>
+<!--devaisas-->
+<!--su tarpais-->
+<tr>
+	<td>type</td>
+	<td>id=ip_search</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;192.168.26.59&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=ip_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ip_search</td>
+	<td>192.168.26.59</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_search</td>
+	<td>192.168.26.59</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=ip_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Enter IP to get Connection Point(s)</td>
+	<td></td>
+</tr>
+<!--turi ieskoti dar nepilnai ivedus-->
+<tr>
+	<td>type</td>
+	<td>id=ip_search</td>
+	<td>192.168.26.5</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=ip_search</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Connection Point(s):</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Providers:</td>
+	<td></td>
+</tr>
+<!--senas linkas turi veikti-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/prefix_finder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Dynamic search</td>
+</tr>
+</tbody></table>
+</body>
+</html>

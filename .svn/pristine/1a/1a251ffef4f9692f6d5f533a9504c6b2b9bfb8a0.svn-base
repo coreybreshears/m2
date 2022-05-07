@@ -1,0 +1,3 @@
+Direction,Destination,Prefix,Subcode,Country code,Rate(EUR),Connection Fee(EUR),Increment,Minimal Time,Start Time,End Time,Week Day,
+Egypt,Egypt - Fixed,205,FIX,EGY,0,730,0,0,1,1,00:00:00,23:59:59
+Egypt,Egypt - Fixed,2065,FIX,EGY,0,730,0,0,1,1,00:00:00,23:59:59

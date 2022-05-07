@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m2_dial_peers2</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m2_dial_peers2</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/some_dp_with_tp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=YES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point disabled</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=YES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point disabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/18</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=YES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#active_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point enabled</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point enabled</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#active_2 &gt; a</td>
+	<td></td>
+</tr>
+<!--disablinamas ir po to istrinamas-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>remove_termination_point_from_dp*Termination points list(1)*Termination Point successfully removed*Dial Peer id: 1*Termination Point id: 46</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>assign_termination_point_to_dp*Termination points list(1)*Termination Point successfully removed*Dial Peer id: 1*Termination Point id: 46</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/1</td>
+	<td></td>
+</tr>
+<!--vel pridedamas - vel enablintas-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=percent_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=percent</td>
+	<td>80</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=percent_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='percent_5']</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Test User #1/dynamic')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>assign_termination_point_to_dp*Termination points list(1)*Termination Point successfully removed*Dial Peer id: 1*Termination Point id: 46</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=percent_1</td>
+	<td>80</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=percent_5</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weight_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=weight</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weight_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='weight_5']</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Test User #1/dynamic')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=weight_1</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=weight_5</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=percent_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=percent</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Termination Point was not updated*Percent must be a number between 0 and 100</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weight_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=weight</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Termination Point was not updated*Percent must be a number between 0 and 100</td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=weight_1</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=weight_5</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=percent_1</td>
+	<td>80</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=percent_5</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weight_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=weight_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=weight_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=percent_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=percent_5</td>
+	<td>35</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.content-box</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=percent_5</td>
+	<td>35</td>
+</tr>
+<!--inactive DP-->
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#active_4 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point disabled</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point enabled</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<!--DG dropdown DP create/edit-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>dial_peer_destination_by_tariff_id</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>dial_peer_destination_by_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>dial_peer_destination_by_tariff_id</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>dial_peer_tariff_id</td>
+	<td>Test Tariff Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=autocomplete</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=autocomplete</td>
+	<td>Afgh%</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dial_peer_tariff_id</td>
+	<td>label=Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=autocomplete</td>
+	<td>Afgh%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>to test dg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dial_peer_tariff_id</td>
+	<td>Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=autocomplete</td>
+	<td>Afgh%</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>dial_peer_destination_by_tariff_id</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dial_peer_tariff_id</td>
+	<td>label=Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=autocomplete</td>
+	<td>Aruba</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=autocomplete</td>
+	<td>Aruba</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dial_peer_tariff_id</td>
+	<td>Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>dial_peer_destination_by_regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>dial_peer_destination_by_tariff_id</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=autocomplete</td>
+	<td></td>
+</tr>
+<!--CANCEL mygtuko patikrinimas-->
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>changed name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>0.0052</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.select-opener</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dial_peer_tp_priority</td>
+	<td>label=percent</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_comment</td>
+	<td>asdasdasd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_src_regexp</td>
+	<td>sdfsdf</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_src_deny_regexp</td>
+	<td>sdgdfg</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_dst_regexp</td>
+	<td>dfgdfg</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_dst_deny_regexp</td>
+	<td>dfgdfg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=cancel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>changed name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>0.0052</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.select-opener</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dial_peer_tp_priority</td>
+	<td>label=percent</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_comment</td>
+	<td>asdasdasd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_src_regexp</td>
+	<td>[</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_src_deny_regexp</td>
+	<td>\</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_dst_regexp</td>
+	<td>*</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_dst_deny_regexp</td>
+	<td>\</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Dial Peer was not updated<br /> * Invalid Regexp - premature end of char-class: /[/<br /> * Invalid Regexp - too short escape sequence: /\/<br /> * Invalid Regexp - target of repeat operator is not specified: /*/<br /> * Invalid Regexp - too short escape sequence: /\/</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_name</td>
+	<td>to test dg</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_src_regexp</td>
+	<td>.*</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_src_deny_regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_dst_regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_dst_deny_regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>dial_peer_active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>dial_peer_stop_hunting</td>
+	<td>on</td>
+</tr>
+<!--Įrašius  Minimal Rate Margin pranyksta Minimal Rate Margin Percent reikšmė-->
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>0.0999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>5'5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>5'5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td>5'5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td>5'5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Dial Peer was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal Rate Margin must be decimal number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal Rate Margin Percent must be decimal number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_minimal_rate_margin_percent</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Termination Point successfully removed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Termination Point successfully removed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>user_admin Test User #1/dynamic</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>to test dg</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.2</td>
+	<td>Inactive Dial Peer</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>to test dg</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>Inactive Dial Peer</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.2</td>
+	<td>Active Dial Peer</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.3</td>
+	<td>some regexp</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Destination regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Destination regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.3</td>
+	<td>some regexp</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.6</td>
+	<td>weight</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.6</td>
+	<td>weight</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=TP Priority</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=TP Priority</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.6</td>
+	<td>weight</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.6</td>
+	<td>percent</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.7</td>
+	<td>LIST (0)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=TP List</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=TP List</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.7</td>
+	<td>LIST (2)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.3.7</td>
+	<td>LIST (0)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/action_log?order_by=date&amp;order_desc=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=target_8</td>
+	<td>Dial Peer(3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=data3_8</td>
+	<td>exact:drgxp: dmsk:Afgh%</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=data4_8</td>
+	<td>exact:drgxp: dmsk:Aruba</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=target_9</td>
+	<td>Dial Peer(3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=data3_9</td>
+	<td>exact:dmsk:Aruba tariff_id:5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=data4_9</td>
+	<td>exact:dmsk: tariff_id:0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=target_10</td>
+	<td>Dial Peer(3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=data3_10</td>
+	<td>exact:minrmperc:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=data4_10</td>
+	<td>exact:minrmperc:10.0</td>
+</tr>
+</tbody></table>
+</body>
+</html>

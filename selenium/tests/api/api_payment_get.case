@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>api_payment_get</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">api_payment_get</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;test=1&amp;hash=38282ca5e65e63746498ef5b39a2fe71c6448df4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>API Requests are disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/enable_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_1004/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/payments/m2_payments_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;test=1&amp;hash=38282ca5e65e63746498ef5b39a2fe71c6448df4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Incorrect hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payments_get&amp;u=admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payments_get&amp;u=admin&amp;user_id_s=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?api_name=payments_get&amp;u=admin&amp;user_id_s=2&amp;from_s=1349049600&amp;till_s=1420070400&amp;username_s=user&amp;first_name_s=Test&amp;last_name_s=#1&amp;currency_s=USD&amp;amount_max_s=90&amp;amount_min_s=-50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash3</td>
+</tr>
+<!--Default data yra siandienos-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Payments were not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;test=1&amp;from_s=1349049600&amp;till_s=1420070400&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD Test User #1 2014-01-02 22:20:05 -15.5840 -30.6660 Fire nation EUR testuser 2014-01-02 22:20:05 100.5840 977.6660 Kito user payment EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;user_id_s=2&amp;from_s=1349049600&amp;till_s=1420070400&amp;username_s=user&amp;first_name_s=Test&amp;currency_s=USD&amp;amount_max_s=90&amp;amount_min_s=-90&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD</td>
+</tr>
+<!--random values are defaults-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;user_id_s=llkjkl2&amp;from_s=1349049600&amp;till_s=1420070400&amp;username_s=user&amp;first_name_s=Test&amp;currency_s=US444D&amp;amount_max_s=9fsgdf0&amp;amount_min_s=-9fsdfsdf0&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD Test User #1 2014-01-02 22:20:05 -15.5840 -30.6660 Fire nation EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=adjjmin&amp;user_id_s=llkjkl2&amp;from_s=1349049600&amp;till_s=1420070400&amp;username_s=user&amp;first_name_s=Test&amp;currency_s=US444D&amp;amount_max_s=9fsgdf0&amp;amount_min_s=-9fsdfsdf0&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bad login</td>
+	<td></td>
+</tr>
+<!--paprasta useris mato tik savo payments-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=user_admin&amp;test=1&amp;hash=${hash1}&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD Test User #1 2014-01-02 22:20:05 -15.5840 -30.6660 Fire nation EUR</td>
+</tr>
+<!--paprastas useris net jei ir paduota user_id_s visteik rodo tik jo paties -->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=user_admin&amp;user_id_s=1004&amp;test=1&amp;hash=${hash1}&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD Test User #1 2014-01-02 22:20:05 -15.5840 -30.6660 Fire nation EUR</td>
+</tr>
+<!--Disable Hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/disable_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--xml-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/enable_xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_balance</td>
+	<td>0.0000 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_new_balance</td>
+	<td>50.0000 USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_balance</td>
+	<td>50.0000 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_new_balance</td>
+	<td>80.0000 USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--username-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;username_s=test&amp;test=1&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List testuser 2014-01-02 22:20:05 100.5840 977.6660 Kito user payment EUR</td>
+</tr>
+<!--first name-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;first_name_s=Test User&amp;test=1&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD Test User #1 2014-01-02 22:20:05 -15.5840 -30.6660 Fire nation EUR</td>
+</tr>
+<!--mount min-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;amount_min_s=10&amp;test=1&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD testuser 2014-01-02 22:20:05 100.5840 977.6660 Kito user payment EUR</td>
+</tr>
+<!--mount max-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;amount_max_s=55&amp;test=1&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD Test User #1 2014-01-02 22:20:05 -15.5840 -30.6660 Fire nation EUR</td>
+</tr>
+<!--currency-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;currency_s=USD&amp;test=1&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user_balance_before_payment</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user_balance_after_payment</td>
+	<td>50.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//payment[2]/user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//payment[2]/user_balance_before_payment</td>
+	<td>50.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//payment[2]/user_balance_after_payment</td>
+	<td>80.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=user_admin&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user_balance_before_payment</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user_balance_after_payment</td>
+	<td>50.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//payment[2]/user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//payment[2]/user_balance_before_payment</td>
+	<td>50.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//payment[2]/user_balance_after_payment</td>
+	<td>80.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/disallow_get</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/payments_get?u=admin&amp;currency_s=USD&amp;test=1&amp;from_s=1349049600&amp;till_s=1420070400&amp;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>GET Requests are disabled</td>
+	<td></td>
+</tr>
+<!--fake forma-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/fake_form?path_to_action=/billing/api/payments_get</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_1</td>
+	<td>u</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_1</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_1</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_2</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_2</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_3</td>
+	<td>from_s</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_3</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_3</td>
+	<td>1349049600</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_4</td>
+	<td>till_s</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>c_4</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_4</td>
+	<td>1420070400</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>Payments List Test User #1 2013-10-15 13:20:05 15.5840 30.6660 Air bender USD Test User #1 2014-01-02 22:20:05 -15.5840 -30.6660 Fire nation EUR testuser 2014-01-02 22:20:05 100.5840 977.6660 Kito user payment EUR</td>
+</tr>
+</tbody></table>
+</body>
+</html>

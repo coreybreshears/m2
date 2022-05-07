@@ -1,0 +1,80 @@
+ <% content_for :additional_buttons do %>
+   <span>
+    <%= button_tag _('add_new_connection_point'), class: "search-form-button",
+                   onclick: "location.href = '#{url_for(controller: 'devices', action: 'new', user_id: @user.id, return_to_controller: @return_controller, return_to_action: @return_action)}'" %>
+  </span>
+ <% end %>
+ <fieldset>
+  <div class="content-box">
+   <div class="table-box">
+    <h2> <%= _('connection_points_for')%> <%= link_nice_user(@user) %></h2>
+    <div class="table-holder">
+
+<% manager_call_tracing = admin? || authorize_manager_permissions({controller: :call_tracing, action: :call_tracing, no_redirect_return: 1}) %>
+
+<%= page_select_header(@page, @total_pages) %>
+<table width="100%" class="maintable">
+  <tr>
+    <th style="width: 2%">        <%= _('ID') %>      </th>
+    <th style="width: 3%"></th>
+    <th style="width: 37%; text-align: left">        <%= _('Description') %>      </th>
+    <th style="width: 20%; text-align: left"><%= _('IP_Address') %></th>
+    <th style="width: 10%; text-align: left"><%= _('tech_prefix') %></th>
+    <th style="width: 13%"></th>
+    <th style="width: 4%"></th>
+    <th style="width: 4%"></th>
+    <th style="width: 4%"></th>
+  </tr>
+
+  <% @devices.each_with_index do |device, i| %>
+      <% device_blocked_ip_status = device.blocked_ip_status if admin? || (manager? && authorize_manager_permissions({controller: :monitorings, action: :blocked_ips, no_redirect_return: 1})) %>
+
+      <tr class="row<%= (i % 2 + 1).to_s %>">
+        <td id="id_<%= device.id %>" ><%= device.id %></td>
+        <td id="status_<%= device.id %>" align="center"><%= device_reg_status(device) %></td>
+        <td id="description_<%= device.id %>" style="width: 20%; text-align: left"><%= device.description %></td>
+        <% status = get_periodic_check_status(device.periodic_check, device.alive) %>
+        <td id="ip_<%= device.id %>" style="text-align: left; white-space: nowrap; color: <%= status[:color] %> " <%= tooltip(status[:tooltip_title], status[:tooltip_description]) if status[:explanation] %> >
+          <%= device.nice_ipaddr %>&nbsp;
+          <%= link_to(b_exclamation, {controller: :monitorings, action: :blocked_ips}, link_tooltip(_('Device_IP_is_blocked'), _('More_details_in_SECURITY_Blocked_IPs_page'))) if device_blocked_ip_status %>
+          <% if device.op == 1 && device.op_active == 0 %>
+            <span  <%= tooltip(_('Warning'), _('OP_is_inactive'))  %> >
+              <%= b_delete %>
+            </span>
+          <% end %>
+        </td>
+        <td style="text-align: left" id="tech_prefix_<%= device.id %>" align="center"><%= device.op_tech_prefix %></td>
+
+        <td id="call_tracing_<%= device.id %>" align="center">
+          <% if !manager? || (manager? && authorize_manager_permissions({controller: :call_tracing, action: :call_tracing, no_redirect_return: 1})) %>
+            <%= (link_to(_('call_tracing').upcase, {controller: :call_tracing, action: :call_tracing, id: device.id}, {id: "call_trace_link_#{device.id}"})) if device.op.to_i == 1 %>
+          <% end %>
+        </td>
+
+        <td id="hide_<%= device.id %>">
+          <% unless manager? %>
+            <%= link_to(_('hide').upcase, {action: :device_hide, id: device.id}, onclick: "return confirm('Are you sure?')") %>
+          <% end %>
+        </td>
+
+        <td id="edit_<%= device.id %>" align="center">
+          <% if !manager? || (manager? && authorize_manager_permissions({controller: :devices, action: :device_edit, no_redirect_return: 1})) %>
+            <%= link_to(_('edit').upcase, {:action => "device_edit", :id => device.id}, {:id => "edit_link_" + device.id.to_s}) %>
+          <% end %>
+        </td>
+
+        <td id="destroy_<%= device.id %>" align="center">
+          <% if !manager? || (manager? && authorize_manager_permissions({controller: :devices, action: :destroy, no_redirect_return: 1})) %>
+            <%= button_to _('delete'),
+                          {action: 'destroy', id: device.id}, onclick: "return confirm('Are you sure?')",
+                          class: 'delete_button', style: 'font-size: 13px; margin: 0.5px;', method: :post, id: "destroy_link_" + device.id.to_s %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<br/>
+</div>
+</div>
+</div>
+</fieldset>

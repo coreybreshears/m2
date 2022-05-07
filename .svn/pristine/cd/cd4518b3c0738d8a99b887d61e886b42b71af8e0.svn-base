@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col extended">
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'use_strong_passwords_for_users', _('Use_strong_passwords_for_users') %>
+      </div>
+      <div class="input-col">
+        <%= check_box_tag 'use_strong_passwords_for_users', 1, (Confline.get_value("Use_strong_passwords_for_users").to_i == 1 || Confline.get_value("Use_strong_passwords_for_users").blank?) %>
+      </div>
+    </div>
+
+    <%= raw(setting_boolean(_('Admin_login_with_approved_IP_only'), 'admin_login_with_approved_ip_only', 'admin_login_with_approved_ip_only')) if admin? %>
+    <%= raw(setting_boolean(_('Enable_bad_login_IP_report_warning'), 'bad_login_ip_report_warning', 'bad_login_ip_report_warning', 0, {}, true)) if admin? %>
+    <%= raw(setting_boolean _('Logout_after_password_change'), 'logout_on_password_change', 'logout_on_password_change', 0) if admin? %>
+    <%= raw(setting_boolean(_('Do_not_logout_on_session_IP_change'), 'do_not_logout_on_session_ip_change', 'do_not_logout_on_session_ip_change')) if admin? %>
+  </div>
+</div>

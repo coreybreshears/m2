@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!-----Disconnect Code Changes----->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<!--#aktyvus linkas:-->
+<tr>
+	<td>assertText</td>
+	<td>link=Disconnect Code Changes</td>
+	<td>Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=users</td>
+	<td>Users</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection points</td>
+	<td>Connection Points</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Disconnect Code Changes</td>
+</tr>
+<!--#device pavadinimas su nuoroda-->
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Test Device #1 Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder</td>
+	<td>No Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=create-form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--#neleidžiama pridėti vienodų hgc-->
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=create-form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--#hgc dropdownai-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>new_disconnect_code_hgc_incoming_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>new_disconnect_code_hgc_outgoing_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Incoming Disconnect Code</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Outgoing Disconnect Code</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes_create/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Disconnect Code Change successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/2</td>
+	<td></td>
+</tr>
+<!--#leidžia pridėti skirtingus-->
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=5 - Misdialed trunk prefix (national use)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=create-form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_1</td>
+	<td>4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_1</td>
+	<td>5 - Misdialed trunk prefix (national use)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.disconnect-code-changes-incoming</td>
+	<td>Incoming Disconnect Code</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.disconnect-code-changes-outgoing</td>
+	<td>Outgoing Disconnect Code</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_1</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=312 - Caller cancelled the call (CANCEL)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=313 - User call limit reached</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=create-form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_2</td>
+	<td>312 - Caller cancelled the call (CANCEL)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_2</td>
+	<td>313 - User call limit reached</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.disconnect-code-changes-incoming</td>
+	<td>Incoming Disconnect Code</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.disconnect-code-changes-outgoing</td>
+	<td>Outgoing Disconnect Code</td>
+</tr>
+<!--#negalima pridėti tokių, kokie jau yra pasirinkti tam OP/TP-->
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=5 - Misdialed trunk prefix (national use)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Disconnect Code Change not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Incoming Disconnect Code must be unique</td>
+	<td></td>
+</tr>
+<!--#hgc rikiavimas-->
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.1.0</td>
+	<td>2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.1.1</td>
+	<td>1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=11 - Not standard error code. Consult with Provider.</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=10 - Not standard error code. Consult with Provider.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.3.0</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.3.1</td>
+	<td>10 - Not standard error code. Consult with Provider.</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=7 - Call awarded. Being delivered in an established channel</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=44 - Requested circuit/channel not available</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.3.0</td>
+	<td>7 - Call awarded. Being delivered in an established channel</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.3.1</td>
+	<td>44 - Requested circuit/channel not available</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=103 - Parameter non-existent or not implemented - passed on (national use)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.5.0</td>
+	<td>103 - Parameter non-existent or not implemented - passed on (national use)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.5.1</td>
+	<td>1 - Unallocated (unassigned) number</td>
+</tr>
+<!--#rikiavimas turi buti pagal incoming didejimo tvarka-->
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.1.0</td>
+	<td>2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.2.0</td>
+	<td>4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.3.0</td>
+	<td>7 - Call awarded. Being delivered in an established channel</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.4.0</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.5.0</td>
+	<td>103 - Parameter non-existent or not implemented - passed on (national use)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.6.0</td>
+	<td>312 - Caller cancelled the call (CANCEL)</td>
+</tr>
+<!--#delete-->
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_5</td>
+	<td>7 - Call awarded. Being delivered in an established channel</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_5</td>
+	<td>44 - Requested circuit/channel not available</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully deleted</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=incoming_disconnect_code_5</td>
+	<td></td>
+</tr>
+<!--Ir vėl galima ištrintąjį pridėti-->
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=7 - Call awarded. Being delivered in an established channel</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_7</td>
+	<td>7 - Call awarded. Being delivered in an established channel</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_7</td>
+	<td>4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<!--#paprastas useris-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--#manageris be permissionų-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<!--#manageris su permissionais-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Disconnect Code Changes</td>
+	<td>Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Disconnect Code Changes</td>
+	<td></td>
+</tr>
+<!--#palaikius virš iššoka paaiškinimas-->
+<tr>
+	<td>mouseOver</td>
+	<td>id=incoming_disconnect_code_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hangup cause description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2 - No route to specified transit network (national use)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>This cause indicates that the equipment sending this cause has received a request to route the call through a particular transit network which it does not recognize.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=incoming_disconnect_code_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=incoming_disconnect_code_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hangup cause description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=incoming_disconnect_code_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=incoming_disconnect_code_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hangup cause description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>103 - Parameter non-existent or not implemented - passed on (national use)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>This cause indicates that the equipment sending this cause has received a message which includes parameters</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=incoming_disconnect_code_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.1.0</td>
+	<td>2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.4.0</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.table-with-edit-and-delete.5.0</td>
+	<td>103 - Parameter non-existent or not implemented - passed on (national use)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Device #1</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test Device #1</td>
+	<td></td>
+</tr>
+<!--#Bandant kurti arba trinti tiesioginiu linku-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes_create/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes_destroy/4?device_id=8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--#kiekvienas device turi tik savo disconect code change-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Test FAX device Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=incoming_disconnect_code_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=incoming_disconnect_code_7</td>
+	<td></td>
+</tr>
+<!--vėl galima naudoti tuos pačius-->
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=5 - Misdialed trunk prefix (national use)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_9</td>
+	<td>2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_8</td>
+	<td>4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_3</td>
+	<td>2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_4</td>
+	<td>11 - Not standard error code. Consult with Provider.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_6</td>
+	<td>103 - Parameter non-existent or not implemented - passed on (national use)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=incoming_disconnect_code_9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=incoming_disconnect_code_8</td>
+	<td></td>
+</tr>
+<!--#kai ištrini pas vieną, pas kitą turi likti. Trinamas tas, kurio reikšmes turi abu.-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_9</td>
+	<td>2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_8</td>
+	<td>4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_9</td>
+	<td>1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_8</td>
+	<td>5 - Misdialed trunk prefix (national use)</td>
+</tr>
+<!--#"All failed Codes". Pasirinkimo išsaugoma reikšmė db yra -1, kiti kodai panaikinami-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>-1 - All failed Codes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=-1 - All failed Codes</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=3 - No route to destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_10</td>
+	<td>-1 - All failed Codes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_10</td>
+	<td>3 - No route to destination</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=incoming_disconnect_code_10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hangup cause description*All failed Codes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>id=incoming_disconnect_code_10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=incoming_disconnect_code_9</td>
+	<td>2 - No route to specified transit network (national use)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=incoming_disconnect_code_8</td>
+	<td>4 - Send special information tone</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=outgoing_disconnect_code_9</td>
+	<td>1 - Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=outgoing_disconnect_code_8</td>
+	<td>5 - Misdialed trunk prefix (national use)</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/disconnect_code_changes/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_10</td>
+	<td>-1 - All failed Codes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_10</td>
+	<td>3 - No route to destination</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=incoming_disconnect_code_10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hangup cause description*All failed Codes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>id=incoming_disconnect_code_10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Code Change successfully deleted</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.table-holder</td>
+	<td>No Disconnect Code Changes</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=0 - Unknow error</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=337 - Call comes from servers which is not assigned to originator</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_11</td>
+	<td>0 - Unknow error</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_11</td>
+	<td>337 - Call comes from servers which is not assigned to originator</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_incoming_id</td>
+	<td>label=-1 - All failed Codes</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_disconnect_code_hgc_outgoing_id</td>
+	<td>label=337 - Call comes from servers which is not assigned to originator</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=incoming_disconnect_code_12</td>
+	<td>-1 - All failed Codes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_disconnect_code_12</td>
+	<td>337 - Call comes from servers which is not assigned to originator</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=create-button</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

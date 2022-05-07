@@ -1,0 +1,1 @@
+<% session.delete(:ma_setting_options) %>

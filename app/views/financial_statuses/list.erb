@@ -1,0 +1,112 @@
+<table class="bordered">
+  <tr>
+    <td>
+      <%= form_tag :action => 'list', :search_on => 1, :search_pressed => true do %>
+          <table width="500px" class="simple">
+            <tr>
+              <td><%= _('Client') %>:</td>
+              <td nowrap="true">
+                <%= render 'shared/live_search_field',
+                  object: @options[:s_user].to_s,
+                  object_id: @options[:s_user_id],
+                  object_name: 'user',
+                  action_url: {
+                    controller: :users,
+                    action: :get_users_map,
+                    options: {
+                      show_optionals: [_('All')]
+                    }
+                  }
+                %>
+              </td>
+              <td align="right">
+                <% if @show_clear_button %>
+                    <%= link_to b_cross + _('Clear_search'), {:action => 'list', :clear => 1}, {:id => "clear_search"} %>
+                <% end %>
+              </td>
+            </tr>
+            <% unless current_user.usertype == 'manager' && current_user.show_only_assigned_users? %>
+            <tr>
+              <td><%= _('Responsible_Manager') %>:</td>
+              <td nowrap="true">
+                <%= render 'shared/live_search_field',
+                  object: @options[:s_accountant].to_s,
+                  object_id: @options[:s_accountant_id],
+                  object_name: 'accountant',
+                  action_url: {
+                    controller: :users,
+                    action: :get_users_map,
+                    options: {
+                      show_optionals: [_('All')],
+                      show_managers_only: true
+                    }
+                  }
+                %>
+              </td>
+            </tr>
+            <% end %>
+            <tr>
+              <td width="5%"><%= _('current_balance_between') %>:</td>
+              <td>
+                <%= text_field_tag('min_balance', @options[:min_balance], "class" => "input", :size => "12", :maxlength => "50") %>
+                &nbsp;-
+                &nbsp;<%= text_field_tag('max_balance', @options[:max_balance], "class" => "input", :size => "12", :maxlength => "50") %>
+              </td>
+            </tr>
+            <tr>
+              <td><%= submit_tag _('Search'), :disable_with => _('Processing..') %></td>
+            </tr>
+          </table>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<br/><br/>
+
+<% if @total_pages > 1 %>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>
+
+<table class="maintable" width="100%">
+  <tr>
+    <th align="left"><%= sortable_list_header("nice_user", _('Client'), @options) %></th>
+    <th align="right"><%= sortable_list_header("balance", _('current_balance'), @options) %> (<%= session[:show_currency] %>)</th>
+    <th align="right"><%= sortable_list_header("balance_min", _('minimum_balance'), @options) %> (<%= session[:show_currency] %>)</th>
+    <th align="right"><%= sortable_list_header("balance_max", _('maximum_balance'), @options) %> (<%= session[:show_currency] %>)</th>
+    <th align="center"><%= _('warn_on_low_balance') %></th>
+    <th align="right"><%= sortable_list_header("warning_email_balance", _('warn_balance_threshold'), @options) %> (<%= session[:show_currency] %>)</th>
+  </tr>
+  <% if @users %>
+    <% index = 0 %>
+    <% @users.each_with_index do |user, i| %>
+      <% user_balance = user.read_attribute(:balance) %>
+      <% user_warning_balance = user.read_attribute(:warning_email_balance) %>
+      <tr class="row<%= (i % 2 + 1).to_s %>">
+        <td id="name_<%= user.id %>" align="left"><%= link_nice_user(user) %></td>
+        <td id="balance_<%= user.id%>" align="right"><%= nice_currency(user_balance, @options[:exchange_rate]) %></td>
+        <td id="balance_min_<%= user.id%>" align="right"><%= nice_currency(user.read_attribute(:balance_min), @options[:exchange_rate]) %></td>
+        <td id="balance_max_<%= user.id%>" align="right"><%= nice_currency(user.read_attribute(:balance_max), @options[:exchange_rate]) %></td>
+        <td id="balance_warning_email_active_<%= user.id%>" align="center"><%= check_box_tag('warning_email_active', user.warning_email_active.to_i, user.warning_email_active.to_i == 1 , {disabled: true}) %></td>
+        <% if user.warning_email_active.to_i == 1 and user_balance < user_warning_balance %>
+          <td style="color: #E81818; font-weight: bold;" id="balance_warning_email_balance_<%= user.id%>" align="right"><%= nice_currency(user_warning_balance, @options[:exchange_rate]) %></td>
+        <% else %>
+          <td id="balance_warning_email_balance_<%= user.id%>" align="right"><%= nice_currency(user.read_attribute(:warning_email_balance), @options[:exchange_rate]) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+  <tr>
+    <th id="total" align="left"><%= _("Total") %>:</th>
+    <th id="total_balance" align="right"><%= nice_currency(@totals[:balance].to_d, @options[:exchange_rate]) %></th>
+    <th id="total_balance_min" align="right"><%= nice_currency(@totals[:balance_min].to_d, @options[:exchange_rate]) %></th>
+    <th id="total_balance_max" align="right"><%= nice_currency(@totals[:balance_max].to_d, @options[:exchange_rate])  %></th>
+    <th></th>
+    <th id="total_warn_balance" align="right"></th>
+  </tr>
+</table>
+
+<% if @total_pages > 1 %>
+    </br>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>

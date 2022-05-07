@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Directions▶</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/directions/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Directions</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'Groups')])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Destination groups</td>
+</tr>
+<!--čia atvaizduojama tik tai, kas yra dg_destinations lentoje.-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_473</td>
+	<td>View (2)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_3</td>
+	<td>View (8)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=img[alt=&quot;Chart bar&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=View</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dir_0</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_img_0 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Destination deleted</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=img[alt=&quot;Chart bar&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/set_destination_group_null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=2_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=4_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/set_destination_group_null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Destinations not assigned to Destination Groups</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Afghanistan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=2_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=4_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/dst_group_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/10_items_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Destinations not assigned to Destination Groups</td>
+</tr>
+</tbody></table>
+</body>
+</html>

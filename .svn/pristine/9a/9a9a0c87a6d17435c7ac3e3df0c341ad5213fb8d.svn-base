@@ -1,0 +1,27 @@
+<div align="center" style="border-bottom:1px solid #d7d9db;">
+  <div class="paging-box" style="position:relative;">
+    <div class="paging" style="position:absolute; right:20%; left:20%" >
+        <% ('A'..'Z').each do |letter| %>
+          <%= "<div class='active'>".html_safe if letter == st%>
+          <%= "<div>".html_safe if letter != st%>
+          <% action = params[:action] == 'custom_tariffs' ? 'rates_list' : params[:action] %>
+          <% if  not defined?(directions_first_letters) or directions_first_letters.compact.map(&:upcase).include?(letter)%>
+            <% parameters = {:action => action, :id => letter_select_header_id, :st => letter}; style = {} %>
+          <% elsif defined?(directions_defined) and not directions_defined.map(&:upcase).include?(letter) %>
+            <% parameters = {}; style = {} %>
+          <% else %>
+            <% parameters = {:action => action, :id => letter_select_header_id, :st => letter}; style = {:style => "color:grey"} %>
+          <% end %>
+
+          <% if defined?(letters_to_bold) && letters_to_bold.try(:include?, letter) %>
+            <% style[:class] = 'bold_weight'%>
+          <% end %>
+          <% parameters[:device_id] = params[:device_id] %>
+
+          <%= link_to letter, parameters, style %>
+          <%= "</div>".html_safe %>
+        <% end %>
+    </div>
+  </div>
+  <div style="height:12px;"></div>
+</div>

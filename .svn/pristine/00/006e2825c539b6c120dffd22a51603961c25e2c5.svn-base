@@ -1,0 +1,11 @@
+# -*- encoding : utf-8 -*-
+class RgroupDpeer < ActiveRecord::Base
+  belongs_to :routing_group
+  belongs_to :dial_peers
+
+  attr_protected
+  validates_numericality_of :dial_peer_priority,
+                            greater_than_or_equal_to: 0,
+                            message: _('priority_must_be_positive_number')
+
+end

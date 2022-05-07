@@ -1,0 +1,140 @@
+<% @create_button_name = 'add_new_server' %>
+<% content_for :create_form do %>
+    <%= form_tag({action: :server_add}, {id: 'create-form', class: 'calls-form', visible: show_create}) do %>
+        <fieldset>
+
+          <div class="column cause-col">
+            <%= label_tag 'name', _('Server_IP') %>
+            <div class="row">
+              <%= text_field :new_server, :server_ip,
+                             type: :text, size: 15,
+                             value: params[:new_server].try(:[], :server_ip).to_s
+              %>
+            </div>
+          </div>
+          <div class="column cause-col">
+            <%= label_tag 'name', _('Type') %>
+            <div class="row">
+              <%= select :new_server, :server_type,
+                         options_for_select(@select_server_type.map { |serv_type| [_(serv_type.to_s), serv_type.to_s] },
+                                            params[:new_server].try(:[], :server_type).to_s)
+              %>
+            </div>
+          </div>
+          <div class="column cause-col">
+            <%= label_tag 'description', _('Description') %>
+            <div class="row">
+              <%= text_field :new_server, :server_comment,
+                             type: :text, size: 30,
+                             value: params[:new_server].try(:[], :server_comment).to_s
+              %>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= submit_tag _('Cancel'), type: :reset,
+                             onClick: "$('#new_server_server_type').prop('selectedIndex', 0); $(\"#create-form\").toggle(); $('#new_server_server_type')[0].jcf.buildDropdown(); $('#new_server_server_type')[0].jcf.refreshState();"
+              %>
+              <%= submit_button_tag _('Create') %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<% content_for :additional_buttons do %>
+  <span>
+    <%= button_tag _('Check_Servers'), class: 'search-form-button',
+        onclick: "location.href = '#{Web_Dir}/servers/manual_server_status_check'" %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="dial-peer table-box">
+    <% if @servers.blank? %>
+        <%= _('No_Servers') %>
+    <% else %>
+        <h2><%= _('Servers_List') %></h2>
+        <div class="dial-peer-overflow-content">
+          <table class="maintable" width="100%">
+            <tr>
+              <th class="server-active"><%= _('Active?') %></th>
+              <th class="server-id"><%= _('ID') %></th>
+              <th class="server-server_ip"><%= _('Server_IP') %></th>
+              <th class="server-type"><%= _('Type') %></th>
+              <th class="server-comment"><%= _('Comment') %></th>
+              <th class="server-gui"><%= _('GUI') %></th>
+              <th class="server-es"><%= _('ES') %></th>
+              <th class="server-db"><%= _('DB') %></th>
+              <th class="server-core"><%= _('Radius') + '/' + _('Core') %></th>
+              <th class="server-proxy"><%= _('Proxy') %></th>
+              <th class="server-b2bua"><%= _('B2BUA') %></th>
+              <th class="server-media"><%= _('Media') %></th>
+              <th></th>
+              <th class="server-free_space"><%= _('Free_Space') %>&nbsp;%</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @servers.each do |server| %>
+                <tr>
+                  <td id="active_<%= server.id %>" class="server-active_list">
+                    <%= link_to(_('_Yes').upcase, {:action => 'server_change_status', :id => server.id}, {:method => :post}) if server.active == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_status', :id => server.id}, {class: 'inactive_server', method: :post, style:'color:#D8D8D8;'}) if server.active == 0 %>
+                  </td>
+                  <td id="id_<%= server.id %>" class="server-id_list"><%= server.id.to_i %></td>
+                  <td id="ip_<%= server.id %>" class="server-ip_list"><%= h server.server_ip %></td>
+                  <td id="type_<%= server.id %>" class="server-type_list"><%= h server.server_type %></td>
+                  <td id="comment_<%= server.id %>" class="server-comment_list"><%= h server.comment %></td>
+                  <td id="gui_<%= server.id %>" class="server-gui_list">
+                    <%= link_to(_('_Yes').upcase, :action => 'server_change_gui', :id => server.id) if server.gui == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_gui', :id => server.id}, {:style=>'color:#D8D8D8;'}) if server.gui.to_i == 0 %>
+                  </td>
+                  <td id="es_<%= server.id %>" class="server-es_list">
+                    <%= link_to(_('_Yes').upcase, :action => 'server_change_es', :id => server.id) if server.es == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_es', :id => server.id}, {:style=>'color:#D8D8D8;'}) if server.es.to_i == 0 %>
+                  </td>
+                  <td id="db_<%= server.id %>" class="server-db_list">
+                    <%= link_to(_('_Yes').upcase, :action => 'server_change_db', :id => server.id) if server.db == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_db', :id => server.id}, {:style=>'color:#D8D8D8;'}) if server.db.to_i == 0 %>
+                  </td>
+                  <td id="core_<%= server.id %>" class="server-core_list">
+                    <%= link_to(_('_Yes').upcase, :action => 'server_change_core', :id => server.id) if server.core == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_core', :id => server.id}, {:style=>'color:#D8D8D8;'}) if server.core.to_i == 0 %>
+                  </td>
+
+                  <td id="proxy_<%= server.id %>" class="server-proxy_list">
+                    <%= link_to(_('_Yes').upcase, :action => 'server_change_proxy', :id => server.id) if server.proxy == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_proxy', :id => server.id}, {:style=>'color:#D8D8D8;'}) if server.proxy.to_i == 0 %>
+                  </td>
+
+                  <td id="fs_<%= server.id %>" class="server-b2bua_list">
+                    <%= link_to(_('_Yes').upcase, :action => 'server_change_b2bua', :id => server.id) if server.b2bua == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_b2bua', :id => server.id}, {:style=>'color:#D8D8D8;'}) if server.b2bua.to_i == 0 %>
+                  </td>
+                  <td id="fs_<%= server.id %>" class="server-media_list">
+                    <%= link_to(_('_Yes').upcase, :action => 'server_change_media', :id => server.id) if server.media == 1 %>
+                    <%= link_to(_('_No').upcase, {:action => 'server_change_media', :id => server.id}, {:style=>'color:#D8D8D8;'}) if server.media.to_i == 0 %>
+                  </td>
+                  <td id="stats_<%= server.id %>" class="server-stats_list" <%= tooltip(_('server_load_stats'), server_load(server)) %>>
+                    <%= link_to(_('Stats').upcase, action: 'server_load', controller: 'stats', id: server.id) %>
+                  </td>
+                  <td id="free_space_<%= server.id %>" class="server-free_space_list" <%= free_space_style(server.hdd_free_space) %>><%= server.hdd_free_space %></td>
+                  <td id="edit_<%= server.id %>" style="font-size: 11px"><%= link_to 'EDIT', {:action => 'edit', :id => server.id} %></td>
+                  <td id="destroy_<%= server.id %>" class="server-delete_button" style="font-size: 11px;"><%= button_to 'DELETE', {:action => 'destroy', :id => server.id}, :onclick => "return confirm('Are you sure?')", :class=>"delete_button", :method => :post, :id => "delete_link_" + server.id.to_s %></td>
+                </tr>
+            <% end %>
+          </table>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    var inactive_elements = ['#id_', '#ip_', '#type_', '#comment_'];
+    $('.inactive_server').get().forEach(function(server){
+      var server_id = $(server).parent().attr('id').split('active_')[1];
+      inactive_elements.forEach(function(element){ $(element  + server_id).addClass('inactive-server-text') });
+    });
+  });
+</script>

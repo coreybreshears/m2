@@ -1,0 +1,41 @@
+<% content_for :additional_buttons do %>
+  <span>
+    <%= button_tag _('Quality_Routing_Statistics'), class: 'create-form-button',
+          onclick: "location.href='#{Web_Dir}/quality_routings/stats'" %>
+    <%= button_tag _('Add_new'), class: 'create-form-button', onclick: "location.href='#{Web_Dir}/quality_routings/new'" %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box" id="qr-list-table">
+    <% if @qrs.empty? %>
+      <h2><%= _('No_Quality_Routing_Rules') %></h2>
+    <% else %>
+      <h2><%= _('Quality_Routing_Rules') %></h2>
+      <div class="table-holder">
+        <table class="table-with-edit-and-delete">
+          <tr>
+            <th class="qr-name"><%= _('name') %></th>
+            <th class="qr-formula"><%= _('Formula') %></th>
+            <th class="qr-usage"><%= _('Used') %></th>
+            <th class="qr-edit"></th>
+            <th class="qr-delete"></th>
+          </tr>
+          <% @qrs.each do |qr| %>
+            <tr>
+              <td id="name_<%= qr.id %>" class="qr-name"><%= qr.name %></td>
+              <td id="formula<%= qr.id %>" class="qr-formula"><%= qr.formula %></td>
+              <td id="usage<%= qr.id %>" class="qr-usage" nowrap><%= qr.used %></td>
+              <td id="edit_<%= qr.id %>"><%= link_to 'EDIT', { action: :edit, id: qr.id } %></td>
+              <td id="destroy_<%= qr.id %>">
+                <%= button_to 'DELETE', { action: :destroy, id: qr.id },
+                  onclick: "return confirm('Are you sure?')", class: "delete_button",
+                  method: :post, id: "delete_link_#{qr.id}" %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>

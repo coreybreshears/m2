@@ -1,0 +1,1 @@
+UPDATE conflines SET value = 0 WHERE name like 'show_tariff_import_menu';

@@ -1,0 +1,6 @@
+# bundle testui calls_old.case
+# ----
+settings/various/archive_calls_every_day_at_disabled.sql
+settings/various/archive_stop_calls_every_day_at_disabled.sql
+settings/various/archive_calls_older_than_4.sql
+# bundle loaded

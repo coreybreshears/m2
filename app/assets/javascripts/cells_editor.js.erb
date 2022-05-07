@@ -1,0 +1,133 @@
+// You should have variable @cells_to_update
+// ...
+
+var updatableCells;
+var initialValues = {};
+var KEYCODE_ESCAPE = 27;
+var KEYCODE_ENTER = 13;
+
+$(document).ready(function() {
+    init();
+});
+
+function init() {
+    updatableCells = $(cells_to_update);
+    initUpdatableCells();
+
+    $(document).click(function() {
+        updatableCells.each(function (){
+            requestUpdate($(this));
+        });
+    });
+
+    $(document).keydown(function(event) {
+        if (event.keyCode == KEYCODE_ESCAPE) {
+            updatableCells.each(function() {
+                resetElement($(this));
+            });
+        }
+
+        if (event.keyCode == KEYCODE_ENTER) {
+            updatableCells.each(function() {
+                requestUpdate($(this));
+            });
+        }
+    });
+}
+
+function initUpdatableCells() {
+    enableInputOnClick(updatableCells);
+}
+
+function enableInputOnClick(elements) {
+    elements.unbind('click');
+    elements.click(function(event) {
+        inputOnClick($(this));
+        event.stopImmediatePropagation();
+    });
+}
+
+function disableInputOnClick(elements) {
+    elements.unbind('click');
+    elements.click(function(event) {
+        event.stopImmediatePropagation();
+    });
+}
+
+function inputOnClick(element) {
+    initialValue = element.text().trim();
+    initialValues[element.attr('id')] = initialValue;
+    inputName = element.attr('id').match(/[a-z]+/)[0];
+
+    input = $('<input/>').attr({class: 'default', type: 'text', id: element.attr('id'), name: inputName, value: initialValue});
+    element.html(input);
+
+    disableInputOnClick(element);
+}
+
+function updateElement(element) {
+    var input = element.find('input');
+    if(input.length > 0) {
+        element.text(input.val());
+        enableInputOnClick(element);
+    }
+}
+
+function setZero(element){
+    element.text('0');
+    enableInputOnClick(element);
+}
+
+function resetElement(element) {
+    var input = element.find('input');
+    if(input.length > 0) {
+        element.text(initialValues[element.attr('id')]);
+        enableInputOnClick(element);
+    }
+}
+
+function displayError(element, error) {
+    currentErrorBox = $('.error-box');
+    updatedErrorBox = initErrorBox(error);
+    if(currentErrorBox.length <= 0) {
+        $('.head-section').append(updatedErrorBox);
+    } else {
+        currentErrorBox.html(updatedErrorBox.html());
+    }
+    initCloseBlock();
+}
+
+function initErrorBox(error) {
+    errorBox = $('<div/>').attr({class: 'error-box'});
+    errorBox.html('<span class="text" id="status">' + error + '</span><a href="#" class="close">Close</a>');
+    return errorBox;
+}
+
+function requestUpdate(element) {
+    var input = element.find('input');
+    if(input.length > 0) {
+        TerminationPointId = input.attr('id').match(/\d+$/)[0];
+        attributeName = 'object_values[' + input.attr('name') + ']';
+
+        requestData = {id: TerminationPointId};
+        requestData[attributeName] =  input.val();
+
+        $.ajax({
+            url: update_action,
+            data: requestData,
+            async: true,
+            error: function(err){
+                console.log(err);
+            },
+            success: function(response, val) {
+                if(response == 'success') {
+                    updateElement(element);
+                } else if(response == 'call(setZero())'){
+                    setZero(element);
+                } else {
+                    displayError(element, response);
+                }
+            }
+        });
+    }
+}

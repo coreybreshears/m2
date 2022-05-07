@@ -1,0 +1,67 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('New_Tariff_Rate_Notification_Jobs') %></h2>
+    <%= form_tag({action: :create}, {class: 'details-form'}) do %>
+        <fieldset>
+
+          <div class="row">
+            <div class="col col-width-max">
+              <h2><%= _('Selected') %> <%= _('Tariffs') %> - <%= _('Users') %></h2>
+              <% @selected_tariffs_users.each do |tariff_id, tariff_info| %>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= tariff_info[:tariff_name] %></label>
+                    </div>
+                    <div class="not-input-col-just-text">
+                      <%= tariff_info[:assigned_users].map { |user| user[:name] }.join('; ') %>
+                    </div>
+                  </div>
+
+                  <% tariff_info[:assigned_users].each do |user| %>
+                      <%= hidden_field_tag("tariff_user_ids[#{tariff_id}-#{user[:id]}]", '1') %>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-width-max">
+              <h2><%= _('Options') %></h2>
+              <div class="input-row">
+                <div class="label-col">
+                  <label><%= _('Email_Template') %></label>
+                </div>
+                <div class="input-col">
+                  <%= select_tag('tariff_rate_notification_job_options[email_id]', options_for_select(Email.where("body LIKE '%rate_notification_url_agree%' AND body LIKE '%rate_notification_url_disagree%'").all.collect { |t| [t.name, t.id] }, (Confline.get_value('tariff_rate_notification_sending_options_email_template_id', corrected_user_id)))) %>
+                </div>
+              </div>
+              <div class="input-row">
+                <div class="label-col">
+                  <label><%= _('Rate_Notification_Type') %></label>
+                </div>
+                <div class="input-col">
+                  <%= select_tag('tariff_rate_notification_job_options[rate_notification_type]', options_for_select([[_('Delta_Only'), 0], [_('Full'), 1]], (Confline.get_value('tariff_rate_notification_sending_options_rate_notification_type', corrected_user_id)))) %>
+                </div>
+              </div>
+              <div class="input-row">
+                <div class="label-col">
+                  <label><%= _('Agreement_Timeout_in_days') %></label>
+                </div>
+                <div class="input-col">
+                  <%= text_field :tariff_rate_notification_job_options, :agreement_timeout_days,
+                                 maxlength: 3,
+                                 value:  (Confline.get('tariff_rate_notification_sending_options_agreement_timeout_days').try(:value) || 7)
+                  %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariff_rate_notifications/list'", name: 'reset' %>
+            <%= submit_tag _('CREATE'), :disable_with => _('Processing..'), name: 'commit' %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

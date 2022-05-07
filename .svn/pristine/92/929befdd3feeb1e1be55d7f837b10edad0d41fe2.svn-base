@@ -1,0 +1,43 @@
+<% content_for :additional_buttons do %>
+    <span>
+    <%= button_tag(
+                _('Add_New_Template'), class: 'search-form-button',
+                onclick: "location.href = '#{Web_Dir}/tariff_rate_notification_templates/new'"
+        )
+    %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Templates') %></h2>
+    <div class="table-holder">
+      <% if @rate_notification_templates.present? %>
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <th class="tariff_templates-name"><%= _('Name') %></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @rate_notification_templates.each do |rate_notification_template| %>
+                <tr>
+                  <td id="name_<%= rate_notification_template.id %>" class="tariff_templates-name_list">
+                    <%= rate_notification_template.name %>
+                  </td>
+                  <td id="edit_<%= rate_notification_template.id %>">
+                    <%= link_to 'EDIT', {action: :edit, id: rate_notification_template.id}, id: "edit_link_#{rate_notification_template.id}" %>
+                  </td>
+                  <td id="destroy_<%= rate_notification_template.id %>">
+                    <% unless rate_notification_template.is_default? %>
+                        <%= button_to 'DELETE', {action: :destroy, id: rate_notification_template.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: "delete_link_#{rate_notification_template.id}" %>
+                    <% end %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Templates') %>
+      <% end %>
+    </div>
+  </div>
+</div>

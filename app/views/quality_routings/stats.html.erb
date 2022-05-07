@@ -1,0 +1,249 @@
+<%= javascript_include_tag "jqwidgets/jqxdata.js" %>
+<%= javascript_include_tag "jqwidgets/jqxbuttons.js" %>
+<%= javascript_include_tag "jqwidgets/jqxscrollbar.js" %>
+<%= javascript_include_tag "jqwidgets/jqxmenu.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.selection.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.columnsresize.js" %>
+<%= javascript_include_tag "jqwidgets/jqxpanel.js" %>
+<%= javascript_include_tag "jqwidgets/jqxlistbox.js" %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<% content_for :search_form do %>
+  <%= form_tag({ action: :stats, search_pressed: true }, { id: 'search-form', class: 'qr-stats calls-form', visible: true }) do %>
+    <fieldset>
+      <div class="column" style="min-width:200px;">
+        <div class="row">
+          <%= label_tag 'dp_id', _('dial_peer') %>
+          <%= select_tag('dp_id', options_for_select(@dps.map { |dp| [dp.name, dp.id] }, @dp_id), style: 'min-width:100px;width:200px;', class: 'jcf-hidden')%>
+        </div>
+      </div>
+
+      <div class="column" style="min-width:200px;">
+        <div class="row">
+          <%= label_tag 'qr_id', _('Quality_Routing_Rule') %>
+          <%= select_tag('qr_id', options_for_select(@qrs.map { |qr| [qr.name, qr.id] }, @qr_id), style: 'min-width:100pxwidth:200px;', class: 'jcf-hidden')%>
+        </div>
+      </div>
+
+      <div class="column" id="dst-col" style="min-width:180px;<%= @qr.try(:formula_has_price?) || (@qr.blank? && @qrs.first.formula_has_price?) ? '' : 'display:none;' %>">
+        <div class="row">
+          <%= label_tag 'dst', _('Destination') %>
+          <%= text_field_tag('dst', @dst, style: 'min-width:100px', class: 'input')%>
+        </div>
+      </div>
+
+      <div class="column" id="formula-col">
+        <div class="row">
+          <%= label_tag 'qr_id', _('Formula') %>
+          <div id="qr-stats-formula"><%= @qr.try(:formula) || @qrs.first.formula %></div>
+        </div>
+      </div>
+
+      <div style="clear:both;"></div>
+
+      <div class="column buttons-col">
+        <div class="row" style="padding-top:20px;">
+          <%= submit_tag _('refine'), id: 'search_btn' %>
+          <%= clear_button_tag _('clear') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Quality_Routing_Statistics') %></h2>
+  	<div id="qr_stats"></div>
+    <% if @qr.present? %>
+      <div id="index-params" style="display:none;">
+        <br/><br/>
+        <h2><%= _('Quality_Index_Parameters') %></h2>
+        <table class="table">
+          <tr>
+            <th class="qr-parameter" style="text-align:left;width:20%;padding-left:22px;">
+              <%= _('Parameter') %>
+            </th>
+            <th><%= _('ASR') %></th>
+            <th><%= _('ACD') %></th>
+            <th><%= _('Total_Calls') %></th>
+            <th><%= _('Total_Answered') %></th>
+            <th><%= _('Total_Failed') %></th>
+            <th style="padding-right:22px;"><%= _('Total_Billsec') %></th>
+          </tr>
+          <tr>
+            <th nowrap id="calls_<%= @qr.id %>" style="text-align:left;width:20%;border-bottom:none;padding-left:22px;background-color:#F5F7F7">
+              <%= _('Calls') %>
+            </th>
+            <td nowrap id="asr_<%= @qr.id %>"><%= @qr.asr_calls %></td>
+            <td nowrap id="acd_<%= @qr.id %>"><%= @qr.acd_calls %></td>
+            <td nowrap id="total_calls_<%= @qr.id %>"><%= @qr.total_calls %></td>
+            <td nowrap id="total_answered_<%= @qr.id %>"><%= @qr.total_answered_calls %></td>
+            <td nowrap id="total_failed_<%= @qr.id %>"><%= @qr.total_failed_calls %></td>
+            <td nowrap id="total_billsec_<%= @qr.id %>" style="padding-right:22px;"><%= @qr.total_billsec_calls %></td>
+          </tr>
+        </table>
+        <p style="margin-left:22px;"><b><%= _('Note') %>:</b>&nbsp;<%= _('Quality_Index_Parameters_note') %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    //handleSelect($("select#qr_id").val());
+
+    $("select#qr_id").on("change", function(){
+      handleSelect($(this).val());
+    });
+
+    function handleSelect(qr_id) {
+      $.ajax({
+        url: "<%= Web_Dir %>/quality_routings/has_price/" + qr_id,
+        dataType: "json"
+      }).done(function(data){
+        if (data.show_dst) {
+          $("#dst-col").show();
+        } else {
+          $("#dst-col").hide();
+        }
+        $("#formula-col").show();
+        $("#qr-stats-formula").html(data.formula);
+      }).fail(function(error) {
+        console.log(error.statusText);
+      });
+    }
+
+    var qrStatsGrid = $("#qr_stats");
+    var submitBtn = $("#search_btn");
+    submitBtn.attr("disabled", "disabled");
+
+    <% if @dp_id.present? && @qr_id.present? %>
+      retrieveStats();
+    <% else %>
+      qrStatsGrid.html("<p style='text-align:center;'><%= _('Select_Dial_Peer_and_Quality_Routing') %></p>");
+      submitBtn.removeAttr("disabled");
+    <% end %>
+
+    function retrieveStats() {
+      var source = {
+        type: "GET",
+        datatype: "json",
+        datafields: [
+            { name: "tp_id", type: "integer" },
+            { name: "tp", type: "string" },
+            { name: "asr", type: "number" },
+            { name: "acd", type: "time" },
+            { name: "total_calls", type: "integer" },
+            { name: "answered_calls", type: "integer" },
+            { name: "total_failed", type: "integer" },
+            { name: "total_billsec", type: "time" },
+            { name: "weight", type: "integer" },
+            { name: "percent", type: "integer" },
+            { name: "price", type: "number" },
+            { name: "result", type: "number" }
+        ],
+        url: "<%= Web_Dir %>/quality_routings/stats?dp_id=<%= @dp_id %>&qr_id=<%= @qr_id %>"
+      };
+
+      var dataadapter = new $.jqx.dataAdapter(source);
+
+      var priceInFormula = <%= @qr.try(:formula_has_price?) ? 1 : 0 %>;
+      var colDistr = {
+        tp: "20%",
+        asr: (8 + 2 * !priceInFormula) + "%",
+        acd: "9%",
+        total_calls: "9%",
+        answered_calls: "9%",
+        total_failed: "9%",
+        total_billsec: "9%",
+        weight: (5 + 2 * !priceInFormula) + "%",
+        percent: (6 + 2 * !priceInFormula) + "%",
+        price: (6 * priceInFormula) + "%",
+        result: "10%"
+      };
+
+      var localization = {
+        thousandsseparator: "",
+        decimalseparator: "<%= @fomratting[:decimal_separator] %>",
+        emptydatastring: "<%= _('No_data_found_no_dots') %>",
+        time_format: "<%= @fomratting[:time_format] %>",
+        decimal_format: "f<%= @fomratting[:decimal_num] %>"
+      }
+
+      var cellsrenderer_time = function (row, column, value) {
+        return '<div style="text-align: center; margin-top: 3.5px;">' + nice_billsec(value, localization.time_format) + '</div>';
+      };
+
+      qrStatsGrid.jqxGrid({
+        source: dataadapter,
+        width: "100%",
+        autorowheight: true,
+        autoheight: true,
+        sortable: true,
+        altrows: true,
+        enablebrowserselection: true,
+        selectionmode: "none",
+        localization: localization,
+        handlekeyboardnavigation: function (event) {
+          var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+          if (key == 86 && event.ctrlKey == true) return true;
+        },
+        columns: [
+          { text: "<%= _('Terminator').upcase %>", datafield: "tp", align: "left", width: colDistr.tp,
+            cellsrenderer: function(row, column, value) {
+              return '<div style="text-align: left; margin: 3.5px; overflow: hidden; text-overflow: ellipsis; padding-left:19px;">' +
+                "<a href=<%= Web_Dir %>/devices/device_edit/" + dataadapter.records[row].tp_id + ">" + value + "</a></div>";
+            },
+            renderer: function (defaultText, alignment, height) {
+              return '<div style="padding: 0 0 2px 19px; overflow: hidden; text-overflow: ellipsis; text-align: ' +
+                'left; margin: 4px">' + defaultText + "</div>"
+            }
+          },
+          { text: "<%= _('ASR').upcase %> %", datafield: "asr", align: "right", cellsalign: "right", width: colDistr.asr },
+          { text: "<%= _('ACD').upcase %>", datafield: "acd", align: "center", cellsalign: "center", width: colDistr.acd, cellsrenderer: cellsrenderer_time },
+          { text: "<%= _('Total_Calls').upcase %>", datafield: "total_calls", align: "right", cellsalign: "right", width: colDistr.total_calls },
+          { text: "<%= _('Total_Answered').upcase %>", datafield: "answered_calls", align: "right", cellsalign: "right", width: colDistr.answered_calls },
+          { text: "<%= _('Total_Failed').upcase %>", datafield: "total_failed", align: "right", cellsalign: "right", width: colDistr.total_failed },
+          { text: "<%= _('Total_Billsec').upcase %>", datafield: "total_billsec", align: "center", cellsalign: "center", width: colDistr.total_billsec, cellsrenderer: cellsrenderer_time },
+          { text: "<%= _('Weight').upcase %>", datafield: "weight", align: "right", cellsalign: "right", width: colDistr.weight },
+          { text: "<%= _('Percent').upcase %> %", datafield: "percent", align: "right", cellsalign: "right", width: colDistr.percent },
+          <% if @qr.try(:formula_has_price?) %>
+          { text: "<%= _('Price').upcase %>", datafield: "price", align: "right", cellsalign: "right", width: colDistr.price, cellsformat: localization.decimal_format },
+          <% end %>
+          { text: "<%= _('Quality_Index').upcase %>", datafield: "result", align: "right", width: colDistr.result,
+            cellsrenderer: function(row, column, value) {
+              var infinity = value == "<%= _('Infinity') %>";
+              var title = (infinity ? "title='<%= _('Infinity_warning') %>'" : "");
+              var color = (infinity ? "color:red;" : "");
+              return '<div style="text-align: right; margin: 3.5px; overflow: hidden; padding-right:16px;' +
+                ' text-overflow: ellipsis;' + color + '" ' + title + '>' + $.jqx.dataFormat.formatnumber(value, localization.decimal_format, localization) +"</div>";
+            },
+            renderer: function (defaultText, alignment, height) {
+              return '<div style="padding: 0 16px 2px 0; overflow: hidden; text-overflow: ellipsis; text-align: ' +
+                'right; margin: 4px">' + defaultText + "</div>"
+            }
+          }
+        ],
+        ready: function () {
+          qrStatsGrid.jqxGrid("sortby", "result", "desc");
+          session_sorting(
+            'qr_stats',
+            '<%= Web_Dir %>',
+            '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}qr_stats"][:column].to_s %>',
+            '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}qr_stats"][:direction].to_s %>',
+            '<%= params[:controller].to_s %>',
+            '<%= params[:action].to_s %>'
+          );
+          $("#index-params").show();
+          submitBtn.removeAttr("disabled");
+          // Adjust M2 Window size
+          $(window).resize();
+        }
+      });
+    }
+  });
+</script>

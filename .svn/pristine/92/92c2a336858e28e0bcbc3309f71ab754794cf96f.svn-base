@@ -1,0 +1,13 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Edit_CDR_Dispute') %></h2>
+    <%= form_for @dispute, url: {action: :update, id: @dispute.id}, html: {class: 'details-form', method: 'post'} do |f| %>
+        <%= render 'form',  f: f, currencies: @currencies, templates: @templates, dispute: @dispute %>
+        <div class="buttons-row">
+          <%= f.submit _('Cancel'), name: 'cancel', type: 'reset', onclick: "location.href = '#{Web_Dir}/cdr_disputes/list'" %>
+          <%= f.submit _('Import_CDR'), name: 'cdr_import', type: 'reset', onclick: "location.href = '#{Web_Dir}/cdr_disputes/proceed_to_import/#{@dispute.id}'", style: 'width: auto;padding:0 12px;' %>
+          <%= f.submit _('Update'), disable_with: 'Processing...' %>
+        </div>
+    <% end %>
+  </div>
+</div>

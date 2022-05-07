@@ -1,0 +1,23 @@
+<!-- sitoks dizainas yra negerai -->
+<br>
+<%= form_tag(:action => 'user_device_update', :id => @device.id) do %>
+    <br>
+    <table class="simple" width="100%">
+      <tr>
+        <td width="50%" valign="top">
+              <table class="simple" width="100%">
+                <tr>
+                  <td> <%= _('Description') %>:</td>
+                  <td><%= text_field 'device', 'description', "class" => "input" %> </td>
+                </tr>
+                <tr>
+                  <td height="10"></td>
+                </tr>
+              </table>
+        </td>
+      </tr>
+    </table>
+    <%= submit_tag _('update'), :disable_with => _('Processing..') %>
+<% end %>
+<br>
+<br>

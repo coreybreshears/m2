@@ -1,0 +1,87 @@
+<% content_for :search_form do %>
+    <%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+        <%= hidden_field_tag 'page', 1 %>
+        <fieldset>
+          <div class="column date-col calendar-holder">
+            <%= label_tag 'from', _('From') %>
+            <div class="row">
+              <div class="calendar-col">
+                <%= text_field_tag 'date_from', formatted_date_in_user_tz(@options[:from]), class: 'checkin default', id: 'from' %>
+                <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+              </div>
+              <div class="time-col">
+                <%= text_field_tag 'time_from', formatted_time_in_user_tz(@options[:from]), class: 'default', id: 'time1' %>
+                <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+              </div>
+            </div>
+            <%= label_tag 'to', _('To') %>
+            <div class="row">
+              <div class="calendar-col">
+                <%= text_field_tag 'date_till', formatted_date_in_user_tz(@options[:till]), class: 'checkout default', id: 'till' %>
+                <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+              </div>
+              <div class="time-col">
+                <%= text_field_tag 'time_till', formatted_time_in_user_tz(@options[:till]), class: 'default', id: 'time2' %>
+                <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+              </div>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= clear_button_tag _('clear') %>
+              <%= submit_button_tag _('refine') %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Payments_list') %></h2>
+    <div class="table-holder">
+      <% if !@show_only_latest %>
+          <table>
+            <thead>
+            <tr>
+              <%= sortable_header(_('Date_time'), 'date', class: 'date', id: 'date_header') %>
+              <%= header("#{_('Balance_before_Payment')} (#{Currency.get_default.name})", 'user_balance_before', class: 'amount' , id: 'user_balance_before') %>
+              <%= header("#{_('Balance_after_Payment')} (#{Currency.get_default.name})", 'user_after_before', class: 'amount' , id: 'user_after_before') %>
+              <%= sortable_header(_('Amount'), 'amount', class: 'amount' , id: 'amount_header') %>
+              <%= sortable_header(_('Amount_with_tax'), 'amount_with_tax', class: 'amount', id: 'amount_with_tax_header') %>
+              <%= sortable_header(_('Currency'), 'currency_name', class: 'currency', id: 'currency_header') %>
+            </tr>
+            </thead>
+            <tbody id="payments">
+            <%= render 'personal_payments_table', payments: @payments, totals: @totals, user: current_user %>
+            </tbody>
+          </table>
+          <%= paginate @payments %>
+      <% else %>
+          <br/>
+          <%= _('No_Payments_in_selected_period_found') %>
+          <% if @payments.present? %>
+              <hr/>
+              <br/><br/>
+              <%= _('Latest_Payments') %>:
+              <br/><br/>
+              <table>
+                <thead>
+                <tr>
+                  <%= header(_('Date_time'), 'date', class: 'date', id: 'date_header') %>
+                  <%= header("#{_('Balance_before_Payment')} (#{Currency.get_default.name})", 'user_balance_before', class: 'amount' , id: 'user_balance_before') %>
+                  <%= header("#{_('Balance_after_Payment')} (#{Currency.get_default.name})", 'user_after_before', class: 'amount' , id: 'user_after_before') %>
+                  <%= header(_('Amount'), 'amount', class: 'amount' , id: 'amount_header') %>
+                  <%= header(_('Amount_with_tax'), 'amount_with_tax', class: 'amount', id: 'amount_with_tax_header') %>
+                  <%= header(_('Currency'), 'currency_name', class: 'currency', id: 'currency_header') %>
+                </tr>
+                </thead>
+                <tbody id="payments">
+                <%= render 'personal_payments_table', payments: @payments, totals: @totals, user: current_user %>
+                </tbody>
+              </table>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

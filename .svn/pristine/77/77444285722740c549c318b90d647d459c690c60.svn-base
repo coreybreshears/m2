@@ -1,0 +1,26 @@
+body{
+	min-width:1368px;
+}
+.table-box table{
+	width:1315px;
+	table-layout:fixed;
+}
+.table-box table .date{
+	width:158px;
+}
+.table-box table .calls{
+	width:379px;
+}
+.table-box table .duration,
+.table-box table .time{
+	width:269px;
+}
+.table-box table .info{
+	width:110px;
+}
+.table-box table td{
+	padding:7px 13px 8px;
+}
+.table-box table .even td{
+	padding:6px 13px 7px;
+}

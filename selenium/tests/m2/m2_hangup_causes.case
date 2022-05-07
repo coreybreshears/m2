@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m2_hangup_causes</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m2_hangup_causes</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--enable x5_functionality_14-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/m2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/m2/m2_calls_for_hgc</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2014</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=date_from_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=option[value=&quot;1&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=date_from_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=2</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2015; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2015}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2015</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_214</td>
+	<td>FAILED (303)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_213</td>
+	<td>FAILED (302)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_212</td>
+	<td>FAILED (301)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_211</td>
+	<td>FAILED (300)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_221</td>
+	<td>FAILED (310)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_219</td>
+	<td>FAILED (308)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_229</td>
+	<td>CANCEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_217</td>
+	<td>FAILED (306)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_220</td>
+	<td>FAILED (309)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_230</td>
+	<td>FAILED (313)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_216</td>
+	<td>FAILED (305)</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_214</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>303 - Originator Capacity reached</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_214</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_213</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>302 - Global Call Limit reached</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_213</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_212</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>301 - Originator not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_212</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_211</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>300 - Not authenticated (accountcode = 0)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_211</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_221</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>310 - Suitable Terminator not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_221</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_219</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>308 - Dial Peer not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_219</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_229</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>312 - Caller cancelled the call (CANCEL)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_229</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_217</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>306 - Originator Balance Limit reached (Balance Min)*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_217</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_220</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>309 - No Dial Peer is available by regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_220</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_230</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>313 - User call limit reached</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_230</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=disposition_216</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>305 - Source (CallerID) not accepted by regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=disposition_216</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

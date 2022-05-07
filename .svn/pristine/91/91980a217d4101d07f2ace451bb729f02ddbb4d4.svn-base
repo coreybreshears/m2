@@ -1,0 +1,18 @@
+<div class="content-box" style="min-height: 750px;">
+	<div class="titled-box">
+	<h2><%=_('New_email')%></h2>
+	<%= form_tag({:action => 'create', :id => @user}, {class: 'details-form'}) do %>
+		<fieldset>
+				<div class="row">
+				    <%= render 'form', email: @email, tariff_details: @tariff_details %>
+				    <br>
+				    <div class="buttons-row">
+				    	<%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/emails/list'" %>
+				    	<%= submit_tag _('Create'), :disable_with => _('Processing..') %>
+					</div>
+					<br>
+				</div>
+		</fieldset>
+	<% end %>
+	</div>
+</div>

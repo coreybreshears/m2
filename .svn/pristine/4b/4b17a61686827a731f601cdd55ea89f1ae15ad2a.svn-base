@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    reseller_menu = new dTree('reseller_menu');
+    reseller_menu.config.inOrder = true;
+    reseller_menu.add(0, -1, '<%= _('MAIN_MENU') %>');
+    reseller_menu.add(1, 0, '<%= _('Settings') %>', '<%= Web_Dir %>/functions/reseller_settings');
+    reseller_menu.add(4, 1, '<%= _('Default_user') %>', '<%= Web_Dir %>/users/default_user');
+    reseller_menu.add(5, 1, '<%= _('Default_device') %>', '<%= Web_Dir %>/devices/default_device');
+    <% if Confline.get_value("Email_Sending_Enabled").to_i == 1 %>
+      reseller_menu.add(6, 1, '<%= _('Emails') %>', '<%= Web_Dir %>/emails/list');
+    <% end %>
+    reseller_menu.add(7, 1, '<%= _('Translations') %>', '<%= Web_Dir %>/functions/translations');
+    reseller_menu.add(11, 0, '<%= _('Routing') %>', '');
+    reseller_menu.add(30, 11, '<%= _('Call_Tracing') %>', '<%= Web_Dir %>/functions/call_tracing');
+    reseller_menu.add(31, 11, "<%= _('Tariffs') %>", "<%= Web_Dir %>/tariffs/list");
+      reseller_menu.add(32, 11, '<%= _('Search') %>', '<%= Web_Dir %>/stats/search');
+    <% if allow_manage_providers? %>
+      reseller_menu.add(33, 11, '<%= _('CDR_Import') %>', '<%= Web_Dir %>/cdr/import_csv');
+    <%end%>
+    reseller_menu.add(41, 0, '<%= _('Billing') %>', '');
+    reseller_menu.add(42, 41, '<%= _('Payments') %>', '<%= Web_Dir %>/payments/list');
+    reseller_menu.add(64, 41, '<%= _('Financial_statements') %>', '<%= Web_Dir %>/accounting/financial_statements');
+    reseller_menu.add(44, 41, '<%= _('Profit') %>', '<%= Web_Dir %>/stats/profit');
+    reseller_menu.add(45, 41, '<%= _('Services') %>', '<%= Web_Dir %>/services/list');
+    reseller_menu.add(60, 0, '<%= _('Users') %>', '<%= Web_Dir %>/users/list');
+    reseller_menu.add(61, 60, '<%= _('Devices') %>', '<%= Web_Dir %>/devices/devices_all');
+    reseller_menu.add(62,61,'<%= _('CLIs') %>','<%= Web_Dir %>/devices/clis');
+    reseller_menu.add(63,60,'<%= _('Hidden') %>','<%= Web_Dir %>/users/hidden');
+
+    reseller_menu.add(80, 0, '<%= _('Calls') %>', '<%= Web_Dir %>/stats/calls_list');
+    reseller_menu.add(81, 80, '<%= _('Graphs') %>', '<%= Web_Dir %>/stats/reseller_all_user_stats', '', '', '<%= Web_Dir %>/images/dtree/chart.gif');
+
+    <% if allow_manage_providers? %>
+      reseller_menu.add(82, 80, '<%= _('Active_calls') %>', '<%= Web_Dir %>/stats/active_calls');
+    <% end %>
+
+    <% if allow_manage_providers? %>
+      reseller_menu.add(83, 80, '<%= _('Aggregate') %>', '<%= Web_Dir %>/calls/aggregate');
+      reseller_menu.add(84, 80, '<%= _('Summary') %>', '<%= Web_Dir %>/calls/summary');
+    <% end %>
+    <%##3396%>
+      reseller_menu.add(85, 80, '<%= _('Call_Stats') %>', '<%= Web_Dir %>/stats/show_user_stats');
+      reseller_menu.add(86, 80, '<%= _('Old_Calls') %>', '<%= Web_Dir %>/stats/old_calls_stats');
+    $("reseller_menu_div").innerHTML = reseller_menu.toString();
+    <% if pbx_active? %>
+      reseller_menu_addons = new dTree('reseller_menu_addons');
+      reseller_menu_addons.config.inOrder = true;
+      reseller_menu_addons.add(0, -1, '<%= _('ADDONS') %>');
+      $("reseller_menu_addons_div").innerHTML = reseller_menu_addons.toString();
+    <% else %>
+      $("reseller_menu_addons_div").remove();
+    <% end %>
+
+</script>

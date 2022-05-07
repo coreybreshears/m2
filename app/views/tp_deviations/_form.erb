@@ -1,0 +1,109 @@
+<fieldset id="tp-deviation-form" style="visibility:hidden;padding-bottom:20px;">
+  <div class="row">
+    <div class="col">
+      <h2><%= _('General') %></h2>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :direction, _('dial_peer') %>:
+        </div>
+        <div class="input-col">
+          <%= f.select :dial_peer_id, options_for_select(dps, tp_deviation.dial_peer_id) %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :device_id, _('Main_TP') %>:
+        </div>
+        <div class="input-col" id="tp-col">
+          <%= f.select :device_id, tps.empty? ? [[]] : options_for_select(tps, tp_deviation.device_id), {}, disabled: tps.empty? %>
+        </div>
+      </div>
+      <br><br>
+      <h2><%= _('Tolerated_Deviation') %></h2>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :asr_deviation, _('ASR') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :asr_deviation %>
+          </div>
+          <div class="label-col">&nbsp;%</div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :acd_deviation, _('ACD') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :acd_deviation %>
+          </div>
+          <div class="label-col">&nbsp;%</div>
+        </div>
+      </div>
+      <br><br>
+    </div>
+    <div class="col">
+      <h2><%= _('periodic_check') %></h2>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :check_period, _('Check_every') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :check_period %>
+          </div>
+          <div class="label-col">&nbsp;<%= _('min') %></div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :check_since, _('Check_last') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :check_since %>
+          </div>
+          <div class="label-col">&nbsp;<%= _('min') %></div>
+        </div>
+      </div>
+      <br><br>
+      <h2><%= _('Reporting') %></h2>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :user, _('User') %>:
+        </div>
+        <div class="input-col">
+          <%= render 'shared/m2_live_search_field',
+              object: nice_user(tp_deviation.user),
+              object_id: tp_deviation.user_id,
+              object_name: 'User',
+              action_url: {
+                  controller: :users, action: :get_users_map,
+                  options: {
+                      show_admin: true,
+                      show_managers: true
+                  }
+              }
+          %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :email, _('Email') %>:
+        </div>
+        <div class="input-col">
+          <%= f.select :email_id, emails.empty? ? [[]] : options_for_select(emails, tp_deviation.email_id), {}, disabled: emails.empty? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+    // Handles an LCR change and populates with active providers
+    $("#tp_deviation_dial_peer_id").on("change", function() {
+      $.get( "<%= Web_Dir %>/dial_peers/active_tps/" + $(this).val() + "?select_name=tp_deviation[device_id]",
+      function(data) {
+        $("#tp-col").html(data);
+        jcf.customForms.replaceAll();
+      });
+    });
+    // Let the page load and then show a form
+    $("#tp-deviation-form").css("visibility", "visible");
+  });
+</script>

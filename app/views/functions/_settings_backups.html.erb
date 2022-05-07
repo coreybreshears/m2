@@ -1,0 +1,137 @@
+<div class="row">
+    <div class="col extended">
+      <div class="input-row">
+          <div class="label-col">
+            <%= label_tag 'backup_storage_directory', _('Backup_storage_directory_on_local_machine') %>
+          </div>
+           <div class="input-col">
+             <!--	<%= text_field_tag('backup_storage_directory', Confline.get_value('Backup_Folder')) %> -->
+             <span class="text"> <%= Confline.get_value('Backup_Folder') %></span>
+           </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'Store_Backups_on_ftp_server', _('Store_Backups_on_ftp_server') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'store_backups_on_ftp', value = '1', Confline.get_value('store_backups_on_ftp').to_i == 1 %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'exclude_archived_calls_table', _('Exclude_Archived_Calls_table') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'exclude_archived_calls_table', value = '1', Confline.get_value('Backup_Exclude_Calls_Old').to_i == 1 %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'shedule', _('Run_backup_according_below_schedule') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'shedule', value = "1", Confline.get_value('Backup_shedule').to_i == 1 %>
+        </div>
+      </div>
+
+      <% backup_month = Confline.get_value("Backup_month") %>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'backup_month', _('Month')  %>
+        </div>
+        <div class="input-col">
+          <select name="backup_month" onChange="set_days_number(document.backup.backup_month,document.backup.number)">
+            <option value="<%= 'Every_month' %>" <%= "selected" if backup_month.to_s == "Every_month" %>> <%= _('Every_month') %> </option>
+            <% n = 12 -%>
+            <% i = 1 -%>
+            <% n.times do %>
+                <option value="<%= i %>" <%= "selected" if backup_month.to_i == i %> > <%= nice_month_name(i) %> </option>
+                <% i+=1 -%>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <% backup_month_day = Confline.get_value("Backup_month_day") %>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'backup_month_day', _('Day_of_month') %>
+        </div>
+        <div class="input-col">
+          <select name="backup_month_day">
+            <option value="<%= 'Every_day' %>" <%= "selected" if backup_month_day.to_s == "Every_day" %> > <%= _('Every_day') %> </option>
+            <% n = 31 -%>
+            <% i = 1 -%>
+            <% n.times do %>
+                <option value="<%= i %>" <%= "selected" if backup_month_day.to_i == i %> > <%= i %> </option>
+                <% i+=1 -%>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <% backup_week_day = Confline.get_value("Backup_week_day") %>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'backup_week_day', _('Day_of_week') %>
+        </div>
+        <div class="input-col">
+          <select name="backup_week_day">
+            <option value="<%= 'Every_day' %>"  <%= "selected" if backup_week_day.to_s == "Every_day" %> > <%= _('Every_day') %> </option>
+            <% n = 7 -%>
+            <% i = 1 -%>
+            <% n.times do %>
+                <option value="<%= i %>" <%= "selected" if backup_week_day.to_i == i %> > <%= i %> </option>
+                <% i+=1 -%>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <% backup_hour = Confline.get_value("Backup_hour") %>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'hour', _('Hour') %>
+        </div>
+        <div class="input-col">
+          <select name="hour" class="hour-longer">
+              <% n = 24 -%>
+              <% i = 1 -%>
+              <% n.times do %>
+                  <option value="<%= i %>" <%= "selected" if backup_hour.to_i == i %> > <%= i %> </option>
+                  <% i+=1 -%>
+              <% end %>
+          </select>
+          &nbsp;
+          <span class="info"><%= b_info %> <%= _('Value_in_system_time_zone') %>: <%= nice_system_time_string %></span>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'backup_number', _('Keep_on_local_server') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('backup_number', Confline.get_value('Backup_number'), class: 'number') %>
+          &nbsp;<%= _('backups') %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'backup_disk_space', _('Dont_start_backup_if_disk_space_less_than') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('backup_disk_space', Confline.get_value('Backup_disk_space'), class: 'number') %> &nbsp;%
+        </div>
+      </div>
+
+    </div>
+</div>

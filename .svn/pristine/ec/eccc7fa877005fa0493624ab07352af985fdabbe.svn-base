@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>manager_list</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">manager_list</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>login_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--pagrindinis langas -->
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Managers List</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Managers </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Add New Manager</td>
+</tr>
+<!--nera groupsu-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You need to create at least one Manager Group in order to Add New Manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You need to create at least one Manager Group in order to Add New Manager</td>
+	<td></td>
+</tr>
+<!--sql kuris sukelia groupsu ir sukuria managerius -->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/manager_users1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=ID</td>
+	<td>ID</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Manager</td>
+	<td>Manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Manager Group</td>
+	<td>Manager Group</td>
+</tr>
+<!--nepamirsti ar  nueina i nuoroda -->
+<tr>
+	<td>assertValue</td>
+	<td>id=login_as_link_19</td>
+	<td>LOGIN AS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=action_log_link_17</td>
+	<td>LOG</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_17</td>
+	<td>EDIT</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_17</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=manager_link_17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>as esu didelis komentaras</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>id=manager_link_17</td>
+	<td></td>
+</tr>
+<!--ar veikia edit-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Settings - vardas vardas</td>
+	<td></td>
+</tr>
+<!--padaro akd vienas item per page-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/one_item_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Showing 1 to 1 of 5 managers</td>
+	<td></td>
+</tr>
+<!--orderinimas -->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_19</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_13</td>
+	<td>13</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Manager Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=manager_group_13</td>
+	<td>vienas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Manager Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=manager_group_19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=manager_19</td>
+	<td>wrqwe</td>
+</tr>
+<!--trinimas -->
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>wrqwe</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=delete_link_19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager successfully deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/destroy/17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<!--LOG-->
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=action_log_link_17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Vardas vidurins pavarde</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Action Log</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<!--LOGIN AS-->
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=login_as_link_17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>System Admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=login_as_link_17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Vardas vidurins pavarde</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/destroy/17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>login_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/destroy/17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

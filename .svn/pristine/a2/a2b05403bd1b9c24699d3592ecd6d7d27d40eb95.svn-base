@@ -1,0 +1,157 @@
+<div class='content-box' style="min-width: 1000px">
+  <div class='table-box'>
+    <%= form_tag({action: :generate_request_for_tariff_generator, id: current_user_id}, {class: 'tariff_gen-form'}) do %>
+        <fieldset>
+          <h2><%= _('details_for_new_tariff') %></h2>
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Name') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :tariff, :name, type: :text,
+                             value: params[:tariff].try(:[], :name).to_s
+              %>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Currency') %></label>
+            </div>
+            <div class='input-col'>
+              <%= select_tag('tariff[currency_id]',
+                             options_for_select(Currency.get_active.collect { |t| [t.name, t.id] },
+                                                (!params[:tariff].blank? && !params[:tariff][:currency_id].blank?) ?
+                                                        params[:tariff][:currency_id] :
+                                                        current_user.try(:currency_id)
+                             ),
+                             { class: 'currency' }
+                  ) %>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('Profit_Margin_at_least') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :tariff, :profit_margin_at_least,
+                             class: 'profit_margin',
+                             maxlength: 20,
+                             value:  (params[:tariff].blank? ? '0.00' : params[:tariff].try(:[], :profit_margin_at_least).to_s)
+              %>
+              <span class='profit-percent'><%= "% #{_('from_lowest_rate')}" %></span>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class='label-col'>
+              <label><%= _('profit_margin') %></label>
+            </div>
+            <div class='input-col'>
+              <%= text_field :tariff, :profit_margin,
+                             class: 'profit_margin',
+                             maxlength: 20,
+                             value:  (params[:tariff].blank? ? '0.00' : params[:tariff].try(:[], :profit_margin).to_s)
+              %>
+              <span class='profit-percent'><%= "% #{_('on')}" %></span>
+              <%= select_tag('tariff[cheapest_rate]', options_for_cheapest_rate, { class: 'priority' }) %>
+              <span class='profit-percent'><%= "#{_('cheapest_Rate')}" %></span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="label-col">
+              <label><%= _('Effective_from') %></label>
+            </div>
+            <div class="input-col">
+              <div class="column date-col calendar-holder">
+                <div class="row">
+                  <div class="calendar-col">
+                    <%= text_field_tag 'date', params[:date] || nice_date(Time.now.in_time_zone(user_tz)), class: 'checkout default', id: 'till' %>
+                    <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+                  </div>
+                  <div class="time-col">
+                    <%= text_field_tag 'time', params[:time] || Time.now.in_time_zone(user_tz).strftime('%H:%M'), class: 'default', id: 'time2' %>
+                    <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class='label-col' whitespace-nowrap>
+              <span style="white-space: nowrap"><label><%= _('use_prefixes_only_assigned_to_dg') %></label></span>
+            </div>
+            <div class='input-col'>
+              <div style = "margin:5px 7px 4.1px -1px;">
+                <%= check_box_tag 'tariff[prefix_in_dg]', '1', params[:tariff][:prefix_in_dg] %>
+              </div>
+            </div>
+          </div>
+
+          <br/><br/>
+
+          <% radio_button_select = params[:tariff].try(:[], :tariffs_from) || 'dial_peer' %>
+          <div class='input-row'>
+            <div class="radio-row">
+              <%= radio_button_tag('tariff[tariffs_from]', 'dial_peer', (radio_button_select == 'dial_peer')) %>
+              <label><%= _('Select_from_which_Dial_Peers_new_Tariff_will_be_generated') %>:</label>
+            </div>
+          </div>
+          <div id="dial_peers_selection" class='check-row'>
+            <div class="input-row">
+              <% @dial_peers.each_with_index do |dial_peer, index| %>
+                  <div id="tariff_index_<%=dial_peer.id%>" class="input-col-tariffs">
+                    <%= check_box_tag 'dial_peer_id[]', dial_peer.id, (checked = true if (!params[:dial_peer_id].blank? && params[:dial_peer_id].include?(dial_peer.id.to_s))), class: 'checkbox_left' %>
+                    <span class="label" <%= tooltip(_('Tariffs'), dpeer_tpoints_tariffs(dial_peer.id)) %>><%= dial_peer.name.to_s %></span>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class='input-row'>
+            <div class="radio-row">
+              <%= radio_button_tag('tariff[tariffs_from]', 'tariff', (radio_button_select == 'tariff')) %>
+              <label><%= _('select_from_which_tariffs_new_tariff_will_be_generated') %>:</label>
+            </div>
+          </div>
+          <div id="tariffs_selection" class='check-row'>
+            <div class="input-row">
+              <% @tariffs.each_with_index do |tariff, index| %>
+                <div id="tariff_index_<%=tariff.id%>" class="input-col-tariffs">
+                    <%= check_box_tag 'tariff_id[]', tariff.id, (checked = true if (!params[:tariff_id].blank? && params[:tariff_id].include?(tariff.id.to_s))), class: 'checkbox_left' %>
+                    <span class="label"><%= tariff.name.to_s %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class='buttons-row'>
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariffs/list'" %>
+            <%= submit_tag _('GENERATE'), :disable_with => 'Processing...' %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    show_hide_selection();
+
+    $("#tariff_tariffs_from_dial_peer, #tariff_tariffs_from_tariff").change(function() { show_hide_selection(); });
+
+    function show_hide_selection() {
+        switch ($('#tariff_tariffs_from_dial_peer').is(':checked')) {
+            case true:
+                $('#dial_peers_selection').show();
+                $('#tariffs_selection').hide();
+                break;
+            case false:
+                $('#dial_peers_selection').hide();
+                $('#tariffs_selection').show();
+                break;
+        }
+    }
+</script>

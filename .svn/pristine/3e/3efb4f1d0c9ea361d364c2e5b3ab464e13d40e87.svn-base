@@ -1,0 +1,3039 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>alerts4</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">alerts4</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--dropdownai-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/various_devices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>test dop</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_termination_point_device_id</td>
+	<td>label=Test User #1/host_113</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_termination_point_device_id</td>
+	<td>label=Test User #1/host_119</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination group</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td>None Test RG</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Origination Point</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=disable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td>None Test RG</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_enable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Client</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=disable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_enable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Termination Point</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_tp_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_device_tp_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#device_tp_user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_device_tp_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_tp_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=tp_device</td>
+	<td>Test User #1/host_110 Test User #1/host_111 Test User #1/host_112 Test User #1/host_113 Test User #1/host_114 Test User #1/host_115 Test User #1/host_116 Test User #1/host_118 Test User #1/host_119 Test User #1/host_120 Test User #1/host_121 Test User #1/host_122 Test User #1/host_123 Test User #1/host_124 Test User #1/host_126 Test User #1/host_127 Test User #1/host_129 Test User #1/host_130 Test User #1/host_131 Test User #1/host_132 Test User #1/host_134 Test User #1/host_135 Test User #1/host_136 Test User #1/host_137 Test User #1/host_146 Test User #1/host_147 Test User #1/host_148</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_enable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tp_device</td>
+	<td>label=Test User #1/host_113</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=alert_disable_tp_in_dial_peer</td>
+	<td>None test dop</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_disable_tp_in_dial_peer</td>
+	<td>label=test dop</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_enable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_enable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_enable_tp_in_dial_peer</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_disable_clear</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_enable_tp_in_dial_peer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=clear_on_date_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=clear_on_date_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=clear_on_date_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=clear_on_date_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=clear_on_date_minute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_minute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_disable_clear</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=clear_on_date_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=clear_on_date_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=clear_on_date_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=clear_on_date_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=clear_on_date_minute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=clear_on_date_minute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1/host_113</td>
+	<td>Test User #1/host_113</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1/host_113</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/div/form/div[3]/div[2]/div[6]/div[2]/div/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForEditable</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=time1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2016-01-01</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time1</td>
+	<td>00:00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>2016-01-01</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time1</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Client</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>User settings: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_check_data3</td>
+	<td>fgdfgsdg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Prefix was not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_check_data3</td>
+	<td>fgdfgsdg</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_check_data3</td>
+	<td>999999999999999999999</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=alert_check_data3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_check_data3</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_4</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination group</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_data4</td>
+	<td>label=Afghanistan</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_5</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Afghanistan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Edit destination group</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Routing Group on Alert</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Routing Group on Clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Routing Group on Alert</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Routing Group on Clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Termination Point</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=alert_disable_tp_in_dial_peer</td>
+	<td>None test dop</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Client</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_disable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Origination Point</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_device_op_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_op_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=op_device</td>
+	<td>Test Device #1 Test Device for Admin Test FAX device Test User #1/127.0.1.2 Test User #1/host_110 Test User #1/host_111 Test User #1/host_112 Test User #1/host_113 Test User #1/host_114 Test User #1/host_115 Test User #1/host_116 Test User #1/host_117 Test User #1/host_118 Test User #1/host_119 Test User #1/host_120 Test User #1/host_121 Test User #1/host_122 Test User #1/host_123 Test User #1/host_124 Test User #1/host_125 Test User #1/host_126 Test User #1/host_127 Test User #1/host_128 Test User #1/host_129 Test User #1/host_130 Test User #1/host_131 Test User #1/host_132 Test User #1/host_133 Test User #1/host_134 Test User #1/host_135 Test User #1/host_136 Test User #1/host_137 Test User #1/host_146 Test User #1/host_147 Test User #1/host_148</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=op_device</td>
+	<td>label=Test User #1/host_113</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td>label=Restore Original</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--grupės pasirinkimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/schedules</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_schedule_name</td>
+	<td>schedule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=new_group[name]</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_group_email_schedule_id</td>
+	<td>label=schedule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_alert_groups_id</td>
+	<td>label=name</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=name</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Alert group edit: name</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_alert_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0	</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP SIMULTANEOUS CALLS PRICE SUM</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_alert_groups_id</td>
+	<td>label=name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=name</td>
+	<td>name</td>
+</tr>
+<!--routing_groups-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>test routing_group</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td>label=test routing_group</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td>label=test routing_group</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<!--trynimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Origination Point</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_device_op_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_op_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=op_device</td>
+	<td>label=Test User #1/host_112</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Routing Group is used in Alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Cannot delete Connection Point - it is assigned to Alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1/host_112</td>
+	<td>Test User #1/host_112</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=name</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_alert_groups_id</td>
+	<td>label=None</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=group_to_notify_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Termination Point</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_device_tp_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_tp_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tp_device</td>
+	<td>label=Test User #1/host_110</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_type_9</td>
+	<td>Termination Point</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1/host_110</td>
+	<td>Test User #1/host_110</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_10</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Cannot delete Connection Point - it is assigned to Alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_9</td>
+	<td>Test User #1/host_110</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Client</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='6'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_10</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Cannot delete User - he is assigned to Alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_10</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_link_4 &gt; img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully deleted</td>
+</tr>
+<!--check if Clear on time disables clear on conditions inputs-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Termination Point</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0	</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP PRICE SUM</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0	</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP PRICE SUM</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP PRICE SUM</td>
+</tr>
+<tr>
+	<td>waitForNotEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_if_less_11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_if_more_11</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=clear_if_less_11</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=clear_if_more_11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0	</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP SIMULTANEOUS CALLS PRICE SUM</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>-10</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>500000</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0	</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>9,99</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP SIMULTANEOUS CALLS PRICE SUM</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--* Clear after must be numerical-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_check_type</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0	</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>9.99</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Alert successfully created-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=alert_type_parameters</td>
+	<td>ASR ACD PDD TTC BILLSEC TOTAL CALLS ANSWERED CALLS NOT ANSWERED CALLS HGC (ABSOLUTE) HGC (PERCENT) GROUP SIMULTANEOUS CALLS PRICE SUM</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>9.99</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--* Clear after must be numerical-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_if_less_13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_if_more_13</td>
+	<td>3.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=clear_if_less_13</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=clear_if_more_13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>-10</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>500000</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_alert_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--* Clear after must be numerical-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>9,99</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_after</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--* Clear after must be numerical-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>9.99</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Alert successfully updated-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<!--Jei alert_raised_at > alert_cleared_at, tai visa eilutė #FFCCCC - visa eilutė raudona-->
+<!--papildomi laukai iš monitorings-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Check last</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=alert_count_period</td>
+	<td>5 min 10 min 15 min 20 min 30 min 45 min 1 h 2 h 3 h 4 h 5 h 6 h 7 h 8 h 9 h 10 h 11 h 12 h 13 h 14 h 15 h 16 h 17 h 18 h 19 h 20 h 21 h 22 h 23 h 24 h</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_count_period</td>
+	<td>label=4 h</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=alert_count_period</td>
+	<td>1 h</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_alert_groups_id</td>
+	<td>label=None</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Group must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=alert_count_period</td>
+	<td>1 h</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_disable_clear</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_disable_clear</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=clear_if_less_1</td>
+	<td>Disabled</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=clear_if_more_1</td>
+	<td>Disabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_disable_clear</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_enable_object</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_action_clear_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_alert_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=alert_type_parameters</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_type_parameters</td>
+	<td>label=SIMULTANEOUS CALLS</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_ignore_if_calls_less</td>
+	<td>99999999999999999999</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_ignore_if_calls_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_ignore_if_calls_more</td>
+	<td>99999999999999999999</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_ignore_if_calls_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=parameter</td>
+	<td>SIMULTANEOUS CALLS unit</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_ignore_if_calls_less</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_ignore_if_calls_more</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=alert_type_parameters</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_type_parameters</td>
+	<td>label=PRICE SUM</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_ignore_if_calls_less</td>
+	<td>99999999999999999999</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_ignore_if_calls_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_ignore_if_calls_more</td>
+	<td>99999999999999999999</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_ignore_if_calls_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_alert_if_less</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=alert_clear_if_more</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=parameter</td>
+	<td>PRICE SUM unit</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_ignore_if_calls_less</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_ignore_if_calls_more</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination group</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_data4</td>
+	<td>label=Afghanistan</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_type_parameters</td>
+	<td>label=NOT ANSWERED CALLS</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_ignore_if_calls_less</td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_ignore_if_calls_more</td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_alert_groups_id</td>
+	<td>label=name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>600</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=clear_on_date_year</td>
+	<td>label=2027</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=clear_on_date_month</td>
+	<td>label=March</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=clear_on_date_day</td>
+	<td>label=20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Alert was not created<br /> * Clear on Date is missing some values</td>
+</tr>
+</tbody></table>
+</body>
+</html>

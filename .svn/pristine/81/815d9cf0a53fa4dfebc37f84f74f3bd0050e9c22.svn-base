@@ -1,0 +1,2090 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_timeout</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_max_timeout</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_ulaw</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_g726</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_speex</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_lpc10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_ilbc</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_h263</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_h263p</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_h264</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_insecure_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=custom_sip_header</td>
+	<td>custom sip header</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_call_limit</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_period</td>
+	<td>60</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cid_name</td>
+	<td>preset caller id</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cid_number</td>
+	<td>8666666658</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Settings saved</td>
+</tr>
+<!--enable api, recaptcha, updat ecurrencies ir login redirect on-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/user_register/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;test=1&amp;hash=2e3b368a0825012bb4ff875406f51a3410218660</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Registration over API is disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=qg2audn8qa&amp;test=1&amp;hash=72ac1df43e997f97b832bb143f3489e8ec64a3b5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Registration over API is disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/allow_registration</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?&amp;test=1&amp;hash=e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;test=1&amp;hash=2e3b368a0825012bb4ff875406f51a3410218660</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Default user is not present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_balance</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;test=1&amp;hash=2e3b368a0825012bb4ff875406f51a3410218660</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please enter username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--# hash 1-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash1</td>
+</tr>
+<!--# hash 2-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash2</td>
+</tr>
+<!--# hash 3-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash3</td>
+</tr>
+<!--# hash 4-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;device_type=SIP&amp;first_name=asasas&amp;last_name=sasasa&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash4</td>
+</tr>
+<!--# hash 5-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash5</td>
+</tr>
+<!--# hash 6-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;device_type=SIP&amp;first_name=asasas&amp;last_name=sasasa&amp;country_id=2&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash6</td>
+</tr>
+<!--# hash 7-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;last_name=sasasa&amp;country_id=2&amp;email=email@email.com&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash7</td>
+</tr>
+<!--# hash 8-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;last_name=sasasa&amp;country_id=2&amp;email=email@gmail.com&amp;device_type=SIP&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash8</td>
+</tr>
+<!--# hash 9-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=cccccccc&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;last_name=sasasa&amp;amp;country_id=2&amp;email=email@gmail.com&amp;device_type=SIP&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash9</td>
+</tr>
+<!--# hash 10-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?id=hfttv7bcqt&amp;username=${@print(md5(acunetix)&amp;password=11111111&amp;password2=11111111&amp;first_name=basasas&amp;last_name=absasasa&amp;country_id=10&amp;email=femail@email.com&amp;device_type=SIP&amp;mob_phone=867756473&amp;phone=856700439&amp;fax=8548938475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash10</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please enter password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;test=1&amp;hash=${hash2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Passwords do not match</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;test=1&amp;hash=${hash3}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please enter first name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;test=1&amp;hash=${hash5}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please enter last name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;device_type=SIP&amp;first_name=asasas&amp;last_name=sasasa&amp;test=1&amp;hash=${hash4}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please select country</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;device_type=SIP&amp;first_name=asasas&amp;last_name=sasasa&amp;country_id=2&amp;test=1&amp;hash=${hash6}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please enter correct email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;last_name=sasasa&amp;country_id=2&amp;email=email@email.com&amp;test=1&amp;hash=${hash7}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Enter device type</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;last_name=sasasa&amp;country_id=2&amp;email=email@gmail.com&amp;device_type=SIP&amp;test=1&amp;hash=${hash8}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=server_ip</td>
+	<td>192.168.1.8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user_id</td>
+	<td>16002</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=device_id</td>
+	<td>8</td>
+</tr>
+<!--user with the same email-->
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=cccccccc&amp;password=11111111&amp;password2=11111111&amp;first_name=asasas&amp;last_name=sasasa&amp;amp;country_id=2&amp;email=email@gmail.com&amp;device_type=SIP&amp;test=1&amp;hash=${hash9}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>This email address is already in use.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_balance</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=DZD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/16002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=address[direction_id]</td>
+	<td>Albania</td>
+</tr>
+<!--toks buvo nurodytas registracijos metu-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_timeout</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_max_timeout</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_ulaw</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_g726</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_speex</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_lpc10</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_ilbc</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_h263</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_h263p</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_h264</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_insecure_port</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=custom_sip_header</td>
+	<td>custom sip header</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_call_limit</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_period</td>
+	<td>60</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cid_name</td>
+	<td>preset caller id</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cid_number</td>
+	<td>8666666658</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=${@print(md5(acunetix)&amp;password=11111111&amp;password2=11111111&amp;first_name=basasas&amp;last_name=absasasa&amp;country_id=10&amp;email=femail@email.com&amp;device_type=SIP&amp;mob_phone=867756473&amp;phone=856700439&amp;fax=8548938475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1&amp;hash=${hash10}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=device_id</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/disable_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<!--API commands without hash-->
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=^@*!&amp;password=11111111&amp;password2=11111111&amp;first_name=basasas&amp;last_name=absasasa&amp;country_id=10&amp;email=femail@email.com&amp;device_type=SIP&amp;mob_phone=867756473&amp;phone=856700439&amp;fax=8548938475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>This email address is already in use.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=^@*!&amp;password=11111111&amp;password2=11111111&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=femail@email.com&amp;device_type=SIP&amp;mob_phone=867756473&amp;phone=856700439&amp;fax=8346438475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>This email address is already in use.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=^@*!&amp;password=11111111&amp;password2=11111111&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=femail@email.com&amp;device_type=SIP&amp;mob_phone=8634556473&amp;phone=85670876&amp;fax=8549828475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>This email address is already in use.</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=^@*!&amp;password=1DF^@!*(11&amp;password2=11111111&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=fl@email.com&amp;device_type=SIP&amp;mob_phone=8634556473&amp;phone=85670876&amp;fax=8549828475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Passwords do not match</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=^@*!&amp;password=11111111&amp;password2=11111111&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=flemail.com&amp;device_type=SIP&amp;mob_phone=8634556473&amp;phone=85670876&amp;fax=8549828475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Please enter correct email</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=^@*!&amp;password=1DF^@!*(11&amp;password2=1DF^@!*(11&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=fl@email.com&amp;device_type=SIP&amp;mob_phone=8634556473&amp;phone=85670876&amp;fax=8549828475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=server_ip</td>
+	<td>192.168.1.8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=device_id</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=ewrty&amp;username=^@*!&amp;password=1DF^@!*(11&amp;password2=1DF^@!*(11&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=fl@email.com&amp;device_type=SIP&amp;mob_phone=8634556473&amp;phone=85670876&amp;fax=8549828475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=3&amp;username=^@*!&amp;password=1DF^@!*(11&amp;password2=1DF^@!*(11&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=fl@email.com&amp;device_type=SIP&amp;mob_phone=8634556473&amp;phone=85670876&amp;fax=8549828475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=3&amp;username=^@*!&amp;password=1DF^@!*(11&amp;password2=1DF^@!*(11&amp;first_name=ba*()(as&amp;last_name=!@^^@!&amp;country_id=10&amp;email=fl@email.com&amp;device_type=SIP&amp;mob_phone=8634556473&amp;phone=85670876&amp;fax=8549828475&amp;client_id=23454332&amp;vat_number=234323&amp;state=lisbona&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa&amp;password=aaaaaaaa&amp;password2=aaaaaaaa&amp;first_name=aaaaaa&amp;last_name=aaaaaa&amp;country_id=110&amp;email=flasd@email.com&amp;device_type=SIP&amp;mob_phone=86345556473&amp;phone=855670876&amp;fax=85498528475&amp;client_id=2354454332&amp;vat_number=23454323&amp;state=lisbonasds&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Such username is already taken</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaba&amp;first_name=aaaaaba&amp;last_name=aaaaaa&amp;country_id=110&amp;email=flasd@email.com&amp;device_type=SIP&amp;mob_phone=86345556473&amp;phone=855670876&amp;fax=85498528475&amp;client_id=2354454332&amp;vat_number=23454323&amp;state=lisbonasds&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please enter password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaba&amp;password=aaaaaaaa&amp;password2=aaaaaaaa&amp;last_name=aaaaaa&amp;country_id=110&amp;email=flasd@email.com&amp;device_type=SIP&amp;mob_phone=86345556473&amp;phone=855670876&amp;fax=85498528475&amp;client_id=2354454332&amp;vat_number=23454323&amp;state=lisbonasds&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Please enter first name</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaba&amp;password=aaaaaaaa&amp;password2=aaaaaaaa&amp;first_name=aaaaaa&amp;country_id=110&amp;email=flasd@email.com&amp;device_type=SIP&amp;mob_phone=86345556473&amp;phone=855670876&amp;fax=85498528475&amp;client_id=2354454332&amp;vat_number=23454323&amp;state=lisbonasds&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Please enter last name</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/api/user_register?id=hfttv7bcqt&amp;username=aaabaa&amp;password=aaaaaaaa&amp;password2=aaaaaaaa&amp;first_name=aaaaaa&amp;last_name=aaaaaa&amp;country_id=sgaer@*()&amp;email=flasd@email.com&amp;device_type=SIP&amp;mob_phone=86345556473&amp;phone=855670876&amp;fax=85498528475&amp;client_id=2354454332&amp;vat_number=23454323&amp;state=lisbonasds&amp;county=america&amp;city=mlt&amp;postcode=345434&amp;address=mechanizatoriai&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//error</td>
+	<td>Please select country</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>aaaaaa</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>11111111</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.hello-box</td>
+	<td>Hello, asasas sasasa <br /> <br /> Your Balance: 20.0000 USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>20.0000 USD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>aaaaaa</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>asasas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>sasasa</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>address[direction_id]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>${@print(md5(acunetix)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>11111111</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Hello, basasas absasasa</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>80.0000 DZD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>${@print(md5(acunetix)</td>
+</tr>
+<tr>
+	<td>assertSelectedValue</td>
+	<td>user_warning_email_active</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>basasas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>absasasa</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_clientid</td>
+	<td>23454332</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_vat_number</td>
+	<td>234323</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_postcode</td>
+	<td>345434</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_state</td>
+	<td>lisbona</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_phone</td>
+	<td>856700439</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_mob_phone</td>
+	<td>867756473</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_fax</td>
+	<td>8548938475</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_email</td>
+	<td>femail@email.com</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>address[direction_id]</td>
+	<td>Argentina</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_address</td>
+	<td>mechanizatoriai</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>Argentina</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<!--PAYMENTS LIST-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2012; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2012; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_1</td>
+	<td>20.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_1</td>
+	<td>20.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_2</td>
+	<td>20.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_2</td>
+	<td>20.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_2</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_3</td>
+	<td>20.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_3</td>
+	<td>20.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_3</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#payment_comment_link_3 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=payment_comment_tag_3</td>
+	<td>Initial balance</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/enable_devices_check_balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/enable_devices_check_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>aaaaaa</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>11111111</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Successfully logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=users</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=uniquehash_value</td>
+	<td>hashas</td>
+</tr>
+<!--test=1 formato testavimas - iki siol buvo tik html-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/enable_xml</td>
+	<td></td>
+</tr>
+<!--api/user_register according to admins defaul user-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_balance</td>
+	<td>13.0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_hidden_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=ignore_global_monitorings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>label=Test Manager</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT-03:00) Brasilia</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=warning_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_name</td>
+	<td>tax2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax2_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_value</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_value</td>
+	<td>0.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td>first name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>last name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_address</td>
+	<td>address</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_fax</td>
+	<td>fax</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_email</td>
+	<td>test_email2@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_call_limit</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=ALL</td>
+</tr>
+<tr>
+	<td>storeSelectedLabel</td>
+	<td>id=block_at_date_year</td>
+	<td>year</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=block_at_date_month</td>
+	<td>label=4</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=block_at_date_day</td>
+	<td>label=10</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=block_at_conditional</td>
+	<td>label=15</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=block_conditional_use</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_user_warning_email_hour</td>
+	<td>label=12</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance</td>
+	<td>9.0000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=user[taxation_country]</td>
+	<td>label=Argentina</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_clientid</td>
+	<td>company</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_agreement_number</td>
+	<td>987654</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_language</td>
+	<td>lang</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_vat_number</td>
+	<td>tax number</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_accounting_number</td>
+	<td>acc number</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_postcode</td>
+	<td>zp</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_city</td>
+	<td>city</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_county</td>
+	<td>country</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_state</td>
+	<td>state</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=address[direction_id]</td>
+	<td>label=Argentina</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_phone</td>
+	<td>phone</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_mob_phone</td>
+	<td>mobile</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>name=hide_non_answered_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Default User saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=user_admin2&amp;password=short1&amp;password2=short1&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail@email.com&amp;device_type=SIP&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=page</td>
+	<td>Password must be longer than 7 characters</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username_length</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_length</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Default User saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=u&amp;password=short1&amp;password2=short1&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail2@email.com&amp;device_type=SIP&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=page</td>
+	<td>Username must be longer than 1 characters</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=ue&amp;password=short1&amp;password2=short1&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail2@email.com&amp;device_type=SIP&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=page</td>
+	<td>Password must be longer than 11 characters</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=ue&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail2@email.com&amp;device_type=SIP&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=user_id</td>
+	<td>16005</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=year</td>
+	<td>current_year</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/16005</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>ue</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_value</td>
+	<td>13.0000 USD</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_time_zone</td>
+	<td>(GMT-03:00) Brasilia</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_month</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_day</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=block_at_conditional</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_currency_id</td>
+	<td>ALL</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_call_limit</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=block_conditional_use</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_user_warning_email_hour</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance</td>
+	<td>9.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>surname</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_clientid</td>
+	<td>company</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_agreement_number</td>
+	<td>0000000007</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>Argentina</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_language</td>
+	<td>lang</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_vat_number</td>
+	<td>tax number</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_accounting_number</td>
+	<td>acc number</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=address[direction_id]</td>
+	<td>Argentina</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_address</td>
+	<td>address</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_postcode</td>
+	<td>zp</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_city</td>
+	<td>city</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_county</td>
+	<td>country</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_state</td>
+	<td>state</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_mob_phone</td>
+	<td>mobile</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_fax</td>
+	<td>fax</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_email</td>
+	<td>simplyemail2@email.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_hidden_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=hide_non_answered_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_hidden_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=testuser&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail3@email.com&amp;device_type=SIP&amp;caller_id=tekstas&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=caller_id</td>
+	<td>tekstas</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=testuser5&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail99@email.com&amp;device_type=SIP&amp;caller_id=9,56&gt;&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=caller_id</td>
+	<td>9,56&gt;</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=testuser6&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail9@email.com&amp;device_type=SIP&amp;caller_id=-5&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=caller_id</td>
+	<td>-5</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=testuser2&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail4@email.com&amp;device_type=SIP&amp;caller_id=65.98,&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=caller_id</td>
+	<td>65.98,</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=testuser3&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail5@email.com&amp;device_type=SIP&amp;caller_id=&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=caller_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=testuser4&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail6@email.com&amp;device_type=SIP&amp;caller_id=9875642&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=caller_id</td>
+	<td>9875642</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=aaaaaa2&amp;password=111111112222222222&amp;password2=111111112222222222&amp;first_name=asasas&amp;last_name=sasasa&amp;country_id=2&amp;email=email2@gmail.com&amp;device_type=SIP&amp;test=1&amp;hash=563227703b2707a3ed18fa5b294614648ad53ba8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=registration_notice</td>
+	<td>*ATTENTION! These settings are for you to configure your DEVICE. In order to login to this system you need to use settings your entered before!</td>
+</tr>
+<!--buvo problema, kad kai nenustatytas default userio hide non answered calls setingas, api nerodo, jog useris užregistruotas-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/delete_non_answered_calls_confline</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=reshgfhgfhuser&amp;password=P3N2LV5K646464&amp;password2=P3N2LV5K646464&amp;first_name=test&amp;test=1&amp;last_name=test&amp;country_id=83&amp;email=testvagggKghjghjolm2@email.gr&amp;device_type=SIP&amp;hash=b49db99837bc330f3c3fc255b998794a06f9aff8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+<!--Tikrinimas ar leidzia, kurti kai nera tarifu-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/delete_tariffs_and_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/user_register?id=hfttv7bcqt&amp;username=testuser478&amp;password=longerpassword&amp;password2=longerpassword&amp;first_name=name&amp;last_name=surname&amp;country_id=10&amp;email=simplyemail67@email.com&amp;device_type=SIP&amp;caller_id=9875642&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=success</td>
+	<td>Registration successful</td>
+</tr>
+</tbody></table>
+</body>
+</html>

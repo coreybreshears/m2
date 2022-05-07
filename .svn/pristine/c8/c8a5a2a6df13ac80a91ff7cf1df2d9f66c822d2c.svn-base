@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>payments_user</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">payments_user</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=nice_date</td>
+	<td>date</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_2/various_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/payments/personal_payments')]</td>
+	<td>PAYMENTS</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=PAYMENTS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.breadcrumbs &gt; li</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Payments List</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=DATE-TIME</td>
+	<td>DATE-TIME</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Amount</td>
+	<td>Amount</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Amount with Tax</td>
+	<td>Amount with Tax</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Currency</td>
+	<td>Currency</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.total</td>
+	<td>TOTAL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>-66.89</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-73.58</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2013-06-28 10:23:52</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2014-01-02 22:20:05</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_19</td>
+	<td>${date} *</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_22</td>
+	<td>${date} *</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_19</td>
+	<td>16.25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_19</td>
+	<td>17.87</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_19</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Refine Results</td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>${date}</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>${date}</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time1</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time2</td>
+	<td>exact:23:59</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2013-01-05</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=from</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=till</td>
+	<td>2025-12-31</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=till</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time2</td>
+	<td>22:22</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time1</td>
+	<td>15:15</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time2</td>
+	<td>22:22</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>2013-01-05</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>2025-12-31</td>
+</tr>
+<!--bus ticket laiko inputo tvarkymui, galbūt bus sutvarkyta-->
+<tr>
+	<td>assertValue</td>
+	<td>id=time1</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time2</td>
+	<td>exact:22:22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2013-06-28 10:23:52</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_5</td>
+	<td>2014-03-14 09:24:16</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_21</td>
+	<td>${date}*</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>${date}</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>${date}</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time1</td>
+	<td>exact:00:00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time2</td>
+	<td>exact:23:59</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_19</td>
+	<td>${date}*</td>
+</tr>
+<!--Jei nėra pymentu, rodo paskutinius padarytus-->
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2009-01-05</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=from</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=till</td>
+	<td>2009-12-31</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=till</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Payments in selected period found </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_17</td>
+	<td>2014-01-02 22:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-12-14 09:24:04</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-11-11 09:24:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--# 1 item per page, comma as separator, different date format, 7 number digits-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=universal_bundles/visual_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_currency_digits</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/personal_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_19</td>
+	<td>16,2476829</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_19</td>
+	<td>17,8724512</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>-66,8899055</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-73,5788960</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>Showing 1 to 1 of 5 Payments</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>Showing 4 to 4 of 5 Payments</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_22</td>
+	<td>0,5646400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_22</td>
+	<td>0,6211040</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_22</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_19</td>
+	<td>16,2476829</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_19</td>
+	<td>17,8724512</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-73,5788960</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>Showing 1 to 1 of 5 Payments</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>05/01/2013</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=from</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=till</td>
+	<td>31/12/2025</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=till</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>05/01/2013</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>31/12/2025</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>Showing 1 to 1 of 11 Payments</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=&gt;</td>
+	<td>&gt;</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>link=7</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=a.prev</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=&gt;</td>
+	<td>&gt;</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>link=3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=7</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a.prev</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=DATE-TIME</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>28/06/2013 10:23:52</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=DATE-TIME</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>28/06/2013 10:23:52</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Amount</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_19</td>
+	<td>16,2476829</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_19</td>
+	<td>17,8724512</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-139,3788960</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a.prev</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_3</td>
+	<td>-41,0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_3</td>
+	<td>-41,0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-139,3788960</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Amount</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_4</td>
+	<td>22,0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-139,3788960</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Amount with Tax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_23</td>
+	<td>-50,0000000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_16</td>
+	<td>30,6660000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-139,3788960</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Amount with Tax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_23</td>
+	<td>-50,0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-139,3788960</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a.prev</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_16</td>
+	<td>30,6660000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-139,3788960</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Currency</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[contains(@id, 'currency_')]</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[contains(@id, 'currency_')]</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Currency</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[contains(@id, 'currency_')]</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a.prev</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[contains(@id, 'currency_')]</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/personal_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time2</td>
+	<td>exact:23:59</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>04/04/2013</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=from</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time2</td>
+	<td>exact:23:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_23</td>
+	<td>-45,4545455</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_23</td>
+	<td>-50,0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>-132,8899055</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-139,3788960</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_23</td>
+	<td>-45,4545455</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_23</td>
+	<td>-50,0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>-98,1433201</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>-102,9356410</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>05/01/2009</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>04/04/2009</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=from</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=till</td>
+	<td>13/12/2009</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=till</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>EUR</td>
+</tr>
+</tbody></table>
+</body>
+</html>

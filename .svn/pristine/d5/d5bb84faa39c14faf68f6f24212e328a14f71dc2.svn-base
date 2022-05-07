@@ -1,0 +1,16 @@
+<div id="payment_comm_<%= payment.id %>">
+  <div id="payment_comment_link_<%= payment.id %>">
+    <%= link_to_function(b_comment_edit(to_utf(payment.comment)), "Element.toggle('payment_comment_#{payment.id}');Element.toggle('payment_comment_link_#{payment.id}');") %>
+  </div>
+  <div id="payment_comment_<%= payment.id %>" style='display:none;'>
+      <span style="float: left;">
+        <%= text_area_tag 'payment_commen', to_utf(payment.comment), :cols => 60, :rows => 6, :id => "payment_comment_tag_#{payment.id}" %>
+      </span>
+      <span style="float: left;">
+        <%= submit_tag _('ok'), :name => "ok_#{payment.id}", :onclick => "updateFields(#{payment.id});" %>
+      </span>
+      <span style="float: left;">
+        <%= link_to_function _('cancel'), "Element.toggle('payment_comment_#{payment.id}');Element.toggle('payment_comment_link_#{payment.id}');" %>
+      </span>
+  </div>
+</div>

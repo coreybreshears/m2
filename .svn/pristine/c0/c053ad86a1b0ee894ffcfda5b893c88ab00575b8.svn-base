@@ -1,0 +1,5322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m4_disconnect_codes</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m4_disconnect_codes</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/m4/disconnect_codes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>1.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M2 SWITCH by Kolmisoft 2006 - 202*System Time:*</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/disconnect_codes/list')]</td>
+	<td>Disconnect Codes</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/disconnect_codes/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--~~~M4~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form[8]/b</td>
+	<td>M4 Functionality:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m4_functionality</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<!--~~~~~~~-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=m2switch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>2.2??</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=footer</td>
+	<td>M4 SBC by Kolmisoft 2006 - 202*System Time:*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/disconnect_codes/list')]</td>
+	<td>Disconnect Codes</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/disconnect_codes/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Maintenance Disconnect Codes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.disconnect-codes-header-element</td>
+	<td>DC Group:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dc_group</td>
+	<td>Default Global</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Reset to Default']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th</td>
+	<td>Namespace</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[2]</td>
+	<td>Code</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[3]</td>
+	<td>Reason</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[4]</td>
+	<td>Changed Code/Reason</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[5]</td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[6]</td>
+	<td>Reroute</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[7]</td>
+	<td>Save CDR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[8]</td>
+	<td>Reason Header</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='disconnect_codes_table']/table/thead/tr/th[9]/div</td>
+	<td>Reset</td>
+</tr>
+<!--~~~Default~~~-->
+<tr>
+	<td>select</td>
+	<td>id=dc_group</td>
+	<td>label=Default</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@id='disconnect_code_1']/td[9]/a</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Default</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Reset to Default']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-code </td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.reason-text</td>
+	<td>Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-changed_code_reason &gt; span.reason-text</td>
+	<td>404 Not Found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Reset</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-code </td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Misdialed trunk prefix</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-changed_code_reason</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.disconnect_codes-action_header &gt; a.disconnect-codes-disabled-link.delete_button</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-code </td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Subscriber absent</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-changed_code_reason &gt; span.reason-text</td>
+	<td>480 Temporarily Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.disconnect_codes-action_header &gt; a.disconnect-codes-disabled-link.delete_button</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-code </td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Only restricted digital information bearer capability is available</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-changed_code_reason &gt; span.reason-text</td>
+	<td>488 Not Acceptable Here</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.disconnect_codes-action_header &gt; a.disconnect-codes-disabled-link.delete_button</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-code </td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Interworking, unspecified</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-changed_code_reason &gt; span.reason-text</td>
+	<td>500 Internal Server Error</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.disconnect_codes-action_header &gt; a.disconnect-codes-disabled-link.delete_button</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-code </td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Multiple Choices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Save CDR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reason Header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.disconnect_codes-action_header &gt; a.disconnect-codes-disabled-link.delete_button</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-code </td>
+	<td>400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>41</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Q.850 Code</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.disconnect_codes-action_header &gt; a.disconnect-codes-disabled-link.delete_button</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-code </td>
+	<td>480</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Temporarily Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-code </td>
+	<td>486</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Busy Here</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-code </td>
+	<td>487</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Request Terminated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-code </td>
+	<td>800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Not authenticated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-changed_code_reason &gt; span.reason-text</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-code </td>
+	<td>882</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>MNP CIP does not match TP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-changed_code_reason &gt; span.reason-text</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.disconnect_codes-action_header &gt; a.disconnect-codes-disabled-link.delete_button</td>
+	<td>Reset</td>
+</tr>
+<!--~~~Global~~~-->
+<tr>
+	<td>select</td>
+	<td>id=dc_group</td>
+	<td>label=Global</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>//tr[@id='disconnect_code_1']/td[9]/a</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Reset to Default']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-code </td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.reason-text</td>
+	<td>Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_1']/td[4]</td>
+	<td>404 Not Found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.disconnect_codes-action_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-code </td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Misdialed trunk prefix</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-changed_code_reason</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.disconnect_codes-action_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-code </td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Subscriber absent</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_20']/td[4]</td>
+	<td>480 Temporarily Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.disconnect_codes-action_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-code </td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-reason </td>
+	<td>Only restricted digital information bearer capability is available</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_70']/td[4]</td>
+	<td>488 Not Acceptable Here</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-code </td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Interworking, unspecified</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_127']/td[4]/span</td>
+	<td>500 Internal Server Error</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-code </td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Multiple Choices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Save CDR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reason Header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-code </td>
+	<td>400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>41</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Q.850 Code</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-code </td>
+	<td>480</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Temporarily Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-code </td>
+	<td>486</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Busy Here</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-code </td>
+	<td>487</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Request Terminated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-code </td>
+	<td>800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Not authenticated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[4]/span</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-code </td>
+	<td>882</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>MNP CIP does not match TP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_882']/td[4]/span</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_1']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=405 Method Not Allowed</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_5']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=406 Not Acceptable</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_20']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=407 Proxy Authentication Required</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_70']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=408 Request Timeout</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_127']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=409 Conflict</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_1']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_5']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_20']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_70']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_127']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_1']/td[4]</td>
+	<td>405 Method Not Allowed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_5']/td[4]</td>
+	<td>406 Not Acceptable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_20']/td[4]</td>
+	<td>407 Proxy Authentication Required</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_70']/td[4]</td>
+	<td>408 Request Timeout</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_127']/td[4]</td>
+	<td>409 Conflict</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_300']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=400 Bad Request</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_301']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=380 Alternative Service</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_302']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=305 Use Proxy</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=302 Moved Temporarily</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_380']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=301 Moved Permanently</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=300 Multiple Choices</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[13]/div/div/ul/li/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_300']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[13]/div/div/ul/li/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_301']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=2</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_302']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=3</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=4</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_380']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=5</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=6</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_300']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_301']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_302']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_380']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_380']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_302']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_301']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_300']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_300']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_301']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_302']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_380']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[4]/span</td>
+	<td>400 Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[4]/span</td>
+	<td>380 Alternative Service</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[4]/span</td>
+	<td>305 Use Proxy</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[4]/span</td>
+	<td>302 Moved Temporarily</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[4]/span</td>
+	<td>301 Moved Permanently</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]/span</td>
+	<td>300 Multiple Choices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[5]/span</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[5]/span</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[5]/span</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[5]/span</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[5]/span</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#disconnect_code_300 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#disconnect_code_301 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#disconnect_code_302 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#disconnect_code_305 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#disconnect_code_380 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#disconnect_code_400 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_301']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_300']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_301']/td[8]/span</td>
+	<td>GENERATE IF NONE</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_302']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td>GENERATE IF NONE</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_380']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td>GENERATE IF NONE</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td>OVERWRITE</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td>OVERWRITE</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td</td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[2]</td>
+	<td>800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[3]</td>
+	<td>Not authenticated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[7]/span</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[8]/span</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_814']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_815']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_814']/td[2]</td>
+	<td>814</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_814']/td[3]</td>
+	<td>Radius server did not receive accounting start packet (acct start timeout)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_814']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[@id='disconnect_code_814']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_815']/td[2]</td>
+	<td>815</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_815']/td[3]</td>
+	<td>Radius server did not receive accounting stop packet (acct stop timeout)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_815']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[@id='disconnect_code_815']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<!--~~~Reset~~~-->
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>//tr[@id='disconnect_code_400']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[2]</td>
+	<td>400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[3]/span</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>41</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<!--~~~Custom~~~-->
+<tr>
+	<td>click</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=label</td>
+	<td>Group name</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=group_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>css=label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=group_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>css=label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=group_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=group_name</td>
+	<td>Custom DC Group for O_P</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Group was successfully created</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@id='disconnect_code_1']/td[9]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Custom DC Group for O_P [3]</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dc_group</td>
+	<td>Default Global Custom DC Group for O_P [3]</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Reset to Global']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=form.dc-update-form.details-form &gt; div.row &gt; div.input-row &gt; div.input-col &gt; #group_name</td>
+	<td>Custom DC Group for OP</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=form.dc-update-form.details-form &gt; div.row &gt; div.input-row &gt; input[name=&quot;commit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect Group was successfully updated</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Custom DC Group for OP [3]</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dc_group</td>
+	<td>Default Global Custom DC Group for OP [3]</td>
+</tr>
+<!--~~~~~-->
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-code </td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.reason-text</td>
+	<td>Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.disconnect_codes-action_header</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-code </td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Misdialed trunk prefix</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.disconnect_codes-action_header</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-code </td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Subscriber absent</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.disconnect_codes-action_header</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-code </td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-reason </td>
+	<td>Only restricted digital information bearer capability is available</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-code </td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Interworking, unspecified</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-code </td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Multiple Choices</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Save CDR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reason Header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-code </td>
+	<td>400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>41</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Q.850 Code</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-code </td>
+	<td>480</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Temporarily Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-code </td>
+	<td>486</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Busy Here</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-code </td>
+	<td>487</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Request Terminated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-code </td>
+	<td>800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Not authenticated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[4]/span</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-code </td>
+	<td>882</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>MNP CIP does not match TP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_882']/td[4]/span</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_1']/td[4]</td>
+	<td>405 Method Not Allowed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_5']/td[4]</td>
+	<td>406 Not Acceptable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_20']/td[4]</td>
+	<td>407 Proxy Authentication Required</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_70']/td[4]</td>
+	<td>408 Request Timeout</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_127']/td[4]</td>
+	<td>409 Conflict</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[4]/span</td>
+	<td>400 Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[4]/span</td>
+	<td>380 Alternative Service</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[4]/span</td>
+	<td>305 Use Proxy</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[4]/span</td>
+	<td>302 Moved Temporarily</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[4]/span</td>
+	<td>301 Moved Permanently</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[5]/span</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[5]/span</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[5]/span</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[5]/span</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[5]/span</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td>41</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]/span</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[7]/span</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_300']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_301']/td[8]/span</td>
+	<td>GENERATE IF NONE</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_302']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_380']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]/span</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td</td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[2]</td>
+	<td>800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[3]</td>
+	<td>Not authenticated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[7]/span</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[8]/span</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_814']/td[2]</td>
+	<td>814</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_814']/td[3]</td>
+	<td>Radius server did not receive accounting start packet (acct start timeout)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_814']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_815']/td[2]</td>
+	<td>815</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_815']/td[3]</td>
+	<td>Radius server did not receive accounting stop packet (acct stop timeout)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_815']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<!--~~~~~-->
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=500 Internal Server Error</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_401']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=501 Not Implemented</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_402']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=502 Bad Gateway</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_403']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_404']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=504 Server Time-out</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_405']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_code_reason</td>
+	<td>label=505 Version Not Supported</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=127</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_401']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=111</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_402']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=110</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_403']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=103</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_404']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=102</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_405']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=dc_q850</td>
+	<td>label=101</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_401']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_402']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_403']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_404']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_405']/td[6]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_401']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_402']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_403']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_404']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_405']/td[7]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_401']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_402']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_403']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_404']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[@id='disconnect_code_405']/td[8]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]</td>
+	<td>500 Internal Server Error</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[4]</td>
+	<td>501 Not Implemented</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[4]</td>
+	<td>502 Bad Gateway</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[4]</td>
+	<td>504 Server Time-out</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[4]</td>
+	<td>505 Version Not Supported</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[5]</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[5]</td>
+	<td>110</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[5]</td>
+	<td>103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[5]</td>
+	<td>102</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[5]</td>
+	<td>101</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[6]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[7]/span</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[8]/span</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_406']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_407']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<!--Reset Global Group to Default and check Custom-->
+<tr>
+	<td>select</td>
+	<td>id=dc_group</td>
+	<td>label=Global</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>//tr[@id='disconnect_code_1']/td[9]/a</td>
+	<td>Reset</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Reset to Default']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Reset to Default']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect group was reset</td>
+</tr>
+<!--~~~~~-->
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-code </td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.reason-text</td>
+	<td>Unallocated (unassigned) number</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_1']/td[4]</td>
+	<td>404 Not Found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.disconnect_codes-action_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-code </td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Misdialed trunk prefix</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-changed_code_reason</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_5 &gt; td.disconnect_codes-action_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-code </td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Subscriber absent</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_20']/td[4]</td>
+	<td>480 Temporarily Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_20 &gt; td.disconnect_codes-action_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-code </td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_70 &gt; td.left-item.disconnect_codes-reason </td>
+	<td>Only restricted digital information bearer capability is available</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_70']/td[4]</td>
+	<td>488 Not Acceptable Here</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>Q.850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-code </td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_127 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Interworking, unspecified</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_127']/td[4]/span</td>
+	<td>500 Internal Server Error</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-code </td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Multiple Choices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Save CDR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Reason Header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>css=span.disconnect-codes-no.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-code </td>
+	<td>400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>41</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Q.850 Code</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-code </td>
+	<td>480</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Temporarily Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_480 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-code </td>
+	<td>486</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Busy Here</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-q_850 &gt; span</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_486 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-code </td>
+	<td>487</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Request Terminated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-reroute &gt; span.disconnect-codes-no.</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_487 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-code </td>
+	<td>800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>Not authenticated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_800']/td[4]/span</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-q_850</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-reroute</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_800 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-namespace </td>
+	<td>CORE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-code </td>
+	<td>882</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-reason&nbsp;&nbsp;&gt; span.reason-text</td>
+	<td>MNP CIP does not match TP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_882']/td[4]/span</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-save_cdr &gt; span.disconnect-codes-yes.</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_882 &gt; td.left-item.disconnect_codes-pass_reason_header &gt; span.disconnect-codes-no.</td>
+	<td>DROP</td>
+</tr>
+<!--Custom-->
+<tr>
+	<td>select</td>
+	<td>id=dc_group</td>
+	<td>label=Custom DC Group for OP [3]</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[@id='disconnect_code_1']/td[9]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Custom DC Group for OP [3]</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Reset to Global']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[3]</td>
+	<td>Multiple Choices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[3]</td>
+	<td>Moved Permanently</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[3]</td>
+	<td>Moved Temporarily</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[3]</td>
+	<td>Use Proxy</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[3]</td>
+	<td>Alternative Service</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[3]</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[3]</td>
+	<td>Unauthorized</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[3]</td>
+	<td>Payment Required</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[3]</td>
+	<td>Forbidden</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[3]</td>
+	<td>Not Found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[3]</td>
+	<td>Method Not Allowed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]</td>
+	<td>500 Internal Server Error</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[4]</td>
+	<td>501 Not Implemented</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[4]</td>
+	<td>502 Bad Gateway</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[4]</td>
+	<td>503 Service Unavailable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[4]</td>
+	<td>504 Server Time-out</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[4]</td>
+	<td>505 Version Not Supported</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[5]</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[5]</td>
+	<td>110</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[5]</td>
+	<td>103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[5]</td>
+	<td>102</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[5]</td>
+	<td>101</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_301 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_302 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_305 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_380 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_401 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_402 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_403 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_404 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_405 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_301 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_302 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_305 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_380 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_401 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_402 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_403 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_404 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_405 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<!--Delete-->
+<tr>
+	<td>click</td>
+	<td>css=#disconnect_code_401 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_401']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#disconnect_code_403 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_403']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#disconnect_code_405 &gt; td.disconnect_codes-action_header &gt; form.button_to &gt; div &gt; input.delete_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[@id='disconnect_code_405']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<!--~~~~~~-->
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[3]</td>
+	<td>Multiple Choices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[3]</td>
+	<td>Moved Permanently</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[3]</td>
+	<td>Moved Temporarily</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[3]</td>
+	<td>Use Proxy</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[3]</td>
+	<td>Alternative Service</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[3]</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[3]</td>
+	<td>Unauthorized</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[3]</td>
+	<td>Payment Required</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[3]</td>
+	<td>Forbidden</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[3]</td>
+	<td>Not Found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[3]</td>
+	<td>Method Not Allowed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]</td>
+	<td>500 Internal Server Error</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[4]</td>
+	<td>502 Bad Gateway</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[4]</td>
+	<td>504 Server Time-out</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[5]</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[5]</td>
+	<td>110</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[5]</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[5]</td>
+	<td>102</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[5]</td>
+	<td>63</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[6]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[7]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[7]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[7]</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[7]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[8]</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[8]</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[8]</td>
+	<td>PASS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[8]</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[9]/form/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<!--Reset to Global-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Reset to Global']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Disconnect group was reset</td>
+</tr>
+<!--~~~~~~-->
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td</td>
+	<td>SIP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[3]</td>
+	<td>Multiple Choices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[3]</td>
+	<td>Moved Permanently</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[3]</td>
+	<td>Moved Temporarily</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[3]</td>
+	<td>Use Proxy</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[3]</td>
+	<td>Alternative Service</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[3]</td>
+	<td>Bad Request</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[3]</td>
+	<td>Unauthorized</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[3]</td>
+	<td>Payment Required</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[3]</td>
+	<td>Forbidden</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[3]</td>
+	<td>Not Found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[3]</td>
+	<td>Method Not Allowed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[5]</td>
+	<td>41</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[5]</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[5]</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[5]</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[5]</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[5]</td>
+	<td>63</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[6]</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_301 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_302 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_305 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_380 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_401 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_402 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_403 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_404 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_405 &gt; td.left-item.disconnect_codes-save_cdr</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_300 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_301 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_302 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_305 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_380 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_400 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_401 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_402 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_403 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_404 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#disconnect_code_405 &gt; td.left-item.disconnect_codes-pass_reason_header</td>
+	<td>DROP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_300']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_301']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_302']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_305']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_380']/td[9]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_400']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_401']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_402']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_403']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_404']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[@id='disconnect_code_405']/td[9]/a</td>
+	<td>Global</td>
+</tr>
+<!--Delete Group-->
+<tr>
+	<td>click</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Disconnect group was successfully deleted</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=dc_group</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Reset to Default']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>//input[@value='Add New Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Edit Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//input[@value='Delete Group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dc_group</td>
+	<td>Default Global</td>
+</tr>
+</tbody></table>
+</body>
+</html>

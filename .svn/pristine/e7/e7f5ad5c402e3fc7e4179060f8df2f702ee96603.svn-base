@@ -1,0 +1,145 @@
+<tr>
+  <td height="20"></td>
+</tr>
+<% if !new_device %>
+    <tr>
+      <td class="bottom_border">
+        <b><%= _('Authentication') %></b>
+      </td>
+    </tr>
+    <tr>
+      <td height="10"></td>
+    </tr>
+
+    <tr>
+      <td valign="top">
+        <% device_blocked_ip_status = device.blocked_ip_status if admin? || (manager? && authorize_manager_permissions({controller: :monitorings, action: :blocked_ips, no_redirect_return: 1})) %>
+
+        <table>
+          <tr id="authentication_static_ip">
+            <td id="static_ip_title"><%= _('Static_IP') %>:</td>
+            <td id="static_ip_radio_button_input" style="display: none;">
+              <%= radio_button_tag 'device[dynamic]', '', !device.auth_dynamic?, id: 'static_ip_radio_button' %>
+            </td>
+            <td id="static_ip_ip_address_title">
+              <%= link_to(b_exclamation, {controller: :monitorings, action: :blocked_ips}, link_tooltip(_('Device_IP_is_blocked'), _('More_details_in_SECURITY_Blocked_IPs_page'))) + ' ' if device_blocked_ip_status %>
+              <%= _('IP_Address') %>:
+            </td>
+            <td id="static_ip_ip_address_input">
+              <%= text_field_tag 'host', device.ipaddr, class: 'input', id: 'ip_add_value_ip' %>
+            </td>
+            <td id="static_ip_port_title"><%= _('Port') %></td>
+            <td id="static_ip_port_input">
+              <%= text_field_tag 'port', device.port, class: 'input', size: 5 %>
+              <% if m4_functionality? %>
+                  <% if device.periodic_check.to_i == 1 && device.alive.to_i == 0 %>
+                      &nbsp;&nbsp;&nbsp;<%= b_unreachable %>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr id="authentication_dynamic_ip_row_1" style="display: none;">
+            <td id="dynamic_ip_title" <%= tooltip("#{_('WARNING')}:", _('Only_Origination_Point_Act_as_Termination_Point_will_be_disabled')) %>>
+              <%= _('Dynamic_IP') %>:
+            </td>
+            <td id="dynamic_ip_radio_button_input">
+              <span id="auth_dynamic_warning_because_tp" style="display: none;" <%= tooltip("#{_('WARNING')}:", _('connection_point_dynamic_auth_disabled_because_tp_enabled_popup_warning')) %>><%= b_exclamation %></span>
+              <%= radio_button_tag 'device[dynamic]', 'yes', device.auth_dynamic?, id: 'dynamic_ip_radio_button' %>
+            </td>
+            <td id="dynamic_ip_ip_address_title"><%= _('IP_Address') %>:</td>
+            <td id="dynamic_ip_ip_address_input">
+              <%= text_field_tag 'dynamic_ipaddr', device.auth_dynamic? ? device.ipaddr : '', class: 'input', disabled: true %>
+            </td>
+            <td id="dynamic_ip_registration_status" colspan="2"><%= _('Status') %>: <%= device.auth_dynamic_reg_status %></td>
+          </tr>
+          <tr id="authentication_dynamic_ip_row_2" style="display: none;">
+            <td colspan="2"></td>
+            <td id="dynamic_ip_username_title"><%= _('Username') %>:</td>
+            <td id="dynamic_ip_username_input">
+              <%= text_field_tag 'op_username', device.op_username, class: 'input' %>
+            </td>
+            <td id="dynamic_ip_password_title"><%= _('Password') %>:</td>
+            <td id="dynamic_ip_password_input">
+              <%= text_field_tag 'op_password', device.op_password, class: 'input' %>
+            </td>
+          </tr>
+          <tr style="display: none;">
+            <td id="ipaddr_range_start"><%= device.ipaddr_range_start %></td>
+            <td id="ipaddr_range_end"><%= device.ipaddr_range_end %></td>
+          </tr>
+        </table>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                auth_show_dynamic_settings();
+            });
+
+            // Connection Point's logic which determines whether Dynamic Authentication selection is allowed and should be shown
+            function auth_show_dynamic_settings() {
+                var allow_dynamic_op_auth_with_reg = <%= allow_dynamic_op_auth_with_reg == 1 %>;
+
+                // Connection Point's logic for displaying whether Static or Dynamic configuration (in Authentication section),
+                //   depending on Radio Button selection
+                if (allow_dynamic_op_auth_with_reg) {
+                    var auth_dynamic_settings = jQuery('[id^=authentication_dynamic_ip_row_]');
+                    var static_ip_radio_button_input = jQuery('#static_ip_radio_button_input');
+                    var auth_radio_buttons = jQuery('input[type=radio][name="device[dynamic]"]');
+                    var auth_radio_buttons_checked = jQuery('input[type=radio][name="device[dynamic]"]:checked');
+
+                    auth_dynamic_settings.show(); static_ip_radio_button_input.show();
+
+                    authentication_radio_button_selection_update(auth_radio_buttons_checked.val());
+                    auth_radio_buttons.change(function() {
+                        authentication_radio_button_selection_update(this.value);
+                    });
+
+                    var tp_radio_buttons = jQuery('input[type=radio][name="device[tp]"]');
+                    var tp_radio_buttons_checked = jQuery('input[type=radio][name="device[tp]"]:checked');
+                    dynamic_auth_functionality_depending_on_tp(tp_radio_buttons_checked.val());
+                    tp_radio_buttons.change(function() {
+                        dynamic_auth_functionality_depending_on_tp(this.value);
+                    });
+                }
+            }
+
+            function authentication_radio_button_selection_update(auth_radio_button_value) {
+                var static_ip_settings = jQuery('#static_ip_ip_address_title, #static_ip_ip_address_input, #static_ip_port_title, #static_ip_port_input');
+                var dynamic_ip_settings = jQuery('#dynamic_ip_ip_address_title, #dynamic_ip_ip_address_input, #dynamic_ip_registration_status, #authentication_dynamic_ip_row_2');
+                var tp_warning_because_auth_dynamic = jQuery('#tp_warning_because_auth_dynamic');
+                var tp_radio_button_settings = jQuery('#tp_radio_button_settings');
+
+
+                if (auth_radio_button_value == 'yes') {
+                    static_ip_settings.hide();
+                    dynamic_ip_settings.show();
+
+                    tp_radio_button_settings.hide();
+                    tp_warning_because_auth_dynamic.show();
+                }
+                else  {
+                    dynamic_ip_settings.hide();
+                    static_ip_settings.show();
+
+                    tp_warning_because_auth_dynamic.hide();
+                    tp_radio_button_settings.show();
+                }
+            }
+
+            // Disallow functionality if Act as Termination Point is enabled
+            function dynamic_auth_functionality_depending_on_tp(tp_radio_button_value) {
+                var auth_dynamic_warning_because_tp = jQuery('#auth_dynamic_warning_because_tp');
+                var dynamic_ip_radio_button = jQuery('#dynamic_ip_radio_button');
+
+                if (tp_radio_button_value == '1') {
+                    dynamic_ip_radio_button.hide();
+                    auth_dynamic_warning_because_tp.show();
+                } else {
+                    auth_dynamic_warning_because_tp.hide();
+                    dynamic_ip_radio_button.show();
+                }
+            }
+        </script>
+      </td>
+    </tr>
+<% end %>

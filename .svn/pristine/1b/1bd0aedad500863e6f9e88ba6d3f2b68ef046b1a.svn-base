@@ -1,0 +1,69 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('Bulk_Management') %></h2>
+    <%= form_tag({action: :bulk_update}, class: 'details-form' ) do %>
+      <div class="row">
+          <div class="input-row" style="max-width: 550px">
+            <div class="label-col">
+              <%= label_tag 'hide_non_answered_calls', _('hide_non_answered_calls') %>
+            </div>
+
+            <div class="input-col">
+              <div class="radio-container">
+                <div class="radio-row users-bulk">
+                  <%= radio_button_tag 'user[hide_non_answered_calls]', -1, true %><%= _('Unchanged') %>&nbsp;
+                  <%= radio_button_tag 'user[hide_non_answered_calls]', 1 %><%= _('Turn_ON') %>&nbsp;
+                  <%= radio_button_tag 'user[hide_non_answered_calls]', 0 %><%= _('Turn_OFF') %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row" style="max-width: 550px">
+            <div class="label-col">
+              <%= label_tag 'ignore_global_alerts', _('ignore_global_alerts') %>
+            </div>
+            <div class="input-col">
+              <div class="radio-container">
+                <div class="radio-row users-bulk">
+                  <%= radio_button_tag 'user[ignore_global_alerts]', -1, true %><%= _('Unchanged') %>&nbsp;
+                  <%= radio_button_tag 'user[ignore_global_alerts]', 1 %><%= _('Turn_ON') %>&nbsp;
+                  <%= radio_button_tag 'user[ignore_global_alerts]', 0 %>&nbsp;<%= _('Turn_OFF') %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row" style="max-width: 550px">
+            <div class="label-col">
+              <%= label_tag 'hide_financial_data_in_quick_stats', _('hide_financial_data_in_quick_stats') %>
+            </div>
+            <div class="input-col">
+              <div class="radio-container">
+                <div class="radio-row users-bulk">
+                  <%= radio_button_tag 'user[hide_financial_data_in_quick_stats]', -1, true %><%= _('Unchanged') %>&nbsp;
+                  <%= radio_button_tag 'user[hide_financial_data_in_quick_stats]', 1 %><%= _('Turn_ON') %>&nbsp;
+                  <%= radio_button_tag 'user[hide_financial_data_in_quick_stats]', 0 %>&nbsp;<%= _('Turn_OFF') %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="buttons-row">
+            <%= submit_tag _('Change'), data: { disable_with: _('Processing..') }, class: 'change_btn' %>
+          </div>
+      </div>
+  <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    disableChangeBtn();
+    function disableChangeBtn(){
+      var checked_radios = $('input:radio:checked');
+      $('.change_btn').prop('disabled', checked_radios.length == checked_radios.filter('[value=-1]').length);
+    }
+
+    $('input:radio').change(function() { disableChangeBtn() });
+  });
+</script>

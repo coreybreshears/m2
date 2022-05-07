@@ -1,0 +1,112 @@
+<td class="left-item disconnect_codes-namespace <%= disabled_text(code, dc_group_id) %>"><%= code.namespace %></td>
+<td class="left-item disconnect_codes-code <%= disabled_text(code, dc_group_id) %>"><%= code.code %></td>
+<td class="left-item disconnect_codes-reason <%= disabled_text(code, dc_group_id) %>"  nowrap><span class="reason-text"><%= code.reason %></span></td>
+<% if dc_group_id == 1 %>
+  <td class="left-item disconnect_codes-changed_code_reason" nowrap><span class="reason-text"><%= code.changed_code.to_i == 0 ? '' : "#{code.changed_code} #{code.changed_reason}" %></span></td>
+
+  <% if code.namespace.to_s == 'SIP' %>
+    <td class="left-item disconnect_codes-q_850">
+      <% if code.q850_code.to_i > 0 %>
+        <span <%= tooltip('', _('Q_850_Code')) %>> <%= code.q850_code %> </span>
+      <% end %>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-q_850">
+    </td>
+  <% end %>
+
+  <% if code.namespace.to_s == "SIP" %>
+    <td class="left-item disconnect_codes-reroute" <%= tooltip("", _('Reroute')) %>>
+      <%= status_box(code.reroute) %>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-reroute">
+    </td>
+  <% end %>
+
+  <% if code.namespace.to_s != "Q.850" %>
+    <td class="left-item disconnect_codes-save_cdr" <%= tooltip("", _('Save_CDR')) %>>
+      <%= status_box(code.save_cdr) %>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-save_cdr">
+    </td>
+  <% end %>
+
+  <% if code.namespace.to_s != "Q.850" %>
+    <td class="left-item disconnect_codes-pass_reason_header" <%= tooltip("", _('Reason_header')) %>>
+      <%= status_box(code.pass_reason_header, '', true) %>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-pass_reason_header">
+    </td>
+  <% end %>
+
+<% else %>
+  <td class="left-item disconnect_codes-changed_code_reason <%= disabled_text(code, dc_group_id) %> form-wrapper">
+    <span class="code-item"><%= code.changed_code.to_i == 0 ? '' : "#{code.changed_code} #{code.changed_reason}" %></span>
+    <span style="display: none;">
+      <% select_cr = select_tag(:dc_code_reason, options_for_select(codes_and_reasons.map {|code_reason| [code_reason.strip, code_reason.strip]}, "#{code.changed_code} #{code.changed_reason}".strip), class: "dc_code_reason code_#{code.code}") %>
+      <%= "#{select_cr}" %>
+    </span>
+  </td>
+
+  <% if code.namespace.to_s == 'SIP' %>
+    <td class="left-item disconnect_codes-q_850 <%= disabled_text(code, dc_group_id) %> form-wrapper">
+      <% q850_code_gt_zero = code.q850_code.to_i > 0 %>
+      <span class="code-item" <%= tooltip('', _('Q_850_Code')) if q850_code_gt_zero %>><%=  q850_code_gt_zero ? code.q850_code : '' %></span>
+      <span style="display: none;">
+         <% select_q = select_tag(:dc_q850, options_for_select(q850_codes.map {|codeq| [codeq, codeq]}, code.q850_code.to_i), class: "dc_q850 code_#{code.code}") %>
+         <%= "#{select_q}" %>
+      </span>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-q_850">
+    </td>
+  <% end %>
+
+  <% if code.namespace.to_s == "SIP" %>
+    <td class="left-item disconnect_codes-reroute" <%= tooltip("", _('Reroute')) %>>
+      <%= status_box(code.reroute, "disconnect-codes-changable_btn code_#{code.code} group_#{dc_group_id}") %>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-reroute">
+    </td>
+  <% end %>
+
+  <% if code.namespace.to_s != "Q.850" %>
+    <td class="left-item disconnect_codes-save_cdr" <%= tooltip("", _('Save_CDR')) %>>
+      <%= status_box(code.save_cdr, "disconnect-codes-changable_btn code_#{code.code} group_#{dc_group_id}") %>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-save_cdr">
+    </td>
+  <% end %>
+
+  <% if code.namespace.to_s != "Q.850" %>
+    <td class="left-item disconnect_codes-pass_reason_header" <%= tooltip("", _('Reason_header')) %>>
+      <%= status_box(code.pass_reason_header, "disconnect-codes-changable_btn code_#{code.code} group_#{dc_group_id}", true) %>
+    </td>
+  <% else %>
+    <td class="left-item disconnect_codes-pass_reason_header">
+    </td>
+  <% end %>
+
+<% end %>
+<td class="disconnect_codes-action_header">
+  <% if dc_group_id == 1 || dc_group_id == 2 %>
+    <% if dc_group_id == 1 %>
+      <%= link_to _('Reset'), '#', class: 'disconnect-codes-disabled-link delete_button'%>
+    <% else %>
+      <% if code.changed_from_default? %>
+        <%= button_to _('Reset'), {action: :reset_global_code, id: code.dc_group_id, code: code.code},  { data: { confirm: _('Are_you_sure') }, class: 'disconnect-codes-reset-link', class: 'delete_button', method: :post, remote: true  } %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% if code.dc_group_id == 2 %>
+      <%= link_to _('Global'), '#', class: 'disconnect-codes-disabled-link delete_button' %>
+    <% else %>
+        <%= button_to _('Delete'), {action: :delete_code, id: code.id}, {data: { confirm: _('Are_you_sure') }, method: :post, remote: true, class: 'delete_button' } %>
+    <% end %>
+  <% end %>
+</td>

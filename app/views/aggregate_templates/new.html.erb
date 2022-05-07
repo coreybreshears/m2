@@ -1,0 +1,5 @@
+<%= form_tag action: 'create', id: @template.id do %>
+    <%= render 'form',options: @options, template: @template, terminators: @terminators, providers: @providers %>
+    <br/>
+    <%= submit_tag _('Create'), data: {disable_with: _('Processing..')} %>
+<% end %>

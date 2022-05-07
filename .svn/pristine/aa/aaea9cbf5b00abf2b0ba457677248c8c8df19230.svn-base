@@ -1,0 +1,41 @@
+<% content_for :additional_buttons do %>
+    <span>
+    <%= button_tag(
+                _('Add_New_Template'), class: 'search-form-button',
+                onclick: "location.href = '#{Web_Dir}/tariff_templates/new'"
+        )
+    %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Templates') %></h2>
+    <div class="table-holder">
+      <% if @tariff_templates.present? %>
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <th class="tariff_templates-name"><%= _('Name') %></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @tariff_templates.each do |tariff_template| %>
+                <tr>
+                  <td id="name_<%= tariff_template.id %>" class="tariff_templates-name_list">
+                    <%= tariff_template.name %>
+                  </td>
+                  <td id="edit_<%= tariff_template.id %>">
+                    <%= link_to 'EDIT', {action: :edit, id: tariff_template.id}, id: "edit_link_#{tariff_template.id}" %>
+                  </td>
+                  <td id="destroy_<%= tariff_template.id %>">
+                    <%= button_to 'DELETE', {action: :destroy, id: tariff_template.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: "delete_link_#{tariff_template.id}" %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Templates') %>
+      <% end %>
+    </div>
+  </div>
+</div>

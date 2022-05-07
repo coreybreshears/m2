@@ -1,0 +1,38 @@
+<div class="row">
+  <%= raw setting_boolean(_('Activate_Paypal_Payments'), 'paypal_payments_activated', 'paypal_payments_activated') %>
+  <%= raw settings_string(_('Paypal_Client_ID'), 'paypal_client_id', 'paypal_client_id', 0, html: {size: 90, maxlength: 200, style: 'width: 85%'}) %>
+  <%= raw settings_string(_('Secret_Paypal_Key'), 'secret_paypal_key', 'secret_paypal_key', 0, html: {size: 90, maxlength: 200, style: 'width: 85%'}) %>
+
+   <div class="input-row">
+  	<div class="label-col">
+  		<%= label_tag 'paypal_default_currency', _('Default_currency') %>
+  	</div>
+  	<div class="input-col">
+  		<%= select_tag('paypal_default_currency', options_for_select(paypal_currencies, paypal_currency)) %>
+  	</div>
+  </div>
+  <div class="input-row">
+  	<div class="label-col">
+  		<%= label_tag 'paypal_default_amount', _('Paypal_Default_amount') %>
+  	</div>
+  	<div class="input-col">
+  		<%= text_field_tag('paypal_default_amount', paypal_default_amount, size: 10, maxlength: 5, style: 'width: 114px') %>
+  	</div>
+  </div>
+  <div class="input-row">
+  	<div class="label-col">
+  		<%= label_tag 'paypal_minimal_amount', _('Paypal_Minimal_amount') %>
+  	</div>
+  	<div class="input-col">
+  		<%= text_field_tag('paypal_minimal_amount', paypal_min_amount, size: 10, maxlength: 5, style: 'width: 114px') %>
+  	</div>
+  </div>
+  <div class="input-row">
+  	<div class="label-col">
+  		<%= label_tag 'paypal_maximum_amount', _('Paypal_Maximum_amount') %>
+  	</div>
+  	<div class="input-col">
+  		<%= text_field_tag('paypal_maximum_amount', paypal_max_amount, size: 10, maxlength: 5, style: 'width: 114px') %>
+  	</div>
+  </div>
+</div>

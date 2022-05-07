@@ -1,0 +1,336 @@
+<table style="width: 100%">
+        <tr>
+          <td>
+            <table class="bordered">
+              <tr>
+                <td valign="top">
+                  <table>
+                    <tr>
+                      <td colspan="2" class="bottom_border"><b><%= _('filter_by') %>:</b></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" height="10"></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" colspan="2">
+                        <table class="simple">
+                          <tr>
+                            <td align="right"><%= _('Originator') %>:</td>
+                            <td>
+                              <%= render 'shared/live_search_field',
+                                  object: options[:originator],
+                                  object_id: options[:originator_id],
+                                  object_name: 'Originator',
+                                  style: {class: 'input', css: 'width:143px;'},
+                                  action_url: {
+                                    controller: :users,
+                                    action: :get_users_map,
+                                    options: {
+                                      users_to_get: 'originators'
+                                    }
+                                  }
+                              %>
+                            </td>
+                            <td align="right"><%= _('Origination_point') %>:</td>
+                            <td>
+                              <span id="op_device_list_span">
+                                <%= select_tag('s_op_device', options_for_select([[_('All'), '']] + (options[:op_devices].try(:map) { |dev| [nice_device(dev), dev.id] } || []), options[:s_op_device]), style: 'width:146px;') %>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="right"><%= _('Terminator') %>:</td>
+                            <td>
+                              <%=
+                                render 'shared/live_search_field',
+                                object: options[:terminator],
+                                object_id: options[:terminator_id],
+                                object_name: 'Terminator',
+                                style: {class: 'input', css: 'width:143px;'},
+                                action_url: {
+                                  controller: :users,
+                                  action: :get_users_map,
+                                  options: {
+                                    users_to_get: 'terminators'
+                                  }
+                                }
+                              %>
+                            </td>
+                            <td align="right"><%= _('Termination_point') %>:</td>
+                            <td>
+                              <span id="tp_device_list_span">
+                                <%= select_tag('s_tp_device', options_for_select([[_('All'), '']] + (options[:tp_devices].try(:map) { |dev| [nice_device(dev), dev.id] } || []), options[:s_tp_device]), style: 'width:146px;') %>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="right" nowrap><%= _('CallerID') %>:</td>
+                            <td>
+                              <%= text_field_tag('src', options[:src], class: 'input', size: '20', style: 'width:143px;') %>
+                            </td>
+                            <td align="right"><%= _('Destination') %>:</td>
+                            <td><%= text_field_tag('dst', options[:dst], class: 'input', size: '20', style: 'width:143px;') %></td>
+                          </tr>
+                          <tr>
+                            <td align="right" nowrap><%= _("Duration") %>:</td>
+                            <td nowrap="true" ><%= text_field_tag("s_duration", options[:s_duration], class: 'input', style: "width: 50px") %><span>s</span></td>
+                            <td align="right"><%= _('Destination_Group') %>:</td>
+                            <td><%= text_field_tag('dst_group', options[:dst_group], class: 'input', style: 'width:143px;') %></td>
+                          </tr>
+                          <% if current_user.is_admin? %>
+                            <tr>
+                              <td align="right" nowrap><%= _("Manager") %>:</td>
+                              <td nowrap="true" >
+                                <span id="manager_id">
+                                  <%= select_tag('s_manager', options_for_select([[_('All'), '']] + User.responsible_acc.collect { |accountant| [nice_user(accountant), accountant.id] }, options[:s_manager]), style: 'width:146px;') %>
+                                </span>
+                              </td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          <% end %>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top">
+                  <table width="100%">
+                    <tr>
+                      <td colspan="2" class="bottom_border"><b><%= _('show_columns') %>:</b></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" height="10"></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" colspan="2">
+                        <table class="simple" width="100%">
+                          <tr>
+                            <td style="width:110px;min-width:110px;"></td>
+                            <td style="border-bottom: 1px solid #000;width:90px;min-width:90px;" align="center"><b><%= _('Originator') %></b></td>
+                            <td style="width:100px;min-width:100px;"></td>
+                            <td style="border-bottom: 1px solid #000;width:90px;min-width:90px;" align="center"><b><%= _('Terminator') %></b></td>
+                          </tr>
+                          <tr>
+                            <td align="right"><%= _('Price') %>:</td>
+                            <td align="center"><%= check_box_tag('price_orig_show', '1', (options[:price_orig_show].to_i == 1), 'class' => 'input') %></td>
+                            <td></td>
+                            <td align="center"><%= check_box_tag('price_term_show', '1', (options[:price_term_show].to_i == 1), 'class' => 'input') %></td>
+                          </tr>
+                          <tr>
+                            <td align="right" nowrap><%= _('Billed_Time') %>:</td>
+                            <td align="center"><%= check_box_tag('billed_time_orig_show', '1', (options[:billed_time_orig_show].to_i == 1), 'class' => 'input') %></td>
+                            <td></td>
+                            <td align="center"><%= check_box_tag('billed_time_term_show', '1', (options[:billed_time_term_show].to_i == 1), 'class' => 'input') %></td>
+                          </tr>
+                          <tr>
+                            <td style="border-bottom: 1px solid #C0C0C0;" colspan="4"></td>
+                          </tr>
+                          <tr>
+                            <td align="right"><%= _('Duration') %>:</td>
+                            <td align="center"><%= check_box_tag('duration_show', '1', (options[:duration_show].to_i == 1), 'class' => 'input') %></td>
+                            <td align="right"><%= _('ACD') %>:</td>
+                            <td align="center"><%= check_box_tag('acd_show', '1', (options[:acd_show].to_i == 1), 'class' => 'input') %></td>
+                          </tr>
+                          <tr>
+                            <td align="right" nowrap><%= _('Calls_Answered') %>:</td>
+                            <td align="center"><%= check_box_tag('calls_answered_show', '1', (options[:calls_answered_show].to_i == 1), 'class' => 'input') %></td>
+                            <td align="right"><%= _('ASR') %>:</td>
+                            <td align="center"><%= check_box_tag('asr_show', '1', (options[:asr_show].to_i == 1), 'class' => 'input') %></td>
+                          </tr>
+                          <tr>
+                            <td align="right"><%= _('Calls_Total') %>:</td>
+                            <td align="center"><%= check_box_tag('calls_total_show', '1', (options[:calls_total_show].to_i == 1), 'class' => 'input') %></td>
+                            <td align="right"><%= _('Avg_PDD') %>:</td>
+                            <td align="center"><%= check_box_tag('pdd_show', '1', (options[:pdd_show].to_i == 1), 'class' => 'input') %></td>
+                          </tr>
+                          <tr>
+                            <td align="right"><%= _('Profit') %>:</td>
+                            <td align="center"><%= check_box_tag('profit_show', '1', (options[:profit_show].to_i == 1), class: 'input') %></td>
+                            <td align="right"><%= _('Profit') %> %:</td>
+                            <td align="center"><%= check_box_tag('profit_percent_show', '1', (options[:profit_percent_show].to_i == 1), class: 'input') %></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top">
+                  <table width="100%">
+                    <tr>
+                      <td colspan="2" class="bottom_border"><b><%= _('General') %>:</b></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" height="10"></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" colspan="2">
+                        <table class="simple">
+                          <tr>
+                            <td colspan="2" align="right">
+                              <%= _('Use_Real_Billsec')%>:
+                            </td>
+                            <td>
+                              <%= radio_button_tag 'use_real_billsec', 0, options[:use_real_billsec].to_i == 0 %>
+                              <%= _('_No') %>
+                              <%= radio_button_tag 'use_real_billsec', 1, options[:use_real_billsec].to_i == 1 %>
+                              <%= _('_Yes') %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" align="right">
+                              <%= _('from_user_perspective') %>:
+                            </td>
+                            <td style="width: 100px">
+                              <%= radio_button_tag 'from_user_perspective', 0, options[:from_user_perspective].to_i == 0 %>
+                              <%= _('_No') %>
+                              <%= radio_button_tag 'from_user_perspective', 1, options[:from_user_perspective].to_i == 1 %>
+                              <%= _('_Yes') %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan='2' align='right'>
+                              <%= _('Show_when_Answered_Calls') %> >=
+                            </td>
+                            <td>
+                              <%= text_field_tag('answered_calls', options[:answered_calls], 'class' => 'input_60') %>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top">
+                  <table width="100%">
+                    <tr>
+                      <td colspan="2" class="bottom_border"><b><%= _('Group_by') %>:</b></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" height="10"></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" colspan="2">
+                       <table class="simple" width="100%">
+                          <tr>
+                            <td align="right" style="width:110px;min-width:110px;"><%= _('Originator') %>:</td>
+                            <td align="center" style="width:90px;min-width:90px;">
+                              <%= check_box_tag('group_by_originator', '1', options[:group_by_originator].to_i == 1,
+                                  class: 'input', onclick: 'compete(this, "group_by_op");') %>
+                            </td>
+                            <td style="width:100px;min-width:100px;" align="right"><%= _('Origination_point') %>:</td>
+                            <td align="center" style="width:90px;min-width:90px;">
+                              <%= check_box_tag('group_by_op', '1', options[:group_by_op].to_i == 1,
+                                  class: 'input', onclick: 'compete(this, "group_by_originator");') %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="right"><%= _('Terminator') %>:</td>
+                            <td align="center">
+                              <%= check_box_tag('group_by_terminator', '1', options[:group_by_terminator].to_i == 1,
+                                  class: 'input', onclick: 'compete(this, "group_by_tp");') %>
+                            </td>
+                            <td align="right"><%= _('Termination_point') %>:</td>
+                            <td align="center">
+                              <%= check_box_tag('group_by_tp', '1', options[:group_by_tp].to_i == 1,
+                                  class: 'input', onclick: 'compete(this, "group_by_terminator");') %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="right" nowrap><%= _('Destination_Group') %>:</td>
+                            <td align="center">
+                              <%= check_box_tag('group_by_dst_group', '1', options[:group_by_dst_group].to_i == 1,
+                                  class: 'input', onclick: 'compete(this, "group_by_dst");') %>
+                            </td>
+                            <td align="right"><%= "#{_('Destination')}/#{_('Prefix')}" %>:</td>
+                            <td align="center">
+                              <%= check_box_tag('group_by_dst', '1', options[:group_by_dst].to_i == 1,
+                                  class: 'input', onclick: 'compete(this, "group_by_dst_group");') %>
+                            </td>
+                          </tr>
+                          <% if current_user.is_admin? %>
+                            <tr>
+                              <td align="right" nowrap><%= _('Manager') %>:</td>
+                              <td align="center">
+                                <%= check_box_tag('group_by_manager', '1', options[:group_by_manager] == 1,
+                                    class: 'input') %>
+                              </td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          <% end %>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr id="templates_form">
+                <td valign="top" style="padding: 0 0 5px 5px;">
+                  Template name:
+                  <%= text_field_tag('name', options[:name], class: 'input', size: '20', style: 'width:200px;') %>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+    $('#s_duration').on('keyup keydown', function(e){
+      var key = e.keyCode;
+      if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
+        e.preventDefault();
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+
+  new Form.Element.EventObserver('s_originator', function(element, value) {
+    new Ajax.Updater('op_device_list_span',
+      '<%= Web_Dir %>/devices/ajax_get_user_devices',
+      {
+        evalScripts: true,
+        onComplete: function(request){
+          Element.hide('spinner');
+          var select = $('s_op_device');
+          if (select) {
+            select.style = 'width: 146px;';
+          }
+        },
+        onLoading: function(request){Element.show('spinner');},
+        parameters: 'user_id=' + encodeURIComponent($('s_originator_id').value) + '&all=true&fax=false&type=op&field_id=s_op_device'
+      }
+    );
+  });
+
+  new Form.Element.EventObserver('s_terminator', function(element, value) {
+    new Ajax.Updater('tp_device_list_span',
+      '<%= Web_Dir %>/devices/ajax_get_user_devices',
+      {
+        evalScripts: true,
+        onComplete: function(request){
+          Element.hide('spinner');
+          var select = $('s_tp_device');
+          if (select) {
+            select.style = 'width: 146px;';
+          }
+        },
+        onLoading: function(request){Element.show('spinner');},
+        parameters: 'user_id=' + encodeURIComponent($('s_terminator_id').value) + '&all=true&fax=false&type=tp&field_id=s_tp_device'
+      }
+    );
+  });
+
+  function compete(self, target) {
+    if (self.checked) {
+      document.getElementById(target).checked = false;
+    }
+  }
+</script>

@@ -1,0 +1,35 @@
+<%= form_tag(:action => 'update', :id => @user, :return_action => @return_action, :return_controller => @return_controller) do %>
+
+    <%= render 'form', user: @user, username_length: @username_length, password_length: @password_length,
+               count_rs: @count_rs, count_rspro: @count_rspro,
+               create_own_providers: @create_own_providers, responsible_accountants: @responsible_accountants,
+               countries: @countries, selected_user_users_number: @selected_user_users_number,
+               default_user_form: false, invoice_grace_period: @invoice_grace_period,
+               warning_email: @warning_email, default_country_id: @default_country_id,
+               disallow_email_editing: @disallow_email_editing,
+               warning_balance_email_send_log: @warning_balance_email_send_log,
+               blacklists_on: @blacklists_on, number_pools: @number_pools, new_user: false %>
+
+    <script type="text/javascript">
+        action = "<%= params[:action] %>";
+        start_val =<%= @user.tariff_id %>;
+        function submit_message(tariff_id) {
+            if ((action == "edit") && (tariff_id != start_val)) {
+                $('confirm_with_message').style.display = 'inline';
+                $('confirm_without_message').style.display = 'none';
+            }
+            else {
+                $('confirm_without_message').style.display = 'inline';
+                $('confirm_with_message').style.display = 'none';
+            }
+        }
+    </script>
+    <div id='confirm_with_message' style='display: none;'>
+      <%= submit_tag(_('Change'), {:confirm => _("Are you sure?"), :onclick => "return confirm('#{_('Are_you_sure')}');", :disable_with => _('Processing..')}) %>
+    </div>
+
+    <br>
+    <div id='confirm_without_message' style='display: inline;'>
+      <%= submit_tag _('Change'), :disable_with => _('Processing..'), :id => "sbmt" %>
+    </div>
+<% end %>

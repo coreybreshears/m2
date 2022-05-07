@@ -1,0 +1,908 @@
+<%= javascript_include_tag "jqwidgets/jqxdata.js" %>
+<%= javascript_include_tag "jqwidgets/jqxbuttons.js" %>
+<%= javascript_include_tag "jqwidgets/jqxscrollbar.js" %>
+<%= javascript_include_tag "jqwidgets/jqxmenu.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.selection.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.columnsresize.js" %>
+<%= javascript_include_tag "jqwidgets/jqxpanel.js" %>
+<%= javascript_include_tag "jqwidgets/jqxlistbox.js" %>
+<%= javascript_include_tag "clipboard.js" %>
+
+<% if !manager? || (manager? && authorize_manager_permissions({controller: :call_tracing, action: :call_log, no_redirect_return: 1})) %>
+  <% content_for :additional_buttons do %>
+      <span><%= button_tag _('call_tracing'), class: " search-form-button", onclick: "location.href = '#{Web_Dir}/call_tracing/call_log/#{params[:id]}'" %></span>
+  <% end %>
+<% end %>
+
+<% call_is_answered, show_currency = @call.disposition == 'ANSWERED', session[:show_currency] %>
+
+<div class="content-box">
+    <div class="titled-box">
+        <h2><%= _('Call_Info') %></h2>
+        <div class="details-form call-info">
+            <div class="row full-width">
+              <div class="col">
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Calldate') %></label>
+                  </div>
+                  <div class="input-col">
+                    <%= nice_date_time(@call.calldate) %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Answer_time') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if calls_column_exists?(:answer_time) %>
+                      <%= nice_date_time(@call.answer_time) %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('End_Time') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if calls_column_exists?(:end_time) %>
+                      <%= nice_date_time(@call.end_time) %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Server') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% server = @call.server %>
+                    <% if server %>
+                        <%= link_to "#{_('ID')}: #{server.id} / #{_('IP')}: #{server.server_ip}", {controller: :servers, action: :list} %>
+                    <% else %>
+                        <%= "#{_('Server_not_found')}: id [#{@call.server_id}]" %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if m4_functionality? %>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label><%= _('Call_Status') %></label>
+                      </div>
+                      <div class="input-col">
+                        <b><%= @call.disposition.to_s %></b>
+                      </div>
+                    </div>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label><%= _('Disconnect_Code') %></label>
+                      </div>
+                      <div class="input-col" style="white-space: nowrap;">
+                        <%
+                           calls_dc = nil
+                           calls_dc = @call.dc.to_i if calls_column_exists?(:dc)
+                        %>
+                        <% if calls_dc %>
+                            <span <%= tooltip_with_wrap(get_dc_code_message(calls_dc)) %>>
+                            <%= raw "#{calls_dc_name(calls_dc).gsub('ISDN', 'ISDN/ISUP Q.850')}:&nbsp;" %><%= calls_dc %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                        <% end %>
+                        <span <%= tooltip_with_wrap(get_hangup_cause_message(@call.hangupcause.to_i)) %>>
+                          <%= raw ((@call.hangupcause.to_i > 299) ? 'HGC:&nbsp;' : 'ISDN/ISUP Q.850:&nbsp;') %><%= @call.hangupcause.to_i %>
+                        </span>
+                      </div>
+                    </div>
+                <% else %>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label><%= _('Hangup_cause') %></label>
+                      </div>
+                      <div class="input-col" <%= tooltip_with_wrap(get_hangup_cause_message(@call.hangupcause.to_i)) %>>
+                        <b><%= nice_disposition(@call) %></b>
+                      </div>
+                    </div>
+                <% end %>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Terminated_by') %></label>
+                  </div>
+                    <% if calls_column_exists?(:terminated_by) %>
+                      <%= @call.terminated_by.to_s.capitalize %>
+                    <% end %>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('UniqueID') %></label>
+                  </div>
+                  <div class="input-col" style="white-space: nowrap;">
+                    <%= @call.uniqueid %>
+                  </div>
+                </div>
+                <div class="col col-width" style="padding:0;">
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Billsec') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= @call.billsec %>&nbsp;s
+                    </div>
+                  </div>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Duration') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= @call.duration %>&nbsp;s
+                    </div>
+                  </div>
+                </div>
+                <div class="col" style="padding:0;">
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Real_Billsec') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= nice_number(@call.real_billsec.to_s.gsub('.', session[:global_decimal])) %>&nbsp;s
+                    </div>
+                  </div>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Real_Duration') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= nice_number(@call.real_duration.to_s.gsub('.', session[:global_decimal])) %>&nbsp;s
+                    </div>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Codec') %></label>
+                  </div>
+                  <div class="input-col" style="white-space: nowrap;">
+                    <% if m4_functionality? && calls_column_exists?(:op_codec) && calls_column_exists?(:tp_codec)
+                         op_codec = @call.nice_op_codec
+                         tp_codec = @call.nice_tp_codec
+                       else
+                         op_codec = @call.try(:originator_codec)
+                         tp_codec= @call.try(:terminator_codec)
+                      end %>
+                    <% if op_codec && tp_codec %>
+                      <% if op_codec == tp_codec %>
+                        <%= op_codec %>
+                      <% else %>
+                        <% if one_codec_is_unknown?(@call) %>
+                          <%= b_arrow_switch_grey %>
+                        <% else %>
+                          <%= b_arrow_switch_bright_red %>&nbsp;
+                          <%= "#{_('Call')} #{_('Transcoded_from')} #{op_codec} #{_('to')} #{tp_codec}" %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if m4_functionality? && calls_column_exists?(:mos) && calls_column_exists?(:mos_packetloss) && calls_column_exists?(:mos_jitter) && calls_column_exists?(:mos_roundtrip) %>
+                    <% mos_value = (@call.try(:mos).to_d / 10).round(1)
+                       mos_bg_color = if mos_value > 4
+                                        ['#d9ead3', '#c2d1be']
+                                      elsif mos_value > 3
+                                        ['#fff2cc', '#e2d8b8']
+                                      elsif mos_value > 2
+                                        ['#f4cccc', '#d9b8b8']
+                                      else
+                                        ['#ea9999', '#d08c8c']
+                                      end
+                    %>
+                    <% if mos_value > 0 %>
+                        <div class="input-row">
+                          <div class="label-col">
+                            <label></label>
+                          </div>
+                          <div class="input-col">
+                          </div>
+                        </div>
+                        <div class="col col-width" style="padding:0;white-space: nowrap;">
+                          <div class="input-row">
+                            <div class="label-col">
+                              <label style="padding: 5px; margin: -5px; background-color: <%= mos_bg_color[0] %>; border: 1px solid <%= mos_bg_color[1] %>; "><%= _('MOS') %>:&nbsp;<%= mos_value %></label>
+                            </div>
+                            <div class="label-col">
+                              <label><%= _('Packet_Loss') %>:&nbsp;<%= @call.try(:mos_packetloss) %></label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col" style="padding:0;">
+                          <div class="input-row">
+                            <div class="label-col">
+                              <label><%= _('Jitter') %>:&nbsp;<%= @call.try(:mos_jitter) %></label>
+                            </div>
+                            <div class="label-col">
+                              <label><%= _('Roundtrip') %>:&nbsp;<%= @call.try(:mos_roundtrip) %></label>
+                            </div>
+                          </div>
+                        </div>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h2><%= _('Source') %></h2>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Source_CallerID') %></label>
+                  </div>
+                  <div class="input-col">
+                    <%= @call.src %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('CLID_CallerID_Name_Number') %></label>
+                  </div>
+                  <div class="input-col">
+                    <%= @call.clid %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('PAI_Number') %></label>
+                  </div>
+                  <% if calls_column_exists?(:pai) %>
+                    <div class="input-col">
+                      <%= @call.try(:pai) %>
+                    </div>
+                  <% end %>
+                </div>
+                <% if m4_functionality? && calls_column_exists?(:rpid) %>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label><%= _('RPID_Number') %></label>
+                      </div>
+                      <div class="input-col">
+                        <%= @call.try(:rpid) %>
+                      </div>
+                    </div>
+                <% end %>
+                <% if m4_functionality? && calls_column_exists?(:tp_src) %>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label></label>
+                      </div>
+                      <div class="input-col">
+                      </div>
+                    </div>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label><%= _('Source_CallerID_sent_to_TP') %></label>
+                      </div>
+                      <div class="input-col">
+                        <%= @call.try(:tp_src) %>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+              <div class="col">
+                <h2><%= _('Destination') %></h2>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Number_dialed_from_OP') %></label>
+                  </div>
+                  <div class="input-col">
+                    <%= @call.dst %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Localized_Destination') %></label>
+                  </div>
+                  <div class="input-col">
+                    <%= @call.localized_dst %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Prefix_used') %></label>
+                  </div>
+                  <div class="input-col">
+                    <%= @call.prefix %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Destination_Details') %></label>
+                  </div>
+                  <% dest = Destination.where(prefix: @call.prefix.to_s).first %>
+                  <div class="input-col" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" <%= tooltip(_('Destination_Details'), "#{draw_flag(dest.try(:direction).try(:code))} #{dest.try(:direction).try(:name)} - #{dest.name}") if dest %>>
+                    <% if dest %>
+                        <%= "#{draw_flag(dest.try(:direction).try(:code))} #{dest.try(:direction).try(:name)} - #{dest.name}".html_safe %>
+                    <% end %>
+                  </div>
+                </div>
+                <% if m4_functionality? && calls_column_exists?(:tp_dst) %>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label></label>
+                      </div>
+                      <div class="input-col">
+                      </div>
+                    </div>
+                    <div class="input-row">
+                      <div class="label-col">
+                        <label><%= _('Number_sent_to_TP') %></label>
+                      </div>
+                      <div class="input-col">
+                        <%= @call.try(:tp_dst) %>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h2><%= _('Originator') %></h2>
+                <% if m4_functionality? && calls_column_exists?(:op_signaling_ip) && calls_column_exists?(:op_media_ip) %>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Signaling_IP') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= link_to(@call.op_signaling_ip, "http://whatismyipaddress.com/ip/#{@call.originator_ip}", target: '_blank') %>
+                    </div>
+                  </div>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Media_IP') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= link_to(@call.op_media_ip, "http://whatismyipaddress.com/ip/#{@call.originator_ip}", target: '_blank') %>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('IP') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= link_to(@call.originator_ip, "http://whatismyipaddress.com/ip/#{@call.originator_ip}", target: '_blank') %>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('User') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @src_device && @src_device.user %>
+                        <%= link_nice_user(@src_device.user) %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('origination_point') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @src_device %>
+                        <%= link_nice_device(@src_device) %>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Billsec') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @src_device && call_is_answered %>
+                        <%= @call.user_billsec %>&nbsp;s
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('PDD') %></label>
+                  </div>
+
+                  <% if calls_column_exists?(:pdd) %>
+                    <div class="label-col">
+                      <%= nice_number(@call.originator_pdd.to_s.gsub('.', session[:global_decimal])) %>&nbsp;s
+                    </div>
+                  <% end %>
+                </div>
+
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= "#{_('Rate')} (#{show_currency})" %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @src_device %>
+                        <%= nice_number @call.user_rate * @exchange_rate %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= "#{_('Price')} (#{show_currency})" %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @src_device && call_is_answered %>
+                        <%= nice_number @call.user_price * @exchange_rate %>
+                        <span style='color: #C5C5C5'>
+                        (<%=
+                          _('Profit') + ': ' +
+                          nice_number(
+                                (@call.user_price * @exchange_rate) -
+                                (@call.provider_price * @exchange_rate)
+                              ) + ' ' +
+                           show_currency.to_s
+                          %>)
+                          </span>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Codec') %></label>
+                  </div>
+                  <% if op_codec && tp_codec %>
+                    <% if op_codec == tp_codec %>
+                      <% if unknown_codecs?(@call) %>
+                        <% codec_icon = b_arrow_switch_grey %>
+                      <% else %>
+                        <% codec_icon = b_arrow_switch_light_green %>
+                        <% codec_tooltip = tooltip("", _('Media_not_transcoded')) %>
+                      <% end %>
+                    <% else %>
+                      <% if one_codec_is_unknown?(@call) %>
+                        <% codec_icon = b_arrow_switch_grey %>
+                      <% else %>
+                        <% codec_icon = b_arrow_switch_bright_red %>
+                        <% codec_tooltip = tooltip("", _('Media_transcoded')) %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <div class="input-col" style="white-space: nowrap;" <%= codec_tooltip if codec_tooltip %>>
+                    <%= op_codec %>
+                    &nbsp;<%= codec_icon %>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <h2><%= _('Terminator') %></h2>
+                <% if m4_functionality? && calls_column_exists?(:tp_signaling_ip) && calls_column_exists?(:tp_media_ip) %>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Signaling_IP') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= link_to(@call.tp_signaling_ip, "http://whatismyipaddress.com/ip/#{@call.tp_signaling_ip}", target: '_blank') %>
+                    </div>
+                  </div>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Media_IP') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= link_to(@call.tp_media_ip, "http://whatismyipaddress.com/ip/#{@call.tp_media_ip}", target: '_blank') %>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('IP') %></label>
+                    </div>
+                    <div class="input-col">
+                      <%= link_to(@call.terminator_ip, "http://whatismyipaddress.com/ip/#{@call.terminator_ip}", target: '_blank') %>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('User') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @dst_device && @terminator %>
+                        <%= link_nice_user(@terminator)  %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('termination_points') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @dst_device %>
+                        <%= link_nice_device(@dst_device)  %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Billsec') %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @dst_device && call_is_answered %>
+                        <%= @call.provider_billsec %>&nbsp;s
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('PDD') %></label>
+                  </div>
+                  <% if calls_column_exists?(:pdd) && @dst_device %>
+                    <div class="input-col">
+                      <%= nice_number(@call.pdd.to_s.gsub('.', session[:global_decimal])) %>&nbsp;s
+                    </div>
+                  <% end %>
+                </div>
+
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= "#{_('Rate')} (#{show_currency})" %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @dst_device %>
+                        <%= nice_number @call.provider_rate * @exchange_rate%>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= "#{_('Price')} (#{show_currency})" %></label>
+                  </div>
+                  <div class="input-col">
+                    <% if @dst_device && call_is_answered %>
+                        <%= nice_number @call.provider_price * @exchange_rate %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Codec') %></label>
+                  </div>
+                  <div class="input-col" style="white-space: nowrap;" <%= codec_tooltip if codec_tooltip %>>
+                    <%= tp_codec %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <% if m4_functionality? %>
+                <% if calls_column_exists?(:terminated_by) && calls_column_exists?(:dc) && calls_column_exists?(:op_dc) && calls_column_exists?(:tp_dc) %>
+
+                    <% if @call.terminated_by.to_s == 'terminator' %>
+                        <div class="row full-width">
+                          <h2>
+                            <table style="width: 100%; font-size: 14px;">
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><%= _('Originator') %></td>
+                              <td style="width: 3%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <td style="width: 9%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.op_dc.to_i)) %>><%= raw "#{calls_dc_name(@call.op_dc.to_i)}:&nbsp;" %><%= @call.op_dc.to_i %></span></td>
+                              <td style="width: 5%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <td style="width: 14%; text-align: center; white-space: nowrap; color:#C5C5C5;"><%= _('DC_OP_Conversion') %></td>
+                              <td style="width: 4%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.dc.to_i)) %>><%= raw "#{calls_dc_name(@call.dc.to_i)}:&nbsp;" %><%= @call.dc.to_i %></span></td>
+
+                              <td style="width: 4%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <td style="width: 14%; text-align: center; white-space: nowrap; color:#C5C5C5;"><%= _('DC_TP_Conversion') %></td>
+                              <td style="width: 5%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <td style="width: 9%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.tp_dc.to_i)) %>><%= raw "#{calls_dc_name(@call.tp_dc.to_i)}:&nbsp;" %><%= @call.tp_dc.to_i %></span></td>
+                              <td style="width: 3%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><%= _('Terminated_by') %><br/><%= _('Terminator') %></td>
+                            </table>
+                          </h2>
+                        </div>
+                    <% end %>
+
+                    <% if @call.terminated_by.to_s == 'originator' %>
+                        <div class="row full-width">
+                          <h2>
+                            <table style="width: 100%; font-size: 14px;">
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><%= _('Terminated_by') %><br/><%= _('Originator') %></td>
+                              <td style="width: 3%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">→</span></td>
+                              <td style="width: 9%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.op_dc.to_i)) %>><%= raw "#{calls_dc_name(@call.op_dc.to_i)}:&nbsp;" %><%= @call.op_dc.to_i %></span></td>
+                              <td style="width: 5%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">→</span></td>
+                              <td style="width: 14%; text-align: center; white-space: nowrap; color:#C5C5C5;"><%= _('DC_OP_Conversion') %></td>
+                              <td style="width: 4%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">→</span></td>
+
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.dc.to_i)) %>><%= raw "#{calls_dc_name(@call.dc.to_i)}:&nbsp;" %><%= @call.dc.to_i %></span></td>
+
+                              <td style="width: 4%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">→</span></td>
+                              <td style="width: 14%; text-align: center; white-space: nowrap; color:#C5C5C5;"><%= _('DC_TP_Conversion') %></td>
+                              <td style="width: 5%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">→</span></td>
+                              <td style="width: 9%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.tp_dc.to_i)) %>><%= raw "#{calls_dc_name(@call.tp_dc.to_i)}:&nbsp;" %><%= @call.tp_dc.to_i %></span></td>
+                              <td style="width: 3%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">→</span></td>
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><%= _('Terminator') %></td>
+                            </table>
+                          </h2>
+                        </div>
+                    <% end %>
+
+                    <% if @call.terminated_by.to_s == 'system' %>
+                        <div class="row full-width">
+                          <h2>
+                            <table style="width: 100%; font-size: 14px;">
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><%= _('Originator') %></td>
+                              <td style="width: 3%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <td style="width: 9%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.op_dc.to_i)) %>><%= raw "#{calls_dc_name(@call.op_dc.to_i)}:&nbsp;" %><%= @call.op_dc.to_i %></span></td>
+                              <td style="width: 5%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <td style="width: 14%; text-align: center; white-space: nowrap; color:#C5C5C5;"><%= _('DC_OP_Conversion') %></td>
+                              <td style="width: 4%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+
+                              <td style="width: 10%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.dc.to_i)) %>><%= raw "#{calls_dc_name(@call.dc.to_i)}:&nbsp;" %><%= @call.dc.to_i %></span></td>
+
+                              <td style="width: 4%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                              <% if @call.tp_dc.to_i == 0 %>
+                                <td style="width: 14%; text-align: center; white-space: nowrap;"><%= _('Terminated_by') %><br/><%= _('System') %></td>
+                                <td style="width: 27%;">&nbsp;</td>
+                              <% else %>
+                                <td style="width: 14%; text-align: center; white-space: nowrap; color:#C5C5C5;"><%= _('DC_TP_Conversion') %></td>
+                                <td style="width: 5%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+
+                                <td style="width: 9%; text-align: center; white-space: nowrap;"><span style="padding: 5px; margin: -5px; background-color: #b9c8e1; border: 1px solid #808080; " <%= tooltip_with_wrap(get_dc_code_message(@call.tp_dc.to_i)) %>><%= raw "#{calls_dc_name(@call.tp_dc.to_i)}:&nbsp;" %><%= @call.tp_dc.to_i %></span></td>
+                                <td style="width: 3%; text-align: center; white-space: nowrap; color:#C5C5C5; font-size: 24px;"><span style="position: relative;top: -3px;">←</span></td>
+                                <td style="width: 10%; text-align: center; white-space: nowrap;"><%= _('Terminated_by') %><br/><%= _('System') %></td>
+                              <% end %>
+                            </table>
+                          </h2>
+                        </div>
+                    <% end %>
+
+                <% end %>
+            <% end %>
+
+            <div class="row full-width">
+              <h2>PCAP</h2>
+              <div class="col" style="width:100%; padding-left: 38px;">
+                    <% if @call_details.try(:pcap_data?) %>
+                        <%= button_tag _('DOWNLOAD_PCAP_FILE'), class: 'search-form-button button-left', onclick: "location.href = '#{Web_Dir}/calls/download_pcap/#{params[:id]}'" %>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div id="call_details_pcap_text"></div>
+                        <br/>
+                        <br/>
+                        <%= image_tag("#{Web_Dir}/calls/pcap_image/#{params[:id]}") %>
+                    <% else %>
+                        <%= button_tag _('RETRIEVE_PCAP_FILE'), class: 'search-form-button button-left', onclick: "this.disabled=true; $('#spinner2').show(); location.href = '#{Web_Dir}/calls/retrieve_pcap_file/#{params[:id]}'"  %>
+                    <% end %>
+              </div>
+            </div>
+            <br><br><br><br>
+            <div class="row full-width">
+              <h2><%= _('Logs') %></h2>
+              <div class="col" style="width:100%; padding-left: 38px;">
+                    <% if @radius_call_log.try(:radius_log).present? || @radius_call_log.try(:freeswitch_log).present? %>
+                        <div style="margin-left: 3px; font-size: 16px">Radius
+                          <button class="search-form-button" id="copy-to-clipboard-btn" style="float: right; margin-top: -5px;">
+                            <%= _('Copy_to_clipboard') %>
+                          </button>
+                        </div>
+                        <br/>
+                        <div id="clipboard-info" style="float: right;padding-right:1%;display: none">
+                            <div class="m2-tooltip">
+                            </div>
+                          <span>
+                            <%= _('Press_CTRL_C_Copy')  %>
+                          </span>
+                        </div>
+                        <br/>
+                        <div id="call_details_radius_log_text"></div>
+                        <% unless m4_functionality? %>
+                          <br><br><br><br>
+                          <div style="margin-left: 3px; font-size: 16px">FreeSwitch
+                            <button class="search-form-button" id="copy-to-clipboard-btn1" style="float: right; margin-top: -5px;">
+                              <%= _('Copy_to_clipboard') %>
+                            </button>
+                          </div>
+                          <br/>
+                          <div id="clipboard-info1" style="float: right;padding-right:1%;display: none">
+                              <div class="m2-tooltip">
+                              </div>
+                            <span>
+                              <%= _('Press_CTRL_C_Copy')  %>
+                            </span>
+                          </div>
+                          <br/>
+                          <div id="call_details_freeswitch_log_text"></div>
+                        <% end %>
+                    <% else %>
+                        <%= button_tag _('RETRIEVE_LOG_FILES'), class: 'search-form-button button-left', onclick: "this.disabled=true; $('#spinner2').show(); location.href = '#{Web_Dir}/calls/retrieve_call_log/#{params[:id]}'" %>
+                    <% end %>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+      // global table theme
+      var theme = 'm2';
+
+      function load_pcap_data() {
+        var source =
+        {
+            type: 'GET',
+            datatype: 'json',
+            datafields: [
+                { name: 'pt_number', type: 'string' },
+                { name: 'pt_time', type: 'string' },
+                { name: 'pt_source', type: 'string' },
+                { name: 'pt_destination', type: 'string' },
+                { name: 'pt_protocol', type: 'string' },
+                { name: 'pt_length', type: 'string' },
+                { name: 'pt_info', type: 'string' }
+            ],
+            url: '<%= "#{Web_Dir}/calls/retrieve_call_details_pcap_text/#{params[:id]}" %>'
+        };
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+
+        var cellsrenderer = function (row, column, value) {
+            return '<span style="position: absolute; top: 50%; transform: translate(0px, -50%); margin-left:4px; margin-right: 4px; color: #565759;">' + value + '</span>';
+        };
+
+        $("#call_details_pcap_text").jqxGrid(
+                {
+                    source: dataadapter,
+                    theme: theme,
+                    width: '100%',
+                    autorowheight: true,
+                    autoheight: true,
+                    altrows: true,
+                    selectionmode: 'multiplecellsadvanced',
+                    handlekeyboardnavigation: function (event) {
+                        var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                        if (key == 86 && event.ctrlKey == true) {
+                            return true;
+                        }
+                    },
+                    columns: [
+                        { text: "<%= _('No.') %>", datafield: 'pt_number', cellsrenderer: cellsrenderer, width: '3%' },
+                        { text: "<%= _('TIME') %>", datafield: 'pt_time', cellsrenderer: cellsrenderer, width: '10%' },
+                        { text: "<%= _('SOURCE') %>", datafield: 'pt_source', cellsrenderer: cellsrenderer, width: '10%' },
+                        { text: "<%= _('DESTINATION') %>", datafield: 'pt_destination', cellsrenderer: cellsrenderer, width: '10%' },
+                        { text: "<%= _('PROTOCOL') %>", datafield: 'pt_protocol', cellsrenderer: cellsrenderer, width: '7%' },
+                        { text: "<%= _('LENGTH') %>", datafield: 'pt_length', cellsrenderer: cellsrenderer, width: '5%' },
+                        { text: "<%= _('INFO') %>", datafield: 'pt_info', cellsrenderer: cellsrenderer, width: '54%' }
+                    ]
+                });
+
+        var localizationobj = {};
+        localizationobj.emptydatastring = 'No Data found';
+
+        $('#call_details_pcap_text').on('bindingcomplete', function (event) {
+            $("#call_details_pcap_text").jqxGrid('localizestrings', localizationobj);
+        });
+      }
+
+      function load_log_data(log_type) {
+
+        var log_url = "retrieve_call_log_radius_text";
+        var container = "#call_details_radius_log_text";
+
+        if (log_type == "freeswitch") {
+          log_url = "retrieve_call_log_freeswitch_text";
+          container = "#call_details_freeswitch_log_text";
+        }
+
+        var source =
+        {
+            type: 'GET',
+            datatype: 'json',
+            datafields: [
+                { name: 'ct_date', type: 'string' },
+                { name: 'ct_type', type: 'string' },
+                { name: 'ct_message', type: 'string' },
+                { name: 'ct_type_color', type: 'number' }
+            ],
+            url: '<%= "#{Web_Dir}/calls/" %>' + log_url + '<%= "/#{params[:id]}" %>'
+        };
+
+
+        function showCopied(button_id, id){
+          $(button_id).hover(function(){
+            $(button_id).click(function() {
+              $(id).show();
+            });
+          }, function(){
+            $(id).hide();
+          });
+        };
+
+
+        var dataadapter = new $.jqx.dataAdapter(source, {
+          loadComplete: function() {
+            var str = "";
+            dataadapter.records.forEach(function(row) {
+              str += row.ct_date + "\t"+row.ct_type+"\t"+row.ct_message+"\n";
+            });
+            if (log_type=="radius"){
+              $("#copy-to-clipboard-btn").attr("data-clipboard-text", str);
+              var clipboard = new Clipboard('#copy-to-clipboard-btn');
+              clipboard.on('error', function(e) {
+                showCopied('#copy-to-clipboard-btn', '#clipboard-info');
+              });
+            }
+            if (log_type=="freeswitch"){
+              $("#copy-to-clipboard-btn1").attr("data-clipboard-text", str);
+              var clipboard = new Clipboard('#copy-to-clipboard-btn1');
+              clipboard.on('error', function(e) {
+                showCopied('#copy-to-clipboard-btn1', '#clipboard-info1');
+              });
+            }
+          }
+        });
+
+
+
+        var log_text_color = function (row, columnfield, value, defaulthtml, columnproperties) {
+            var ct_type_color = dataadapter.records[row].ct_type_color;
+
+            switch (ct_type_color) {
+                case 1:
+                    return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #a5a5a5;">' + value + '</span>';
+                    break;
+                case 2:
+                    return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+                    break;
+            }
+        };
+
+        $(container).jqxGrid(
+                {
+                    source: dataadapter,
+                    theme: theme,
+                    width: '100%',
+                    autorowheight: true,
+                    autoheight: true,
+                    altrows: true,
+                    selectionmode: 'multiplecellsadvanced',
+                    handlekeyboardnavigation: function (event) {
+                        var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                        if (key == 86 && event.ctrlKey == true) {
+                            return true;
+                        }
+                    },
+                    columns: [
+                        { text: "<%= _('DATETIME') %>", datafield: 'ct_date', maxwidth: 150, cellsrenderer: log_text_color },
+                        { text: "<%= _('TYPE') %>", datafield: 'ct_type', width: 100, cellsrenderer: log_text_color },
+                        { text: "<%= _('MESSAGE') %>", datafield: 'ct_message', width: '80%', cellsrenderer: log_text_color }
+                    ]
+                });
+
+        var localizationobj = {};
+        localizationobj.emptydatastring = "Log not found";
+        var hidden_columns = ['ct_date', 'ct_type', 'ct_message'];
+        $(container).on('bindingcomplete', function (event) {
+            $(container).jqxGrid('localizestrings', localizationobj);
+            if (jQuery.isEmptyObject(dataadapter.records)) {
+                hidden_columns.forEach(function(item) {
+                    $(container).jqxGrid('hidecolumn', item);
+                });
+            }
+        });
+      }
+
+      <% if @call_details.try(:pcap_data?) %>
+      load_pcap_data();
+      <% end %>
+
+      <% if @radius_call_log.present? && @radius_call_log.radius_log.present? %>
+      load_log_data("radius");
+      <% end %>
+
+      <% if @radius_call_log.present? && @radius_call_log.freeswitch_log.present? && !m4_functionality? %>
+      load_log_data("freeswitch");
+      <% end %>
+
+    });
+</script>

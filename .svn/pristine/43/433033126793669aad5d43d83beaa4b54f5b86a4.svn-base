@@ -1,0 +1,211 @@
+<div class="row">
+  <div class="col extended">
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'use_strong_passwords_for_users', _('Use_strong_passwords_for_users') %>
+      </div>
+      <div class="input-col">
+        <%= check_box_tag 'use_strong_passwords_for_users', 1, (Confline.get_value("Use_strong_passwords_for_users").to_i == 1 || Confline.get_value("Use_strong_passwords_for_users").blank?) %>
+      </div>
+    </div>
+
+    <%= raw(setting_boolean(_('Admin_login_with_approved_IP_only'), 'admin_login_with_approved_ip_only', 'admin_login_with_approved_ip_only')) if admin? %>
+    <%= raw(setting_boolean(_('Enable_bad_login_IP_report_warning'), 'bad_login_ip_report_warning', 'bad_login_ip_report_warning', 0, {}, true)) if admin? %>
+    <%= raw(setting_boolean _('Logout_after_password_change'), 'logout_on_password_change', 'logout_on_password_change', 0) if admin? %>
+    <%= raw(setting_boolean(_('Do_not_logout_on_session_IP_change'), 'do_not_logout_on_session_ip_change', 'do_not_logout_on_session_ip_change')) if admin? %>
+    <% if m4_functionality? %>
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'two_fa_enabled', _('2FA_Enabled') %>
+        </div>
+        <div class="input-col">
+          <div class="radio-container">
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_enabled', '0', (!two_fa_enabled?)) + _('_No') %>
+            </div>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_enabled', '1', (two_fa_enabled?)) + _('_Yes') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_email_template', _('Email_Template') %>
+        </div>
+        <div class="input-col">
+          <%= select_tag('two_fa_email_template', email_template_select_for_2fa(Confline.get_value('two_fa_email_template').presence || Email.where(name: '2FA_authentication_notification').first.try(:id), ['two_fa_code']), class: 'two_fa') %>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_code_length', _('Code_length__digits') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('two_fa_code_length', Confline.get_value('two_fa_code_length').presence || 6, class: 'two_fa number') %>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_attemps_allowed', _('Code_Enter_Attempts_Allowed') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('two_fa_attemps_allowed', Confline.get_value('two_fa_attemps_allowed').presence || 3, class: 'two_fa number') %>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_time_allowed', _('Code_Enter_Time_Allowed') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('two_fa_time_allowed', Confline.get_value('two_fa_time_allowed').presence || 10, class: 'two_fa number') %> &nbsp;<span class="label" style="float: none;">min</span>
+        </div>
+      </div>
+       <br/>
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_send_notification_to_admin_on_login', _('Send_Notification_Email_to_Admin_on_Login') %>
+        </div>
+        <div class="input-col">
+          <div class="radio-container">
+            <% send_notification_to_admin = Confline.get_value('two_fa_send_notification_to_admin_on_login').to_i == 1 %>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_to_admin_on_login', '0', (!send_notification_to_admin)) + _('_No') %>
+            </div>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_to_admin_on_login', '1', (send_notification_to_admin)) + _('_Yes') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_admin_notification_email_template', _('Email_Template'), class: 'two_fa_sub_setting' %>
+        </div>
+        <div class="input-col">
+          <%= select_tag('two_fa_admin_notification_email_template', email_template_select_for_2fa(Confline.get_value('two_fa_admin_notification_email_template').presence || Email.where(name: '2FA_login_notification').first.try(:id), ['user_edit_url']), class: 'two_fa') %>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_send_notification_to_admin_on_admin_login', _('On_Admin_Login'), class: 'two_fa_sub_setting' %>
+        </div>
+        <div class="input-col">
+          <div class="radio-container">
+            <% send_notification_to_admin_on_admin_login = Confline.get_value('two_fa_send_notification_to_admin_on_admin_login').presence || 1 %>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_to_admin_on_admin_login', '0', (send_notification_to_admin_on_admin_login.to_i == 0)) + _('_No') %>
+            </div>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_to_admin_on_admin_login', '1', (send_notification_to_admin_on_admin_login.to_i == 1)) + _('_Yes') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_send_notification_to_admin_on_user_login', _('On_User_Login'), class: 'two_fa_sub_setting' %>
+        </div>
+        <div class="input-col">
+          <div class="radio-container">
+            <% send_notification_to_admin_on_user_login = Confline.get_value('two_fa_send_notification_to_admin_on_user_login').to_i == 1 %>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_to_admin_on_user_login', '0', (!send_notification_to_admin_on_user_login)) + _('_No') %>
+            </div>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_to_admin_on_user_login', '1', (send_notification_to_admin_on_user_login)) + _('_Yes') %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_send_notification_email_on_login', _('Send_Notification_Email_on_Login') %>
+        </div>
+        <div class="input-col">
+          <div class="radio-container">
+            <% send_notification_to_email = Confline.get_value('two_fa_send_notification_email_on_login').to_i == 1 %>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_email_on_login', '0', (!send_notification_to_email)) + _('_No') %>
+            </div>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_email_on_login', '1', (send_notification_to_email)) + _('_Yes') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_notification_email_address', _('Email_address'), class: 'two_fa_sub_setting' %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag 'two_fa_notification_email_address', Confline.get_value('two_fa_notification_email_address').to_s, class: 'email' %>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_notification_email_template', _('Email_Template'), class: 'two_fa_sub_setting' %>
+        </div>
+        <div class="input-col">
+          <%= select_tag('two_fa_notification_email_template', email_template_select_for_2fa(Confline.get_value('two_fa_notification_email_template').presence || Email.where(name: '2FA_login_notification').first.try(:id), ['user_edit_url']), class: 'two_fa') %>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_send_notification_on_admin_login', _('On_Admin_Login'), class: 'two_fa_sub_setting' %>
+        </div>
+        <div class="input-col">
+          <div class="radio-container">
+            <% two_fa_send_notification_on_admin_login = Confline.get_value('two_fa_send_notification_on_admin_login').presence || 1 %>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_on_admin_login', '0', (two_fa_send_notification_on_admin_login.to_i == 0 )) + _('_No') %>
+            </div>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_on_admin_login', '1', (two_fa_send_notification_on_admin_login.to_i == 1)) + _('_Yes') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row two-fa-setting">
+        <div class="label-col">
+          <%= label_tag 'two_fa_send_notification_on_user_login', _('On_User_Login'), class: 'two_fa_sub_setting' %>
+        </div>
+        <div class="input-col">
+          <div class="radio-container">
+            <% two_fa_send_notification_on_user_login = Confline.get_value('two_fa_send_notification_on_user_login').to_i == 1 %>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_on_user_login', '0', (!two_fa_send_notification_on_user_login)) + _('_No') %>
+            </div>
+            <div class="radio-row">
+              <%= radio_button_tag('two_fa_send_notification_on_user_login', '1', (two_fa_send_notification_on_user_login)) + _('_Yes') %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(function(){
+          <% unless two_fa_enabled? %>
+            $('.two-fa-setting').hide();
+          <% end %>
+
+          $('#two_fa_enabled_1').change(function(){ $('.two-fa-setting').show() });
+          $('#two_fa_enabled_0').change(function(){ $('.two-fa-setting').hide() });
+
+        });
+      </script>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<!--* CRM turi būti sukurtas klientas, kuriam būtų priskirtas serveris, iš kurio vykdoma užklausa-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/conversion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariffs/conversion')]</td>
+	<td>Conversion</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Conversion</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_template_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=file</td>
+	<td></td>
+</tr>
+<!--* Atvaizduojami visi templates iš CRM, klaidos pranešimai metami tik po Submit-->
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_template_id</td>
+	<td>BTS (XLS, XLSX) Fortis (XLS, XLSX) HGC (XLS, XLSX) IDT (CSV) MySipProvider (XLS) Speedflow (XLS, XLSX) Tata (XLS, XLSX) Voicetrading (XLS) Voxbeam (CSV)</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_template_id</td>
+	<td>BTS (XLS, XLSX)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=column_separator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=decimal_separator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=WzBoDyI</td>
+	<td>Maximum File size: 10 MB<br />Allowed File types: CSV, XLS, XLSX, RAR, ZIP</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>id=file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_template_id</td>
+	<td>BTS (XLS, XLSX)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_template_id</td>
+	<td>BTS (XLS, XLSX) Fortis (XLS, XLSX) HGC (XLS, XLSX) IDT (CSV) MySipProvider (XLS) Speedflow (XLS, XLSX) Tata (XLS, XLSX) Voicetrading (XLS) Voxbeam (CSV)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_warning</td>
+	<td>No file chosen</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=email_warning</td>
+	<td>Invalid e-mail address. Valid e-mail can contain only latin letters, numbers, '@' and '.'</td>
+</tr>
+<!--* By default separatoriai pagal settings-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv_separator</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv_decimal</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--* By default Admin Email-->
+<!--* Kitu atveju, Email turi būti paskutinis, kuris išsaugotas-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>test@test.test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/conversion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=column_separator</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=decimal_separator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email</td>
+	<td>test@test.test</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_template_id</td>
+	<td>label=Voicetrading (XLS)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_template_id</td>
+	<td>Voicetrading (XLS)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_warning</td>
+	<td>No file chosen</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>id=email_warning</td>
+	<td>Invalid Email</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_template_id</td>
+	<td>label=Voxbeam (CSV)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=column_separator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=decimal_separator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>email@email.email</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_template_id</td>
+	<td>Voxbeam (CSV)</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>id=email_warning</td>
+	<td>Invalid Email</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=column_separator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=decimal_separator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email</td>
+	<td>email@email.email</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv_separator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv_decimal</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/conversion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=column_separator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=decimal_separator</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email</td>
+	<td>test@test.test</td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariffs/conversion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>//a[contains(@href, '/billing/tariffs/conversion')]</td>
+	<td>Conversion</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/conversion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/conversion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

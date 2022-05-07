@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col extended">
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'delete_not_archived_not_answered_calls_older_than', _('Delete_not_Archived_not_Answered_Calls_older_than') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('delete_not_archived_not_answered_calls_older_than', (Confline.where(name: 'Delete_not_Archived_not_Answered_Calls_older_than', owner_id: 0).first.try(:value) || 0).to_i, class: 'number', size: 5, maxlength: 4) %>
+        &nbsp;<%= _('days_0_disabled') %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'archive_calls_to_csv', _('Archive_to') %>
+      </div>
+      <div class="input-col">
+        <% arch_calls_to_csv = Confline.get_value("Archive_Calls_to_CSV").to_i %>
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('archive_calls_to_csv', '0', (arch_calls_to_csv == 0)) + _('DB_default') %>
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('archive_calls_to_csv', '1', (arch_calls_to_csv == 1)) + _('File_tgz') %>
+          </div>
+          <div class="radio-row">
+             <%= radio_button_tag('archive_calls_to_csv', '2', (arch_calls_to_csv == 2)) + _('FTP_tgz') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'archive_when', _('Archive_when') %>
+      </div>
+      <div class="input-col">
+        <% arch_calls_to_csv = Confline.get_value("Archive_Calls_to_CSV").to_i %>
+        <%= text_field_tag('archive_when', Confline.get_value("Move_to_old_calls_older_than", 0).to_i, class: 'number', size: '5', maxlength: '4') %>
+        &nbsp;<%= _('days_0_disabled') %>
+      </div>
+    </div>
+
+    <%= raw setting_boolean(_('Archive_only_answered_calls'), 'archive_only_answered_calls', 'Archive_only_answered_calls') %>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag '',_('Archive_at') %>
+      </div>
+      <div class="input-col">
+        <%= select_tag('archive_at_hour', options_for_select([[_('disable'),'-1']] + ('00'..'23').to_a, selected: archive_at_hour), {class: 'hour-disable'}) %>
+        <span class="hour-colon">:</span>
+        <%= select_tag('archive_at_minute', options_for_select([[_('disable'),'-1']] + ['00','05','10', '15', '20', '25', '30', '35', '40', '45', '50', '55'], selected: archive_at_minute), {class: 'hour-disable'}) %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag '',_('Archive_till') %>
+      </div>
+      <div class="input-col">
+        <%= select_tag('archive_till_hour', options_for_select([[_('disable'),'-1']] + ('00'..'23').to_a, selected: archive_till_hour), {class: 'hour-disable'}) %>
+        <span class="hour-colon">:</span>
+        <%= select_tag('archive_till_minute', options_for_select([[_('disable'),'-1']] + ['00','05','10', '15', '20', '25', '30', '35', '40', '45', '50', '55'], selected: archive_till_minute), {class: 'hour-disable'}) %>
+      </div>
+    </div>
+
+    <%= raw setting_boolean(_('Do_not_delete_Archived_Calls_from_calls_table'), 'do_not_delete_archived_calls_from_calls_table', 'Do_not_delete_Archived_Calls_from_calls_table') %>
+    <%= raw setting_boolean(_('Delete_Calls_instead_of_Archiving'), 'delete_calls_instead_of_archiving', 'Delete_Calls_instead_of_Archiving') %>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'delete_archived_calls_older_than', _('Delete_Archived_Calls_older_than') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('delete_archived_calls_older_than', (Confline.where(name: 'Delete_Archived_Calls_older_than', owner_id: 0).first.try(:value) || 0).to_i, class: 'number', size: 5, maxlength: 4) %>
+        &nbsp;<%= _('days_0_disabled') %>
+      </div>
+    </div>
+
+  </div>
+</div>

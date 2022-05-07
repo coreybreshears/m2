@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <td colspan="3"><b><%= _('Merge') %></b></td>
+  </tr>
+  <tr>
+    <td nowrap style="padding-right: 15px"><b><%= _('From_Destination_Group') %>:</b></td>
+    <td nowrap style="padding-right: 15px"><%= draw_flag_by_code @from_dg.flag %> <%= @from_dg.name %></td>
+    <td nowrap><%= link_to b_view + "#{_('View')} #{_('Destinations')} (#{@from_dg.destinations.count})", action: :destinations, id: @from_dg.id %></td>
+  </tr>
+  <tr>
+    <td nowrap><b><%= _('To_Destination_Group') %>:</b></td>
+    <td nowrap><%= draw_flag_by_code @to_dg.flag %> <%= @to_dg.name %></td>
+    <td nowrap><%= link_to b_view + "#{_('View')} #{_('Destinations')} (#{@to_dg.destinations.count})", action: :destinations, id: @to_dg.id %></td>
+  </tr>
+</table>
+<p style="color: grey; padding-left: 3px;">
+  <%= _('All_prefixes_will_be_moved_from_one_Destination_Group_to_another') %>
+  <br/>
+  <%= _('First_DestGroup_will_be_deleted') %>
+</p>
+<br/><br/>
+<span style="float:left;"><%= link_to b_back + _('back'), controller: :destination_groups, action: :list, bulk_merge_from_dg_id: @from_dg.id, bulk_merge_to_dg_id: @to_dg.id, show_bulk_management: true %></span>
+
+<%= form_tag action: :bulk_management_merge, bulk_merge_from_dg_id: @from_dg.id, bulk_merge_to_dg_id: @to_dg.id do %>
+    <span style="float:left;margin-left: 30px;">
+  <%= submit_tag _('Merge'),
+                 disable_with: _('Processing..'),
+                 onclick: "var confirmed; confirmed = confirm('#{_('Are_you_sure')}'); if(confirmed) jQuery('#spinner2').show(); return confirmed;",
+                 data: {disable_with: _('Processing..')}
+  %>
+</span>
+<% end %>

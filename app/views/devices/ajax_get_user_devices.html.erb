@@ -1,0 +1,11 @@
+<% if @user.to_i != -1 %>
+    <%= " &nbsp;&nbsp;".html_safe + _('Devices') + ":" if @add_name %>
+    <% if @user.to_s == '-2' %>
+    	<% opt_map = @devices.map{|d| [nice_device_dp(d), d.dev_id]} %>
+    <% else %>
+    	<% opt_map = @devices.map{|d| [nice_device_no_pic(d), d.dev_id]} %>
+    <% end %>
+    <% opt_map = [[_("All"), "all"]] + opt_map if @add_all -%>
+    <% opt_map = [[_('None'), 'none']] + opt_map if @none %>
+    <%= select_tag(params[:field_id] ? params[:field_id] : (params[:object_name] ? params[:object_name] : 's_device'), options_for_select(opt_map, @default), style: params[:custom_style].present? ? params[:custom_style].to_s : 'max-width:100px') %>
+<% end %>

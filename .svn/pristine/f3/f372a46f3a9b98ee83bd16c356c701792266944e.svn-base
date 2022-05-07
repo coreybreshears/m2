@@ -1,0 +1,43 @@
+# -*- encoding : utf-8 -*-
+# Destination Groups Model
+class Destinationgroup < ActiveRecord::Base
+
+  attr_protected
+
+  has_many :destinations, -> { order(:prefix) }
+  has_many :rates
+
+  validates_presence_of :name
+
+  # Destinations which haven't assigned to destination group by first letter
+  def free_destinations_by_st(st)
+    adests = Destination.find_by_sql ["SELECT destinations.* FROM destinations, directions WHERE destinations.destinationgroup_id = 0 AND directions.code = destinations.direction_code AND directions.name like ? ORDER BY directions.name ASC, destinations.prefix ASC", st.to_s+'%']
+    adests - self.destinations
+  end
+
+  def rate(tariff_id)
+    Rate.where(tariff_id: tariff_id).first
+  end
+
+  def Destinationgroup.destinationgroups_order_by(options)
+    order_by = case options[:order_by].to_s.strip
+                 when 'country'
+                   'directions.name'
+                 when 'prefix'
+                   'prefix'
+                 when 'destination'
+                   'name'
+                 else
+                   'dgn'
+               end
+
+    order_by += (options[:order_desc].to_i == 0 ? ' ASC' : ' DESC') if order_by.present?
+
+    order_by
+  end
+
+  def self.get_destination_groups
+    groups = Destinationgroup.select(:id, :name).order(:name).map { |dg| [dg.id.to_s, dg.name.to_s] }
+    return ([['none', _('Not_assigned')]] + groups)
+  end
+end

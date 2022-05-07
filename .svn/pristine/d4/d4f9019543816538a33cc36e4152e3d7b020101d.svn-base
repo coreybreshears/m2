@@ -1,0 +1,167 @@
+<%= javascript_include_tag 'google_charts/loader.js' %>
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('active_calls_graph') %>
+      <span id="additional_info">
+        <span class="additional_info_span">Now: </span>
+        <span id="total_answered" title='<%=_('total_answered')%>'></span>
+        <span class="additional_info_span2"><%= "#{_('Today') } / #{ _('yesterday')}" %></span >
+        <span class="additional_info_span"><%= _('AVG') %>:</span>
+        <span id="today_avg" ></span> / <span id="yesterday_avg"></span>
+        <span class="additional_info_span"><%= _('MAX') %>:</span>
+        <span id="today_max" ></span> / <span id="yesterday_max"></span>
+      </span>
+    </h2>
+    <div id="active_calls_graph_info">
+      <%= _('Page_refreshes_every') %>:&nbsp;<%= @refresh_period < 60 ? 60 : @refresh_period %> <%= _('s') %><br/>
+    </div>
+    <div id="curve_chart" style=" height: 500px;"></div>
+   </div>
+</div>
+
+<style>
+  #additional_info{
+      position: absolute;
+      right: 23px;
+      font-size: 14px;
+  }
+  .nb{
+      overflow: auto;
+  }
+  .content-box{
+      min-width: 700px;
+
+  }
+  .additional_info_span{
+      margin-left: 10px;
+  }
+  .additional_info_span2 {
+      margin-left: 100px;
+  }
+</style>
+<script>
+ jQuery(document).ready(function($) {
+    setTimeout(executeQuery, <%= @refresh_period < 60 ? 60000 : @refresh_period * 1000 %>);
+    var datas = <%= raw @active_calls_data %>;
+    var totalAnsweredCount = '<%= raw @total_answered_count %>';
+    google.charts.load('current', {'packages': ['corechart']});
+
+    google.charts.setOnLoadCallback(function() {
+     drawChart(<%= raw @active_calls_data %>);
+     update_total_answered(totalAnsweredCount);
+     update_average(datas);
+     update_max(datas);
+ });
+    function update_total_answered(data){
+        document.getElementById('total_answered').textContent = data;
+    }
+
+    function update_average(chartdata){
+        document.getElementById('today_avg').innerHTML = get_average(chartdata, 1, true);
+        document.getElementById('yesterday_avg').innerHTML = get_average(chartdata, 2, false);
+    }
+
+    function update_max(chartdata){
+        var today = [];
+        var yesterday = [];
+
+        chartdata.forEach(function(data){
+            today.push(parseInt(data[1]));
+            yesterday.push(parseInt(data[2]));
+        });
+
+        document.getElementById('today_max').innerHTML = Math.max.apply(null, today);
+        document.getElementById('yesterday_max').innerHTML = Math.max.apply(null, yesterday);
+    }
+
+   function get_average(chartdata, index, isToday){
+       var data_sum = 0;
+       var data_size = 1440;
+
+       if (isToday == true){
+           <% d = Time.now %>;
+           var n = <%= (d.hour * 60) + d.min %>;
+           data_size = n;
+           for (var i = 0; i < n; i++){ data_sum += parseInt(chartdata[i][index]);}
+       }else{
+           chartdata.forEach(function(data){
+               data_sum += parseInt(data[index]);
+           });
+       }
+
+       var avg = parseFloat(data_sum) / data_size;
+
+       return avg ? avg.toFixed(0) : 0;
+   }
+
+    function drawChart(chartdata) {
+     var data = new google.visualization.DataTable();
+     data.addColumn('timeofday', 'date');
+     data.addColumn('number', '<%= _('Today') %>');
+     data.addColumn('number', '<%= _('yesterday') %>');
+     data.addRows(chartdata);
+     var options = {
+       focusTarget: 'category',
+       'chartArea': {
+         'width': '90%',
+         'height': '70%',
+         'top': '40',
+         'left': '75',
+         'backgroundColor': {'stroke': '#FFFFFF'}
+     },
+     'series': {
+         0: { 'color': '#7BA1CE', type: "area" },
+         1: { 'color': '#A6EDAC', type: "line" }
+     },
+     'legend': 'top',
+     'vAxis': { 'gridlines': { 'count': 10 }, 'color': '#000000', 'format': '#', 'minValue':0, 'maxValue' :9},
+     'hAxis': {
+         'color': '#000000',
+         'gridlines': { 'count': 24 },
+         'slantedText': true, 'slantedTextAngle': 90,
+         'maxValue': [23, 59, 60]
+     },
+     explorer: {
+          actions: ['dragToZoom', 'rightClickToReset'],
+          axis: 'horizontal',
+          keepInBounds: true,
+          maxZoomIn: 10.0
+     },
+     'crosshair': { 'orientation': 'vertical', 'trigger': 'both' }
+ };
+
+ var chart = new google.visualization.ComboChart(document.getElementById('curve_chart'));
+ chart.draw(data, options);
+}
+$(window).resize(function(){
+  drawChart(datas);
+  update_total_answered(totalAnsweredCount);
+  update_average(datas);
+  update_max(datas);
+});
+
+
+
+function executeQuery() {
+    $.ajax({
+        type: "GET",
+        url: "<%= Web_Dir %>/stats/update_graph_data",
+        dataType: "json",
+        success: function (data, status, xhrs) {
+            datas = data.data[0];
+            totalAnsweredCount = data.data[1];
+            drawChart(data.data[0]);
+            update_total_answered(totalAnsweredCount);
+            update_average(datas);
+            update_max(datas);
+        },
+        complete: function () {
+            // Schedule the next request when the current one's complete
+            setTimeout(executeQuery, <%= @refresh_period < 60 ? 60000 : @refresh_period * 1000 %>);
+        }
+    });;
+}
+
+
+});
+</script>

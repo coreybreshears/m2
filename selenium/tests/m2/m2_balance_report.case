@@ -1,0 +1,2485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=year</td>
+	<td>current_year</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=year_month</td>
+	<td>current_year_month</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=nice_date</td>
+	<td>current_date</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=day</td>
+	<td>current_day</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/m2_calls_and_aggregates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/invoice_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<!--manageriai neturi buti itraukiami i dropdown-->
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>AllProviderRicardasTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td</td>
+	<td>Client:</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Export to CSV</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Press search button to show data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=traffic_to_us_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>10.47</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>10.47</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-7.94</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>0.89</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>0.89</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-0.89</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>11.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>2.53</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-8.83</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_from_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_from_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_till_year</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=date_till_month</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=time_zone_time_zone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_user_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2012; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2012}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_4</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_3</td>
+	<td>Test Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_5</td>
+	<td>User Resellers</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>122.98</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>23.27</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>1.82</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-15.92</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>5.06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>20.98</td>
+</tr>
+<!--sesijoje issaugome data-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2013&amp;date_from[month]=10&amp;date_till[year]=2014&amp;date_till[month]=7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list?s_user=Test%20User%20%231&amp;s_user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>2013</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td>October</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>2014</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_month</td>
+	<td>July</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=time_zone_time_zone</td>
+	<td>label=(GMT+13:00) Samoa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=time_zone_time_zone</td>
+	<td>(GMT+13:00) Samoa</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=time_zone_time_zone</td>
+	<td>(GMT+02:00) Vilnius</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='-2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2010; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2010; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2011; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2011; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2011</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=June</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=time_zone_time_zone</td>
+	<td>label=(GMT+01:00) Stockholm</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--prisiloginus ir atsiloginus turi buti defaultine data-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=time_zone_time_zone</td>
+	<td>(GMT+02:00) Vilnius</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2015; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2015}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2012; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2012}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2015</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Date from is greater than date till</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<!--rūšiavimas, puslapiavimas, atvaizdavimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=items_per_page</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_number_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_currency_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>label=,</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2013; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2013}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2013</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=time_zone_time_zone</td>
+	<td>(GMT+02:00) Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>1 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='page_1'])[2]</td>
+	<td>1 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>10,469332</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>44,990000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>10,469332</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2,532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>2,532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-7,937332</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>11,358665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>111,980000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>0,000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>11,358665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2,532000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=User Resellers</td>
+	<td>User Resellers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>0,889333</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>66,990000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>0,889333</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-0,889333</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>11,358665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>111,980000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>0,000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>11,358665</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2,532000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-8,826665</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=items_per_page</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_number_digits</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_currency_digits</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>label=.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--traffic to us - variation 1-->
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>10.4693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>10.4693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-7.9373</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>66.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>111.9800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-8.8267</td>
+</tr>
+<!--pasirenku iki 2014 m-->
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2013</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2014; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2014; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>0.0000</td>
+</tr>
+<!--We invoiced - m2_invoices.total_amount_with_taxes-->
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=${current_year}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_4</td>
+	<td>11.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_3</td>
+	<td>33.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>122.9800</td>
+</tr>
+<!--Paid to us - m2_payments.amount_with_tax (jeigu teigiamas)-->
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>235</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>452</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m2_payment_payment_destination_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>235.0000</td>
+</tr>
+<!--Debt	: Traffic to us - Paid to us-->
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_4</td>
+	<td>0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>10.5105</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>0.9313</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>11.9152</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>235.0000</td>
+</tr>
+<!--Traffic from us: aggregates.user_billed_with_tax (variation = 2 ir pagal terminator_id kaip kad useris)			-->
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2.5320</td>
+</tr>
+<!--nes user reseller - terminatorius-->
+<!--tik balandzio mėnesiui-->
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=March</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2014; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2014; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=March</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--We paid: m2_payments.amount_with_tax (jeigu neigiamas)-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Cross&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2010; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2010; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2010</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=October</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>452.0000</td>
+</tr>
+<!--Our debt:	  Traffic from us - We paid-->
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>-446.9360</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>-446.9360</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>452.0000</td>
+</tr>
+<!--Balance: Our debt - Debt				-->
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_4</td>
+	<td>0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>-0.4734</td>
+</tr>
+<!--USER STATEMENTS-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>User Statement Report</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Statement Report for Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Period From 2010-10 Till ${current_year_month}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/users/edit/2')]</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2014-03-20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_1</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=invoiced_to_us_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_1</td>
+	<td>Ketvirtas ilgesnis už kitus komentaras</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>-44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>${current_date}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=invoiced_to_us_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td></td>
+</tr>
+<!--balance yra eilutė, apaskaičiuota pagal (-1)*(We invoiced - Paid to us + Invoiced to us + We paid) pridedant prie eilutės aukščiau-->
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>190.0100</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_Balance</td>
+	<td>-261.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>-261.9900</td>
+</tr>
+<!--Currencies-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>-22.4950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_Balance</td>
+	<td>-130.9950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>226.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=invoiced_to_us_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_invoiced_to_us</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>22.4950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_1</td>
+	<td>22.4950</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Accountant</td>
+	<td>Test Accountant</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Reseller</td>
+	<td>Test Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=User Resellers</td>
+	<td>User Resellers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_4</td>
+	<td>0.2367</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>20.4899</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>10.9103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>31.6370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_4</td>
+	<td>5.9950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_3</td>
+	<td>62.9750</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>22.4950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>201.4650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>292.9300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_4</td>
+	<td>0.2367</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>-97.0101</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>10.9103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>-85.8630</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>226.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>226.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>-223.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>-223.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>-0.2367</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-126.4579</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-10.9103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-137.6050</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_4</td>
+	<td>0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>40.9799</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>21.8206</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>63.2739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_4</td>
+	<td>11.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_3</td>
+	<td>56.9800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>122.9800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>236.9400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_4</td>
+	<td>0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>-194.0201</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>21.8206</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>-171.7261</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>-446.9360</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>-446.9360</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>-0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-252.9159</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-21.8206</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-275.2099</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_4</td>
+	<td>0.2367</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>20.4899</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>10.9103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>31.6370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_4</td>
+	<td>5.9950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_3</td>
+	<td>62.9750</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>22.4950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>201.4650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>292.9300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_4</td>
+	<td>0.2367</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>-97.0101</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>10.9103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>-85.8630</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>226.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>226.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>-223.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>-223.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>-0.2367</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-126.4579</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-10.9103</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-137.6050</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_4</td>
+	<td>0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>40.9799</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>21.8206</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>63.2739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_4</td>
+	<td>11.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_3</td>
+	<td>56.9800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>122.9800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>236.9400</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_4</td>
+	<td>0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>-194.0201</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>21.8206</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>-171.7261</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>-446.9360</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>-446.9360</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>-0.4734</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-252.9159</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-21.8206</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-275.2099</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/user_statement_report/2?time_zone=Vilnius</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>-22.4950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_Balance</td>
+	<td>-130.9950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>226.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=invoiced_to_us_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_invoiced_to_us</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>117.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>22.4950</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_1</td>
+	<td>22.4950</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_1</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>-44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=invoiced_to_us_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>190.0100</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>-261.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_Balance</td>
+	<td>-261.9900</td>
+</tr>
+<!--TZ-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/update_payment_date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2013</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>10.4693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>10.4693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>-449.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-459.9373</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>66.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>111.9800</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>-449.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-460.8267</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=time_zone_time_zone</td>
+	<td>label=(GMT-11:00) American Samoa</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=${current_year}</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_2</td>
+	<td>10.4693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_to_us_5</td>
+	<td>0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_to_us</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_4</td>
+	<td>11.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_2</td>
+	<td>44.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_invoiced_5</td>
+	<td>66.9900</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_invoiced</td>
+	<td>123.9700</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>235.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_2</td>
+	<td>-224.5307</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=debt_5</td>
+	<td>0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>-223.6413</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=traffic_from_us_2</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_traffic_from_us</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=we_paid_2</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_we_paid</td>
+	<td>452.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=our_debt_2</td>
+	<td>-449.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_our_debt</td>
+	<td>-449.4680</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>-224.9373</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_5</td>
+	<td>-0.8893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>-225.8267</td>
+</tr>
+</tbody></table>
+</body>
+</html>

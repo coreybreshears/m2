@@ -1,0 +1,144 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<% @create_button_name = 'Bulk_management' %>
+<% content_for :create_form do %>
+    <%= form_tag({action: :bulk_delete}, {id: 'create-form', class: 'calls-form', visible: show_create}) do %>
+      <fieldset>
+        <div class="column date-col calendar-holder">
+          <%= label_tag 'from', _('From') %>
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'date_from', formatted_date_as_given(@options[:from]), class: 'checkin default', id: 'from' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'time_from', formatted_time_as_given(@options[:from]), class: 'default', id: 'time1' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+          <%= label_tag 'to', _('Till') %>
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'date_till', formatted_date_as_given(@options[:till]), class: 'checkout default', id: 'till' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'time_till', formatted_time_as_given(@options[:till]), class: 'default', id: 'time2' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+        <div class="column buttons-col">
+          <div class="row payment-buttons-row">
+            <%= clear_button_tag_create_form _('clear') %>
+            <%= submit_tag _('delete'), data: {confirm: _('are_you_sure')} %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+<% end %>
+
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Archived_calls_files_list') %></h2>
+    <div style="margin-left: 20px"><%= b_info %> <%= _('Value_in_system_time_zone') %>: <%= nice_system_time_string %></div>
+    <br/>
+    <div id="archived_calls_files"></div>
+  </div>
+</div>
+
+<style type="text/css">
+    .jqx-grid-column-header:first-child
+    {
+        margin-left: 1.25%;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var table_data_json = <%= raw @data[:table_rows].to_json %>;
+        var source =
+        {
+            localdata: table_data_json,
+            datatype: 'json',
+            datafields: [
+                { name: 'name', type: 'string' },
+                { name: 'from_date', type: 'date' },
+                { name: 'download', type: 'string' },
+                { name: 'delete_file', type: 'string' }
+            ],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+
+        var cellsrenderer_name = function (row, column, value) {
+            return '<div style="text-align: left; margin-top: 5px; margin-left: 3%">' + table_data_json[row]['name'] + ' </div>';
+        };
+
+        var linkrenderer_download = function (row, column, value) {
+                if (value.indexOf('#') != -1) {
+                    value = value.substring(0, value.indexOf('#'));
+                }
+                var href = value;
+                return '<div style="text-align: center; margin-top: 5px; margin-left: 2px">' + "<a href='" + href + "'>" + 'DOWNLOAD' + "</a></div>";
+        };
+
+        var linkrenderer_delete = function (row, column, value) {
+                if (value.indexOf('#') != -1) {
+                    value = value.substring(0, value.indexOf('#'));
+                }
+                var href = value;
+                return '<div style="text-align: center; margin-top: 5px; margin-left: 2px">' + "<a href='" + href + "'onclick=\"if (!confirm('Are you sure?')) return false;\">" + 'DELETE' + "</a></div>";
+        };
+
+        $("#archived_calls_files").jqxGrid(
+                {
+                    source: dataadapter,
+                    width: '100%',
+                    autoheight: true,
+                    rowsheight: 30,
+                    altrows: true,
+                    selectionmode: 'multiplecellsadvanced',
+                    handlekeyboardnavigation: function (event) {
+                        var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                        if (key == 86 && event.ctrlKey == true) {
+                            return true;
+                        }
+                    },
+                    showaggregates: true,
+                    showstatusbar: true,
+                    statusbarheight: 2,
+                    sortable: true,
+                    pageable: true,
+                    pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                    ready: function () {
+                        fix_column_width("archived_calls_files");
+                        $("#archived_calls_files").jqxGrid('sortby', 'from_date', 'desc');
+                    },
+                    columns: [
+                              { text: "<%= _('File_name') %>", datafield: 'from_date', width: '50%', align: 'left', cellsalign: 'left', cellsrenderer: cellsrenderer_name },
+                              { text: "<%= _('Download') %>", datafield: 'download', width: '25%', align: 'center', sortable: false, cellsalign: 'center', cellsrenderer: linkrenderer_download },
+                              { text: " ", datafield: 'delete_file', width: '25%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_delete, sortable: false }
+                             ]
+                });
+    });
+</script>

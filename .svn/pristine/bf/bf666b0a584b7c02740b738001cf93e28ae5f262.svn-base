@@ -1,0 +1,3 @@
+DELETE FROM `cdr_import_templates`;
+INSERT INTO `cdr_import_templates` (`id`, `name`, `decimal_seperator`, `column_seperator`, `skip_n_first_lines`, `date_format`, `start_time_col`, `answer_time_col`, `end_time_col`, `clid_col`, `src_name_col`, `src_number_col`, `dst_col`, `duration_col`, `billsec_col`, `disposition_col`, `accountcode_col`, `provider_id_col`, `cost_col`) VALUES
+(1,'CDR Import Template','.',',',0,'%Y-%m-%d %H:%M:%S',2,4,5,NULL,NULL,0,1,NULL,6,3,NULL,NULL,7);

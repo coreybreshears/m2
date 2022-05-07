@@ -1,0 +1,201 @@
+<div class="row">
+  <div class="col extended one_to_five" style="padding-right: 5%!important;">
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'white_label_logo_label', _('Logo') %>
+      </div>
+      <div class="input-col">
+        <div id="white_label_notice_logo" class="white_label_notice"></div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= image_tag("#{white_label_logo_present? ? '/white_label/white_label_logo' : '/images/m2_images/m4_logo.png'}", style: 'background-color: #292d36;') %>
+      </div>
+      <div class="input-col">
+        <%= file_field_tag 'white_label_logo' %>
+        <%= link_to _('Upload'), '#', class: 'search-form-button search-button-link upload_white_label_logo' %>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'white_label_favicon_label', _('Favicon') %>
+      </div>
+      <div class="input-col">
+        <div id="white_label_notice_favicon" class="white_label_notice"></div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <div class="favicon<%= correct_favicon_css %> settings"></div>
+      </div>
+      <div class="input-col">
+        <%= file_field_tag 'white_label_favicon' %>
+        <%= link_to _('Upload'), '#', class: 'search-form-button search-button-link upload_white_label_favicon' %>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'white_label_footer', _('Footer') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('white_label_footer', Confline.get_value('white_label_footer'), class: 'input select-larger', maxlength: 255) %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+
+        var white_label_notice_logo = $('#white_label_notice_logo');
+        var logo_form_data, logo_reader, logo_file, logo_image;
+
+        $('.upload_white_label_logo').click(function(e) {
+            white_label_notice_logo.html('');
+            white_label_notice_logo.css('background', '#ffffff');
+
+            logo_form_data = new FormData();
+            logo_reader = new FileReader();
+            logo_file = $('#white_label_logo')[0].files;
+
+            if (logo_file.length == 0) {
+                white_label_notice_logo.css('background', '#FFD4D4');
+                white_label_notice_logo.html('Logo not selected');
+            } else {
+
+                //Read the contents of Image File.
+                logo_reader.readAsDataURL(logo_file[0]);
+                logo_reader.onload = function (e) {
+                    //Initiate the JavaScript Image object.
+                    logo_image = new Image();
+                    //Set the Base64 string return from FileReader as source.
+                    logo_image.src = e.target.result;
+
+                    logo_image.onerror = function() {
+                        white_label_notice_logo.css('background', '#FFD4D4');
+                        white_label_notice_logo.html('Supported types: PNG, JPG');
+                    };
+
+                    logo_image.onload = function() {
+                        if (this.width > 125 || this.height > 40 ) {
+                            white_label_notice_logo.css('background', '#FFD4D4');
+                            white_label_notice_logo.html('Max size: 125x40');
+                        } else {
+                            logo_form_data.append('file[]', logo_file[0], 'white_label_logo_custom');
+                            $.ajax({
+                                url: Web_Dir + '/functions/settings_change_logo',
+                                type: 'POST',
+                                data: logo_form_data,
+                                cache: false,
+                                contentType: false,
+                                enctype: 'multipart/form-data',
+                                processData: false,
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"));
+                                },
+                                success: function(response) {
+
+                                    if (response['msg'] == 'ok') {
+                                        white_label_notice_logo.html('Logo was successfully uploaded, please refresh');
+                                        white_label_notice_logo.css('background', '#c9efb9');
+
+
+                                    } else {
+                                        white_label_notice_logo.html("Logo was not uploaded: " + response['msg']);
+                                        white_label_notice_logo.css('background', '#FFD4D4');
+                                    }
+
+                                }
+                            });
+                        }
+                    };
+                };
+            }
+
+            e.preventDefault();
+
+        });
+
+        var white_label_notice_favicon = $('#white_label_notice_favicon');
+        var favicon_form_data, favicon_reader, favicon_file, favicon_image;
+
+        $('.upload_white_label_favicon').click(function(e) {
+            white_label_notice_favicon.html('');
+            white_label_notice_favicon.css('background', '#ffffff');
+
+            favicon_form_data = new FormData();
+            favicon_reader = new FileReader();
+            favicon_file = $('#white_label_favicon')[0].files;
+
+            if (favicon_file.length == 0) {
+                white_label_notice_favicon.css('background', '#FFD4D4');
+                white_label_notice_favicon.html('Favicon not selected');
+            } else {
+
+                //Read the contents of Image File.
+                favicon_reader.readAsDataURL(favicon_file[0]);
+                favicon_reader.onload = function (e) {
+                    //Initiate the JavaScript Image object.
+                    favicon_image = new Image();
+                    //Set the Base64 string return from FileReader as source.
+                    favicon_image.src = e.target.result;
+
+                    favicon_image.onerror = function() {
+                        white_label_notice_favicon.css('background', '#FFD4D4');
+                        white_label_notice_favicon.html('Supported type: ico');
+                    };
+
+                    favicon_image.onload = function() {
+                        //Determine the Height and Width.
+                        if (this.width > 64 || this.height > 64) {
+                            white_label_notice_favicon.css('background', '#FFD4D4');
+                            white_label_notice_favicon.html('Max size: 64x64');
+                        } else {
+                            favicon_form_data.append('file[]', favicon_file[0], 'white_label_favicon_custom');
+                            $.ajax({
+                                url: Web_Dir + '/functions/settings_change_favicon',
+                                type: 'POST',
+                                data: favicon_form_data,
+                                cache: false,
+                                contentType: false,
+                                enctype: 'multipart/form-data',
+                                processData: false,
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"));
+                                },
+                                success: function(response) {
+
+                                    if (response['msg'] == 'ok') {
+                                        white_label_notice_favicon.html('Favicon was successfully uploaded, please refresh your page (CTRL + F5)');
+                                        white_label_notice_favicon.css('background', '#c9efb9');
+
+
+                                    } else {
+                                        white_label_notice_favicon.html("Favicon was not uploaded: " + response['msg']);
+                                        white_label_notice_favicon.css('background', '#FFD4D4');
+                                    }
+
+                                }
+                            });
+                        }
+                    };
+                };
+            }
+
+            e.preventDefault();
+
+        });
+
+    });
+</script>

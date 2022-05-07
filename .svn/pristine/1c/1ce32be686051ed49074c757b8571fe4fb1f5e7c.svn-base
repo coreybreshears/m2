@@ -1,0 +1,10 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('Source')%></h2>
+    <div class="details-form">
+      <div class="row show_source">
+        <code><%= @email.source %></code>
+      </div>
+    </div>
+  </div>
+</div>

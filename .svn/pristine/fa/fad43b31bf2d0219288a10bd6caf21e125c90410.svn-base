@@ -1,0 +1,1138 @@
+<% credit = nice_credit(user) %>
+<% if defined?(user) and !user.new_record? and params[:action] != 'default_user' %>
+    <table>
+      <tr>
+        <%= render '/layouts/user_buttons', user: user %>
+      </tr>
+    </table>
+<% end %>
+<table width="100%">
+<tr>
+<td valign="top">
+<table>
+<tr>
+  <td colspan="2" class="bottom_border"><b><%= _('General') %></b></td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+<tr>
+<td valign="top" colspan="2">
+<table class="simple">
+<% if params[:controller] == "users" and params[:action] == 'default_user' %>
+    <% if m4_functionality? %>
+      <tr>
+        <td width="160"> <%= _('Status') %>:</td>
+        <td><%= select_tag('user[user_status]', user_status_select) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td> <%= _('Default_Username_length') %>:</td>
+      <td> <%= text_field_tag('username_length', username_length.to_i, "class" => "input") %> </td>
+    </tr>
+    <tr>
+      <td> <%= _('Default_Password_length') %>:</td>
+      <td> <%= text_field_tag('password_length', password_length.to_i, "class" => "input") %> </td>
+    </tr>
+<% else %>
+    <% if m4_functionality? %>
+      <tr>
+        <td width="160"> <%= _('Status') %>:</td>
+        <td><%= select_tag('user[user_status]', user_status_select(user)) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td width="160"> <%= _('username') %>:</td>
+      <td><%= text_field 'user', 'username', "class" => "input", :size => "27" %> </td>
+    </tr>
+    <tr>
+      <td> <%= _('secret') %>:</td>
+      <td> <%= password_field 'password', 'password', "class" => "input", :size => "27" %>
+      <input id="strong_pass" onclick="javascript:getStrongPassword(event)" style="padding: 2.5px 10px; font-size: 11px; color: grey;" type="button" value="<%= _('Suggest_strong_password') %>" autocomplete="off">
+
+      <li style ="display: none; list-style-type:none; padding-left: 3px; font-size: 12px;" id = "copy_notice"> <%= _('Password_was_copied_to_clipboard') %> </li>
+      </td>
+      <script src="<%= Web_Dir %>/assets/strong_password.js"></script>
+    </tr>
+<% end %>
+<tr <%= tooltip(_('Balance'), _('Balance_user_edit_explanation')) %>>
+  <td id="set_balance_name"><%= _('Balance') %>:</td>
+  <td id="user_balance_value">
+    <% if user.new_record? %>
+        <%= text_field 'user', 'balance', "class" => "input", :size => "10", :maxlength => "20" %> <%= current_user.currency.name %>
+    <% else %>
+        <%= nice_number user.balance %> <%= current_user.currency.name %>
+    <% end %>
+    <%= hidden_field('b_f', user.frozen_balance) %>
+  </td>
+</tr>
+<tr>
+  <td><%= _('Balance_range') %>:</td>
+  <td colspan="2">
+    <%= _('MIN') %>:&nbsp;
+    <%= text_field_tag('balance_min', params[:balance_min].present? ? params[:balance_min].to_s : nice_number(user.balance_min ? user.balance_min : 0), "class" => "input", :size => "8", :maxlength => "50") %>
+    <%= _('MAX') %>:&nbsp;
+    <%= text_field_tag('balance_max', params[:balance_max].present? ? params[:balance_max].to_s : nice_number(user.balance_max ? user.balance_max : 0), "class" => "input", :size => "8", :maxlength => "50") %> <%= current_user.currency.name %>
+  </td>
+</tr>
+
+<script type="text/javascript">
+    function isDecimal(event) {
+        var regex = /[0-9]/;
+        var value = $('minimal_charge_value').value;
+        if (regex.test(value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //<![CDATA[
+    Event.observe(window, 'load', function () {
+        Event.observe($('user_postpaid_1'), 'click', function () {
+            Element.setStyle('credit-row', {display:'table-row'});
+        });
+        Event.observe($('user_postpaid_2'), 'click', function () {
+            Element.setStyle('credit-row', {display:'none'});
+        });
+    });
+    //]]>
+</script>
+<% if admin? || manager? %>
+    <tr>
+      <td> <%= radio_button_tag('user[hidden]', '0', (user.hidden.to_i == 0), {:id => "user_hidden_1"}) %> <%= _('Not_hidden') %> </td>
+      <td> <%= radio_button_tag('user[hidden]', '1', (user.hidden.to_i == 1), {:id => "user_hidden_2"}) %> <%= _('Hidden') %> </td>
+    </tr>
+<% end %>
+
+
+  <tr id='hide_non_answered_calls'>
+    <td><%= _('hide_non_answered_calls') %>:</td>
+    <td><%= check_box_tag 'hide_non_answered_calls', "1", (user.hide_non_answered_calls.to_i == 1) %></td>
+  </tr>
+
+<% if admin? || manager? %>
+    <tr>
+      <td id="set_call_limit_name"><%= _('Call_limit') %>:</td>
+      <td><%= text_field 'user', 'call_limit', "class" => "input", :size => "5", :maxlength => "10" %>
+        ( <%= _('Call_limit_notice') %> *)
+      </td>
+    </tr>
+    <tr>
+      <td><%= _('Max_Call_rate') %>:</td>
+      <td>
+        <%= text_field_tag('max_call_rate', params[:max_call_rate].present? ? params[:max_call_rate].to_s : nice_number(user.max_call_rate ? user.max_call_rate : 0), "class" => "input", :size => "5", :maxlength => "10") %> <%= current_user.currency.name %>
+      </td>
+    </tr>
+
+    <% if m4_functionality? %>
+          <tr>
+            <td valign="top"><%= _('Price_Protection') %>:</td>
+            <td>
+              <table>
+                <tr>
+                  <td>
+                    <%= radio_button_tag('user[price_protection]', 'off', user.price_protection.to_s == 'off') %>
+                  </td>
+                  <td colspan="2">
+                    <%= _('Off') %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= radio_button_tag('user[price_protection]', 'min_rate_margin', user.price_protection.to_s == 'min_rate_margin') %>
+                  </td>
+                  <td>
+                    <%= _('Minimal_Rate_Margins') %>
+                  </td>
+                  <td>
+                    <%= text_field_tag('min_rate_margin', params[:min_rate_margin].present? ? params[:min_rate_margin].to_s : nice_number(user.min_rate_margin ? user.min_rate_margin : 0), class: 'input', size: 5, maxlength: 30, disabled: user.price_protection.to_s != 'min_rate_margin') %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= radio_button_tag('user[price_protection]', 'min_rate_margin_percent', user.price_protection.to_s == 'min_rate_margin_percent') %>
+                  </td>
+                  <td>
+                    <%= _('Minimal_Rate_Margins_Percent') %>
+                  </td>
+                  <td>
+                    <%= text_field_tag('min_rate_margin_percent', params[:min_rate_margin_percent].present? ? params[:min_rate_margin_percent].to_s : nice_number(user.min_rate_margin_percent ? user.min_rate_margin_percent : 0), class: 'input', size: 5, maxlength: 30, disabled: user.price_protection.to_s != 'min_rate_margin_percent') %>&nbsp;%
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <script type='text/javascript'>
+              Event.observe(window, 'load', function() {
+                  ['user_price_protection_off', 'user_price_protection_min_rate_margin', 'user_price_protection_min_rate_margin_percent'].each(function(radio_button){
+                      Event.observe(radio_button, 'change', function(event) {
+                          if (event.target.checked) {
+                              switch (event.target.value) {
+                                  case 'off':
+                                      $('min_rate_margin').disabled = true;
+                                      $('min_rate_margin_percent').disabled = true;
+                                      break;
+                                  case 'min_rate_margin':
+                                      $('min_rate_margin').disabled = false;
+                                      $('min_rate_margin_percent').disabled = true;
+                                      break;
+                                  case 'min_rate_margin_percent':
+                                      $('min_rate_margin').disabled = true;
+                                      $('min_rate_margin_percent').disabled = false;
+                                      break;
+                                  default:
+                                      $('min_rate_margin').disabled = true;
+                                      $('min_rate_margin_percent').disabled = true;
+                              }
+                          } else {
+                              $('min_rate_margin').disabled = true;
+                              $('min_rate_margin_percent').disabled = true;
+                          }
+                      });
+                  });
+              });
+          </script>
+    <% end %>
+<% end %>
+
+<tr id="def_currency">
+  <td><%= _('Default_currency') %>:</td>
+  <td><%= select_tag('user[currency_id]', options_for_select(Currency.get_active.collect { |t| [t.name, t.id] }, user.try(:currency_id))) %></td>
+</tr>
+<tr>
+  <td><%= _('Time_zone') %>:</td>
+  <td>
+    <%= collection_select(:user, :time_zone, ActiveSupport::TimeZone.all, :name, :to_s) %>
+  </td>
+</tr>
+<% if admin? || manager? %>
+    <tr id="responsible_accountant">
+      <td><%= _('Responsible_Manager') %>:</td>
+      <td><%= select_tag('user[responsible_accountant_id]', options_for_select([[_('Not_selected'), "-1"]] + responsible_accountants.collect { |accountant| [nice_user(accountant), accountant.id] }, manager? && new_user ? current_user.id : user.responsible_accountant_id), {disabled: manager?}) %></td>
+    </tr>
+    <tr id='ignore_global_alerts'>
+      <%= hidden_field_tag 'user[ignore_global_alerts]', 0, id: 'ignore_global_alerts_hidden_field' %>
+      <td><%= _('ignore_global_alerts') %>:</td>
+      <td><%= check_box_tag 'user[ignore_global_alerts]', 1, user.ignore_global_alerts? %></td>
+    </tr>
+    <tr id='show_hangupcause'>
+      <%= hidden_field_tag 'user[show_hangupcause]', 0, id: 'show_hangupcause_hidden_field' %>
+      <td><%= _('Show_Hangup_Cause') %>:</td>
+      <td><%= check_box_tag 'user[show_hangupcause]', 1, user.show_hangupcause.to_i == 1 %></td>
+    </tr>
+
+    <% if m4_functionality? %>
+        <% unless ['default_user', 'default_user_update'].include?(params[:action].to_s) %>
+            <tr>
+              <td>
+                <%= _('Digits_Used_for_Price') %>:
+              </td>
+              <td>
+                <%= select_tag('user[digits_used_for_price]', digits_used_for_price_select(user)) %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= _('Rounding_Method') %>:
+              </td>
+              <td>
+                <%= select_tag('user[digits_rounding_method]', options_for_select([[_('Up'), 'up'], [_('Down'), 'down'], [_('True_Mathematical'), 'mathematical']], (user.try(:digits_rounding_method) || 'up').to_s)) %>
+              </td>
+            </tr>
+        <% end %>
+    <% end %>
+
+    <tr id="responsible_accountant">
+      <td nowrap><%= _('Rate_Notification_Template') %>:</td>
+      <td><%= select_tag('user[rate_notification_template_id]', options_for_select([[_('Not_selected'), '-1']] + RateNotificationTemplate.list_all.collect { |rate_notification_template| [rate_notification_template.name, rate_notification_template.id] }, user.try(:rate_notification_template_id))) %></td>
+    </tr>
+<% end %>
+</table>
+</td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+
+<script type="text/javascript">
+    //<![CDATA[
+    Event.observe(window, 'load', function () {
+        var wsw = $('warning_active');
+
+        disableWarninInput();
+
+        Event.observe(wsw, 'click', function () {
+          disableWarninInput();
+        });
+
+        function disableWarninInput(){
+          $$("#warning select, #warning input").each(function (el) {
+              if (wsw.checked) {
+                  if (el != wsw) {
+                      el.disabled = false;
+                  }
+              } else {
+                  if (el != wsw) {
+                      el.disabled = true;
+                  }
+              }
+          });
+        }
+
+    });
+    //]]>
+</script>
+<% if m4_functionality? %>
+  <tr>
+    <td colspan="2" class="bottom_border"><b><%= _('Fraud_Protection') %></b></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="10"></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <table class="simple">
+        <tr>
+          <td><%= _('Enforce_Daily_Limit')%>:</td>
+          <td><%= check_box_tag 'user[enforce_daily_limit]', '1', (user.enforce_daily_limit.to_i == 1) %> </td>
+        </tr>
+        <tr>
+          <td><%= _('Daily_Spend_Limit')%>: </td>
+          <td><%= text_field_tag('user[daily_spend_limit]', nice_number(user.daily_spend_limit), maxlength: 10, size: 6)%> <%= current_user.currency.name %></td>
+        </tr>
+        <tr>
+          <td><%= _('Daily_Spend_Warning')%>:</td>
+          <td><%= text_field_tag('user[daily_spend_warning]', nice_number(user.daily_spend_warning), maxlength: 10, size: 6)%> <%= current_user.currency.name %></td>
+        </tr>
+        <tr>
+          <td><%= _('Kill_Calls_In_Progress')%>: </td>
+          <td><%= check_box_tag 'user[kill_calls_in_progress]', '1', (user.kill_calls_in_progress.to_i == 1) %> </td>
+        </tr>
+        <tr>
+          <td><%= _('Show_Daily_Limit')%>: </td>
+          <td><%= check_box_tag 'user[show_daily_limit]', '1', (user.show_daily_limit.to_i == 1) %> </td>
+        </tr>
+        <tr>
+          <td><%= _('Allow_Customer_To_Edit')%>: </td>
+          <td><%= check_box_tag 'user[allow_customer_to_edit]', '1', (user.allow_customer_to_edit.to_i == 1) %> </td>
+          <% if !%w[default_user new create].include?(params[:action]) && (admin? || (manager? && authorize_manager_fn_permissions(fn: :users_users_kill_calls)))%>
+            <td><input type="button" class="kill-all-calls-now" id="kill-all-calls" value="<%= _('Kill_All_Calls_Now') %>"/><td>
+          <% end %>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <% if !%w[default_user new create].include?(params[:action]) && (admin? || (manager? && authorize_manager_fn_permissions(fn: :users_users_kill_calls))) %>
+    <script type="text/javascript">
+      Event.observe(window, 'load', function () {
+        Event.observe('kill-all-calls', 'mousedown', function () {
+            if (confirm("<%= _('Are_you_sure') %>")){
+              $('kill-all-calls').disabled = true;
+              $('kill-all-calls').value = "<%= _('Processing..') %>";
+              window.open('<%= "#{Web_Dir}/users/kill_all_calls/#{user.id}" %>', '_self')
+            }
+        });
+      });
+    </script>
+  <% end %>
+<% end %>
+<tr>
+  <td colspan="2" class="bottom_border"><b><%= _('Blocking') %></b></td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <table class="simple">
+      <tr>
+        <td> <%= radio_button_tag('user[blocked]', '0', (user.blocked == 0), {:id => "user_blocked_1"}) %> <%= _('Not_blocked') %> </td>
+        <td> <%= radio_button_tag('user[blocked]', '1', (user.blocked == 1), {:id => "user_blocked_2"}) %> <%= _('Blocked') %> </td>
+      </tr>
+      <tr>
+        <td><%= _('Block_at') %>:</td>
+        <% ad = user.block_at %>
+        <td><%= select_date(ad.to_date, start_year: Date.today.year-1, end_year: Date.today.year+2, prefix: 'block_at_date', use_month_numbers: true) %></td>
+      </tr>
+
+      <tr>
+        <td> <%= _('Block_at_conditional') %>:</td>
+        <% ad = user.block_at_conditional %>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <select name="block_at_conditional">
+                  <% for day in 1..31 %>
+                      <option value="<%= day %>" <%= "selected" if ad.to_i == day.to_i %>> <%= day %> </option>
+                  <% end %>
+                </select></td>
+              <td><%= _('Use') %>?
+                <%= check_box_tag 'block_conditional_use', "1", user.block_conditional_use.to_i == 1 %></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+
+
+
+  <tr>
+    <td colspan="2" class="bottom_border"><b><%= _('Warning_Balance') %></b></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="10"></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2" id="warning">
+      <table class="simple">
+        <tr>
+          <td width="170"><%= _('Active') %>
+            : <%= check_box_tag 'warning_email_active', "1", (user.warning_email_active.to_i == 1), :id => "warning_active" %> </td>
+        </tr>
+        <tr>
+          <td id="email_balance_name" colspan="2"><%= _('Send_email_when_balance') %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= radio_button_tag(:warning_balance_increases, 0, user.warning_balance_increases.to_i == 0) %>
+            <%= label_tag(:more, "drops lower than") + ':' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= radio_button_tag(:warning_balance_increases, 1, user.warning_balance_increases.to_i == 1) %>
+            <%= label_tag(:lower, "increases more than") + ':' %>
+          </td>
+        </tr>
+        <% if params[:action] != "default_user" and params[:action] != "default_user_update" %>
+            <tr>
+              <td width="150"> <%= _('user') %>: </td>
+              <td id="warning_email_balance_user_value">
+                <%= text_field_tag('warning_email_balance', params[:warning_email_balance].present? ? params[:warning_email_balance].to_s : (user.warning_email_balance.present? ? nice_number(user.warning_email_balance) : 0), "class" => "input", :size => "10", :maxlength => "15") %>
+                <%= current_user.currency.name %>
+                &nbsp;
+                <% if not warning_balance_email_send_log.blank? and not warning_balance_email_send_log[:user].blank? %>
+                  <span <%= tooltip(_('Warning_Balance_email_send_log'), warning_balance_email_send_log[:user], escape_html: true) %>>
+                    <% options = {style: "position: relative; top:4px"} %>
+                    <%= b_email(options) %>
+                  </span>
+                <% end %>
+              </td>
+            </tr>
+            <% unless reseller? %>
+              <tr>
+                <td> <%= _('Admin') %>: </td>
+                <td id="warning_email_balance_admin_value">
+                  <%= text_field_tag('warning_email_balance_admin', params[:warning_email_balance_admin].present? ? params[:warning_email_balance_admin].to_s : (user.warning_email_balance_admin.present? ? nice_number(user.warning_email_balance_admin) : 0), "class" => "input", :size => "10", :maxlength => "15") %>
+                  <%= current_user.currency.name %>
+                  &nbsp;
+                  <% if not warning_balance_email_send_log.blank? and not warning_balance_email_send_log[:admin].blank? %>
+                    <span <%= tooltip(_('Warning_Balance_email_send_log'), warning_balance_email_send_log[:admin], escape_html: true) %>>
+                      <% options = {style: "position: relative; top:4px"} %>
+                      <%= b_email(options) %>
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td> <%= _('Responsible_Manager') %>: </td>
+                <td id="warning_email_balance_accountant_value">
+                  <%= text_field_tag('warning_email_balance_manager', params[:warning_email_balance_manager].present? ? params[:warning_email_balance_manager].to_s : (user.warning_email_balance_manager.present? ? nice_number(user.warning_email_balance_manager) : 0), "class" => "input", :size => "10", :maxlength => "15") %>
+                  <%= current_user.currency.name %>
+                  &nbsp;
+                  <% if not warning_balance_email_send_log.blank? and not warning_balance_email_send_log[:manager].blank? %>
+                    <span <%= tooltip(_('Warning_Balance_email_send_log'), warning_balance_email_send_log[:manager], escape_html: true) %>>
+                      <% options = {style: "position: relative; top:4px"} %>
+                      <%= b_email(options) %>
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+        <% else %>
+            <tr>
+              <td width="150"> <%= _('user') %>: </td>
+              <td id="warning_email_balance_user_value">
+                <%= text_field_tag('warning_email_balance', params[:warning_email_balance].present? ? params[:warning_email_balance].to_s : (warning_email[:balance].present? ? nice_number(warning_email[:balance]) : 0), "class" => "input", :size => "10", :maxlength => "15") %>
+                <%= current_user.currency.name %>
+              </td>
+            </tr>
+            <% unless reseller? %>
+              <tr>
+                <td > <%= _('Admin') %>: </td>
+                <td id="warning_email_balance_admin_value">
+                  <%= text_field_tag('warning_email_balance_admin', params[:warning_email_balance_admin].present? ? params[:warning_email_balance_admin].to_s : (warning_email[:balance_admin].present? ? nice_number(warning_email[:balance_admin]) : 0), "class" => "input", :size => "10", :maxlength => "15") %>
+                  <%= current_user.currency.name %>
+                </td>
+              </tr>
+              <tr>
+                <td> <%= _('Responsible_Manager') %>: </td>
+                <td id="warning_email_balance_accountant_value">
+                  <%= text_field_tag('warning_email_balance_manager', params[:warning_email_balance_manager].present? ? params[:warning_email_balance_manager].to_s : (warning_email[:balance_manager].present? ? nice_number(warning_email[:balance_manager]) : 0), "class" => "input", :size => "10", :maxlength => "15") %>
+                  <%= current_user.currency.name %>
+                </td>
+              </tr>
+            <% end %>
+        <% end %>
+        <td colspan="4"><%= radio_button_tag("user[warning_email_hour]", "-1", (user.warning_email_hour.to_i == -1)) %> <%= _('Only_once_as_balance_crosses_set_value') %></td>
+        </tr>
+        <tr>
+          <td colspan="4"><%= radio_button_tag("user[warning_email_hour]", "0", (user.warning_email_hour.to_i > -1)) %> <%= _('Every_day_at') %>
+            : <%= select_hour(user.warning_email_hour.to_i == -1 ? 0 : user.warning_email_hour.to_i, :field_name => 'user_warning_email_hour') %><%= _('hour') %></td>
+        </tr>
+        <tr>
+          <%= hidden_field_tag('send_warning_balance_sms', '0') %>
+          <td colspan="4"><%= _('Send_SMS_in_addition_to_Emails') %>: <%= check_box_tag 'send_warning_balance_sms', '1', (user.send_warning_balance_sms.to_i == 1), id: 'send_warning_balance_sms' %></td>
+        </tr>
+      </table>
+      <%= hidden_field_tag('email_warning_sent_test', user.warning_email_sent.to_i) %>
+    </td>
+  </tr>
+
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+<tr>
+  <td colspan="2" class="bottom_border"><b><%= _('Invoices') %></b></td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <%= render 'user_invoices_form', user: user,
+               invoice_grace_period: params[:invoice_grace_period] %>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+
+<% if m4_functionality? && !new_user && params[:action] != 'default_user' %>
+  <tr>
+    <td colspan="2" class="bottom_border"><b><%= _('Documents') %></b></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="10"></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="2">
+      <div id="document_notice_status" class="user_doc_status_notice"></div>
+      <table class="simple" id="user_documents_table">
+        <tr>
+          <td>
+            <span id='document_list_label' <% if user.user_documents.blank? %> style="display:none;" <% end %> >
+              <%= _('Document_List') %>:
+            </span>
+            <span id='no_document_label' <% if user.user_documents.present? %> style="display:none;" <% end %>>
+              <%= _('No_Documents')%>...
+            </span>
+          </td>
+          <th class='user_doc_description'></th>
+          <th class='user_doc_upload_date'></th>
+          <th class='user_doc_upload_delete'></th>
+        </tr>
+        <% user.user_documents.each do |item| %>
+          <tr class='user_doc_row' id='user_document_<%= item.id %>'>
+            <td class='user_doc_name' onmouseover="Tip('<%= item.name.to_s.gsub('"', '&quot;').gsub("'", '&#92;&#39;').html_safe %>', WIDTH, -600, TITLE, '<%= _('Name') %>', TITLEBGCOLOR, '#494646', FADEIN, 200, FADEOUT, 200 )" onmouseout = "UnTip()">
+              <a href='/billing/users/download_user_document/<%= item.id %>' class="doc_link" id='download_link_<%= item.id %>'><%= item.name %></a>
+            </td>
+            <td class='user_doc_description' onmouseover="Tip('<%= item.description.to_s.gsub('"', '&quot;').gsub("'", '&#92;&#39;').html_safe %>', WIDTH, -600, TITLE, '<%= _('Description') %>', TITLEBGCOLOR, '#494646', FADEIN, 200, FADEOUT, 200 )" onmouseout = "UnTip()"><%= item.description %></td>
+            <td class='user_doc_upload_date'><%= nice_date(item.upload_date.try(:to_time)) %></td>
+            <td class='user_doc_upload_delete'>
+              <a href='#' onclick="javascript:deleteDocument(event, <%= item.id %>)" class="doc_link" id='delete_link_<%= item.id %>'>
+                <%= _('Delete').upcase %>
+              </a>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+      </table>
+      <table id='user_documents_upload'>
+      <tr>
+          <td class='user_doc_upload_th'>
+            <%= _('Description') %>:
+          </td>
+
+        </tr>
+        <tr>
+
+            <td class='user_doc_upload_tr'> <%= text_field_tag :document_description, "", style: 'height:18px; width: 147px;' %>
+            <%= file_field_tag :document, style: 'border-color: transparent; color:black; width: 248px;' %>
+
+              <input id="upload_document" onclick="javascript:uploadDocument(event)" style="padding: 2.5px 10px; font-size: 11px; height:22px; width: 100px;" type="button" value="<%= _('Upload') %>" autocomplete="off">
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <script type="text/javascript">
+        function uploadDocument (event) {
+           event.preventDefault();
+           var fd = new FormData();
+           var document_notice_status = $j('#document_notice_status');
+           var files = $j('#document')[0].files;
+           if(files.length > 0 ){
+             if (files[0].size > 1073741824) {
+                cleanDocumentInputs();
+                document_notice_status.html('Maximum File size: 1 GB');
+                document_notice_status.css('background', '#FFD4D4');
+                document_notice_status.show().delay(3000).fadeOut();
+                return;
+             }
+             fd.append('file',files[0]);
+             fd.append('id', <%= user.id %>);
+             fd.append('document_description', $j('#document_description').val());
+
+             jQuery.ajax({
+               type: "POST",
+               url: "<%= Web_Dir %>/users/upload_user_document",
+               data: fd,
+               contentType: false,
+               processData: false,
+               beforeSend: function (xhr) {
+                  // Security concerns
+                  xhr.setRequestHeader("X-CSRF-Token", jQuery("meta[name='csrf-token']").attr("content"));
+                  freezeButton($j('#upload_document'));
+                },
+                success: function(data, status, xhrs) {
+                  unfreezeButton($j('#upload_document'));
+                  cleanDocumentInputs();
+                  getUserDocuments();
+                  document_notice_status.html('Document was successfully uploaded');
+                  document_notice_status.css('background', '#c9efb9');
+                  document_notice_status.show().delay(3000).fadeOut();
+                },
+                error: function(data, status, xhrs) {
+                  unfreezeButton($j('#upload_document'));
+                  cleanDocumentInputs();
+                  document_notice_status.html('Document was not uploaded');
+                  document_notice_status.css('background', '#FFD4D4');
+                  document_notice_status.show().delay(3000).fadeOut();
+                }
+              });
+           } else {
+                document_notice_status.html('Please select a file');
+                document_notice_status.css('background', '#FFD4D4');
+                document_notice_status.show().delay(3000).fadeOut();
+           }
+        }
+
+        function getUserDocuments() {
+           jQuery.ajax({
+               type: "POST",
+               url: "<%= Web_Dir %>/users/get_user_documents",
+               data: {id: <%= user.id %>},
+               dataType: "json",
+               beforeSend: function (xhr) {
+                  // Security concerns
+                  xhr.setRequestHeader("X-CSRF-Token", jQuery("meta[name='csrf-token']").attr("content"));
+                },
+                success: function(data, status, xhrs) {
+                  var jsonData = $j.parseJSON(data.data);
+                  createDocumentTable(data.data);
+                }
+              });
+        }
+
+        function deleteDocument(event, id) {
+          event.preventDefault();
+          var document_notice_status = $j('#document_notice_status');
+
+          jQuery.ajax({
+             type: "POST",
+             url: "<%= Web_Dir %>/users/delete_user_document",
+             data: {id: id},
+             dataType: "json",
+             beforeSend: function (xhr) {
+                // Security concerns
+                xhr.setRequestHeader("X-CSRF-Token", jQuery("meta[name='csrf-token']").attr("content"));
+                $j("#delete_link_" + id).addClass('disabled');
+              },
+              success: function(data, status, xhrs) {
+                getUserDocuments();
+                document_notice_status.html('Document was successfully deleted');
+                document_notice_status.css('background', '#c9efb9');
+                document_notice_status.show().delay(3000).fadeOut();
+              },
+              error: function(data, status, xhrs) {
+                document_notice_status.html('Document was not deleted');
+                document_notice_status.css('background', '#FFD4D4');
+                document_notice_status.show().delay(3000).fadeOut();
+              }
+            });
+
+        }
+
+        function freezeButton(btn) {
+          btn.prop('disabled', true);
+          btn.val('Uploading...');
+        }
+
+        function unfreezeButton(btn) {
+          btn.prop('disabled', false);
+          btn.val('<%= _('Upload') %>');
+        }
+
+        function createDocumentTable(data) {
+          var tableLines = '';
+          if (data.length > 0) {
+            $j('#document_list_label').show();
+            $j('#no_document_label').hide();
+          } else {
+            $j('#document_list_label').hide();
+            $j('#no_document_label').show();
+          }
+
+          data.forEach(function(item, i){
+            tableLines += "<tr class='user_doc_row' id='user_document_" + item.id +"'><td class='user_doc_name' onmouseover=\"Tip('" + item.filtered_name + "', WIDTH, -600, TITLE, '<%= _('Name') %>', TITLEBGCOLOR, '#494646', FADEIN, 200, FADEOUT, 200 )\" onmouseout = \"UnTip()\">" +
+              "<a href='/billing/users/download_user_document/" + item.id + "' class='doc_link' id='download_link_" + item.id + "'>" + item.name + "</a></td><td class='user_doc_description' onmouseover=\"Tip('" + item.filtered_description + "', WIDTH, -600, TITLE, '<%= _('Description') %>', TITLEBGCOLOR, '#494646', FADEIN, 200, FADEOUT, 200 )\" onmouseout = \"UnTip()\">" + item.description + "</td><td class='user_doc_upload_date'>" + item.upload_date + "</td><td class='user_doc_upload_delete'>" +
+              "<a href='#' onclick='javascript:deleteDocument(event, " + item.id + ")' class='doc_link' id='delete_link_" + item.id + "'><%= _('Delete').upcase %></a></td></tr>"
+          });
+
+          $j('.user_doc_row').remove();
+          $j('#user_documents_table > tbody > tr').eq(0).after(tableLines);
+        }
+
+        function cleanDocumentInputs() {
+          $j('#document').val("");
+          $j('#document_description').val("");
+        }
+
+  </script>
+<% end %>
+<% if admin? && paypal_addon_active? && paypal_payments_active? %>
+  <tr>
+    <td colspan="2" height="10"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="bottom_border"><b><%= _('PayPal') %></b></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="10"></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <table class="simple">
+        <tr>
+            <td><%= _('Allow_PayPal') %>:</td>
+            <td><%= check_box_tag 'user[allow_paypal]', 1, user.allow_paypal == 1 %></td>
+        </tr>
+        <tr>
+            <td><%= _('Need_Approval') %>:</td>
+            <td><%= check_box_tag 'user[paypal_need_approval]', 1, user.paypal_need_approval == 1 %></td>
+        </tr>
+        <tr <%= tooltip(_('Credit_Entered_Amount'), _('Minus_calculated_Fee')) %>>
+            <td><%= _('Credit_Entered_Amount') %>:</td>
+            <td><%= radio_button_tag('user[paypal_credit_selection]', 0, user.paypal_credit_selection == 0) %></td>
+        </tr>
+        <tr <%= tooltip(_('Net_Amount'), _('Amount_returned_by_PayPal_Minus_calculated_Fee')) %>>
+            <td><%= _('Credit_Net_Amount') %>:</td>
+            <td><%= radio_button_tag('user[paypal_credit_selection]', 1, user.paypal_credit_selection == 1) %></td>
+        </tr>
+        <tr>
+            <td><%= _('Charge_Fee_on_Entered_Amount') %>:</td>
+            <td>
+              <%= radio_button_tag('user[paypal_fee_selection]',0, user.paypal_fee_selection == 0) %>
+              <%= text_field_tag 'user[paypal_charge_fee_on_entered_amount]', nice_number(user.paypal_charge_fee_on_entered_amount), size: 5 %>&nbsp;%
+            </td>
+        </tr>
+        <tr <%= tooltip(_('Net_Amount'), _('Amount_returned_by_PayPal')) %>>
+            <td><%= _('Charge_Fee_on_Net_Amount') %>:</td>
+            <td>
+              <%= radio_button_tag('user[paypal_fee_selection]', 1, user.paypal_fee_selection == 1) %>
+              <%= text_field_tag 'user[paypal_charge_fee_on_net_amount]', nice_number(user.paypal_charge_fee_on_net_amount), size: 5 %>&nbsp;%
+            </td>
+        </tr>
+        <tr>
+            <td><%= _('Do_not_send_confirmation_email') %>:</td>
+            <td><%= check_box_tag 'user[paypal_do_not_send_confirmation_email]', 1, user.paypal_do_not_send_confirmation_email == 1 %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+<% end %>
+<% unless params[:action] == 'default_user' %>
+    <tr>
+      <td colspan="2" height="10"></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="bottom_border"><b><%= _('Comment') %></b></td>
+    </tr>
+    <tr>
+      <td colspan="2" height="10"></td>
+    </tr>
+    <tr>
+      <td valign="top" colspan="2">
+        <table>
+          <tr>
+            <td><%= text_area_tag 'user[comment]', user.comment, cols: 60, rows: 10 %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+<% end %>
+</table>
+</td>
+<td valign="top">
+<table>
+<% gdpr_activated = (Confline.get_value('GDPR_Activated').to_i == 1 && !session["gdpr_agreed_user_details_#{user.id}"] && current_user.id != user.id && !%w[default_user new create].include?(params[:action])) %>
+<% if gdpr_activated %>
+    <tr id="td_gdpr_clickable_agreement_text">
+      <td colspan="2" style="padding: 0 0 5px 4px">
+        <span id="gdpr_clickable_agreement_text">
+	            <%= _('Data_hidden_due_to_GDPR_Click_here_to_show_data_Action_will_be_logged') %>
+        </span>
+      </td>
+    </tr>
+<% end %>
+<tr>
+  <td colspan="2" class="bottom_border"><b><%= _('Details') %></b></td>
+</tr>
+<tr>
+  <td height="10" colspan="2"></td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <table class="simple">
+      <tr>
+        <td width="150px"> <%= _('first_name') %>/<%= _('Company_name') %>:</td>
+        <td><%= text_field 'user', 'first_name', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+      </tr>
+      <tr>
+        <td ><%= _('last_name') %>:</td>
+        <td><%= text_field 'user', 'last_name', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+      </tr>
+      <tr>
+        <td><%= _('Company_Personal_ID') %>:</td>
+        <td><%= text_field 'user', 'clientid', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+      </tr>
+      <tr>
+        <td><%= _('Agreement_number') %>:</td>
+        <td><%= text_field 'user', 'agreement_number', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+      </tr>
+      <% if params[:action].to_s != 'default_user' %>
+          <tr>
+            <td><%= _('Agreement_date') %>:</td>
+            <% ad = (user.agreement_date ? user.agreement_date : Time.now) %>
+            <td <%= 'class=gdpr_input_hidden' if gdpr_activated %>><%= select_date(ad.to_date, end_year: Date.today.year+1, prefix: 'agr_date', use_month_numbers: true) %></td>
+          </tr>
+      <% end %>
+      <tr>
+        <td><%= _('Language') %>:</td>
+        <td><%= text_field 'user', 'language', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+      </tr>
+      <tr>
+        <td><%= _('Country_of_Taxation') %>:</td>
+        <td <%= 'class=gdpr_input_hidden' if gdpr_activated %>>
+          <div class="nb">
+            <select name="user[taxation_country]">
+              <% countries.each do |country| %>
+                  <% comp_country = (user.taxation_country ? user.taxation_country.to_i : default_country_id.to_i) %>
+                  <option value="<%= country.id %>" <%= 'selected' if country.id == comp_country %>><%= h(country.name[0, 22]) %></option>
+              <% end %>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><%= _('VAT_Reg_number') %>:</td>
+        <td><%= text_field 'user', 'vat_number', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+      </tr>
+      <tr>
+        <td><%= _('Accounting_number') %>:</td>
+        <td><%= text_field 'user', 'accounting_number', class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated, size: 30 %></td>
+      </tr>
+      <tr>
+        <td><%= _('Web_Address') %>:</td>
+        <td><%= text_field 'user', 'web_address', class: 'input', size: 30 %></td>
+      </tr>
+      <tr>
+        <td height="20"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table id="company_emails" style="width:100%">
+            <tr>
+              <td colspan="2" class="bottom_border">
+                <b><%= _('company_emails') %></b>
+              </td>
+            </tr>
+            <tr>
+              <td height="10"></td>
+            </tr>
+            <%= render 'company_emails_form', user: user, gdpr_activated: gdpr_activated %>
+            <tr>
+              <td height="20"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="bottom_border">
+          <b><%= _('Registration_address') %></b>
+        </td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <%= render 'address_form', user: user, countries: countries,
+                 default_country_id: default_country_id,
+                 disallow_email_editing: disallow_email_editing, gdpr_activated: gdpr_activated
+      %>
+      <tr>
+        <td height="20"></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="bottom_border">
+          <b><%= _('Taxes') %></b>
+        </td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= render 'tax_form', user: user %>
+        </td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <% if gdpr_activated %>
+        <script type="text/javascript">
+            jQuery('#gdpr_clickable_agreement_text').click(function() {
+                jQuery('#td_gdpr_clickable_agreement_text').hide();
+                jQuery.ajax({
+                    url: '<%= Web_Dir %>/users/gdpr_agreed_user_details/<%= user.id %>',
+                    type: 'get',
+                    cache: false,
+                    success: function(returnData) {
+                        jQuery('.gdpr_input_disabled').removeClass('gdpr_input_disabled').prop('disabled', false);
+                        jQuery('.gdpr_input_hidden').removeClass('gdpr_input_hidden');
+                    },
+                    error: function(returnData) {
+                        alert('Something went wrong, please try again.');
+                        jQuery('#td_gdpr_clickable_agreement_text').show();
+                    }
+                });
+            });
+        </script>
+    <% end %>
+
+      <% if blacklists_on %>
+        <tr id="blacklists_form_name">
+          <td colspan="2" class="bottom_border"><b><%= "#{_('Blacklist')} / #{_('Whitelist')}" %></b></td>
+        </tr>
+        <tr id="blacklists_form">
+          <td colspan="2">
+            <table class="simple">
+              <tr>
+                <td height="10" colspan="2"></td>
+              </tr>
+              <tr>
+                <td><%= _('Enable_Static_Source') %></td>
+                <td>
+                  <%= radio_button(:user, :enable_static_source_list, 'no', checked: (user.enable_static_source_list.to_s == 'no' || !%w[blacklist whitelist].include?(user.enable_static_source_list.to_s)), onclick: "source_blacklist_whitelist_radiobuttons('no');") + 'No' %>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <%= radio_button(:user, :enable_static_source_list, 'blacklist', checked: user.enable_static_source_list.to_s == 'blacklist', onclick: "source_blacklist_whitelist_radiobuttons('blacklist');") + _('Blacklist') %>:
+                  <% if number_pools.present? %>
+                      <%= select_tag 'user[static_source_list_id_blacklist]', options_from_collection_for_select(number_pools, :id, :name, {selected: user.static_source_list_id}) %>
+                  <% else %>
+                      <div id="source_blacklist_number_pool_select" style="display:inline;">
+                        <%= b_exclamation %> <%= link_to _('You_have_to_create_Number_Pool'), controller: :number_pools, action: :pool_list %>
+                      </div>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <%= radio_button(:user, :enable_static_source_list, 'whitelist', checked: user.enable_static_source_list.to_s == 'whitelist', onclick: "source_blacklist_whitelist_radiobuttons('whitelist');") + _('Whitelist') %>:
+                  <% if number_pools.present? %>
+                      <%= select_tag 'user[static_source_list_id_whitelist]', options_from_collection_for_select(number_pools, :id, :name, {selected: user.static_source_list_id}) %>
+                  <% else %>
+                      <div id="source_whitelist_number_pool_select" style="display:inline;">
+                        <%= b_exclamation %> <%= link_to _('You_have_to_create_Number_Pool'), controller: :number_pools, action: :pool_list %>
+                      </div>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= _('Enable_Static_Destination') %>:</td>
+                <td>
+                  <%= radio_button(:user, :enable_static_list, 'no', checked: (user.enable_static_list.to_s == 'no' || !%w[blacklist whitelist].include?(user.enable_static_list.to_s)), onclick: "blacklist_whitelist_radiobuttons('no');") + 'No' %>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <%= radio_button(:user, :enable_static_list, 'blacklist', checked: user.enable_static_list.to_s == 'blacklist', onclick: "blacklist_whitelist_radiobuttons('blacklist');") + _('Blacklist') %>:
+                  <% if number_pools.present? %>
+                      <%= select_tag 'user[static_list_id_blacklist]', options_from_collection_for_select(number_pools, :id, :name, {selected: user.static_list_id}) %>
+                  <% else %>
+                      <div id="blacklist_number_pool_select" style="display:inline;">
+                        <%= b_exclamation %> <%= link_to _('You_have_to_create_Number_Pool'), controller: :number_pools, action: :pool_list %>
+                      </div>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <%= radio_button(:user, :enable_static_list, 'whitelist', checked: user.enable_static_list.to_s == 'whitelist', onclick: "blacklist_whitelist_radiobuttons('whitelist');") + _('Whitelist') %>:
+                  <% if number_pools.present? %>
+                      <%= select_tag 'user[static_list_id_whitelist]', options_from_collection_for_select(number_pools, :id, :name, {selected: user.static_list_id}) %>
+                  <% else %>
+                      <div id="whitelist_number_pool_select" style="display:inline;">
+                        <%= b_exclamation %> <%= link_to _('You_have_to_create_Number_Pool'), controller: :number_pools, action: :pool_list %>
+                      </div>
+                  <% end %>
+                </td>
+              </tr>
+              <script type="text/javascript">
+                  // Static Destination
+                  var bl_radio = $('user_enable_static_list_blacklist');
+                  var wl_radio = $('user_enable_static_list_whitelist');
+                  var bl_np = $('user_static_list_id_blacklist');
+                  var wl_np = $('user_static_list_id_whitelist');
+                  // Static Source
+                  var s_bl_radio = $('user_enable_static_source_list_blacklist');
+                  var s_wl_radio = $('user_enable_static_source_list_whitelist');
+                  var s_bl_np = $('user_static_source_list_id_blacklist');
+                  var s_wl_np = $('user_static_source_list_id_whitelist');
+
+                  function blacklist_whitelist_number_pool_presence() {
+                      var np_present = (<%= number_pools.present? %>);
+                      if (np_present) {
+                          blacklist_whitelist_radiobuttons('<%= user.enable_static_list %>');
+                          source_blacklist_whitelist_radiobuttons('<%= user.enable_static_source_list %>');
+                      } else {
+                          bl_radio.disabled = true;
+                          wl_radio.disabled = true;
+                          s_bl_radio.disabled = true;
+                          s_wl_radio.disabled = true;
+                      }
+                  }
+
+                  function blacklist_whitelist_radiobuttons(radiobutton) {
+                      switch (radiobutton) {
+                          case 'no' :
+                              bl_np.disabled = true;
+                              wl_np.disabled = true;
+                              break;
+                          case 'blacklist' :
+                              bl_np.disabled = false;
+                              wl_np.disabled = true;
+                              break;
+                          case 'whitelist' :
+                              bl_np.disabled = true;
+                              wl_np.disabled = false;
+                              break;
+                      }
+                  }
+
+                  function source_blacklist_whitelist_radiobuttons(radiobutton) {
+                      switch (radiobutton) {
+                          case 'no' :
+                              s_bl_np.disabled = true;
+                              s_wl_np.disabled = true;
+                              break;
+                          case 'blacklist' :
+                              s_bl_np.disabled = false;
+                              s_wl_np.disabled = true;
+                              break;
+                          case 'whitelist' :
+                              s_bl_np.disabled = true;
+                              s_wl_np.disabled = false;
+                              break;
+                      }
+                  }
+
+                  blacklist_whitelist_number_pool_presence();
+              </script>
+            </table>
+          </td>
+        </tr>
+    <% end %>
+    </table>
+  </td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<% if admin? || manager? %>
+    <script type="text/javascript">
+        function Disab(val) {
+            var commit = $('commit')
+            switch (val) {
+                case "accountant" :
+                <%= raw "$('responsible_accountant').style.visibility = 'hidden';" if (admin? || manager?) and (params[:action] == 'default_user' or (user.is_user? and user.owner_id.to_i == 0)) %>
+                    if (<%= (params[:action] == 'default_user') || user.is_user? %>) {
+                        $('hide_non_answered_calls').style.display = 'none';
+                        $('hide_non_answered_calls').style.visibility = 'hidden';
+                    }
+                    $('accountant_type_select').style.display = 'inline';
+                    $('accountant_type_select').name = 'accountant_type';
+                    $('reseller_type_select').style.display = 'none';
+                    $('reseller_type_select').name = 'accountant_type_invalid';
+                    $('company_emails').style.display = 'none';
+                    if (commit != null) {
+                        if ($('accountant_type_select').tagName.toLowerCase() != 'select') {
+                            commit.disabled = true;
+                        } else {
+                            commit.disabled = false;
+                        }
+                    }
+                    break;
+                case "reseller" :
+                <%= raw "$('responsible_accountant').style.visibility = 'visible';" if (admin? || manager?) and (params[:action] == 'default_user' or (user.is_user? and user.owner_id.to_i == 0)) %>
+                    if (<%= (params[:action] == 'default_user') || user.is_user? %>) {
+                        $('hide_non_answered_calls').style.display = 'none';
+                        $('hide_non_answered_calls').style.visibility = 'hidden';
+                    }
+                    $('reseller_type_select').style.display = 'inline';
+                    $('reseller_type_select').name = 'accountant_type';
+                    $('accountant_type_select').style.display = 'none';
+                    $('accountant_type_select').name = 'accountant_type_invalid';
+                    $('company_emails').style.display = '';
+                    if (commit != null) {
+                        if ($('reseller_type_select').tagName.toLowerCase() != 'select') {
+                            commit.disabled = true;
+                        } else {
+                            commit.disabled = false;
+                        }
+                    }
+                    break;
+                default :
+                <%= raw "$('responsible_accountant').style.visibility = 'visible';" if admin? and (params[:action] == 'default_user' or (user.is_user? and user.owner_id.to_i == 0)) %>
+                    if (<%= (params[:action] == 'default_user') || user.is_user? %>) {
+                        $('hide_non_answered_calls').style.display = '';
+                        $('hide_non_answered_calls').style.visibility = 'visible';
+                    }
+                    $('accountant_type_select').style.display = 'none';
+                    $('reseller_type_select').style.display = 'none';
+                    $('company_emails').style.display = '';
+                    if (commit != null) {
+                        commit.disabled = false;
+                    }
+            }
+        }
+        Disab('<%= user.usertype %>');
+    </script>
+<% end %>

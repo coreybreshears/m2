@@ -1,0 +1,38 @@
+<% content_for :additional_buttons do %>
+  <span>
+    <%= button_tag _('Create_New_Export'), class: "search-form-button",
+        onclick: "location.href = '#{Web_Dir}/aggregate_export/new'" %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Auto_aggregate_export_list') %></h2>
+    <div class="table-holder">
+      <% if @agg_exports.present? %>
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <th style="text-align: left!important;"><%= _('Name') %></th>
+              <th width="10%"></th>
+              <th width="10%"></th>
+            </tr>
+            <% @agg_exports.each do |agg_export| %>
+                <tr>
+                  <td id="name_<%= agg_export.id %>" style="text-align: left!important;">
+                    <%= agg_export.name %>
+                  </td>
+                  <td id="edit_<%= agg_export.id %>">
+                    <%= link_to 'EDIT', {action: :edit, id: agg_export.id}, id: "edit_link_#{agg_export.id}" %>
+                  </td>
+                  <td id="destroy_<%= agg_export.id %>">
+                    <%= button_to 'DELETE', {action: :destroy, id: agg_export.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: "delete_link_#{agg_export.id}" %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Exports') %>
+      <% end %>
+    </div>
+  </div>
+</div>

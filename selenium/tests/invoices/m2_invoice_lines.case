@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--enable x5_functionality_14-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/invoice_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Invoice details</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;View&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_calls</td>
+	<td>34</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_time</td>
+	<td>00:16:57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_1</td>
+	<td>3.7000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_2</td>
+	<td>3.7000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_3</td>
+	<td>4.2000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35567&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_prefix</td>
+	<td>35567</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>3%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_4</td>
+	<td></td>
+</tr>
+<!--kito invoiso destination-->
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>417745</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>%2%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>%7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>%7%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>any text</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=destination_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>1.20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_3</td>
+	<td>0.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+<!--Pašalintas valiutos pasirinkimas http://trac.ocean-tel.uk/trac/ticket/11411-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>1.20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_3</td>
+	<td>0.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+<!--visual tabo setingai, puslapiavimas, rūšiavimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/one_item_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_1_digits</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_comma_as_decimal</td>
+	<td></td>
+</tr>
+<!--nesvarbu koki kieki rasys vistiek bus 2 skaiciai po kablelio -->
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>1 2 3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='page_1'])[2]</td>
+	<td>1 2 3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>00:14:14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1,10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11,11 (USD)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_3</td>
+	<td>0,10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11,11 (USD)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>3%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>1 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='page_1'])[2]</td>
+	<td>1 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>1 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_3</td>
+	<td>Tunisia mobile-Tuntel (21695)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_2</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_3</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_2</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_2</td>
+	<td>00:01:18</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>00:14:14</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_2</td>
+	<td>00:01:18</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Price</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>1,20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_3</td>
+	<td>0,10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Price</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>1,20</td>
+</tr>
+<!--pakieciam laiko formata / invoice dabar atskirai-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/time_format_m_s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_2</td>
+	<td>exact:00:01:18</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='settings-form']/fieldset/div/div/div/div[13]/div/label</td>
+	<td>Duration Format</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=duration_format</td>
+	<td>label=M:S</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_2</td>
+	<td>exact:01:18</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_3</td>
+	<td>exact:01:25</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='settings-form']/fieldset/div/div/div/div[13]/div/label</td>
+	<td>Duration Format</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=duration_format</td>
+	<td>label=M</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_2</td>
+	<td>exact:1,30</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_3</td>
+	<td>exact:1,42</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/invoices/set_all_invoices_to_user</td>
+	<td></td>
+</tr>
+<!--pasiekiamumas-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/user_invoice_details/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Italy mobile-Vodafone (39377)</td>
+</tr>
+</tbody></table>
+</body>
+</html>

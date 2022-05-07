@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hello, System Admin</td>
+	<td></td>
+</tr>
+<!--# Menu Activation-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff_import/menu_activation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariff_link_attachment_rules/list')]</td>
+	<td>Link Attachment Rules</td>
+</tr>
+<!--# Page Details-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Add New Tariff Link Attachment Rule</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Tariff Link Attachment Rules</td>
+	<td></td>
+</tr>
+<!--# New-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_link_attachment_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Link Attachment Rules were not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Link Attachment Rules successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Link Attachment Rule</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_start_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_end_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='string_end_1'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=priority_1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Link Attachment Rules were not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Name must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Link Attachment Rules were not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String Start must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String End must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>* Name must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_start</td>
+	<td>The rate sheet can be downloaded from here:</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Link Attachment Rules successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Link Attachment Rule #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_start_2</td>
+	<td>The rate sheet can be downloaded from here:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_end_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='string_end_2'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=priority_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule #2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_start</td>
+	<td>The rate sheet can be downloaded from here:</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String Start must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String End must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>* Name must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_end</td>
+	<td>We sincerely appreciate your continued business!</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Link Attachment Rules successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Link Attachment Rule #2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_start_3</td>
+	<td>The rate sheet can be downloaded from here:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_end_3</td>
+	<td>We sincerely appreciate your continued business!</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='string_end_3'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=priority_3</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule #2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_start</td>
+	<td>The rate sheet can be downloaded from here:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_end</td>
+	<td>We sincerely appreciate your continued business!</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Link Attachment Rules were not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Name must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String Start must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String End must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule #3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_link_pattern</td>
+	<td>https://www.x-rates.com/</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Link Attachment Rules successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Link Attachment Rule #3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_start_4</td>
+	<td>The rate sheet can be downloaded from here:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_end_4</td>
+	<td>We sincerely appreciate your continued business!</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='string_end_4'])[2]</td>
+	<td>exact:https://www.x-rates.com/</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=priority_4</td>
+	<td>3</td>
+</tr>
+<!--# Cancel-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>QWERTY</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_start</td>
+	<td>QWERTY</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_end</td>
+	<td>QWERTY</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_link_pattern</td>
+	<td>QWERTY</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_link_attachment_rules/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>QWERTY</td>
+	<td></td>
+</tr>
+<!--# Edit-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_link_attachment_rules/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Edit Tariff Link Attachment Rule</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule #2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_start</td>
+	<td>The rate sheet can be downloaded from here:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_end</td>
+	<td>We sincerely appreciate your continued business!</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_link_pattern</td>
+	<td>https://www.x-rates.com/</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Link Attachment Rules successfully was not updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Name must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String Start must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* String End must be unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>TEST Name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_start</td>
+	<td>TEST String Start</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_end</td>
+	<td>TEST String End</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_link_pattern</td>
+	<td>TEST Link Pattern</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Link Attachment Rules successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>TEST Name</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_start_4</td>
+	<td>TEST String Start</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=string_end_4</td>
+	<td>TEST String End</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='string_end_4'])[2]</td>
+	<td>TEST Link Pattern</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=priority_4</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Link Attachment Rule #3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>https://www.x-rates.com/</td>
+	<td></td>
+</tr>
+<!--# Cancel-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_name</td>
+	<td>Link Attachment Rule EDITED</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_start</td>
+	<td>EDITED</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_string_end</td>
+	<td>EDITED</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_link_attachment_rule_link_pattern</td>
+	<td>EDITED</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>EDITED</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--# Delete-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_link_attachment_rules/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Link Attachment Rule</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Link Attachment Rule #2</td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Link Attachment Rule #2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Tariff Link Attachment Rules successfully deleted</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Link Attachment Rule #2</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

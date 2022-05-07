@@ -1,0 +1,136 @@
+<% content_for :search_form do %>
+  <%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <%= hidden_field_tag 'page', 1 %>
+    <fieldset>
+      <div class="column date-col calendar-holder">
+        <%= label_tag 'from', _('From') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_from', formatted_date_in_user_tz(@options[:from]), class: 'checkin default', id: 'from' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_from', formatted_time_in_user_tz(@options[:from]), class: 'default', id: 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <%= label_tag 'to', _('To') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_till', formatted_date_in_user_tz(@options[:till]), class: 'checkout default', id: 'till' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_till', formatted_time_in_user_tz(@options[:till]), class: 'default', id: 'time2' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+      </div>
+      <div class="column source-col">
+        <%= label_tag 'name', _('Name') %>
+        <div class="row">
+          <%= text_field_tag 's_name', @options[:s_name]%>
+        </div>
+        <%= label_tag 'value2', _('value2_between') %>
+        <div class="row">
+          <%= text_field_tag 's_min_value2', @options[:s_min_value2], class: 'value2', maxlength: '50' %>
+          <div align="center" class="dash-between-values"> - </div>
+          <%= text_field_tag 's_max_value2', @options[:s_max_value2], class: 'value2', maxlength: '50' %>
+        </div>
+      </div>
+      <div class="column source-col">
+        <%= label_tag 'value4',  _('Value4') %>
+        <div class="row">
+
+         <div class="row"> <%= radio_button_tag :s_value4, 'any', 1 %>
+          <%= label_tag 'any' %></div>
+          <div class="row"><%= radio_button_tag :s_value4, 'yes', @options[:s_value4] == 'yes' %>
+          <%= label_tag 'yes' %></div>
+          <div class="row"><%= radio_button_tag :s_value4, 'no', @options[:s_value4] == 'no' %>
+          <%= label_tag 'no' %></div>
+        </div>
+      </div>
+      <div class="column source-col">
+        <%= label_tag 'value5',  _('Value5') %>
+        <div class="row">
+          <%= select_tag(:s_value5, options_for_select(%w[All first second third], @options[:s_value5])) %>
+        </div>
+        <%= label_tag 'value6',  _('Value6') %>
+        <div class="row">
+          <%= select_tag(:s_value6, options_for_select([['All', -2], [_('None'), -1]] + @provider_list.map { |device| [nice_device_dp(device, {image: false}), device.id] }.sort, @options[:s_value6])) %>
+        </div>
+      </div>
+
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<% content_for :additional_buttons do %>
+  <span>
+    <%= button_tag _('Blank_add'), class: "search-form-button",
+        onclick: "location.href = '#{Web_Dir}/blanks/new'" %>
+  </span>
+    <% if @blanks.present? %>
+  <span>
+    <%= button_tag _('Export_to_csv'), class: "search-form-button",
+        onclick: "location.href = '#{Web_Dir}/blanks/list?csv=1'" %>
+  </span>
+    <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Blanks_list') %></h2>
+    <div class="table-holder">
+      <% if @blanks and @blanks.size > 0 %>
+        <table class="blanks table-with-edit-and-delete">
+          <tr>
+            <%= sortable_header(_('ID'), 'id', id: 'id', class: 'date') %>
+            <%= sortable_header(_('Name'), 'name', id: 'name', class: 'date') %>
+            <%= sortable_header(_('Date'), 'date', id: 'date', class: 'date') %>
+            <%= sortable_header(_('Description'), 'description', id: 'description', class: 'date') %>
+            <%= sortable_header(_('Value1'), 'value1', id: 'value1', class: 'date') %>
+            <%= sortable_header(_('Value2'), 'value2', id: 'value2', class: 'date') %>
+            <%= sortable_header(_('Value3'), 'value3', id: 'value3', class: 'date') %>
+            <%= sortable_header(_('Value4'), 'value4', id: 'value4', class: 'date') %>
+            <%= sortable_header(_('Value5'), 'value5', id: 'value5', class: 'date') %>
+            <%= sortable_header(_('Value6'), 'value6', id: 'value6', class: 'date') %>
+            <%= sortable_header(_('Balance'), 'balance', id: 'balance', class: 'date') %>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @blanks.each do |blank| %>
+            <tr class="<%= cycle('even', 'odd', name: 'row_class') %>">
+              <td id="id_<%= blank.id %>"><%= blank.id.to_i %></td>
+              <td id="name_<%= blank.id %>"><%= nice_column(blank.name.to_s, 20) %></td>
+              <td id="date_<%= blank.id %>"><%= blank.date.nil? ? '' : nice_user_timezone(blank.date) %></td>
+              <td id="desc_<%= blank.id %>"><%= nice_column(blank.description.to_s, 30) %></td>
+              <td id="value1_<%= blank.id %>"><%= blank.value1.nil? ? '' : blank.value1.to_i %></td>
+              <td id="value2_<%= blank.id %>"><%= blank.value2.nil? ? '' : nice_number(blank.value2.to_d) %></td>
+              <td id="value3_<%= blank.id %>">
+                <%= link_to(_('_Yes').upcase, action: 'value3_change_status', id: blank.id) if blank.value3 == 'yes' %>
+                <%= link_to(_('_No').upcase, action: 'value3_change_status', id: blank.id) if ((blank.value3 == 'no') or (blank.value3.nil?)) %>
+              </td>
+              <td id="value4_<%= blank.id %>" align="left"><%= blank.value4 ? blank.value4 : '' %></td>
+              <td id="value5_<%= blank.id %>" align="left"><%= blank.value5 ? blank.value5 : '' %></td>
+              <td id="value6_<%= blank.id %>" align="left"><%= blank.value6.present? && blank.value6 >= 0 ? nice_device_dp(blank.provider_by_id(blank.value6), {image: false}) : _('None') %></td>
+              <td id="balance_<%= blank.id %>"><%= blank.balance.nil? ? '' : nice_currency(blank.balance.to_d, @options[:exchange_rate]) %></td>
+              <td id="edit_<%= blank.id %>"><%= link_to 'edit', {action: 'edit', id: blank.id} %></td>
+              <td id="destroy_<%= blank.id %>"><%= button_to 'delete', {action: 'destroy', id: blank.id}, onclick: "return confirm('Are you sure?')", class: "delete_button", method: :post, id: "delete_link_" + blank.id.to_s %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <br/>
+        <%= _('No_blanks') %>
+      <% end %>
+    </div>
+        <%= paginate @blanks %>
+  </div>
+</div>

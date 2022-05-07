@@ -1,0 +1,1 @@
+update m2_invoices set issue_date=NULL;

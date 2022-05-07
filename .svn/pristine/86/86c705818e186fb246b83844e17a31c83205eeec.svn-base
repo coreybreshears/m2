@@ -1,0 +1,6 @@
+<!-- footer of the page -->
+<footer id="footer">
+  <div class="footer-holder">
+    <span class="by">M2 SWITCH by <a href="http://www.ocean-tel.uk" target="_blank">Kolmisoft</a> 2006 - <%= Time.new.year %></span>
+  </div>
+</footer>

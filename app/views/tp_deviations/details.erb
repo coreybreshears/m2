@@ -1,0 +1,99 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('TP_Deviation_Observer_setup') %></h2>
+    <div class="table-holder">
+      <div id="tp-deviation-setup" class="tp-deviation-tables">
+        <div class="m2-tooltip"></div>&nbsp;<%= _('TP_Deviation_Observer_setup_info') %>.
+        <table class="table">
+          <thead>
+            <tr class="smaller-header">
+              <th class="left side" rowspan="2"><%= _('dial_peer') %></th>
+              <th class="side" colspan="3"><%= _('Main_TP') %></th>
+              <th colspan="2" class="center"><%= _('Tolerated_Deviation') %></th>
+            </tr>
+            <tr class="smaller-header">
+              <th class="left side"><%= _('Name') %></th>
+              <th class="right side"><%= _('ASR') %></th>
+              <th class="center side"><%= _('ACD') %></th>
+              <th class="right side"><%= _('ASR') %></th>
+              <th class="right"><%= _('ACD') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="even">
+              <% if @tp_deviation.main_stats %>
+                <td id="dp" class="left">
+                  <%= link_to @tp_deviation.dial_peer.name, controller: :dial_peers, action: :termination_points_list, id: @tp_deviation.dial_peer_id %>
+                </td>
+                <td id="main-tp" class="left">
+                  <%= link_to @tp_deviation.device.nice_name, controller: :devices, action: :device_edit, id: @tp_deviation.device_id %>
+                </td>
+                <td id="main-asr" class="right">
+                  <%= @tp_deviation.main_stats[:asr].round %>&nbsp;%
+                </td>
+                <td id="main-acd">
+                  <%= nice_time @tp_deviation.main_stats[:acd], show_zero: true, time_format: @formatting[:time_format] %>
+                </td>
+                <td id="asr-deviation" class="right">
+                  <%= @tp_deviation.asr_deviation %>&nbsp;%
+                </td>
+                <td id="acd-deviation" class="right">
+                  <%= @tp_deviation.acd_deviation %>&nbsp;%
+                </td>
+              <% else %>
+                <td colspan="6" align="center"><%= _('No_data_found_no_dots') %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <% if @tp_deviation.warn? %>
+          <div class="m2-tooltip"></div>&nbsp;<%= _('tp_deviation_warning') %>
+        <% end %>
+      </div>
+    </div>
+    <h2><%= _('TP_Deviations_from_Main_TP') %></h2>
+    <div class="table-holder">
+      <div class="m2-tooltip"></div>&nbsp;<%= _('TP_Deviations_from_Main_TP') %>.
+      <div id="tp-deviation-details" class="tp-deviation-tables">
+        <table class="table">
+          <thead>
+            <tr class="smaller-header">
+              <th class="left side" rowspan="2"><%= _('termination_points') %></th>
+              <th colspan="2 " class="side"><%= _('ASR') %></th>
+              <th colspan="2"><%= _('ACD') %></th>
+            </tr>
+            <tr class="smaller-header">
+              <th class="right side"><%= _('Current') %></th>
+              <th class="right side"><%= _('Deviation') %></th>
+              <th class="side"><%= _('Current') %></th>
+              <th class="right"><%= _('Deviation') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @report.each_with_index do |tp, index| %>
+            <% next if tp[:id] == @tp_deviation.device_id %>
+            <tr>
+              <td id="<%= tp[:id] %>-provider" class="left">
+                <%= link_to tp[:name], controller: :devices, action: :device_edit, id: tp[:id] %>
+              </td>
+              <td id="<%= tp[:id] %>-asr" class="right">
+                <%= tp[:asr].round %>&nbsp;%
+              </td>
+              <td id="<%= tp[:id] %>-asr-deviation" class="right <%= TpDeviationsHelper.cell_class tp[:deviation][:asr], tp[:deviation][:warn_asr] %>">
+                <%= tp[:deviation][:asr] %>&nbsp;%
+              </td>
+              <td id="<%= tp[:id] %>-acd">
+                <%= nice_time tp[:acd], show_zero: true, time_format: @formatting[:time_format] %>
+              </td>
+              <td id="<%= tp[:id] %>-acd-deviation" class="right <%= TpDeviationsHelper.cell_class tp[:deviation][:acd], tp[:deviation][:warn_acd] %>">
+                <%= tp[:deviation][:acd] %>&nbsp;%
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

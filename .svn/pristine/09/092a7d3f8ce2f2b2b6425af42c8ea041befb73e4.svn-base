@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=new_server_server_type</td>
+	<td>asterisk</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_comment</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_2</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ip_2</td>
+	<td>127.0.0.2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=type_2</td>
+	<td>asterisk</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_2</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>id=version_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>id=uptime_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_hostname</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_ip</td>
+	<td>127.0.0.2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_maxcalllimit</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_comment</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_url</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_ami_username</td>
+	<td>mor</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_ami_secret</td>
+	<td>morsecret</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_port</td>
+	<td>5060</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_ssh_username</td>
+	<td>root</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_ssh_secret</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_ssh_port</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>sdfsdfsdf</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_server_server_ip</td>
+	<td>sdfsdfsdf</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server IP is not valid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server IP cannot be empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_server_server_ip</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>abcd.65.12</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server IP is not valid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>fgdfgdfg</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Server IP is not valid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>123.123.123.123</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>200000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Configuration error. Please consult this help link.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>123.123.123.123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_comment</td>
+	<td>test</td>
+</tr>
+<!--bando jungtis prie neegzistuojancio serverio ir tai uztrunka, del to reikia ilgai laukti, kad butu gautas error-->
+<tr>
+	<td>setTimeout</td>
+	<td>200000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Configuration error. Please consult this help link.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<!--neturi buti graphs ikoneliu ten, kur nera GUI ir DB serverio-->
+<tr>
+	<td>assertText</td>
+	<td>id=stats_1</td>
+	<td>STATS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stats_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stats_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#gui_2 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#gui_3 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_2 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_3 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ERROR: Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#gui_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stats_2</td>
+	<td>STATS</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Server Load Stats</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#db_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stats_2</td>
+	<td>STATS</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Server Load Stats</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#gui_1 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stats_2</td>
+	<td>STATS</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Server Load Stats</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#db_1 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stats_2</td>
+	<td></td>
+</tr>
+<!--negalima testuoti serveriu, kurie neturi pazymeto core-->
+<tr>
+	<td>assertText</td>
+	<td>id=core_1</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/server_test/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Connection test passed!</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#core_2 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#core_3 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/server_test/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>exact:ERROR: Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/server_test/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>exact:ERROR: Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=core_2</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/server_test/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Connection test passed!</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/server_test/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>ERROR: Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/additional_modules</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=CCL_Active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_address</td>
+	<td>127.0.0.6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=host</td>
+	<td>127.0.0.6</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--negalima testuoti sip proxy serverio-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/server_test/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>exact:ERROR: Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=core_4</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_4 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#core_4 &gt; a</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/server_test/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>ERROR: Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_value</td>
+	<td>mor_server_3</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/delete_server_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Not found</td>
+	<td></td>
+</tr>
+<!--Pasiekiamumas-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:ERROR: Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_reseller</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_reseller1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:ERROR: Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

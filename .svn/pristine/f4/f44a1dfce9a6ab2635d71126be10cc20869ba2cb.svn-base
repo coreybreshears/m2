@@ -1,0 +1,4161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>USERS &gt; Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>USERS &gt; Connection Points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_USERS_Users_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_USERS_Users_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_USERS_Connection_Points_Edit_0</td>
+	<td></td>
+</tr>
+<!--Del viso pikto paupdeitintu, kad tikrai netycia neuzdetu active-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hide/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hidden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/update/2?return_action=list&amp;return_controller=users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/show_devices/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_update/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/create?user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<!--USER - can change, CONNECTION POINTS - no access-->
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Users_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_USERS_Users_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=USERS</td>
+	<td>USERS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Users</td>
+	<td>Users</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Connection Points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Users</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Add new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=origpoints_2</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=termpoints_2</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#logged_2 &gt; img[alt=&quot;Status offline&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_list_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#login_as_link_2 &gt; img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Device&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#m2_payment_link_2 &gt; img[alt=&quot;Money&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#user_log_link_2 &gt; img[alt=&quot;Report user&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=hide_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>User settings: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_list_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=page_title_icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#login_as_link_2 &gt; img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hello, Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Device&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#m2_payment_link_2 &gt; img[alt=&quot;Money&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#user_log_link_2 &gt; img[alt=&quot;Report user&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Cannot delete user - he has some calls. You can only hide user. Why is that and how to do that - please read in manual.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=hide_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Hidden users</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User hidden: Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=username_2</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=postpaid_2</td>
+	<td>Postpaid</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;Status offline&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Device&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Money&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Report user&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>manager_user</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>manager_user1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_balance</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_hidden_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_call_limit</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT-04:00) Georgetown</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_ignore_global_alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_blocked_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>user_responsible_accountant_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>id=block_at_date_year</td>
+	<td>year</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=block_at_date_month</td>
+	<td>label=7</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=block_at_date_day</td>
+	<td>label=15</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=block_conditional_use</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=block_at_conditional</td>
+	<td>label=14</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=warning_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=warning_balance_increases_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance_admin</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance_manager</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_user_warning_email_hour</td>
+	<td>label=18</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=user[generate_invoice]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=billing_period</td>
+	<td>label=Bi-weekly (1-15, 16-end)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td>a</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>b</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_clientid</td>
+	<td>c</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_agreement_number</td>
+	<td>d</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=agr_date_year</td>
+	<td>label=2020</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=agr_date_month</td>
+	<td>label=12</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=agr_date_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_language</td>
+	<td>e</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=user[taxation_country]</td>
+	<td>label=Jordan</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_vat_number</td>
+	<td>f</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_accounting_number</td>
+	<td>g</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=billing_email</td>
+	<td>email@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>email2@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=noc_email</td>
+	<td>email3@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rates_email</td>
+	<td>email4@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_name</td>
+	<td>h</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_name</td>
+	<td>i</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3_name</td>
+	<td>j</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4_name</td>
+	<td>k</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=total_tax_name</td>
+	<td>l</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=compound_tax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax4_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax3_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax2_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_value</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_value</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3_value</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4_value</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_address</td>
+	<td>m</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_postcode</td>
+	<td>n</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_city</td>
+	<td>p</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_county</td>
+	<td>r</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_state</td>
+	<td>o</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=address[direction_id]</td>
+	<td>label=Angola</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_phone</td>
+	<td>s</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_mob_phone</td>
+	<td>t</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_fax</td>
+	<td>u</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_email</td>
+	<td>v@v.lt</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/16002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>manager_user</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_value</td>
+	<td>5.0000 USD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>2.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>7.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_hidden_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_call_limit</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_currency_id</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_time_zone</td>
+	<td>(GMT-04:00) Georgetown</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_ignore_global_alerts</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_blocked_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_year</td>
+	<td>${year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_month</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_day</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=block_conditional_use</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=block_at_conditional</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_balance_increases_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance</td>
+	<td>1.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance_admin</td>
+	<td>2.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance_manager</td>
+	<td>3.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_user_warning_email_hour</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=user[generate_invoice]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=billing_period</td>
+	<td>Bi-weekly (1-15, 16-end)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>a</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>b</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_clientid</td>
+	<td>c</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_agreement_number</td>
+	<td>d</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=agr_date_year</td>
+	<td>2020</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=agr_date_month</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=agr_date_day</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_language</td>
+	<td>e</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>Jordan</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_vat_number</td>
+	<td>f</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_accounting_number</td>
+	<td>g</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=main_email</td>
+	<td>email2@email.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=noc_email</td>
+	<td>email3@email.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billing_email</td>
+	<td>email@email.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=rates_email</td>
+	<td>email4@email.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1_name</td>
+	<td>h</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2_name</td>
+	<td>i</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3_name</td>
+	<td>j</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4_name</td>
+	<td>k</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=total_tax_name</td>
+	<td>l</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=tax2_enabled</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3_enabled</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4_enabled</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=compound_tax</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1_value</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2_value</td>
+	<td>6.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3_value</td>
+	<td>7.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4_value</td>
+	<td>8.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_address</td>
+	<td>m</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_postcode</td>
+	<td>n</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_city</td>
+	<td>p</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_county</td>
+	<td>r</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_state</td>
+	<td>o</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=address[direction_id]</td>
+	<td>Angola</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_phone</td>
+	<td>s</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_mob_phone</td>
+	<td>t</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_fax</td>
+	<td>u</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_email</td>
+	<td>v@v.lt</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_hidden_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_call_limit</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=USD</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT-07:00) Mountain Time (US &amp; Canada)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_ignore_global_alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_blocked_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=block_at_date_year</td>
+	<td>label=2022</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=block_at_date_month</td>
+	<td>label=12</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=block_at_date_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=block_at_conditional</td>
+	<td>label=10</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=block_conditional_use</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>manager_user-edited</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>manager_user1-editedAw3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=warning_balance_increases_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance_admin</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance_manager</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_warning_email_hour_-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=user[generate_invoice]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=billing_period</td>
+	<td>label=Monthly (1-end)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>comment edited</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_clientid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_agreement_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=agr_date_year</td>
+	<td>label=2019</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=agr_date_month</td>
+	<td>label=11</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=agr_date_day</td>
+	<td>label=30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_language</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=user[taxation_country]</td>
+	<td>label=Haiti</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_vat_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_accounting_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=noc_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=billing_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rates_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=total_tax_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax2_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax4_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax3_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=compound_tax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_postcode</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_city</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_county</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_state</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=address[direction_id]</td>
+	<td>label=Albania</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_mob_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_fax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: manager_user-edited</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>manager_user-edited</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>20.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_hidden_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_call_limit</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_currency_id</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_time_zone</td>
+	<td>(GMT-07:00) Mountain Time (US &amp; Canada)</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=user_ignore_global_alerts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=user_blocked_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_year</td>
+	<td>2022</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_month</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=block_at_date_day</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=block_at_conditional</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=block_conditional_use</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_balance_increases_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance_admin</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance_manager</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_warning_email_hour_-1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=user[generate_invoice]</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=billing_period</td>
+	<td>Monthly (1-end)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>comment edited</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_clientid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_agreement_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=agr_date_year</td>
+	<td>2019</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=agr_date_month</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=agr_date_day</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_language</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>Haiti</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_vat_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_accounting_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=noc_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billing_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=rates_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1_name</td>
+	<td>TAX</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tax3_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=total_tax_name</td>
+	<td>TAX</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2_enabled</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3_enabled</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4_enabled</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=compound_tax</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1_value</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2_value</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3_value</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4_value</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=address[direction_id]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_postcode</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_city</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_county</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_state</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_mob_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_fax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hide/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User unhidden: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hidden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Hidden users</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/update/2?return_action=list&amp;return_controller=users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_update/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/create?user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/show_devices/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--USER - no access, CONNECTION POINTS - can change-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Users_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Deny Tariff change</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Deny Routing Group change</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Deny_Tariff_change</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Deny_Routing_Group_change</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_USERS_Users_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=USERS</td>
+	<td>USERS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Connection Points</td>
+	<td>Connection Points</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hide/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hidden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/update/2?return_action=list&amp;return_controller=users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_update/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/create?user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Connection Points</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Cannot delete Connection Point - it has calls. You can only hide Connection Point. Why is that and how to do that - please read in manual.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Connection Points for Test User #1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=button</td>
+	<td>Add new Connection Point</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ip_2</td>
+	<td>127.0.1.1:5060</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=destroy_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=destroy_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Cannot delete Connection Point - it has calls. You can only hide Connection Point. Why is that and how to do that - please read in manual.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/show_devices/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>New Connection Point</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_ipaddr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>manager's device</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>127.0.0.1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_description</td>
+	<td>manager's device</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_timeout</td>
+	<td>60</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_max_timeout</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=add_to_servers_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ip_add_value_ip</td>
+	<td>127.0.0.1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ipaddr_range_start</td>
+	<td>2130706433</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ipaddr_range_end</td>
+	<td>2130706433</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=port</td>
+	<td>5060</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cid_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cid_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_alaw</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=codec_gsm</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_insecure_no</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_insecure_port</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=custom_sip_header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_call_limit</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_period</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>manager's device - edited</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_timeout</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_max_timeout</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>127.0.0.2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=port</td>
+	<td>5061</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_tech_prefix</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>label=Percent</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_match_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_custom_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_src_deny_regexp</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_capacity</td>
+	<td>6000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=Test Tariff bad currency</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_tp_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_capacity</td>
+	<td>502</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>65</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_src_deny_regexp</td>
+	<td>654</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_username</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_secret</td>
+	<td>4545</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cid_name</td>
+	<td>645</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_insecure_no</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_gsm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_alaw</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=codec_g729</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=custom_sip_header</td>
+	<td>456546</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_period</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_call_limit</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_description</td>
+	<td>manager's device - edited</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_timeout</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_max_timeout</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=ip_add_value_ip</td>
+	<td>127.0.0.2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ipaddr_range_start</td>
+	<td>2130706434</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ipaddr_range_end</td>
+	<td>2130706434</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=port</td>
+	<td>5061</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_op_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_tech_prefix</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>Percent</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_tariff_id</td>
+	<td>Test Tariff for Users</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_src_deny_regexp</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_capacity</td>
+	<td>6000</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td>5</td>
+</tr>
+<!--Nes Disabled, todėl nesaugojo pakeisto-->
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>Test Tariff</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_capacity</td>
+	<td>502</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>65</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_deny_regexp</td>
+	<td>654</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_username</td>
+	<td>45</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_secret</td>
+	<td>4545</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cid_name</td>
+	<td>645</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_insecure_no</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=codec_gsm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=codec_alaw</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>id=codec_g729</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=custom_sip_header</td>
+	<td>456546</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_period</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_call_limit</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=device_caller_id_number_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--USER - can change, CONNECTION POINTS - can change-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Users_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_Deny_Tariff_change</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_USERS_Users_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_USERS_Connection_Points_Edit_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Users</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Add new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=origpoints_2</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=termpoints_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#logged_2 &gt; img[alt=&quot;Status offline&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_list_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#login_as_link_2 &gt; img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Device&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#m2_payment_link_2 &gt; img[alt=&quot;Money&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#user_log_link_2 &gt; img[alt=&quot;Report user&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=hide_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>User settings: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_list_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=page_title_icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#login_as_link_2 &gt; img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hello, Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Device&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Connection Points for manager_user-edited</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#m2_payment_link_2 &gt; img[alt=&quot;Money&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#user_log_link_2 &gt; img[alt=&quot;Report user&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Cannot delete user - he has some calls. You can only hide user. Why is that and how to do that - please read in manual.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=hide_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Hidden users</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User hidden: Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=username_2</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=postpaid_2</td>
+	<td>Postpaid</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;Status offline&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Device&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Money&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Report user&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>manager_user2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>manager_user21Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/16003</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>manager_user2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>manager_user2-edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: manager_user2-edited</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>manager_user2-edited</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hide/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User unhidden: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hidden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Hidden users</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Connection Points</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Cannot delete Connection Point - it has calls. You can only hide Connection Point. Why is that and how to do that - please read in manual.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Connection Points for Test User #1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=button</td>
+	<td>Add new Connection Point</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ip_2</td>
+	<td>127.0.1.1:5060</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=destroy_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=destroy_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Cannot delete Connection Point - it has calls. You can only hide Connection Point. Why is that and how to do that - please read in manual.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>User settings: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/show_devices/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>New Connection Point</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=device_ipaddr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>manager's device</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>127.0.0.1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_description</td>
+	<td>manager's device</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=device_op_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=device_op_match_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=device_op_custom_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=device_tp_tariff_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>User settings: Test User #1</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>manager's device - edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_description</td>
+	<td>manager's device - edited</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Connection Point configuration</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/destroy/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_host</td>
+	<td>127.0.0.1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_9</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_9</td>
+	<td>manager's device - edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>Test Device #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_list_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Money&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Report user&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Cannot delete user - he has some calls. You can only hide user. Why is that and how to do that - please read in manual.</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Application key&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Hello, Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=hide_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User hidden: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Device&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Connection Points for Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_username</td>
+	<td>manager_user</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_link_16002</td>
+	<td>manager_user-edited</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_link_16003</td>
+	<td>manager_user2-edited</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/update/2?return_action=list&amp;return_controller=users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_update/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/create?user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

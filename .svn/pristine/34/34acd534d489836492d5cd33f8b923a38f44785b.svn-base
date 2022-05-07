@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m2_conneeection_points</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m2_conneeection_points</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tariff_purpose_user_wholesale</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>tariff_for_op</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_2004/device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.66</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Connection Point created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_match_tariff_id</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_callerid_matches_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_callerid_matches_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_number_pool_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_use_pai_as_number_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_use_pai_as_number_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_matches_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_matches_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_matches_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_number_pool_id</td>
+	<td></td>
+</tr>
+<!--Sukuriu routing group-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>Routing groupsss</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group successfully created</td>
+	<td></td>
+</tr>
+<!--pirmas devicas  -->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_match_tariff_id</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_callerid_matches_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_callerid_matches_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_number_pool_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_use_pai_as_number_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_use_pai_as_number_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_matches_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_matches_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_matches_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=device_op_dst_number_pool_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_src_regexp</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[11]/td/table/tbody/tr[3]/td</td>
+	<td>Tech. Prefix:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[11]/td/table/tbody/tr[4]/td</td>
+	<td>Destination Transformation:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_destination_transformation</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[11]/td/table/tbody/tr[5]/td</td>
+	<td>Source Transformation:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_source_transformation</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Source Transformation:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_source_transformation</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Connection Point's settings updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_destination_transformation</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_source_transformation</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_source_transformation</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>192.168.0.2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CONNECTION POINTS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/user_devices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Origination Points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Termination Points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_acc-id_3</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=op_acc-id_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_acc-id_4</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_description_4</td>
+	<td>SIP_device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_description_3</td>
+	<td>Test Device for Admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.tech-prefix</td>
+	<td>Tech. Prefix</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/fieldset/div/div/table/tbody/tr/th[4]</td>
+	<td>Destination Transformation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='op_tech-prefix_5'])[2]</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/fieldset/div[2]/div/table/tbody/tr/th[3]</td>
+	<td>Destination Transformation</td>
+</tr>
+<!--Pirmas testavimo ratas -->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/provider_12001/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/provider_12001/create_rates_for_afghanistan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=provider_tariff_for_admin_1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination Transformation:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td>0001</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_active_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=tariff_for_op</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_op_tech_prefix</td>
+	<td>01234</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Connection Point's settings updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/user_devices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_tariff_3</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_tariff_5</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_tech-prefix_5</td>
+	<td>01234</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tp_tech-prefix_1</td>
+	<td>0001</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tp_tariff_1</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/fieldset/div/div/table/tbody/tr/th[4]</td>
+	<td>Destination Transformation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//td[@id='op_tech-prefix_5'])[2]</td>
+	<td>Test Transform &quot;Актуальные Системы Связи&quot;</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/fieldset/div[2]/div/table/tbody/tr/th[3]</td>
+	<td>Destination Transformation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tp_tech-prefix_0</td>
+	<td>3706</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tp_tech-prefix_1</td>
+	<td>0001</td>
+</tr>
+<!--antras  ratas -->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_tp_tech_prefix</td>
+	<td>37067777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_src_regexp</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/user_devices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tp_tech-prefix_0</td>
+	<td>37067777</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>id=op_acc-id_0</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_hide_device_passwords_for_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--M2 useris berost ir be settingo nemato passwordų-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/user_devices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Origination Points</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/fieldset/div[2]/h2</td>
+	<td>Termination Points</td>
+</tr>
+<!--tariff linkas į rates-->
+<tr>
+	<td>assertText</td>
+	<td>link=Tariff</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Tariff</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Tariff bad currency</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection points</td>
+	<td>Connection Points</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Tariff Rates</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Conn.Fee</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Increment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Start Time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>End Time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Day type</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>From</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>EDIT</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>DELETE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.1.0</td>
+	<td>994</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.15.0</td>
+	<td>1264</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=div.table-holder &gt; table.1.1</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=div.table-holder &gt; table.15.1</td>
+	<td>Azerbaijan proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_267</td>
+	<td>Azerbaijan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_252</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=N</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_415</td>
+	<td>Namibia proper</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/user_devices</td>
+	<td></td>
+</tr>
+<!--kito tipo tarifas-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#tp_tariff_0 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection points</td>
+	<td>Connection Points</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Tariff Rates</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<!--Serverio pasirinkimai-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Servers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Server_1: 127.0.0.1|127.0.0.1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=add_to_servers_1</td>
+	<td></td>
+</tr>
+<!--Daugiau serverių testavimui-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.select-opener</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_server_server_type</td>
+	<td>label=other</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_comment</td>
+	<td>OTHER</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#active_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ip_2</td>
+	<td>127.0.0.4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=type_2</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_2</td>
+	<td>OTHER</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_2 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#core_2 &gt; a</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#gui_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#db_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_2 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#gui_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#db_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#core_2 &gt; a</td>
+	<td>YES</td>
+</tr>
+<!--dar vienas freeswitch tipo serveris-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.select-opener</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_server_server_type</td>
+	<td>label=freeswitch</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_ip</td>
+	<td>127.0.0.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_server_server_comment</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Server_2: 127.0.0.4|</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server_3: 127.0.0.5|</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=add_to_servers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=add_to_servers_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=add_to_servers_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<!--usrio trynimas, kuris turi cals-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2009&amp;date_till[year]=2015</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calldate_28</td>
+	<td>2010-06-22 00:00:01</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Cannot delete user - he has some calls. You can only hide user. Why is that and how to do that - please read in manual.</td>
+</tr>
+</tbody></table>
+</body>
+</html>

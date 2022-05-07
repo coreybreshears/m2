@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_templates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CDR Import Templates List</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=h2</td>
+	<td>New CDR Import Template</td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/cdr/import_template_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_column_seperator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_decimal_seperator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_skip_n_first_lines</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=date_format</td>
+	<td>Y-m-d H:M:S</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_column_seperator</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_decimal_seperator</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_skip_n_first_lines</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<!--# Error messages-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>CDR Import Template was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Start Time column must be presented</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>DST column must be presented</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billsec column must be presented</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number of lines to skip must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Decimal separator cannot be longer than 1 symbol</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Column separator cannot be longer than 1 symbol</td>
+	<td></td>
+</tr>
+<!--#-->
+<tr>
+	<td>assertValue</td>
+	<td>id=template_name</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_column_seperator</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_decimal_seperator</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_skip_n_first_lines</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_name</td>
+	<td>CDR Import Template</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_column_seperator</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_decimal_seperator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=template_skip_n_first_lines</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=date_format</td>
+	<td>label=d.m.Y H:M:S</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_start_time_col</td>
+	<td>label=Column #1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_billsec_col</td>
+	<td>label=Column #2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_dst_col</td>
+	<td>label=Column #3</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_answer_time_col</td>
+	<td>label=Column #4</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_end_time_col</td>
+	<td>label=Column #5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_src_number_col</td>
+	<td>label=Column #8</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_duration_col</td>
+	<td>label=Column #9</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_disposition_col</td>
+	<td>label=Column #10</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_accountcode_col</td>
+	<td>label=Column #11</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_provider_id_col</td>
+	<td>label=Column #12</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=template_cost_col</td>
+	<td>label=Column #13</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>CDR Import Template successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>CDR Import Template</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_template_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_name</td>
+	<td>CDR Import Template</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_column_seperator</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_decimal_seperator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_skip_n_first_lines</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=date_format</td>
+	<td>d.m.Y H:M:S</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_start_time_col</td>
+	<td>Column #1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_billsec_col</td>
+	<td>Column #2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_dst_col</td>
+	<td>Column #3</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_answer_time_col</td>
+	<td>Column #4</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_end_time_col</td>
+	<td>Column #5</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_src_number_col</td>
+	<td>Column #8</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_duration_col</td>
+	<td>Column #9</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_disposition_col</td>
+	<td>Column #10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_accountcode_col</td>
+	<td>Column #11</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_provider_id_col</td>
+	<td>Column #12</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_cost_col</td>
+	<td>Column #13</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_template_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_column_seperator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_decimal_seperator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_skip_n_first_lines</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_csv?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=cdr_import_id</td>
+	<td>label=CDR Import Template</td>
+</tr>
+<!--# Don't alow to destroy (direct link)-->
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_template_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--#-->
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_template_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_column_seperator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_decimal_seperator</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_skip_n_first_lines</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_templates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>CDR Import Template</td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>CDR Import Template</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>CDR Import Template successfully deleted</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder</td>
+	<td>No Templates</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/cdr_file_for_import.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=sepn2</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=decn2</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=calldate_id</td>
+	<td>label=2012-05-16 14:50:00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=src_number_id</td>
+	<td>label=2180</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=dst_id</td>
+	<td>label=8801768642466</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=billsec_id</td>
+	<td>label=139</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=save_template</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=template_name</td>
+	<td>Template From CDR Import</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_templates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Template From CDR Import</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_template_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_name</td>
+	<td>Template From CDR Import</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_column_seperator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=template_decimal_seperator</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_start_time_col</td>
+	<td>Column #1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_billsec_col</td>
+	<td>Column #4</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_dst_col</td>
+	<td>Column #3</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_answer_time_col</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_end_time_col</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_src_number_col</td>
+	<td>Column #2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_duration_col</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_disposition_col</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_accountcode_col</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_provider_id_col</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=template_cost_col</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/import_csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=option[value=&quot;2&quot;]</td>
+	<td>Template From CDR Import</td>
+</tr>
+</tbody></table>
+</body>
+</html>

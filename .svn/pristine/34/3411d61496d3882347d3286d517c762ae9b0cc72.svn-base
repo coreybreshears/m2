@@ -1,0 +1,152 @@
+<div class="content-box">
+  <br/>
+  <div class="row">
+    <div class="col">
+      <%= form_tag url_for(action: 'rate_check'), class: 'details-form hidden-form',
+          'destination-groups-url' => url_for() do %>
+        <div class="row">
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col label-col-smaller"><%= _('Destination_Name') %></div>
+              <div class="input-col">
+                <%= hidden_field_tag 'dg_id', params[:dg_id].to_i %>
+                <%= hidden_field_tag 'who', @options[:who].to_s %>
+                <%= text_field_tag 'dg_name', @options[:dg_name].to_s %>
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="label-col label-col-smaller"><%= _('Prefix') %></div>
+              <div class="input-col">
+                <%= text_field_tag 'search_prefix', @options[:search_prefix].to_s %>
+              </div>
+            </div>
+            <br/>
+            <div class="input-row">
+              <div>
+                <%= submit_tag _('Search') %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="table-box">
+        <div class="table-holder" id="rates-table-holder">
+          <% if @destinations and @destinations.size > 0 %>
+            <table id="rates-check-scrollable" style="display: none">
+              <thead>
+                <tr>
+                  <th class="align-left"><%= _('Destination') %></th>
+                  <th class="left-item"
+                    style="width:<%= @options[:max_prefix] + 1 %>ex;">
+                    <%= _('Prefix') %>
+                  </th>
+                  <% @tariffs.each do |tariff| %>
+                    <th id="tariff_name_<%= tariff.id %>"
+                        class="clear-transform"
+                        style="width:<%= @options[:number_of_digits] + 2 %>em;">
+                      <%= h tariff.name %>
+                    </th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <% @destinations.each_with_index do |dest, index| %>
+                    <tr class="odd">
+                      <td id="destination<%= dest['prefix'] %>" class="align-left">
+                        <%= dest['full_name'] %>
+                      </td>
+                      <td id="prefix_<%= dest['prefix'] %>"
+                        class="left-item" style="width:<%= @options[:max_prefix] + 1 %>ex;">
+                        <%= dest['prefix'] %>
+                      </td>
+                      <% @tariffs.each do |tariff| %>
+                        <%
+                          unless dest["rate_#{tariff.id}_nil"]
+                            rate = dest["rate_#{tariff.id}"]
+                            rate < 0 ? out = _('Blocked') : out  = nice_number(rate)
+                          else
+                            rate = get_prefix_rate(@destinations, index, tariff.id, dest['prefix'])
+                            out = rate_check_cell_value(rate)
+                          end
+                          cell_class = ''
+                          cell_class = 'green-cell' if rate == rate_check_extremas(dest)[:min]
+                          cell_class = 'red-cell'   if rate == rate_check_extremas(dest)[:max]
+                        %>
+                        <td id="rate_<%= dest['prefix'] %>_<%= tariff.id %>"
+                            style="width:<%= @options[:number_of_digits] + 2 %>em;"
+                            class="bold_weight <%= cell_class %>">
+                          <span><%= out %></span>
+                        </td>
+                      <% end %>
+                    </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <br/>
+            <%= _('No_destinations_found') %>. <%= _('At_least_5_characters_of_Destination_name_must_be_entered_and_or_at_least_2_characters_of_Prefix_must_be_entered') %> <br/>
+            <%= _('use_get_more_results_example') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scrollable table script
+  $( window ).load( function() {
+    hideEmptyCols();
+    // After empty columns are hidden show the table
+    $( "table#rates-check-scrollable" ).show();
+    // Adjust table and window sizes
+    setSize();
+  });
+
+  // Adjust table and window sizes
+  $( window ).resize( function() {
+    setSize();
+  }).resize();
+
+  // Refine the table header on scroll
+  $( "#rates-table-holder" ).scroll( function() {
+    var scrollTop =  $( this ).scrollTop();
+    $( "table#rates-check-scrollable thead" ).css({ "marginTop" : scrollTop + "px"});
+  });
+
+  // Selector callback
+  ( function( $ ) {
+      $.expr[ ":" ].text = function( obj, index, meta, stack ) {
+          return ( $( obj ).text() === meta[ 3 ] )
+      };
+  })( jQuery );
+
+  // Hides columns containing only "-"
+  function hideEmptyCols() {
+    var table = "table#rates-check-scrollable";
+    // Number of rows
+    var rows = $( "tr", table ).length - 1;
+    // Number of columns
+    var numCols = $( "th", table ).length;
+
+    for ( var i = 3; i <= numCols; i++ ) {
+      // If every row in a column contains a "-" hide it
+      if ( $( "span:text('-')", $( "td:nth-child(" + i + ")", table) ).length == rows ) {
+          // Hide performs better than remove
+          $( "td:nth-child(" + i + ")", table ).hide();
+          $( "th:nth-child(" + i + ")", table ).hide();
+      }
+    }
+  }
+
+  // Adjusts table and window sizes
+  function setSize() {
+    var newHeight = $( window ).height() - 435;
+    var headerHeight = $( "table#rates-check-scrollable thead" ).height();
+    $( "table#rates-check-scrollable tbody" ).css({ "marginTop" : headerHeight + "px"});
+    if (newHeight >= 215)
+      $( "table#rates-check-scrollable tbody" ).css({ "height" : (newHeight - headerHeight + 43) + "px" });
+    else
+      $( "table#rates-check-scrollable tbody" ).css({ "height" : 215 +  "px" });
+  };
+</script>

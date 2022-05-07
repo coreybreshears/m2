@@ -1,0 +1,38 @@
+$(document).ready(function() {
+  initQuickRatesBuilder();
+});
+
+function initQuickRatesBuilder() {
+  var url = $('#create-form').attr('prefix-checker-url');
+  var tariffId = $('#rate_tariff_id').val();
+
+  if ($('#rate_prefix').val().length > 0) {
+    $(this).val($(this).val().trim());
+    checkPrefix(url, tariffId);
+  } else {
+    $("#button_id").attr('disabled', true);
+  }
+
+  $('#rate_prefix').on('input', function () {
+    $(this).val($(this).val().trim());
+    checkPrefix(url, tariffId)
+  });
+}
+
+function checkPrefix(url, tariffId) {
+  $.ajax({
+    url: url,
+    data: {tariff_id: tariffId, prefix: $('#rate_prefix').val()},
+    async: true,
+    dataType: 'html',
+    success: function(response) {
+      $('#prefix-availability').html(response);
+      //The prefix availability is attached to an image tag, since the current API gives a single HTML response.
+      if(response.search('img') == -1) {
+        $("#button_id").attr('disabled', true);
+      } else {
+        $("#button_id").removeAttr('disabled');
+      }
+    }
+  });
+}

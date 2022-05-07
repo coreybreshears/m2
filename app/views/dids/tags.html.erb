@@ -1,0 +1,114 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxcheckbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.edit.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+<% content_for :additional_buttons do %>
+    <span>
+      <%= button_to _('New'), {controller: :did_tags, action: :new }, class: 'search-form-button'%>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Tags') %></h2>
+     <div id="did_tags_list"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        var table_data_json = <%= did_tags_helper(@tags) %>;
+        var source =
+        {
+            localdata: table_data_json,
+            datatype: 'json',
+            datafields: [
+                { name: 'id', type: 'integer'},
+                { name: 'tag', type: 'string' },
+                { name: 'comment', type: 'string' },
+                { name: 'assigned_dids', type: 'integer' }
+            ],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        // A simple clipboard selection handler
+        var copyText = '';
+        // Get the selected text
+        document.addEventListener('mouseup', function() {
+            if (window.getSelection) copyText = window.getSelection().toString();
+        }, false);
+        // On copy event put it on clipboard
+        document.addEventListener('copy', function(event) {
+            event.clipboardData.setData('text/plain', copyText);
+            // Prevent from getting any other selections
+            event.preventDefault();
+        });
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+        var date_time_format = "<%= session[:date_time_format].present? ? session[:date_time_format].gsub('%Y', 'yyyy').gsub('%m', 'MM').gsub('%d', 'dd').gsub('%H', 'HH').gsub('%M', 'mm').gsub('%S', 'ss') : 'yyyy-MM-dd' %>";
+
+
+        var linkrenderer_edit = function (row, column, value) {
+            var id = source.localdata[row].id;
+            return '<div style="text-align: center; margin-top: 10px;"><a href="/billing/did_tags/edit/' + id + '">EDIT</a></div>';
+        };
+
+        var linkrenderer_delete = function (row, column, value) {
+            var id = source.localdata[row].id;
+            return '<form class="button_to" method="post" action="/billing/did_tags/destroy/' + id + '"><div><input id="delete_link_' + id + '" class="delete_button" style="text-align: center; margin-top: 9px; font: 13px/18px \'Open Sans\',Arial,Helvetica,sans-serif;" type="submit" value="DELETE" onclick="return confirm(\'Are you sure?\')"><input type="hidden" value="' + "<%= form_authenticity_token %>" + '" name="authenticity_token"></div></form>';
+        };
+
+        var griddata;
+        $("#did_tags_list").jqxGrid({
+          source: dataadapter,
+          width: '100%',
+          autoheight: true,
+          rowsheight: 35,
+          altrows: true,
+          enablebrowserselection: 'true',
+          sortable: true,
+          pageable: true,
+          columnsresize: true,
+          pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+          ready: function () {
+              griddata = $('#did_tags_list').jqxGrid('getrows');
+              $('#did_tags_list').jqxGrid('sortby', 'id', 'desc');
+              session_sorting(
+                'did_tags_list',
+                '<%= Web_Dir %>',
+                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}did_tags_list"][:column].to_s %>',
+                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}did_tags_list"][:direction].to_s %>',
+                '<%= params[:controller].to_s %>',
+                '<%= params[:action].to_s %>'
+              );
+
+          },
+          columns: [
+              { text: "<%= _('ID') %>", datafield: 'id', width: '5%', align: 'center', cellsalign: 'center' },
+              { text: "<%= _('Name') %>", datafield: 'tag', width: '35%', align: 'center', cellsalign: 'center' },
+              { text: "<%= _('Comment') %>", datafield: 'comment', width: '35%', align: 'left', cellsalign: 'left'},
+              { text: "<%= _('Assigned_DIDs') %>", datafield: 'assigned_dids', width: '15%', align: 'center', cellsalign: 'center'},
+              { text: "", datafield: 'edit', width: '5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_edit},
+              { text: "", datafield: 'delete', width: '5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_delete},
+          ]
+        });
+
+    });
+</script>

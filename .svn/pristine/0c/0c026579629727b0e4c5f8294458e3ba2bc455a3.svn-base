@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/m2_good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/call_tracing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2014</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Lightning&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#call_trace_log_link_4949 &gt; img[alt=&quot;Lightning&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Call Tracing</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>No Data found, Trace Call again.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=call_info</td>
+	<td>Call info</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=call_trace</td>
+	<td>Trace Call again</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_trace</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>No Data found, Trace Call again.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_info</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Call Info</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>originator_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>terminator_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_11524</td>
+	<td>ANSWERED (16)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_11523</td>
+	<td>FAILED (301)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#call_trace_log_link_11523 &gt; img[alt=&quot;Lightning&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>2015-03-25 11:01:45*[NOTICE]*cd-&gt;dialstatus: FAILED, cd-&gt;hangupcause: 301, cd-&gt;chan_name: m2_call_trace</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/show_devices/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_trace_link_17</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=call_trace_link_18</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_trace_link_17</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Call Tracing</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Originator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.input-col</td>
+	<td>test_customer_2 - originator_2</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_data_caller_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_data_destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=call_data_caller_id</td>
+	<td>37063042437</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=call_data_destination</td>
+	<td>37064888874</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Call Log</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_trace_link_2</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_trace_link_5</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=call_trace_link_18</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=call_trace_link_19</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Calls_List_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<!--Manager-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2014; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2014; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Lightning&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#call_trace_log_link_4949 &gt; img[alt=&quot;Lightning&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Call Tracing</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>No Data found, Trace Call again.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=call_info</td>
+	<td>Call info</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=call_trace</td>
+	<td>Trace Call again</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_trace</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>No Data found, Trace Call again.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_info</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Call Info</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Call tracing</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=originator_1</td>
+	<td>originator_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=terminator_1</td>
+	<td>terminator_1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_11524</td>
+	<td>ANSWERED (16)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_11523</td>
+	<td>FAILED (301)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#call_trace_log_link_11523 &gt; img[alt=&quot;Lightning&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>2015-03-25 11:01:45*[NOTICE]*cd-&gt;dialstatus: FAILED, cd-&gt;hangupcause: 301, cd-&gt;chan_name: m2_call_trace</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/show_devices/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_trace_link_17</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=call_trace_link_18</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=call_trace_link_17</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Call Tracing</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Originator</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.input-col</td>
+	<td>test_customer_2 - originator_2</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_data_caller_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_data_destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=call_data_caller_id</td>
+	<td>37063042437</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=call_data_destination</td>
+	<td>37064888874</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Call Log</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_trace_link_2</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=call_trace_link_5</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=call_trace_link_18</td>
+	<td>CALL TRACING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=call_trace_link_19</td>
+	<td>CALL TRACING</td>
+</tr>
+<!--simple useris-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2010-01-01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=img[alt=&quot;Lightning&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/call_tracing/call_log/28</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/call_tracing/call_tracing/17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

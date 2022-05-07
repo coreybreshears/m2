@@ -1,0 +1,2277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>unassigned_destinations2</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">unassigned_destinations2</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--#13584 Pvz 2 (Prefix, kurio priskirti nereikia)-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/unassigned_destinations2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/175</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>262</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Reunion - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_prefix</td>
+	<td>262262</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_name</td>
+	<td>Reunion - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_dgname</td>
+	<td>Reunion - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20072_prefix</td>
+	<td>262692</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20072_name</td>
+	<td>Reunion - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20072_dgname</td>
+	<td>Reunion - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20073_prefix</td>
+	<td>26269200</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20073_name</td>
+	<td>Reunion - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20073_dgname</td>
+	<td>Reunion - Mobile Orange</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Reunion</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>262</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Reunion - Fixed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Reunion</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>262</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Reunion - Fixed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/175</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>262</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Reunion - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/175</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=DELETE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully deleted</td>
+	<td></td>
+</tr>
+<!--#13584 Pvz 3 (FXD->Fixed, rezultate viena grupė ALBANIA AMC FXD = Albania - Fixed AMC)-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/unassigned_destinations3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20076_prefix</td>
+	<td>3552253</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20076_name</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20076_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_prefix</td>
+	<td>35522530</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_prefix</td>
+	<td>3552254</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_name</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_prefix</td>
+	<td>35522540</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20080_prefix</td>
+	<td>3552440</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20080_name</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20080_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20081_prefix</td>
+	<td>35524401</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20081_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20081_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania - Fixed AMC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_603</td>
+	<td>View (6)</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ALBANIA AMC FXD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_dgname</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_prefix</td>
+	<td>35522530</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20089_dgname</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20089_prefix</td>
+	<td>35524409</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20089_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Maintenance Directions Destinations Add new Destination</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20076_prefix</td>
+	<td>3552253</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20076_name</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20076_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_prefix</td>
+	<td>35522530</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20077_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_prefix</td>
+	<td>3552254</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_name</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_prefix</td>
+	<td>35522540</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20080_prefix</td>
+	<td>3552440</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20080_name</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20080_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20081_prefix</td>
+	<td>35524401</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20081_name</td>
+	<td>ALBANIA AMC FXD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20081_dgname</td>
+	<td>Albania - Fixed AMC</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania - Fixed AMC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_603</td>
+	<td>View (17)</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ALBANIA AMC FXD</td>
+	<td></td>
+</tr>
+<!--#13584 Pvz 4 (Nekurti naujos grupės, kai Destination = Direction Name)-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/unassigned_destinations4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20095_prefix</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20095_name</td>
+	<td>Afghanistan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20095_dgname</td>
+	<td>Afghanistan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_prefix</td>
+	<td>9320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20097_prefix</td>
+	<td>9320210</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20097_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20097_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20098_prefix</td>
+	<td>93202108</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20098_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20098_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20099_prefix</td>
+	<td>93202109</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20099_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20099_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_604</td>
+	<td>Afghanistan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_604</td>
+	<td>View (1)</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>AFGHANISTAN</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_dgname</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_prefix</td>
+	<td>9320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Destination groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_604</td>
+	<td>Afghanistan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_604</td>
+	<td>View (1)</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>AFGHANISTAN</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_flag</td>
+	<td>afg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--# Priskirti, kai tokia grupė jau egzistuoja-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_dgname</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_prefix</td>
+	<td>9320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Destination groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_604</td>
+	<td>Afghanistan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_604</td>
+	<td>View (1)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_605</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_605</td>
+	<td>View (4)</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>AFGHANISTAN</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20095_prefix</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20095_name</td>
+	<td>Afghanistan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20095_dgname</td>
+	<td>Afghanistan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_prefix</td>
+	<td>9320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20096_dgname</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20097_prefix</td>
+	<td>9320210</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20097_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20097_dgname</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20098_prefix</td>
+	<td>93202108</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20098_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20098_dgname</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20099_prefix</td>
+	<td>93202109</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20099_name</td>
+	<td>AFGHANISTAN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20099_dgname</td>
+	<td>Afghanistan</td>
+</tr>
+<!--#13584 Pvz 5 (Patikriname ar prefixas tikrai atitinką directioną)-->
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>9330</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>AFGHANISTN KANDAHAR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_prefix</td>
+	<td>9330</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_name</td>
+	<td>AFGHANISTN KANDAHAR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Total Unassigned Destinations: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_dgname</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_prefix</td>
+	<td>9330</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_name</td>
+	<td>AFGHANISTN KANDAHAR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<!--# NEatitinka - stop-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Maintenance Directions Destinations Add new Destination</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_name</td>
+	<td>AFGHANISTN KANDAHAR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'DELETE')])[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully deleted</td>
+	<td></td>
+</tr>
+<!--#13584 Pvz 6 (AUSTRIA-M-MILKOM turi suprasti, kad Austria, sukurti naują DG "Austria - Mobile Milkom")-->
+<!--#13584 Pvz 10 (Prefix be Name - nieko nepriskiriam)-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/unassigned_destinations5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_prefix</td>
+	<td>4357</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_name</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_prefix</td>
+	<td>43544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_name</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=19794_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=19794_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_prefix</td>
+	<td>4357</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_name</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_prefix</td>
+	<td>43544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_name</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=19794_prefix</td>
+	<td>672</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=19794_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=19794_prefix</td>
+	<td>672</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=19794_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_606</td>
+	<td>Austria - Mobile Milkom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_606</td>
+	<td>View (2)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/606</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>43544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>4357</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_prefix</td>
+	<td>4357</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_name</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20100_dgname</td>
+	<td>Austria - Mobile Milkom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_prefix</td>
+	<td>43544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_name</td>
+	<td>AUSTRIA-M-MILKOM</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20101_dgname</td>
+	<td>Austria - Mobile Milkom</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/edit/19794</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td>label=Antarctica</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>Antarctica</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<!--#13584 Pvz 7 (AUSTRALIA-M OTHR - turi sukurti DG "Australia - Mobile Other")-->
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>6142000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>AUSTRALIA-M OTHR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20102_dgname</td>
+	<td>Australia</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20102_prefix</td>
+	<td>6142000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20102_name</td>
+	<td>AUSTRALIA-M OTHR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=individual_destinations_action_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Destination groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_607</td>
+	<td>Australia - Mobile Other</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_607</td>
+	<td>View (1)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/607</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>AUSTRALIA-M OTHR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>6142000</td>
+</tr>
+<!--#13584 Pvz 8 (Nauja DG: Ascension - Premium Services Island)-->
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/240</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>247042</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>ASCENSION ISLAND PREMIUM SERVICES</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/240</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>247101</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>ASCENSION ISLAND PREMIUM SERVICES</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Ascension Island - Premium Services</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20103_prefix</td>
+	<td>247042</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20103_name</td>
+	<td>ASCENSION ISLAND PREMIUM SERVICES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20104_prefix</td>
+	<td>247101</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20104_name</td>
+	<td>ASCENSION ISLAND PREMIUM SERVICES</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Destination groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_608</td>
+	<td>Ascension Island - Premium Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_608</td>
+	<td>View (2)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/608</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>ASCENSION ISLAND PREMIUM SERVICES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>247042</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>ASCENSION ISLAND PREMIUM SERVICES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>247101</td>
+</tr>
+<!--#13584 Pvz 9 (Turi paskirti jau egzistuojančiai DG)-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/edit/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Antigua and Barbuda - Mobile</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination group successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>126871</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>Antigua &amp; Barbuda Mobile</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20105_prefix</td>
+	<td>126871</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20105_name</td>
+	<td>Antigua &amp; Barbuda Mobile</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Destination groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_16</td>
+	<td>Antigua and Barbuda - Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_16</td>
+	<td>View (2)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Antigua &amp; Barbuda Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>126871</td>
+</tr>
+<!--#13584 Pvz 10 kartu su Pvz 6-->
+<!--#13584 Pvz 11 (Turi paskirti jau egzistuojančiai DG)-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/edit/110</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Czech Republic - Mobile</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination group successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/edit/11829</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td>label=Not assigned</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully updated!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/57</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_prefix</td>
+	<td>4209</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_name</td>
+	<td>Czech Rep Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_dgname</td>
+	<td>Czech Republic</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_prefix</td>
+	<td>4209</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_name</td>
+	<td>Czech Rep Mobile</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/110</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Destinations</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dir_6</td>
+	<td>Czech Republic</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>Czech Rep Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_6</td>
+	<td>4209</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/57</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_prefix</td>
+	<td>4209</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_name</td>
+	<td>Czech Rep Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=11829_dgname</td>
+	<td>Czech Republic - Mobile</td>
+</tr>
+<!--#13584 Pvz 12 (Nauja DG "El Salvador - Mobile Telemovil")-->
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/edit/3786</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td>label=Not assigned</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully updated!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/edit/3787</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td>label=Not assigned</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully updated!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/edit/3788</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_destinationgroup_id</td>
+	<td>label=Not assigned</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully updated!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3786_prefix</td>
+	<td>50322075</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3786_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3787_prefix</td>
+	<td>50322076</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3787_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3788_prefix</td>
+	<td>50322077</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3788_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=E</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>El Salvador - Mobile Telemovil</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3786_prefix</td>
+	<td>50322075</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3786_name</td>
+	<td>El Salvador mobile-Telemovil</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=E</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>El Salvador - Mobile Telemovil</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_609</td>
+	<td>View (3)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/64</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3786_prefix</td>
+	<td>50322075</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3786_dgname</td>
+	<td>El Salvador - Mobile Telemovil</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3787_prefix</td>
+	<td>50322076</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3787_dgname</td>
+	<td>El Salvador - Mobile Telemovil</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3788_prefix</td>
+	<td>50322077</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=3788_dgname</td>
+	<td>El Salvador - Mobile Telemovil</td>
+</tr>
+<!--#13584 Pvz 13 (Nauja DG -> "Latvia - Mobility Services")-->
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/117</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>37123600302</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/117</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>37123600303</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/new/117</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=destination_prefix</td>
+	<td>37123600304</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Destination successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20106_prefix</td>
+	<td>37123600302</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20106_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20106_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20107_prefix</td>
+	<td>37123600303</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20107_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20107_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Latvia - Mobility Services</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20106_prefix</td>
+	<td>37123600302</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20106_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20107_prefix</td>
+	<td>37123600303</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20107_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20108_prefix</td>
+	<td>37123600304</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20108_name</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_610</td>
+	<td>Latvia - Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_610</td>
+	<td>View (3)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/610</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>37123600302</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>37123600303</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Latvia Mobility Services</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>37123600304</td>
+</tr>
+<!--------------------------------------------------------------------->
+</tbody></table>
+</body>
+</html>

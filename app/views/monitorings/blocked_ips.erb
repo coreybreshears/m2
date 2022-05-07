@@ -1,0 +1,94 @@
+<% @create_button_name = _('Block_New_IP') %>
+
+<% content_for :create_form do %>
+    <%= form_for @block_ip, url: {action: :blocked_ip_block}, html: {id: 'create-form', class: 'calls-form', visible: show_create && !show_search} do |ip| %>
+        <fieldset>
+          <div class="column cause-col">
+            <%= label_tag 'name', _('IP') %>
+            <div class="row">
+              <%= ip.text_field :blocked_ip, type: :text, size: 15 %>
+            </div>
+          </div>
+          <div class="column cause-col">
+            <%= label_tag 'name', _('Server') %>
+            <div class="row">
+              <%= ip.select(:server_id, options_for_select([[_('All'), 'all']] + @servers.map { |server| [server.server_name, server.id]}, @block_ip.server_id)) %>
+            </div>
+          </div>
+          <div class="column cause-col">
+            <%= label_tag 'description', _('Reason') %>
+            <div class="row">
+              <%= ip.text_field :chain, type: :text, size: 30 %>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= submit_tag _('Cancel'), type: :reset,
+                             onClick: "$(\"#create-form\").toggle();pressed('#{Web_Dir}/callc/toggle_create', '#{params[:controller]}', '#{params[:action]}');"
+              %>
+              <%= submit_button_tag _('Block_IP'), id: 'Add_IP' %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<% content_for :search_form do %>
+    <%= form_tag({action: :blocked_ips}, {id: 'search-form', class: 'calls-form customer-invoice',  visible: show_search && !show_create}) do %>
+        <fieldset>
+          <div class="column cause-col">
+            <%= label_tag 'name', _('IP') %>
+            <div class="row">
+              <%= text_field_tag 's_blocked_ip', @options[:s_blocked_ip], class: 'input', size: 15 %>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= clear_button_tag _('clear') %>
+              <%= submit_button_tag _('refine') %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Blocked_IPs') %></h2>
+    <div class="table-holder">
+      <table class="blanks">
+        <tr>
+          <th class="date" style="width: 15%"><%= _('Country') %></th>
+          <th class="date" style="width: 15%"><%= _('Blocked_IP') %></th>
+          <th class="date" style="width: 15%"><%= _('Server') %></th>
+          <th class="date" style="width: 50%"><%= _('Reason') %></th>
+          <th class="date" style="width: 5%"></th>
+        </tr>
+        <% @blocked_ips.each do |blocked_ip| %>
+            <% ip_id = blocked_ip[:id] %>
+            <% block_in_progress = blocked_ip[:unblock] == 2 %>
+            <% unblock_in_progress = blocked_ip[:unblock] == 1 %>
+            <tr class="<%= 'blocked_ips_block_in_progress' if block_in_progress || unblock_in_progress %>" <%= tooltip(_('Info'), _('IP_Block_is_in_progress_and_can_take_up_to_1_minute')) if block_in_progress %> <%= tooltip(_('Info'), _('IP_Unblock_is_in_progress_and_can_take_up_to_1_minute')) if unblock_in_progress %>>
+              <td id="country_<%= ip_id %>" style="white-space: nowrap">
+                <%= draw_flag(blocked_ip.direction_code(blocked_ip[:country].to_s)) %> <%= adjust_country_name(blocked_ip[:country].to_s) %>
+              </td>
+              <td id="blocked_ip_<%= ip_id %>" class="server-id_list">
+                <%= link_to blocked_ip[:blocked_ip], "http://whatismyipaddress.com/ip/#{blocked_ip[:blocked_ip]}", target: '_blank' if blocked_ip[:blocked_ip].present? %>
+              </td>
+              <td id="server_<%= ip_id %>" class="server-id_list">
+                <%= link_to(blocked_ip[:server], {controller: :servers, action: :edit, id: blocked_ip[:server_id]}, {id: "server_link_#{ip_id}"}) if blocked_ip[:server].present? %>
+              </td>
+              <td id="reason_<%= ip_id %>" class="server-id_list" style="text-transform: none;">
+                <%= blocked_ip[:reason] %>
+              </td>
+              <td id="unblock_<%= ip_id %>" align="server-active_list">
+                <%= button_to('UNBLOCK', {action: :blocked_ip_unblock, id: ip_id, blocked_ip: blocked_ip[:blocked_ip], server_id: blocked_ip[:server_id]}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: "delete_link_#{ip_id}") if !(block_in_progress || unblock_in_progress) %>
+              </td>
+      <% end %>
+      </table>
+
+      <br/>
+      <%= page_select_header(@options[:page], @total_pages, @options) if @total_pages > 1 %>
+    </div>
+  </div>
+</div>

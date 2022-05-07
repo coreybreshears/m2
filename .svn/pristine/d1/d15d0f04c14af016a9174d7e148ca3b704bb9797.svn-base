@@ -1,0 +1,55 @@
+<table width="100%">
+  <tr>
+    <td align="left"><%= draw_flag @direction.code %> <%= @direction.name %></td>
+    <td align="right"><%= link_to b_add + _('Add_new_destination'), :action => 'new', :id => @direction %></td>
+  </tr>
+</table>
+
+
+<% if @total_pages > 1 %>
+    <br>
+    <%= render 'page_select_header' ,page: @page, total_pages: @total_pages, page_select_header_id: @page_select_header_id, st: @st %>
+<% end %>
+
+<br>
+
+<table width="100%" class="maintable last_calls">
+  <tr>
+
+    <th align="left"><%= _('Prefix') %></th>
+    <th align="left"><%= _('Name') %></th>
+    <th align="left"><%= _('Destination_Group') %></th>
+    <th></th>
+    <th></th>
+
+  </tr>
+
+  <% i = 0 %>
+  <% if @destinations and @destinations.size.to_i > 0 %>
+      <% for destination in @destinations %>
+          <tr class="row<%= (i % 2 + 1).to_s %>">
+            <td id='<%= destination.id.to_s %>_prefix'><%= destination.prefix %></td>
+            <td id='<%= destination.id.to_s %>_name'><%= destination.name %></td>
+            <td id='<%= destination.id.to_s %>_dgname'>
+              <% if destination.dg_name %>
+                  <%= destination.dg_name %>
+              <% else %>
+                  <%= _('Not_assigned') %>
+              <% end %>
+            </td>
+
+            <td align="center"><%= link_to _('EDIT'), :action => 'edit', :id => destination, :page => @page %></td>
+            <td align="center"><%= link_to _('DELETE'), {action: :destroy, id: destination}, data: {confirm: _('Are_you_sure')}, method: :post %></td>
+          </tr>
+          <% i += 1 %>
+      <% end %>
+  <% end %>
+</table>
+
+
+<% if @total_pages > 1 %>
+    <br>
+    <%= render 'page_select_header' ,page: @page, total_pages: @total_pages, page_select_header_id: @page_select_header_id, st: @st %>
+<% end %>
+
+<br>

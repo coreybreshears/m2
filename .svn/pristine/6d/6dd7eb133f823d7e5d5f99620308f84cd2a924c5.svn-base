@@ -1,0 +1,106 @@
+<% content_for :search_form do %>
+<%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+<%= hidden_field_tag 'page', 1 %>
+<fieldset>
+    <div class = "column source-col">
+        <%= label_tag 'description', _('Description') %>
+        <div class = "row">
+          <%= text_field_tag('s_description', options[:s_description], class: 'input', size: 15, maxlength: 30) %>
+        </div>
+    </div>
+    <div class = "column source-col">
+        <%= label_tag 'ip', _('IP') %>
+        <div class = "row">
+          <%= text_field_tag 's_host', options[:s_host], class: 'input', size: 15, maxlength: 30 %>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('refine') %>
+        </div>
+      </div>
+</fieldset>
+<% end %>
+<% end %>
+
+
+  <fieldset>
+  <div class="content-box">
+   <div class="table-box">
+    <h2> <%= _('connection_points') %></h2>
+    <div class="table-holder">
+
+<table width="100%" class="maintable">
+  <tr>
+    <%= sortable_header('Acc', 'acc', class: 'manager-id', id: 'id_header') %>
+    <%= sortable_header(_('User'), 'user', class: 'manager-manager' , id: 'user_header') %>
+    <%= sortable_header('Description', 'description', class: 'manager-group', id: 'descriptio_header') %>
+    <th style="text-align: left"> <%= _('IP_Address') %> </th>
+    <th style="text-align: left"> <%= _('tech_prefix') %> </th>
+    <th id="call_tracing_header" style="width: 30%"></th>
+    <th id="hide"></th>
+    <th id="edit_header"></th>
+    <th id="delete_header"></th>
+  </tr>
+  <% users_cache = {} -%>
+  <% devices.each_with_index { |device, i| -%>
+      <% device.user = users_cache[device.user_id] ||= device.user -%>
+      <% device.user.owner = users_cache[device.user.owner_id] ||= device.user.owner -%>
+      <% device_blocked_ip_status = device.blocked_ip_status if admin? || (manager? && authorize_manager_permissions({controller: :monitorings, action: :blocked_ips, no_redirect_return: 1})) %>
+
+      <tr class="row<%= (i % 2 + 1).to_s %>">
+        <td id="id_<%= device.id %>"><%= device.id %></td>
+        <td id="user_<%= device.id %>" style="text-align: left"><%= link_nice_device_user(device) %></td>
+        <td id="description_<%= device.id %>" style="text-align: left">
+          <%= device.description %>&nbsp;<%= link_to(b_exclamation, {controller: :monitorings, action: :blocked_ips}, link_tooltip(_('Device_IP_is_blocked'), _('More_details_in_SECURITY_Blocked_IPs_page'))) if device_blocked_ip_status %>
+        </td>
+
+        <% status = get_periodic_check_status(device.periodic_check, device.alive) %>
+
+        <td id="ip_<%= device.id %>" style="text-align: left; white-space: nowrap; color: <%= status[:color] %> " <%= tooltip(status[:tooltip_title], status[:tooltip_description]) if status[:explanation] %> >
+          <%= device.nice_ipaddr %>&nbsp;
+          <%= link_to(b_exclamation, {controller: :monitorings, action: :blocked_ips}, link_tooltip(_('Device_IP_is_blocked'), _('More_details_in_SECURITY_Blocked_IPs_page'))) if device_blocked_ip_status %>
+          <% if device.op == 1 && device.op_active == 0 %>
+            <span  <%= tooltip(_('Warning'), _('OP_is_inactive'))  %> >
+              <%= b_delete %>
+            </span>
+          <% end %>
+        </td>
+
+
+        <td style="text-align: left" id="tech_prefix_<%= device.id %>"><%= device.op_tech_prefix %></td>
+        <td id="call_tracing_<%= device.id %>" >
+          <% if !manager? || (manager? && authorize_manager_permissions({controller: :call_tracing, action: :call_tracing, no_redirect_return: 1})) %>
+            <%= (link_to(_('call_tracing').upcase, {controller: :call_tracing, action: :call_tracing, id: device.id}, {id: "call_trace_link_#{device.id}"})) if device.op.to_i == 1 %>
+          <% end %>
+        </td>
+
+        <td id="hide_<%= device.id %>">
+          <% unless manager? %>
+            <%= link_to(device.try(:hidden_device).to_i == 1 ? _('unhide').upcase : _('hide').upcase, {action: :device_hide, id: device.id}, onclick: "return confirm('Are you sure?')") %>
+          <% end %>
+        </td>
+
+        <td id="edit_<%= device.id %>" >
+          <% if !manager? || (manager? && authorize_manager_permissions({controller: :devices, action: :device_edit, no_redirect_return: 1})) %>
+            <%= link_to _('edit').upcase, {action: :device_edit, id: device.id}, {id: "edit_link_#{device.id}"} %>
+          <% end %>
+        </td>
+
+        <td id="delete_<%= device.id %>">
+          <% if !manager? || (manager? && authorize_manager_permissions({controller: :devices, action: :destroy, no_redirect_return: 1})) %>
+            <%= button_to _('delete'),
+                          {action: :destroy, id: device.id}, onclick: "return confirm('Are you sure?')",
+                          class: 'delete_button', style: 'font-size: 13px; margin: 0.5px;', method: :post, id: "delete_link_#{device.id}" %>
+          <% end %>
+        </td>
+      </tr>
+  <% } -%>
+</table>
+<br/>
+<%= page_select_header(options[:page], total_pages) if total_pages > 1 %>
+</div>
+</div>
+</div>
+</fieldset>

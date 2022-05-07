@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>api_tariff_rates_get</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">api_tariff_rates_get</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/api/quickstats_get?u=admin&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>API Requests are disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/dst_fix_for_custom_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/main</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/update_balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/enable_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/make_simple</td>
+	<td></td>
+</tr>
+<!--hash-->
+<!--#1 hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash1</td>
+</tr>
+<!--#2 hash tariff - 12-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin&amp;tariff_id=12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash2</td>
+</tr>
+<!--#3 hash - tariff 13-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin&amp;tariff_id=13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash3</td>
+</tr>
+<!--#4 hash - tariff 6-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin&amp;tariff_id=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash4</td>
+</tr>
+<!--#5 hash - tariff 15-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin&amp;tariff_id=15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash5</td>
+</tr>
+<!--#6 hash - tariff 8-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin&amp;tariff_id=8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash6</td>
+</tr>
+<!--#7 hash - tariff 7-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin&amp;tariff_id=7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash7</td>
+</tr>
+<!--#8 hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?u=admin&amp;tariff_id=14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=body</td>
+	<td>hash8</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<!--#1 hash-->
+<!--own tariff-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=admin&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>device_id or tariff_id was not found</td>
+</tr>
+<!--#2 hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=admin&amp;tariff_id=12&amp;test=1&amp;hash=${hash2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=pagename</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tariff_name</td>
+	<td>Provider_admin_tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=purpose</td>
+	<td>provider</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=direction</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Afghanistan proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Afghanistan Kandahar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Tariff Provider_admin_tariff provider USD Afghanistan Afghanistan proper 93 AFG 0.450000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kabul 9320 AFG 0.310000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kandahar 9330 AFG 0.530000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania proper 370 LTU 0.212000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania mobile 3706 LTU 0.333000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania Mobile Tele2 370604 LTU 0.123000000000000 0.000000000000000 1 0 00:00:00 23:59:59</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=from</td>
+	<td></td>
+</tr>
+<!--#4 hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_reseller&amp;tariff_id=6&amp;test=1&amp;hash=${hash4}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Retail_admin_tariff</td>
+	<td></td>
+</tr>
+<!--#2 hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_reseller&amp;tariff_id=12&amp;test=1&amp;hash=${hash2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=admin&amp;tariff_id=12&amp;test=1&amp;hash=${hash2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=pagename</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=purpose</td>
+	<td>provider</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Afghanistan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Tariff Provider_admin_tariff provider USD Afghanistan Afghanistan proper 93 AFG 0.450000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kabul 9320 AFG 0.310000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kandahar 9330 AFG 0.530000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania proper 370 LTU 0.212000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania mobile 3706 LTU 0.333000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania Mobile Tele2 370604 LTU 0.123000000000000 0.000000000000000 1 0 00:00:00 23:59:59</td>
+</tr>
+<!--Priskiriami tarifai Devaisam-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>0.0.0.1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>0.0.0.2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=Provider_common_use_tariff</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>0.0.0.3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Wholesale_admin_tariff</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>0.0.0.4</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Wholesale_res_tariff</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>0.0.0.5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>label=Provider_common_use_tariff</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_tariff_id</td>
+	<td>label=Wholesale_user_tariff</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ip_add_value_ip</td>
+	<td>0.0.0.6</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_12</td>
+	<td>2/0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_13</td>
+	<td>2/0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_6</td>
+	<td>0/2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_15</td>
+	<td>0/1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_8</td>
+	<td>0/1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage_7</td>
+	<td>0/1</td>
+</tr>
+<!--~~~~~~~~~~~~~~~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<!--##################-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_reseller&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>device_id or tariff_id was not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_accountantBAD&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Bad login</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_accountant&amp;test=1&amp;tariff_id=13&amp;hash=${hash3}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=pagename</td>
+	<td>Tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tariff_name</td>
+	<td>Provider_common_use_tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=purpose</td>
+	<td>provider</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=direction</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Tariff Provider_common_use_tariff provider USD Afghanistan Afghanistan proper 93 AFG 0.530000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kabul 9320 AFG 0.310000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kandahar 9330 AFG 0.450000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania proper 370 LTU 0.333000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania mobile 3706 LTU 0.212000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania Mobile Tele2 370604 LTU 0.123000000000000 0.000000000000000 1 0 00:00:00 23:59:59</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>css=tariff_name</td>
+	<td>Wholesale_wres_user_tariff</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_accountant&amp;test=1&amp;tariff_id=50&amp;hash=73494a417f74004e4276f4c0b1f240ec85f31d9d</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>No tariff found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_accountant&amp;test=1&amp;tariff_id=15&amp;hash=2a71e1c66f04af42aa272083bef6e490fcd576fb</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_accountant&amp;test=1&amp;device_id=8&amp;hash=a95b461ed7abd736b96ab5859691fa46c8b6f046</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Tariff Wholesale_user_tariff user_wholesale USD Afghanistan Afghanistan proper 93 AFG 0.500000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kabul 9320 AFG 0.721000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kandahar 9330 AFG 0.000000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania proper 370 LTU 0.080000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania mobile 3706 LTU 0.087700000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania Mobile Tele2 370604 LTU 0.074300000000000 0.000000000000000 1 0 00:00:00 23:59:59</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_accountant&amp;test=1&amp;device_id=8&amp;tariff_id=100&amp;hash=a2ccb66ee3815cba0f4d719eb8ea66398f3f0d78</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Tariff Wholesale_user_tariff user_wholesale USD Afghanistan Afghanistan proper 93 AFG 0.500000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kabul 9320 AFG 0.721000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Afghanistan Afghanistan Kandahar 9330 AFG 0.000000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania proper 370 LTU 0.080000000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania mobile 3706 LTU 0.087700000000000 0.000000000000000 1 0 00:00:00 23:59:59 Lithuania Lithuania Mobile Tele2 370604 LTU 0.074300000000000 0.000000000000000 1 0 00:00:00 23:59:59</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_accountant&amp;test=1&amp;tariff_id=100&amp;hash=4a1069b7711e1374dac5eee130a771cef40f9b98</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>No tariff found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_user&amp;test=1&amp;device_id=8&amp;tariff_id=100&amp;hash=a2ccb66ee3815cba0f4d719eb8ea66398f3f0d78</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_user&amp;test=1&amp;device_id=8&amp;hash=a95b461ed7abd736b96ab5859691fa46c8b6f046</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=html</td>
+	<td>Access Denied</td>
+</tr>
+<!--incorrect hash-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_reseller&amp;test=1&amp;hash=5b1d5b1569de26f6srydtuea5af4e3d</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Incorrect hash</td>
+	<td></td>
+</tr>
+<!--bad login-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/tariff_rates_get?u=wholesale_rrrrreseller&amp;test=1&amp;hash=e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bad login</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

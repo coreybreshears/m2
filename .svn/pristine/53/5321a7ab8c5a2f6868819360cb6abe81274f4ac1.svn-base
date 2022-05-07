@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title><%= raw @page_title %></title>
+  <script type="text/javascript">
+      var mor_web_dir = '<%=Web_Dir%>';
+      var Web_Dir = "<%= Web_Dir || '' %>";
+  </script>
+  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "jquery.treetable.css" %>
+  <%= stylesheet_link_tag "jquery.treetable.theme.default.css" %>
+  <%= javascript_include_tag "application" %>
+
+  <!-- include the site fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <!-- include the site stylesheet -->
+  <%= stylesheet_link_tag "all_tmp.css" %>
+  <%= stylesheet_link_tag "admin_styles.css" %>
+  <%= stylesheet_link_tag "jquery-ui-1.10.4.custom.min.css" %>
+  <!-- include jQuery library -->
+  <%= javascript_include_tag "jquery-1.8.3.min.js" %>
+  <script type="text/javascript">
+    document.write('<style type="text/css">body{display:none}</style>');
+    jQuery(function($) { $('body').css('display','block'); });
+  </script>
+  <%= javascript_include_tag "jquery.treetable.js" %>
+  <%= javascript_include_tag "jqwidgets/jqxcore.js" %>
+  <%= stylesheet_link_tag 'jqx.base.css' %>
+  <%= stylesheet_link_tag 'jqx.m2.css' %>
+  <script type="text/javascript">
+    $j = jQuery.noConflict();
+  </script>
+  <!-- include custom JavaScript -->
+  <script type="text/javascript">var date_format = "<%= calendar_date_format %>";</script>
+  <%= javascript_include_tag "jquery.main_tmp.js" %>
+
+
+  <% javascript_include_tag 'search_form_ajax' %>
+  <%= javascript_include_tag 'm2' %>
+  <!-- include HTML5 IE enabling script and stylesheet for IE -->
+  <!--[if IE]><script type="text/javascript" src="<%=Web_Dir%>/assets/ie.js"></script><![endif]-->
+  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="<%=Web_Dir%>/assets/ie.css" media="screen"/><![endif]-->
+  <link rel="shortcut icon" href="<%= Web_Dir %>/<%= correct_favicon_folder %>favicon<%= correct_favicon_css %>.ico" />
+
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<%= javascript_include_tag "dtree" %>
+<%= javascript_include_tag "wz_tooltip" %>
+
+ <%
+    controller = params[:controller]
+    action     = params[:action]
+  %>
+  <% page_path, parent = find_path(controller, action, params[:spec_param_for_layout_name])%>
+
+<% if admin? %>
+    <%= render 'layouts/m2_admin_header_tmp', parent: parent %>
+<% else %>
+    <%= render 'layouts/m2_manager_header', parent: parent %>
+<% end %>
+
+<table width="100%" style="border-collapse:collapse;">
+  <tr class="header_spacer">
+    <td></td>
+  </tr>
+  <tr id="page_header">
+    <td>
+      <table width="100%">
+        <tr height=44>
+          <td valign="middle">
+            <% if session[:logo_picture] %>
+                <% unless session[:logo_picture].blank? %>
+                    <%= link_to(image_tag("/images/" + session[:logo_picture].to_s), {:controller => "/callc", :action => "main"}, {:id => "company_logo", :title => session[:company]}) %>
+                <% end %>
+            <% else %>
+                <% user = User.where(uniquehash: params[:id].to_s).first %>
+                <% user_id = user.present? ? user.try(:id).to_i : -1 # Jei gauna nil priskiriam -1, jei paliktumem paprasta try(:id) nil atveju user_id butu 0 - kaip admin %>
+                <% if Confline.get_value("Show_logo_on_register_page", user_id).to_i == 1 %>
+                    <%= link_to(image_tag("/images/" + Confline.get_value("Logo_Picture", user_id).to_s), {:controller => "/callc", :action => "main"}, {:id => "company_logo", :title => Confline.get_value("Company", user_id)}) %>
+                <% end %>
+            <% end %>
+          </td>
+          <td>
+            <table width="100%">
+              <tr>
+                <td align="right">
+                  <% if session[:login] == true %>
+                      <% name = '' %>
+                      <% if (session[:first_name].to_s.length + session[:last_name].to_s.length) > 0 %>
+                          <% name = "<b>#{session[:first_name].titleize} #{session[:last_name].titleize}</b>".html_safe %>
+                      <% end %>
+                      <%= link_to name, {:controller => :users, :action => :personal_details, :id => session[:user_id]}, {:class => "m2_header_link"} %><br><%= link_to _('Logout'), {:controller => "callc", :action => "logout"}, {:class => "m2_header_link"} %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td align="right" valign="bottom">
+                  <div id="flag_list_div"><%= flag_list.html_safe %></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+  <tr class="header_spacer">
+    <td></td>
+  </tr>
+</table>
+
+
+
+
+<div id="ddnav">
+
+<div align="center"> <table width="1350">   <tr>    <td>
+
+  <div id="page_title_icon" class="page_title_new">
+    <% if @page_title %>
+          <span id="page_title">
+            <b>&nbsp;</b><%= image_tag('icons/' + @page_icon, :title => @page_title) if @page_icon %>&nbsp;<%= raw @page_title.html_safe %>
+          </span>
+          <% if current_page?(:controller => 'calls', :action => 'call_info')%>
+            <span>
+              <%= button_tag _('call_tracing'), class: "non-breadcrumb-button search-form-button",
+                     onclick: "location.href = '#{Web_Dir}/call_tracing/call_log/#{params[:id]}'" %>
+            </span>
+          <% end %>
+          <% if current_page?(:controller => 'users', :action => 'list')%>
+            <span>
+              <%= button_tag _('hidden_users'), class: "non-breadcrumb-button search-form-button",
+                     onclick: "location.href = '#{Web_Dir}/users/hidden'" %>
+            </span>
+          <% end %>
+    <% end %>
+<!--
+    <% if @help_link and (admin? or reseller?) and session[:help_link].to_i == 1 %>
+        &nbsp;<a href="<%= @help_link %>" target="_blank"><%= icon(:help, :title => _('Get_help_about_this_page')) %></a>
+    <% end %>
+-->
+    <%= icon(:application_side_expand, {:id => :application_side_expand, :title => _('Show_menus')}) %>
+    <%= icon(:application_side_contract, {:id => :application_side_expand, :title => _('Hide_menus')}) %>
+  </div>
+  <div id="spinner" style="display: none;">
+    <%= image_tag('indicator.gif', border: 0) %>
+  </div>
+  <div id="spinner2" class="spinny" style="display: none;">
+    <span><i class="fa fa-cog fa-spin fa-2x"></i></span>
+    <p>working...</p>
+  </div>
+
+</td> </tr> </table> </div>
+
+</div>
+
+                        <% if session[:integrity_check] == 1 %>
+                          <table class='error_table'>
+                            <tr>
+                              <td><%= link_to b_exclamation + _("Please_Check_System_Integrity_Here") , :controller=> "functions", :action=>"integrity_check" %></td>
+                            </tr>
+                          </table>
+                        <% end %>
+
+<div id="topbck"></div>
+<div align="center">
+<table id ='page_width' width="1350">
+  <tr>
+    <td>
+      <table style="width: 100%">
+        <tr valign="top">
+
+          <td align="left" class="main_window" style='height: 500px'>
+            <% if @show_currency_selector %>
+                <% if params[:controller].to_s == "tariffs" and params[:action].to_s == "user_rates" %>
+                    <%= currency_selector(true).html_safe %>
+                <% else %>
+                    <%= currency_selector.html_safe %>
+                <% end %>
+            <% else %>
+                <br/>
+            <% end %>
+            <% if flash[:status] -%>
+                <div id="status"><%= flash[:status].html_safe %></div>
+                <br/>
+                <% flash[:status] = nil %>
+            <% end -%>
+            <% if flash[:notice] -%>
+                <div id="notice"><%= flash[:notice].html_safe %></div>
+                <br/>
+                <% flash[:notice] = nil %>
+            <% end -%>
+            <% if flash[:warning] %>
+              <div id="warning-message"><%= flash[:warning].html_safe %></div>
+              <br/>
+              <% flash[:warning] = nil %>
+            <% end %>
+            <div class="nb">
+              <%= raw yield.html_safe %>
+            </div>
+          </td>
+        <!--  <td>
+          </td> -->
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>
+
+
+<div id="footerbck"></div>
+
+<footer id="footer">
+    <div class="footer-holder">
+        <span class="footer-holder-left">
+          <% if admin? && m4_functionality? && Confline.get_value('Use_Redis', 0).to_i == 1 %>
+            &nbsp;&nbsp;
+            <span id="footer-redis-info">
+              CPS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CC:
+            </span>
+          <% else %>
+            &nbsp;
+          <% end %>
+        </span>
+        <span class="footer-holder-center">
+          <% if m4_functionality? %>
+            <%= raw Confline.get_value('white_label_footer').to_s.encode('UTF-8', invalid: :replace, undef: :replace, replace: '?') %>
+          <% else %>
+            M2 SWITCH by <a href="http://www.ocean-tel.uk" target="_blank">Kolmisoft</a> 2006 - <%= Time.new.year %>
+          <% end %>
+          &nbsp;
+        </span>
+        <span class="footer-holder-right">
+            <%= _('System_Time') %>:&nbsp;<span id="footer-system-time-js"></span>
+        </span>
+    </div>
+</footer>
+
+
+
+<%= javascript_include_tag "mor/mor.js" %>
+
+<script type="text/javascript">
+    // Firefox disable form cache on reload
+    $j('input,textarea,select').attr('autocomplete', 'off');
+</script>
+<% current_time = Time.now %>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        footerCurrentTime = new Date(<%= current_time.year %>, <%= current_time.month %>, <%= current_time.day %>, <%= current_time.hour %>, <%= current_time.min %>, <%= current_time.sec %>, 0);
+        footerTimeUpdateInterval_S = 5;
+
+        updateSystemTime();
+        setInterval('updateSystemTime()', footerTimeUpdateInterval_S * 1000);
+
+
+        <% if m4_functionality? && Confline.get_value('Use_Redis', 0).to_i == 1 %>
+        footerRedisElement = document.getElementById('footer-redis-info');
+
+        footerRedisUpdateInterval_Success_S = 1;
+        footerRedisUpdateInterval_Failure_S = 15;
+        footerRedisUpdateInterval_Current_S = footerRedisUpdateInterval_Success_S;
+
+        updateFooterRedisInfoRefreshInterval(footerRedisUpdateInterval_Current_S);
+        <% end %>
+    });
+
+    function updateSystemTime() {
+        jQuery('#footer-system-time-js').text(
+                        ('0' + footerCurrentTime.getHours()).slice(-2)
+                        + ':' +
+                        ('0' + footerCurrentTime.getMinutes()).slice(-2)
+        );
+        footerCurrentTime.setSeconds(footerCurrentTime.getSeconds() + footerTimeUpdateInterval_S);
+    }
+
+    function updateFooterRedisInfo() {
+        if (isInViewport(footerRedisElement)) {
+            jQuery.ajax({
+                url: Web_Dir + '/callc/redis_footer_info',
+                async: true,
+                error: function(response, error, full_error){
+                    //console.log('Ajax Error:');
+                    //console.log(response);
+                    //console.log(error);
+                    //console.log(full_error);
+
+
+                    if (!response['error'] && footerRedisUpdateInterval_Current_S == footerRedisUpdateInterval_Failure_S) {
+                        updateFooterRedisInfoRefreshInterval(footerRedisUpdateInterval_Success_S);
+                    }
+                },
+                success: function(response) {
+                    //console.log('Ajax Success:');
+                    //console.log(response);
+
+
+                    if (response['error'] && footerRedisUpdateInterval_Current_S == footerRedisUpdateInterval_Success_S) {
+                        updateFooterRedisInfoRefreshInterval(footerRedisUpdateInterval_Failure_S);
+                    }
+
+                    if (!response['error'] && footerRedisUpdateInterval_Current_S == footerRedisUpdateInterval_Failure_S) {
+                        updateFooterRedisInfoRefreshInterval(footerRedisUpdateInterval_Success_S);
+                    }
+
+                    jQuery('#footer-redis-info').html(
+                                    '<a href="' + Web_Dir + '/stats/active_calls_cps_cc_live' + '" target="#blank">' +
+                                    'CPS: ' + response['cps']
+                                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                                    'CC: ' + response['cc'] +
+                                    '</a>'
+                    );
+                }
+            });
+        }
+    }
+
+    function updateFooterRedisInfoRefreshInterval(newInterval) {
+        try {
+            clearInterval(footerRedisUpdateIntervalID);
+        } catch(err) {}
+
+        footerRedisUpdateInterval_Current_S = newInterval;
+
+        footerRedisUpdateIntervalID = setInterval('updateFooterRedisInfo()', footerRedisUpdateInterval_Current_S * 1000);
+    }
+
+    function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+    }
+</script>
+
+<%= yield :scripts %>
+
+</body>
+</html>

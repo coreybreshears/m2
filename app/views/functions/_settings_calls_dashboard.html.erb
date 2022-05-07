@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col extended">
+      <div class="input-row">
+
+        <div class="label-col">
+          <%= label_tag 'cd_refresh_interval', _('CD_Refresh_Interval') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('cd_refresh_interval', Confline.get('Calls_Dashboard_refresh_interval').try(:value) || 5, {size: 4, class:'number'}) %>&nbsp;<%= _('min') %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag '', _('Calls_Dashboard_color_range_info') %>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'ASR', _('ASR'), class: 'cd_label' %>
+        </div>
+        <div class="input-col">
+          <span><%= _('Red') %>&nbsp;&lt;</span>
+          <%= text_field_tag('bad_asr', Confline.get('CD_bad_ASR').try(:value) || 30, {class: 'cd-number', size: 4, maxlength: 5}) %>&nbsp;%,&nbsp;
+          <span><%= _('Green') %>&nbsp;&gt;</span>
+          <%= text_field_tag('good_asr', Confline.get('CD_good_ASR').try(:value) || 50, {class: 'cd-number', size: 4, maxlength: 5}) %>&nbsp;%&nbsp;
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'ACD', _('ACD'), class: 'cd_label'  %>
+        </div>
+        <div class="input-col">
+          <span><%= _('Red') %>&nbsp;&lt;</span>
+          <%= text_field_tag('bad_acd', Confline.get('CD_bad_ACD').try(:value) || 60, {class: 'cd-number', size: 4, maxlength: 5}) %>&nbsp;s,&nbsp;&nbsp;
+          <span><%= _('Green') %>&nbsp;&gt;</span>
+          <%= text_field_tag('good_acd', Confline.get('CD_good_ACD').try(:value) || 119, {class: 'cd-number', size: 4, maxlength: 5}) %>&nbsp;s&nbsp;&nbsp;
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'Margin', _('Margin'), class: 'cd_label'  %>
+        </div>
+        <div class="input-col">
+          <span><%= _('Red') %>&nbsp;&lt;</span>
+          <%= text_field_tag('bad_margin', Confline.get_value('CD_bad_Margin'), {class: 'cd-number', size: 4, maxlength: 10}) %>&nbsp;%,&nbsp;
+          <span><%= _('Green') %>&nbsp;&gt;</span>
+          <%= text_field_tag('good_margin', Confline.get_value('CD_good_Margin'), {class: 'cd-number', size: 4, maxlength: 10}) %>&nbsp;%&nbsp;
+        </div>
+      </div>
+
+    </div>
+</div>

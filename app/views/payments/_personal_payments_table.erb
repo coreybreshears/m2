@@ -1,0 +1,28 @@
+<% payments.each_with_index do |payment, index| %>
+  <tr <%= 'class="even"'.html_safe unless index.even? %>>
+    <td id="date_<%= payment.id %>" class="date">
+      <%= nice_user_timezone(payment.date) if !payment.date.nil? %>
+    </td>
+    <td id="user_balance_before_<%= payment.id %>" class="amount">
+      <%= nice_currency(payment.user_balance_before.to_d) if !payment.user_balance_before.nil? %>
+    </td>
+    <td id="user_balance_after_<%= payment.id %>" class="amount">
+      <%= nice_currency(payment.user_balance_after.to_d) if !payment.user_balance_after.nil? %>
+    </td>
+    <td id="amount_<%= payment.id %>" class="amount">
+      <%= nice_currency(payment.amount.to_d, payment.exchange_rate) if !payment.amount.nil? %>
+    </td>
+    <td id="amount_with_tax_<%= payment.id %>" class="amount">
+      <%= nice_currency(payment.amount_with_tax.to_d, payment.exchange_rate) if !payment.amount_with_tax.nil? %>
+    </td>
+    <td id="currency_<%= payment.id %>" class="currency"<%= tooltip(_('Exchange_rate'), (nice_number(payment.exchange_rate.to_d) if !payment.exchange_rate.nil?)) %>>
+      <%= currency_by_id(payment.currency_id.to_i) if !payment.currency_id.nil? %>
+    </td>
+  </tr>
+<% end %>
+<tr class="total">
+  <td class="total" colspan="3"><%= _('TOTAL') %></td>
+  <td class="amount" id="total_amount"><%= nice_currency(totals.amount)%></td>
+  <td class="amount" id="total_amount_with_tax"><%= nice_currency(totals.amount_with_tax)%></td>
+  <td class="currency" id="total_currency"><%= user.active_currency.name %></td>
+</tr>

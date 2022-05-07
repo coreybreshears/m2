@@ -1,0 +1,15 @@
+INSERT INTO `mor`.`dg_destinations` (`id` ,`dg_id` ,`destination_id` ,`name`) VALUES 
+(77 , '1', '2', 'Afghanistan proper'), 
+(78 , '1', '6', 'Romania'), 
+(79 , '1', '2', 'Afghanistan Herat'), 
+(80 , '1', '3', 'Afghanistan'), 
+(81 , '1', '8', 'Afghanistan'),
+(82 , '3', '18', 'Albania proper'), 
+(83 , '3', '11340', 'Albania Tirane'), 
+(84 , '3', '22', 'Albania Tirane'), 
+(85 , '3', '23', 'Albania Tirane'),
+(86 , '3', '24', 'Albania Tirane'), 
+(87 , '3', '25', 'Albania Tirane'), 
+(88 , '3', '26', 'Albania Tirane'), 
+(89 , '3', '27', 'Albania Tirane'),
+(90 , '473', '235', 'Mexico');

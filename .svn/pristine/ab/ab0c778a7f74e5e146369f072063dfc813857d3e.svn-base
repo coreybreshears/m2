@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col extended">
+      <div class="input-row">
+          <div class="label-col">
+            <%= label_tag 'total_tax', _('Total_tax_name') %>
+          </div>
+          <div class="input-col">
+            <%= text_field_tag('total_tax', Confline.get_value("Total_tax_name")) %>
+          </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'compound_tax', _('Compound_tax') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <% value = Confline.get_value("Tax_compound", session[:user_id]) -%>
+          <% value == "" ? value = 1 : value = value.to_i -%>
+          <%= check_box_tag('compound_tax', 1, (value == 1)) %>
+        </div>
+      </div>
+
+      <div class="input-row">
+       <div class="label-col">
+         <%= label_tag _('Tax') %>
+       </div>
+       <div class="input-col">
+         <span class="tax-active"><%=  _('Active') %></span>
+         <span class="tax-name" ><%=  _('Name') %> </span>
+         <span class="tax-value"><%=  _('Value') %> </span>
+       </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag _('Tax_1') %>
+        </div>
+        <div class="input-col">
+          <span class="tax-active checkbox-marg" style="visibility: hidden">
+            <div class="chk-area chk-unchecked"></div>
+          </span>
+            <%= text_field_tag('tax1name', Confline.get_value("Tax_1"), class: 'tax-name', size: '35', maxlength: '50') %>
+            <%= text_field_tag('tax1value', Confline.get_value("Tax_1_Value").to_f, class: 'tax-value', size: '5', maxlength: '10') %>
+          &nbsp;%
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag _('Tax_2') %>
+        </div>
+        <div class="input-col">
+          <span class="tax-active checkbox-marg">
+            <%= check_box_tag 'tax2active', value = "1", Confline.get_value2("Tax_2").to_i == 1 %>
+          </span>
+            <%= text_field_tag('tax2name', Confline.get_value("Tax_2"), class: 'tax-name', size: '35', maxlength: '50') %>
+            <%= text_field_tag('tax2value', Confline.get_value("Tax_2_Value").to_f, class: 'tax-value', size: '5', maxlength: '10') %>
+          &nbsp;%
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag _('Tax_3') %>
+        </div>
+        <div class="input-col">
+          <span class="tax-active checkbox-marg">
+            <%= check_box_tag 'tax3active', value = "1", Confline.get_value2("Tax_3").to_i == 1 %>
+            </span>
+            <%= text_field_tag('tax3name', Confline.get_value("Tax_3"), class: 'tax-name', size: '35', maxlength: '50') %>
+            <%= text_field_tag('tax3value', Confline.get_value("Tax_3_Value").to_f, class: 'tax-value', size: '5', maxlength: '10') %>
+          &nbsp;%
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag _('Tax_4') %>
+        </div>
+        <div class="input-col">
+          <span class="tax-active checkbox-marg">
+            <%= check_box_tag 'tax4active', value = "1", Confline.get_value2("Tax_4").to_i == 1 %>
+          </span>
+            <%= text_field_tag('tax4name', Confline.get_value("Tax_4"), class: 'tax-name', size: '35', maxlength: '50') %>
+            <%= text_field_tag('tax4value', Confline.get_value("Tax_4_Value").to_f, class: 'tax-value', size: '5', maxlength: '10') %>
+          &nbsp;%
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= link_to b_check + _('Apply_to_all_Users'), {action: 'tax_change', u: 1}, data: { confirm: _('are_you_sure') } , method: 'post' %>
+        </div>
+      </div>
+
+    </div>
+</div>

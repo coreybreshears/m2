@@ -1,0 +1,91 @@
+<div class="row">
+   <div class="col extended">
+    <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'email_sending_enabled', _('Email_Sending_Enabled') %>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= check_box_tag 'email_sending_enabled', "1", Confline.get_value("Email_Sending_Enabled").to_i == 1 %>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'email_smtp_server', _('Email_Smtp_Server') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('email_smtp_server', Confline.get_value("Email_Smtp_Server"), class: 'email') %>
+        </div>
+    </div>
+
+  <div class="input-row">
+    <div class="label-col">
+      <%= label_tag 'email_port', _('Port') %>
+    </div>
+    <div class="input-col">
+      <%= text_field_tag('email_port', Confline.get_value("Email_port").to_s, class: 'number') %>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="label-col">
+      <%= label_tag 'email_login', _('Email_Login') %>
+    </div>
+    <div class="input-col">
+      <%= text_field_tag('email_login', Confline.get_value("Email_Login"), class: 'email') %>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="label-col">
+      <%= label_tag 'email_password', _('Email_Password') %>
+    </div>
+    <div class="input-col">
+      <%= password_field_tag('email_password', Confline.get_value("Email_Password"), placeholder: ' ', onChange: "validate_password();", class: 'email') %>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="label-col">
+      <%= label_tag 'email_batch_size', _('Email_Batch_Size') %>
+    </div>
+    <div class="input-col">
+      <%= text_field_tag('email_batch_size', Confline.get_value("Email_Batch_Size"), class: 'number') %>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="label-col">
+      <%= label_tag 'email_from', _('From') %>
+    </div>
+    <div class="input-col">
+      <%= text_field_tag('email_from', Confline.get_value("Email_from"), class: 'email') %>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="label-col">
+      <%= label_tag _('Testing_email_sending') %>
+    </div>
+    <div class="input-col">
+      <% # if sending disabled show message  %>
+      <% if !Confline.get_value("Email_Sending_Enabled").blank? %>
+          <% # if main params missing: server, port, login, password show message  %>
+          <% if !Confline.get_value("Email_Smtp_Server").blank? and !Confline.get_value("Email_port").blank?  %>
+              <% # if email missing show message  %>
+              <% admin = current_user -%>
+              <% if !admin.email.blank? %>
+                  <%= raw link_to((_('Press_to_test')+ " " + b_email_send+ " (" + _('Test_email_will_be_sent_to') + ": " + admin.email.to_s + ")").html_safe, {action: 'send_test_email'}, {id: "email_test_link"}) %>
+              <% else %>
+                  <%= link_to _('Cannot_send_test_email_because_your_email_address_is_empty', current_user.username), controller: :users, action: :edit, id: session[:user_id] %>
+              <% end %>
+          <% else %>
+              <%= _('Cannot_send_test_email_because_main_parameters_empty') %>
+          <% end %>
+      <% else %>
+          <%= _('Cannot_send_test_email_because_sending_disabled') %>
+      <% end %>
+    </div>
+  </div>
+   </div>
+</div>

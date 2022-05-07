@@ -1,0 +1,40 @@
+<%= javascript_include_tag "m2_invoices_edit" %>
+
+<%= form_for :m2_invoice, url: { action: 'update', id: @m2_invoice.id } do |f| %>
+  <table width="100%">
+    <tr>
+      <td colspan="4" class="bottom_border"><b><%= _('General') %></b></td>
+      <td colspan="2" class="bottom_border"><b><%= _('user_details') %></b></td>
+    </tr>
+    <tr>
+      <td colspan="6" height="10"></td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <%= render 'general_form', f: f, m2_invoice: @m2_invoice, m2_invoice_user: @m2_invoice_user %>
+      </td>
+      <td colspan="2">
+        <%= render 'user_details_form', f: f, m2_invoice: @m2_invoice, countries: @countries %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom_border"><b><%= _('Comment') %></b></td>
+      <td colspan="2" class="bottom_border"><b><%= _('Invoice_Details_header') %></b></td>
+    </tr>
+    <tr>
+      <td colspan="6" height="10"></td>
+    </tr>
+    <tr>
+      <td id="comment_<%= @m2_invoice.id %>" colspan="4">
+        <%= render 'comment_form', f: f, m2_invoice: @m2_invoice %>
+      </td>
+      <td colspan="2" valign="top">
+        <%= render 'invoice_details_form', f: f, m2_invoice: @m2_invoice, countries: @countries %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6" height="10"></td>
+    </tr>
+  </table>
+  <%= submit_tag _('Save_changes'), :disable_with=>_('Processing..') %>
+<%end%>

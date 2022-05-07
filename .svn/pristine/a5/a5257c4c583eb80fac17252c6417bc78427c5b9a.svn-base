@@ -1,0 +1,86 @@
+<%= render "ratedetail_edit_header", destination: @destination, tariff: @tariff, rate: @rate %>
+<% day_type = case @ratedetail.daytype.to_s when 'FD'; _('Free_day') when 'WD'; _('Work_day') when ''; _('Work_day_and_Free_day') end %>
+
+<div class="content-box">
+
+  <div class="table-box">
+    <h2><%= "#{day_type} #{_('Rate_Details_Edit')}".strip %></h2>
+    <%= form_for :ratedetails_update, url: {action: :ratedetail_update,  id: @ratedetail.id}, html: {class: 'details-form'} do %>
+        <div class="input-row">
+          <div class="label-col smaller table-alignment">
+            <label><%= _('Start_Time') %></label>
+          </div>
+          <div class="input-col">
+            <%= text_field :ratedetail, :start_time, value: "#{nice_time2(@ratedetail.start_time)}", class: 'inputt', disabled: :disabled %>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="label-col smaller table-alignment">
+            <label><%= _('End_Time') %></label>
+          </div>
+          <div class="input-col">
+            <% if @etedit %>
+                <div class="column timepicker-col time-holder">
+                  <div class="row">
+                    <div class="time-col"  <%= tooltip(_('End_Time'), _('Explanation_when_splitting_rate')) %>>
+                      <%= text_field_tag 'end_time', @ratedetail.end_time.strftime("%H:%M:%S"), class: 'checkin2 default', id: 'time12' %>
+                      <%= link_to 'clock', {}, class: 'clock-link2', href: '#' %>
+                    </div>
+                  </div>
+                </div>
+            <% else %>
+                <%= text_field :ratedetail, :end_time, value: "#{nice_time2(@ratedetail.end_time)}", class: 'inputt', disabled: :disabled %>
+            <% end %>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="label-col smaller table-alignment">
+            <label><%= _('Rate') %></label>
+          </div>
+          <div class="input-col">
+            <% if @ratedetail.rate == -1 %>
+              <%= text_field :ratedetail, :rate, class: 'inputt', value: _('Blocked') %>
+            <% else %>
+              <%= text_field :ratedetail, :rate, class: 'inputt' %>&nbsp;&nbsp;<%= @tariff.currency %>
+            <% end %>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="label-col smaller table-alignment">
+            <label><%= _('Connection_Fee') %></label>
+          </div>
+          <div class="input-col">
+            <%= text_field :ratedetail, :connection_fee, class: 'inputt' %>&nbsp;&nbsp;<%= @tariff.currency %>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="label-col smaller table-alignment">
+            <label><%= _('Increment') %></label>
+          </div>
+          <div class="input-col">
+            <%= text_field :ratedetail, :increment_s, class: 'inputt' %>&nbsp;&nbsp;s
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="label-col smaller table-alignment">
+            <label><%= _('Min_Time') %></label>
+          </div>
+          <div class="input-col">
+            <%= text_field :ratedetail, :min_time, class: 'inputt' %>&nbsp;&nbsp;s
+          </div>
+        </div>
+        <div class="input-row" style="padding-bottom: 38px;">
+          <div class="label-col smaller table-alignment">
+            <label><%= _('Blocked') %></label>
+          </div>
+          <div class="input-col">
+            <%= check_box :ratedetail, 'blocked' %>
+          </div>
+        </div>
+        <div class="buttons-row">
+          <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariffs/rate_details/#{@rate.id}'", name: 'reset' %>
+          <%= submit_tag _('UPDATE'), :disable_with => _('Processing..'), name: 'commit' %>
+        </div>
+    <% end %>
+  </div>
+</div>

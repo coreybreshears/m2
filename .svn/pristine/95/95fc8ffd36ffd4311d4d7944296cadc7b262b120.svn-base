@@ -1,0 +1,3456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>blank_page</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">blank_page</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/blank_list_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.breadcrumbs &gt; li</td>
+	<td>Blanks</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Blanks List</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>Export to CSV</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td>Add new Blank</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Refine Results</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2012-01-01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>Export to CSV</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_4</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_1</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/one_item_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list?date_from[year]=2008&amp;date_from[month]=1&amp;date_from[day]=2&amp;date_from[hour]=1&amp;date_from[minute]=1&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.text</td>
+	<td>Showing 1 to 1 of 4 Blanks</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.paging</td>
+	<td>1 <br /> 2 <br /> 3 <br /> 4</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Value1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Value1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Value3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_2</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_2</td>
+	<td>2012-12-12 12:12:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_2</td>
+	<td>ilgalaikis klientas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_2</td>
+	<td>-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_2</td>
+	<td>0.1545</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Value3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_4</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_4</td>
+	<td>2013-10-15 17:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_4</td>
+	<td>perspektyvus darbuotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_4</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=value2_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_4</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_3</td>
+	<td>2013-04-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_3</td>
+	<td>potencialus partneris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_3</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Vardenis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=desc_1</td>
+	<td>paprastas vartotojas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value1_1</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_1</td>
+	<td>-30.6660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=edit</td>
+	<td>edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>ID,Name,Date,Description,Value1,Value2,Value3,Value4,Value5,Value6 &quot;1&quot;,&quot;Vardenis&quot;,&quot;2013-10-15 13:20:05 +0300&quot;,&quot;paprastas vartotojas&quot;,&quot;15&quot;,&quot;-30.6660&quot;,&quot;yes&quot;,&quot;no&quot;,&quot;first&quot;,&quot;&quot; &quot;2&quot;,&quot;Pavardenis&quot;,&quot;2012-12-12 12:12:12 +0200&quot;,&quot;ilgalaikis klientas&quot;,&quot;-15&quot;,&quot;0.1545&quot;,&quot;no&quot;,&quot;no&quot;,&quot;first&quot;,&quot;&quot; &quot;4&quot;,&quot;Testeriauskas&quot;,&quot;2013-10-15 17:20:05 +0300&quot;,&quot;perspektyvus darbuotojas&quot;,&quot;777&quot;,&quot;9999.9999&quot;,&quot;no&quot;,&quot;no&quot;,&quot;first&quot;,&quot;&quot; &quot;3&quot;,&quot;Testeris&quot;,&quot;2013-04-15 13:20:05 +0300&quot;,&quot;potencialus partneris&quot;,&quot;500&quot;,&quot;9999.9999&quot;,&quot;yes&quot;,&quot;no&quot;,&quot;first&quot;,&quot;&quot;</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Blank successfully deleted</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Vardenis</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>css=body</td>
+	<td>ID,Name,Date,Description,Value1,Value2,Value3 &quot;1&quot;,&quot;Vardenis&quot;,&quot;2013-10-15 13:20:05 +0300&quot;,&quot;paprastas vartotojas&quot;,&quot;15&quot;,&quot;-30.6660&quot;,&quot;yes&quot; &quot;2&quot;,&quot;Pavardenis&quot;,&quot;2012-12-12 12:12:12 +0200&quot;,&quot;ilgalaikis klientas&quot;,&quot;-15&quot;,&quot;0.1545&quot;,&quot;no&quot; &quot;4&quot;,&quot;Testeriauskas&quot;,&quot;2013-10-15 17:20:05 +0300&quot;,&quot;perspektyvus darbuotojas&quot;,&quot;777&quot;,&quot;9999.9999&quot;,&quot;no&quot; &quot;3&quot;,&quot;Testeris&quot;,&quot;2013-04-15 13:20:05 +0300&quot;,&quot;potencialus partneris&quot;,&quot;500&quot;,&quot;9999.9999&quot;,&quot;yes&quot;</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>ID,Name,Date,Description,Value1,Value2,Value3,Value4,Value5,Value6 &quot;2&quot;,&quot;Pavardenis&quot;,&quot;2012-12-12 12:12:12 +0200&quot;,&quot;ilgalaikis klientas&quot;,&quot;-15&quot;,&quot;0.1545&quot;,&quot;no&quot;,&quot;no&quot;,&quot;first&quot;,&quot;&quot; &quot;4&quot;,&quot;Testeriauskas&quot;,&quot;2013-10-15 17:20:05 +0300&quot;,&quot;perspektyvus darbuotojas&quot;,&quot;777&quot;,&quot;9999.9999&quot;,&quot;no&quot;,&quot;no&quot;,&quot;first&quot;,&quot;&quot; &quot;3&quot;,&quot;Testeris&quot;,&quot;2013-04-15 13:20:05 +0300&quot;,&quot;potencialus partneris&quot;,&quot;500&quot;,&quot;9999.9999&quot;,&quot;yes&quot;,&quot;no&quot;,&quot;first&quot;,&quot;&quot;</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.breadcrumbs &gt; li</td>
+	<td>Blank Edit</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.breadcrumbs &gt; li</td>
+	<td>New Blank</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=page_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>xpath=(//td[@id='page_1'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2012-09-01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.paging</td>
+	<td>1 <br /> 2 <br /> 3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Value3 successfully enabled</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=YES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Value3 successfully disabled</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=NO</td>
+	<td>NO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Pavardenis</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Blank successfully deleted</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.paging</td>
+	<td>1 <br /> 2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Testeriauskas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Blank successfully deleted</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=div.paging</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<!--Searchas-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=nice_date</td>
+	<td>current_date</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=day</td>
+	<td>current_day</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=month</td>
+	<td>current_month</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=year</td>
+	<td>current_year</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list?date_from[year]=2012&amp;date_from[month]=09&amp;date_from[day]=01&amp;date_from[hour]=04&amp;date_from[minute]=04&amp;date_from[seconds]=00&amp;date_till[year]=${current_year}&amp;date_till[month]=${current_month}&amp;date_till[day]=${current_day}&amp;date_till[hour]=10&amp;date_till[minute]=44&amp;date_till[seconds]=00&amp;&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td>from</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td>to</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>2012-09-01</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>${current_date}</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time1</td>
+	<td>exact:04:04</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time2</td>
+	<td>exact:10:44</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_name</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_min_value2</td>
+	<td>from</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_max_value2</td>
+	<td>to</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=clear_search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from</td>
+	<td>${current_date}</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>${current_date}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time1</td>
+	<td>00:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time2</td>
+	<td>23:59</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_max_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_min_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Value2 between</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>From</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>To</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/10_items_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=blank_name</td>
+	<td>test blank</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=blank_value2</td>
+	<td>56.6598</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Blank successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>test blank</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=from</td>
+	<td>2012-01-01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--stripinimas-->
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;testeris&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_name</td>
+	<td>testeris</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9999.9999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9999.9999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_min_value2</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_max_value2</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_5</td>
+	<td></td>
+</tr>
+<!--Wild card-->
+<tr>
+	<td>click</td>
+	<td>id=s_min_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td>%is</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td>te%nk</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>test blank</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td>tes%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>test blank</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Testeris</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td>%b%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>test blank</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_name</td>
+	<td></td>
+</tr>
+<!--paieska between-->
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_5</td>
+	<td>56.6598</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_3</td>
+	<td>9999.9999</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td>70</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_5</td>
+	<td>56.6598</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td>54.46456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value2_5</td>
+	<td>56.6598</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td>100000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td>10000000000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_3</td>
+	<td></td>
+</tr>
+<!--Currencies-->
+<tr>
+	<td>type</td>
+	<td>id=s_max_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_value2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Balance</td>
+	<td>Balance</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>1.95</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>2.64</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/blanks/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_3</td>
+	<td>1.95</td>
+</tr>
+</tbody></table>
+</body>
+</html>

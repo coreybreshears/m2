@@ -1,0 +1,182 @@
+<div class="content-box" style="overflow: auto;">
+  <div class="table-box" style="display: table; width: 100%;">
+    <h2><%= _('Conversion') %></h2>
+    <%= form_tag({action: :conversion_request}, {id: 'conversion_request_form', multipart: true, class: 'details-form'}) do %>
+        <fieldset>
+          <div class="row" >
+              <span style="width:100%; display: table-row;" >
+              <div class="input-row" style="display: table-cell;" >
+                <div class="label-col">
+                  <%= label_tag 'tariff_template_id', _('Tariff_Template') %>
+                </div>
+                <div class="input-col">
+                  <%= select_tag 'tariff_template_id', options_for_select(session[:tariff_templates], @tariff_template_id), class: 'larger' %>
+                </div>
+              </div>
+                <span id="tariff_template_warning"><%= b_exclamation %><%= _('Not_present') %></span>
+              </span>
+
+              <span style="width:100%; display: table-row;" >
+              <div class="input-row" style="display: table-cell;" <%= tooltip(_('Info'), "#{_('Maximum_File_size')}: 10 MB<br/>#{_('Allowed_File_types')}: CSV, XLS, XLSX, RAR, ZIP") %>>
+                <div class="label-col">
+                  <%= label_tag 'file', _('Tariff_File_to_convert') %>
+                </div>
+                <div class="input-col" >
+                  <div class="file-input-no-margin"><%= file_field_tag 'file' %></div>
+                </div>
+              </div>
+                <span id="file_warning"><%= b_exclamation %><%= _('No_file_chosen') %></span>
+              </span>
+            <span style="width:100%; display: table-row;" ><br></span>
+             <span style="width:100%; display: table-row;" >
+              <div class="input-row" style="display: table-cell;" >
+                <div class="label-col">
+                  <%= label_tag 'email', _('Receive_Result_to_this_Email') %>
+                </div>
+                <div class="input-col" >
+                  <%= text_field_tag('email', @email, class: 'input', size: 35) %>
+                </div>
+              </div>
+               <span id="email_warning"  class="info" ><%= b_exclamation %><%= _('invalid_email') %></span>
+             </span>
+              <span style="width:100%; display: table-row;" ><br></span>
+              <span style="width:100%; display: table-row;" >
+              <div class="input-row" style="display: table-cell;" >
+                <div class="label-col">
+                  <%= label_tag '', _('Result File') %>
+                </div>
+                <div class="input-col" >
+                </div>
+              </div>
+             </span>
+
+              <span style="width:100%; display: table-row;" >
+              <div class="input-row" style="display: table-cell;" >
+                <div class="label-col">
+                  <%= label_tag 'column_separator', _('COLUMN_SEPARATOR'), {style: 'margin-left: 20px;'} %>
+                </div>
+                <div class="input-col" >
+                  <%= text_field_tag('column_separator', @column_separator, class: 'balance', size: 1) %>
+                </div>
+              </div>
+               <span id="column_separator_warning"  class="info" ><%= b_exclamation %><%= _('Column_Separator_must_be_1_character_long') %></span>
+             </span>
+
+              <span style="width:100%; display: table-row;" >
+              <div class="input-row" style="display: table-cell;"  >
+                <div class="label-col">
+                  <%= label_tag 'decimal_separator', _('DECIMAL_SEPARATOR'), {style: 'margin-left: 20px;'} %>
+                </div>
+                <div class="input-col" >
+                  <%= text_field_tag('decimal_separator', @decimal_separator, class: 'balance', size: 1) %>
+                </div>
+              </div>
+               <span id="decimal_separator_warning"  class="info" ><%= b_exclamation %><%= _('Decimal_Separator_must_be_1_character_long') %></span>
+             </span>
+
+            <span style="width:100%; display: table-row;" >
+              <div class="input-row" style="display: table-cell;"  >
+                <div class="label-col">
+                  <span class="info" style="margin-left: 20px; white-space: nowrap;"><%= b_info %> <%= _('These_values_are_selected_automatically_based_on_your_systems_settings') %></span>
+                </div>
+                <div class="input-col" >
+                </div>
+              </div>
+             </span>
+          </div>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariffs/list'" %>
+            <%= submit_tag _('SUBMIT'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<style>
+    #email_warning, #file_warning, #tariff_template_warning, #column_separator_warning, #decimal_separator_warning{
+        display: none;
+        padding: 0 0 8px 8px;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    @media only screen and (max-width: 767px){
+        #email_warning, #file_warning, #tariff_template_warning, #column_separator_warning, #decimal_separator_warning{
+           padding: 22px 0 8px 8px;
+        }
+    }
+
+    .file-area .jcf-fake-input{
+        width: 69%;
+    }
+    .file-area .jcf-upload-button{
+        width: 28.3%;
+    }
+    .details-form input.balance[type="text"]{
+        width: 35px;
+    }
+
+</style>
+
+<script type="text/javascript">
+    config.OffsetY = -38;
+    $(document).ready(function() {
+        $('#conversion_request_form').on('submit', function() {
+            var errors_present = 0;
+            errors_present += (validate_presence_input('#tariff_template_id', '#tariff_template_warning') ? 0 : 1);
+            errors_present += (validate_presence_input('#file', '#file_warning') ? 0 : 1);
+            errors_present += (validate_separator_input('#column_separator', '#column_separator_warning') ? 0 : 1);
+            errors_present += (validate_separator_input('#decimal_separator', '#decimal_separator_warning') ? 0 : 1);
+            errors_present += (validate_email_input() ? 0 : 1);
+
+            return !errors_present;
+        });
+    });
+
+    function validate_presence_input(input_field_id, input_field_warning_id) {
+        var input_field = $(input_field_id).val();
+        var input_field_warning = $(input_field_warning_id);
+
+        if (input_field == '') {
+            input_field_warning.show();
+            input_field_warning.css("display", "table-cell");
+            return false;
+        } else {
+            input_field_warning.hide();
+            input_field_warning.css("display", "none");
+            return true;
+        }
+    }
+
+    function validate_separator_input(input_field_id, input_field_warning_id) {
+        var input_field = $(input_field_id).val();
+        var input_field_warning = $(input_field_warning_id);
+
+        if (input_field.length != 1) {
+            input_field_warning.show();
+            input_field_warning.css("display", "table-cell");
+            return false;
+        } else {
+            input_field_warning.hide();
+            input_field_warning.css("display", "none");
+            return true;
+        }
+    }
+
+    function validate_email_input() {
+        var email = $('#email').val();
+        var email_regex_validation = RegExp(/^[a-zA-Z0-9_\+-]+(\.[a-zA-Z0-9_\+-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.([a-zA-Z0-9_]{2,63})$/);
+        var email_warning_td = $('#email_warning');
+
+        if (email == '' || !email_regex_validation.test(email)) {
+            email_warning_td.show();
+            email_warning_td.css("display", "table-cell");
+            return false;
+        } else {
+            email_warning_td.hide();
+            email_warning_td.css("display", "none");
+            return true;
+        }
+    }
+</script>

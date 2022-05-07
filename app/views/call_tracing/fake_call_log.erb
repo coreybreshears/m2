@@ -1,0 +1,94 @@
+<%= javascript_include_tag "jqwidgets/jqxdata.js" %>
+<%= javascript_include_tag "jqwidgets/jqxbuttons.js" %>
+<%= javascript_include_tag "jqwidgets/jqxscrollbar.js" %>
+<%= javascript_include_tag "jqwidgets/jqxmenu.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.selection.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.columnsresize.js" %>
+<%= javascript_include_tag "jqwidgets/jqxpanel.js" %>
+<%= javascript_include_tag "jqwidgets/jqxlistbox.js" %>
+
+<% content_for :additional_buttons do %>
+    <span>
+      <%= button_tag _('Trace_Call_again'), class: "search-form-button",
+                     onclick: "location.href = '#{Web_Dir}/call_tracing/retrace_fake_call/#{params[:id]}?did=#{@call_data[:device_id]}&cid=#{ERB::Util.url_encode(@call_data[:caller_id])}&dst=#{ERB::Util.url_encode(@call_data[:destination])}'", id: 'call_retrace'
+      %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Call_Log') %></h2>
+    <div class="table-holder">
+      <div id="call_tracing_log"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var theme = 'm2';
+
+        var source =
+        {
+            type: 'GET',
+            datatype: 'json',
+            datafields: [
+                { name: 'ct_date', type: 'string' },
+                { name: 'ct_type', type: 'string' },
+                { name: 'ct_message', type: 'string' },
+                { name: 'ct_type_color', type: 'number' }
+            ],
+            url: '<%= "#{Web_Dir}/call_tracing/retrieve_fake_call_log/#{params[:id]}?did=#{@call_data[:device_id]}&cid=#{ERB::Util.url_encode(@call_data[:caller_id])}&dst=#{ERB::Util.url_encode(@call_data[:destination])}" %>'
+        };
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+
+        var log_text_color = function (row, columnfield, value, defaulthtml, columnproperties) {
+            var ct_type_color = dataadapter.records[row].ct_type_color;
+
+            switch (ct_type_color) {
+                case 1:
+                    return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #a5a5a5;">' + value + '</span>';
+                    break;
+                case 2:
+                    return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+                    break;
+            }
+        };
+
+        $("#call_tracing_log").jqxGrid(
+                {
+                    source: dataadapter,
+                    theme: theme,
+                    width: '100%',
+                    autorowheight: true,
+                    autoheight: true,
+                    altrows: true,
+                    selectionmode: 'multiplecellsadvanced',
+                    handlekeyboardnavigation: function (event) {
+                        var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                        if (key == 86 && event.ctrlKey == true) {
+                            return true;
+                        }
+                    },
+                    columns: [
+                        { text: "<%= _('DATETIME') %>", datafield: 'ct_date', maxwidth: 150, cellsrenderer: log_text_color },
+                        { text: "<%= _('TYPE') %>", datafield: 'ct_type', width: 100, cellsrenderer: log_text_color },
+                        { text: "<%= _('MESSAGE') %>", datafield: 'ct_message', width: '80%', cellsrenderer: log_text_color }
+                    ]
+                });
+
+        var localizationobj = {};
+        localizationobj.emptydatastring = "No Data found, Trace Call again.";
+        var hidden_columns = ['ct_date', 'ct_type', 'ct_message'];
+        $('#call_tracing_log').on('bindingcomplete', function (event) {
+            $("#call_tracing_log").jqxGrid('localizestrings', localizationobj);
+            if (jQuery.isEmptyObject(dataadapter.records)) {
+                hidden_columns.forEach(function(item) {
+                    $("#call_tracing_log").jqxGrid('hidecolumn', item);
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,19 @@
+<div class="quick-stats-row">
+  <div class="title-col"><%= _('Now') %>:</div>
+</div>
+<div class="quick-stats-row">
+  <div class="label-col"><%= _('Active_Calls') %>:</div>
+  <div class="value-col" id="active_calls_count">
+  <% if !manager? || authorize_manager_permissions({controller: :stats, action: :active_calls, no_redirect_return: 1}) %>
+    <%= link_to(@active_calls, {controller: :stats, action: :active_calls}, {id: :active_calls_link}) %>
+  <% else %>
+    <%= @active_calls %>
+  <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('.content-box').data('ResizeBox').getResize();
+    });
+</script>

@@ -1,0 +1,96 @@
+<!-- GOOGLE CHARTS -->
+<%= javascript_include_tag 'google_charts/loader.js' %>
+
+<% content_for :additional_buttons do %>
+  <span id="blocked-countries-map-toggle"><%= button_tag _('Map'), class: " search-form-button" %></span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Blocked_Countries') %></h2>
+
+    <div id="blocked-countries-map"></div>
+
+    <%= form_tag({ action: :blocked_countries_update }, {class: 'calls-form', style: 'background:none;padding-top:0;'}) do %>
+      <div class="table-holder">
+          <table>
+            <tr>
+              <th style="width: 45px;" id="chk-col"><%= check_box_tag 'mark_all', 1, false %></th>
+              <th style="text-align: left;">&nbsp;<%= _('Country') %></th>
+              <th style="text-align: left;">&nbsp;<%= _('Code') %></th>
+            </tr>
+            <% @countries.try(:each_with_index) do |country, index| %>
+              <tr>
+                <td id="cb_state_<%= country.id %>" style="width: 45px;">
+                  <%= check_box_tag "cb_state_ids[#{country.id}]", 1, country.state.to_i == 1, class: 'state' %>
+                </td>
+                <td id="cb_name_<%= country.id %>" style="text-align: left;">
+                  <%= draw_flag country.code %>&nbsp;&nbsp;<%= country.name %>
+                </td>
+                <td id="cb_code_<%= country.id %>" style="text-align: left;">
+                  &nbsp;<%= country.iso3166code %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+          <br/>
+          <%= submit_tag _('Save'), onclick: "return confirm('#{_('Are_you_sure')}');", style: 'margin:0;' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $("#chk-col .chk-area span").hide();
+
+    $("#chk-col .chk-area").on("click", function() {
+      var mark_all = $(this).hasClass("chk-checked");
+
+      $(".state").prop('checked', !mark_all);
+
+      var cbx = jcf.lib.getElementsBySelector(".state");
+      for (var i = 0; i < cbx.length; i++){
+        jcf.customForms.refreshElement(cbx[i]);
+      }
+    });
+
+    // Toggle display of a map container
+    $('span#blocked-countries-map-toggle').on('click', function() {
+      $('#blocked-countries-map').toggle();
+      $(window).trigger('resize');
+    });
+
+    // Make the map resonsive (redraw on resize)
+    $(window).on('resize', drawMap);
+
+    google.charts.load('current', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(drawMap);
+
+    // Callback after the map load
+    function drawMap() {
+        var dataTable = new google.visualization.DataTable();
+        var map_data = <%= raw @map_data %>;
+
+        dataTable.addColumn('string', 'Country');
+        dataTable.addColumn('number', 'Blocked');
+        dataTable.addColumn({type: 'string', role: 'tooltip'});
+        dataTable.addRows(map_data);
+
+        // Do not color the empty map
+        for (var i = 0; i < map_data.length; i++) {
+          if (map_data[i][1] === 1) break;
+        }
+
+        var options = {
+          colorAxis: { colors: ['#F5F5F5', map_data.length !== i ? '#F08C82' : '#F5F5F5'] },
+          legend: 'none',
+          width: '100%',
+          tooltip : { showTitle: false }
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('blocked-countries-map'));
+        chart.draw(dataTable, options);
+    }
+  });
+</script>

@@ -1,0 +1,351 @@
+<div class="row">
+  <div class="col-3 col-width-max">
+    <h2><%= _('Query') %></h2>
+  </div>
+</div>
+
+<div class="row" id="query_from_till" style="display: none;">
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('From') %>:</label>
+      </div>
+      <div class="input-col">
+        <div class="column date-col calendar-holder">
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'date_from', automatic_cdr_export.s_from.strftime('%Y-%m-%d'), class: 'checkin default', id: 'from' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'time_from', automatic_cdr_export.s_from.strftime('%H:%M'), class: 'default', id: 'time1' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Till') %>:</label>
+      </div>
+      <div class="input-col">
+        <div class="column date-col calendar-holder">
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'date_till', automatic_cdr_export.s_till.strftime('%Y-%m-%d'), class: 'checkout default', id: 'till' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'time_till', automatic_cdr_export.s_till.strftime('%H:%M'), class: 'default', id: 'time2' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Originator') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= render 'shared/m2_live_search_field',
+                   object: automatic_cdr_export.s_user, object_id: automatic_cdr_export.s_user_id, object_name: 'User',
+                   action_url: {controller: :users, action: :get_users_map,
+                                options: {show_users_only: true, show_reseller_users: true}
+                   }
+        %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('origination_point') %>:</label>
+      </div>
+      <div class="input-col">
+                    <%= f.select(:s_origination_point,
+                                 options_for_select(
+                                         [[_('All'), 'all']] + automatic_cdr_export.search_options_origination_points.map { |d| [nice_device(d, {image: false}), d.dev_id.to_s] },
+                                         automatic_cdr_export.s_origination_point.to_s
+                                 )
+                        )
+                    %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Status') %>:</label>
+      </div>
+      <div class="input-col">
+        <% s_call_type_selection = [[_('All'), 'all'], [_('Answered'), 'answered'], [_('No_Answer'), 'no answer'], [_('Failed'), 'failed'], [_('Busy'), 'busy']] %>
+        <%= f.select(:s_call_type, options_for_select(s_call_type_selection, automatic_cdr_export.s_call_type.to_s)) %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('hangup_cause') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.select(:s_hgc,
+                     options_for_select(
+                             [[_('All'), 0]] + Hangupcausecode.find_all_for_select.map { |h| [h.clean_description[0..45], h.id] },
+                             automatic_cdr_export.s_hgc.to_i
+                     )
+            )
+        %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label> <%= _('Destination_Group') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.select(:s_destination_group,
+                     options_for_select(
+                             [[_('All'), 0]] + Destinationgroup.select(:id, :name).order(:name).map { |dg| [dg.name, dg.id] },
+                             automatic_cdr_export.s_destination_group.to_i
+                     )
+            )
+        %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('termination_point') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.select(:s_termination_point,
+                     options_for_select([[_('All'), 0]] + Device.termination_points_with_user.map{ |tp| [nice_device_dp(tp), tp.dev_id] }, automatic_cdr_export.s_termination_point.to_i),
+                     {}, {disabled: Device.termination_points_with_user.empty?}
+            )
+        %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Source') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:s_source) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Destination') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:s_destination) %>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-3 col-width-max">
+    <h2><%= _('Settings') %></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3 col-width-one-third">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:name) %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('timezone') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.collection_select(:timezone, ActiveSupport::TimeZone.all, :name, :to_s) %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Repeat_period') %>:</label>
+      </div>
+      <div class="input-col">
+        <% period_selection = [[_('Hourly'), 'hourly'], [_('Daily'), 'daily'], [_('Weekly'), 'weekly'], [_('bi_weekly'), 'bi-weekly'], [_('Monthly'), 'monthly'], [_('Only_once'), 'only_once']] %>
+        <%= f.select(:period, options_for_select(period_selection, automatic_cdr_export.period.to_s)) %>
+      </div>
+    </div>
+    <div class="input-row" <%= tooltip('', _('CDR_Export_is_resource_intensive_task')) %> id="div_cdr_export_at">
+      <div class="label-col">
+        <label><%= _('Start_CDR_export_at') %>:</label>
+      </div>
+      <div class="input-col" id="div_cdr_export_at_time">
+        <div class="column timepicker-col time-holder">
+          <div class="row">
+            <div class="time-col">
+              <%= text_field_tag 'cdr_export_at_time', automatic_cdr_export.cdr_export_at_time.strftime('%H:%M'), class: 'checkin2 default _noSeconds', id: 'time12' %>
+              <%= link_to 'clock', {}, class: 'clock-link2', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-col" id="div_cdr_export_at_datetime" style="display: none;">
+        <div class="column date-col calendar-holder" >
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'cdr_export_at_datetime1', automatic_cdr_export.cdr_export_at_datetime.strftime('%Y-%m-%d'), class: 'checkoutme default', id: 'fromme2' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'cdr_export_at_datetime2', automatic_cdr_export.cdr_export_at_datetime.strftime('%H:%M'), class: 'default', id: 'timeme2' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Template') %>:</label>
+      </div>
+      <div class="input-col">
+        <% if settings_options_cdr_templates.present? %>
+            <%= f.select(:template_id,
+                         options_for_select(
+                                 settings_options_cdr_templates,
+                                 automatic_cdr_export.template_id
+                         )
+                )
+            %>
+        <% else %>
+            <%= b_exclamation %>&nbsp;<%= link_to _('You_have_to_create_CDR_Export_Template'), controller: :cdr, action: :export_templates %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <div class="m2-tooltip">
+          <div class="m2-tooltip-content" style="width: 400px;">
+            <span><%= _('New_Automatic_CDR_Export_notice') %></span>
+          </div>
+        </div>
+        <label><%= _('Send_CDR_to') %>:</label>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col pushed left">
+        <%= radio_button_tag(:send_cdr_to, '0', (automatic_cdr_export.send_to_user_id.to_i != -1)) %>
+        <label><%= _('User') %></label>
+      </div>
+      <div class="input-col">
+        <%= render 'shared/m2_live_search_field',
+                   object: automatic_cdr_export.send_to_user_id >= 0 ? nice_user_by_id(automatic_cdr_export.send_to_user_id) : '',
+                   object_id: automatic_cdr_export.send_to_user_id < 0 ? -2 : automatic_cdr_export.send_to_user_id,
+                   object_name: 'Username',
+                   action_url: {
+                           controller: :users,
+                           action: :get_users_map,
+                           options: {show_admin: true}
+                   }
+        %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col pushed left">
+        <%= radio_button_tag(:send_cdr_to, '1', (automatic_cdr_export.send_to_user_id.to_i == -1)) %>
+        <label><%= _('Email') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field(:send_to_email) %>
+      </div>
+    </div>
+  </div>
+</div>
+<br/><br/><br/>
+
+<script type='text/javascript'>
+    function period_selection() {
+        var period_selected = jQuery('#automatic_cdr_export_period').val();
+
+        switch(period_selected) {
+            case 'hourly':
+                jQuery('#query_from_till').hide();
+                jQuery('#div_cdr_export_at_time').hide();
+                jQuery('#div_cdr_export_at_datetime').hide();
+                jQuery('#div_cdr_export_at').hide();
+                break;
+            case 'only_once':
+                jQuery('#query_from_till').show();
+                jQuery('#div_cdr_export_at').show();
+                jQuery('#div_cdr_export_at_time').hide();
+                jQuery('#div_cdr_export_at_datetime').show();
+                break;
+            default:
+                jQuery('#query_from_till').hide();
+                jQuery('#div_cdr_export_at').show();
+                jQuery('#div_cdr_export_at_time').show();
+                jQuery('#div_cdr_export_at_datetime').hide();
+        }
+    }
+
+    jQuery('#automatic_cdr_export_period').change(function() {
+        period_selection();
+    });
+
+    jQuery(document).ready(function() {
+        period_selection();
+    });
+
+    jQuery("#s_user_id").on("change", function() {
+        updateOriginationPointsList();
+    });
+
+    function updateOriginationPointsList() {
+        var s_user_id = jQuery("#s_user_id").val();
+        jQuery.ajax({
+            // Request destination
+            url: "<%= Web_Dir %>" + "/devices/ajax_get_user_devices",
+            data: {
+                user_id: s_user_id == '-1' ? '-2' : s_user_id,
+                all: true,
+                fax: true,
+                field_id: 'automatic_cdr_export_s_origination_point',
+                default: jQuery('#automatic_cdr_export_s_origination_point').val()
+            },
+            // Type of request
+            type: 'GET',
+            dataType: 'html',
+            // Update the table with a json response
+            success: function (data) {
+                jQuery('#automatic_cdr_export_s_origination_point').replaceWith(data);
+                // We need this one live, so select each time
+                jQuery('#automatic_cdr_export_s_origination_point').siblings('span').remove();
+                jcf.customForms.replaceAll();
+            }
+        });
+    }
+</script>

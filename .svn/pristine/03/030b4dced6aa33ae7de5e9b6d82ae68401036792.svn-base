@@ -1,0 +1,1 @@
+<%= f.text_area :comment, :class=>"input", :rows => 4, :style => "width: 99%" %>

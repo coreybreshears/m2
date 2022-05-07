@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= _('Login') %></title>
+  <!-- include the site fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <!-- include the site stylesheet -->
+  <%= stylesheet_link_tag "all.css" %>
+  <%= stylesheet_link_tag "jquery-ui-1.10.4.custom.min.css" %>
+  <script type="text/javascript">
+    var Web_Dir = "<%= Web_Dir || '' %>";
+  </script>
+  <!-- include jQuery library -->
+  <%= javascript_include_tag "jquery-1.8.3.min.js" %>
+  <!-- include custom JavaScript -->
+  <script type="text/javascript">var date_format = "<%= calendar_date_format %>";</script>
+
+  <%= javascript_include_tag "login-page-jquery.js" %>
+  <%= javascript_include_tag "jquery.main.js" %>
+  <!-- include HTML5 IE enabling script and stylesheet for IE -->
+  <!--[if IE]><script type="text/javascript" src="<%=Web_Dir%>/assets/ie.js"></script><![endif]-->
+  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="<%=Web_Dir%>/assets/ie.css" media="screen"/><![endif]-->
+  <link rel="shortcut icon" href="<%= Web_Dir %>/favicon.ico" />
+</head>
+<body class="form-page">
+  <!-- main container of all the page elements -->
+  <div id="wrapper">
+    <div  class="form-box">
+      <!-- page logo -->
+      <!-- <strong class="logo"><a href="#">M2SWITCH</a></strong> -->
+      <strong>
+        <% if m4_functionality? %>
+          <span class="login-logo-picture-m4">
+            <a id='m2switch' href="<%= Web_Dir %>/"></a>
+          </span>
+          <span class="login-logo-version">
+            2.<%= m2_version? %>
+          </span>
+       <% else %>
+          <span class="login-logo-picture">
+            <a id='m2switch' href="<%= Web_Dir %>/"></a>
+          </span>
+          <span class="login-logo-version">
+            1.<%= m2_version? %>
+          </span>
+       <% end %>
+      </strong>
+        <% if flash[:notice] %>
+          <div class="login-error-box">
+            <span class="text" id="status"><%= flash[:notice].html_safe %></span>
+            <a href="#" class="close">Close</a>
+          </div>
+          <% flash[:notice] = nil %>
+        <% end %>
+      <% if flash[:status] %>
+          <div class="login-success-box">
+            <span class="text" id="status_real"><%= flash[:status].html_safe %></span>
+            <a href="#" class="close">Close</a>
+          </div>
+          <% flash[:status] = nil %>
+      <% end %>
+      <%= form_tag({action: :try_to_login}, {class: 'login-form'}) do %>
+        <fieldset>
+          <div id="spinner3" style="display:none;width:360px;margin:-90px auto 30px auto;" xmlns="http://www.w3.org/1999/html">
+            <b>
+              <span><%= image_tag '290.gif', style: 'padding-top:100px;margin-bottom: -22px;' %></span>
+              <span><%= _('Please_wait') %>
+                <span id='javascript_countdown_time'></span>
+                <span id='javascript_countdown_seconds'></span>
+                <%= _('before_trying_to_login') %>
+              </span>
+            </b>
+          </div>
+            <div id="login_info">
+              <div class="row username-row">
+                <%= text_field 'login', 'username', placeholder: 'Username' %>
+              </div>
+              <div class="row password-row">
+                <%= password_field 'login', 'psw', placeholder: 'Password' %>
+              </div>
+              <div class="row submit-row">
+                <%= submit_tag _('login'), :disable_with => _('Processing..') %>
+              </div>
+          </div>
+          <%= render 'layouts/ip_report', ip_info: @ip_info, show_login: @show_login %>
+        </fieldset>
+      <% end %>
+      <span class="by"><%= m4_functionality? ? 'M4 SBC' : 'M2 SWITCH'%> by <a href="http://www.ocean-tel.uk" target="_blank">Kolmisoft</a> 2006-<%= Time.new.year %></span>
+    </div>
+  </div>
+  <script type="text/javascript">
+      $('#login_username').placeholder({ customClass: 'login-input-placeholder-text' });
+      $('#login_psw').placeholder({ customClass: 'login-input-placeholder-text' });
+  </script>
+
+  <%if @show_login.to_i == 1%>
+    <script type='text/javascript'>
+      var javascript_countdown = function () {
+        var time_left = 10; //number of seconds for countdown
+        var output_element_id = 'javascript_countdown_time';
+        var output_seconds_element_id = 'javascript_countdown_seconds';
+        var keep_counting = 1;
+        var no_time_left_message = 0;
+
+        function countdown() {
+          if(time_left < 2) {
+            keep_counting = 0;
+          }
+          time_left = time_left - 1;
+        }
+
+        function format_output() {
+          var seconds;
+          seconds = time_left % 60;
+          return seconds;
+        }
+
+        function show_time_left() {
+          document.getElementById(output_element_id).innerHTML = format_output();//time_left;
+        }
+
+        function show_seconds() {
+          var s, seconds;
+          seconds = time_left % 60;
+          if  (seconds < 2){
+              s = '<%=_('second') %>' ;
+          }   else{
+              s = '<%=_('seconds') %>' ;
+          }
+          document.getElementById(output_seconds_element_id).innerHTML = s;//time_left;
+        }
+
+        function no_time_left() {
+          document.getElementById(output_element_id).innerHTML = no_time_left_message;
+        }
+
+        return {
+          count: function () {
+            countdown();
+            show_time_left();
+            show_seconds();
+          },
+          timer: function () {
+            javascript_countdown.count();
+
+            if(keep_counting) {
+              setTimeout("javascript_countdown.timer();", 1000);
+              $('#login_info').css('display', 'none');
+              $('#spinner3').css('display', '');;
+            } else {
+              no_time_left();
+              $('#login_info').css('display', '');
+              $('#spinner3').css('display', 'none');
+              $('login_username').val("<%= @u.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') %>");
+            }
+          },
+          setTimeLeft: function (t) {
+            time_left = t;
+            if(keep_counting == 0) {
+              javascript_countdown.timer();
+            }
+          },
+          init: function (t, element_id) {
+            time_left = t;
+            output_element_id = element_id;
+            javascript_countdown.timer();
+          }
+        };
+      }();
+
+      javascript_countdown.init(10, 'javascript_countdown_time');
+    </script>
+  <%end%>
+</body>
+</html>

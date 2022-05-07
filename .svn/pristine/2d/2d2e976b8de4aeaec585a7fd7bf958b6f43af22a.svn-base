@@ -1,0 +1,45 @@
+<table class="simple">
+  <tr align="left">
+    <td><%= _('Name') %>:</td>
+    <td><%= text_field :routing_group, :name, class: 'input', style:'width:99.5%;'  %></td>
+  </tr>
+ <tr id="failover_routing">
+    <td><%= _('Failover_Routing_Group') %>:</td>
+  	<td>
+      <div class='element_with_overlay'>
+          <%= select_tag('routing_group_parent_routing_group_id',
+                         options_for_select([[_('None'), '-1']] + failover_routing_groups,
+                                            params[:action] == 'edit' ? routing_group.parent_routing_group_id : '-1'
+                                           ), name:'routing_group[parent_routing_group_id]',
+                         )
+          %>
+        <div hidden class='elements_overlay' id='select_tooltip' <%= tooltip(_('Failover_Routing_Group'), _('failover_not_allowed')) %>>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr align="left">
+    <td><%= _('Comment') %>:</td>
+    <td><%= text_area :routing_group, :comment, rows: '5', class: 'input', style: 'width:99.5%; min-width: 450px;', maxlength: 255 %></td>
+  </tr>
+</table>
+<br />
+<br />
+
+<script>
+jQuery(document).ready(function() {
+  initFailoverRoutingGroup();
+});
+
+function initFailoverRoutingGroup() {
+  var location = '<%= is_rg_failover_possible %>';
+
+   if (location == 'failover'){
+      jQuery('#routing_group_parent_routing_group_id').prop('disabled', true);
+      jQuery('#select_tooltip').prop('hidden', false);
+    } else {
+      jQuery('#routing_group_parent_routing_group_id').prop('disabled', false);
+      jQuery('#select_tooltip').prop('hidden', true);
+    }
+}
+</script>

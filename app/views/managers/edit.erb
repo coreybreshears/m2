@@ -1,0 +1,14 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= "#{_('Manager_Settings')} - #{@manager.try(:first_name).to_s}" %></h2>
+    <%= form_for :manager, url: {action: :update, id: @manager}, html: {class: 'details-form'} do |f| %>
+        <fieldset>
+          <%= render 'form', f: f, manager: @manager, form_data: @form_data %>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/managers/list'" %>
+            <%= submit_tag _('UPDATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

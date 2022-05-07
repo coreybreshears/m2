@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<!--#Default Device OP/TP activation-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Origination Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Termination Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Origination Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Termination Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<!--#Act as Origination Point: ON-->
+<!--#Automatically create Routing Group for this OP: ON-->
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>TEST 1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>1.1.1.1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#tr_create_rg_for_op &gt; td</td>
+	<td>Automatically create Routing Group for this OP:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create_rg_for_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_active_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 8 Test RG</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 8</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/routing_groups/edit/12002')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/routing_groups/rgroup_dpeers_list/12002')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_12002</td>
+	<td>RG - user_admin - 8</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_name</td>
+	<td>RG - user_admin - 8</td>
+</tr>
+<!--#Act as Origination Point: ON-->
+<!--#Automatically create Routing Group for this OP: OFF-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>TEST 2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>2.2.2.2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 8 Test RG</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>RG - user_admin - 9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>RG - user_admin - 9</td>
+	<td></td>
+</tr>
+<!--#Default Device OP/TP activation-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#tr_create_rg_for_op &gt; td</td>
+	<td>Automatically create Routing Group for this OP:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<!--#Act as Origination Point: ON-->
+<!--#Automatically create Routing Group for this OP: OFF-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>TEST 3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>3.3.3.3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 8 Test RG</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>RG - user_admin - 10</td>
+	<td></td>
+</tr>
+<!--#Default Device OP/TP activation-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create_rg_for_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>on</td>
+</tr>
+<!--#Act as Origination Point: ON-->
+<!--#Automatically create Routing Group for this OP: ON-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>TEST 4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>4.4.4.4</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/devices/device_edit/11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_active_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 11 RG - user_admin - 8 Test RG</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 11</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/routing_groups/edit/12003')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/routing_groups/rgroup_dpeers_list/12003')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_12003</td>
+	<td>RG - user_admin - 11</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12003</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_name</td>
+	<td>RG - user_admin - 11</td>
+</tr>
+<!--#Default Device OP/TP activation-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create_rg_for_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>off</td>
+</tr>
+<!--#Act as Origination Point: ON-->
+<!--#Automatically create Routing Group for this OP: ON-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>TEST 5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>5.5.5.5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create_rg_for_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/devices/device_edit/12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 11 RG - user_admin - 12 RG - user_admin - 8 Test RG</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 12</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/routing_groups/edit/12004')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/routing_groups/rgroup_dpeers_list/12004')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_12004</td>
+	<td>RG - user_admin - 12</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12004</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_name</td>
+	<td>RG - user_admin - 12</td>
+</tr>
+<!--#Act as Origination Point: OFF-->
+<!--#Automatically create Routing Group for this OP: ON (FAKE)-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>TEST 6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>6.6.6.6</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create_rg_for_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=create_rg_for_op_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForLocation</td>
+	<td>*/billing/devices/device_edit/13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_tp_active_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_op_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_active_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>RG - user_admin - 11 RG - user_admin - 12 RG - user_admin - 8 Test RG</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>RG - user_admin - 13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>RG - user_admin - 13</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,122 @@
+
+<div class="row">
+  <div class="col">
+    <h2><%= _('General') %></h2>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :name, class: 'input', size: 27, maxlength: 255 %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('COLUMN_SEPARATOR') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :column_seperator, class: 'input', maxlength: 100, style: "width:50px" %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('DECIMAL_SEPARATOR') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :decimal_seperator, class: 'input', maxlength: 100, style: "width:50px" %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Number_of_lines_to_skip') %>:</label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :skip_n_first_lines, class: 'input', maxlength: 100, style: "width:50px" %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('date_format') %>:</label>
+      </div>
+      <div class="input-col">
+        <select name='date_format'>
+          <% date_formats.each do |dt| %>
+              <option value='<%= dt %>' <%= 'selected' if dt == template.date_format %>>
+                <%= h dt.to_s.delete('%') %>
+              </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    </br>
+    <h2><%= _('Columns') %>:</h2>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :start_time_col, _('Start_Time')  + _('Required') %></label>:</div>
+      <div class="input-col"><%= f.select :start_time_col, options_for_select(select_columns, template.start_time_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :billsec_col, _('Billsec') + _('Required')%></label>:</div>
+      <div class="input-col"><%= f.select :billsec_col, options_for_select(select_columns, template.billsec_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :dst_col, _('Dst') + _('Required') %></label>:</div>
+      <div class="input-col"><%= f.select :dst_col, options_for_select(select_columns, template.dst_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :answer_time_col, _('Answer_time') %>:</label></div>
+      <div class="input-col"><%= f.select :answer_time_col, options_for_select(select_columns, template.answer_time_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :end_time_col, _('End_Time') %>:</label></div>
+      <div class="input-col"><%= f.select :end_time_col, options_for_select(select_columns, template.end_time_col)  %></div>
+    </div>
+    <!--
+    <div class="input-row">
+      <div class="label-col"><label><%#= f.label :clid_col, _('CLID') %>:</label></div>
+      <div class="input-col"><%#= f.select :clid_col, options_for_select(select_columns, template.clid_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%#= f.label :src_name_col, _('Src_name') %>:</label></div>
+      <div class="input-col"><%#= f.select :src_name_col, options_for_select(select_columns, template.src_name_col)  %></div>
+    </div>
+    -->
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :src_number_col, _('Src_number') %>:</label></div>
+      <div class="input-col"><%= f.select :src_number_col, options_for_select(select_columns, template.src_number_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :duration_col, _('Duration') %>:</label></div>
+      <div class="input-col"><%= f.select :duration_col, options_for_select(select_columns, template.duration_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :disposition_col, _('Disposition') %>:</label></div>
+      <div class="input-col"><%= f.select :disposition_col, options_for_select(select_columns, template.disposition_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :accountcode_col, _('Accountcode') %>:</label></div>
+      <div class="input-col"><%= f.select :accountcode_col, options_for_select(select_columns, template.accountcode_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :provider_id_col, _('Provider_ID') %>:</label></div>
+      <div class="input-col"><%= f.select :provider_id_col, options_for_select(select_columns, template.provider_id_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :cost_col, _('Price') %>:</label></div>
+      <div class="input-col"><%= f.select :cost_col, options_for_select(select_columns, template.cost_col)  %></div>
+    </div>
+    <div class="input-row">
+      <div class="label-col"><label><%= f.label :hangupcause_col, _('Hang_up_cause_code') %>:</label></div>
+      <div class="input-col"><%= f.select :hangupcause_col, options_for_select(select_columns, template.hangupcause_col)  %></div>
+    </div>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  </div>
+</div>

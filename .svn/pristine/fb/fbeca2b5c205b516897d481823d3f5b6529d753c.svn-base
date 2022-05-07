@@ -1,0 +1,72 @@
+<% content_for :search_form do %>
+  <%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <%= hidden_field_tag 'page', 1 %>
+      <fieldset>
+        <div class="column source-col">
+          <%= label_tag 'name', _('Name') %>
+          <div class="row">
+            <%= text_field_tag 's_name', @options[:s_name]%>
+          </div>
+        </div>
+        <div class="column buttons-col">
+          <div class="row payment-buttons-row">
+            <%= clear_button_tag _('clear') %>
+            <%= submit_button_tag _('refine') %>
+          </div>
+        </div>
+      </fieldset>
+  <% end %>
+<% end %>
+<% content_for :additional_buttons do %>
+   <span>
+    <%= button_tag _('Add_new_routig_group'), class: "search-form-button",
+                   onclick: "location.href = '#{Web_Dir}/routing_groups/new'" %>
+  </span>
+<% end %>
+<div class="content-box">
+  <div class="routing-group table-box">
+    <h2><%= _('routing_groups') %></h2>
+  <table class="maintable" width="100%">
+    <tr align="left">
+      <%= sortable_header(_('ID'), 'id', class: 'routing_groups-id', id: 'id') %>
+      <%= sortable_header(_('Name'), 'name', class: 'routing_groups-name', id: 'name') %>
+      <%= sortable_header(_('Comment'), 'comment', class: 'routing_groups-comment', id: 'comment') %>
+      <%= sortable_header(_('Failover_rg'), 'failover_rg_name', class: 'routing_groups-failover_rg', id: 'failover_rg_name') %>
+      <%= sortable_header(_('Dial_peers'), 'grdp', class: 'routing_groups-grdp', id: 'grdp', colspan: 2, text_align: 'center') %>
+      <th style="width: 9%;" />
+      <th style="width: 9%;" />
+    </tr>
+    <% if @routing_groups %>
+      <% @routing_groups.each_with_index do |rg, i| %>
+        <tr align="left" class="row<%= (i % 2 + 1).to_s %>">
+          <td nowrap id="id_<%= rg.id %>" class="routing_groups-id_list">
+           <%= rg.id.to_i %>
+          </td>
+          <td id="name_<%= rg.id %>" class="routing_groups-name_list"><%= link_to rg.name, {action: :edit, id: rg.id, rgdp: rg.grdp}, id: 'edit_link_' + rg.id.to_s %></td>
+          <td id="comment_<%= rg.id %>" class="routing_groups-comment_list"><%= rg.comment %></td>
+          <td id="failover_rg_<%= rg.id %>" class="routing_groups-failover_rg_list">
+          <% if rg.failover_rg_id.present? %>
+            <%= link_to rg.failover_rg_name, {action: :edit, id: rg.failover_rg_id, rgdp: rg.failover_grdp}, id: 'edit_link_' + rg.failover_rg_id.to_s %>
+          <% end %>
+          </td>
+          <td nowrap id="dial_peers_<%= rg.id %>" class="routing_groups-grdp_list">
+            <%= link_to _('DP_LIST') + ' (' + rg.grdp.to_i.to_s + ')', action: 'rgroup_dpeers_list', id: rg.id %>
+          </td>
+          <td nowrap id="dial_peers_management_<%= rg.id %>" class="routing_groups-grdp_list">
+            <%= link_to _('DP_MANAGEMENT'), action: 'dial_peers_management', id: rg.id %>
+          </td>
+          <td style="width: 9%; font-size:11px;" id="edit_<%= rg.id %>" >
+          <%= link_to 'EDIT', {action: :edit, id: rg.id, rgdp: rg.grdp}, id: 'edit_link_' + rg.id.to_s %>
+          </td>
+          <td style="width: 9%; font-size:11px;"   id="delete_<%= rg.id %>" >
+            <%= button_to 'delete', {action: 'destroy', id: rg.id}, onclick: "return confirm('Are you sure?')",
+           class: "delete_button", method: :post, id: 'delete_link_' + rg.id.to_s %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<br/>
+<%= page_select_header(@options[:page], @total_pages, @options) if @total_pages > 1 %>
+  </div>
+</div>

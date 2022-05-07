@@ -1,0 +1,5 @@
+<% if @dial_peers.blank? %>
+  <%= select_tag("alert[disable_tp_in_dial_peer]", options_for_select([['None', 0]], @alert.disable_tp_in_dial_peer)) %>
+<% else %>
+  <%= select_tag("alert[disable_tp_in_dial_peer]", options_for_select([['None', 0]] + @dial_peers.try(:map) {|dp| [dp.name, dp.id]}.sort.to_a, @alert.disable_tp_in_dial_peer)) %>
+<% end %>

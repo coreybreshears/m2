@@ -1,0 +1,34 @@
+<% if routing_groups.blank? %>
+  <%= link_to b_exclamation + _('please_create_routing_group'), Web_Dir + '/routing_groups/new' %>
+<% else %>
+  <% default_value_present = local_assigns[:default_value] %>
+  <% rg_groups = local_assigns[:default_value] ? [default_value] + routing_groups.map{|rg| [rg.name, rg.id]} : routing_groups.map{|rg| [rg.name, rg.id]} %>
+  <%= select_tag "device[#{column_name}]", options_for_select(rg_groups, device.send(column_name).to_i) %>
+    &nbsp;<span id="device_<%= column_name %>_edit_link"></span>&nbsp;<span id="device_<%= column_name %>_dial_peers_list_link" <%= tooltip('', _('Dial_peers'))%>></span>&nbsp;<span id="device_<%= column_name %>_dial_peers_management_link" <%= tooltip('', _('Dial_Peers_Management')) %>></span>
+    <% if admin? || (manager? && authorize_manager_permissions({controller: :routing_groups, action: :list, no_redirect_return: 1})) %>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                var selection = jQuery('#device_<%= column_name %>');
+                var selection_edit_link = jQuery('#device_<%= column_name %>_edit_link');
+                var selection_edit_link_url = '/routing_groups/edit/';
+                <% if default_value_present %>
+                    var false_values = ['<%= default_value[1] %>'];
+                <% else %>
+                    var false_values = [];
+                <% end %>
+                var selection_details_link = jQuery('#device_<%= column_name %>_dial_peers_list_link');
+                var selection_details_link_url = '/routing_groups/rgroup_dpeers_list/';
+
+                var selection_details_link2 = jQuery('#device_<%= column_name %>_dial_peers_management_link');
+                var selection_details_link_url2 = '/routing_groups/dial_peers_management/';
+
+                selection.on('change', function() {
+                    change_selection_edit_link(selection, selection_edit_link, selection_edit_link_url, false_values);
+                    change_selection_details_link(selection, selection_details_link, selection_details_link_url, false_values);
+                    change_selection_details_link(selection, selection_details_link2, selection_details_link_url2, false_values);
+                });
+                selection.trigger('change');
+            });
+        </script>
+    <% end %>
+<% end %>

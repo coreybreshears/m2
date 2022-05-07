@@ -1,0 +1,717 @@
+<%= javascript_include_tag 'jquery_ujs' %>
+<%= javascript_include_tag 'nested_form_fields' %>
+
+<div class="tabs-holder">
+  <ul class="tabset">
+    <li><%= link_to(_('Primary_Data'), '#', {id: 'primary_data_tab_button'}) %></li>
+    <li><%= link_to(_('Secondary_Data'), '#', {id: 'secondary_data_tab_button'}) %></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="row">
+      <div class="col col-width_43pc col-border-right">
+        <div class="row">
+          <div class="col col-width-max">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Name') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <%= f.text_field(:name, class: 'input', maxlength: 100, autocomplete: 'disabled') %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-width-max no-padding-bottom">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Rate_Sheet') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <%= f.select(:rate_sheet, options_for_select(tariff_template_rate_sheet_selection, tariff_template.rate_sheet.to_i), {}, {class: 'tariff_templates-select_column'}) %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-width-max">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Header_Rows') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <%= f.text_field(:header_lines, class: 'tariff_templates-column1', maxlength: 5) %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-width-max no-padding-bottom">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Prefix___Code') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <div class="tariff_templates_primary_data">
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:prefix_column, options_for_select(tariff_template_columns_selection, tariff_template.prefix_column), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">+</span>
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:prefix_column2, options_for_select(tariff_template_columns_selection(true), tariff_template.prefix_column2), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+                <div class="tariff_templates_secondary_data">
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:prefix_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.prefix_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">+</span>
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:prefix_column2_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.prefix_column2_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-width-max no-padding-bottom">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Destination___Zone') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <div class="tariff_templates_primary_data">
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:destination_column, options_for_select(tariff_template_columns_selection(true), tariff_template.destination_column), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">+</span>
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:destination_column2, options_for_select(tariff_template_columns_selection(true), tariff_template.destination_column2), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+                <div class="tariff_templates_secondary_data">
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:destination_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.destination_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">+</span>
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:destination_column2_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.destination_column2_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-width-max">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Connection_Fee') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <div class="tariff_templates_primary_data">
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:connection_fee_column, options_for_select(tariff_template_columns_selection(true), tariff_template.connection_fee_column), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+                <div class="tariff_templates_secondary_data">
+                  <span <%= tooltip('', _('Column')) %>>
+                    <%= f.select(:connection_fee_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.connection_fee_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-width-max no-padding-bottom">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Effective_Date') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <div class="tariff_templates_primary_data">
+                  <%= f.radio_button(:effective_date_option, 0, {class: 'tariff_template-radiobutton'}) %>
+                  <span <%= tooltip('', 'Column<br/>&nbsp;&nbsp;Date (Time)') %>>
+                    <%= f.select(:effective_date_column, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_column), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">+</span>
+                  <span <%= tooltip('', 'Column<br/>&nbsp;&nbsp;Time') %>>
+                    <%= f.select(:effective_date_column2, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_column2), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+                <div class="tariff_templates_secondary_data">
+                  <%= f.radio_button(:effective_date_option_secondary, 0, {class: 'tariff_template-radiobutton'}) %>
+                  <span <%= tooltip('', 'Column<br/>&nbsp;&nbsp;Date (Time)') %>>
+                    <%= f.select(:effective_date_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">+</span>
+                  <span <%= tooltip('', 'Column<br/>&nbsp;&nbsp;Time') %>>
+                    <%= f.select(:effective_date_column2_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_column2_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-width-max">
+            <div class="input-row">
+              <div class="label-col one-third"></div>
+              <div class="input-col two-thirds">
+                <div class="tariff_templates_primary_data">
+                  <%= f.radio_button(:effective_date_option, 1, {class: 'tariff_template-radiobutton'}) %>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Secondary Sheet') %>>
+                    <%= f.select(:effective_date_mapping_sheet, options_for_select(tariff_template_rate_sheet_selection(true), tariff_template.effective_date_mapping_sheet.to_i), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Secondary Sheet Date (Time) Column') %>>
+                    <%= f.select(:effective_date_mapping_datetime, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_mapping_datetime), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween"></span>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Secondary Sheet Mapping Column') %>>
+                    <%= f.select(:effective_date_mapping_column_sheet, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_mapping_column_sheet), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">=</span>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Primary Sheet Mapping Column') %>>
+                    <%= f.select(:effective_date_mapping_column_main, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_mapping_column_main), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+                <div class="tariff_templates_secondary_data">
+                  <%= f.radio_button(:effective_date_option_secondary, 1, {class: 'tariff_template-radiobutton'}) %>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Secondary Sheet') %>>
+                    <%= f.select(:effective_date_mapping_sheet_secondary, options_for_select(tariff_template_rate_sheet_selection(true), tariff_template.effective_date_mapping_sheet_secondary.to_i), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Secondary Sheet Date (Time) Column') %>>
+                    <%= f.select(:effective_date_mapping_datetime_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_mapping_datetime_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween"></span>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Secondary Sheet Mapping Column') %>>
+                    <%= f.select(:effective_date_mapping_column_sheet_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_mapping_column_sheet_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                  <span class="tariff_templates-select_inbetween">=</span>
+                  <span <%= tooltip('Effective Date in another Sheet', 'Primary Sheet Mapping Column') %>>
+                    <%= f.select(:effective_date_mapping_column_main_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.effective_date_mapping_column_main_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-width-max no-padding-bottom">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%= _('Effective_Date_Format') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <span <%= tooltip('', 'Custom Format') %>>
+                  <%= f.text_field(:effective_date_format, class: 'input', maxlength: 50) %>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-width-max no-padding-bottom">
+            <div class="input-row">
+              <div class="label-col one-third"></div>
+              <div class="input-col two-thirds">
+                <%= select_tag(:effective_date_format_dropdown, options_for_select(tariff_template_effective_date_format_selection, tariff_template.effective_date_format.to_s)) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-border-left col-width_56pc">
+        <div class="row">
+          <div class="col">
+            <h3><%#= _('First_Interval') %></h3>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Rate') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:first_interval_rate_column, options_for_select(tariff_template_columns_selection, tariff_template.first_interval_rate_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:first_interval_rate_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.first_interval_rate_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Minimal_Time') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:first_interval_mintime_column, options_for_select(tariff_template_columns_selection(true), tariff_template.first_interval_mintime_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:first_interval_mintime_field, options_for_select(tariff_template_field_selection, tariff_template.first_interval_mintime_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:first_interval_mintime_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.first_interval_mintime_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:first_interval_mintime_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.first_interval_mintime_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Increment') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:first_interval_increment_column, options_for_select(tariff_template_columns_selection(true), tariff_template.first_interval_increment_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:first_interval_increment_field, options_for_select(tariff_template_field_selection, tariff_template.first_interval_increment_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:first_interval_increment_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.first_interval_increment_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:first_interval_increment_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.first_interval_increment_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col additional_interval_options">
+            <h3><%= _('First_Interval__Off_Peak__') %></h3>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Rate') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_first_interval_rate_column, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_first_interval_rate_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_first_interval_rate_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_first_interval_rate_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Minimal_Time') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_first_interval_mintime_column, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_first_interval_mintime_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_first_interval_mintime_field, options_for_select(tariff_template_field_selection, tariff_template.off_peak_first_interval_mintime_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_first_interval_mintime_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_first_interval_mintime_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_first_interval_mintime_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.off_peak_first_interval_mintime_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Increment') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_first_interval_increment_column, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_first_interval_increment_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_first_interval_increment_field, options_for_select(tariff_template_field_selection, tariff_template.off_peak_first_interval_increment_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_first_interval_increment_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_first_interval_increment_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_first_interval_increment_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.off_peak_first_interval_increment_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row additional_interval_options">
+          <div class="col">
+            <h3><%= _('Second_Interval') %></h3>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Rate') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:second_interval_rate_column, options_for_select(tariff_template_columns_selection(true), tariff_template.second_interval_rate_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:second_interval_rate_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.second_interval_rate_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Minimal_Time') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:second_interval_mintime_column, options_for_select(tariff_template_columns_selection(true), tariff_template.second_interval_mintime_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:second_interval_mintime_field, options_for_select(tariff_template_field_selection, tariff_template.second_interval_mintime_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:second_interval_mintime_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.second_interval_mintime_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:second_interval_mintime_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.second_interval_mintime_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Increment') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:second_interval_increment_column, options_for_select(tariff_template_columns_selection(true), tariff_template.second_interval_increment_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:second_interval_increment_field, options_for_select(tariff_template_field_selection, tariff_template.second_interval_increment_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:second_interval_increment_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.second_interval_increment_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:second_interval_increment_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.second_interval_increment_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col additional_interval_options">
+            <h3><%= _('Second_Interval__Off_Peak__') %></h3>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Rate') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_second_interval_rate_column, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_second_interval_rate_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_second_interval_rate_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_second_interval_rate_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Minimal_Time') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_second_interval_mintime_column, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_second_interval_mintime_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_second_interval_mintime_field, options_for_select(tariff_template_field_selection, tariff_template.off_peak_second_interval_mintime_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_second_interval_mintime_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_second_interval_mintime_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_second_interval_mintime_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.off_peak_second_interval_mintime_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-width-max no-padding-left no-padding-right no-padding-bottom">
+                <div class="input-row">
+                  <div class="label-col one-third">
+                    <label><%= _('Increment') %></label>
+                  </div>
+                  <div class="input-col two-thirds">
+                    <div class="tariff_templates_primary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_second_interval_increment_column, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_second_interval_increment_column), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_second_interval_increment_field, options_for_select(tariff_template_field_selection, tariff_template.off_peak_second_interval_increment_field), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                    <div class="tariff_templates_secondary_data">
+                      <span <%= tooltip('', 'Column') %>>
+                        <%= f.select(:off_peak_second_interval_increment_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.off_peak_second_interval_increment_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                      <span <%= tooltip('', 'Field') %>>
+                        <%= f.select(:off_peak_second_interval_increment_field_secondary, options_for_select(tariff_template_field_selection, tariff_template.off_peak_second_interval_increment_field_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row col-border-top" style="padding-top: 30px;">
+          <!--
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%#= _('End_Date') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <div class="tariff_templates_primary_data">
+                  <span <%#= tooltip('', 'Column<br/>&nbsp;&nbsp;Date (Time)') %>>
+                    <%#= f.select(:end_date_column, options_for_select(tariff_template_columns_selection(true), tariff_template.end_date_column), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+                <div class="tariff_templates_secondary_data">
+                  <span <%#= tooltip('', 'Column<br/>&nbsp;&nbsp;Date (Time)') %>>
+                    <%#= f.select(:end_date_column_secondary, options_for_select(tariff_template_columns_selection(true), tariff_template.end_date_column_secondary), {}, {class: 'tariff_templates-select_column'}) %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          -->
+
+          <!--
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%#= _('Deleted_Rates') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <span <%#= tooltip('', 'Column') %>>
+                  <%#= f.select(:deleted_rates_column, options_for_select(tariff_template_columns_selection(true), tariff_template.deleted_rates_column), {}, {class: 'tariff_templates-select_column'}) %>
+                </span>
+                <span <%#= tooltip('', 'Deleted Text') %>>
+                  <%#= f.text_field(:deleted_rates_text, class: 'tariff_templates-input', maxlength: 50) %>
+                </span>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+        <div class="row">
+          <!--
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%#= _('Currency') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <%#= f.text_field(:currency_exchange_rate, class: 'tariff_templates-input', maxlength: 25) %>
+              </div>
+            </div>
+          </div>
+          -->
+          <!--
+          <div class="col">
+            <div class="input-row">
+              <div class="label-col one-third">
+                <label><%#= _('Blocked_Rates') %></label>
+              </div>
+              <div class="input-col two-thirds">
+                <span <%#= tooltip('', 'Column') %>>
+                  <%#= f.select(:blocked_rates_column, options_for_select(tariff_template_columns_selection(true), tariff_template.blocked_rates_column), {}, {class: 'tariff_templates-select_column'}) %>
+                </span>
+                <span <%#= tooltip('', 'Blocked Text') %>>
+                  <%#= f.text_field(:blocked_rates_text, class: 'tariff_templates-input', maxlength: 50) %>
+                </span>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+
+        <div class="row">
+          <div class="col col-width-max">
+            <div class="input-row max-width-max no-padding-left">
+              <h3 style="margin-bottom: 0!important;"><%= _('Exceptions') %></h3>
+            </div>
+
+            <div class="input-row max-width-max no-padding-bottom">
+                <span class="tariff_templates-exceptions-type"><h4 style="margin: 0!important;"><%=  _('Type') %></h4></span>
+                <span class="tariff_templates-exceptions-mask"><h4 style="margin: 0!important;"><%=  _('Mask') %></h4></span>
+                <span class="tariff_templates-exceptions-value"><h4 style="margin: 0!important;"><%=  _('Value') %></h4></span>
+                <span class="tariff_templates-exceptions-delete">&nbsp;</span>
+            </div>
+
+            <%= f.nested_fields_for :tariff_template_exceptions do |template_exception| %>
+                <div class="input-row max-width-max ">
+                    <%= template_exception.select(:exception_type, options_for_select(tariff_template_exceptions_type_selection, template_exception.object.try(:exception_type)), {}, {class: 'tariff_templates-exceptions-type'}) %>
+                    <span <%= tooltip(_('Destination_mask'), _('Destination_mask_tooltip_example')) %> >
+                        <%= template_exception.text_field(:destination_mask, class: 'tariff_templates-exceptions-mask') %>
+                    </span>
+                    <%= template_exception.text_field(:value, class: 'tariff_templates-exceptions-value') %>
+                    <%= template_exception.remove_nested_fields_link(_('Remove'), {confirm: _('Are_you_sure'), class: 'tariff_templates-exceptions-delete'}) %>
+                </div>
+            <% end %>
+
+            <div class="input-row max-width-max">
+              <%= f.add_nested_fields_link(:tariff_template_exceptions, _('Add_new').upcase, class: 'tariff_templates-exceptions-add_new') %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+    $(document).ready(function() {
+                $('#primary_data_tab_button').click(function(event){
+                    $('.tariff_templates_primary_data').show();
+                    $('.tariff_templates_secondary_data').hide();
+                    event.preventDefault(); // Prevent link from following its href
+                }).trigger('click');
+
+                $('#secondary_data_tab_button').click(function(event){
+                    $('.tariff_templates_primary_data').hide();
+                    $('.tariff_templates_secondary_data').show();
+                    event.preventDefault(); // Prevent link from following its href
+                });
+
+//                $('#tariff_template_hide_additional_interval_options_button').click(function() {
+//                    $('#tariff_template_hide_additional_interval_options_button').hide();
+//                    $('#tariff_template_show_additional_interval_options_button').show();
+                    $('.additional_interval_options').hide();
+//                }).trigger('click');
+//
+//                $('#tariff_template_show_additional_interval_options_button').click(function() {
+//                    $('#tariff_template_show_additional_interval_options_button').hide();
+//                    $('#tariff_template_hide_additional_interval_options_button').show();
+//                    $('.additional_interval_options').show();
+//                });
+//
+//                if (<%#= tariff_templates_additional_interval_options_selected?(tariff_template) %>) {
+//                    $('#tariff_template_show_additional_interval_options_button').trigger('click');
+//                }
+
+                $('#tariff_template_effective_date_format').on('input', function() {
+                    update_effective_date_format_selection($(this).val());
+                }).trigger('input');
+
+                $("#effective_date_format_dropdown").change(function () {
+                    update_effective_date_format_input($(this).val())
+                });
+
+                $(document).on('fields_added.nested_form_fields', function(event, param) {
+                    // Our currently used Jquery jcf is outdated (and perhaps buggy), so it is not possible to replace
+                    //   form for only one element.
+                    // When future will be now, update code below, so that it would select by ID
+                    //   or class and update specific (newly added) dropdowns.
+                    jcf.customForms.replaceAll();
+                });
+            }
+    );
+
+    function update_effective_date_format_selection(value) {
+        if($("#effective_date_format_dropdown option[value='" + value + "']").length != 0) {
+            $('#effective_date_format_dropdown').val(value);
+        } else {
+            $('#effective_date_format_dropdown').val('custom');
+        }
+        $('#effective_date_format_dropdown')[0].jcf.refreshState();
+    }
+
+    function update_effective_date_format_input(value) {
+        if (value != 'custom') {
+            $('#tariff_template_effective_date_format').val(value);
+        }
+    }
+</script>

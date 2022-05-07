@@ -1,0 +1,5 @@
+# Creates permissions group
+manager/manager_16001/create_permission_group.sql
+# creates manager/manager1
+manager/manager_16001/create.sql
+# bundle loaded

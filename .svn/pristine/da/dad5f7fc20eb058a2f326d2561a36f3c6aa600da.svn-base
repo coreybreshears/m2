@@ -1,0 +1,15 @@
+<% if @results and @results.length > 0 %>
+    <%= draw_flag(@flag) if @flag %> <%= @results %>
+<% elsif params[:prefix].present? %>
+  <%= _('NO_RESULTS') %>
+<% end %>
+
+<% if !@results2.blank? %>
+    <br/>
+    <%= draw_flag(@flag2) if @flag2 %>
+    <% if reseller? %>
+      <%= @results2 %>
+    <% else %>
+        <%= link_to @results2, :controller => :destination_groups, :action => :destinations, :id => @dg.id %>
+    <% end %>
+<% end %>

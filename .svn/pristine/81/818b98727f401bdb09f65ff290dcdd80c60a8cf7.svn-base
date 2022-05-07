@@ -1,0 +1,9 @@
+# bundle for aggregate_new_show_columns.case test
+# ----
+# calls aggregate enable
+/x5_functionality/calls_aggregate_enable.sql
+# load aggregates info
+/calls/aggregates.sql
+# set visible one item per page
+/settings/visual/one_item_per_page.sql
+# bundle loaded

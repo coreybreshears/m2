@@ -1,0 +1,29 @@
+<% if @devices and @devices.size.to_i > 0 %>
+    <% if params[:only_dropdown].present? %>
+        <% device_name, device_select = ['display: none;', ''] %>
+    <% else %>
+        <% device_name, device_select = ['display: inline;', 'display: inline;'] %>
+    <% end %>
+    <div id='device_name' style="<%= device_name %>">
+      <%= _('Device') %>:
+    </div>
+    <div id='device_select' style="<%= device_select %>">
+      <% cli_id = params[:cli_id] ? "_#{params[:cli_id]}" : '' %>
+      <select name="device_id" id="device_id<%= cli_id %>">
+        <% if @add.to_i != 1 %>
+          <option value="-1" <%= "selected" if @search_device == nil or (@search_device.to_i == -1) %>><%= _('All') %> </option>
+        <% end %>
+        <% for dev in @devices %>
+          <option value="<%= dev.id %>" <%= "selected" if @search_dev.to_i == dev.id.to_i %>><%= nice_device(dev) %> </option>
+        <% end %>
+      </select>
+    </div>
+    <script type="text/javascript">
+        <%kint = ''%>
+    </script>
+    <% if @include_cli %>
+        <span id='add_device<%= cli_id %>' onclick="new Ajax.Updater('select_device<%= cli_id %>', '<%=Web_Dir %>/cdr/cli_add/<%= params[:cli_id] %>?device_id=' + document.getElementById('device_id<%= cli_id %>').value, {method: 'post', asynchronous: true, onComplete:function(request){Element.hide('spinner');}, onLoading:function(request){Element.show('spinner');}});"><%= b_add %></span>
+    <% end %>
+<% else %>
+    <%= _('No_devices') if params[:id].to_i != -2 %>
+<% end %>

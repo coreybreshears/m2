@@ -1,0 +1,305 @@
+<!-- JQXGRID PROCESSOR -->
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+<!-- GOOGLE CHARTS -->
+<%= javascript_include_tag 'google_charts/loader.js' %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Active_Calls_Per_Terminator') %></h2>
+    <div id="active_calls_info">
+      <!-- Info box -->
+      <%= _('Page_refreshes_every') %>:&nbsp;<%= @refresh_period > 0 ? @refresh_period : 5 %> s
+    </div>
+    <!-- Main View -->
+    <div id="tp_ac_container">
+      <div id="tp_ac_grid"></div>
+      <div id="tp_ac_piechart"></div>
+    </div>
+    <!-- End of Main View -->
+  </div>
+</div>
+
+<script type="text/javascript">
+  jQuery.noConflict();
+  jQuery(document).ready(function ($) {
+
+    // JQXGrid table class
+    var JQXTable = function() {
+      // PRIVATE ATTRIBUTES
+      // Table container
+      var TPCallsGrid = $("#tp_ac_grid");
+
+      // Clumn width distribution
+      var col_distr = {
+        name: "35%", ip_address: "15%", answered: "10%",
+        calls_limit: "15%", total: "10%", free_lines: "15%"
+      };
+
+      // Localization callback
+      var getLocalization = function () {
+        return {
+          thousandsseparator: "",
+          emptydatastring: "<%= _('No_data_found_no_dots') %>"
+        }
+      };
+
+      var customRenderer = function(row, column, value) {
+        return "<div style='text-align:right;margin:3.5px;overflow:hidden;text-overflow:ellipsis;'>" +
+          (parseInt(value) <= 4294967295 ? value : "<%= _('Unlimited') %>") + "</div>";
+      }
+
+      // PUBLIC ATTRIBUTES
+      // Source data model
+      this.source = {
+        datatype: "json",
+        datafields: [
+          { name: "name", type: "string" },
+          { name: "ip_address", type: "string" },
+          { name: "total", type: "integer" },
+          { name: "answered", type: "integer" },
+          { name: "calls_limit", type: "integer" },
+          { name: "free_lines", type: "integer" }
+        ],
+        pagesize: <%= session[:items_per_page] %>,
+        cache: true
+      };
+
+      var source = this.source;
+
+      // Table columns
+      this.columns = [
+        // Status column
+        {
+          text: "<%= _('termination_points') %>", datafield: "name",
+          align: "left", cellsalign: "left", width: col_distr.name,
+            cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+                return '<a target="_blank" href="/billing/devices/device_edit/' +
+                        source.localdata[row]['id'] + '">' + defaulthtml + '</a>';
+            }
+        },
+
+
+        // IP Address column
+        {
+          text: "<%= _('IP_Address') %>", datafield: "ip_address", align: "left",
+          cellsalign: "left", width:  col_distr.ip_address
+        },
+
+        // Total Active Calls
+        {
+          text: "<%= _('Total_Calls') %>", datafield: "total", align: "right",
+          cellsalign: "right", width: col_distr.total
+        },
+
+        // Total Anwered Active Calls
+        {
+          text: "<%= _('Answered') %>", datafield: "answered", align: "right",
+          cellsalign: "right", width: col_distr.answered
+        },
+
+        // Call Limit
+        {
+          text: "<%= _('Call_limit') %>", datafield: "calls_limit", align: "right",
+          cellsalign: "right", width:  col_distr.calls_limit, cellsrenderer: customRenderer
+        },
+
+        // Free Lines
+        {
+          text: "<%= _('Free_Lines') %>", datafield: "free_lines", align: "right",
+          cellsalign: "right", width:  col_distr.free_lines, cellsrenderer: customRenderer
+        }
+      ];
+
+      // Updates the JQXGrid table
+      this.update = function(data, requestCount) {
+        this.source.localdata = data;
+        if (requestCount == 0) {
+          TPCallsGrid.jqxGrid({
+            source: new $.jqx.dataAdapter(this.source),
+            width: "55%",
+            autoheight: true,
+            rowsheight: 22,
+            altrows: true,
+            enablebrowserselection: true,
+            selectionmode: 'none',
+            statusbarheight: 22,
+            sortable: true,
+            pageable: true,
+            enablebrowserselection: "true",
+            pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+            localization: getLocalization(),
+            columns: this.columns,
+            handlekeyboardnavigation: function (event) {
+              var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+              if (key == 86 && event.ctrlKey == true) {
+                return true;
+              }
+            },
+            ready: function() {
+              rendered = true;
+              // Default sort: duration
+              TPCallsGrid.jqxGrid("sortby", "name", "asc");
+            }
+          });
+        } else {
+          // For later requests we maintain settings and update the data
+          var sortColumnName = TPCallsGrid.jqxGrid("getsortcolumn");
+          var currentPage = TPCallsGrid.jqxGrid("getdatainformation").paginginformation.pagenum;
+          var sortOrder = TPCallsGrid.jqxGrid("getsortinformation").sortdirection.ascending == true ? "asc" : "desc";
+          TPCallsGrid.jqxGrid({ source: new $.jqx.dataAdapter(this.source)});
+          TPCallsGrid.jqxGrid("sortby", sortColumnName, sortOrder);
+          TPCallsGrid.jqxGrid("gotopage", currentPage);
+          // Update the table
+          TPCallsGrid.jqxGrid("updatebounddata", "sort");
+        }
+      };
+    };
+    // End of JQXGrid table class
+
+    // Google charts class
+    var GoogleCharts = function() {
+      // PRIVATE ATTRIBUTES
+      var chart = null;
+      var chart_data = null;
+      var options = null;
+
+      // PUBLIC ATTRIBUTES
+      // Initializes Google Charts
+      this.init = function() {
+        chart_data = new google.visualization.DataTable();
+
+        if (chart_data === undefined || chart_data == null) {
+          return null
+        }
+
+        chart_data.addColumn("string", "Provider");
+        chart_data.addColumn("number", "Active Calls");
+        options = {
+          title: "<%= _('Active_Calls_distribution_over_Providers') %>",
+          pieHole: 0.4,
+          tooltip: { ignoreBounds: true },
+          chartArea: {
+            height: '70%',
+            top: '10%',
+            width: '95%',
+            left: '10%'
+          }
+        };
+        chart = new google.visualization.PieChart(document.getElementById("tp_ac_piechart"));
+      };
+
+      // Draws a chart
+      this.draw = function(data) {
+        // Delete previous data
+        if (chart_data === undefined || chart_data == null) {
+          return null
+        }
+        chart_data.removeRows(0, chart_data.getNumberOfRows());
+        // Populates with new data
+        for (var i = 0; i < data.length; i++) {
+          chart_data.addRow([data[i].name, data[i].total]);
+        }
+        chart.draw(chart_data, options);
+      };
+    };
+
+    // Data receiver class
+    //   Periodically receives data from server and
+    //   performs all the work
+    var DataReceiver = function() {
+      // PRIVATE ATTRIBUTES
+      var table = new JQXTable();
+      var pieChart = new GoogleCharts();
+      var refreshPeriod = (parseInt("<%= @refresh_period %>") || 5) * 1000;
+      var requestCount = 0;
+      // Loading indicator
+      var spinner = $("#spinner");
+
+      function worker() {
+        // For the first time we do not need to ask the server
+        if (requestCount == 0) {
+          // Updates the table
+          table.update(<%= raw @data %>, requestCount);
+
+          // Draws the chart
+          google.charts.load("current", { "packages": ["corechart"] });
+          google.charts.setOnLoadCallback(function() {
+            pieChart.init();
+            pieChart.draw(<%= raw @data %>);
+          });
+
+          requestCount++;
+          setTimeout(worker, refreshPeriod);
+        } else {
+          // Other iterations send periodic requests to the server
+          sendRequest();
+        }
+      }
+
+      // Performs an ajax call
+      var sendRequest = function() {
+        pendingRequest = $.ajax({
+          // Request destination
+          url: "<%= Web_Dir %>" + "/stats/terminator_active_calls",
+          type: "GET",
+          dataType: "json",
+          // Updates the table with a json response
+          success: function (data) {
+            table.update(data, requestCount);
+            pieChart.draw(data);
+          },
+          // Cleans up and get ready for a successor request
+          complete: function() {
+            setTimeout(worker, refreshPeriod);
+            requestCount++;
+          }
+        });
+      };
+
+      // PUBLIC ATTRIBUTES
+      // Starts the periodic worker
+      this.start = function() {
+        worker();
+      }
+    };
+    // End of data receiver class
+
+    // Main part
+    DS = new DataReceiver();
+    // Start the work
+    DS.start();
+    // End of Main part
+
+  });
+</script>
+<style>
+    #tp_ac_piechart{
+        width: 48%;
+    }
+
+    @media only screen and (max-width:767px){
+        #tp_ac_container{
+            overflow-x: auto;
+        }
+        #tp_ac_grid{
+            padding-left: 10px;
+        }
+    }
+</style>

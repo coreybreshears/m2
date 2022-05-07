@@ -1,0 +1,458 @@
+<tr>
+  <td height="20"></td>
+</tr>
+<tr>
+  <td class="bottom_border">
+    <b><%= _('origination_point') %></b>
+  </td>
+</tr>
+<tr>
+  <td height="10"></td>
+</tr>
+<tr>
+  <td>
+    <table class="simple">
+      <tr>
+        <td style="min-width: 120px"><%= _('act_as_origination_point') %>:</td>
+        <td>
+          <%= radio_button_tag 'device[op]', '0', device.op.to_i == 0, onclick: "toggle_op_settings_display(false);" %> <%= _('_No') %>
+          <%= radio_button_tag 'device[op]', '1', device.op.to_i == 1, onclick: "toggle_op_settings_display(true)" %> <%= _('_Yes') %>
+        </td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('Active') %>:</td>
+        <td>
+          <%= radio_button_tag 'device[op_active]', '0', device.op_active.to_i == 0 %> <%= _('_No') %>
+          <%= radio_button_tag 'device[op_active]', '1', device.op_active.to_i == 1 %> <%= _('_Yes') %>
+        </td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('tech_prefix') %>:</td>
+        <td><%= text_field_tag 'device[op_tech_prefix]', device.op_tech_prefix.to_s, class: 'input' %></td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('Destination_Transformation') %>:</td>
+        <td><%= text_field_tag 'device[op_destination_transformation]', device.op_destination_transformation.to_s, class: 'input' %></td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('Source_Transformation') %>:</td>
+        <td><%= text_field_tag 'device[op_source_transformation]', device.op_source_transformation.to_s, class: 'input' %></td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('capacity') %> (<%= _('Call_limit') %>):</td>
+        <td><%= text_field_tag 'device[op_capacity]', device.op_capacity.to_s, class: 'input', size: 8 %></td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('source_cid_allow') %>:</td>
+        <td><%= text_field_tag 'device[op_src_regexp]', device.op_src_regexp.to_s, class: 'input', maxlength: 1024 %></td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('source_cid_deny') %>:</td>
+        <td><%= text_field_tag 'device[op_src_deny_regexp]', device.op_src_deny_regexp.to_s, class: 'input', maxlength: 1024 %></td>
+      </tr>
+      <tr class='op_setting'>
+        <td><%= _('routing_algorithm') %>:</td>
+        <td>
+          <%= select_tag 'device[op_routing_algorithm]', options_for_select(routing_algorithms, device.op_routing_algorithm.to_s) %>
+          <% unless qrs.present? %>
+            <%= link_to b_exclamation + _('Please_Create_Quality_Routing_Rules'), Web_Dir + '/quality_routings/new', id: 'qr-warning' %>
+          <% end %>
+        </td>
+      </tr>
+      <% if qrs.present? %>
+        <tr class='op_quality_routing op_setting'>
+            <td><%= _('Quality_Routing') %>:</td>
+            <td><%= select_tag 'device[quality_routing_id]', options_for_select(qrs.map { |qr| [qr.name, qr.id] }, device.quality_routing_id) %></td>
+        </tr>
+      <% end %>
+      <tr class='op_setting'>
+        <td><%= _('routing_group') %>:</td>
+        <td>
+          <% if routing_groups.blank? %>
+            <%= link_to b_exclamation + _('please_create_routing_group'), Web_Dir + '/routing_groups/new' %>
+          <% else %>
+            <%= select_tag 'device[op_routing_group_id]', options_for_select(routing_groups.map{|rg| [rg.name, rg.id]}, device.op_routing_group_id.to_i) %>
+              &nbsp;<span id="device_op_routing_group_id_edit_link"></span>&nbsp;<span id="device_op_routing_group_id_dial_peers_list_link" <%= tooltip('', _('Dial_peers'))%>></span>&nbsp;<span id="device_op_routing_group_id_dial_peers_management_link" <%= tooltip('', _('Dial_Peers_Management')) %>></span>
+              <% if admin? || (manager? && authorize_manager_permissions({controller: :routing_groups, action: :list, no_redirect_return: 1})) %>
+                  <script type="text/javascript">
+                      jQuery(document).ready(function () {
+                          var selection = jQuery('#device_op_routing_group_id');
+                          var selection_edit_link = jQuery('#device_op_routing_group_id_edit_link');
+                          var selection_edit_link_url = '/routing_groups/edit/';
+                          var false_values = [];
+
+                          var selection_details_link = jQuery('#device_op_routing_group_id_dial_peers_list_link');
+                          var selection_details_link_url = '/routing_groups/rgroup_dpeers_list/';
+
+                          var selection_details_link2 = jQuery('#device_op_routing_group_id_dial_peers_management_link');
+                          var selection_details_link_url2 = '/routing_groups/dial_peers_management/';
+
+                          selection.on('change', function() {
+                              change_selection_edit_link(selection, selection_edit_link, selection_edit_link_url, false_values);
+                              change_selection_details_link(selection, selection_details_link, selection_details_link_url, false_values);
+                              change_selection_details_link(selection, selection_details_link2, selection_details_link_url2, false_values);
+                          });
+                          selection.trigger('change');
+                      });
+                  </script>
+              <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% if Confline.get_value('Use_Number_Portability', 0, 0).to_i == 1 %>
+        <tr class='op_setting'>
+          <td><%= _('Use_MNP') %>:</td>
+          <td>
+            <%= radio_button_tag 'device[mnp_use]', '0', device.mnp_use.to_i == 0 %> <%= _('_No') %>
+            <%= radio_button_tag 'device[mnp_use]', '1', device.mnp_use.to_i == 1 %> <%= _('_Yes') %>
+          </td>
+        <tr>
+        <tr class='op_setting mnp_routing_group' <%= tooltip(_('MNP_Routing_Group'), _('MNP_Routing_Group_hint'))%>>
+          <td><%= _('MNP_Routing_Group') %></td>
+          <td>
+            <% if routing_groups.blank? %>
+              <%= link_to b_exclamation + _('please_create_routing_group'), Web_Dir + '/routing_groups/new' %>
+            <% else %>
+              <%= select_tag 'device[mnp_routing_group_id]', options_for_select(routing_groups.map{|rg| [rg.name, rg.id]}, device.mnp_routing_group_id.to_i) %>
+                &nbsp;<span id="device_mnp_routing_group_id_edit_link"></span>
+                <% if admin? || (manager? && authorize_manager_permissions({controller: :routing_groups, action: :list, no_redirect_return: 1})) %>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function () {
+                            var selection = jQuery('#device_mnp_routing_group_id');
+                            var selection_edit_link = jQuery('#device_mnp_routing_group_id_edit_link');
+                            var selection_edit_link_url = '/routing_groups/edit/';
+                            var false_values = [];
+
+                            selection.on('change', function() {
+                                change_selection_edit_link(selection, selection_edit_link, selection_edit_link_url, false_values);
+                            });
+                            selection.trigger('change');
+                        });
+                    </script>
+                <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <!-- ==============================================NUMBER RULES======================================= -->
+
+
+    </table>
+  </td>
+</tr>
+
+
+<tr class="op_setting">
+  <td height="20"></td>
+</tr>
+<tr class="op_setting">
+  <td class="bottom_border">
+    <b><%= _('Origination_Point_Tariff') %></b>
+  </td>
+</tr>
+<tr class="op_setting">
+  <td height="10"></td>
+</tr>
+<tr>
+  <td>
+    <table class="simple">
+
+      <tr class='op_setting default_routing'>
+        <td><%= _('default_tariff') %>:</td>
+        <td>
+          <% if tariffs.blank? %>
+            <%= link_to b_exclamation + _('please_create_tariff'), Web_Dir + '/tariffs/new' %>
+          <% else %>
+            <%= select_tag 'device[op_tariff_id]', options_for_select(user_wholesale_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]}, device.op_tariff_id.to_i) %>
+              &nbsp;<span id="device_op_tariff_id_edit_link"></span>
+              <% if admin? || (manager? && authorize_manager_permissions({controller: :tariffs, action: :list, no_redirect_return: 1})) %>
+                  <script type="text/javascript">
+                      jQuery(document).ready(function () {
+                          var selection = jQuery('#device_op_tariff_id');
+                          var selection_edit_link = jQuery('#device_op_tariff_id_edit_link');
+                          var selection_edit_link_url = '/tariffs/edit/';
+                          var false_values = [];
+
+                          selection.on('change', function() {
+                              change_selection_edit_link(selection, selection_edit_link, selection_edit_link_url, false_values);
+                          });
+                          selection.trigger('change');
+                      });
+                  </script>
+              <% end %>
+          <% end %>
+        <td>
+      </tr>
+
+      <tr class='op_setting default_routing'>
+        <td><%= _('use_tariff') %>:</td>
+        <td>
+          <%= select_tag 'device[op_match_tariff_id]',  options_for_select([['None', 0]] + user_wholesale_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]}, device.op_match_tariff_id.to_i) %>
+          &nbsp;<span id="device_op_match_tariff_id_edit_link"></span>
+          <% if admin? || (manager? && authorize_manager_permissions({controller: :tariffs, action: :list, no_redirect_return: 1})) %>
+              <script type="text/javascript">
+                  jQuery(document).ready(function () {
+                      var selection = jQuery('#device_op_match_tariff_id');
+                      var selection_edit_link = jQuery('#device_op_match_tariff_id_edit_link');
+                      var selection_edit_link_url = '/tariffs/edit/';
+                      var false_values = ['0'];
+
+                      selection.on('change', function() {
+                          change_selection_edit_link(selection, selection_edit_link, selection_edit_link_url, false_values);
+                      });
+                      selection.trigger('change');
+                  });
+              </script>
+          <% end %>
+        </td>
+      </tr>
+      <% number_pools = get_number_pools %>
+
+      <tr class="op_setting default_routing">
+        <td style="padding-left: 27px;">
+          <%= _('if_callerid') %>:
+        </td>
+        <td>
+          <%= radio_button_tag 'device[op_callerid_matches]', '1', device.op_callerid_matches.to_i == 1, class: 'tariff_none' %> <%= _('matches') %>
+          <%= radio_button_tag 'device[op_callerid_matches]', '0', device.op_callerid_matches.to_i == 0, class: 'tariff_none' %> <%= _('not_matches') %>
+        </td>
+      </tr>
+
+      <tr class='op_setting default_routing'>
+        <td style="padding-left: 90px;">
+          <%= _('Rule_Set') %>:
+        </td>
+        <td>
+          <% if number_pools.present? %>
+            <%= select_tag 'device[op_number_pool_id]', options_from_collection_for_select(number_pools, :id, :name, {selected: device.op_number_pool_id}), class: 'tariff_none' %>
+          <% else %>
+            <%= hidden_field_tag 'device[op_number_pool_id]', 0 %>
+            <div id="source_blacklist_number_pool_select" style="display:inline;">
+              <%= b_exclamation %> <%= link_to _('You_have_to_create_Number_Pool'), controller: :number_pools, action: :pool_list %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr class='op_setting default_routing' <%= tooltip(_('Note'), _('original_callerid_will_be_sent_to_terminator')).html_safe %>>
+        <td colspan="2" style="padding-left: 90px;">
+          <%= _('use_callerid_number_from_pai_header_if_available') %>:
+          <%= radio_button_tag 'device[op_use_pai_as_number]', '0', device.op_use_pai_as_number.to_i == 0, class: 'tariff_none' %> <%= _('_No') %>
+          <%= radio_button_tag 'device[op_use_pai_as_number]', '1', device.op_use_pai_as_number.to_i == 1, class: 'tariff_none' %> <%= _('_Yes') %>
+       </td>
+      </tr>
+
+      <tr class="op_setting default_routing">
+        <td style="padding-left: 27px;">
+          <%= _('and_if_Destination') %>:
+        </td>
+        <td>
+          <%= radio_button_tag 'device[op_dst_matches]', '0', device.op_dst_matches.to_i == 0, class: 'tariff_none' %> <%= _('do_not_use') %>
+          <%= radio_button_tag 'device[op_dst_matches]', '1', device.op_dst_matches.to_i == 1, class: 'tariff_none' %> <%= _('matches') %>
+          <%= radio_button_tag 'device[op_dst_matches]', '2', device.op_dst_matches.to_i == 2, class: 'tariff_none' %> <%= _('not_matches') %>
+        </td>
+      </tr>
+
+      <tr class='op_setting default_routing'>
+        <td style="padding-left: 90px;">
+          <%= _('Rule_Set') %>:
+        </td>
+        <td>
+          <% if number_pools.present? %>
+            <%= select_tag 'device[op_dst_number_pool_id]', options_from_collection_for_select(number_pools, :id, :name, {selected: device.op_number_pool_id}), class: 'tariff_none' %>
+          <% else %>
+            <%= hidden_field_tag 'device[op_dst_number_pool_id]', 0 %>
+            <div id="source_blacklist_number_pool_select" style="display:inline;">
+              <%= b_exclamation %> <%= link_to _('You_have_to_create_Number_Pool'), controller: :number_pools, action: :pool_list %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+      <!-- ==================================================================================================== -->
+
+      <tr class='op_setting default_routing'>
+        <td><%= _('Custom_Tariff') %>:</td>
+        <td>
+          <%= select_tag 'device[op_custom_tariff_id]', options_for_select([['None', -1]] + custom_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]}, device.op_custom_tariff_id.to_i) %>
+          &nbsp;<span id="device_op_custom_tariff_id_edit_link"></span>
+          <% if admin? || (manager? && authorize_manager_permissions({controller: :tariffs, action: :custom_tariffs, no_redirect_return: 1})) %>
+              <script type="text/javascript">
+                  jQuery(document).ready(function () {
+                      var selection = jQuery('#device_op_custom_tariff_id');
+                      var selection_edit_link = jQuery('#device_op_custom_tariff_id_edit_link');
+                      var selection_edit_link_url = '/tariffs/edit/';
+                      var false_values = ['-1'];
+
+                      selection.on('change', function() {
+                          change_selection_edit_link(selection, selection_edit_link, selection_edit_link_url, false_values);
+                      });
+                      selection.trigger('change');
+                  });
+              </script>
+          <% end %>
+        <td>
+      </tr>
+      <% if is_us_routing_module_enabled? %>
+        <tr class='op_setting us_jur_routing_switch'>
+          <td><%= _('USA_Jurisdictional_Routing') %>:</td>
+          <td>
+            <%= radio_button_tag 'device[us_jurisdictional_routing]', '1', device.us_jurisdictional_routing.to_i == 1, onclick: "toggle_tariffs_display(true);" %> <%= _('Enabled') %>
+            <%= radio_button_tag 'device[us_jurisdictional_routing]', '0', device.us_jurisdictional_routing.to_i == 0, onclick: "toggle_tariffs_display(false);" %> <%= _('Disabled') %>
+          </td>
+        <tr>
+        <tr class='op_setting us_jur_routing'>
+          <td><%= _('Intra_Tariff') %>:</td>
+          <td>
+            <%= tariff_select_tag(
+              user_wholesale_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]},
+              device.op_tariff_intra.to_i,
+              'device[op_tariff_intra]'
+            ) %>
+          </td>
+        <tr>
+        <tr class='op_setting us_jur_routing'>
+          <td><%= _('Inter_Tariff') %>:</td>
+          <td>
+          <%= tariff_select_tag(
+              user_wholesale_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]},
+              device.op_tariff_inter.to_i,
+              'device[op_tariff_inter]'
+            ) %>
+          </td>
+        <tr>
+        <tr class='op_setting us_jur_routing'>
+          <td><%= _('Indeter_Tariff') %>:</td>
+          <td>
+          <%= tariff_select_tag(
+              user_wholesale_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]},
+              device.op_tariff_indeter.to_i,
+              'device[op_tariff_indeter]'
+            ) %>
+          </td>
+        <tr>
+      <% end %>
+    </table>
+  </td>
+</tr>
+
+<% content_for :scripts do %>
+  <script>
+    var op_settings = $j(".op_setting");
+    var tp_settings = $j(".tp_setting");
+    var op_inputs = op_settings.find('input, select');
+    var tp_inputs = tp_settings.find('input, select');
+    var op_qr_settings = $j(".op_quality_routing");
+    var op_alg_settings = $j("select#device_op_routing_algorithm");
+    var us_jur_routing = $j(".us_jur_routing");
+    var us_jur_routing_inputs = us_jur_routing.find('input, select');
+    var default_routing = $j(".default_routing");
+    var default_routing_inputs = default_routing.find('input, select');
+
+    visible_op = $j("#device_op_1").attr('checked');
+    visible_tp = $j("#device_tp_1").attr('checked');
+
+    op_checked = $j("#device_op_1").is(':checked');
+    tp_checked = $j("#device_tp_1").is(':checked');
+
+    var us_routing_checkd = $j("#device_us_jurisdictional_routing_1").is(':checked');
+
+    toggle_tariffs_display(us_routing_checkd);
+
+    toggle_op_qr_routing();
+    op_alg_settings.on('change', toggle_op_qr_routing);
+
+    if (!op_checked){
+      toggle_op_settings_display(visible_op);
+    }
+
+    if (!tp_checked){
+      toggle_tp_settings_display(visible_tp);
+    }else{
+      toggle_tp_tariffs_display($j('#device_tp_us_jurisdictional_routing_1').is(':checked'));
+    }
+
+
+    toggleMnp();
+
+    $j('#device_mnp_use_0').on('change', function(){ toggleMnp() });
+    $j('#device_mnp_use_1').on('change', function(){ toggleMnp() });
+
+    function toggleMnp(){
+      if ($j('#device_mnp_use_1').is(':checked')){
+        $j('.mnp_routing_group').show();
+        $j('#device_mnp_routing_group_id').attr('disabled', false);
+      }else{
+        $j('.mnp_routing_group').hide();
+        $j('#device_mnp_routing_group_id').attr('disabled', true);
+      }
+    }
+
+
+    function toggle_op_qr_routing() {
+      // There are no Quality Routing Rules
+      if (!op_qr_settings.size()) {
+        var qrWarning = $j('a#qr-warning');
+        op_alg_settings.val() === 'quality' ? qrWarning.show() : qrWarning.hide();
+        return;
+      }
+      // There are Quality Routing Rules
+      op_alg_settings.val() === 'quality' ? op_qr_settings.show() : op_qr_settings.hide();
+    }
+    function disable_when_tarrif_none(element){ $j('.tariff_none').prop('disabled', element.val() == 0) }
+
+    function toggle_op_settings_display(visible) {
+      op_settings.toggle(visible);
+      op_inputs.attr('disabled', !visible);
+
+      if (visible == true) {
+        us_routing_checkd = $j("#device_us_jurisdictional_routing_1").is(':checked');
+        toggle_tariffs_display(us_routing_checkd);
+        disable_when_tarrif_none($j('#device_op_match_tariff_id'));
+      } else {
+          toggle_tariffs_display(false);
+          op_settings.toggle(false);
+      }
+
+    }
+
+    function toggle_tariffs_display(visible) {
+        us_jur_routing.toggle(visible);
+        default_routing.toggle(!visible);
+
+        us_jur_routing_inputs.attr('disabled', !visible);
+        default_routing_inputs.attr('disabled', visible);
+        disable_when_tarrif_none($j('#device_op_match_tariff_id'));
+    }
+
+    function toggle_tp_settings_display(visible) {
+      tp_settings.toggle(visible);
+      toggle_tp_tariffs_display($j('#device_tp_us_jurisdictional_routing_1').is(':checked'));
+      tp_inputs.attr('disabled', !visible);
+      if ( !visible ) {
+        jQuery( "#device_periodic_check_0" ).attr( "checked", "checked" );
+        jQuery( "#periodic-check" ).hide();
+      } else {
+        jQuery( "#periodic-check" ).show();
+      }
+      if (!$('device_register').checked) {
+        $('tp_login').hide();
+        $('tp_password').hide();
+      }
+    }
+
+
+    function toggle_tp_tariffs_display(visible){
+      if ($j("#device_tp_1").is(':checked')){
+        $j('.tp_us_jur_routing').toggle(visible);
+        $j('.tp_tariff').toggle(!visible);
+      }
+
+      $j('#device_tp_tariff_intra, #device_tp_tariff_inter, #device_tp_tariff_indeter').attr('disabled', !visible);
+      $j('#device_tp_tariff_id').attr('disabled', visible);
+
+    }
+
+    disable_when_tarrif_none($j('#device_op_match_tariff_id'));
+    $j('#device_op_match_tariff_id').change(function(){ disable_when_tarrif_none($j(this)); });
+  </script>
+<% end %>

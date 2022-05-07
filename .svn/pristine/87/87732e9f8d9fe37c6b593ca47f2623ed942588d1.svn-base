@@ -1,0 +1,511 @@
+<table width="100%">
+  <tr>
+    <td><b><%= _('Tariff') %>:</b> <%= link_nice_tariff_simple(@tariff) %></td>
+  </tr>
+  <tr>
+    <td><b><%= _('Currency') %>:</b> <%= @tariff.currency.to_s %></td>
+  </tr>
+</table>
+<% tariff_purpose = @action == 'list' ? 'tariffs' : @action %>
+<% if @step == 0 %>
+
+    <br/>
+    <%= _('Tariff_import_step_1_1') %>:
+    <br/>
+    <br/>
+
+    <%= form_tag({:action => 'import_csv2', :step => "1"}, {:multipart => "true", :id => "files"}) do %>
+
+        <!--
+        <%= check_box_tag 'can_overwrite_rates', "1", true %> <%= _('Can_overwrite_rates') %> <br />
+    <%= check_box_tag 'can_create_destinations', "1", true %> <%= _('Can_create_destinations') %> <br />
+    -->
+
+        <%= _('Upload') %>: <%= file_field_tag "file" %>
+
+        <%= submit_tag(_('Upload_file'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+    <% end %>
+
+    <br/>
+    <%= _('Next_step') + ": " + _('Column_assignment') %>
+
+<% end %>
+
+<% if @step == 2 %>
+    <%= render 'import_csv_step_2', rate_type: @rate_type, effective_from_active: @effective_from_active, fl: @fl, currency: @tariff.currency %>
+<% end %>
+
+<% if @step == 3 %>
+    <br/>
+    <br/>
+    <%= _('File_size') %>: <%= @options[:file_size] %> <%= _('bytes') %>
+    <br/>
+    <br/>
+    <%= _("Rate_day_type") %>: <%= {"all" => _("All"), "wd" => _("Work_Days"), "fd" => _("Free_Days")}[@options[:imp_date_day_type]] %>
+    <br/>
+    <br/>
+    <%= _('Update_destinations_csv') %>: <%= @options[:imp_update_dest_names].to_i == 1 ? _("_Yes") : _("_No") %>
+    <br />
+    <!-- <%= _('Update_directions_based_on_country_code') %>: <%= @options[:imp_update_directions].to_i == 1 ? _("_Yes") : _("_No") %>
+    <br/> -->
+    <%= _('delete_rates_for_prefixes_not_present_in_csv') %>: <%= @options[:imp_delete_unimported_prefix_rates].to_i == 1 ? _("_Yes") : _("_No") %>
+    <br>
+    <%= _('Warn_about_Rates') %>:&nbsp;
+    <% if @options[:high_rate] == 0 %>
+      <%= _('Disabled') %>
+    <% else %>
+      <%= @options[:high_rate] %>&nbsp;<%= @tariff.currency %>
+    <% end %>
+    <br/>
+    <%= _('Ignore_Effective_from_time') %>: <%= @options[:ignore_effective_from_time].to_i == 1 ? _("_Yes") : _("_No") %>
+    <br/>
+    <%= _('Remove_effective_from_greater_than_in_CSV') %>: <%= @options[:imp_delete_effective_from].to_i == 1 ? _("_Yes") : _("_No") %>
+    <br/>
+    <br/>
+    <b><%= _('First_file_lines') %>:</b>
+    <br/>
+    <br/>
+    <table class="maintable" width="100%">
+      <tr>
+        <th id="prefix_row"><%= _('Prefix') %></th>
+        <th id="rate_row" align="left"><%= _('Rate') %></th>
+        <% if @effective_from_active %>
+          <th id="effective_from_row" align="left"><%= _('Effective_from') %></th>
+        <% end%>
+        <th id="connection_fee_row" align="left"><%= _('Connection_Fee') %></th>
+        <th id="increment_row" align="left"><%= _('Increment') %></th>
+        <th id="min_time_row" align="left"><%= _('Min_time') %></th>
+        <th id="ghost_percent_row" align="left"><%= _('Ghost_percent') %></th>
+        <% if @options[:imp_dst] && @options[:imp_dst] >= 0 %>
+          <th id="destination_name_row"><%= _('Destination') %></th>
+        <% end %>
+        <% if @options[:imp_change] && @options[:imp_change] >= 0 %>
+          <th id="change_name_row"><%= _('Action') %></th>
+        <% end %>
+        <% if @options[:imp_blocked] && @options[:imp_blocked].to_i >= 0  %>
+            <th id="blocked_row" align="left"><%= _('Blocked') %></th>
+        <% end %>
+      </tr>
+
+      <% tl= 0; arrs = ActiveRecord::Base.connection.select_all("SELECT * FROM #{session["tariff_name_csv_#{@tariff.id}".to_sym]} LIMIT 20") %>
+      <% arrs.each do |arr| %>
+          <% if arr["col_#{@options[:imp_prefix]}"].to_i > 0 %>
+              <tr class="row<%= (tl % 2 + 1).to_s %>">
+
+                <td id="imp_prefix_<%= tl %>"> <%= arr["col_#{@options[:imp_prefix]}"] if @options[:imp_prefix] >= 0 %>    </td>
+                <td id="imp_rate_<%= tl %>" align="left"> <%= arr["col_#{@options[:imp_rate]}"] if @options[:imp_rate] >= 0 %>    </td>
+                <% if @effective_from_active %>
+                  <td id="imp_effective_from_<%= tl %>" align="left"> <%= @options[:imp_effective_from].present? ? arr["col_#{@options[:imp_effective_from]}"] : nice_date_time(@options[:manual_effective_from]) %></td>
+                <% end %>
+                <td id="imp_connection_fee_<%= tl %>" align="left">
+                  <% if !@options[:manual_connection_fee].blank? %>
+                      <%= @options[:manual_connection_fee] %>
+                  <% else %>
+                      <%= arr["col_#{@options[:imp_connection_fee]}"] if @options[:imp_connection_fee] and @options[:imp_connection_fee] >= 0 %>
+                  <% end %>
+                </td>
+                <td id="imp_increment_<%= tl %>" align="left">
+                  <% if !@options[:manual_increment].blank? %>
+                      <%= @options[:manual_increment] %>
+                  <% else %>
+                      <%= (arr["col_#{@options[:imp_increment_s]}"].to_i == 0 ? arr["col_#{@options[:imp_increment_s]}"] = '1' : arr["col_#{@options[:imp_increment_s]}"]) if @options[:imp_increment_s].to_i >= 1 %>
+                  <% end %>
+                </td>
+
+                <td id="imp_min_time_<%= tl %>" align="left">
+                  <% if !@options[:manual_min_time].blank? %>
+                      <%= @options[:manual_min_time] %>
+                  <% else %>
+                      <%= arr["col_#{@options[:imp_min_time]}"] if @options[:imp_min_time] and @options[:imp_min_time] >= 0 %>
+                  <% end %>
+                </td>
+
+                <td id="imp_ghost_percent_<%= tl %>" align="left">
+                  <% if !@options[:manual_ghost_percent].blank? %>
+                      <%= @options[:manual_ghost_percent] %>
+                  <% else %>
+                      <%= arr["col_#{@options[:imp_ghost_percent]}"] if @options[:imp_ghost_percent] and @options[:imp_ghost_percent] >= 0 %>
+                  <% end %>
+                </td>
+
+                <% if @options[:imp_dst] && @options[:imp_dst] >= 0 %>
+                  <td id="imp_dst_<%= tl %>"> <%= arr["col_#{@options[:imp_dst]}"] %>    </td>
+                <% end %>
+                <% if @options[:imp_change] && @options[:imp_change] >= 0 %>
+                  <td id="imp_chng_<%= tl %>"> <%= arr["col_#{@options[:imp_change]}"] %>    </td>
+                <% end %>
+
+                <% if @options[:imp_blocked] && @options[:imp_blocked].to_i >= 0  %>
+                    <td id="imp_blocked_<%= tl %>" align="left">  <%= arr["col_#{@options[:imp_blocked]}"] %> </td>
+                <% end %>
+              </tr>
+          <% end %>
+          <% tl+=1 %>
+      <% end %>
+    </table>
+
+    <br/>
+    <b><%= _('Total_file_lines') %>: <%= @options[:file_lines] %></b>
+    <br/>
+    <br/>
+    <table>
+      <tr>
+        <td>
+          <%= form_tag({action: :import_csv2, step: 2, dont_check_seperator: true}) do %>
+              <%= submit_tag(_('Back'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+          <% end %>
+        </td>
+
+        <td width="20"></td>
+        <% if @options[:imp_prefix] >= 0 and @options[:imp_rate] >= 0 %>
+            <td>
+              <%= form_tag({:action => 'import_csv2', :step => "4"}) do %>
+                  <%= submit_tag(_('Confirm_columns'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+            </td>
+        <% end %>
+      </tr>
+    </table>
+    <br/>
+    <%= _('Next_step') + ": " + _('Analysis') %>
+<% end %>
+
+<% if @step == 4 %>
+    <%= render 'import_csv_analysis2',
+        :tariff => @tariff, :tariff_analize => @tariff_analize %>
+    <br/>
+    <table>
+      <tr>
+        <td>
+           <% if (@tariff_analize[:destinations_to_update].to_i > 0 || @tariff_analize[:destinations_to_create].to_i > 0) && (admin? || manager?) %>
+              <%= form_tag({:action => 'import_csv2', :step => "5"}) do %>
+                  <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+              </td>
+              </tr>
+              </table>
+              <br/>
+              <%= _('Next_step') + ": " + _('Creating_destinations') %>
+          <% elsif @tariff_analize[:rates_to_delete].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => "6"}) do %>
+                <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+              </td>
+              </tr>
+              </table>
+              <br/>
+              <%= _('Next_step') + ": " + _('deleting_rates') %>
+          <% elsif @tariff_analize[:rates_to_update].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => "7"}) do %>
+                  <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+              </td>
+              </tr>
+              </table>
+              <br/>
+              <%= _('Next_step') + ": " + _('Updating_rates') %>
+          <% elsif @tariff_analize[:new_rates_to_create].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => "8"}) do %>
+                  <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+              </td>
+              </tr>
+              </table>
+              <br/>
+              <%= _('Next_step') + ": " + _('Creating_new_rates') %>
+          <% else %>
+              <% csv_import2_completed(current_user, @tariff) %>
+              <br/><br/>
+              <b><%= _('Congratulations_csv_import') %>!</b>
+              <br/><br/><br/>
+              <%= link_to b_back + _("Back_to_#{tariff_purpose}"), action: @action.to_sym %>
+          <% end %>
+<% end %>
+
+<% if @step == 5 %>
+
+    <%= render 'import_csv_analysis2', :tariff => @tariff, :tariff_analize => @tariff_analize %>
+    <br/><br/><br/>
+    <b><%= _('Results') %></b>
+    <table class="maintable painted_rows" width="50%">
+      <tr class="row1">
+        <td width="50%"><%= _('Created_destinations') %></td>
+        <td align="right" width="15%" id="id_created_destinations">
+          <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:created_destination_from_file].to_i %> </b></td>
+      </tr>
+      <tr>
+        <td width="50%"><%= _('Destination_names_updated') %></td>
+        <td align="right" width="15%" id="id_updated_destinations">
+          <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:updated_destination_from_file].to_i %> </b>
+        </td>
+      </tr>
+    </table>
+    <br/><br/>
+
+    <table class="painted_rows">
+      <tr>
+        <td>
+          <% if @tariff_analize[:rates_to_delete].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => "6"}) do %>
+                <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+              </td>
+              </tr>
+              </table>
+              <br/>
+              <%= _('Next_step') + ": " + _('deleting_rates') %>
+          <% elsif @tariff_analize[:rates_to_update].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => "7"}) do %>
+                  <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+              </td>
+              </tr>
+              </table>
+              <br/>
+              <%= _('Next_step') + ": " + _('Updating_rates') %>
+          <% elsif @tariff_analize[:new_rates_to_create].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => '8'}) do %>
+                  <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+                  </td>
+                  </tr>
+                  </table>
+                  <br/>
+                  <%= _('Next_step') + ": " + _('Creating_new_rates') %>
+              <% end %>
+          <% else %>
+              <% csv_import2_completed(current_user, @tariff) %>
+              <br/><br/>
+              <b><%= _('Congratulations_csv_import') %>!</b>
+              <br/><br/><br/>
+              <%= link_to b_back + _("Back_to_#{tariff_purpose}"), action: @action.to_sym %>
+          <% end %>
+<% end %>
+
+<% if @step == 6 %>
+
+
+    <%= render 'import_csv_analysis2',
+        :tariff => @tariff, :tariff_analize => @tariff_analize %>
+    <br/><br/><br/>
+    <b><%= _('Results') %></b>
+    <table class="maintable painted_rows" width="50%">
+      <tr>
+        <td width="50%"><%= _('Created_destinations') %></td>
+        <td align="right" width="15%" id="id_created_destinations">
+          <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:created_destination_from_file].to_i %> </b>
+        </td>
+     </tr>
+      <% if session["tariff_import_csv2_#{@tariff.id}".to_sym][:imp_update_dest_names].to_i == 1 %>
+        <tr>
+          <td width="50%"><%= _('Destination_names_updated') %></td>
+          <td align="right" width="15%" id="id_updated_destinations">
+            <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:updated_destination_from_file].to_i %> </b>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><%= _('deleted_rates') %></td>
+        <td align="right" id="rates_deleted">
+          <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:deleted_rates].to_i %></b>
+        </td>
+      </tr>
+    </table>
+     <table class="painted_rows">
+      <tr>
+        <td>
+         <% if @tariff_analize[:rates_to_update].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => "7"}) do %>
+                  <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+              <% end %>
+              </td>
+              </tr>
+              </table>
+              <br/>
+              <%= _('Next_step') + ": " + _('Updating_rates') %>
+          <% elsif @tariff_analize[:new_rates_to_create].to_i > 0 %>
+              <%= form_tag({:action => 'import_csv2', :step => '8'}) do %>
+                  <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+                  </td>
+                  </tr>
+                  </table>
+                  <br/>
+                  <%= _('Next_step') + ": " + _('Creating_new_rates') %>
+              <% end %>
+          <% else %>
+              <% csv_import2_completed(current_user, @tariff) %>
+              <br/><br/>
+              <b><%= _('Congratulations_csv_import') %>!</b>
+              <br/><br/><br/>
+              <%= link_to b_back + _("Back_to_#{tariff_purpose}"), action: @action.to_sym %>
+          <% end %>
+<% end %>
+
+<% if @step == 7 %>
+
+     <%= render 'import_csv_analysis2', :tariff => @tariff, :tariff_analize => @tariff_analize %>
+     <br/><br/><br/>
+     <b><%= _('Results') %></b>
+     <table class="maintable painted_rows" width="50%">
+       <tr>
+         <td width="50%"><%= _('Created_destinations') %></td>
+         <td align="right" width="15%" id="id_created_destinations">
+           <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:created_destination_from_file].to_i %> </b>
+         </td>
+      </tr>
+       <% if session["tariff_import_csv2_#{@tariff.id}".to_sym][:imp_update_dest_names].to_i == 1 %>
+           <tr>
+             <td width="50%"><%= _('Destination_names_updated') %></td>
+             <td align="right" width="15%" id="id_updated_destinations">
+               <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:updated_destination_from_file].to_i %> </b>
+             </td>
+           </tr>
+       <% end %>
+       <% if @tariff_analize[:rates_to_delete].to_i > 0 %>
+          <tr>
+            <td><%= _('deleted_rates') %></td>
+            <td align="right" id="rates_deleted">
+              <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:deleted_rates].to_i %></b>
+            </td>
+          </tr>
+       <% end %>
+       <tr>
+         <td>                <%= _('Rates_updated') %> </td>
+         <td align="right" id="id_rates_updated">
+           <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:updated_rates_from_file] %></b></td>
+       </tr>
+     </table>
+     <br/><br/>
+
+     <table class="painted_rows">
+       <tr>
+         <td>
+           <% if @tariff_analize[:new_rates_to_create].to_i > 0 %>
+               <%= form_tag({:action => 'import_csv2', :step => '8'}) do %>
+                   <%= submit_tag(_('Proceed'), :disable_with => _('Processing..'), :onclick =>"Element.toggle('spinner');Element.toggle('spinner2');") %>
+                   </td>
+                   </tr>
+                   </table>
+                   <br/>
+                   <%= _('Next_step') + ": " + _('Creating_new_rates') %>
+               <% end %>
+           <% else %>
+               <% csv_import2_completed(current_user, @tariff) %>
+               <br/><br/>
+               <b><%= _('Congratulations_csv_import') %>!</b>
+               <br/><br/><br/>
+               <%= link_to b_back + _("Back_to_#{tariff_purpose}"), action: @action.to_sym %>
+           <% end %>
+ <% end %>
+
+
+<% if @step == 8 %>
+
+    <%= render 'import_csv_analysis2',
+        :tariff => @tariff, :tariff_analize => @tariff_analize %>
+    <br/><br/><br/>
+    <b><%= _('Results') %></b>
+    <table class="maintable painted_rows" width="50%">
+      <tr>
+        <td width="50%"><%= _('Created_destinations') %></td>
+        <td align="right" width="15%" id="id_created_destinations">
+          <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:created_destination_from_file].to_i %> </b>
+        </td>
+      </tr>
+      <% if session["tariff_import_csv2_#{@tariff.id}".to_sym][:imp_update_dest_names].to_i == 1 %>
+        <tr>
+          <td width="50%"><%= _('Destination_names_updated') %></td>
+          <td align="right" width="15%" id="id_updated_destinations">
+            <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:updated_destination_from_file].to_i %> </b>
+          </td>
+        </tr>
+      <% end %>
+      <% if @tariff_analize[:rates_to_delete].to_i > 0 %>
+          <tr>
+            <td><%= _('deleted_rates') %></td>
+            <td align="right" id="rates_deleted">
+              <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:deleted_rates].to_i %></b>
+            </td>
+          </tr>
+       <% end %>
+      <tr>
+        <td>                <%= _('Rates_updated') %> </td>
+        <td align="right" id="id_rates_updated">
+          <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:updated_rates_from_file].to_i %></b></td>
+      </tr>
+      <tr>
+        <td>                <%= _('New_rates_created') %> </td>
+        <td align="right" id="id_new_rates_created">
+          <b><%= session["tariff_analize_csv2_#{@tariff.id}".to_sym][:created_rates_from_file].to_i %></b></td>
+      </tr>
+    </table>
+    <br/><br/>
+      <% csv_import2_completed(current_user, @tariff) %>
+      <b><%= _('Congratulations_csv_import') %>!</b>
+       <br/>
+      <%= link_to b_back + _("Back_to_#{tariff_purpose}"), action: @action.to_sym %>
+<% end %>
+
+<% if @step == 20 %>
+
+    <%= _('File_size') %>: <%= @file_size %> <%= _('bytes') %><br />
+    <%= _('File_lines') %>: <%= @file_lines %> <br/><br/>
+
+    <%= _('Can_overwrite_rates') %>:
+    <%= if @can_overwrite_rates
+          b_check
+        else
+          b_cross
+        end %> <br/>
+    <%= _('Can_create_destinations') %>:
+    <%= if @can_create_destinations
+          b_check
+        else
+          b_cross
+        end %> <br/><br/>
+
+    <%= _('Total_directions') %>: <%= @total_directions %> <br/>
+    <%= _('Total_destinations') %>: <%= @total_destinations %> <br/>
+    <%= _('Total_rates_for_tariff') %>: <%= @total_tariff_rates %> <br/>
+
+    <br/>
+      <table class="maintable" width="100%">
+        <tr>
+          <th align="left"><%= _('Prefix') %></th>
+          <th align="left"><%= _('Rate') %></th>
+          <th align="left"><%= _('Increment') %></th>
+          <th align="left"><%= _('Min_time') %></th>
+          <th align="right"><%= _('Country_code') %></th>
+          <th align="right"><%= _('Destination') %></th>
+          <th align="right"><%= _('Status') %></th>
+        </tr>
+        <% for i in 0..@file_lines %>
+            <% rc = "row" + (i % 2 + 1).to_s
+               rc = "yellow" if @status[i] > 0
+               rc = "red" if @status[i] > 9
+            %>
+
+            <tr class=<%= rc %>>
+              <td>  <%= @prefix[i] %> </td>
+              <td>  <%= @rate[i] %> </td>
+              <td>  <%= @increment[i] %> </td>
+              <td>  <%= @min_time[i] %> </td>
+              <td align="right">  <%= @country_code[i] %> </td>
+              <td align="right">  <%= @destination[i] %> </td>
+              <td align="right">  <%= @status[i] %> </td>
+            </tr>
+        <% end %>
+      </table>
+    <br/><br/>
+    <% if @can_import %>
+        <b><%= b_check + _('File_imported') %></b><br/><br/>
+        <%= _('New_destinations') %>: <%= @new_destinations %> <br/>
+        <%= _('Changed_rates') %>: <%= @changed_rates %> <br/>
+        <%= _('New_rates') %>: <%= @new_rates %> <br/>
+    <% else %>
+        <b><%= b_cross + _('File_not_imported') %></b>
+    <% end %>
+
+<% end %>
+<br/>
+<br/>
+<% link_to _('Rate_import_status'), {:action => "rate_import_status"}, :onclick => "window.open(this.href,'new_window','height=300,width=600');return false;" %>

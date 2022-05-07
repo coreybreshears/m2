@@ -1,0 +1,87 @@
+<%= form_tag action: :number_list do %>
+  <table class="bordered simple" style="padding:4px;min-width:280px;">
+    <tr>
+      <td><%= _('Number') %>:</td>
+      <td><%= text_field_tag :s_number, @options[:s_number], style: 'width:170px;' %></td>
+      <td align="right" width='max-width:100px;'>
+        <% unless @options[:s_number].blank? %>
+          <%= link_to b_cross + _('Clear_search'), action: :number_list, clear: true %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3"><br></td>
+    </tr>
+    <tr>
+      <td colspan="3"><%= submit_tag _('Search'), data: { disable_with: _('Processing..') } %></td>
+    </tr>
+  </table>
+<% end %>
+<br>
+<table>
+  <tr>
+    <td>
+      <%= link_to( b_add + _('Import_new_numbers'), :action => 'number_import', :id => @number_pool.id) %>
+    </td>
+    <% if @total_numbers_size > 0 %>
+      <td>
+        <%= link_to(b_cross + _('Delete_all_Numbers'), {action: :destroy_all_numbers, id: @number_pool.id},  data: {confirm: _('Are_you_sure')}) %>
+      </td>
+      <td>
+        <%= link_to(b_refresh + _('Reset_all_Number_Counters'), {action: 'reset_all_number_counters', id: @number_pool.id}, data: {confirm: _('Are_you_sure')}) %>
+      </td>
+  <% end %>
+  </tr>
+</table>
+<% if @total_numbers_size == 0 %>
+    <%= form_tag action: :number_add do %>
+        <table class="maintable">
+          <tr>
+            <td style="min-width: 250px;max-width: 500px;"><b><%= _('Number') %></b></td>
+            <td></td>
+          </tr>
+          <tr>
+            <%= hidden_field_tag :id , @number_pool.id %>
+            <th align="left"><%= text_field_tag :number, "", class: 'input', size: 19, maxlength: 50 %></th>
+            <th width='20px' align="center"><%= image_submit_tag 'icons/add.png', title: _('Add'), id: 'add_number' %></th>
+          </tr>
+        </table>
+    <% end %>
+<% end %>
+<br />
+<% if @total_pages > 1 %>
+  <br>
+  <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+  <br>
+<% end %>
+
+<% if @total_numbers_size > 0 %>
+  <table class="maintable">
+    <tr align="left">
+      <th style="min-width: 250px;max-width: 500px;"><%= nice_list_order('number', _('Number'), @options) %></th>
+      <th><%= nice_list_order('counter', _('Counter'), @options) %></th>
+      <th colspan=2></th>
+    </tr>
+    <%= form_tag action: :number_add do %>
+        <tr>
+          <%= hidden_field_tag :id , @number_pool.id %>
+          <th align="left"><%= text_field_tag :number, "", class: 'input', size: 19, maxlength: 50 %></th>
+          <th></th>
+          <th width='20px' align="center"><%= image_submit_tag 'icons/add.png', title: _('Add'), id: 'add_number' %></th>
+        </tr>
+    <% end %>
+    <% @numbers.each_with_index do |num, i| %>
+      <tr align="left" class="row<%= (i % 2 + 1).to_s %>">
+        <td id="number_<%= num.id %>">
+          <%= num.number.gsub('_', '#') %>
+        </td>
+        <td id="counter_<%= num.id %>" style="min-width: 18px; text-align: right;">
+          <%= num.try(:counter).to_i %>
+        </td>
+        <td width='20px'  id="delete_<%= num.id %>" align="center"><%= link_to b_delete, {action: :number_destroy, id: num.id}, { data: { confirm: _('are_you_sure') }, method: :post, id: "delete_link_#{num.id}"} %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<br />
+<%= page_select_header(@options[:page], @total_pages, nil, @options) %>

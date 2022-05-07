@@ -1,0 +1,103 @@
+/* main navigation of the page */
+#nav{
+	width:69%;
+	margin: 0 -170px 0 0;
+}
+#nav ul ul{
+	font-size:13px;
+}
+#nav ul ul li{
+	padding:6px 15px;
+}
+#nav ul ul ul li{
+	top: -1px;
+}
+.lang-list{
+	margin:5px 1px 0 0;
+	font-size:13px;
+}
+.lang-list>li{
+	margin:0 0 0 35px;
+}
+.lang-list .flag-link:before{
+	background:url(../images/m2_images/sprite.png) no-repeat -179px 0;
+}
+.breadcrumbs li{
+	margin:0;
+}
+.breadcrumbs li:first-child{
+	margin-left: 11px;
+}
+/*  ---------------------------------------------------------
+	4. Styles for Responsive web design
+	---------------------------------------------------------*/
+/* styles for screens with width from 1100px to 1290px */
+@media only screen and (max-width:1290px){
+	#nav{
+		margin: 1px -100px 0 0;
+		width:64%;
+	}
+	.lang-list{
+		position:relative;
+		z-index:auto;
+		font-size:13px;
+	}
+	.lang-list .flag-link:before{
+		margin:2px 5px 0 0;
+	}
+	.lang-list>li{
+		margin:0 0 0 10px;
+	}
+	.lang-list ul{
+		top:33px;
+	}
+	.lang-list ul:before{
+		height:17px;
+		top:-17px;
+	}
+	.lang-list>li>a{
+		min-width:64px;
+	}
+	.lang-list .flag-link{
+		min-width:54px;
+	}
+}
+/* styles for screens with width from 768px to 1100px */
+@media only screen and (max-width:1100px){
+	.header-holder{
+		position:relative;
+		padding:14px 5px 60px;
+	}
+	#nav{
+		position:absolute;
+		bottom:0;
+		left:0;
+		width:100%;
+	}
+	#nav ul{
+		max-width:670px;
+		margin:0 auto;
+	}
+	#nav ul ul{
+		line-height: 12px
+	}
+	.lang-list ul{
+		top:31px;
+	}
+}
+/* styles for screens with width from 520px to 768px */
+@media only screen and (max-width:767px){
+	.header-holder{
+		 padding:14px 5px;
+	}
+	#nav{
+		bottom:14px;
+	}
+	#nav ul{
+		max-width:100%;
+		top:100%;
+	}
+}
+/* styles for screens 520px wide and narrower */
+@media only screen and (max-width:520px){
+}

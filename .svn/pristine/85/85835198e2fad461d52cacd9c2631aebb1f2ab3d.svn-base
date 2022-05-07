@@ -1,0 +1,24 @@
+<div class="static-header">
+  <div class="row">
+    <% if destination.direction %>
+      <%= destination_name(destination.destination_name) %>
+    <%end%>
+    <%= "(#{destination.prefix})" %>
+  </div>
+  <div class="column">
+    <div class="row">
+      <%= _('Currency') %>:
+    </div>
+    <div class="row">
+      <%= _('Effective_From') %>:
+    </div>
+  </div>
+  <div class="column padding-left-1">
+    <div class="row">
+      <%= tariff.currency %>
+    </div>
+    <div class="row">
+      <%= nice_date_time(rate.effective_from) %>
+    </div>
+  </div>
+</div>

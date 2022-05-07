@@ -1,0 +1,145 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxcheckbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.edit.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Tariffs_Rate_Notification_Jobs') %></h2>
+    <div id="tariff_rate_notification_jobs_list"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        var table_data_json = <%= tariff_rate_notification_jobs_json(@rate_notification_jobs) %>;
+        var source =
+        {
+            localdata: table_data_json,
+            datatype: 'json',
+            datafields: [
+                { name: 'id', type: 'integer'},
+                { name: 'created_at', type: 'date' },
+                { name: 'status', type: 'string' },
+                { name: 'tariff_id', type: 'integer' },
+                { name: 'tariff_name', type: 'string' },
+                { name: 'user_id', type: 'integer' },
+                { name: 'user_name', type: 'string' },
+                { name: 'email_id', type: 'integer' },
+                { name: 'email_name', type: 'string' },
+                { name: 'rate_notification_type', type: 'string' },
+                { name: 'agreement_timeout_datetime', type: 'date' },
+                { name: 'client_agreement', type: 'string' },
+                { name: 'client_agreement_datetime', type: 'date' },
+                { name: 'download', type: 'string' },
+                { name: 'delete', type: 'string' }
+            ],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        // A simple clipboard selection handler
+        var copyText = '';
+        // Get the selected text
+        document.addEventListener('mouseup', function() {
+            if (window.getSelection) copyText = window.getSelection().toString();
+        }, false);
+        // On copy event put it on clipboard
+        document.addEventListener('copy', function(event) {
+            event.clipboardData.setData('text/plain', copyText);
+            // Prevent from getting any other selections
+            event.preventDefault();
+        });
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+        var date_time_format = "<%= session[:date_time_format].present? ? session[:date_time_format].gsub('%Y', 'yyyy').gsub('%m', 'MM').gsub('%d', 'dd').gsub('%H', 'HH').gsub('%M', 'mm').gsub('%S', 'ss') : 'yyyy-MM-dd' %>";
+
+        var linkrenderer_target_tariff = function (row, column, value) {
+            var target_tariff_id = source.localdata[row].tariff_id;
+            return '<div style="text-align: left; margin-top: 10px; margin-left: 4px; max-width: 21%">' + "<a href='/billing/tariffs/edit/" + target_tariff_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_target_user = function (row, column, value) {
+            var target_user_id = source.localdata[row].user_id;
+            return '<div style="text-align: left; margin-top: 10px; margin-left: 4px; max-width: 21%">' + "<a href='/billing/users/edit/" + target_user_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_target_email = function (row, column, value) {
+            var target_email_id = source.localdata[row].email_id;
+            return '<div style="text-align: left; margin-top: 10px; margin-left: 4px; max-width: 21%">' + "<a href='/billing/emails/edit/" + target_email_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_download = function (row, column, value) {
+            var id = source.localdata[row].id;
+            if (!(source.localdata[row].status == 'Assigned' || source.localdata[row].status == 'Generating Data')) {
+                return '<form class="button_to" method="post" action="/billing/tariff_rate_notification_jobs/download_generated_data/' + id + '"><div><input id="download_generated_data_link_' + id + '" class="delete_button" style="text-align: center; margin-top: 9px; font: 13px/18px \'Open Sans\',Arial,Helvetica,sans-serif;" type="submit" value="DOWNLOAD"><input type="hidden" value="' + "<%= form_authenticity_token %>" + '" name="authenticity_token"></div></form>';
+            } else {
+                return ''
+            }
+        };
+
+        var linkrenderer_delete = function (row, column, value) {
+            var id = source.localdata[row].id;
+            return '<form class="button_to" method="post" action="/billing/tariff_rate_notification_jobs/destroy/' + id + '"><div><input id="delete_link_' + id + '" class="delete_button" style="text-align: center; margin-top: 9px; font: 13px/18px \'Open Sans\',Arial,Helvetica,sans-serif;" type="submit" value="DELETE" onclick="return confirm(\'Are you sure?\')"><input type="hidden" value="' + "<%= form_authenticity_token %>" + '" name="authenticity_token"></div></form>';
+        };
+
+        var griddata;
+        $("#tariff_rate_notification_jobs_list").jqxGrid(
+                {
+                    source: dataadapter,
+                    width: '100%',
+                    autoheight: true,
+                    rowsheight: 35,
+                    altrows: true,
+                    enablebrowserselection: 'true',
+                    sortable: true,
+                    pageable: true,
+                    columnsresize: true,
+                    pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                    ready: function () {
+                        griddata = $('#tariff_rate_notification_jobs_list').jqxGrid('getrows');
+                        $('#tariff_rate_notification_jobs_list').jqxGrid('sortby', 'id', 'desc');
+                        session_sorting(
+                                'tariff_rate_notification_jobs_list',
+                                '<%= Web_Dir %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}tariff_rate_notification_jobs_list"][:column].to_s %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}tariff_rate_notification_jobs_list"][:direction].to_s %>',
+                                '<%= params[:controller].to_s %>',
+                                '<%= params[:action].to_s %>'
+                        );
+
+                    },
+                    columns: [
+                        { text: "<%= _('Id') %>", datafield: 'id', width: '3%', align: 'center', cellsalign: 'center' },
+                        { text: "<%= _('Created_at') %>", datafield: 'created_at', width: '10%', align: 'center', cellsformat: date_time_format, cellsalign: 'center' },
+                        { text: "<%= _('Status') %>", datafield: 'status', width: '10%', align: 'center', cellsalign: 'center'},
+                        { text: "<%= _('Tariff') %>", datafield: 'tariff_name', width: '9%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_target_tariff},
+                        { text: "<%= _('User') %>", datafield: 'user_name', width: '9%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_target_user},
+                        { text: "<%= _('Email') %>", datafield: 'email_name', width: '12%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_target_email},
+                        { text: "<%= _('Type') %>", datafield: 'rate_notification_type', width: '5%', align: 'center', cellsalign: 'center' },
+                        { text: "<%= _('Timeout') %>", datafield: 'agreement_timeout_datetime', width: '10%', align: 'center', cellsformat: date_time_format, cellsalign: 'center' },
+                        { text: "<%= _('Response') %>", datafield: 'client_agreement', width: '10%', align: 'center', cellsalign: 'center'},
+                        { text: "<%= _('Responded_on') %>", datafield: 'client_agreement_datetime', width: '10%', align: 'center', cellsformat: date_time_format, cellsalign: 'center' },
+                        { text: "  ", datafield: 'download', width: '7%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_download },
+                        { text: " ", datafield: 'delete', width: '5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_delete }
+                    ]
+                });
+
+    });
+</script>

@@ -1,0 +1,116 @@
+<div class="column date-col calendar-holder">
+<%= label_tag 'period', _('Period') %>
+<br/>
+    <div id="select_container_<%= options[:name] %>" class="select_container">
+        <div class="select_button_container calendar-col" status="up">
+        <input id="select_button_<%= options[:name] %>" type="button" value="<%= "#{nice_date(options[:date_from], 0)} - #{nice_date(options[:date_till], 0)}" %>" class="select_button " />
+        </div>
+        <div id="select_options_<%= options[:name] %>" style="display: none;" class="select_options">
+          <% options[:select_values].each do |key, value| %>
+              <div id="<%= key %>" class="option">
+                <%= key.to_s.split('_').map {|w| w.capitalize }.join(' ') %>
+                <span style="display: none;"><%= value %></span>
+              </div>
+          <% end %>
+          <br>
+            <div class="row">
+                <div class="calendar-col">
+                  <%= text_field_tag  options[:prefix_from], formatted_date_as_given(options[:date_from]), class: options[:class_from], id: options[:id_from] %>
+                  <%= link_to 'date', {}, class: 'date-link', href: '#' %>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="calendar-col">
+                <%= text_field_tag options[:prefix_till], formatted_date_as_given(options[:date_till]), class: options[:class_till], id: options[:id_till] %>
+                <%= link_to 'date', {}, class: 'date-link', href: '#' %>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .select_container{
+        display: inline-block;
+        position: relative;
+    }
+    .select_button_container, .date_option{
+        position: relative;
+    }
+    .select_button_container:after{
+        right: 10px;
+        bottom: 8px;
+    }
+    .select_options{
+        background-color: #FFF;
+        position: absolute;
+        z-index: 5000;
+        border: 1px solid #B7B7B7;
+        top: 30px;
+    }
+    .option{
+        padding: 10px;
+    }
+
+    .select_container .row{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .option:hover{
+        background-color: #F7F7F7;
+
+    }
+    .select_container .calendar-col{
+        width: 100%;
+    }
+
+</style>
+
+<script>
+    jQuery( document ).ready(function($){
+        $(".select_button_container").click(function(){
+            $("#select_options_<%= options[:name] %>").toggle();
+            toggle_caret();
+        });
+
+        <% options[:select_values].each do |key, value| %>
+            $("#<%= key %>").click(function(){
+                $("#select_button_<%= options[:name] %>").val('<%= "#{nice_date(value[0], 0)} - #{nice_date(value[1], 0)}" %>');
+                update_manual_pickers('<%= nice_date(value[0], 0) %>', '<%= nice_date(value[1], 0) %>');
+                $("#select_options_<%= options[:name] %>").hide();
+                toggle_caret();
+            });
+        <% end %>
+
+        $('#<%= options[:id_from] %>').change(function(){
+            update_select_button();
+        });
+
+        $('#<%= options[:id_till] %>').change(function(){
+           update_select_button();
+           $("#select_options_<%= options[:name] %>").hide();
+           toggle_caret();
+        });
+
+        $(document).click(function(event){
+            var target = $(event.target);
+            if (!target.parents('#select_container_<%= options[:name] %>').length && $('#select_options_<%= options[:name] %>').is(':visible') && !target.parents('div#ui-datepicker-div.ui-datepicker').length && !target.parents('div.ui-datepicker-header').length){
+                $("#select_options_<%= options[:name] %>").hide();
+                toggle_caret();
+            }
+        });
+
+        function update_select_button(){
+            $("#select_button_<%= options[:name] %>").val( $('#<%= options[:id_from] %>').val() + ' - ' + $('#<%= options[:id_till] %>').val());
+        }
+
+        function update_manual_pickers(from_value, till_value){
+            $("#<%= options[:id_from] %>").val(from_value);
+            $("#<%= options[:id_till] %>").val(till_value);
+        }
+        function toggle_caret(){
+            $('.select_button_container').attr('status', $('.select_button_container').attr('status') == 'up' ? 'down' : 'up');
+        }
+    });
+</script>

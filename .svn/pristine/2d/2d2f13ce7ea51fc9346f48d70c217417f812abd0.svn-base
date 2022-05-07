@@ -1,0 +1,4 @@
+<%= form_for @data[:payment], url: {action: 'confirm'} do |f| %>
+  <%= render 'form', form: f, data: @data, user: @user %>
+  <%= submit_tag 'Proceed', data: {disable_with: _('Processing..')}, id: 'submit' %>
+<% end %>

@@ -1,0 +1,55 @@
+<% content_for :additional_buttons do %>
+    <span><%= button_tag _('edit'), class: " search-form-button", onclick: "location.href = '#{Web_Dir}/emails/edit/#{params[:id]}'" %></span>
+<% end %>
+
+<div class="content-box">
+    <div class="titled-box">
+        <h2 id="page-title"><%= @page_title %></h2>
+        <div class="details-form emails-show">
+            <div class="row full-width">
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Name') + ":" %></label>
+                  </div>
+                  <div class="input-col" id="name_<%= @email.name %>">
+                    <%= @email.name %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Subject') + ":" %></label>
+                  </div>
+                  <div class="input-col" id="subject_<%= @email.name %>">
+                    <%= @email.subject %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Message_text') + ":" %></label>
+                  </div>
+                  <div class="input-col" id="body_<%= @email.name %>">
+                    <%= @email.body %>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="label-col">
+                    <label><%= _('Format') + ":" %></label>
+                  </div>
+                  <div class="input-col" id="format_<%= @email.name %>">
+                    <%= @email[:format].to_s %>
+                  </div>
+                </div>
+                <% if params[:show_render].to_i == 1 %>
+                  <div class="input-row">
+                    <div class="label-col">
+                      <label><%= _('Example') + ":" %></label>
+                    </div>
+                    <div class="input-col" id="example_<%= @email.name %>">
+                      <%= render_email(@email, current_user) %>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

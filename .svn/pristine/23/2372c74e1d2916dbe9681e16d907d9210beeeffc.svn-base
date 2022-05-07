@@ -1,0 +1,532 @@
+<% colspan = 3 -%>
+<% cc = 19 %>
+<%= form_tag :action => params[:action].to_s do %>
+    <%= hidden_field_tag 'search_on', 1 %>
+    <%= hidden_field_tag 'page', 1 %>
+    <table class="bordered">
+      <tr>
+        <td>
+          <table id="search_details" class="simple">
+            <tr>
+              <td><%= _('From') %>:</td>
+              <td nowrap="true" colspan="5"><%= select_datetime(Time.mktime(session[:year_from], session[:month_from], session[:day_from], session[:hour_from], session[:minute_from]), :end_year => Date.today.year+1, :prefix => "date_from", :use_month_numbers => false) %>
+                &nbsp;
+                <%= submit_tag _('Yesterday'), class: 'calls-list-date-btn', id: 'yesterday', name: 'date-btn' %>
+                <%= submit_tag _('Today'), class: 'calls-list-date-btn', id: 'today', name: 'date-btn' %>
+                <%= submit_tag _('Last_Hour'), class: 'calls-list-date-btn', id: 'last_hour', name: 'date-btn' %>
+                <%= submit_tag _('Last_10_min'), class: 'calls-list-date-btn', id: 'last_10_min', name: 'date-btn' %>
+              </td>
+              <td>
+                <span style="text-align: right;FLOAT: right; ">
+                  <%= link_to(b_cross + _('Clear_search'), :action => params[:action], :clear => 1) if options[:search_on].to_i == 1 %>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td><%= _('Till') %>:</td>
+              <td nowrap="true" colspan=5><%= select_datetime(Time.mktime(session[:year_till], session[:month_till], session[:day_till], session[:hour_till], session[:minute_till]), :end_year => Date.today.year+1, :prefix => "date_till", :use_month_numbers => false) %></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><%= _('Originator') %>:</td>
+              <td nowrap="true">
+                <%= render 'shared/live_search_field', object: options[:s_user], object_id: options[:s_user_id], object_name: 'User', action_url: {:controller => :users, :action => :get_users_map, options: {show_users_only: true, show_reseller_users: true} } %>
+              </td>
+              <td><%= _('origination_point') %>:</td>
+              <td nowrap="true" colspan=2>
+                <% if devices_for_sope_present %>
+                  <span id='origination_point'>
+                    <%= select_tag("s_origination_point", options_for_select([[_('All'), 'all']] + origination_points.map{|dev| [nice_device(dev, {:image => false}) ,dev.dev_id.to_s ]}, options[:s_origination_point].to_s), :style => "width:100px") %>
+                    <script type="text/javascript">
+                      new Form.Element.EventObserver('s_user', function(element, value) {
+                        new Ajax.Updater('origination_point',
+                          '<%= Web_Dir %>/devices/ajax_get_user_devices',
+                          {
+                            evalScripts: true,
+                            onComplete: function(request){Element.hide('spinner');},
+                            onLoading: function(request){Element.show('spinner');},
+                            parameters: 'user_id=' + encodeURIComponent($('s_user_id').value) + "&all=true&fax=true&object_name=s_origination_point&type=op&include_non_active=1"
+                          })
+                      })
+                    </script>
+                  </span>
+                <% else %>
+                  <span id="origination_point_list">
+                    <%= select_tag('s_origination_point', options_for_select([[_('All'), 'all']]), disabled: true, style: "width:100px") %>
+                  </span>
+                <% end %>
+              </td>
+              <td><%= _('Status') %>:</td>
+              <% call_types = [[_('All'), "all"], [_('Answered'), "answered"], [_('No_Answer'), "no answer"], [_('Failed'), "failed"], [_('Busy'), "busy"], [_('Cancel', 'cancel')]] %>
+              <td nowrap="true"><%= select_tag("s_call_type", options_for_select(call_types, options[:s_call_type].to_s), :style => "width:100px") %></td>
+            </tr>
+            <tr>
+              <td><%= _('Terminator') %>:</td>
+              <td nowrap="true">
+                <%= render 'shared/live_search_field', object: options[:s_user_terminator], object_id: options[:s_user_terminator_id], object_name: 'User_Terminator', action_url: {controller: :users, action: :get_users_map, options: {show_users_only: true, show_reseller_users: true} } %>
+              </td>
+              <td nowrap='true'><%= _('termination_point') %>:</td>
+              <td  colspan=2>
+                <span id='termination_point'>
+                  <% if options[:s_user_terminator_id].blank? || options[:s_user_terminator_id].to_s == '-2' %>
+                    <%= select_tag 's_termination_point', options_for_select([[_('All'), 0]] + termination_points.map{|tp| [nice_device_dp(tp), tp.dev_id]}, options[:s_termination_point].to_s), disabled: termination_points.empty? %>
+                  <% else %>
+                      <%= select_tag 's_termination_point', options_for_select([[_('All'), 0]] + termination_points.map{|tp| [nice_device(tp), tp.dev_id]}, options[:s_termination_point].to_s), disabled: termination_points.empty? %>
+                  <% end %>
+                </span>
+                <script type="text/javascript">
+                    new Form.Element.EventObserver('s_user_terminator', function(element, value) {
+                      new Ajax.Updater('termination_point',
+                        '<%= Web_Dir %>/devices/ajax_get_user_devices',
+                        {
+                          evalScripts: true,
+                          onComplete: function(request){Element.hide('spinner');},
+                          onLoading: function(request){Element.show('spinner');},
+                          parameters: 'user_id=' + encodeURIComponent($('s_user_terminator_id').value) + "&all=true&fax=true&object_name=s_termination_point&type=tp&include_non_active=1&all_when_no_user=1"
+                        })
+                    })
+                </script>
+              </td>
+              <td nowrap="true"><%= _('hangup_cause') %>:</td>
+              <td nowrap="true"><%= select_tag("s_hgc", options_for_select([[_('All'), 0]]+hgcs.map { |h| [h.clean_description[0..45], h.id] }, options[:s_hgc].to_i), :style => "width:250px") %></td>
+            </tr>
+            <tr>
+              <td><%= _('Source') %>:</td>
+              <td nowrap="true"><%= text_field_tag("s_source", h(options[:source].to_s)) %></td>
+              <td><%= _("Destination") %>:</td>
+              <td nowrap="true" colspan=2><%= text_field_tag("s_destination", h(options[:s_destination].to_s)) %></td>
+              <td><%= _('Billsec') %>:</td>
+              <td nowrap="true" ><%= text_field_tag('s_billsec', h(options[:s_billsec].to_s), style: 'width: 50px') %> s</td>
+            </tr>
+            <tr>
+              <td><%= _('Server') %>:</td>
+              <td nowrap>
+                <%= select_tag('s_server', options_for_select([[_('All'), '']] + options[:servers].map { |server| [server.nice_description, server.id]}, options[:s_server])) %>
+              <td colspan="3"></td>
+              <td><%= _('Duration') %>:</td>
+              <td nowrap="true" ><%= text_field_tag('s_duration', h(options[:s_duration].to_s), style: 'width: 50px') %> s</td>
+            </tr>
+            <tr>
+              <td><%= _('Unique_no_spc_ID') %>:</td>
+              <td nowrap="true" colspan="5"><%= text_field_tag("s_uniqueid", h(options[:uniqueid].to_s), style: 'width: 400px') %></td>
+            </tr>
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                  $('#s_duration, #s_billsec').on('keyup keydown', function(e){
+                    var key = e.keyCode;
+                    if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
+                      e.preventDefault();
+                    }
+                  });
+
+                  $('.calls-list-date-btn').click(function(e){
+                    var date = new Date();
+                    var client_offset = date.getTimezoneOffset();
+                    var user_offset = <%= Time.zone.now.utc_offset / 60 %>;
+                    date = new Date(date.getTime() + (1000 * 60 * client_offset) + (1000 * 60 * user_offset));
+                    // date.setDate(date.getTime() - )
+                    if ($(this).attr('id') == 'yesterday'){
+                      date.setDate(date.getDate() - 1);
+                      updateDatePicker('#date_from_', date, '00', '00');
+                      updateDatePicker('#date_till_', date, '23', '59');
+                    }else if ($(this).attr('id') == 'today'){
+                      updateDatePicker('#date_from_', date, '00', '00');
+                      updateDatePicker('#date_till_', date, '23', '59');
+                    }else if ($(this).attr('id') == 'last_hour'){
+                      var last_hour = new Date(date.getTime() - (1000*60*60));
+                      updateDatePicker('#date_from_', last_hour, last_hour.getHours(), last_hour.getMinutes());
+                      updateDatePicker('#date_till_', date, date.getHours(), date.getMinutes());
+                    }else if ($(this).attr('id') == 'last_10_min'){
+                      var last_10_min = new Date(date.getTime() - (1000*60*10));
+                      updateDatePicker('#date_from_', last_10_min, last_10_min.getHours(), last_10_min.getMinutes());
+                      updateDatePicker('#date_till_', date, date.getHours(), date.getMinutes());
+                    }
+                    e.preventDefault();
+                  });
+
+                  function updateDatePicker(prefix, date, hour = '00', minute = '00'){
+                    $(prefix + 'year').val(date.getFullYear());
+                    $(prefix + 'month').val(date.getMonth() + 1);
+                    $(prefix + 'day').val(date.getDate());
+                    $(prefix + 'hour').val(hour < 10 ? '0' + hour : hour);
+                    $(prefix + 'minute').val(minute < 10 ? '0' + minute : minute);
+                  }
+                });
+            </script>
+            <% if params[:action] == 'old_calls_stats' %>
+              <tr>
+                <td><%= _('Search_in') %>:</td>
+                <td>
+                  <%= radio_button_tag(:search_in, 'local', !options[:use_cloud]) %><%= _('Local_Database') %>
+                  &nbsp;
+                  <%= radio_button_tag(:search_in, 'cloud', options[:use_cloud]) %><%= _('Cloud_Database') %>
+                </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td><%= submit_tag _('Search'), :disable_with => _('Processing..') %></td>
+              <td>
+                <script type="text/javascript">
+                  $j('#s_user_id').change(function() {
+                    new $j.ajax({
+                       url: '<%= Web_Dir %>/devices/connection_points_remote',
+                       data: {user_id: $j(this).val(), type: 'op'},
+                       asynchronous:false,
+                       success: function(response) {
+                         $j('#origination_point').html(response);
+                       }
+                    });
+                  });
+                </script>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+<% end %>
+<% unless searching %>
+  <%= b_info + _('press_search_button_to_show_data') %>
+<% end %>
+<br/>
+<% if searching %>
+      <% if calls && calls.size > 0 && params[:action] != 'old_calls_stats' %>
+        <span id="download_links">
+          <%= link_to(b_csv + _('Export_to_CSV'), '#', id: 'csv_download') %>&nbsp;&nbsp;
+          <%= link_to(b_pdf + _('Export_to_PDF'), '#', id: 'pdf_download') %>
+        </span>
+        <span id="csv_pending" hidden="">
+          <%= b_csv + _('Generating_file_Please_wait') %>&nbsp;<%= image_tag('indicator.gif', border: 0) %>&nbsp;&nbsp;
+          <%= b_pdf + _('Export_to_PDF') %>
+        </span>
+        <span id="pdf_pending" hidden="">
+          <%= b_csv + _('Export_to_CSV') %>&nbsp;&nbsp;
+          <%= b_pdf + _('Generating_file_Please_wait') %>&nbsp;<%= image_tag('indicator.gif', border: 0) %>
+        </span>
+
+        <% cdr_export_templates = CdrExportTemplate.where("nice_columns != ''").order(:name).all %>
+        <% email_sending_enabled = Confline.get_value('Email_Sending_Enabled', 0).to_i == 1 && current_user.email.present? %>
+        <% if cdr_export_templates.present? %>
+            &nbsp;&nbsp;<%= b_csv + _('Export_to_Template') + ':' %>
+            <select id="cdr_export_template_select">
+              <%= options_from_collection_for_select(cdr_export_templates, 'id', 'name') %>
+            </select>
+            <span id="cdr_template_button">
+              <% if email_sending_enabled %>
+                <%= button_to_function(_('Export'), "cdr_template_export();") %>
+              <% else %>
+                <input disabled="disabled" title="Email sending is not configured correctly" type="button" value="<%= _('Export') %>" autocomplete="off">
+              <% end %>
+            </span>
+            <span id="cdr_template_loading" hidden="">
+                <%= image_tag('indicator.gif', border: 0) %>
+            </span>
+        <% end %>
+        <br/>
+      <% elsif calls && calls.size > 0 && params[:action] == 'old_calls_stats' %>
+          <%= link_to b_csv + _('Export_to_CSV'), action: :old_calls_stats, csv: 1 %>
+      <% end %>
+
+    <script type="text/javascript">
+
+
+    $j(document).ready(function($){
+        var width_value = 1350;
+        var a = ["#answer_time_0", "#end_time_0", "#pdd_0", "#terminated_by_0", "#answer_time_1", "#end_time_1", "#pdd_1", "#terminated_by_1"];
+        for (index = 0; index < a.length; ++index) {
+          if ($(a[index]).length) {
+            width_value += 30;
+          }
+        }
+        $('#page_width').css({'width':width_value + 'px'});
+
+       });
+
+        $j('#csv_download').click(function() {
+            hide_download_links('csv');
+
+            $j.fileDownload('<%= Web_Dir%>/stats/calls_list?csv=1', {
+                successCallback: function() { show_download_links(); }
+            });
+        });
+
+        $j('#pdf_download').click(function() {
+            hide_download_links('pdf');
+
+            $j.fileDownload('<%= Web_Dir%>/stats/calls_list?pdf=1', {
+                successCallback: function() { show_download_links(); }
+            });
+        });
+
+        function hide_download_links(file_type) {
+            $j('#download_links').hide();
+
+            if (file_type == 'csv') {
+                $j('#pdf_pending').hide();
+                $j('#csv_pending').show();
+            } else {
+                $j('#csv_pending').hide();
+                $j('#pdf_pending').show();
+            }
+
+        }
+
+        function show_download_links() {
+            $j('#download_links').show();
+            $j('#csv_pending').hide();
+            $j('#pdf_pending').hide();
+        }
+
+        function cdr_template_export() {
+            $j('#cdr_template_button').hide();
+            $j('#cdr_template_loading').show();
+
+            var template_id = $j('#cdr_export_template_select').val();
+
+            $j.ajax({
+                url: '<%= Web_Dir %>/stats/calls_list?csv=1&cdr_template_id=' + template_id,
+                type: 'get',
+                cache: false,
+                success: function (returnData) {
+                    $j('#cdr_template_loading').hide();
+                    $j('#cdr_template_button').show();
+                    alert('<%= _('Background_Task_for_CDR_Export_successfully_created') %>');
+                }
+            });
+        }
+    </script>
+<br/>
+<br/>
+
+<% if calls and calls.size > 0 %>
+  <%= page_select_header(options[:page], (total_calls.to_d / session[:items_per_page].to_d).ceil, nil, options) %>
+    <table width="100%" class="maintable last_calls" >
+      <tr style="background-color: #94A0AD;">
+        <th align="center" rowspan=2> &nbsp;<%= raw nice_list_order('time', _('Start_Time'), options, :search_on => params[:search_on]).html_safe %></th>
+        <% if answer_time = Confline.get_value('Show_answer_time_last_calls', 0).to_i == 1 %>
+          <th align="center" rowspan=2> &nbsp;<%= raw nice_list_order('answer_time', _('Answer_time'), options, :search_on => params[:search_on]).html_safe %></th>
+        <% end %>
+        <% if end_time = Confline.get_value('Show_end_time_last_calls', 0).to_i == 1 %>
+          <th align="center" rowspan=2> &nbsp;<%= raw nice_list_order('end_time', _('End_Time'), options, :search_on => params[:search_on]).html_safe %></th>
+        <% end %>
+        <th align="center" rowspan=2><%= raw nice_list_order('src', "#{_('called_from')} <br> (#{_('Source')})", options, :search_on => params[:search_on]) %></th>
+        <th align="center" rowspan=2><%= raw nice_list_order('dst', "#{_('called_to')} <br> (#{_('Destination')})", options, :search_on => params[:search_on]) %></th>
+        <!--<th align="left" rowspan=2><%= raw nice_list_order('prefix', _('Prefix_used'), options, :search_on => params[:search_on]) %></th>-->
+        <th align="center" rowspan=2><%= raw nice_list_order('nice_billsec', _('Billsec'), options, :search_on => params[:search_on]) %></th>
+        <% if show_duration = Confline.get_value('Show_Duration_in_Last_Calls', 0).to_i == 1 %>
+          <th align="center" rowspan=2><%= raw nice_list_order('duration', _('Duration'), options, :search_on => params[:search_on]) %></th>
+        <% end %>
+        <% if pdd_value = Confline.get_value('Show_PDD_last_calls', 0).to_i == 1 %>
+          <th align="center" rowspan=2><%= raw nice_list_order('pdd', _('PDD'), options, :search_on => params[:search_on]) %></th>
+        <% end %>
+        <th align="left" rowspan=2> <%= raw nice_list_order('hgc', _('hangup_cause'), options, :search_on => params[:search_on]) %> </th>
+        <% if terminated_by = Confline.get_value('Show_terminated_by_last_calls', 0).to_i == 1 %>
+          <th align="left" rowspan=2> <%= raw nice_list_order('terminated_by', _('Terminated_by'), options, :search_on => params[:search_on]) %> </th>
+        <% end %>
+        <!-- <th align="left" rowspan=2> -->
+          <%=
+          #raw nice_list_order('server', _('Server'), options, :search_on => params[:search_on])
+          %>
+        <!-- </th> -->
+        <% if manager? %>
+          <% provider_colspan = 1 %>
+          <% provider_colspan += 1 unless authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_rate) %>
+          <% provider_colspan += 1 unless authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_price) %>
+        <% else %>
+          <% provider_colspan = 3 %>
+        <% end %>
+        <th align="center" colspan='<%= provider_colspan %>'><%= _('Provider') %> </th>
+
+        <th align="center" colspan=<%= options[:show_device_and_cid].to_i == 1 ? colspan.next : colspan %>><%= _('User') %></th>
+        <% if admin? %>
+          <!-- <th align="left" rowspan=2> -->
+            <%=
+            #_('Profit')
+            %>
+          <!-- </th> -->
+        <% end %>
+
+        <th></th>
+        <th></th>
+
+      </tr>
+      <tr style="background-color:#94A0AD;">
+        <th align="left" class="last_calls_top"><%= raw nice_list_order('termination_name', _('Name'), options, :search_on => params[:search_on]) %></th>
+        <% if !manager? || (manager? && !authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_rate)) %>
+            <th align='left' class="last_calls_top"><%= raw nice_list_order('p_rate', _('Rate'), options, :search_on => params[:search_on]) %></th>
+        <% end %>
+        <% if !manager? || (manager? && !authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_price)) %>
+            <th align="left" class="last_calls_top"><%= raw nice_list_order('p_price', _('Price'), options, :search_on => params[:search_on]) %></th>
+        <% end %>
+        <th align="left" class="last_calls_top"><%= raw nice_list_order('user', _('Name'), options, :search_on => params[:search_on]) %></th>
+        <% if options[:show_device_and_cid].to_i == 1 %>
+          <th align="left" class="last_calls_top"><%= raw nice_list_order('nice_src_device', _('device_cid'), options, search_on: params[:search_on]) %></th>
+        <% end %>
+        <th align="left" class="last_calls_top"><%= raw nice_list_order('u_rate', _('Rate'), options, :search_on => params[:search_on]) %></th>
+        <th align="left" class="last_calls_top"><%= raw nice_list_order('u_price', _('Price'), options, :search_on => params[:search_on]) %></th>
+        <th></th>
+        <th></th>
+
+
+      </tr>
+      <% calls.each_with_index do |call, i| %>
+          <%
+             src_device = Device.where("devices.id = ?", call.src_device_id.to_i).includes(:user).first
+             call_user = src_device.user if src_device
+             #params[:action] == "old_calls_stats" or call.processed == 0 ? text_class="n" : text_class="n_disabled"
+             text_class='n'
+          -%>
+          <tr class="last_calls_row row<%= (i % 2 + 1).to_s %> ">
+            <td id="calldate_<%= call.id %>" class="<%= text_class %>" align="center" nowrap><%= nice_date_time call.calldate %></td>
+            <% if answer_time %>
+              <% if column_exists?(:answer_time) %>
+                <td id="start_<%= call.id %>" class="<%= text_class %>" align="center"><%= nice_date_time call.answer_time %></td>
+              <% else %>
+                 <td id="start_<%= call.id %>" class="<%= text_class %>" align="center"></td>
+              <% end %>
+            <% end %>
+            <% if end_time %>
+              <% if column_exists?(:answer_time) %>
+                <td id="end_<%= call.id %>" class="<%= text_class %>" align="center"><%= nice_date_time call.end_time %></td>
+              <% else %>
+                <td id="end_<%= call.id %>" class="<%= text_class %>" align="center">
+              <% end %>
+            <% end %>
+
+            <td id="src_<%= call.id %>" class="<%= text_class %>"><%= nice_src(call) %></td>
+            <% if show_destination %>
+                <%= raw show_call_dst(call, text_class) %>
+            <% end %>
+            <td id="billsec_<%= call.id %>" class="<%= text_class %>" align="center"><%= nice_time(call.nice_billsec) %></td>
+            <% if show_duration %>
+              <% if column_exists?(:duration) %>
+                <td id="duration_<%= call.id %>" class="<%= text_class %>" align="center"><%= nice_time(call.duration) %></td>
+              <% else %>
+                <td id="duration_<%= call.id %>" class="<%= text_class %>" align="center"></td>
+              <% end %>
+            <% end %>
+            <% if pdd_value %>
+              <% if column_exists?(:pdd) %>
+                <td id="pdd_<%= call.id %>" class="<%= text_class %> <%= 'zero-price' if call.pdd == 0 %>" align="center"><%= nice_number(call.pdd) %></td>
+              <% else %>
+                <td id="pdd_<%= call.id %>" class="<%= text_class %>" align="center">
+              <% end %>
+            <% end %>
+            <td id="disposition_<%= call.id %>" nowrap class="<%= text_class %>" align="left" <%= tooltip('', get_hangup_cause_message(call.hangupcause)) if call.hangupcause %>>
+              <%= nice_disposition(call) %>
+            </td>
+            <% if terminated_by %>
+              <% if column_exists?(:terminated_by) %>
+                <td id="termianted_by_<%= call.id %>" class="<%= text_class %>" align="center"><%= call.terminated_by.to_s.capitalize %></td>
+              <% else %>
+                <td id="termianted_by_<%= call.id %>" class="<%= text_class %>" align="center">
+              <% end %>
+            <% end %>
+            <!-- <td id="server_id_<%=
+            #call.id
+             %>" class="<%=
+             #text_class
+             %>" align="left"> -->
+              <%=
+                #call.server_id
+              %>
+            <!-- </td> -->
+            <% authorized_manager = (current_user.usertype == 'manager' && authorize_manager_permissions({controller: :devices, action: :devices_all, no_redirect_return: 1, user: current_user}) ) %>
+            <td id="provider_name_<%= call.id %>" class="<%= text_class %>" align="left"><%= (admin? || authorized_manager) ? (link_to call[:nice_device], controller: 'devices', action: 'device_edit', id: call.dst_device_id.to_i) : call[:nice_device] %></td>
+            <% if !manager? || (manager? && !authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_rate)) %>
+                <td id="provider_rate_<%= call.id %>" class="<%= text_class %> <%= 'zero-price' if call.provider_rate_exrate == 0 %>" align="left"><%= nice_number(call.provider_rate_exrate) %></td>
+            <% end %>
+            <% if !manager? || (manager? && !authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_price)) %>
+                <td id="provider_price_<%= call.id %>" class="<%= text_class %> <%= 'zero-price' if call.provider_price_exrate == 0 %>" align="left"><%= nice_number(call.provider_price_exrate) %></td>
+            <% end %>
+            <td id="user_<%= call.id %>" class="<%= text_class %>">
+              <% if call.hangupcause.to_i != 200 %>
+                  <% if params[:action] != 'old_calls_stats' %>
+                      <%=  link_nice_user_if_own(call_user) %>
+                  <% else %>
+                      <%= nice_user(call_user) %>
+                  <% end %>
+              <% else %>
+                  <%= (_('Unauthenticated') + "<a href='http://wiki.ocean-tel.uk/index.php/200_MOR_can%27t_determine_who_is_calling' target='_blank'><img alt='Help' src='#{Web_Dir}/images/icons/help.png'/></a>").html_safe %>
+              <% end %>
+            </td>
+            <% if options[:show_device_and_cid].to_i == 1 %>
+              <td align="left" id="user_device_cid_<%= call.id %>">
+                <%= show_device_and_callerid(call) %>
+              </td>
+            <% end %>
+
+            <td id="user_rate_<%= call.id %>" class="<%= text_class %> <%= 'zero-price' if call.user_rate_exrate == 0 %>" align="left"><%= nice_number(call.user_rate_exrate) %></td>
+            <td id="user_price_<%= call.id %>" class="<%= text_class %> <%= 'zero-price' if call.user_price_exrate == 0 %>" align="left"><%= nice_number(call.user_price_exrate) %></td>
+
+            <% if params[:action] != 'old_calls_stats' %>
+                <% call_calls_list_codecs_status = call.calls_list_codecs_status %>
+                <td id="call_codecs_<%= call.id %>" align="center" <%= tooltip(_('Codecs'), call.calls_list_codecs_tooltip) if call_calls_list_codecs_status > 0 %>>
+                  <% case call_calls_list_codecs_status %>
+                  <% when 1 %>
+                      <%= b_arrow_switch_light_green %>
+                  <% when 2 %>
+                      <%= b_arrow_switch_bright_red %>
+                  <% end %>
+                </td>
+            <% end %>
+
+            <td id="callinfo_<%= call.id %>" align="center"><%= link_to(b_call_info, {:controller => "calls", :action => "call_info", :id => call.id}, {:id => "callinfo_link_#{call.id}"}) if call and params[:action] != 'old_calls_stats' %></td>
+          </tr>
+      <% end %>
+      <tr>
+        <th id="total" align="left" colspan="2"><%= _("Total") %>:</th>
+        <% if show_destination %>
+            <th></th>
+        <% end %>
+        <% if answer_time %>
+          <th></th>
+        <% end %>
+        <% if end_time %>
+          <th></th>
+        <% end %>
+        <th id="total_billsec" align="center"><%= nice_time total_calls_stats[:total_billsec] %></th>
+        <% if show_duration %>
+          <th id="total_duration" align="center"><%= nice_time total_calls_stats[:total_duration] %></th>
+        <% end %>
+        <th colspan="1"></th>
+        <% if pdd_value %>
+          <th></th>
+        <% end %>
+        <th></th>
+        <% if terminated_by %>
+          <th></th>
+        <% end %>
+        <% if !manager? || (manager? && !authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_rate)) %>
+            <th></th>
+        <% end %>
+        <% if !manager? || (manager? && !authorize_manager_fn_permissions(fn: :reports_calls_list_hide_vendors_price)) %>
+            <th id="total_provider_price" class="<%= 'zero-price' if total_calls_stats[:total_provider_price] == 0 %>" align="left"><%= nice_number total_calls_stats[:total_provider_price] %></th>
+        <% end %>
+        <!-- <th></th> -->
+        <% if options[:show_device_and_cid].to_i == 1 %>
+          <th></th>
+        <% end %>
+        <th></th>
+        <th></th>
+        <th id="total_user_price" class="<%= 'zero-price' if total_calls_stats[:total_user_price] == 0 %>" align="left"><%= nice_number total_calls_stats[:total_user_price] %></th>
+        <% if admin? %>
+            <!-- <th id="total_profit" align="left"> -->
+              <%=
+                #nice_number(total_calls_stats.total_profit)
+              %>
+            <!-- </th> -->
+        <% end %>
+        <th></th>
+        <% if params[:action] != 'old_calls_stats' %>
+            <th></th>
+        <% end %>
+      </tr>
+    </table>
+    <br/>
+    <%= page_select_header(options[:page], (total_calls.to_d / session[:items_per_page].to_d).ceil, nil, options) %>
+<% else %>
+    <br/>
+    <%= _('No_calls') %>...
+<% end %>
+<% end %>

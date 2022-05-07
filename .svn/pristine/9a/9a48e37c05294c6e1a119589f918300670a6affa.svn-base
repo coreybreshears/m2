@@ -1,0 +1,241 @@
+<!-- header of the page -->
+<header id="header">
+  <div class="header-holder">
+    <!-- page logo -->
+      <!-- <strong class="logo"><a href="#">M2SWITCH</a></strong> -->
+        <strong>
+          <div class="logo-picture">
+            <a id='m2switch' href="<%= Web_Dir %>/"></a>
+          </div>
+          <div class="logo-version">
+            1.<%= m2_version? %>
+          </div>
+        </strong>
+    <!-- main navigation of the page -->
+    <nav id="nav" class="open-close">
+      <a class="opener" href="#">Menu</a>
+      <ul class="slide">
+        <li <%= check_active('users', 'menu', parent) %>>
+          <a href="<%= Web_Dir %>/users/list" class="accounts"><%= _('USERS') %></a>
+          <ul>
+            <li><a href="<%= Web_Dir %>/users/list"><%= _('Users') %></a></li>
+             <li>
+              <a href="<%= Web_Dir %>/devices/devices_all"><%= _('connection_points') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li>
+                  <a href="<%= Web_Dir %>/devices/devices_hidden"><%= _('Hidden') %></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li <%= check_active('billing', 'menu', parent) %>>
+          <a href="#" class="billing"><%= _('BILLING') %></a>
+          <ul>
+            <li>
+              <a href="<%= Web_Dir %>/tariffs/list"><%= _('Tariffs') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/tariffs/conversion"><%= _('Conversion') %></a></li>
+                <li>
+                  <a href="<%= Web_Dir %>/tariff_rate_notifications/list"><%= _('Rate_Notifications') %><span class="menu-arrow">&#x25B6;</span></a>
+                  <ul>
+                    <li><a href="<%= Web_Dir %>/tariff_rate_notification_jobs/list"><%= _('Jobs') %></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <% if Confline.get_value('show_tariff_import_menu', current_user_id, 0).to_i == 1 %>
+                <li>
+                  <a href="#"><%= _('Tariff_Import') %><span class="menu-arrow">&#x25B6;</span></a>
+                  <ul>
+                    <li><a href="<%= Web_Dir %>/tariff_inbox/inbox"><%= _('Inbox') %></a></li>
+                    <li><a href="<%= Web_Dir %>/tariff_jobs/list"><%= _('Jobs') %></a></li>
+                    <li><a href="<%= Web_Dir %>/tariff_import_rules/list"><%= _('Import_Rules') %>
+                      <span class="menu-arrow">&#x25B6;</span></a>
+                      <ul>
+                        <li><a href="<%= Web_Dir %>/tariff_rate_import_rules/list"><%= _('Rate_Import_Rules') %></a></li>
+                        <li><a href="<%= Web_Dir %>/tariff_templates/list"><%= _('Templates') %></a></li>
+                      </ul>
+                    </li>
+                    <li><a href="<%= Web_Dir %>/tariff_link_attachment_rules/list"><%= _('Link_Attachment_Rules') %></a></li>
+                  </ul>
+                </li>
+            <% end %>
+            <li>
+              <a href="<%= Web_Dir %>/tariffs/custom_tariffs"><%= _('Custom_tariffs') %></a>
+            </li>
+            <li>
+              <a href="#"><%= _('CDR') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li>
+                  <span style="color: #FFFFFF"><%= _('Export') %><span class="menu-arrow">&#x25B6;</span></span>
+                  <ul>
+                    <li><a href="<%= Web_Dir %>/cdr/export_templates"><%= _('Templates') %></a></li>
+                    <li><a href="<%= Web_Dir %>/cdr/automatic_export_list"><%= _('Automatic') %></a></li>
+                  </ul>
+                </li>
+                 <li>
+                  <a href="<%= Web_Dir %>/cdr/import_csv"><%= _('Import') %><span class="menu-arrow">&#x25B6;</span>
+                  <ul>
+                    <li><a href="<%= Web_Dir %>/cdr/import_templates"><%= _('Templates') %></a></li>
+                  </ul>
+                </li>
+                <!-- <li><a href="#"><%#= _('Export') %></a></li> -->
+                <li><a href="<%= Web_Dir %>/cdr/rerating"><%= _('Rerating') %></a></li>
+                <li><a href="<%= Web_Dir %>/cdr_disputes/list"><%= _('Disputes') %></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li <%= check_active('routing', 'menu', parent) %>>
+          <a href="#" class="routing"><%= _('ROUTING') %></a>
+          <ul>
+            <li><a href="<%= Web_Dir %>/routing_groups/list"><%= _('routing_groups') %></a></li>
+            <li><a href="<%= Web_Dir %>/dial_peers/list"><%= _('dial_peers') %></a></li>
+            <li><a href="<%= Web_Dir %>/quality_routings/list"><%= _('Quality_Routing') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/quality_routings/stats"><%= _('Stats') %></a></li>
+              </ul>
+            </li>
+            <% if Confline.get_value('Use_Number_Portability', 0, 0).to_i == 1 %>
+              <li>
+                <a href="<%= Web_Dir %>/mnp_carrier_groups/list"><%= _('MNP_Carrier_Groups') %></a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+        <li <%= check_active('accounting', 'menu', parent) %>>
+          <a href="#" class="accounting"><%= _('ACCOUNTING') %></a>
+          <ul>
+            <li><a href="<%= Web_Dir %>/financial_statuses/list"><%= _('financial_status') %></a></li>
+            <!-- <li><a href="<%= Web_Dir %>/stats/users_finances"><%= _('Finances') %></a></li> -->
+            <!-- <li><a href="<%= Web_Dir %>/stats/profit"><%= _('Profit') %></a></li> -->
+            <li><a href="<%= Web_Dir %>/payments/list"><%= _('Payments') %></a></li>
+            <li><a href="<%= Web_Dir %>/m2_invoices/list"><%= _('Customer_Invoices') %></a></li>
+            <!-- <li><a href="#"><%#= _('Supplier_Invoices') %></a></li> -->
+            <li><a href="<%= Web_Dir %>/balance_reports/list"><%= _('balance_report') %></a></li>
+          </ul>
+        </li>
+        <li <%= check_active('security', 'menu', parent) %>>
+          <a href="#" class="security"><%= _('SECURITY') %></a>
+          <ul>
+            <li><a href="<%= Web_Dir %>/functions/integrity_check"><%= _('Integrity_Check') %></a></li>
+            <li>
+              <a href="<%= Web_Dir %>/alerts"><%= _('Alerts') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/alerts/contacts"><%= _('Contacts') %></a></li>
+                <li><a href="<%= Web_Dir %>/alerts/schedules"><%= _('schedules') %></a></li>
+                <li><a href="<%= Web_Dir %>/alerts/groups"><%= _('groups') %></a></li>
+              </ul>
+            </li>
+            <li><a href="<%= Web_Dir %>/monitorings/blocked_ips"><%= _('Blocked_IPs') %></a></li>
+            <li><a href="<%= Web_Dir %>/monitorings/blocked_countries"><%= _('Blocked_Countries') %></a></li>
+<!--        <li>
+              <a href="<%= Web_Dir %>/monitorings/settings"><%= _('Alert_Settings') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>-->
+<!--          </ul>
+            </li>-->
+          </ul>
+        </li>
+        <li <%= check_active('reports', 'menu', parent) %>>
+          <a href="#" class="reports"><%= _('REPORTS') %></a>
+          <ul>
+            <li>
+              <a href="<%= Web_Dir %>/stats/active_calls"><%= _('Active_Calls') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/stats/active_calls_graph"><%= _('Graph') %></a></li>
+                <li><a href="<%= Web_Dir %>/stats/active_calls_per_server"><%= _('Per_Server') %></a></li>
+                <li><a href="<%= Web_Dir %>/stats/active_calls_per_user_op"><%= _('Per_User_Op') %></a></li>
+                <li><a href="<%= Web_Dir %>/stats/terminator_active_calls"><%= _('Per_Terminator') %></a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="<%= Web_Dir %>/stats/calls_list"><%= _('calls_list') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li>
+                  <a href="<%= Web_Dir %>/stats/old_calls_stats"><%= _('Old_Calls') %><span class="menu-arrow">&#x25B6;</span></a>
+                  <ul>
+                    <li><a href="<%= Web_Dir %>/stats/files"><%= _('Files') %></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="<%= Web_Dir %>/stats/show_user_stats"><%= _('Calls_by_clients') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/stats/user_stats"><%= _('Detailed') %></a></li>
+              </ul>
+            </li>
+            <li><a href="<%= Web_Dir %>/aggregates/calls_per_hour"><%= _('Calls_Per_Hour') %></a></li>
+            <li><a href="<%= Web_Dir %>/stats/calls_dashboard"><%= _('Calls_Dashboard') %></a></li>
+            <li>
+              <a href="<%= Web_Dir %><%=aggregates_link%>"><%= _('Aggregate') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/aggregate_templates/index"><%= _('Templates') %></a></li>
+                <li><a href="<%= Web_Dir %>/aggregate_export/index"><%= _('Auto_Export') %></a></li>
+              </ul>
+            </li>
+            <li><a href="<%= Web_Dir %>/stats/hangup_cause_codes_stats"><%= _('Hangup_cause') %></a></li>
+            <li><a href="<%= Web_Dir %>/stats/country_stats"><%= _('Destination_Groups') %></a></li>
+            <!-- Ticket: 9620 <li><a href="<%#= Web_Dir %>/stats/system_stats"><%#= _('System_stats') %></a></li> -->
+            <li><a href="<%= Web_Dir %>/stats/load_stats"><%= _('Load_stats') %></a></li>
+            <li><a href="<%= Web_Dir %>/tp_deviations/list"><%= _('TP_Deviations') %></a></li>
+            <li><a href="<%= Web_Dir %>/stats/action_log"><%= _('Action_log') %></a></li>
+            <li><a href="<%= Web_Dir %>/stats/search"><%= _('Search') %></a></li>
+          </ul>
+        </li>
+        <li <%= check_active('maintenance', 'menu', parent) %>>
+          <a href="#" class="maintenance"><%= _('MAINTENANCE') %></a>
+          <ul>
+            <li>
+              <a href="<%= Web_Dir %>/functions/settings"><%= _('Settings') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/users/default_user"><%= _('Default_user') %></a></li>
+                <li><a href="<%= Web_Dir %>/devices/default_device"><%= _('Default_device') %></a></li>
+                <li><a href="<%= Web_Dir %>/currencies/currencies"><%= _('Currencies') %></a></li>
+                <!-- <li><a href="<%= Web_Dir %>/permissions/list?group_type=accountant"><%= _('Accountant_permissions') %></a></li> -->
+                <!-- <li><a href="<%#= Web_Dir %>/cron_actions"><%#= _('Cron_actions') %></a></li> -->
+              </ul>
+            </li>
+            <li><a href="<%= Web_Dir %>/emails/list"><%= _('Emails') %></a></li>
+            <li><a href="<%= Web_Dir %>/backups/backup_manager"><%= _('Backups') %></a></li>
+            <li><a href="<%= Web_Dir %>/functions/background_tasks"><%= _('Background_tasks') %></a></li>
+            <li><a href="<%= Web_Dir %>/servers/list"><%= _('Servers') %></a></li>
+            <li><a href="<%= Web_Dir %>/number_pools/pool_list"><%= _('Number_Pools') %></a></li>
+            <li>
+              <a href="<%= Web_Dir %>/managers/list"><%= _('Managers') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/manager_groups/list"><%= _('Groups') %></a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="<%= Web_Dir %>/directions/list"><%= _('Directions') %><span class="menu-arrow">&#x25B6;</span></a>
+              <ul>
+                <li><a href="<%= Web_Dir %>/destination_groups/list"><%= _('Groups') %></a></li>
+                <li><a href="<%= Web_Dir %>/destination_groups/destinations_to_dg"><%= _('Unassigned_Destinations') %></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <ul class="lang-list">
+<!--      <li>
+        <a id="active-currency" href="#" class="currency-link"> _<%= session[:show_currency] %></a>
+        <ul class="currency-drop">
+           <% Currency.get_active.each do |currency| %>
+             <li><%= link_to " " + currency.name, controller: 'callc', action: 'change_currency', url: currency_change_url, currency: currency.name %></li>
+           <% end %>
+        </ul>
+      </li> -->
+      <li>
+        <a href="#"><div><%= nice_user(current_user) %></div></a>
+        <ul>
+          <li><a href="<%= Web_Dir %>/users/personal_details"><%= _('Personal_Details') %></a></li>
+          <li><a href="<%= Web_Dir %>/callc/logout"><%= _('Logout') %></a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header>

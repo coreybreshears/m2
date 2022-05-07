@@ -1,0 +1,69 @@
+<h2><%= _('Details') %></h2>
+
+<% gdpr_activated = (Confline.get_value('GDPR_Activated').to_i == 1 && !session["gdpr_agreed_manager_details_#{manager.id}"] && !%w[new create].include?(params[:action])) %>
+<% if gdpr_activated %>
+    <div id="div_gdpr_clickable_agreement_text" class="input-row">
+        <span id="gdpr_clickable_agreement_text">
+	            <%= _('Data_hidden_due_to_GDPR_Click_here_to_show_data_Action_will_be_logged') %>
+        </span>
+    </div>
+<% end %>
+
+<div class="input-row">
+  <div class="label-col">
+    <label><%= _('Phone') %></label>
+  </div>
+  <div class="input-col">
+    <%= f.text_field :phone, size: 30, maxlength: 30, class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated %>
+  </div>
+</div>
+<div class="input-row">
+  <div class="label-col">
+    <label><%= _('Email') %></label>
+  </div>
+  <div class="input-col">
+    <%= f.text_field :main_email, size: 27, maxlength: 255, class: "input #{'gdpr_input_disabled' if gdpr_activated}", disabled: gdpr_activated %>
+  </div>
+</div>
+<div class="input-row">
+  <div class="label-col">
+    <label><%= _('Default_currency') %></label>
+  </div>
+  <div class="input-col">
+    <%= f.select :currency_id, options_for_select(
+            active_currencies.collect { |currency| [currency.try(:name).to_s, currency.try(:id).to_i] },
+            manager.try(:currency_id).to_i), {}, class: 'currency'
+    %>
+  </div>
+</div>
+<div class="input-row">
+  <div class="label-col">
+    <label><%= _('Time_zone') %></label>
+  </div>
+  <div class="input-col">
+    <%= f.select :time_zone, options_for_select(
+            time_zones.map{ |time_zone| [time_zone, time_zone.try(:name).to_s] },
+            manager.try(:time_zone).to_s
+    ) %>
+  </div>
+</div>
+
+<% if gdpr_activated %>
+    <script type="text/javascript">
+        jQuery('#gdpr_clickable_agreement_text').click(function() {
+            jQuery('#div_gdpr_clickable_agreement_text').hide();
+            jQuery.ajax({
+                url: '<%= Web_Dir %>/managers/gdpr_agreed_manager_details/<%= manager.id %>',
+                type: 'get',
+                cache: false,
+                success: function(returnData) {
+                    jQuery('.gdpr_input_disabled').removeClass('gdpr_input_disabled').prop('disabled', false);
+                },
+                error: function(returnData) {
+                    alert('Something went wrong, please try again.');
+                    jQuery('#div_gdpr_clickable_agreement_text').show();
+                }
+            });
+        });
+    </script>
+<% end %>

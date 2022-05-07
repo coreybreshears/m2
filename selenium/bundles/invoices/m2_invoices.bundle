@@ -1,0 +1,10 @@
+# ----
+# send email notice to adminas =  no
+settings/invoices/send_email_notice_to_adminis_disable.sql
+# send email notice to manager = yes
+settings/invoices/send_email_notice_to_manager_enable.sql
+# how owten send email = at once when generated
+settings/invoices/how_often_send_email.sql
+# invoice data
+x5_functionality/invoice_data.sql
+# bundle loaded

@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col col-bigger">
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'use_redis', _('Use_Redis') %>
+      </div>
+      <% use_redis = Confline.get_value('Use_Redis', 0, 0).to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('use_redis', '0', (use_redis == 0)) + _('_No') %>
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('use_redis', '1', (use_redis == 1)) + _('_Yes') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row redis_setting">
+      <div class="label-col">
+        <%= label_tag 'redis_ip', _('IP') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('redis_ip', Confline.get_value('Redis_IP', 0, '127.0.0.1'), class: 'input redis_ip') %>
+      </div>
+    </div>
+
+    <div class="input-row redis_setting">
+      <div class="label-col">
+        <%= label_tag 'redis_port', _('Port') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('redis_port', Confline.get_value('Redis_Port', 0, '6379'), class: 'input redis_port', maxlength: '5') %>
+      </div>
+    </div>
+
+    <div class="input-row redis_setting">
+      <div class="label-col">
+      </div>
+      <div class="input-col">
+        </br>
+        <div class="redis_check_status redis_message_box"></div>
+        </br>
+        <%= link_to _('Test_Redis_Connection'), '#', class: 'search-form-button search-button-link test_redis' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        function check_redis_con(link){
+            $.ajax({
+                url: Web_Dir + '/functions/' + link,
+                data: data,
+                async: true,
+                error: function(response, error, full_error){
+                    console.log('Ajax Error:');
+                    console.log(response);
+                    console.log(error);
+                    console.log(full_error);
+                },
+                success: function(response) {
+                    console.log('Ajax Success:');
+                    console.log(response);
+                    $('.redis_check_status').html('');
+                    $('.redis_check_status').css('background', response['color']);
+                    $('.redis_check_status').css('background', response['color']);
+                    $('.redis_check_status').html("<%= _('Redis_connection_status')%>: " + response['msg'])
+                }
+            });
+        }
+
+        $('.test_redis').click(function(e){
+            data = {
+                redis_ip: $('.redis_ip').val(),
+                redis_port: $('.redis_port').val()
+            };
+            $('.redis_check_status').css('background', 'none');
+            $('.redis_check_status').html("<%= _('Redis_connection_status')%>: <%= _('Processing') %> ");
+            check_redis_con('test_redis_connection');
+            e.preventDefault();
+        });
+
+        function processing_prefix(){
+            $('.prefix_status').css('background', 'none');
+            $('.prefix_status').html("<%= _('Processing') %>");
+        }
+
+        $('#use_redis_1').prop('checked') ? $('.redis_setting').show() : $('.redis_setting').hide();
+
+        $('#use_redis_0').on('change', function(){ $('.redis_setting').hide() });
+        $('#use_redis_1').on('change', function(){ $('.redis_setting').show() });
+
+    });
+</script>

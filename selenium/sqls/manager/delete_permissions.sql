@@ -1,0 +1,1 @@
+DELETE FROM manager_group_rights;

@@ -1,0 +1,32 @@
+<div class="content-box dial-peer-edit">
+  <div class="titled-box">
+    <h2>
+      <%= "#{_('dial_peer_settings')} - #{@dial_peer.name}" %>
+      <span class="dp-routing-groups">
+        <% routing_groups = routing_groups_list(@dial_peer.id) %>
+        <% if routing_groups.present? %>
+          <span <%= tooltip(_('Routing_Groups'), rg_tooltip_text(routing_groups)) %>>
+            <%= _('Used_in_Routing_Groups') %>
+          </span>
+        <% else %>
+          <%= _('Not_used_in_Routing_Groups') %>
+        <% end %>
+      </span>
+    </h2>
+    <% content_for :additional_buttons do %>
+      <span>
+        <%= button_tag _('termination_points_list'), class: "search-form-button",
+          onclick: "location.href = '#{Web_Dir}/dial_peers/termination_points_list/#{@dial_peer.id}'" %>
+      </span>
+    <% end %>
+    <%= form_for :dial_peer, url: {:action => 'update', id: @dial_peer.id},
+                 html: {class: 'details-form',
+                        'data-remote-dg-url' => "#{Web_Dir}/destination_groups/retrieve_groups_remote"} do |f| %>
+        <%= render 'form',  :f => f, :dp => @dial_peer, destination_groups: @destination_groups, prov_tariffs_device: @prov_tariffs_device %>
+        <div class="buttons-row">
+          <%= f.submit _('CANCEL'), name: 'cancel', type: 'reset', onclick: "location.href = '#{Web_Dir}/dial_peers/list'" %>
+          <%= f.submit _('UPDATE'), :disable_with => 'Processing...' %>
+        </div>
+    <% end %>
+  </div>
+</div>

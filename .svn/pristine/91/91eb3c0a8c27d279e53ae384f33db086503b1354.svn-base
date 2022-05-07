@@ -1,0 +1,1210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>settings3</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">settings3</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<!--items per page negali būti 0-->
+<tr>
+	<td>type</td>
+	<td>items_per_page</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Items Per Page value must be greater than 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Do not allow users to change their Personal Details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=disallow_details_editing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=disallow_details_editing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>off</td>
+</tr>
+<!--M2 versija iš conflines-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/set_m2_version</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>1.78</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.logo-version</td>
+	<td>1.78</td>
+</tr>
+<!--invoices settings-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=invoice_allow_recalculate_after_send</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_number_start</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_number_length</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_number_type_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_number_type_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>name=prepaid_invoice_period_start_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_show_calls_in_detailed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_show_balance_line</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_number_digits</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_short_file_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_page_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_address3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_bank_details_line7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prepaid_invoice_add_average_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prep_show_more_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prep_more_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=show_more_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=more_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=invoice_address_format_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=invoice_show_time_in_minutes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>name=invoice_period_start_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=inv_show_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=inv_show_balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=invoice_page_limit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=invoice_number_start</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=invoice_number_length</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=invoice_number_type_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number_type_2</td>
+	<td>on</td>
+</tr>
+<!--<tr> 	<td>assertValue</td> 	<td>id=inv_num_digits</td> 	<td>off</td> </tr> <tr> 	<td>assertValue</td> 	<td>id=inv_short_file_name</td> 	<td>off</td> </tr>-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Send Email Notice about generated Invoices to</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Administrator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Responsible Manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>How often to send Email Notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_admin_0</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_admin_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_manager_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_manager_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=send_email_notice</td>
+	<td>Do not send At once when generated Every 3h (0-3-6-9-12-15-18-21) Every 6h (0-6-12-18) Every 12h (0-12) Once a day (12:00) Once a week (Monday 12:00) Once a month (1st day of month 12:00)</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=send_email_notice</td>
+	<td>Once a day (12:00)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2.heading2</td>
+	<td>Invoices Click to collapse</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> XLSX Template</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Addresses of Cells</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Invoice Number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number</td>
+	<td>D2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Issue Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_issue_date</td>
+	<td>H2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Period Start Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_period_start</td>
+	<td>E6</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Period End Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_period_end</td>
+	<td>H6</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Due Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_due_date</td>
+	<td>H5</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Time Zone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_timezone</td>
+	<td>A1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client full Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_name</td>
+	<td>G5</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client Address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details1</td>
+	<td>G6</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client City</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details2</td>
+	<td>G7</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client Postcode/ZIP</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details3</td>
+	<td>G8</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client State</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details4</td>
+	<td>G9</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>TAX Registration Number of the Client</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client Country</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details5</td>
+	<td>G10</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Client Phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details6</td>
+	<td>G11</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination Prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_destination</td>
+	<td>B13</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_name</td>
+	<td>C13</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> Calls amount to particular Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_calls</td>
+	<td>F13</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Duration to particular Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_nice_total_time</td>
+	<td>H13</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Price of Calls to particular Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_nice_price</td>
+	<td>I13</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number for numeration for Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_destination_number</td>
+	<td>A13</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Price of Invoice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_nice_total_amount</td>
+	<td>A4</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Price of Invoice with applied TAX</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_nice_total_amount_with_tax</td>
+	<td>A5</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Applied Exchange Rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_exchange_rate</td>
+	<td>A3</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_comment</td>
+	<td>A2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_number</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Value does not match Cell Address format</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number</td>
+	<td>D2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_issue_date</td>
+	<td>hfggf</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Value does not match Cell Address format</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_issue_date</td>
+	<td>H2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_due_date</td>
+	<td>4536453</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Value does not match Cell Address format</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_due_date</td>
+	<td>H5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_timezone</td>
+	<td>A177</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_timezone</td>
+	<td>A177</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_client_details1</td>
+	<td>h464</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_client_details7</td>
+	<td>S14</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details7</td>
+	<td>S14</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details1</td>
+	<td>H464</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_client_details2</td>
+	<td>456456ghffh</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Value does not match Cell Address format</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details2</td>
+	<td>H465</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_client_details3</td>
+	<td>8G</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Value does not match Cell Address format</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details3</td>
+	<td>H466</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_client_details3</td>
+	<td>H465</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Duplicate value in Cell Address field</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details3</td>
+	<td>H466</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number</td>
+	<td>D2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_issue_date</td>
+	<td>H2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_period_start</td>
+	<td>E6</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_period_end</td>
+	<td>H6</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_due_date</td>
+	<td>H5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_timezone</td>
+	<td>A177</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_name</td>
+	<td>G5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details1</td>
+	<td>H464</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details2</td>
+	<td>H465</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details3</td>
+	<td>H466</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details4</td>
+	<td>H467</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details7</td>
+	<td>S14</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details5</td>
+	<td>H468</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details6</td>
+	<td>H469</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_destination</td>
+	<td>B13</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_name</td>
+	<td>C13</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_calls</td>
+	<td>F13</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_nice_total_time</td>
+	<td>H13</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_nice_price</td>
+	<td>I13</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_lines_destination_number</td>
+	<td>A13</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_nice_total_amount</td>
+	<td>A4</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_nice_total_amount_with_tax</td>
+	<td>A5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_exchange_rate</td>
+	<td>A3</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_comment</td>
+	<td>A2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_client_name</td>
+	<td>A0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Value does not match Cell Address format</td>
+</tr>
+<tr>
+	<td>assertNotValue</td>
+	<td>id=invoice_client_name</td>
+	<td>A0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_client_details7</td>
+	<td>R9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_client_details7</td>
+	<td>R9</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Archive Calls older than</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Archive Calls every day at</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_at_hour</td>
+	<td>Disable 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_at_minute</td>
+	<td>Disable 00 05 10 15 20 25 30 35 40 45 50 55</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Stop Archiving Calls at</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_till_hour</td>
+	<td>Disable 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_till_minute</td>
+	<td>Disable 00 05 10 15 20 25 30 35 40 45 50 55</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>abcd</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_minute</td>
+	<td>label=05</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_hour</td>
+	<td>label=06</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_hour</td>
+	<td>label=07</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_minute</td>
+	<td>label=15</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Days must be a positive integer and no higher than 3650</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_hour</td>
+	<td>06</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_minute</td>
+	<td>05</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_hour</td>
+	<td>07</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_minute</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>1111111</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>1111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>3651</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Days must be a positive integer and no higher than 3650</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>3650</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_hour</td>
+	<td>label=Disable</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_hour</td>
+	<td>Disable</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_minute</td>
+	<td>Disable</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_minute</td>
+	<td>label=Disable</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_hour</td>
+	<td>Disable</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_minute</td>
+	<td>Disable</td>
+</tr>
+</tbody></table>
+</body>
+</html>

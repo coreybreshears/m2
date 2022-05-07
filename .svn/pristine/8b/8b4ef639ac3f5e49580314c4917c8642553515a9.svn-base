@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col">
+    <h2><%= _('General') %></h2>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :name, class: 'input', size: 27, maxlength: 255 %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Date') %></label>
+      </div>
+      <div class="input-col">
+        <div class="column date-col calendar-holder">
+          <div class="row">
+            <div class="calendar-col">
+              <%= text_field_tag 'date_from', nice_date(blank.date.in_time_zone(user_tz)), class: 'checkin default', id: 'from' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'time_from', blank.date.in_time_zone(user_tz).strftime("%H:%M"), class: 'default', id: 'time1' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Value1') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :value1, class: 'input', size: 10, maxlength: 20 %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Value2') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :value2, class: 'input', size: 10, maxlength: 20 %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Value3') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.check_box :value3, {}, 'yes', 'no' %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Value4') %></label>
+      </div>
+      <div class="input-col">
+      <div class="input-col"><%= f.radio_button :value4, 'yes' %>
+        <%= f.label 'yes' %></div>
+        <div class="input-col"><%= f.radio_button :value4, 'no'%>
+        <%= f.label 'no' %></div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Value5') %></label>
+      </div>
+      <div class="input-col">
+       <%= f.select(:value5, options_for_select(%w[first second third], blank.value5)) %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Value6') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.select(:value6, options_for_select([[_('None'), -1]] + blank.providers_for_select.map { |device| [nice_device_dp(device, {image: false}), device.id] }.sort, blank.value6)) %>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Balance') %></label>
+      </div>
+      <div class="input-col">
+        <% if ['create', 'update'].include?(params[:action].to_s)%>
+            <%= f.text_field :balance, :value => params[:blank][:balance], class: 'input', size: 10, maxlength: 20 %>
+        <% else %>
+            <%= f.text_field :balance, :value => nice_number(blank.balance), class: 'input', size: 10, maxlength: 20 %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h2><%= _('Description') %></h2>
+    <div class="input-row">
+        <%= f.text_area :description, rows: 4, :style => 'width:100%;' %>
+    </div>
+  </div>
+</div>

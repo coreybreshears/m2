@@ -1,0 +1,1310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>users_personal_details</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">users_personal_details</td></tr>
+</thead><tbody>
+<!--OFF - Do not allow users to change their email addresses-->
+<!--OFF - Do not allow users to change their Personal Details-->
+<!--Leisti redaguoti visus laukelius-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>test_user</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_password</td>
+	<td>TestUser123</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=*Alaska</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_warning_email_active</td>
+	<td>label=Enabled</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_warning_email_balance</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_hour</td>
+	<td>label=09</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>user_warning_email_hour_-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_main_email</td>
+	<td>test1@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_noc_email</td>
+	<td>test2@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_billing_email</td>
+	<td>test3@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_rates_email</td>
+	<td>test4@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_clientid</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=user[taxation_country]</td>
+	<td>label=Brazil</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_vat_number</td>
+	<td>789</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_address</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_postcode</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_city</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_state</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=address[direction_id]</td>
+	<td>label=Mexico</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_phone</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_mob_phone</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_fax</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>CANCEL</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td>UPDATE</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<!--User gali redaguoti tik savo Personal Details, net kai bando atidaryti su kito userio ID-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>test_user</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/99</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>test_user</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>test_user</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_currency_id</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_time_zone</td>
+	<td>*Alaska</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_email_balance</td>
+	<td>100.0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_user_warning_email_hour</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=main_email</td>
+	<td>test1@test.test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=noc_email</td>
+	<td>test2@test.test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billing_email</td>
+	<td>test3@test.test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=rates_email</td>
+	<td>test4@test.test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_clientid</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>Brazil</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_vat_number</td>
+	<td>789</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_address</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_postcode</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_city</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_state</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=address[direction_id]</td>
+	<td>Mexico</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_phone</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_mob_phone</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_fax</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_email_editing</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/various/disallow_details_editing_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_email_editing</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>on</td>
+</tr>
+<!--OFF - Do not allow users to change their email addresses-->
+<!--ON - Do not allow users to change their Personal Details-->
+<!--Neleisti nieko redaguoti-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/login_as_execute?user=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_currency_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_time_zone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_warning_email_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_warning_email_balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=date_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>user_warning_email_hour_-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_noc_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_billing_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_rates_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_clientid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>name=user[taxation_country]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_vat_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_postcode</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_city</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_state</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>name=address[direction_id]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_mob_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_fax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>name=commit</td>
+	<td>CANCEL</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td>UPDATE</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/fake_form?path_to_action=/billing/users/update_personal_details/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_1</td>
+	<td>main_email</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=c_1</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_1</td>
+	<td>testest@email.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/fake_form?path_to_action=/billing/users/update_personal_details/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=c_1</td>
+	<td>address_email</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=c_1</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=n_c_1</td>
+	<td>testest@email.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=disallow_email_editing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_email_editing</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>on</td>
+</tr>
+<!--ON - Do not allow users to change their email addresses-->
+<!--ON - Do not allow users to change their Personal Details-->
+<!--Neleisti nieko redaguoti-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>test_user</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>TestUser123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_currency_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_time_zone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_warning_email_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_warning_email_balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=date_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>user_warning_email_hour_-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_noc_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_billing_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_rates_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_clientid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>name=user[taxation_country]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_vat_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_address</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_postcode</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_city</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_state</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>name=address[direction_id]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_mob_phone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=address_fax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>name=commit</td>
+	<td>CANCEL</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td>UPDATE</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/various/allow_details_editing_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_email_editing</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>off</td>
+</tr>
+<!--ON - Do not allow users to change their email addresses-->
+<!--OFF - Do not allow users to change their Personal Details-->
+<!--Neleisti redaguoti tik Company Emails skilties-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>test_user</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>TestUser123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>XXXXXxxxxx</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_password</td>
+	<td>XXXXXxxxxx123</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=USD</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=*Paris</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_warning_email_active</td>
+	<td>label=Disabled</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_warning_email_balance</td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>user_warning_email_hour_-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_hour</td>
+	<td>label=22</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_noc_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_billing_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_rates_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_main_email</td>
+	<td>xxxxx@xxxxx.xxxxx1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_noc_email</td>
+	<td>xxxxx@xxxxx.xxxxx2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_billing_email</td>
+	<td>xxxxx@xxxxx.xxxxx3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_rates_email</td>
+	<td>xxxxx@xxxxx.xxxxx4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td>XXXXX</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td>OOOOO</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_clientid</td>
+	<td>55555</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=user[taxation_country]</td>
+	<td>label=France</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_vat_number</td>
+	<td>77777</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_address</td>
+	<td>xxx1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_postcode</td>
+	<td>xxx2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_city</td>
+	<td>xxx3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_state</td>
+	<td>xxx4</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=address[direction_id]</td>
+	<td>label=France</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_phone</td>
+	<td>xxx5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_mob_phone</td>
+	<td>xxx6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=address_fax</td>
+	<td>xxx7</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>CANCEL</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td>UPDATE</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.hello-box &gt; div</td>
+	<td>Hello, XXXXX OOOOO</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_username</td>
+	<td>XXXXXxxxxx</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=USD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=warning_active</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_first_name</td>
+	<td>XXXXX</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_last_name</td>
+	<td>OOOOO</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_clientid</td>
+	<td>55555</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_vat_number</td>
+	<td>77777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_address</td>
+	<td>xxx1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_postcode</td>
+	<td>xxx2</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_city</td>
+	<td>xxx3</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_state</td>
+	<td>xxx4</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_phone</td>
+	<td>xxx5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_mob_phone</td>
+	<td>xxx6</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=address_fax</td>
+	<td>xxx7</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=user[taxation_country]</td>
+	<td>France</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=address[direction_id]</td>
+	<td>France</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_time_zone</td>
+	<td>*Paris</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=main_email</td>
+	<td>test1@test.test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=noc_email</td>
+	<td>test2@test.test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billing_email</td>
+	<td>test3@test.test</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=rates_email</td>
+	<td>test4@test.test</td>
+</tr>
+<!--Logout after password change-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=logout_on_password_change</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/login_as_execute?user=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_password</td>
+	<td>Qwerty123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Your password has been changed. Please login again!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>Qwerty123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Your password has been changed. Please login again!</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>settings_lnp</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">settings_lnp</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Enable M4-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form[8]/b</td>
+	<td>M4 Functionality:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m4_functionality</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<!--~~~~~~~-->
+<!--#16668 Local Number Portability Settings-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Local Number Portability</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>us_jurisdictional_routing_module_enabled_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>us_jurisdictional_routing_module_enabled_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: Mysql2::Error: 1064</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_server_ip</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_port</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_username</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_password</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_db_name</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_table_name</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_search_field</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_result_field</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: Mysql2::Error: 2003</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_server_ip</td>
+	<td>127.0.0.1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: Mysql2::Error: 2003</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_port</td>
+	<td>3306</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: Mysql2::Error: 1045</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_username</td>
+	<td>mor</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: Mysql2::Error: 1045</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_password</td>
+	<td>mor</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: Mysql2::Error: 1044</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_db_name</td>
+	<td>mor</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: Mysql2::Error: 1064</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_table_name</td>
+	<td>lnp_prefixes</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_search_field</td>
+	<td>id</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lnp_result_field</td>
+	<td>prefix</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Test DB Connection')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_db_check_status.lnp_message_box</td>
+	<td>DB connection status: ok</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder.lnp_prefix_table &gt; table.table-with-edit-and-delete &gt; thead &gt; tr &gt; th</td>
+	<td>Prefix</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.lnp_prefix_table_prefix</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_lnp_prefix</td>
+	<td>11111</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Add to List')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_prefix_status.lnp_message_box</td>
+	<td>LNP Prefix succesfully created</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=tr.even &gt; td.lnp_prefix_table_prefix</td>
+	<td>11111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_lnp_prefix</td>
+	<td>22222</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Add to List')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_prefix_status.lnp_message_box</td>
+	<td>LNP Prefix succesfully created</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//form[@id='settings-form']/fieldset/div[18]/div/div/div[10]/div[2]/div[2]/div[2]/div/table/tbody/tr[3]/td</td>
+	<td>22222</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_lnp_prefix</td>
+	<td>33333</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Add to List')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.lnp_prefix_status.lnp_message_box</td>
+	<td>LNP Prefix succesfully created</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_lnp_prefix</td>
+	<td>33333</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Add to List')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>LNP prefix was not created:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>*Prefix Must Be Unique</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_lnp_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[contains(text(),'Add to List')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>LNP prefix was not created:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>*Prefix Must Be Present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>us_jurisdictional_routing_module_enabled_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_server_ip</td>
+	<td>127.0.0.1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_port</td>
+	<td>3306</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_username</td>
+	<td>mor</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_password</td>
+	<td>mor</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_db_name</td>
+	<td>mor</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_table_name</td>
+	<td>lnp_prefixes</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_search_field</td>
+	<td>id</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=lnp_result_field</td>
+	<td>prefix</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=lnp_supported_prefixes_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11111*DELETE*22222*DELETE*33333*DELETE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=lnp_supported_prefixes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=lnp_supported_prefixes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>chooseCancelOnNextConfirmation</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=lnp_del_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11111*DELETE*22222*DELETE*33333*DELETE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=lnp_del_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>LNP Prefix was succesfully deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>11111*DELETE*33333*DELETE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>11111*DELETE*22222*DELETE*33333*DELETE</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

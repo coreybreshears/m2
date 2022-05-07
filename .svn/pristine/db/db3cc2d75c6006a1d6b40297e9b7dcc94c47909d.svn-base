@@ -1,0 +1,3853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>tariff_rate_check</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tariff_rate_check</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Check buttons-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_check_button_prov &gt; button.search-form-button</td>
+	<td>Rate Check</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_check_button_users &gt; button.search-form-button</td>
+	<td>Rate Check</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=rate_check_button_prov</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=code_deck</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Rate Check</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dg_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No destinations found. At least 5 characters of Destination name must be entered.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Use % to get more results. For example: Lithuania% or %Vilnius%.</td>
+	<td></td>
+</tr>
+<!--wrong data-->
+<tr>
+	<td>type</td>
+	<td>dg_name</td>
+	<td>asdasdasd</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No destinations found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>No destinations found. Destination name must be entered.</td>
+	<td></td>
+</tr>
+<!--Default Code Deck-->
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Afghanistan%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination93</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_93</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_93_1</td>
+	<td>0.0000</td>
+</tr>
+<!--Delete all tariffs-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/delete_tariffs_and_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<!--check list-->
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>No Buy Tariffs</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div[2]/h2</td>
+	<td>No Sell Tariffs</td>
+</tr>
+<!--check links-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=providers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>No Tariffs</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>No Tariffs</td>
+</tr>
+<!--GERAS SQL-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=rate_check/rate_check</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># several tariffs for rate check functionality </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=providers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>%Paba%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Nieko neranda, nes Pabaltijis yra destination group-->
+<tr>
+	<td>assertText</td>
+	<td>id=rates-table-holder</td>
+	<td>No destinations found. At least 5 characters of Destination name must be entered. <br /> Use % to get more results. For example: Lithuania% or %Vilnius%.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>%Lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37046</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370521</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370521</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37046</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12004</td>
+	<td>Buy Tariff A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12005</td>
+	<td>Buy Tariff B</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12006</td>
+	<td>Buy Tariff C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12011</td>
+	<td>Buy Tariff EUR</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12007</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12008</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12009</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12010</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12004</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12005</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12006</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12011</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37037</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37037</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12005</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12006</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12011</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37046</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37046</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12006 &gt; span</td>
+	<td>0.4000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370462</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370462</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12006 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370463</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370463</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12005 &gt; span</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12006 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12011 &gt; span</td>
+	<td>0.8124</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370464</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370464</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12006 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37052</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37052</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12004</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12005</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12006</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12011</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370521</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370521</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370523</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370523</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370524</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370524</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370525</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370525</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370526</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370526</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370527</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370527</td>
+	<td>370527</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Latvia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Latv%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination371</td>
+	<td>Latvia proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_371</td>
+	<td>371</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_371_12004</td>
+	<td>0.7000</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=providers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dg_name</td>
+	<td>Latv%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>%Lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12004</td>
+	<td>Buy Tariff A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12005</td>
+	<td>Buy Tariff B</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12006</td>
+	<td>Buy Tariff C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12011</td>
+	<td>Buy Tariff EUR</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12007</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12008</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12009</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12010</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12004</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12005</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12006</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12011</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37037</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37037</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12005</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12006</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12011</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37046</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37046</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12006 &gt; span</td>
+	<td>0.4000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370462</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370462</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12006 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370463</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370463</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12005 &gt; span</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12006 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12011 &gt; span</td>
+	<td>0.8124</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370464</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370464</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12006 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37052</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37052</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12004</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12005</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12006</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12011</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370521</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370521</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370523</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370523</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370524</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370524</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370525</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370525</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370526</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370526</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370527</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370527</td>
+	<td>370527</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Latvia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Latv%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination371</td>
+	<td>Latvia proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_371</td>
+	<td>371</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_371_12004</td>
+	<td>0.7000</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>%Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12004</td>
+	<td>Buy Tariff A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12005</td>
+	<td>Buy Tariff B</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12006</td>
+	<td>Buy Tariff C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12011</td>
+	<td>Buy Tariff EUR</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12007</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12008</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12009</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12010</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania Klaipeda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania Palanga</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania Kaunas</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37052</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37052</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12004</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12005</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12006</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12011</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370521</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370521</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370523</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370523</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370524</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370524</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370525</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370525</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370526</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370526</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370527</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370527</td>
+	<td>370527</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12005 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12011 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Latvia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Latvia mobile</td>
+	<td></td>
+</tr>
+<!--EUR-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>%Lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12004</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12005</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12006</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12011</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12005</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12006</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12011</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12006 &gt; span</td>
+	<td>0.2954</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12006 &gt; span</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12005 &gt; span</td>
+	<td>0.4431</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12006 &gt; span</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12011 &gt; span</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12005 &gt; span &gt; span.grey_text</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12006 &gt; span</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12011 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12004</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12005</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12006</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12011</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12005 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12011 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12005 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12011 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12005 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12011 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12005 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12011 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12005 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12011 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12004 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12005 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12006 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12011 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370462</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370462</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370462_12005</td>
+	<td>-</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370462_12006</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370462_12011</td>
+	<td>-</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370463</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370463</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370463_12005</td>
+	<td>0.4431</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370463_12006</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370463_12011</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>%lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12007</td>
+	<td>Sell Tariff A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12008</td>
+	<td>Sell Tariff B</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12009</td>
+	<td>Sell Tariff C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12010</td>
+	<td>Sell Tariff EUR</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12004</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12005</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12006</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=tariff_name_12011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12007</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12008</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12009</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12010</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12008</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12009</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12010</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12008 &gt; span &gt; span.grey_text</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12009 &gt; span</td>
+	<td>0.2954</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12008 &gt; span &gt; span.grey_text</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12009 &gt; span</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12008 &gt; span</td>
+	<td>0.4431</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12009 &gt; span</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12010 &gt; span</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.0739</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12008 &gt; span &gt; span.grey_text</td>
+	<td>0.3693</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12009 &gt; span</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37052_12007 &gt; span</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37052_12008 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37052_12009 &gt; span</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37052_12010 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12008 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12008 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12010 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12008 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12010 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12008 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12010 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12008 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12010 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1846</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12008 &gt; span</td>
+	<td>0.1477</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.2216</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12010 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dg_name</td>
+	<td>%lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12007</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12008</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12009</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12010</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37037</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37037</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12008</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12009</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12010</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37046</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37046</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12008 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12009 &gt; span</td>
+	<td>0.4000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370462</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370462</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12008 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12009 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370463</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370463</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12008 &gt; span</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12009 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370463_12010 &gt; span</td>
+	<td>0.8124</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370464</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370464</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.1000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12008 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12009 &gt; span</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.6770</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37052</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37052</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12007</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12008</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12009</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12010</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370521</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370521</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12008 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370521_12010 &gt; span &gt; span.grey_text</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370523</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370523</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12008 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370523_12010 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370524</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370524</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12008 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370524_12010 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370525</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370525</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12008 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370525_12010 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370526</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370526</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12008 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370526_12010 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination370527</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_370527</td>
+	<td>370527</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12007 &gt; span &gt; span.grey_text</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12008 &gt; span</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12009 &gt; span &gt; span.grey_text</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370527_12010 &gt; span</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=prefix_371</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=rate_371_12007</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=rate_371_12008</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=rate_371_12009</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Latvia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Latv%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination371</td>
+	<td>Latvia proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_371</td>
+	<td>371</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_371_12007</td>
+	<td>0.7000</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Buy Tariff EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Latvia mobile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>%Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination37052</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_37052</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12007</td>
+	<td>0.2500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12008</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12009</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12010</td>
+	<td>0.2708</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania Klaipeda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania Palanga</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania Kaunas</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Lithuania - Fixed</td>
+	<td></td>
+</tr>
+<!--Blocked - SELL-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/536</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>blocked</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12008</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12008</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12008 &gt; span &gt; span.grey_text</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12008 &gt; span &gt; span.grey_text</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370463_12008</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12008 &gt; span &gt; span.grey_text</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12008</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370521_12008</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370523_12008</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+<!--Tariff B2-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/buy_tariff_b2_12012/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/buy_tariff_b2_12012/add_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=providers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12004</td>
+	<td>Buy Tariff A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12005</td>
+	<td>Buy Tariff B</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12006</td>
+	<td>Buy Tariff C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_name_12012</td>
+	<td>Buy Tariff B2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12012</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12012 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12012 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370463_12012</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12012 &gt; span &gt; span.grey_text</td>
+	<td>0.5000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370521_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370523_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370524_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370525_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370526_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370527_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+<!--Blocked - BUY-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/563</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>blocked</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=providers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>lith%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370_12012</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37037_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_37046_12012 &gt; span &gt; span.grey_text</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370462_12012 &gt; span &gt; span.grey_text</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370463_12012</td>
+	<td>0.6000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#rate_370464_12012 &gt; span &gt; span.grey_text</td>
+	<td>Blocked</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_37052_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370521_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_370523_12012</td>
+	<td>0.2000</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.0</td>
+	<td>Lithuania Kaunas</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.0</td>
+	<td>Lithuania Klaipeda</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.0</td>
+	<td>Lithuania Palanga</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.0</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.1.1</td>
+	<td>37037</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.2.1</td>
+	<td>370462</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.3.1</td>
+	<td>370463</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.4.1</td>
+	<td>370464</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.5.1</td>
+	<td>37046</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.6.1</td>
+	<td>37052</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.7.1</td>
+	<td>370521</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.8.1</td>
+	<td>370523</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.9.1</td>
+	<td>370524</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.10.1</td>
+	<td>370525</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>id=rates-check-scrollable.11.1</td>
+	<td>370526</td>
+</tr>
+</tbody></table>
+</body>
+</html>

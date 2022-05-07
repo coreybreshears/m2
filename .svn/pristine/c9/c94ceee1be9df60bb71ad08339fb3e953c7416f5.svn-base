@@ -1,0 +1,13 @@
+# Creates permissions group
+manager/manager_16001/create_permission_group.sql
+# creates manager/manager1
+manager/manager_16001/create.sql
+# calls
+calls/calls.sql
+# old calls
+calls/calls_old.sql 
+# active calls
+calls/active_call.sql
+#set calls active
+calls/set_calls_active.sql
+# bundle loaded

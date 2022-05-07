@@ -1,0 +1,426 @@
+<style>
+  .group{
+    display:none
+  }
+</style>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2>Alert Settings<%= ' - ' + @alert.name if @alert.name.present? %></h2>
+
+<%= form_for :alert, url: { action: @action_link, id: @alert.id }, html: {class: 'details-form'} do |a| %>
+  <div class="row">
+    <div class="col">
+      <h2><%= _('General') %></h2>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('Alert_Name') %></label>
+        </div>
+        <div class="input-col">
+          <%= text_field 'alert', 'name', "class" => "input" %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><span style="text-decoration: underline;"><%= _('Primary_Object') %></span></label>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('object_type') %></label>
+        </div>
+        <% if @action_link.eql? 'alert_add' %>
+          <div class="input-col">
+            <%= select_tag("alert[check_type]", options_for_select(@check_types.map {|c_type| [_(c_type.capitalize), c_type]}, @alert.check_type.to_s), :onchange => "check_alert_check_type(); updateObjectNameFields(this.value);check_prov_settings();", id: 'alert_check_type') %>
+          </div>
+        <% else %>
+          <div id='object_type' class="input-col" value="<%= @alert.check_type %>">
+            <%= _(@alert.check_type.to_s.capitalize) %>
+          </div>
+        <% end %>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('object_name') %></label>
+        </div>
+        <% if @action_link.eql? 'alert_add' %>
+          <div class="input-col" id="user" style="display:none">
+            <%= select_tag("alert_check_data1", options_for_select([[_('All'),"all"],[_('Postpaid'),"postpaid"],[_('Prepaid'),"prepaid"]] + @users.map {|u| [link_nice_user(u), u.id]}, @alert.check_data.to_s)) %>
+          </div>
+          <div class="input-col" id="provider" style="display:none">
+            <%= select_tag("device_tp" ,options_for_select([[_('All'), 'all'],[_('Not_used'), ""]]+ @users.map{|user| [ "#{nice_user(user)} (#{user.id })", user.id]}, @alert_check_data_user_id)) %>
+            <span id="users_tp"> </span>
+          </div>
+          <div class="input-col" id="device" style="display:none">
+            <%= select_tag("device_op" ,options_for_select([[_('All'), 'all'],[_('Not_used'), ""]]+ @users.map{|user| [ "#{nice_user(user)} (#{user.id })", user.id]}, @alert_check_data_user_id)) %>
+            <span id="users_op"> </span>
+          </div>
+          <div class="input-col" id="destination" style="display:none"><%= text_field_tag "alert_check_data3", @alert.check_data.to_s, class: 'input', size: 30, :maxlength => 50 %></div>
+          <div class="input-col" id="destination_group" style="display:none">
+            <%= select_tag("alert_check_data4", options_for_select([[_('All'), 'all']] + @destination_groups.map {|g| [link_to(g.gname, :controller => "destination_groups", :action => "edit", :id => g.id), g.id]}, @alert.check_data.to_s)) %>
+          </div>
+        <% else %>
+          <div class="input-col" id='object_name'>
+            <%= generate_check_data(@alert) %>
+          </div>
+        <% end %>
+      </div>
+      <% if %w[termination_point origination_point].include?(@alert.check_type) %>
+        <div class="input-row">
+          <div class="label-col">
+            <label><span style="text-decoration: underline;"><%= _('Secondary_Object') %></span></label>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="label-col">
+            <label><%= _('object_type') %></label>
+          </div>
+          <div class="input-col">
+            <%= @alert.check_type_secondary %>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="label-col">
+            <label><%= _('object_name') %></label>
+          </div>
+          <div class="input-col">
+            <% if @alert.check_type_secondary == 'destination_group' %>
+              <%= destination_group_name(@alert.check_data_secondary) %>
+            <% else %>
+              <%= @alert.check_data_secondary %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('Parameter') %></label>
+        </div>
+        <% if @action_link.eql? 'alert_add' %>
+          <div class="input-col">
+            <span id='parameters'>
+              <%= select_tag('alert[alert_type]', options_for_select(@alert_type_parameters[:base].map {|a_type| [_(a_type.upcase), a_type]}, @alert_type), :id => 'alert_type_parameters') %>
+            </span>
+            <span id='params_counting'></span>
+          </div>
+        <% else %>
+          <div class="input-col" id='parameter'>
+            <%= _(@alert.alert_type.upcase) %>
+            <span id='params_counting'></span>
+          </div>
+        <% end %>
+      </div>
+      <div class="input-row">
+        <div id='period_time' class="label-col">
+          <label><%= _('Check_last') %></label>
+        </div>
+        <div class="input-col">
+          <%= select_tag('alert[count_period]', options_for_select([5,10,15,20,30,45].map { |m| ["#{m} min", m] } + (1..24).map { |h| ["#{h} h", h*60] }, (params[:action] == 'alert_new' ? 60 : @alert.count_period)), disabled: true)%>
+        </div>
+      </div>
+      <div class="input-row" id='hgc_input' style="display:none">
+        <div class="label-col">
+          <label><%= _('HGC') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :hgc, class: 'input' %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('alert_type') %></label>
+        </div>
+        <div class="input-col">
+          <% if @action_link.eql? 'alert_add' %>
+            <div class="input-col">
+              <%= select_tag("alert[alert_count_type]", options_for_select(@alert_count_type.map {|v| [_(v.upcase), v]}, @alert.alert_count_type.to_s)) %>
+            </div>
+          <% else %>
+            <div class="input-col" id='alert_type'>
+              <%= @alert.alert_count_type %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="input-row group group">
+        <div class="label-col">
+          <label><%= _('Group') %></label>
+        </div>
+      </div>
+      <div class="list-table input-col group" id="group_selector">
+        <%= render 'alert_dependencies', alerts: @alerts_for_select, alert_dependencies: @alert_dependencies %>
+      </div>
+      <div class="input-row conditions">
+        <div class="label-col">
+          <label><span class="ignore_calls_if_less"></span></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :ignore_if_calls_less, class: 'input half', size: 10 %>
+        </div>
+      </div>
+      <div class="input-row conditions">
+        <div class="label-col">
+          <label><span class="ignore_calls_if_more"></span></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :ignore_if_calls_more, class: 'input half', size: 10 %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('Group_to_Notify') %></label>
+        </div>
+        <div class="input-col">
+          <%= select_tag("alert[alert_groups_id]", options_for_select([['None', 0]] + @groups.map {|g| [g.name, g.id]}, @alert.alert_groups_id.to_i)) %>
+        </div>
+      </div>
+      <div class="input-row" id='notify_to_user' style="display:none">
+        <div class="label-col">
+          <label><%= _('Notify_to_User') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :notify_to_user, {:checked => @alert.notify_to_user.to_i.equal?(1)} %>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h2><%= _('Alert') %></h2>
+      <div class="input-row group">
+        <div class="label-col">
+          <label><%= _('alert_when_more_then') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :alert_when_more_than, class: 'input half', size: 3 %>&nbsp;<%= _('alerts_are_active') %>        </div>
+      </div>
+      <div class="input-row conditions">
+        <div class="label-col">
+          <label><%= _('alert_if') + " #{_(@alert.alert_type.upcase)} <=" %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :alert_if_less, class: 'input half', size: 10, onkeyup: "disable_enable_alerts_and_clears()" %>
+        </div>
+      </div>
+      <div class="input-row conditions">
+        <div class="label-col">
+          <label><%= _('alert_if') + " #{_(@alert.alert_type.upcase)} >=" %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :alert_if_more, class: 'input half', size: 10, onkeyup: "disable_enable_alerts_and_clears()" %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('Disable_Primary_Object') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :action_alert_disable_object, {:checked => @alert.action_alert_disable_object.to_i.equal?(1), :onclick => "disableObjectCheck();"} %>
+        </div>
+      </div>
+      <% if @alert.check_type == 'termination_point' %>
+        <div class="input-row">
+          <div class="label-col">
+            <label><%= _('Disable_tp_in_dial_peer') %></label>
+          </div>
+          <div class="input-col">
+            <%= select_tag 'alert[disable_tp_in_dial_peer]', options_for_select(@alert.tp_dial_peers, @alert.disable_tp_in_dial_peer) %>
+          </div>
+        </div>
+      <% end %>
+      <div class="input-row" id='alert_routing_group' style="display:none" >
+        <div class="label-col">
+          <label><%= _('Routing_Group') %></label>
+          <div id="disable_tp_in_dial_peer"></div>
+        </div>
+        <div class="input-col">
+          <%= select_tag("alert[action_alert_change_routing_group_id]", options_for_select([['None', 0]] + @routing_groups.map {|rg| [rg.name, rg.id]}, @alert.action_alert_change_routing_group_id)) %>
+        </div>
+      </div>
+
+      <% if @alert.check_type == 'origination_point' && @alert.check_data != 'all' %>
+        <% routing_group = cp_routing_group(@alert.check_data) %>
+        <div class="input-row">
+          <div class="label-col">
+            <label><%= _('Deactivate_DP_in_RG') %></label>
+          </div>
+          <div class="input-col">
+            <span><%= _('Routing_Group') + ": #{routing_group.name}" %></span>
+            <br/>
+            <span><%= "#{_('Dial_Peer')}: " %> <%= select_tag('alert[dial_peer_id]', options_for_select([['None', 0]] + cp_rg_dial_peers(routing_group).map {|dp| [dp.name, dp.id]}, @alert.dial_peer_id)) %></span>
+          </div>
+        </div>
+
+      <% end %>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('notify_on_alert_via_email') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :action_alert_email, {:checked => @alert.action_alert_email.to_i.equal?(1)} %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('notify_on_alert_via_sms') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :action_alert_sms, {checked: @alert.action_alert_sms.to_i.equal?(1)} %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('SMS_Alert_Text') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :action_alert_sms_text, class: 'input', maxlength: 160 %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2><%= _('Comment') %></h2>
+      <!-- , :style => 'min-width: 285px; width: 100%' -->
+      <div class="large"><%= a.text_area :comment, :rows => '5', :class => "input large" %></div>
+    </div>
+    <div class="col">
+      <h2><%= _('Clear') %></h2>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('disable_clear') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :disable_clear, {:checked => @alert.disable_clear.to_i.equal?(1)} %>
+        </div>
+      </div>
+
+      <div class="input-row group">
+        <div class="label-col">
+          <label><%= _('clear_when_less_then') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :clear_when_less_than, class: 'input half', size: 3 %> <%= _('alerts_are_active') %>
+        </div>
+      </div>
+
+      <div class="input-row conditions">
+        <div class="label-col">
+          <label><%= _('clear_if') + " #{_(@alert.alert_type.upcase)} <=" %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :clear_if_less, class: 'input half', size: 10, onkeyup: "disable_enable_alerts_and_clears();" %>
+        </div>
+      </div>
+      <div class="input-row conditions">
+        <div class="label-col">
+          <label><%= _('clear_if') + " #{_(@alert.alert_type.upcase)} >=" %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :clear_if_more, class: 'input half', size: 10, onkeyup: "disable_enable_alerts_and_clears();" %>
+        </div>
+      </div>
+      <div class="input-row ">
+        <div class="label-col">
+          <label><%= _('clear_after') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :clear_after, class: 'input half', size: 10, onkeyup: "disable_enable_alerts_and_clears();" %>&nbsp;<%= _('minutes') %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('clear_on_date') %></label>
+        </div>
+        <div class="input-col column date-col calendar-holder">
+          <% date = (@alert.clear_on_date || Time.now) %>
+          <div class="row">
+            <div>
+              <%= check_box_tag 'use_date', value = "1", (params[:use_date].to_i == 1 || @alert.clear_on_date != nil) %>
+            </div>
+            <div class="calendar-col" style="width: 49%">
+              <%= text_field_tag 'clear_date', params[:clear_date] || nice_date(date.in_time_zone(user_tz)), class: 'checkout default', id: 'from' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col">
+              <%= text_field_tag 'clear_time', params[:clear_time] || date.in_time_zone(user_tz).strftime("%H:%M"), class: 'default', id: 'time1' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('Enable_Primary_Object') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :action_clear_enable_object, {:checked => @alert.action_clear_enable_object.to_i.equal?(1)} %>
+        </div>
+      </div>
+      <div class="input-row" id='dp_tp_settings2' style="display:none">
+        <div class="label-col">
+          <label><%= _('Enable_tp_in_dial_peer') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :enable_tp_in_dial_peer, {:checked => @alert.enable_tp_in_dial_peer.to_i.equal?(1)} %>
+        </div>
+      </div>
+      <div class="input-row" id='clear_routing_group' style="display:none" >
+        <div class="label-col">
+          <label><%= _('Routing_Group') %></label>
+        </div>
+        <div class="input-col">
+          <%= select_tag("alert[action_clear_change_routing_group_id]", options_for_select([['None', 0],[_('restore_orig'), -1]] + @routing_groups.map {|rg| [rg.name, rg.id]}, @alert.action_clear_change_routing_group_id)) %>
+        </div>
+      </div>
+      <% if @alert.check_type == 'origination_point' && @alert.check_data != 'all' %>
+        <div class="input-row">
+          <div class="label-col">
+           <label><%= _('Activate_DP_in_RG') %></label>
+         </div>         <div class="input-col">
+            <%= a.check_box :action_clear_enable_dp_in_rg, {checked: @alert.action_clear_enable_dp_in_rg.to_i.equal?(1), disabled: %w[origination_point].exclude?(@alert.check_type.to_s)} %>
+            <span><%= _('Routing_Group') + ": #{routing_group.name}" %></span>
+            <br/>
+           <span><%= "#{_('Dial_Peer')}: " %> <%= cp_rg_dial_peer(@alert.dial_peer_id) %></span>
+          </div>
+         </div>
+      <% end %>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('notify_on_clear_via_email') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :action_clear_email, {:checked => @alert.action_clear_email.to_i.equal?(1)} %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('notify_on_clear_via_sms') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.check_box :action_clear_sms, {checked: @alert.action_clear_sms.to_i.equal?(1)} %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <label><%= _('SMS_Clear_Text') %></label>
+        </div>
+        <div class="input-col">
+          <%= a.text_field :action_clear_sms_text, class: 'input', maxlength: 160 %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height: 20px" />
+  <div class="buttons-row">
+    <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/alerts/list'", name: 'reset' %>
+    <%= submit_tag _('UPDATE'), :disable_with => _('Processing..'), name: 'commit' %>
+  </div>
+</div>
+</div>
+
+<% end %>
+
+
+
+<%= render 'alert_edit_js', alert: @alert, action_link: @action_link,
+alert_type_parameters: @alert_type_parameters %>

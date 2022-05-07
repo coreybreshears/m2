@@ -1,0 +1,23 @@
+$(document).ready(function(){
+	$('#change_for_op').change(function(){
+		updateFromDropdown();
+	});
+
+	$('#change_for_tp').change(function(){
+		updateFromDropdown();
+	});
+});
+
+function updateFromDropdown(){
+    $.ajax({
+      url: '<%= Web_Dir %>/tariffs/update_tariff_change_checkbox',
+      data: {
+      	op_checked: $('#change_for_op').is(':checked'),
+      	tp_checked: $('#change_for_tp').is(':checked'),
+      	selected: $('#tariff_from :selected').val()
+      },
+    }).done(function(result){
+      $('#from_dropdown').html(result);
+      jcf.customForms.replaceAll();
+    });
+}

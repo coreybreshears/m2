@@ -1,0 +1,34 @@
+<table class="simple">
+  <tr>
+  	<td><%= _('Name') %>:</td>
+  	<td id="name_<%= m2_invoice.id %>"><%= f.text_field :client_name, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+  <tr>
+    <td><%= _('Address') %>:</td>
+    <td id="address_<%= m2_invoice.id %>"><%= f.text_field :client_details1, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+  <tr>
+    <td><%= _('City') %>:</td>
+    <td id="city_<%= m2_invoice.id %>"><%= f.text_field :client_details2, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+  <tr>
+    <td><%= _('Postcode') %>:</td>
+    <td id="postcode_<%= m2_invoice.id %>"><%= f.text_field :client_details3, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+  <tr>
+    <td><%= _('State') %>:</td>
+    <td id="state_<%= m2_invoice.id %>"><%= f.text_field :client_details4, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+  <tr>
+    <td><%= _('Country') %>:</td>
+    <td id="country_<%= m2_invoice.id %>"><%= f.collection_select :client_details5, countries, :id, :name, {}, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+  <tr>
+    <td><%= _('Tax_registration_number') %>:</td>
+    <td id="tax_number_<%= m2_invoice.id %>"><%= f.text_field :client_details7, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+  <tr>
+    <td><%= _('Phone') %>:</td>
+    <td id="phone_<%= m2_invoice.id %>"><%= f.text_field :client_details6, :class => 'input', :style => "width: 100%" %></td>
+  </tr>
+</table>

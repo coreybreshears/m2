@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://192.168.0.55" />
+<title>rerating_aggregates_invoices</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">rerating_aggregates_invoices</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/delete_from_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/m2_good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_aggregates</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_aggregates_control</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>60000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_orig_0</td>
+	<td>test_customer_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_term_0</td>
+	<td>test_supplier</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_orig_0</td>
+	<td>0.3286 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_billed_with_tax0</td>
+	<td>0.3286 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_term_0</td>
+	<td>0.1857 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billed_time_orig_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billed_time_term_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=duration_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_invoices</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_1</td>
+	<td>test_customer_2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_1</td>
+	<td>0.33</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Lithuania mobile (3706)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>0.20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_2</td>
+	<td>Latvia mobile (3712)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_2</td>
+	<td>0.13</td>
+</tr>
+<!--pakeičiami retaiai-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/524</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/rerating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=all_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_bg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_cdr_rerate</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_orig_0</td>
+	<td>test_customer_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_term_0</td>
+	<td>test_supplier</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_orig_0</td>
+	<td>8.2776 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_billed_with_tax0</td>
+	<td>8.2776 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_term_0</td>
+	<td>0.1857 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billed_time_orig_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billed_time_term_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=duration_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_orig_1</td>
+	<td>13.6943 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_billed_with_tax1</td>
+	<td>13.6943 USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax_1</td>
+	<td>13.69</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_1</td>
+	<td>13.69</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price_with_tax</td>
+	<td>13.69</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>13.69</td>
+</tr>
+<!--Terminatoriaus kainos-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/526</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/rerating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=all_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_bg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_cdr_rerate</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>150000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_orig_0</td>
+	<td>test_customer_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_term_0</td>
+	<td>test_supplier</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_orig_0</td>
+	<td>8.2776 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_billed_with_tax0</td>
+	<td>8.2776 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_term_0</td>
+	<td>4.1739 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billed_time_orig_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billed_time_term_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=duration_0</td>
+	<td>exact:00:01:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_orig_1</td>
+	<td>13.6943 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_billed_with_tax1</td>
+	<td>13.6943 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_term_1</td>
+	<td>6.8684 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_orig_1</td>
+	<td>test_customer_2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_1</td>
+	<td>13.69</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax_1</td>
+	<td>13.69</td>
+</tr>
+<!--rereitinamas tik vienas  useris-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/524</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>88</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/526</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/rerating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='9'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>test_customer_1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_bg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_cdr_rerate</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>150000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=December</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=31</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_orig_0</td>
+	<td>test_customer_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_orig_0</td>
+	<td>32.4776 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_billed_with_tax0</td>
+	<td>32.4776 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_term_0</td>
+	<td>12.2406 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_orig_1</td>
+	<td>13.6943 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_billed_with_tax1</td>
+	<td>13.6943 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_term_1</td>
+	<td>6.8684 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=customer_orig_1</td>
+	<td>test_customer_2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_1</td>
+	<td>13.69</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax_1</td>
+	<td>13.69</td>
+</tr>
+</tbody></table>
+</body>
+</html>

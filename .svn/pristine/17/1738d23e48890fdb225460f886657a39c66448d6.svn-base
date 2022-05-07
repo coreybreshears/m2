@@ -1,0 +1,1309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SUCCESS: Successfully logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/various_destination_names.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_2</td>
+	<td>United States Minesota</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_3</td>
+	<td>United States Teksasas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_4</td>
+	<td>United States Vermontas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_5</td>
+	<td>United States Tenesis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Created destinations: 7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_dest_in_csv</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_destinations_in_csv</td>
+	<td>New Destinations in CSV file</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_to_create</td>
+	<td>Destinations to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 5&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating destinations</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Next step: Creating new rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/dst_to_create_from_csv?csv2=1&amp;tariff_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row2 &gt; td</td>
+	<td>United States Minesota</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td</td>
+	<td>United States Teksasas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[6]/td</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 7</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr/td</td>
+	<td>Created destinations</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_created_destinations</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_to_create</td>
+	<td>Destinations to create</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create_step</td>
+	<td>Step 5.1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//b[8]</td>
+	<td>Destinations not assigned to Destination Groups : Fix</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/destination_groups/destinations_to_dg')]</td>
+	<td>Fix</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/225?page=1</td>
+	<td></td>
+</tr>
+<!--nauju destinationu importas nebekuria-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>United States LBL</td>
+	<td></td>
+</tr>
+<!--reitai importuoti-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2?st=U</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>United States Minesota</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>124</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>United States Teksasas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_505</td>
+	<td>125</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>United States Tenesis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_507</td>
+	<td>127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>United States Vermontas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_506</td>
+	<td>126</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row0 &gt; td</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[5]/td</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[8]/td</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[3]</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[3]</td>
+	<td>United States Teksasas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[8]/td[3]</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[7]/td[3]</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/integrity_check</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_without_dg</td>
+	<td>Destinations not assigned to Destination Groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_without_dg_size</td>
+	<td>7</td>
+</tr>
+<!--Tas pats failas dar kartą-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/various_destination_names.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_2</td>
+	<td>United States Minesota</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_3</td>
+	<td>United States Teksasas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_4</td>
+	<td>United States Vermontas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_5</td>
+	<td>United States Tenesis</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 5&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating destinations</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Destination names updated: 3</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/dst_to_update_from_csv?csv2=1&amp;tariff_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[2]</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row2 &gt; td</td>
+	<td>133</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td</td>
+	<td>167</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[2]</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr/td</td>
+	<td>Created destinations</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_created_destinations</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr[2]/td</td>
+	<td>Destination names updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr[2]/td</td>
+	<td>Destination names updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Destinations not assigned to Destination Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/dst_import_dst_prefix_price.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>187</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.333</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Created destinations: 1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/dst_import_dst_prefix_price_subcode.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>1568</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.1870</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Created destinations: 1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/dst_import_prefix_price.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>1569</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.1870</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Created destinations: 1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/dst_import_prefix_price_subcode.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>1576</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_1</td>
+	<td>0.1870</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=imp_dst_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Created destinations: 1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/dst_canada.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: File uploaded</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_4</td>
+	<td>1129</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_4</td>
+	<td>0.0022</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_4</td>
+	<td>CANADA-Reg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[@id='new_r_to_create']/b</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Created destinations: 8<br />Destination names updated: 14</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_rates_updated &gt; b</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_updated_destinations &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 21</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to Tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Rates (283/283)</td>
+	<td>Rates (283/283)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2?st=C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_517</td>
+	<td>CANADA-Reg</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_517</td>
+	<td>1129</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_517</td>
+	<td>0.0022</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit-link-517</td>
+	<td>EDIT</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_517</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2?st=U</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>1129</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/dst_import_shorter_longer_prefix.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_1</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_prefix_2</td>
+	<td>936564</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_dest_in_csv</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[2]/td</td>
+	<td>Weird place</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[2]/td[2]</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[2]/td[9]</td>
+	<td>Destination not recognized by Prefix</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/dst_to_create_from_csv?csv2=1&amp;tariff_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>Unique place</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[2]</td>
+	<td>936564</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2?step=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 5&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating destinations</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Created destinations: 1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_dest_in_csv</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_created_destinations</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_created_destinations</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[2]/td[2]</td>
+	<td>936564</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row0 &gt; td</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[3]</td>
+	<td>Afghanistan proper</td>
+</tr>
+</tbody></table>
+</body>
+</html>

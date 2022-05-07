@@ -1,0 +1,128 @@
+<% content_for :additional_buttons do %>
+  <span id="delete_selected">
+    <%= form_tag({action: :delete_emails}) do %>
+      <%= hidden_field_tag 'selected_emails' %>
+      <%= hidden_field_tag 'delete_type', 'junk' %>
+      <%= submit_tag _('delete_selected'), class: 'search-form-button', onclick: "return confirm('Are you sure?')" %>
+    <% end %>
+  </span>
+<% end %>
+<% content_for :search_form do %>
+  <%= form_tag({action: :inbox}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <fieldset>
+      <%= hidden_field_tag 'search_on', 1 %>
+      <div class="row">
+      <%= render 'shared/date_picker', options: {
+                                                 name: 'invoice_period',
+                                                 date_from: @options[:from],
+                                                 date_till: @options[:till],
+                                                 prefix_from: 'date_from',
+                                                 prefix_till: 'date_till',
+                                                 id_from: 'from',
+                                                 id_till: 'till',
+                                                 class_from: 'checkin3 default',
+                                                 class_till: 'checkout3 default',
+                                                 select_values: DatePicker.default_values
+                                               }%>
+      </div>
+      <div class="column cause-col">
+        <%= label_tag 'from', _('From') %>
+        <div class="row">
+          <%= text_field_tag 'search[from]', @options[:inbox][:from] %>
+        </div>
+      </div>
+
+      <div class="column cause-col">
+        <%= label_tag 'from', _('Subject') %>
+        <div class="row">
+          <%= text_field_tag 'search[subject]', @options[:inbox][:subject] %>
+        </div>
+      </div>
+
+      <div class="column cause-col">
+        <%= label_tag 'from', _('Message') %>
+        <div class="row">
+          <%= text_field_tag 'search[message]', @options[:inbox][:message] %>
+        </div>
+      </div>
+
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+<br>
+<div class="content-box" >
+  <div class="titled-box">
+    <h2><%= _('Tariff_Inbox')%></h2>
+    <br>
+    <div class="details-form table-box">
+      <div class="tabs-holder">
+        <ul class="tabset">
+           <li><%= link_to(_('Inbox'), '#', {id: 'inbox_tab', class: 'tab_button'}) %></li>
+           <li><%= link_to(_('Completed'), '#', {id: 'completed_tab', class: 'tab_button'}) %></li>
+           <li><%= link_to(_('Junk'), '#', {id: 'junk_tab', class: 'tab_button'}) %></li>
+        </ul>
+        <div class="tab-content inbox_tab">
+          <%= render 'email_list', emails: limit_emails(@emails[:inbox], @options[:inbox_pagintaion]), pagination: @options[:inbox_pagintaion], type: 'inbox', page: @options[:inbox_page] %>
+        </div>
+        <div class="tab-content completed_tab">
+          <%= render 'email_list', emails: limit_emails(@emails[:completed],  @options[:completed_pagintaion]), pagination: @options[:completed_pagintaion], type: 'completed', page: @options[:completed_page] %>
+        </div>
+        <div class="tab-content junk_tab">
+          <%= render 'email_list', emails: limit_emails(@emails[:junk], @options[:junk_pagintaion]), pagination: @options[:junk_pagintaion], type: 'junk', page: @options[:junk_page]%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var email_list = [];
+    var tab = "<%= params[:type].present? ? params[:type] : 'inbox' %>";
+
+    $('#' + tab + '_tab').trigger('click');
+
+    toggle_tabs('.' + tab + '_tab');
+
+    $('.tab_button').click(function(){ toggle_tabs('.' + this.id); });
+
+    function toggle_tabs(active_tab){
+      $('.single-email').prop( "checked", false );
+      $('.all-emails').prop( "checked", false );
+      jcf.customForms.refreshAll();
+      $('#selected_emails').val('');
+      email_list = [];
+      $('.tab-content').hide();
+      $(active_tab).show();
+      $('.drop-assign_import_settings_select').css({'top': '0px', 'left': '0px', 'width': '0px'});
+      active_tab == '.junk_tab' ? $('#delete_type').val('permanent') : $('#delete_type').val('junk');
+    }
+
+    $('.all-emails').change(function(){
+      if ($('.all-emails').is(':checked')) {
+        $('.single-email').not(':hidden').prop( "checked", true );
+      } else {
+        $('.single-email').not(':hidden').prop( "checked", false );
+      }
+      $('.single-email').not(':hidden').trigger('change');
+      jcf.customForms.refreshAll();
+    });
+
+
+    $('.single-email').change(function(){
+      var email = email_list.indexOf($(this).val());
+      if (email == -1 && $(this).is(':checked')){
+        email_list.push($(this).val());
+      }else{
+        email_list.splice(email, 1);
+      }
+      $('#selected_emails').val(JSON.stringify(email_list));
+    });
+  });
+</script>

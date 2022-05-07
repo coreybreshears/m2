@@ -1,0 +1,74 @@
+<% @create_button_name = _('Add_new_Carrier_Group') %>
+<% content_for :create_form do %>
+  <%= form_tag({action: :create}, {id: 'create-form', class: 'calls-form', visible: show_create}) do %>
+    <fieldset>
+      <div class="column cause-col">
+        <%= label_tag 'name', _('Carrier_Group_Name') %>
+        <div class='row'>
+          <%= text_field_tag :name, @carriers[:name], type: :text %>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= submit_tag _('Cancel'), type: :reset,
+                onClick: "$(\"#create-form\").toggle();pressed_create('#{Web_Dir}/callc/toggle_create', '#{params[:controller]}', '#{params[:action]}');"
+          %>
+          <%= submit_button_tag _('create'), id: 'Add_Carrier_Group' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('MNP_Carrier_Groups')%></h2>
+    <% if @carriers[:groups].present? %>
+      <div class="table-holder">
+        <table class="table-with-edit-and-delete" style='table-layout:fixed;'>
+        <thead>
+          <tr>
+            <th class="left-item" style="width: 20%">
+              <%= _('Carrier_Group') %>
+            </th>
+            <th class="left-item" style="width: 60%">
+              <%= _('Codes') %>
+            </th>
+            <th style="width: 10%"></th>
+            <th style="width: 10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @carriers[:groups].each do |group| %>
+            <tr>
+              <td class="left-item carrier-group-name" <%= tooltip(_('Carrier_Group'), group.name)%> nowrap><%= group.name %></td>
+              <% if group.try(:mnp_carrier_codes).present? %>
+                <td class="left-item carrier-group-codes" >
+                  <%= group.mnp_carrier_codes.map { |code| code.code }.join(', ') %>
+                </td>
+              <% else %>
+                <td class="left-item carrier-group-codes" nowrap ></td>
+              <% end %>
+              <td class="left-item" style="width: 10%">
+                <%= link_to _('EDIT'), {action: :edit, id: group.id} %>
+              </td>
+              <td class="left-item" style="width: 10%">
+                <%= link_to _('DELETE'), {action: :destroy, id: group.id}, data: {confirm: _('Are_you_sure')}, method: :post %>
+              </td class="left-item">
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="details-form">
+        <div class="row">
+          <div class="col">
+          <%= _('No_Carrier_Groups') %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

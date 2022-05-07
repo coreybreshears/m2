@@ -1,0 +1,30 @@
+<!-- footer of the page -->
+<footer id="footer">
+  <div class="footer-holder">
+    <span class="footer-holder-left">&nbsp;</span>
+    <span class="footer-holder-center"><%= m4_functionality? ? 'M4 SBC' : 'M2 SWITCH'%> by <a href="http://www.ocean-tel.uk" target="_blank">Kolmisoft</a> 2006 - <%= Time.new.year %></span>
+    <span class="footer-holder-right">
+      <%= _('System_Time') %>:&nbsp;<span id="footer-system-time-js">12:00</span>
+    </span>
+  </div>
+</footer>
+
+<% current_time = Time.now %>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        footerCurrentTime = new Date(<%= current_time.year %>, <%= current_time.month %>, <%= current_time.day %>, <%= current_time.hour %>, <%= current_time.min %>, <%= current_time.sec %>, 0);
+        footerTimeuUpdateInterval_S = 5;
+
+        updateSystemTime();
+        setInterval('updateSystemTime()', footerTimeuUpdateInterval_S * 1000);
+    });
+
+    function updateSystemTime() {
+        jQuery('#footer-system-time-js').text(
+                        ('0' + footerCurrentTime.getHours()).slice(-2)
+                        + ':' +
+                        ('0' + footerCurrentTime.getMinutes()).slice(-2)
+        );
+        footerCurrentTime.setSeconds(footerCurrentTime.getSeconds() + footerTimeuUpdateInterval_S);
+    }
+</script>

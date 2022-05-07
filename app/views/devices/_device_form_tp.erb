@@ -1,0 +1,269 @@
+<tr>
+  <td height="10"></td>
+</tr>
+<tr>
+  <td class="bottom_border">
+    <b><%= _('termination_points') %></b>
+  </td>
+</tr>
+<tr>
+  <td height="10"></td>
+</tr>
+<tr>
+  <td>
+    <table class="simple">
+      <tr>
+        <td style="min-width: 120px"><%= _('act_as_termination_point') %>:</td>
+        <td>
+          <span id="tp_warning_because_auth_dynamic" style="display: none;" <%= tooltip("#{_('WARNING')}:", _('connection_point_tp_disabled_because_dynamic_auth_enabled_popup_warning')) %>><%= b_exclamation %></span>
+          <span id="tp_radio_button_settings">
+            <%= radio_button_tag 'device[tp]', '0', device.tp.to_i == 0, onclick: "toggle_tp_settings_display(false);" %> <%= _('_No') %>
+            <%= radio_button_tag 'device[tp]', '1', device.tp.to_i == 1, onclick: "toggle_tp_settings_display(true);" %> <%= _('_Yes') %>
+          </span>
+        </td>
+      </tr>
+      <tr class='tp_setting'>
+        <td><%= _('Active') %>:</td>
+        <td><%= radio_button_tag 'device[tp_active]', '0', device.tp_active.to_i == 0 %> <%= _('_No') %> <%= radio_button_tag 'device[tp_active]', '1', device.tp_active.to_i == 1 %> <%= _('_Yes') %></td>
+      </tr>
+      <tr class='tp_setting'>
+        <td><%= _('Destination_Transformation') %>:</td>
+        <td><%= text_field_tag 'device[tp_tech_prefix]', device.tp_tech_prefix.to_s, class: 'input' %></td>
+      </tr>
+      <tr class='tp_setting'>
+        <td><%= _('Source_Transformation') %>:</td>
+        <td><%= text_field_tag 'device[tp_source_transformation]', device.tp_source_transformation.to_s, class: 'input' %></td>
+      </tr>
+      <tr class='tp_setting tp_tariff'>
+        <td><%= _('tariff') %>:</td>
+        <td>
+          <% if tariffs.blank? %>
+            <%= link_to b_exclamation + _('please_create_tariff'), Web_Dir + '/tariffs/new' %>
+          <% else %>
+            <%= select_tag 'device[tp_tariff_id]', options_for_select(prov_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]}, device.tp_tariff_id.to_i) %>
+              &nbsp;<span id="device_tp_tariff_id_edit_link"></span>
+              <% if admin? || (manager? && authorize_manager_permissions({controller: :tariffs, action: :list, no_redirect_return: 1})) %>
+                  <script type="text/javascript">
+                      jQuery(document).ready(function () {
+                          var selection = jQuery('#device_tp_tariff_id');
+                          var selection_edit_link = jQuery('#device_tp_tariff_id_edit_link');
+                          var selection_edit_link_url = '/tariffs/edit/';
+                          var false_values = [];
+
+                          selection.on('change', function() {
+                              change_selection_edit_link(selection, selection_edit_link, selection_edit_link_url, false_values);
+                          });
+                          selection.trigger('change');
+                      });
+                  </script>
+              <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <tr class='tp_setting'>
+        <td><%= _('capacity') %> (<%= _('Call_limit') %>):</td>
+        <td><%= text_field_tag 'device[tp_capacity]', device.tp_capacity.to_s, class: 'input' %></td>
+      </tr>
+      <tr class='tp_setting'>
+        <td><%= _('source_cid_allow') %>:</td>
+        <td><%= text_field_tag 'device[tp_src_regexp]', device.tp_src_regexp.to_s, class: 'input', maxlength: 1024 %></td>
+      </tr>
+      <tr class='tp_setting'>
+        <td><%= _('source_cid_deny') %>:</td>
+        <td><%= text_field_tag 'device[tp_src_deny_regexp]', device.tp_src_deny_regexp.to_s, class: 'input', maxlength: 1024 %></td>
+      </tr>
+      <% unless m4_functionality? %>
+        <tr class='tp_setting'>
+          <td><%= _('Register') %>:</td>
+          <td>
+            <%= check_box_tag 'device[register]', 1, (device.register.to_i == 1), class: 'input', onclick: 'registerStateChanged(this)' %>
+          </td>
+        </tr>
+        <tr class='tp_setting' id='tp_login'>
+          <td><%= _('Login/Username') %>:</td>
+          <td><%= text_field_tag 'device[username]', device.username.to_s, class: 'input' %></td>
+        </tr>
+        <tr class='tp_setting' id='tp_password'>
+          <td><%= _('Password') %>:</td>
+          <td><%= text_field_tag 'password[secret]', device.secret.to_s, class: 'input' %> </td>
+        </tr>
+        <tr class='tp_from_domain tp_setting' id='tp_from_domain'>
+          <td><%= _('From_Domain') %>:</td>
+          <td><%= text_field_tag 'device[tp_from_domain]', device.tp_from_domain.to_s, class: 'input' %> </td>
+        </tr>
+      <% end %>
+      <% if Confline.get_value('Use_Number_Portability', 0, 0).to_i == 1 %>
+        <tr class='tp_setting' id='tp_carrier_group'>
+          <td><%= _('MNP_Carrier_Group') %>:</td>
+          <td>
+           <%= select_tag 'device[mnp_carrier_group_id]', options_for_select([[_('None'), -1]] + MnpCarrierGroup.all.map { |group| [group.name, group.id] }, device.mnp_carrier_group_id) %>
+          </td>
+        </tr>
+      <% end %>
+
+      <% if is_us_routing_module_enabled? %>
+        <tr class='tp_setting'>
+          <td><%= _('USA_Jurisdictional_Routing') %>:</td>
+          <td>
+            <%= radio_button_tag 'device[tp_us_jurisdictional_routing]', '1', device.tp_us_jurisdictional_routing.to_i == 1, onclick: 'toggle_tp_tariffs_display(true);' %> <%= _('Enabled') %>
+            <%= radio_button_tag 'device[tp_us_jurisdictional_routing]', '0', device.tp_us_jurisdictional_routing.to_i == 0, onclick: 'toggle_tp_tariffs_display(false);'%> <%= _('Disabled') %>
+          </td>
+        </tr>
+        <tr class='tp_setting tp_us_jur_routing'>
+          <td><%= _('Intra_Tariff') %>:</td>
+          <td>
+            <%= tariff_select_tag(
+              prov_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]},
+              device.tp_tariff_intra.to_i,
+              'device[tp_tariff_intra]'
+            ) %>
+          </td>
+        </tr>
+        <tr class='tp_setting tp_us_jur_routing'>
+          <td><%= _('Inter_Tariff') %>:</td>
+          <td>
+          <%= tariff_select_tag(
+              prov_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]},
+              device.tp_tariff_inter.to_i,
+              'device[tp_tariff_inter]'
+            ) %>
+          </td>
+        </tr>
+        <tr class='tp_setting tp_us_jur_routing'>
+          <td><%= _('Indeter_Tariff') %>:</td>
+          <td>
+          <%= tariff_select_tag(
+              prov_tariffs.map {|tariff| [nice_tariff(tariff), tariff.id]},
+              device.tp_tariff_indeter.to_i,
+              'device[tp_tariff_indeter]'
+            ) %>
+          </td>
+        </tr>
+      <% end %>
+      <% if m4_functionality? %>
+        <tr class='tp_setting'>
+          <td><%= _('Authentication') %>:</td>
+          <td>
+            <%= radio_button_tag 'device[tp_auth]', '1', device.tp_auth.to_i == 1, onclick: 'toogle_tp_auth_display(true);' %> <%= _('Enabled') %>
+            <%= radio_button_tag 'device[tp_auth]', '0', device.tp_auth.to_i == 0, onclick: 'toogle_tp_auth_display(false);'%> <%= _('Disabled') %>
+          </td>
+        </tr>
+        <tr class='tp_setting tp_auth_m4' id='tp_login_m4'>
+          <td><%= _('Username') %>:</td>
+          <td><%= text_field_tag 'device[tp_username]', device.tp_username.to_s, class: 'input' %></td>
+        </tr>
+        <tr class='tp_setting tp_auth_m4' id='tp_password_m4'>
+          <td><%= _('Password') %>:</td>
+          <td><%= text_field_tag 'device[tp_password]', device.tp_password.to_s, class: 'input' %> </td>
+        </tr>
+
+        <tr class='tp_setting tp_auth_m4'>
+          <td><%= _('Register') %>:</td>
+          <td>
+            <%= check_box_tag 'device[tp_register]', 1, (device.tp_register.to_i == 1), class: 'input', onclick: 'registerM4StateChanged(this)' %>
+          </td>
+        </tr>
+        <tr class='tp_register_fields_m4 tp_setting'>
+          <td><%= _('Expires') %>:</td>
+          <td><%= text_field_tag 'device[tp_expires]', device.tp_expires.to_s, class: 'input' %> </td>
+        </tr>
+        <tr class='tp_register_fields_m4 tp_setting'>
+          <td><%= _('Registration_status') %>:</td>
+          <td> <a id='tp_register_show_status' href="#"> <%= _('show_status') %> </a></td>
+        </tr>
+      <% end %>
+
+    </table>
+  </td>
+</tr>
+<script type="text/javascript">
+  window.onload = function() {
+    var device_register = $('device_register');
+    if (device_register && !device_register.checked) {
+        $('tp_login').hide();
+        $('tp_password').hide();
+        $('tp_from_domain').hide();
+    }
+    tp_initial();
+  };
+  document.getElementById("tp_register_show_status").addEventListener("click", function(event){
+    event.preventDefault();
+    document.getElementById("tp_register_show_status").textContent = "Loading";
+    var dots = window.setInterval( function() {
+                var tpShowStatus = document.getElementById("tp_register_show_status");
+                if ( tpShowStatus.textContent.length > 10 )
+                    tpShowStatus.textContent = "Loading";
+                else
+                    tpShowStatus.textContent += ".";
+                }, 250);
+    tpRegisterStatus(dots);
+  });
+  function registerStateChanged(element){
+    var login = $('tp_login');
+    var password = $('tp_password');
+    var from_domain = $('tp_from_domain');
+      if (element.checked) {
+          login.show();
+          password.show();
+          from_domain.show();
+      } else {
+          login.hide();
+          password.hide();
+          from_domain.hide();
+      }
+  };
+  function toogle_tp_auth_display(visible){
+      if ($j("#device_tp_1").is(':checked')){
+        $j('.tp_auth_m4').toggle(visible);
+        if ($j("#device_tp_register").is(':checked')) {
+          $j('.tp_register_fields_m4').toggle(visible);
+        } else {
+          $j('.tp_register_fields_m4').hide();
+        }
+      }
+  }
+
+  function registerM4StateChanged(element){
+      if (element.checked) {
+          $j('.tp_register_fields_m4').show();
+      } else {
+          $j('.tp_register_fields_m4').hide();
+      }
+  }
+
+  function tpRegisterStatus(dots) {
+    jQuery.ajax({
+            url: "<%= Web_Dir %>/devices/m4_get_tp_reg_status",
+            data: {"id": <%= device.id %>},
+            dataType: "json",
+            beforeSend: function (xhr) {
+              // Security concerns
+              xhr.setRequestHeader("X-CSRF-Token", jQuery("meta[name='csrf-token']").attr("content"));
+              $j("#tp_register_show_status").css('pointer-events', 'none');
+            },
+            success: function(data, status, xhrs) {
+              if (data.data != 'wait') {
+                clearInterval(dots);
+                document.getElementById("tp_register_show_status").textContent = data.data;
+              } else {
+                setTimeout(
+                  function()
+                  {
+                    tpRegisterStatus(dots);
+                  }, 5000);
+              }
+            }
+        });
+  }
+
+  function tp_initial() {
+    var m4_device_auth = $j("#device_tp_auth_1");
+    var m4_device_register = $j("#device_tp_register");
+
+    if (m4_device_auth)
+    {
+      toogle_tp_auth_display(m4_device_auth.is(':checked'));
+    }
+  }
+
+</script>

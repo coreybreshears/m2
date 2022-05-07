@@ -1,0 +1,221 @@
+<%= javascript_include_tag 'google_charts/loader.js' %>
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('CPS__CC_Live') %></h2>
+    <div id="cps_line_chart" style=" height: 350px;"></div>
+    <div id="cc_line_chart" style=" height: 350px;"></div>
+  </div>
+</div>
+
+<style>
+    .content-box{
+        min-width: 900px;
+    }
+</style>
+
+<script>
+    jQuery(document).ready(function() {
+        setTimeout(executeQuery, 1000);
+        active_calls_cps_graph_data = <%= raw @cps_data.to_json %>;
+        active_calls_cc_graph_data = <%= raw @cc_data.to_json %>;
+
+        google.charts.load('current', {'packages': ['corechart']});
+
+        google.charts.setOnLoadCallback(function() {
+            drawCPSChart(active_calls_cps_graph_data);
+            drawCChart(active_calls_cc_graph_data);
+        });
+
+        jQuery(window).resize(function(){
+            drawCPSChart(active_calls_cps_graph_data);
+            drawCChart(active_calls_cc_graph_data);
+        });
+    });
+
+    function drawCPSChart(chartdata) {
+        var chart_prepared_data = [];
+        for(i_chartdata in chartdata) {
+            chart_prepared_data.push(
+                    [
+                        new Date(
+                                chartdata[i_chartdata][1][0],
+                                chartdata[i_chartdata][1][1] - 1,
+                                chartdata[i_chartdata][1][2],
+                                chartdata[i_chartdata][1][3],
+                                chartdata[i_chartdata][1][4],
+                                chartdata[i_chartdata][1][5]
+                        ),
+                        chartdata[i_chartdata][2],
+                        chartdata[i_chartdata][3]
+                    ]
+            )
+        }
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'time');
+        data.addColumn('number', '<%= _('CPS') %>');
+        data.addColumn('number', '<%= _('CPS_30s') %>');
+        data.addRows(chart_prepared_data);
+        var options = {
+            focusTarget: 'category',
+            'chartArea': {
+                'width': '90%',
+                'height': '70%',
+                'top': '40',
+                'left': '75',
+                'backgroundColor': {'stroke': '#FFFFFF'}
+            },
+            'series': {
+                0: { 'color': '#A6EDAC', type: "line" },
+                1: { 'color': '#7BA1CE', type: "line" }
+            },
+            'legend': 'top',
+            'vAxis': { 'gridlines': { 'count': 6 }, 'color': '#000000', 'format': '#', 'minValue':0, 'maxValue' :9},
+            hAxis: {
+                color: '#000000',
+                format: 'HH:mm:ss',
+                gridlines: { count: 10 }
+            },
+            'crosshair': { 'orientation': 'vertical', 'trigger': 'both' }
+        };
+
+        var dateFormatter = new google.visualization.DateFormat({pattern: 'HH:mm:ss'});
+        dateFormatter.format(data, 0);
+
+        active_calls_cps_line_chart = new google.visualization.LineChart(document.getElementById('cps_line_chart'));
+        active_calls_cps_line_chart.draw(data, options);
+    }
+
+    function drawCChart(chartdata) {
+        var chart_prepared_data = [];
+        for(i_chartdata in chartdata) {
+            chart_prepared_data.push(
+                    [
+                        new Date(
+                                chartdata[i_chartdata][1][0],
+                                chartdata[i_chartdata][1][1] - 1,
+                                chartdata[i_chartdata][1][2],
+                                chartdata[i_chartdata][1][3],
+                                chartdata[i_chartdata][1][4],
+                                chartdata[i_chartdata][1][5]
+                        ),
+                        chartdata[i_chartdata][2],
+                        chartdata[i_chartdata][3]
+                    ]
+            )
+        }
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'time');
+        data.addColumn('number', '<%= _('CC') %>');
+        data.addColumn('number', '<%= _('CC_30s') %>');
+        data.addRows(chart_prepared_data);
+        var options = {
+            focusTarget: 'category',
+            'chartArea': {
+                'width': '90%',
+                'height': '70%',
+                'top': '40',
+                'left': '75',
+                'backgroundColor': {'stroke': '#FFFFFF'}
+            },
+            'series': {
+                0: { 'color': '#A6EDAC', type: "line" },
+                1: { 'color': '#7BA1CE', type: "line" }
+            },
+            'legend': 'top',
+            'vAxis': { 'gridlines': { 'count': 6 }, 'color': '#000000', 'format': '#', 'minValue':0, 'maxValue' :9},
+            hAxis: {
+                color: '#000000',
+                format: 'HH:mm:ss',
+                gridlines: { count: 10 }
+            },
+            'crosshair': { 'orientation': 'vertical', 'trigger': 'both' }
+        };
+
+        var dateFormatter = new google.visualization.DateFormat({pattern: 'HH:mm:ss'});
+        dateFormatter.format(data, 0);
+
+        active_calls_cc_line_chart = new google.visualization.LineChart(document.getElementById('cc_line_chart'));
+        active_calls_cc_line_chart.draw(data, options);
+    }
+
+    function cps_last_N_average(n, pushed_value) {
+        var last_cps_value_sum = pushed_value;
+
+        for (var i = 1; i < n; i++) {
+            last_cps_value_sum += active_calls_cps_graph_data[active_calls_cps_graph_data.length - i][2];
+        }
+
+        return (last_cps_value_sum / n);
+    }
+
+    function cc_last_N_average(n, pushed_value) {
+        var last_cps_value_sum = pushed_value;
+
+        for (var i = 1; i < n; i++) {
+            last_cps_value_sum += active_calls_cc_graph_data[active_calls_cc_graph_data.length - i][2];
+        }
+
+        return (last_cps_value_sum / n);
+    }
+
+    function executeQuery() {
+        jQuery.ajax({
+            type: "GET",
+            url: "<%= Web_Dir %>/stats/active_calls_cps_cc_live_update_data",
+            dataType: "json",
+            success: function (data, status, xhrs) {
+                var last_cps = active_calls_cps_graph_data[active_calls_cps_graph_data.length - 1];
+
+                for (var i = 1; i < (data.data['time_now_timestamp'] - last_cps[0]); i++) {
+                    active_calls_cps_graph_data.shift();
+                    active_calls_cps_graph_data.push([
+                        (last_cps[0] + i),
+                        last_cps[1].slice(0, 5).concat(last_cps[1][5] + i),
+                        last_cps[2],
+                        cps_last_N_average(30, last_cps[2])
+                    ]);
+                }
+
+                active_calls_cps_graph_data.shift();
+                active_calls_cps_graph_data.push([
+                    data.data['time_now_timestamp'],
+                    data.data['time_now_chart'],
+                    data.data['cps'],
+                    cps_last_N_average(30, data.data['cps'])
+                ]);
+
+                var last_cc = active_calls_cc_graph_data[active_calls_cc_graph_data.length - 1];
+
+                for (i = 1; i < (data.data['time_now_timestamp'] - last_cc[0]); i++) {
+                    active_calls_cc_graph_data.shift();
+                    active_calls_cc_graph_data.push([
+                        (last_cc[0] + i),
+                        last_cc[1].slice(0, 5).concat(last_cc[1][5] + i),
+                        last_cc[2],
+                        cc_last_N_average(30, last_cc[2])
+                    ]);
+                }
+
+                active_calls_cc_graph_data.shift();
+                active_calls_cc_graph_data.push([
+                    data.data['time_now_timestamp'],
+                    data.data['time_now_chart'],
+                    data.data['cc'],
+                    cc_last_N_average(30, data.data['cc'])
+                ]);
+
+
+                active_calls_cps_line_chart.clearChart();
+                drawCPSChart(active_calls_cps_graph_data);
+                active_calls_cc_line_chart.clearChart();
+                drawCChart(active_calls_cc_graph_data);
+            },
+            complete: function () {
+                // Schedule the next request when the current one's complete
+                setTimeout(executeQuery, 1000);
+            }
+        });
+    }
+</script>

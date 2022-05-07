@@ -1,0 +1,157 @@
+<%= stylesheet_link_tag 'settings' %>
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Custom_Invoice_XLSX_Template') %> - <%= nice_user(@user) %></h2>
+    <%= form_tag({action: :custom_invoice_xlsx_template_update, id: @user.id}, {multipart: true, class: 'details-form'}) do %>
+        <fieldset>
+          <div class="row">
+            <div class="col">
+              <div class="input-row">
+                <div class="label-col">
+                  <%= label_tag 'functionality_status', _('Custom_Invoice_XLSX_Template_for_this_User') %>
+                </div>
+                <div class="input-col">
+                  <div class="radio-container">
+                    <div class="radio-row">
+                      <%= radio_button_tag('functionality_status', '0', (@options[:functionality_status].to_i == 0)) + _('Disabled') %>
+                    </div>
+                    <div class="radio-row">
+                      <%= radio_button_tag('functionality_status', '1', (@options[:functionality_status].to_i == 1)) + _('Enabled') %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-row">
+                <div class="label-col">
+                  <%= label_tag 'file', _('XLSX_Template') %>&nbsp;(<%= @user.custom_invoice_xlsx_template_file_exist? ? link_to('Download current', action: :custom_invoice_xlsx_template_download, id: @user.id) : _('not_uploaded_yet') %>)
+                </div>
+                <div class="input-col">
+                  <%= file_field_tag 'file' %>
+                </div>
+              </div>
+
+              <div class="input-row">
+                <div class="label-col">
+                  <%= label_tag 'addresses_of_cells', _('addresses_of_cells') %>
+                </div>
+              </div>
+
+              <% M2Invoice.xlsx_template_cells.each do |name_of_cell| %>
+                  <div class="input-row">
+                    <% if name_of_cell.to_s.match(/invoice_client_details[2-6]/) %>
+                        <div class="label-col">
+                          <%= label_tag name_of_cell, _(name_of_cell), style: "padding-left: 40px;" %>
+                        </div>
+                        <div class="input-col" id="div_<%= name_of_cell %>" style="padding-top: 5px;">
+                          <%= hidden_field_tag("invoice_cells[#{name_of_cell}]", @options[:invoice_cells][name_of_cell]) %>
+                          <span id="span_<%= name_of_cell %>" style="padding-left: 9px; font-size: 14px;"></span>
+                        </div>
+                    <% else %>
+                        <div class="label-col">
+                          <%= label_tag name_of_cell, _(name_of_cell) %>
+                        </div>
+                        <div class="input-col" id="div_<%= name_of_cell %>">
+                          <%= text_field_tag("invoice_cells[#{name_of_cell}]", @options[:invoice_cells][name_of_cell], class: 'number', size: '4') %>
+                        </div>
+                    <% end %>
+                  </div>
+              <% end %>
+
+              <script type="text/javascript">
+                  var invoice_lines_inputs = jQuery('input[id^="invoice_cells_invoice_lines_"]');
+                  var address_inputs = jQuery('input[id^="invoice_cells_invoice_client_details"]').slice(0, 6);
+                  var address_spans = jQuery('span[id^="span_invoice_client_details"]');
+                  var address_first_input = jQuery('input[id^="invoice_cells_invoice_client_details1"]');
+                  var invoice_lines_inputs_div = jQuery('div[id^="div_invoice_lines_"]');
+                  var onmouseover_warning_tooltip = "<%= raw link_tooltip(_('Warning'), _('These_values_should_be_on_the_same_row'))[:onmouseover] %>";
+
+                  address_first_input.change(function() {
+                      var value = this.value;
+                      if (value.length > 1) {
+                          var column = value[0];
+                          var row = parseInt(value.slice(1));
+                          if (!isNaN(row)) {
+                              address_inputs.each(function(index, address_invoice) {
+                                  var address_invoice_row = row + index;
+                                  address_invoice.value = column + address_invoice_row;
+                              });
+                              change_spans_text();
+                          }
+                      }
+                  });
+
+                  window.onload = change_spans_text();
+
+                  function change_spans_text() {
+                      address_spans.each(function(index, address_span) {
+                          address_span.textContent = address_inputs[index + 1].value;
+                      });
+                  }
+
+                  function check_invoice_lines_inputs () {
+                      var all_input_rows_match = true;
+                      var input_value, previous_value;
+
+                      invoice_lines_inputs.each(function(index, invoice_lines_input) {
+                          input_value = String(invoice_lines_input.value).replace(/\D/g,'');
+
+                          // Ignore empty values
+                          if (!input_value) {
+                              return true;
+                          }
+
+                          if (previous_value && previous_value != input_value) {
+                              all_input_rows_match = false;
+                              return false;
+                          }
+
+                          previous_value = input_value;
+                      });
+
+                      return all_input_rows_match;
+                  }
+
+                  function show_hide_invoice_lines_inputs_warnings(value) {
+                      if (value) {
+                          invoice_lines_inputs_div.attr({
+                              onmouseover: 'UnTip();',
+                              onmouseout: 'UnTip();'
+                          });
+
+                          invoice_lines_inputs.attr({
+                              class: 'number'
+                          });
+                      } else {
+                          invoice_lines_inputs_div.attr({
+                              onmouseover: onmouseover_warning_tooltip,
+                              onmouseout: 'UnTip();'
+                          });
+
+                          invoice_lines_inputs.attr({
+                              class: 'number warning'
+                          });
+                      }
+                  }
+
+                  jQuery(document).ready(function () {
+                      show_hide_invoice_lines_inputs_warnings(check_invoice_lines_inputs());
+
+                      invoice_lines_inputs.on('change', function() {
+                          show_hide_invoice_lines_inputs_warnings(check_invoice_lines_inputs());
+                      });
+                  });
+              </script>
+            </div>
+          </div>
+
+          <br/><br/>
+
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/users/edit/#{@user.id}'" %>
+            <%= submit_tag _('UPDATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

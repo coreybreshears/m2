@@ -1,0 +1,6 @@
+# create data for devices/device_callerid.case
+# ----
+# create couple of CLIs
+user/user_2/create_callerid.sql
+user/user_5/create_callerid.sql
+# bundle loaded

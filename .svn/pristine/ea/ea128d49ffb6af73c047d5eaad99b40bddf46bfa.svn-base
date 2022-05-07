@@ -1,0 +1,33 @@
+# several tariffs for rate check functionality
+# ----
+tariff/delete_tariffs_and_rates.sql
+# old rates and tariffs deleted
+destination_groups/pabaltija_dg_12001/create.sql
+destination_groups/lithuania_dg_12002/create.sql
+destination_groups/latvia_dg_12003/create.sql
+destination_groups/baltija_dg_12004/create.sql
+# 3 destination groups created
+#destination_groups/pabaltija_dg_12001/add_destinations.sql
+#destination_groups/lithuania_dg_12002/add_destinations.sql
+#destination_groups/latvia_dg_12003/add_destinations.sql
+#destination_groups/baltija_dg_12004/add_destinations.sql
+# destinations assigned to groups
+tariff/buy_tariff_a_12004/create.sql
+tariff/buy_tariff_b_12005/create.sql
+tariff/buy_tariff_c_12006/create.sql
+tariff/buy_tariff_eur_12011/create.sql
+tariff/sell_tariff_a_12007/create.sql
+tariff/sell_tariff_b_12008/create.sql
+tariff/sell_tariff_c_12009/create.sql
+tariff/sell_tariff_eur_12010/create.sql
+# 8 tariffs inserted
+tariff/buy_tariff_a_12004/add_rates.sql
+tariff/buy_tariff_b_12005/add_rates.sql
+tariff/buy_tariff_c_12006/add_rates.sql
+tariff/buy_tariff_eur_12011/add_rates.sql
+tariff/sell_tariff_a_12007/add_rates.sql
+tariff/sell_tariff_b_12008/add_rates.sql
+tariff/sell_tariff_c_12009/add_rates.sql
+tariff/sell_tariff_eur_12010/add_rates.sql
+# rates for tariffs inserted
+# bundle loaded

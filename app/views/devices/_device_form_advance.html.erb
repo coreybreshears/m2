@@ -1,0 +1,158 @@
+<tr>
+  <td colspan="2" height="20"></td>
+</tr>
+<tr <%= tooltip(_('Advanced'), _('Advanced_Options_Notice')) %>>
+  <td colspan="2" class="bottom_border">
+    <b><%= _('Advanced') %></b>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+<% if device_type == "SIP" %>
+         <tr <%= tooltip(_('Grace_Time'), _('Grace_Time_Explanation')) %>>
+          <td><%= _('Grace_Time') %>:</td>
+          <td><%= text_field_tag 'grace_time', device.grace_time, "class" => "input", :size => "3", :maxlength => "4" %> <%= _('seconds') %></td>
+        </tr>
+        <tr>
+          <td> <%= _('Accept_calls_from_any_port') %>:</td>
+          <% if params[:action] == 'default_device' or !ccl_active? %>
+            <td>
+          <!--  <%= _('Port') %>: <%= check_box_tag 'insecure_port', '1', device.insecure.to_s.include?('port') %>
+          <%= _('Invite') %>: <%= check_box_tag 'insecure_invite', '1', device.insecure.to_s.include?('invite') %> -->
+           <%= radio_button_tag('device[insecure]', 'no', !device.insecure.to_s.include?('port')) %> <%= _('_No') %>
+            <%= radio_button_tag('device[insecure]', 'port', device.insecure.to_s.include?('port')) %> <%= _('_Yes') %>
+            </td>
+          <% else %>
+            <td>
+               <%= radio_button_tag('device[insecure]', 'no', !device.insecure.to_s.include?('port')) %> <%= _('_No') %>
+              <%= radio_button_tag('device[insecure]', 'port', device.insecure.to_s.include?('port')) %> <%= _('_Yes') %>
+            </td>
+          <% end %>
+        </tr>
+        <tr>
+          <td> <%= _('Custom_SIP_Header') %>:</td>
+          <td> <%= text_field_tag 'custom_sip_header', device.custom_sip_header, 'class' => 'input' %>  </td>
+        </tr>
+<% end %>
+<% lang = device.language.to_s.blank? ? 'en' : device.language %>
+<% if device_type != 'Virtual' %>
+    <% if device_type == 'SIP' %>
+     <% if params[:action] != 'default_device' %>
+     <tr class='tp_setting'>
+      <td> <%= _('Interpret_NO_ANSWER_as_FAILED') %>:</td>
+      <td>
+        <%= radio_button_tag('device[interpret_noanswer_as_failed]', '0', device.interpret_noanswer_as_failed == 0) %> <%= _('_No') %>
+        <%= radio_button_tag('device[interpret_noanswer_as_failed]', '1', device.interpret_noanswer_as_failed == 1) %> <%= _('_Yes') %>
+      </td>
+    </tr>
+    <tr class='tp_setting'>
+      <td> <%= _('Interpret_BUSY_as_FAILED') %>:</td>
+      <td>
+        <%= radio_button_tag('device[interpret_busy_as_failed]', '0', device.interpret_busy_as_failed == 0) %> <%= _('_No') %>
+        <%= radio_button_tag('device[interpret_busy_as_failed]', '1', device.interpret_busy_as_failed == 1) %> <%= _('_Yes') %>
+      </td>
+    </tr>
+    <% end %>
+
+    <% end %>
+<% end %>
+
+<% if ['SIP'].include? device_type %>
+    <tr>
+      <td colspan="2">
+        <%= _('Limit_up_to') %> <%= text_field_tag 'device[cps_call_limit]', device.cps_call_limit, :size => 3, 'class' => 'input' %> <%= _('calls') + ', ' + _('during') %> <%= text_field_tag 'device[cps_period]', device.cps_period, :size => 3, 'class' => 'input' %> <%= _('seconds') %>
+      </td>
+    </tr>
+<% end %>
+<tr id="periodic-check">
+  <td><%=  _('periodic_check') %>:</td>
+  <td>
+    <%= radio_button_tag('device[periodic_check]', 0, (device.periodic_check == 0)) %> <%= _('_No') %>
+    <%= radio_button_tag('device[periodic_check]', 1, (device.periodic_check == 1)) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr id='sticky_contact' class='tp_setting'>
+    <td><%= _('sticky_contact') %>:</td>
+    <td><%= check_box_tag 'sticky_contact', 1 , sticky_contact.to_i == 1 %></td>
+</tr>
+<tr>
+  <td><%=  _('Disable_Q850_Reason') %>:</td>
+  <td>
+    <%= radio_button_tag('device[disable_q850]', '0', device.disable_q850 == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[disable_q850]', '1', device.disable_q850 == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr>
+  <td><%=  _('Forward_RPID') %>:</td>
+  <td>
+    <%= radio_button_tag('device[forward_rpid]', '0', device.forward_rpid == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[forward_rpid]', '1', device.forward_rpid == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr>
+  <td><%=  _('Forward_PAI') %>:</td>
+  <td>
+    <%= radio_button_tag('device[forward_pai]', '0', device.forward_pai == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[forward_pai]', '1', device.forward_pai == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr class='op_setting'>
+  <td><%=  _('Change_RPID_PAI_host') %>:</td>
+  <td>
+    <%= radio_button_tag('device[change_rpidpai_host]', '0', device.change_rpidpai_host == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[change_rpidpai_host]', '1', device.change_rpidpai_host == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr>
+  <td><%=  _('Bypass_Media') %>:</td>
+  <td>
+    <%= radio_button_tag('device[bypass_media]', '0', device.bypass_media == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[bypass_media]', '1', device.bypass_media == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr class='tp_setting'>
+  <td><%=  _('Disable_SIP_URI_encoding') %>:</td>
+  <td>
+    <%= radio_button_tag('device[disable_sip_uri_encoding]', '0', device.disable_sip_uri_encoding == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[disable_sip_uri_encoding]', '1', device.disable_sip_uri_encoding == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr class='op_setting'>
+  <td><%=  _('Use_Destination_from_INVITE_request') %>:</td>
+  <td>
+    <%= radio_button_tag('device[use_invite_dst]', '0', device.use_invite_dst == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[use_invite_dst]', '1', device.use_invite_dst == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<% if params[:action].to_s != 'default_device' %>
+  <tr class='tp_setting'>
+    <td><%=  _('Use_PAI_if_CallerID_is_anonymous') %>:</td>
+    <td>
+      <%= radio_button_tag('device[use_pai_if_cid_anonymous]', '0', device.use_pai_if_cid_anonymous == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[use_pai_if_cid_anonymous]', '1', device.use_pai_if_cid_anonymous == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+  <tr class='op_setting'>
+    <td><%=  _('Ring_instead_Session_Progress') %>:</td>
+    <td>
+      <%= radio_button_tag('device[ring_instead_progress]', '0', device.ring_instead_progress == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[ring_instead_progress]', '1', device.ring_instead_progress == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+<% end %>
+<tr class='op_setting'>
+  <td><%=  _('Send_CallerID_in_Contact_header') %>:</td>
+  <td>
+    <%= radio_button_tag('device[set_sip_contact]', '0', device.set_sip_contact == 0) %> <%= _('_No') %>
+    <%= radio_button_tag('device[set_sip_contact]', '1', device.set_sip_contact == 1) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <div class='link_to'>
+      <%= link_to b_rules + _('Disconnect_Code_Changes'), {action: :disconnect_code_changes, id: device.id} %>
+    </div>
+  </td>
+</tr>
+

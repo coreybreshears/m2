@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col">
+      <%= raw settings_group_text(_('CSV_Separator'), 'csv_separator', "CSV_Separator", {}, {class: 'number'}) %>
+      <%= raw settings_group_text(_('CSV_Decimal'), 'csv_decimal', "CSV_Decimal", {}, {class: 'number'}) %>
+      <%= raw settings_group_number(_('CSV_File_size'), 'csv_file_size', "CSV_File_size", {sufix: " KB"}, {class: 'number'}) %>
+    </div>
+</div>

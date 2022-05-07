@@ -1,0 +1,110 @@
+<% content_for :search_form do %>
+<%= form_tag({action: :hangup_cause_codes_stats}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+
+<fieldset>
+  <%= hidden_field_tag 'page', 1 %>
+  <%= hidden_field_tag 'search_on', 1 %>
+  <div class="column date-col calendar-holder">
+    <%= label_tag 'from', _('From') %>
+    <div class="row">
+      <div class="calendar-col">
+        <%= text_field_tag 'date_from', formatted_date_as_given(@options_from), class: 'checkin default', id: 'from' %>
+        <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+      </div>
+      <div class="time-col">
+        <%= text_field_tag 'time_from', formatted_time_as_given(@options_from), class: 'default', id: 'time1' %>
+        <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+      </div>
+    </div>
+    <%= label_tag 'to', _('To') %>
+    <div class="row">
+      <div class="calendar-col">
+        <%= text_field_tag 'date_till', formatted_date_as_given(@options_till), class: 'checkout default', id: 'till' %>
+        <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+      </div>
+      <div class="time-col">
+        <%= text_field_tag 'time_till', formatted_time_as_given(@options_till), class: 'default', id: 'time2' %>
+        <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+      </div>
+    </div>
+  </div>
+  <div class="column source-col">
+    <div class="row">
+      <%= label_tag 'client', _('User') %>
+      <%= render('shared/m2_live_search_field',
+       object: @options[:s_user].to_s,
+       object_id: @user_id || -2,
+       object_name: 'User',
+       action_url: {controller: :users, action: :get_users_map, options: {show_admin: true}}
+       )
+       %>
+     </div>
+     <div class="row">
+      <%= label_tag 'from', _('Destination_group') %>
+      <%= select_tag('dst_group_id', options_for_select([[_('All'), -1]] + @dst_group.map { |dst_group| [dst_group.name, dst_group.id] }, @dst_group_id.to_i)) %>
+      </div>
+    </div>
+    <div class="column source-col">
+      <div class="row" <%= tooltip(_('Info'), _('Select_User_first_to_select_its_Connection_Points')) %>>
+        <% if @user.present? %>
+            <% opt_map = @user.devices.map { |d| [nice_device_no_pic(d), d.id] } %>
+            <% opt_map = [[_('All'), 'all']] + opt_map -%>
+            <%= label_tag 's_device', _('Connection_Points') %>
+            <%= select_tag('s_device', options_for_select(opt_map, @device_id.to_i)) %>
+        <% else %>
+            <%= label_tag 's_device', _('Connection_Points') %>
+            <%= select_tag('s_device', options_for_select([[_('All'), '']])) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="column buttons-col">
+      <div class="row payment-buttons-row">
+        <%= clear_button_tag _('clear') %>
+        <%= submit_button_tag _('refine') %>
+      </div>
+    </div>
+
+  </fieldset>
+  <script>jQuery(document).ready(function ($) {
+    function updateDevicesList() {
+      var s_user_id = $("#s_user_id").val();
+      $.ajax({
+                      // Request destination
+                      url: "<%= Web_Dir %>" + "/devices/ajax_get_user_devices",
+                      data: {
+                        user_id: s_user_id == '-1' ? '-2' : s_user_id,
+                        all: true,
+                        fax: true
+                      },
+                      // Type of request
+                      type: "GET",
+                      dataType: "html",
+                      // Update the table with a json response
+                      success: function (data) {
+                        $("#s_device").replaceWith(data);
+
+                          // We need this one live, so select each time
+                          $("#s_device").siblings("span").remove();
+                          jcf.customForms.replaceAll();
+                        },
+                      // Clean up and get ready for a successor request
+                      complete: function () {
+                        $("#s_device").val("<%= @options[:s_device] || '' %>");
+                        $("#s_device")[0].jcf.refreshState();
+                      }
+                    });
+    }
+    $("#s_user_id").on('change keyup paste', function(){
+      updateDevicesList()
+    });
+  })
+</script>
+<% end %>
+<% end %>
+<%= render 'es_hangup_stats', calls: @calls, graph: @calls_graph, options: @options,
+           search_data: {user: @user, user_id: @user_id, device_id: @device_id}
+%>
+
+
+
+

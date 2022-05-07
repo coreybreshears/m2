@@ -1,0 +1,1532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--~~~M4~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form[8]/b</td>
+	<td>M4 Functionality:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m4_functionality</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<!--~~~~~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td>Number Pool #TEST_1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td>Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>Connection Point #1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>Connection Point #2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/new?return_to_action=list&amp;return_to_controller=users&amp;user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_description</td>
+	<td>Connection Point #3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_ipaddr</td>
+	<td>192.168.0.3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cli_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_diversion_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_rpid_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_pai_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_ppi_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_from_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=use_pai_if_cli_anonymous_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_tr_rule_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_allow_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_src_regexp_value</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_allow_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_deny_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_deny_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cld_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_from_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_tr_rule_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_allow_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_deny_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_from_domain_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_to_domain_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_from_auth_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_to_auth_value</td>
+	<td></td>
+</tr>
+<!--# Check A Number (CLI/ANI):-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=auth_type_advanced</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.auth-advanced-setting &gt; td &gt; div.slider-radio &gt; label.input-checked</td>
+	<td>UDP</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_cli</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_auth_check_cli</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_diversion</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_from_diversion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_rpid</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_from_rpid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_pai</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_from_pai</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_ppi</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_from_ppi</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_from</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_from_from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_use_pai_if_cli_anonymous</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_use_pai_if_cli_anonymous</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[11]/td</td>
+	<td>Transformation Rule:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.cli-setting.cli-setting-first-indent &gt; td &gt; div.slider-radio.input-checked-parent &gt; label</td>
+	<td>Regexp</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.cli-setting.cli-setting-first-indent &gt; td &gt; div.slider-radio.input-checked-parent &gt; label.input-checked</td>
+	<td>Old Format</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[14]/td/span</td>
+	<td>old format rules</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_tr_rule_type_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cli_regexp</td>
+	<td>/alice/37061111111/</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[16]/td</td>
+	<td>Allow (Whitelist):</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[17]/td/div/label</td>
+	<td>A Number (CLI/ANI)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[17]/td/div/label[2]</td>
+	<td>From Number Pool</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_op_src_regexp</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_allow_type_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_cli_number_pool_allow_id</td>
+	<td>EEA Number Pool #TEST_1 Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cli_number_pool_allow_id</td>
+	<td>EEA</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_cli_number_pool_allow_id</td>
+	<td>label=Number Pool #TEST_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[21]/td</td>
+	<td>Deny (Blacklist):</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[22]/td/div/label</td>
+	<td>A Number (CLI/ANI)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[22]/td/div/label[2]</td>
+	<td>From Number Pool</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[12]/td/table/tbody/tr[23]/td/span</td>
+	<td>regexp for A Number (CLI/ANI)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cli_deny_type_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_cli_number_pool_deny_id</td>
+	<td>EEA Number Pool #TEST_1 Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cli_number_pool_deny_id</td>
+	<td>EEA</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_cli_number_pool_deny_id</td>
+	<td>label=Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_cli</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_diversion</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_rpid</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_pai</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_ppi</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_from_from</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_use_pai_if_cli_anonymous</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cli_regexp</td>
+	<td>/alice/37061111111/</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cli_number_pool_allow_id</td>
+	<td>Number Pool #TEST_1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cli_number_pool_deny_id</td>
+	<td>Number Pool #TEST_2</td>
+</tr>
+<!--# Check B Number (CLD/DNIS):-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=auth_type_advanced</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.auth-advanced-setting &gt; td &gt; div.slider-radio &gt; label.input-checked</td>
+	<td>UDP</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_cld</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_auth_check_cld</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.cld-setting.cld-setting-first-indent &gt; td</td>
+	<td>Get CLD/DNIS from:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.cld-setting.cld-setting-first-indent &gt; td &gt; div.slider-radio &gt; label.input-checked</td>
+	<td>Request-URI</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[4]/td/div/label[2]</td>
+	<td>exact:To: Header</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[4]/td/div/label[3]</td>
+	<td>exact:Contact: Header</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cld_from_type_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cld_from_type_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[6]/td</td>
+	<td>Transformation Rule:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[7]/td/div/label</td>
+	<td>Regexp</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[7]/td/div/label[2]</td>
+	<td>Old Format</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[9]/td/span</td>
+	<td>old format rules</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cld_tr_rule_type_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cld_regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cld_regexp</td>
+	<td>/test/</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[11]/td</td>
+	<td>Allow (Whitelist):</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[12]/td/div/label</td>
+	<td>B Number (CLD/DNIS)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[12]/td/div/label[2]</td>
+	<td>From Number Pool</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[13]/td/span</td>
+	<td>regexp for B Number (CLD/DNIS)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cld_allow_type_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_cld_number_pool_allow_id</td>
+	<td>EEA Number Pool #TEST_1 Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cld_number_pool_allow_id</td>
+	<td>EEA</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_cld_number_pool_allow_id</td>
+	<td>label=Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[16]/td</td>
+	<td>Deny (Blacklist):</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[17]/td/div/label</td>
+	<td>B Number (CLD/DNIS)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[17]/td/div/label[2]</td>
+	<td>From Number Pool</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='page_width']/tbody/tr/td/table/tbody/tr/td/div/form/table/tbody/tr/td/table/tbody/tr[11]/td/table/tbody/tr[13]/td/table/tbody/tr[18]/td/span</td>
+	<td>regexp for B Number (CLD/DNIS)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_cld_deny_type_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_cld_number_pool_deny_id</td>
+	<td>EEA Number Pool #TEST_1 Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cld_number_pool_deny_id</td>
+	<td>EEA</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_cld_number_pool_deny_id</td>
+	<td>label=Number Pool #TEST_1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_cli</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_cld</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.cld-setting.cld-setting-first-indent &gt; td &gt; div.slider-radio.input-checked-parent &gt; label.input-checked</td>
+	<td>exact:Contact: Header</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cld_regexp</td>
+	<td>/test/</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cld_number_pool_allow_id</td>
+	<td>Number Pool #TEST_2</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_cld_number_pool_deny_id</td>
+	<td>Number Pool #TEST_1</td>
+</tr>
+<!--# Check From: Domain / Check To: Domain-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=auth_type_advanced</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.auth-advanced-setting &gt; td &gt; div.slider-radio &gt; label.input-checked</td>
+	<td>UDP</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_from_domain</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_to_domain</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_auth_check_from_domain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_domain_from_auth</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_domain_from_auth</td>
+	<td>test*bla.bla</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Invalid Check From: Domain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_from_domain</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_domain_from_auth</td>
+	<td>exact:test*bla.bla</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_domain_from_auth</td>
+	<td>test.bla*</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Invalid Check From: Domain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_from_domain</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_domain_from_auth</td>
+	<td>exact:test.bla*</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_domain_from_auth</td>
+	<td>*.test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=auth_type_advanced</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_to_domain</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_auth_check_to_domain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_domain_to_auth</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_domain_to_auth</td>
+	<td>qwerty*bla.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Invalid Check To: Domain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_to_domain</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_domain_to_auth</td>
+	<td>qwerty*bla.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_domain_to_auth</td>
+	<td>qwerty.com*</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Invalid Check To: Domain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_auth_check_to_domain</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_domain_to_auth</td>
+	<td>qwerty.com*</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_domain_to_auth</td>
+	<td>*.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cli_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_diversion_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_rpid_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_pai_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_ppi_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_from_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=use_pai_if_cli_anonymous_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_tr_rule_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_regexp_value</td>
+	<td>/alice/37061111111/</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_allow_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_src_regexp_value</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_allow_id_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_deny_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_deny_id_value</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cld_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_from_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_tr_rule_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_allow_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_deny_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_from_domain_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_to_domain_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_from_auth_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_to_auth_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cld_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_from_type_value</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_tr_rule_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_regexp_value</td>
+	<td>/test/</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_allow_id_value</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_deny_id_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cli_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_diversion_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_rpid_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_pai_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_ppi_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_from_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=use_pai_if_cli_anonymous_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_tr_rule_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_allow_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_src_regexp_value</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_allow_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_deny_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_deny_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_from_domain_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_to_domain_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_from_auth_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_to_auth_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=devices</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_from_domain_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_to_domain_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_from_auth_value</td>
+	<td>exact:*.test</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=domain_to_auth_value</td>
+	<td>exact:*.com</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cli_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_diversion_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_rpid_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_pai_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_ppi_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_from_from_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=use_pai_if_cli_anonymous_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_tr_rule_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_allow_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_src_regexp_value</td>
+	<td>exact:.*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_allow_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_deny_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cli_number_pool_deny_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=auth_check_cld_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_from_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_tr_rule_type_value</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_allow_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_allow_id_value</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_type_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_deny_regexp_value</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cld_number_pool_deny_id_value</td>
+	<td>0</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

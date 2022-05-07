@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--# Menu Activation-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff_import/menu_activation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/tariff_import_rules/list')]</td>
+	<td>Import Rules</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_name</td>
+	<td>Tariff Import</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<!--# Page Elements-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_import_rules/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Add New Tariff Import Rules</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.header-right</td>
+	<td>Drag &amp; Drop to change priority</td>
+</tr>
+<!--# Error Messages-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_import_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Create Rate Import Rules</td>
+	<td>Create Rate Import Rules</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Import Rules were not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Name must be present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate Import Rules must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_name</td>
+	<td>Tariff Import Rule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Import Rules were not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Name must be present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate Import Rules must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_received_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_review_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_imported_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_errors_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_rejected_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Import Rules were not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Received Recipients must be present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Imported for Review Recipients must be present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Imported Recipients must be present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Imported with Errors Recipients must be present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Rejected Recipients must be present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_received_email_notification_recipients</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_review_email_notification_recipients</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_imported_email_notification_recipients</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_errors_email_notification_recipients</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_rejected_email_notification_recipients</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Received Recipients format is invalid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Imported for Review Recipients format is invalid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Imported Recipients format is invalid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Imported with Errors Recipients format is invalid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Rejected Recipients format is invalid</td>
+	<td></td>
+</tr>
+<!--# Rate Import Rule must be created-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Rate Import Rules</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_rate_import_rules/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_rate_import_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_rate_import_rule_name</td>
+	<td>Rate Import Rule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Rate Import Rule</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_import_rules/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder</td>
+	<td>No Tariff Import Rules</td>
+</tr>
+<!--# Cancel New Tariff Import Rule-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_import_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_name</td>
+	<td>Tariff Import Rule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/billing/tariff_import_rules/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder</td>
+	<td>No Tariff Import Rules</td>
+</tr>
+<!--# Create New-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariff_import_rules/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>New Tariff Import Rules</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_tariff_import_rule']/*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_name</td>
+	<td>Tariff Import Rule</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Create Rate Import Rules</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_tariff_rate_import_rule_id</td>
+	<td>Rate Import Rule</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_tariff_id</td>
+	<td>label=Test Tariff (USD)</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_import_type</td>
+	<td>Add/Update</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_import_type</td>
+	<td>label=Replace All Rates</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_tariff_template_id</td>
+	<td>Pre-Made HGC</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_tariff_template_id</td>
+	<td>label=Pre-Made TATA</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_effective_date_from</td>
+	<td>Template - Inline</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_effective_date_from</td>
+	<td>label=Subject</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_import_rule_effective_date_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_effective_date_prefix</td>
+	<td>TATA Tariff Effective Date:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_import_rule_effective_date_format</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_effective_date_format</td>
+	<td>%Y-%m-%d %H:%M</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=tariff_import_rule_manual_review_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=tariff_import_rule_reject_if_errors_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=tariff_import_rule_stop_processing_more_rules_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>id=tariff_import_rule_default_effective_from_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tariff_import_rule_manual_review_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tariff_import_rule_reject_if_errors_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tariff_import_rule_stop_processing_more_rules_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tariff_import_rule_default_effective_from_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_import_rule_default_connection_fee</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_default_connection_fee</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_import_rule_default_increment</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_default_increment</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_import_rule_default_min_time</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_default_min_time</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h3</td>
+	<td>Email/Attachment Validation</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_import_rule_mail_from</td>
+	<td>%@%.%</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tariff_import_rule_mail_from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_mail_from</td>
+	<td>test@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_mail_sender</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_mail_subject</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_mail_text</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_file_name</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.input-row.max-width-max &gt; h3</td>
+	<td>Email Notifications</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_trigger_received_email_notification_id</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_trigger_review_email_notification_id</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_trigger_imported_email_notification_id</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_trigger_errors_email_notification_id</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_import_rule_trigger_rejected_email_notification_id</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_received_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_review_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_imported_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_errors_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_import_rule_trigger_rejected_email_notification_id</td>
+	<td>label=Tariff Import</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_received_email_notification_recipients</td>
+	<td>test1@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_review_email_notification_recipients</td>
+	<td>test2@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_imported_email_notification_recipients</td>
+	<td>test3@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_errors_email_notification_recipients</td>
+	<td>test4@test.test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_import_rule_trigger_rejected_email_notification_recipients</td>
+	<td>test5@test.test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff Import Rules successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=YES</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Tariff Import Rule</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff_1</td>
+	<td>Test Tariff (USD)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=type_1</td>
+	<td>Replace All Rates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=from_1</td>
+	<td>test@test.test</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=sender_1</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=subject_1</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=message_1</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_name_1</td>
+	<td>test%</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=destroy_1</td>
+	<td></td>
+</tr>
+<!--# Edit-->
+<!--# Delete-->
+<!--# List-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>tar_imp_with_effective_date</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tar_imp_with_effective_date</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--LOAD TARIFFS AND RATES-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=tariff_import/for_import_with_effective_from_date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<!--CHECK ADMIN RATES-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120011</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120011</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120011</td>
+	<td>0.0256</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120101</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120101</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120101</td>
+	<td>2013-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120012</td>
+	<td>Afghanistan Kabul</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120012</td>
+	<td>9320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120012</td>
+	<td>0.2652</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120012</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120013</td>
+	<td>Afghanistan Kandahar</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120013</td>
+	<td>9330</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120013</td>
+	<td>0.2688</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120013</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120104</td>
+	<td>Afghanistan Herat</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120104</td>
+	<td>9340</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120104</td>
+	<td>0.5856</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120104</td>
+	<td>2013-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120014</td>
+	<td>Afghanistan Herat</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120014</td>
+	<td>9340</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120014</td>
+	<td>0.5856</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120014</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120015</td>
+	<td>Afghanistan Mazar-e-sharif</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120015</td>
+	<td>9350</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120015</td>
+	<td>0.5896</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120015</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120105</td>
+	<td>Afghanistan Mazar-e-sharif</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120105</td>
+	<td>9350</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120105</td>
+	<td>9350</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120105</td>
+	<td>0.5896</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120105</td>
+	<td>2013-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/5_items_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120111</td>
+	<td>Afghanistan Cdma</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120021</td>
+	<td>Afghanistan Cdma</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120116</td>
+	<td>Afghanistan freephone</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120026</td>
+	<td>Afghanistan freephone</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120105</td>
+	<td>Afghanistan Mazar-e-sharif</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120015</td>
+	<td>Afghanistan Mazar-e-sharif</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120107</td>
+	<td>Afghanistan Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120108</td>
+	<td>Afghanistan mobile</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120115</td>
+	<td>Afghanistan mobile-Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120117</td>
+	<td>Afghanistan premium</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120027</td>
+	<td>Afghanistan premium</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/120011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.0422</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/12001?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>{&quot;filename&quot;:&quot;PROVIDER_TARIFF_FOR_ADMIN_1-USD.csv&quot;,&quot;file&quot;:&quot;Destination,Prefix,Rate(USD),Connection Fee(USD),Increment,Minimal Time,Start Time,End Time,Week Day,Effective from,Blocked\n\&quot;\&quot;,'',0.3330,0.4400,0,2,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;\&quot;,1201,0.8440,0.4234,0,1,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Cdma\&quot;,9375,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan freephone\&quot;,9380,0.2500,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Herat\&quot;,9340,0.5856,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Jalalabad\&quot;,9360,0.2586,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Kabul\&quot;,9320,0.2652,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Kandahar\&quot;,9330,0.2688,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Mazar-e-sharif\&quot;,9350,0.5896,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Mobile\&quot;,937,0.2369,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9370,0.1259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9371,0.0257,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9372,0.0596,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9376,0.2696,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Areeba\&quot;,9377,0.6995,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Etisa\&quot;,9378,0.6953,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Roshan\&quot;,9379,0.6990,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan premium\&quot;,9390,0.2690,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan proper\&quot;,93,0.0256,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Kaunas\&quot;,37037,0.6890,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370462,0.0259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370463,0.6955,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370464,0.1256,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile\&quot;,3702,0.5956,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile\&quot;,370229,0.6460,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile\&quot;,3706,0.2595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370600,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370601,0.5896,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370602,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370603,0.2585,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370604,0.2580,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370605,0.2570,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370606,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370607,0.3696,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,37060,0.2880,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370645,0.2670,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370646,0.5965,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370647,0.5950,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370648,0.2000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Palanga\&quot;,37046,0.1147,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania proper\&quot;,370,0.2695,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,37052,0.0589,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370521,0.2500,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370523,0.1200,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370524,0.1580,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370525,0.6589,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370526,0.1258,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370527,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1220,0.9522,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1221,0.0699,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1223,0.2952,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 202 Washington DC\&quot;,1202,0.2690,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;USA 203Connecticut\&quot;,1203,0.2000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;USA 205 Alabama\&quot;,1205,0.6460,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 206 Washington\&quot;,1206,0.6950,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 207 Maine\&quot;,1207,0.1589,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 208 Idaho\&quot;,1208,0.0259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 209 California\&quot;,1209,0.0595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 210 Texas\&quot;,1210,0.6965,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 212 New York\&quot;,1212,0.6947,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 213 California\&quot;,1213,0.6958,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 214 Texas\&quot;,1214,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 215 Pennsylvania\&quot;,1215,0.1482,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 216 Ohio\&quot;,1216,0.6915,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 217 Illinois\&quot;,1217,0.0476,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 218 Minnesota\&quot;,1218,0.2699,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 219 Indiana\&quot;,1219,0.0299,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA proper\&quot;,1,0.2595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n&quot;}</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan*93*0.0422</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/50_items_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/effective_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=delete_unimported_prefix_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=prefix_id</td>
+	<td>Prefix</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=rate_id</td>
+	<td>Rate(USD)</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=effective_from</td>
+	<td>Effective from</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=connection_fee_id</td>
+	<td>Connection Fee(USD)</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=increment_id</td>
+	<td>Increment</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=min_time_id</td>
+	<td>Minimal Time</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manual_ghost_percent</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=destination_id</td>
+	<td>Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/bad_rows_from_csv?csv2=1&amp;tariff_id=12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[10]</td>
+	<td>Bad Effective from date format</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[2]/td[10]</td>
+	<td>Bad Effective from date format</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[10]/b</td>
+	<td>Bad Effective from date format</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#r_to_update &gt; b</td>
+	<td>64</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated: 64</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_123210</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_123210</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_123210</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123210</td>
+	<td>10.2660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123210</td>
+	<td>10.2660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123210</td>
+	<td>2032-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120101</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120101</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120101</td>
+	<td>0.0256</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120101</td>
+	<td>2013-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120011</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120011</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120011</td>
+	<td>0.0422</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_123184</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_123184</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123184</td>
+	<td>19.3690</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123184</td>
+	<td>2031-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123184</td>
+	<td>2031-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120118</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120118</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120118</td>
+	<td>0.2695</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120118</td>
+	<td>2013-01-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120028</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120028</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120028</td>
+	<td>0.2695</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120028</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/12001?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>{&quot;filename&quot;:&quot;PROVIDER_TARIFF_FOR_ADMIN_1-USD.csv&quot;,&quot;file&quot;:&quot;Destination,Prefix,Rate(USD),Connection Fee(USD),Increment,Minimal Time,Start Time,End Time,Week Day,Effective from,Blocked\n\&quot;\&quot;,'',0.3330,0.4400,0,2,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;\&quot;,1201,0.8440,0.4234,0,1,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Cdma\&quot;,9375,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan freephone\&quot;,9380,0.2500,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Herat\&quot;,9340,0.5856,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Jalalabad\&quot;,9360,0.2586,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Kabul\&quot;,9320,0.2652,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Kandahar\&quot;,9330,0.2688,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Mazar-e-sharif\&quot;,9350,0.5896,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan Mobile\&quot;,937,0.2369,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9370,0.1259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9371,0.0257,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9372,0.0596,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9376,0.2696,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Areeba\&quot;,9377,0.6995,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Etisa\&quot;,9378,0.6953,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Roshan\&quot;,9379,0.6990,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan premium\&quot;,9390,0.2690,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Afghanistan proper\&quot;,93,0.0256,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Kaunas\&quot;,37037,0.6890,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370462,0.0259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370463,0.6955,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370464,0.1256,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile\&quot;,3702,0.5956,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile\&quot;,370229,0.6460,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile\&quot;,3706,0.2595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370600,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370601,0.5896,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370602,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370603,0.2585,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370604,0.2580,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370605,0.2570,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370606,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370607,0.3696,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,37060,0.2880,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370645,0.2670,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370646,0.5965,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370647,0.5950,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370648,0.2000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Palanga\&quot;,37046,0.1147,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania proper\&quot;,370,0.2695,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,37052,0.0589,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370521,0.2500,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370523,0.1200,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370524,0.1580,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370525,11.3690,0.0010,1,60,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370526,0.1258,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370527,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1220,0.9522,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1221,0.0699,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1223,0.2952,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 202 Washington DC\&quot;,1202,0.2690,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;USA 203Connecticut\&quot;,1203,0.2000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;USA 205 Alabama\&quot;,1205,0.6460,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 206 Washington\&quot;,1206,0.6950,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 207 Maine\&quot;,1207,0.1589,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 208 Idaho\&quot;,1208,0.0259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 209 California\&quot;,1209,0.0595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 210 Texas\&quot;,1210,0.6965,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 212 New York\&quot;,1212,0.6947,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 213 California\&quot;,1213,0.6958,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 214 Texas\&quot;,1214,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 215 Pennsylvania\&quot;,1215,0.1482,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 216 Ohio\&quot;,1216,0.6915,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 217 Illinois\&quot;,1217,0.0476,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 218 Minnesota\&quot;,1218,0.2699,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA 219 Indiana\&quot;,1219,0.0299,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n\&quot;USA proper\&quot;,1,0.2595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,2013-01-01 00:00:00,\&quot;\&quot;\n&quot;}</td>
+</tr>
+<!--sitas reitas neaktyvus, jo neturi rodyti-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan*93*0.0422</td>
+	<td></td>
+</tr>
+<!--Bus naujas ticketas-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/prefix_finder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search</td>
+	<td>3706</td>
+</tr>
+<!--Bus naujas ticketas-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_date_format_d_m_y</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+00:00) London</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_123210</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_123210</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_123210</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123210</td>
+	<td>10.2660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123210</td>
+	<td>10.2660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123210</td>
+	<td>31/12/2031 22:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120101</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120101</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120101</td>
+	<td>0.0256</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120101</td>
+	<td>31/12/2012 22:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120011</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120011</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120011</td>
+	<td>0.0422</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120011</td>
+	<td>0.0422</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/12001?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>{&quot;filename&quot;:&quot;PROVIDER_TARIFF_FOR_ADMIN_1-USD.csv&quot;,&quot;file&quot;:&quot;Destination,Prefix,Rate(USD),Connection Fee(USD),Increment,Minimal Time,Start Time,End Time,Week Day,Effective from,Blocked\n\&quot;\&quot;,'',0.3330,0.4400,0,2,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;\&quot;,1201,0.8440,0.4234,0,1,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Cdma\&quot;,9375,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan freephone\&quot;,9380,0.2500,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan Herat\&quot;,9340,0.5856,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan Jalalabad\&quot;,9360,0.2586,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan Kabul\&quot;,9320,0.2652,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Kandahar\&quot;,9330,0.2688,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan Mazar-e-sharif\&quot;,9350,0.5896,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan Mobile\&quot;,937,0.2369,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9370,0.1259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9371,0.0257,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9372,0.0596,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile\&quot;,9376,0.2696,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Areeba\&quot;,9377,0.6995,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Etisa\&quot;,9378,0.6953,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan mobile-Roshan\&quot;,9379,0.6990,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan premium\&quot;,9390,0.2690,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Afghanistan proper\&quot;,93,0.0256,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Kaunas\&quot;,37037,0.6890,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370462,0.0259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370463,0.6955,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Klaipeda\&quot;,370464,0.1256,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile\&quot;,3702,0.5956,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile\&quot;,370229,0.6460,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile\&quot;,3706,0.2595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370600,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370601,0.5896,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370602,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370603,0.2585,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370604,0.2580,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370605,0.2570,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370606,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Mobile Tele2\&quot;,370607,0.3696,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,37060,0.2880,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370645,0.2670,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370646,0.5965,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370647,0.5950,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania mobile-Tele2\&quot;,370648,0.2000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Palanga\&quot;,37046,0.1147,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania proper\&quot;,370,0.2695,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,37052,0.0589,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370521,0.2500,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370523,0.1200,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370524,0.1580,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370525,11.3690,0.0010,1,60,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370526,0.1258,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;Lithuania Vilnius\&quot;,370527,0.2588,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1220,0.9522,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1221,0.0699,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA\&quot;,1223,0.2952,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 202 Washington DC\&quot;,1202,0.2690,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;USA 203Connecticut\&quot;,1203,0.2000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;USA 205 Alabama\&quot;,1205,0.6460,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 206 Washington\&quot;,1206,0.6950,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 207 Maine\&quot;,1207,0.1589,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 208 Idaho\&quot;,1208,0.0259,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 209 California\&quot;,1209,0.0595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 210 Texas\&quot;,1210,0.6965,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 212 New York\&quot;,1212,0.6947,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 213 California\&quot;,1213,0.6958,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 214 Texas\&quot;,1214,0.2698,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 215 Pennsylvania\&quot;,1215,0.1482,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 216 Ohio\&quot;,1216,0.6915,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 217 Illinois\&quot;,1217,0.0476,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 218 Minnesota\&quot;,1218,0.2699,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA 219 Indiana\&quot;,1219,0.0299,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n\&quot;USA proper\&quot;,1,0.2595,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,31/12/2012 22:00:00,\&quot;\&quot;\n&quot;}</td>
+</tr>
+<!--sitas reitas neaktyvus, jo neturi rodyti-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>93*0.0422</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+13:00) Nuku'alofa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_123210</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_123210</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_123210</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123210</td>
+	<td>10.2660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123210</td>
+	<td>10.2660</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123210</td>
+	<td>01/01/2032 1?:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120101</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120101</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120101</td>
+	<td>0.0256</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120101</td>
+	<td>01/01/2013 1?:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120011</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_120011</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_120011</td>
+	<td>0.0422</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/12001?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Afghanistan Cdma*9375*0.2698</td>
+	<td></td>
+</tr>
+<!--sitas reitas neaktyvus, jo neturi rodyti-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan*93*0.0422</td>
+	<td></td>
+</tr>
+<!--TZ ir datos formatas importuojant tarifus-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/effective_rates_another_date_format.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=effective_from</td>
+	<td>Effective from</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from_date_format</td>
+	<td>label=m/d/Y</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manual_ghost_percent</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_4</td>
+	<td>01/01/2031 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_7</td>
+	<td>01-01-2031 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_13</td>
+	<td>01 01 2031 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_11</td>
+	<td>01/01/2031 00:00:00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>13</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>New rates created: 13</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123238</td>
+	<td>01/01/2031 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123237</td>
+	<td>01/01/2031 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123236</td>
+	<td>01/01/2031 00:00:00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/12001?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Afghanistan Cdma*9375*0.2698</td>
+	<td></td>
+</tr>
+<!--sitas reitas neaktyvus, jo neturi rodyti-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan*93*0.0422</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/effective_rates_same_rate.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>File uploaded</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=effective_from</td>
+	<td>Effective from</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from_date_format</td>
+	<td>label=d/m/Y</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manual_ghost_percent</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_4</td>
+	<td>24/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_8</td>
+	<td>24/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_8</td>
+	<td>8.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_9</td>
+	<td>8.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_9</td>
+	<td>25/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_10</td>
+	<td>8.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_10</td>
+	<td>26/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_rate_12</td>
+	<td>5.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_12</td>
+	<td>24/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rates updated: 15</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123250</td>
+	<td>26/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123249</td>
+	<td>25/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123248</td>
+	<td>24/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123250</td>
+	<td>8.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123249</td>
+	<td>8.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123248</td>
+	<td>8.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123235</td>
+	<td>01/01/2031 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_123252</td>
+	<td>24/12/2011 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123235</td>
+	<td>5.5493</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_123246</td>
+	<td>5.5493</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/12001?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Afghanistan Cdma*9375*0.2698</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan*93*0.0422</td>
+	<td></td>
+</tr>
+<!--LOGIN AS ADMIN-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--LOAD TARIFFS AND RATES-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=tariff_import/rates_for_delete_old_rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>asxdcddvgh</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Delete outdated Rates after must be integer</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>-5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Delete outdated Rates after must be greater or equal to 0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>25</td>
+</tr>
+<!--rate check turi ieškoti tik tarp aktyvių rates-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_check?who=providers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination93</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_93</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_93_1</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_93_12001</td>
+	<td>2.0256</td>
+</tr>
+<!--Redagavimas effective date-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120111</td>
+	<td>Afghanistan Cdma</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120111</td>
+	<td>01/01/2013 1?:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120021</td>
+	<td>Afghanistan Cdma</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120021</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/120111</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tariff name</td>
+	<td>provider_tariff_for_admin_1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination</td>
+	<td>Afghanistan Cdma (9375)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>01/01/2013</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=span.ui-icon.ui-icon-circle-triangle-w</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=span.ui-icon.ui-icon-circle-triangle-w</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=span.ui-icon.ui-icon-circle-triangle-w</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=span.ui-icon.ui-icon-circle-triangle-w</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=till</td>
+	<td>12/09/2012</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/120111</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Effective From: * 12/09/2012 1?:00:00</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_120111</td>
+	<td>Afghanistan Cdma</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_120111</td>
+	<td>12/09/2012 1?:00:00</td>
+</tr>
+</tbody></table>
+</body>
+</html>

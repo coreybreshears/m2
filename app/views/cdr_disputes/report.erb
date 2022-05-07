@@ -1,0 +1,82 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('CDR_Dispute_Report') %></h2>
+    <div id="cdr-dispute-report" class="dispute-tables" style="overflow-x: auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th rowspan="2" class="side"><%= _('Code') %></th>
+            <th rowspan="2" class="left side"><%= _('Mismatch_Type') %></th>
+
+            <th colspan="2"><%= _('Local+External') %></th>
+            <th colspan="3"><%= _('Calls') %></th>
+            <th colspan="3"><%= _('Billsec') %></th>
+            <th colspan="3" class="side"><%= _('Price') %></th>
+            <th rowspan="2"><%= _('Details') %></th>
+          </tr>
+          <tr class="smaller-header">
+            <th class="right"><%= _('Calls') %></th>
+            <th class="right side"><%= _('Calls') %>/<%= _('Total') %> %</th>
+
+            <th class="right"><%= _('Local') %></th>
+            <th class="right"><%= _('External') %></th>
+            <th class="right side"><%= _('Delta') %></th>
+
+            <th><%= _('Local') %></th>
+            <th><%= _('External') %></th>
+            <th class="side"><%= _('Delta') %></th>
+
+            <th class="right"><%= _('Local') %></th>
+            <th class="right"><%= _('External') %></th>
+            <th class="right side"><%= _('Delta') %></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <% @dispute_groups.each do |group| %>
+            <tr class="smaller-cols" >
+              <td id="group-<%= group[:code] %>-code" class="<%= CdrDisputesHelper::cell_class(group[:code].to_i) %>">
+                <%= CdrDisputesHelper::special_code?(group[:code]) ? '' : group[:code] %>
+              </td>
+
+              <td id="group-<%= group[:code] %>-mismatch" class="left <%= CdrDisputesHelper::special_code?(group[:code]) ? 'bold' : '' %>">
+                <%= group[:mismatch_type] %>
+              </td>
+
+              <td id="group-<%= group[:code] %>-calls" class="right"><%= group[:loc_and_ext] %></td>
+              <td id="group-<%= group[:code] %>-calls-perc" class="right"><%= group[:loc_and_ext_perc] %></td>
+
+              <td id="group-<%= group[:code] %>-loc-calls" class="right"><%= group[:loc] %></td>
+              <td id="group-<%= group[:code] %>-ext-calls" class="right"><%= group[:ext] %></td>
+              <td id="group-<%= group[:code] %>-dt-calls" class="right"><%= group[:dt_calls] %></td>
+
+              <td id="group-<%= group[:code] %>-loc-billsec">
+                <%= group[:loc_billsec] ? nice_time(group[:loc_billsec], show_zero: true, time_format: @formatting[:time_format]) : '-' %>
+              </td>
+              <td id="group-<%= group[:code] %>-ext-billsec">
+                <%= group[:ext_billsec] ? nice_time(group[:ext_billsec], show_zero: true, time_format: @formatting[:time_format]) : '-' %>
+              </td>
+              <td id="group-<%= group[:code] %>-dt-billsec">
+                <%= group[:dt_billsec] ? nice_time(group[:dt_billsec], show_zero: true, time_format: @formatting[:time_format]) : '-' %>
+              </td>
+
+              <td id="group-<%= group[:code] %>-loc-price" class="right">
+                <%= group[:loc_price] ? nice_number(group[:loc_price]) : '-' %>
+              </td>
+              <td id="group-<%= group[:code] %>-ext-price" class="right">
+                <%= group[:ext_price] ? nice_number(group[:ext_price]) : '-' %>
+              </td>
+              <td id="group-<%= group[:code] %>-dt-price" class="right">
+                <%= group[:ext_price] ? nice_number(group[:dt_price]) : '-' %>
+              </td>
+
+              <td id="group-<%= group[:code] %>-details" style="min-width: 30px; width: 30px;padding-right: 0 !important;">
+                <%= link_to _('Details').upcase, {action: :detailed_report, id: @dispute.id, code: group[:code], search_on: 1, order_by: 'l_start_time', page: 1}, {target: '_blank'} %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,285 @@
+<div class="row">
+  <div class="col col-bigger">
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'use_number_portability', _('Use_Number_Portability') %>
+      </div>
+      <% use_number_portability = Confline.get_value('Use_Number_Portability', 0, 0).to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('use_number_portability', '0', (use_number_portability == 0)) + _('_No') %>
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('use_number_portability', '1', (use_number_portability == 1)) + _('_Yes') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_server_ip', _('Server_IP') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('mnp_server_ip', Confline.get_value('MNP_Server_IP'), class: 'input mnp_server_ip') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_port', _('Port') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('mnp_port', Confline.get_value('MNP_Port'), class: 'input mnp_port', maxlength: '5') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_username', _('Username') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('mnp_username', Confline.get_value('MNP_Username'), class: 'input mnp_username') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_password', _('Password') %>
+      </div>
+      <div class="input-col">
+        <%= password_field_tag('mnp_password', Confline.get_value('MNP_Password'), class: 'input mnp_password') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_db_name', _('DB_Name') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('mnp_db_name', Confline.get_value('MNP_DB_Name'), class: 'input mnp_db_name') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_table_name', _('Table_Name') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('mnp_table_name', Confline.get_value('MNP_Table_Name'), class: 'input mnp_table_name') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_search_field', _('Search_Field') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('mnp_search_field', Confline.get_value('MNP_Search_Field'), class: 'input mnp_search_field') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_result_field', _('Result_Field') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('mnp_result_field', Confline.get_value('MNP_Result_Field'), class: 'input mnp_result_field') %>
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+        <%= label_tag 'mnp_supported_prefixes', _('Supported_Prefixes') %>
+      </div>
+      <% supported_prefixes = Confline.get_value('MNP_Supported_Prefixes', 0, 0).to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+            <%= radio_button_tag('mnp_supported_prefixes', '0', (supported_prefixes == 0)) + _('All_Prefixes') %>
+            <br>
+            <%= radio_button_tag('mnp_supported_prefixes', '1', (supported_prefixes == 1)) + _('Only_these_prefixes') %>
+        </div>
+        <div class="mnp_prefixes">
+          <br>
+          <div class="prefix_status mnp_message_box"></div>
+          <div class="table-box">
+            <div class="table-holder mnp_prefix_table">
+              <table class="table-with-edit-and-delete">
+                <thead>
+                  <tr>
+                    <th><%= _('Prefix') %></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="prefix_body">
+                <% mnp_prefixes.each_with_index do |prefix, index| %>
+                  <tr>
+                    <td class="mnp_prefix_table_prefix">
+                      <%= prefix.prefix %>
+                    </td>
+                    <td>
+                      <%= link_to _('DELETE'), '#', id: "mnp_del_#{prefix.id}", class: 'mnp_delete' %>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </br>
+          <div class="mnp_prefix">
+            <%= text_field_tag('new_mnp_prefix', '', class: 'input new_mnp_prefix') %>&nbsp;
+            <%= link_to _('Add_to_List'), '#', class: 'search-form-button search-button-link new_mnp_prefix_link' %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="input-row mnp_setting">
+      <div class="label-col">
+      </div>
+      <div class="input-col">
+        </br>
+        <div class="db_check_status mnp_message_box"></div>
+        </br>
+        <%= link_to _('Test_DB_Connection'), '#', class: 'search-form-button search-button-link test_db' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript">
+
+    jQuery(document).ready(function($){
+      function mnpRequest(link, data = {}, updateTable = true){
+          $.ajax({
+              url: Web_Dir + '/functions/' + link,
+              data: data,
+              async: true,
+              error: function(response, error, full_error){
+                  console.log('Ajax Error:');
+                  console.log(response);
+                  console.log(error);
+                  console.log(full_error);
+              },
+              success: function(response) {
+                  console.log('Ajax Success:');
+                  console.log(response);
+                  if (updateTable){
+                    updatePrefixTable(response);
+                  }else{
+                    updateMsgBox(response);
+                    mnpRequest('get_mnp_prefixes');
+                  }
+              }
+          });
+      }
+
+
+      function check_db_con(link){
+          $.ajax({
+              url: Web_Dir + '/functions/' + link,
+              data: data,
+              async: true,
+              error: function(response, error, full_error){
+                  console.log('Ajax Error:');
+                  console.log(response);
+                  console.log(error);
+                  console.log(full_error);
+              },
+              success: function(response) {
+                  console.log('Ajax Success:');
+                  console.log(response);
+                  $('.db_check_status').html('');
+                  $('.db_check_status').css('background', response['color']);
+                  $('.db_check_status').css('background', response['color']);
+                  $('.db_check_status').html("<%= _('DB_connection_status')%>: " + response['msg'])
+              }
+          });
+      }
+
+      function updatePrefixTable(prefixes){
+        // clear prefixes
+        $('.prefix_body').html('');
+        var new_prefixes = '';
+        prefixes.forEach(function(prefix, index){
+          var delete_link = '<a href="#" id="mnp_del_' + prefix['id'] + '" class="mnp_delete">DELETE</a>';
+          var even_class = index % 2 != 0 ? 'class="even"' : '';
+          new_prefixes += '<tr ' + even_class + ' ><td class="mnp_prefix_table_prefix">' + prefix['prefix'] + '</td><td>' + delete_link + '</td></tr>';
+        });
+        $('.prefix_body').html(new_prefixes);
+      }
+
+      function updateMsgBox(response){
+        $('.prefix_status').html('');
+        var bgColor = '#c9efb9';
+        if (response['status'] == 0){
+          $('.prefix_status').html(response['msg']);
+        }else{
+          $('.prefix_status').html(response['msg'] + ':</br>*' + response['errors']['prefix']);
+          bgColor = '#FFD4D4';
+        }
+
+        $('.prefix_status').css('background', bgColor);
+      }
+
+      function deleteMnpPrefix(prefix_id){
+        processing_prefix();
+        mnpRequest('destroy_mnp_prefix', {id: prefix_id}, false);
+      }
+
+      function addMnpPrefix(){
+        processing_prefix();
+        mnpRequest('create_mnp_prefix', {prefix: $('.new_mnp_prefix').val() }, false);
+      }
+
+      $('.new_mnp_prefix_link').click(function(e){
+        addMnpPrefix();
+        e.preventDefault();
+      });
+
+      $('.new_mnp_prefix').on('keypress', function(e){
+        if(e.which == 13){
+          e.preventDefault();
+          $('.new_mnp_prefix_link').trigger('click');
+        }
+      });
+
+      $(document).on('click','.mnp_delete', function(e){
+        if (confirm('Are you sure?' )) deleteMnpPrefix($(this).attr('id').split('mnp_del_')[1]);
+        e.preventDefault();
+      });
+
+      $('.test_db').click(function(e){
+        data = {
+          host: $('.mnp_server_ip').val(),
+          port: $('.mnp_port').val(),
+          username: $('.mnp_username').val(),
+          mnp_password: $('.mnp_password').val(),
+          db_name: $('.mnp_db_name').val(),
+          table_name: $('.mnp_table_name').val(),
+          search_field: $('.mnp_search_field').val(),
+          result_field: $('.mnp_result_field').val()
+        }
+        $('.db_check_status').css('background', 'none');
+        $('.db_check_status').html("<%= _('DB_connection_status')%>: <%= _('Processing') %> ");
+        check_db_con('test_mnp_db_connection');
+        e.preventDefault();
+      });
+
+      function processing_prefix(){
+        $('.prefix_status').css('background', 'none');
+        $('.prefix_status').html("<%= _('Processing') %>");
+      }
+
+      $('#use_number_portability_1').prop('checked') ? $('.mnp_setting').show() : $('.mnp_setting').hide();
+      $('#use_number_portability_0').on('change', function(){ $('.mnp_setting').hide() });
+
+      $('#use_number_portability_1').on('change', function(){ $('.mnp_setting').show() });
+
+    });
+
+
+</script>

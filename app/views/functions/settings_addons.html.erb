@@ -1,0 +1,29 @@
+<% if monitorings_addon_active? %>
+    <%= form_tag :action => 'settings_addons_change' do %>
+        <table height="470">
+          <tr>
+            <td valign="top">
+              <div id="dhtmlgoodies_tabView1">
+              </div>
+              <script type="text/javascript">
+                  <%
+                    names = []
+                  %>
+                  initTabs('dhtmlgoodies_tabView1', Array('<%= raw names.join("','") %>'), 0, 550, 400);
+              </script>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= submit_tag _('Save_changes'), :disable_with => _('Processing..') %>
+            </td>
+          </tr>
+        </table>
+    <% end %>
+<% else %>
+    <table class="simple" width="100%">
+      <tr>
+        <td><%= _('Disabled') %></td>
+      </tr>
+    </table>
+<% end %>

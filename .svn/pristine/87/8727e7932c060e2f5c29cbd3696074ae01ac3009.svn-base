@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>settings</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">settings</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/</td>
+	<td></td>
+</tr>
+<!--Check logo icon.-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=m2switch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=m2switch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/acc_groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//body</td>
+	<td></td>
+</tr>
+<!--===========-->
+<!--Device range-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_sending_enabled</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Cannot send test email because your(admin) email address is empty</td>
+	<td>Cannot send test email because your(admin) email address is empty</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>test@test.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_password</td>
+	<td>ascv</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=email_password</td>
+	<td>••••</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ascv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=email_password</td>
+	<td>••••</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>ascv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_password</td>
+	<td>34RSDFWfasz</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=email_password</td>
+	<td>•••••••••••</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>34RSDFWfasz</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_password</td>
+	<td>34RSDFWfasz</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=email_password</td>
+	<td>•••••••••••</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Cannot send test email because your(admin) email address is empty</td>
+	<td>Cannot send test email because your(admin) email address is empty</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>address_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_email</td>
+	<td>admin_test@email.test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Personal details changed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>csv_file_size</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>csv_file_size</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>csv_file_size</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies_change_default/1?ok=1&amp;title=Enable</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies_change_default/2?ok=1&amp;title=Enable</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_smtp_server</td>
+	<td>someserver</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_port</td>
+	<td>587</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_from</td>
+	<td>test@test.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_batch_size</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_smtp_server</td>
+	<td>someserver</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_port</td>
+	<td>587</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_batch_size</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_from</td>
+	<td>test@test.com</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Cannot send test email because sending is disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>test@test.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_smtp_server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_smtp_server</td>
+	<td>randomserver</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings?open_all_tabs=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Cannot send test email because main parameters are empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_port</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=email_test_link</td>
+	<td>Press to test (Test email will be sent to: admin_test@email.test)</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Cannot send test email because main parameters are empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_login</td>
+	<td>kolmitest998</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>test@test.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>email_sending_enabled</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>aaaaaa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Invalid email format in email From field (example: example@…)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_from</td>
+	<td>test@test.com</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>www.bbbbb.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Invalid email format in email From field (example: example@…)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>aaaaaa ssssssssss@mail.cc</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Invalid email format in email From field (example: example@…)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>test@ocean-tel.uk</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=all-tabs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col.extended &gt; div.input-row &gt; div.input-col &gt; div.radio-container &gt; div.radio-row</td>
+	<td>Database</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File (TGZ)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_only_answered_calls</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_at_hour</td>
+	<td>Disable 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_at_minute</td>
+	<td>Disable 00 05 10 15 20 25 30 35 40 45 50 55</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_till_hour</td>
+	<td>Disable 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=archive_till_minute</td>
+	<td>Disable 00 05 10 15 20 25 30 35 40 45 50 55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_calls_instead_of_archiving</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_archived_calls_older_than</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=archive_calls_to_csv_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>3699</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=archive_only_answered_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_hour</td>
+	<td>label=22</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_minute</td>
+	<td>label=15</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_hour</td>
+	<td>label=21</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_minute</td>
+	<td>label=05</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_calls_instead_of_archiving</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_archived_calls_older_than</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Days must be a positive integer and no higher than 3650</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_0</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_only_answered_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_hour</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_minute</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_hour</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_minute</td>
+	<td>05</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_calls_instead_of_archiving</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_archived_calls_older_than</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>333</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_0</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>333</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_only_answered_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_hour</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_minute</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_hour</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_minute</td>
+	<td>05</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_calls_instead_of_archiving</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_archived_calls_older_than</td>
+	<td>555</td>
+</tr>
+</tbody></table>
+</body>
+</html>

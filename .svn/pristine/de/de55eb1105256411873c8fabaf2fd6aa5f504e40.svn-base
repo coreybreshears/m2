@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Your Balance</td>
+	<td></td>
+</tr>
+<!--Comment box-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>test comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>test comment</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>test comment edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>test comment edited</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>test comment edited before error</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>test comment edited before error</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>user_admin1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>test comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test Reseller</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>test comment</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>test comment edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test Reseller</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>test comment edited</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>test comment edited before error</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>test comment edited before error</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_comment</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>reseller</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test Reseller</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_comment</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> Hello, Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance</td>
+	<td>$ 0.00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new?user_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=amount</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_payment_comment</td>
+	<td>testa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance</td>
+	<td>$ 1000.00</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--DELETE EEA-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully deleted</td>
+</tr>
+<!--BLACKLIST/WHITELIST-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#blacklists_form_name &gt; td.bottom_border &gt; b</td>
+	<td>Blacklist / Whitelist</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_enable_static_list_no</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_enable_static_list_blacklist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_enable_static_list_whitelist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>user_enable_static_list_blacklist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>user_enable_static_list_whitelist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#blacklist_number_pool_select &gt; img[alt=&quot;Exclamation&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#whitelist_number_pool_select &gt; img[alt=&quot;Exclamation&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=You have to create Number Pool</td>
+	<td>You have to create Number Pool</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#whitelist_number_pool_select &gt; a</td>
+	<td>You have to create Number Pool</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#whitelist_number_pool_select &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Number Pools</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=You have to create Number Pool</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Number Pools</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/number_pool/pool_and_numbers_15001/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>user_enable_static_list_blacklist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>user_enable_static_list_whitelist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=#blacklist_number_pool_select &gt; img[alt=&quot;Exclamation&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>css=#whitelist_number_pool_select &gt; img[alt=&quot;Exclamation&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You have to create Number Pool</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td>number pool</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_static_list_id_whitelist</td>
+	<td>number pool</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_static_list_id_whitelist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_enable_static_list_blacklist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_static_list_id_whitelist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_enable_static_list_whitelist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=user_static_list_id_whitelist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_enable_static_list_whitelist</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_static_list_id_whitelist</td>
+	<td>number pool</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=user_static_list_id_whitelist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number Pool is used in User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number Pool was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td>pool for testing</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_enable_static_list_blacklist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td>number pool pool for testing</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td>label=pool for testing</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=user_static_list_id_blacklist</td>
+	<td>pool for testing</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_enable_static_list_blacklist</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully deleted</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_15002</td>
+	<td>pool for testing</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number Pool is used in User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number Pool was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_enable_static_list_no</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_enable_static_list_no</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_enable_static_list_blacklist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_enable_static_list_whitelist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>user_enable_static_list_blacklist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>user_enable_static_list_whitelist</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#blacklist_number_pool_select &gt; img[alt=&quot;Exclamation&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#whitelist_number_pool_select &gt; img[alt=&quot;Exclamation&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=You have to create Number Pool</td>
+	<td>You have to create Number Pool</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#whitelist_number_pool_select &gt; a</td>
+	<td>You have to create Number Pool</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_hide_financial_data_in_quick_stats</td>
+	<td></td>
+</tr>
+<!--~~~M4~~~-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/global_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>M4 Functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m4_functionality</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#hide_financial_data_in_quick_stats &gt; td</td>
+	<td>Hide financial data in Quick Stats:</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_hide_financial_data_in_quick_stats</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=user_hide_financial_data_in_quick_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_hide_financial_data_in_quick_stats</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=user_hide_financial_data_in_quick_stats</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.hello-box &gt; div</td>
+	<td>Hello, Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=qs_refresh</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>This month:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Finances:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Balance:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=balance</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<div class="content-box">
+	<div class="table-box">
+		<h2><%= _('Map_Results') %></h2>
+		<div class="details-form">
+			<div class="row">
+				<div class="col">
+					<table class="map_results-table">
+						<tr>
+							<th>Total </th>
+							<td><%= @results[:total_size] %></td>
+						</tr>
+						<tr>
+							<th>Prefixes to remove</th>
+							<td><%= @results[:remove_size] %></td>
+						</tr>
+						<tr>
+							<th>Prefixes to add</th>
+							<td><%= @results[:add_size] %></td>
+						</tr>
+						<tr>
+							<th>Invalid</th>
+							<td><%= @results[:invalid] %></td>
+						</tr>
+					</table>
+					<br/>
+					<div class="map_results-buttons buttons-row">
+						<%= form_tag({action: :cancel_prefix_import}) do %>
+							<%= submit_tag _('Cancel'), type: :reset, class: 'map_results-cancel-btn', data: { disable_with: _('Processing..') } %>
+						<% end %>
+						<%= button_to _('Import'), {action: :prefix_import}, class: 'map_results-import-btn', data: { disable_with: _('Processing..') } %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+		$('.map_results-cancel-btn, .map_results-import-btn').click(function(){
+			var confimation = confirm("<%= _('Are_you_sure') %> ");
+			if(confimation){
+				$("#spinner2").show();
+			}
+		})
+	});
+</script>

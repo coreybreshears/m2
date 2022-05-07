@@ -1,0 +1,26 @@
+prefix,action,dst_group_name
+3706,remove,Lithuania
+3712,add,Latvia
+370,add,NotExistingDstGroup
+asdas,add,Lithuania
+3708,add,Lithuania Test
+5112,remove,Peru
+1264,remove,Anguilla
+376,remove,Andorra
+1684,remove,American Samoa
+681,remove,Wallis And Futuna
+678,remove,Vanuatu
+5989,remove,Uruguay
+674,remove,Nauru
+687,remove,New Caledonia
+49160,remove,Germany
+962775,add,Guam
+962776,add,Guam
+962777,add,Guam
+962745,add,Ascension Island
+962746,add,Ascension Island
+962747,add,Ascension Island
+600,add,Thuraja
+601,add,Thuraja
+602,add,Thuraja
+9627555,add,Christmas Island

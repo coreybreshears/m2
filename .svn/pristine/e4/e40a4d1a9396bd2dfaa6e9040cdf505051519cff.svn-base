@@ -1,0 +1,121 @@
+<fieldset>
+  <div class="row">
+    <div class="col">
+      <h2><%= _('General') %></h2>
+      <div class="input-row" style="max-width:100%">
+        <div class="label-col"  style="width:30%"><%= f.label :name, _('Name') %>:</div>
+        <div class="input-col" style="width:68%">
+          <%= f.text_field :name, class: 'input', size: 27, maxlength: 255, autocomplete: 'off' %>
+        </div>
+      </div>
+      <div class="input-row" style="max-width:100%">
+        <div class="label-col" style="width:30%"><%= f.label :name, _('Formula') %>:</div>
+        <div class="input-col" style="width:68%">
+          <%= f.text_field :formula, class: 'input', id: 'formula', size: 27, maxlength: 255, autocomplete: 'off' %>
+        </div>
+      </div>
+      <br/>
+        <h2><%= _('Information_on_Formula_Parameters') %></h2>
+        <div class="qr-info">
+          <p><%= _('Formula_Parameters_note') %></p>
+          <p><b>ASR</b>&nbsp;-&nbsp;<%= _('Answer_Seizure_Ratio') %>&nbsp;(%)</p>
+          <p><b>ACD</b>&nbsp;-&nbsp;<%= _('Average_Call_duration') %>&nbsp;(<%= _('seconds') %>)</p>
+          <p><b>TOTAL_CALLS</b>&nbsp;-&nbsp;<%= _('Total_Calls') %></p>
+          <p><b>TOTAL_ANSWERED</b>&nbsp;-&nbsp;<%= "#{_('Total_Answered')} #{_('Calls')}" %></p>
+          <p><b>TOTAL_FAILED</b>&nbsp;-&nbsp;<%= "#{_('Total_Failed')} #{_('Calls')}" %></p>
+          <p><b>TOTAL_BILLSEC</b>&nbsp;-&nbsp;<%= _('Total_Billsec') %>&nbsp;(<%= _('seconds') %>)</p>
+          <p><b>PRICE</b>&nbsp;-&nbsp;<%= _('Terminator_Rate') %></p>
+          <p><b>WEIGHT</b>&nbsp;-&nbsp;<%= _('Terminator_Weight') %></p>
+          <p><b>PERCENT</b>&nbsp;-&nbsp;<%= _('Terminator_Percent') %>&nbsp;(%)</p>
+        </div>
+    </div>
+    <div class="col" id="qr-parameters">
+      <h2><%= _('Quality_Index_Parameters') %></h2>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :asr_calls, _('ASR')  %>:
+        </div>
+        <div class="input-col">
+          <%= f.text_field :asr_calls, class: 'input qr-calls', maxlength: 255, autocomplete: 'off' %>
+          &nbsp;&nbsp;<span class="qr-suffix"><%= _('Calls') %></span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :acd_calls, _('ACD')  %>:
+        </div>
+        <div class="input-col">
+          <%= f.text_field :acd_calls, class: 'input qr-calls', size: 27, maxlength: 255, autocomplete: 'off' %>
+          &nbsp;&nbsp;<span class="qr-suffix"><%= _('Calls') %></span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :total_calls, _('Total_Calls')  %>:
+        </div>
+        <div class="input-col">
+          <%= f.text_field :total_calls, class: 'input qr-calls', size: 27, maxlength: 255, autocomplete: 'off' %>
+          &nbsp;&nbsp;<span class="qr-suffix"><%= _('Calls') %></span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :total_answered_calls, _('Total_Answered')  %>:
+        </div>
+        <div class="input-col">
+          <%= f.text_field :total_answered_calls, class: 'input qr-calls', size: 27, maxlength: 255, autocomplete: 'off' %>
+          &nbsp;&nbsp;<span class="qr-suffix"><%= _('Calls') %></span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :total_failed_calls, _('Total_Failed')  %>:
+        </div>
+        <div class="input-col">
+          <%= f.text_field :total_failed_calls, class: 'input qr-calls', size: 27, maxlength: 255, autocomplete: 'off' %>
+          &nbsp;&nbsp;<span class="qr-suffix"><%= _('Calls') %></span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :total_billsec_calls, _('Total_Billsec')  %>:
+        </div>
+        <div class="input-col">
+          <%= f.text_field :total_billsec_calls, class: 'input qr-calls', size: 27, maxlength: 255, autocomplete: 'off' %>
+          &nbsp;&nbsp;<span class="qr-suffix"><%= _('Calls') %></span>
+        </div>
+      </div>
+      <div class="qr-info">
+        <p><b><%= _('Note') %>:</b>&nbsp;<%= _('Quality_Index_Parameters_note') %></p>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    $("#qr-parameters input").on("keyup", function() {
+      this.value = this.value.replace(/[^\d]+/, "");
+    });
+    $("input#formula").on("keyup", function() {
+      var input = $(this);
+      $.ajax({
+        url: "<%= Web_Dir %>/quality_routings/valid_formula",
+        data: { formula: this.value },
+        type: "POST",
+        dataType: "text",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']")
+            .attr("content"));
+        },
+        complete: function(data) {
+          if (data.responseText == "true") {
+            input.removeClass("error").addClass("success");
+          } else {
+            input.removeClass('success').addClass('error');
+          }
+        }
+      });
+    });
+  });
+</script>

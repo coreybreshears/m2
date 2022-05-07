@@ -1,0 +1,12 @@
+<%= form_tag(:action => 'default_user_update') do %>
+    <%= render 'form', user: @user, username_length: @username_length, password_length: @password_length,
+    count_rs: @count_rs, count_rspro: @count_rspro,
+    create_own_providers: @create_own_providers,
+    responsible_accountants: @responsible_accountants, countries: @countries,
+    bl_global_setting: @bl_global_setting, default_user_form: true,
+    warning_email: @warning_email, default_country_id: @default_country_id,
+    disallow_email_editing: @disallow_email_editing, blacklists_on: @blacklists_on, number_pools: @number_pools, new_user: false
+ %>
+    <%= submit_tag _('Change'), :disable_with => _('Processing..') %>
+<% end %>
+<br>

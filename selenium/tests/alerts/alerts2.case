@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/various_devices</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=alert_count_period</td>
+	<td>1 h</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_count_period</td>
+	<td>label=10 h</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=alert_check_type</td>
+	<td>Client Termination Point Origination Point Destination Destination group</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Alert was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * User must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=alert_count_period</td>
+	<td>10 h</td>
+</tr>
+<!--Clear after priklausomybė nuo clear if-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='postpaid'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Postpaid</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_2</td>
+	<td>postpaid</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_alert_if_less</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_if_more</td>
+	<td>6.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='prepaid'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Prepaid</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_3</td>
+	<td>prepaid</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_if_less</td>
+	<td>2.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_if_less</td>
+	<td>0.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_less</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_if_less</td>
+	<td>2.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_clear_after</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_disable_clear</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<!--alerts user to nitify-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Notify to User:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=alert_notify_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=alert_disable_clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_if_less</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_clear_after</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=alert_notify_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=alert_notify_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Termination Point</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_tp_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_device_tp_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=#device_tp_user_list &gt; tbody</td>
+	<td>System AdminTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_device_tp_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_tp_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=tp_device</td>
+	<td>Test User #1/host_110 Test User #1/host_111 Test User #1/host_112 Test User #1/host_113 Test User #1/host_114 Test User #1/host_115 Test User #1/host_116 Test User #1/host_118 Test User #1/host_119 Test User #1/host_120 Test User #1/host_121 Test User #1/host_122 Test User #1/host_123 Test User #1/host_124 Test User #1/host_126 Test User #1/host_127 Test User #1/host_129 Test User #1/host_130 Test User #1/host_131 Test User #1/host_132 Test User #1/host_134 Test User #1/host_135 Test User #1/host_136 Test User #1/host_137 Test User #1/host_146 Test User #1/host_147 Test User #1/host_148</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tp_device</td>
+	<td>label=Test User #1/host_114</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<!--sukuriamas alertas kai objektas dddestinatio group-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination group</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>off</td>
+</tr>
+<!--sukuriamas alertas kai objektas Origination Point -->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Origination Point</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_device_op_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_device</td>
+	<td>All Origination Points</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_device_op_user_id').value='nsmn'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_op_user</td>
+	<td>nsmn</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=op_device</td>
+	<td>No Origination Points</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Alert was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Connection Point must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_device_op_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_device_op_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=op_device</td>
+	<td>label=Test User #1/host_114</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_after</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td>label=Test RG</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td>label=Test RG</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=alert_notify_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_edit/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=alert_action_alert_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>id=alert_action_clear_change_routing_group_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>on</td>
+</tr>
+<!--alerts user to notify turi atsirasti tik useriui-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Termination Point</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=alert_notify_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Origination Point</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>id=alert_notify_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination group</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Client</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=alert_notify_to_user</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Notify to User</td>
+	<td></td>
+</tr>
+<!--visi dropdownai turi turėti All pasirinkimą-->
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination group</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=alert_check_data4</td>
+	<td>All</td>
+</tr>
+<!--pasirinkus checkboxą All, turi būti išvalomas live-search imputas ir padaromas not editable-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_not_selected_info</td>
+	<td>Please select Client</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>id=user_not_selected_info</td>
+	<td>Please select User</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=all_users</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=all_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotValue</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>id=user_not_selected_info</td>
+	<td>Please select Client</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_name</td>
+	<td>all user alert</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_less</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_clear_if_more</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_type_8</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=object_name_8</td>
+	<td>All</td>
+</tr>
+</tbody></table>
+</body>
+</html>

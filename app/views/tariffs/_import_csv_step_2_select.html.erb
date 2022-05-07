@@ -1,0 +1,19 @@
+<td>
+  <div class="nb" align="left">
+    <select id="<%= name %>" name="<%= name %>">
+      <option value="-1">&nbsp;</option>
+      <% lv_fl.each_with_index { |l, i| %>
+          <% select_index =
+                     if session[name].present? && session[name.to_sym].to_i >= 0
+                       session[name.to_sym].to_i
+                     elsif !!possible_headers.match(l.to_s.strip.downcase)
+                       i
+                     else
+                       session[name.to_sym] = -1
+                     end
+          %>
+          <option value="<%= i %>" <%= "selected" if i == select_index %>><%= l.blank? ? "&nbsp;" : l %></option>
+      <% } %>
+    </select>
+  </div>
+</td>

@@ -1,0 +1,59 @@
+<script>
+    var currency_dropdown_changed = false;
+
+    var currencies = {};
+    <% currencies.each do |currency| %>
+    currencies['<%= currency.id %>'] = '<%= nice_separator(currency.exchange_rate) %>';
+    <% end %>
+    var users = {};
+
+    document.observe("dom:loaded", function() {
+        selectCurrency();
+        hideSubmitButton();
+        $('s_user').observe('change', function(){
+            if (currency_dropdown_changed == false) {
+                selectCurrency();
+            }
+            hideSubmitButton();
+        });
+    });
+    function selectCurrency() {
+        var user_id = $('s_user_id').value;
+        if(user_id !== '-2'){
+            new Ajax.Request('<%= Web_Dir%>/payments/get_currency_by_user_id', {
+              parameters: {id: user_id},
+              onSuccess: function(response) {
+                currency_id = response.responseText;
+                $('m2_payment_currency_id').value = currency_id;
+                updateExchangeRate(currency_id);
+              }
+            });
+        } else {
+            currency_id = 1;
+            $('m2_payment_currency_id').value = currency_id;
+            updateExchangeRate(currency_id);
+        }
+    }
+
+    function updateExchangeRate(value) {
+        exchange_rate = currencies[value];
+        $('m2_payment_exchange_rate').value = exchange_rate;
+        if (value == 1) {
+          $('m2_payment_exchange_rate').disabled = true;
+        } else {
+          $('m2_payment_exchange_rate').disabled = false;
+        }
+    }
+
+    function hideSubmitButton(){
+      var user_id = $("s_user_id");
+      if(user_id.value === '-2'){
+        $('submit').disabled = true;
+        $('user_not_selected_info').show();
+      } else {
+        $('submit').disabled = false;
+        $('user_not_selected_info').hide();
+      }
+    }
+
+</script>

@@ -1,0 +1,49 @@
+<%= render 'payment_js', payment: data[:payment], currencies: data[:currencies], users: data[:users] %>
+<table>
+  <tr>
+    <td><%= _('Add_manual_payment_notice') %></td>
+  </tr>
+  <tr>
+    <td><%= b_info %> <%= _('You_can_enter_amount_with_OR_without_tax') %> <%= _('Not_both_at_the_same_time') %> <%= _('Based_on_what_you_enter_tax_will_be_added_or_not') %></td>
+  </tr>
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td><%= b_user %></td>
+          <td><b><%= form.label _('User') %>:</b></td>
+          <td><%= form.select(:user_id, options_for_select(data[:users].map{ |user| [nice_user(user), user.id] }.sort_by { |user_name, user_id| user_name.downcase }, params[:user_id].present? ? params[:user_id] : data[:payment].user_id), {}, onChange: "selectCurrency(this.value);") %></td>
+        </tr>
+        <tr>
+          <td><%= b_money %> </td>
+          <td><b><%= form.label _('Amount') %>:</b></td>
+          <td><%= form.text_field :amount, id: 'amount', :onClick => "$('amount_with_tax').value = '';", :onChange => "$('amount_with_tax').value = '';" %></td>
+        </tr>
+        <tr>
+          <td><%= b_money %> </td>
+          <td><b><%= form.label _('Amount_with_VAT') %>:</b></td>
+          <td><%= form.text_field :amount_with_tax, id: 'amount_with_tax', :onClick => "$('amount').value = '';", :onChange => "$('amount').value = '';" %></td>
+        </tr>
+        <tr>
+          <td><%= b_currency %></td>
+          <td><b><%= form.label _('Currency') %>:</b> <%= form.select(:currency_id, options_for_select(data[:currencies].map{|currency| [currency.name, currency.id]}, data[:payment].currency_id), {}, onChange: 'updateExchangeRate(this.value);') %></td>
+          <td><b><%= form.label _('Exchange_rate') %>:</b> <%= form.text_field :exchange_rate %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><b><%= form.label _('payment_destination') %>:</b></td>
+          <td>
+            <%= form.radio_button :payment_destination, 0 %> <b><%= _('payment_from_client') %></b>
+            </br>
+            <%= form.radio_button :payment_destination, 1 %> <b><%= _('payment_to_provider') %></b>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><b><%= form.label _('additional_notes') %>:</b></td>
+          <td><%= form.text_area :comment, cols: 40, rows: 10 %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

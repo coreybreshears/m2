@@ -1,0 +1,55 @@
+<% content_for :additional_buttons do %>
+    <span>
+    <%= button_tag _('Add_new_email'), class: "search-form-button",
+                   onclick: "location.href = '#{Web_Dir}/emails/new'" %>
+  </span>
+<% end %>
+<div class="content-box">
+  <div class="table-box" align="center">
+    <h2 align="left"><%= _('Emails') %></h2>
+
+    <div class="table-holder">
+      <table width="100%" class="maintable">
+        <tr>
+          <th style="padding-left: 15px; text-align: left;"> <%= _('Name').upcase %> </th>
+          <th style="text-align: left;"> <%= _('Subject').upcase %> </th>
+          <th style="text-align: right;"> <%= _('Times_Sent').upcase %> </th>
+          <th> <%= _('Format').upcase %> </th>
+          <th> <%= _('Send').upcase %> </th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% @emails.each_with_index { |email, i| %>
+            <tr class="row<%= (i % 2 + 1).to_s %>">
+              <td id="name_<%= sanitize_to_id(email.name) %>" style="padding-left:15px;text-align: left;"> <%= email.name %></td>
+              <td id="subject_<%= sanitize_to_id(email.name) %>" style="text-align: left;" <%= tooltip("Message text", email.body.to_s.gsub(/[\r\n]+/, '<br>')) %>> <%= email.subject %></td>
+              <td id="emails_<%= sanitize_to_id(email.name) %>" style="text-align: right;" width="60px">
+              <% if email.emails.to_i != 0 %>
+                  <%= link_to email.emails.to_i, action: 'list_users', id: email.id %>
+              <% else %>
+                  <%= 0 %>
+              <% end %>
+              </td>
+              <td id="format_<%= sanitize_to_id(email.name) %>" width="60px"> <%= email[:format] %> </td>
+              <td id="email_send_<%= sanitize_to_id(email.name)%>" width="50px">
+              <% if email.template == 0 %>
+                    <% if @email_sending_enabled %>
+                        <%= link_to b_email_send, action: 'send_emails', id: email.id %>
+                    <% else %>
+                        <%= b_cross(onmouseover: "Tip(\'" + _("Email_sending_is_disabled") + "\')", onmouseout: "UnTip()", id: sanitize_to_id(email.name.to_s).to_s + "_disabled") %>
+                    <% end %>
+              <% end %>
+              </td>
+              <td id="edit_<%= sanitize_to_id(email.name) %>" width="50px"><%= link_to _('edit').upcase, action: 'edit', id: email.id if show_edit_icon(email) %></td>
+              <td id="destroy_<%= sanitize_to_id(email.name) %>" width="50px">
+                <%= button_to _('delete'),
+                              {action: 'destroy', id: email.id}, onclick: "return confirm('Are you sure?')",
+                              class: 'delete_button', style: 'font-size: 13px; margin: 0.5px;', method: :post if show_delete_icon(email) %>
+              </td>
+            </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+</div>

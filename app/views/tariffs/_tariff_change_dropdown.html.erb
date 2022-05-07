@@ -1,0 +1,5 @@
+<% if tariffs.empty? %>
+  <%= select_tag(name, options_for_select([['Empty']])) %>
+<% else %>
+  <%= select_tag(name, options_for_select(tariffs.map {|tariff| [tariff.name, tariff.id]}, selected_tariff_id || tariffs.first.id )) %>
+<% end %>

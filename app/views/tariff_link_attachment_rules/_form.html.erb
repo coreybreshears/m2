@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col tariff_link_attachment_form">
+    <div class="input-row">
+      <div class="label-col">
+        <label><%= _('Name') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :name, class: 'input', maxlength: 255, autocomplete: 'disabled' %>
+      </div>
+    </div>
+
+    <div class="input-row" <%= tooltip(_('String_Start'),_('String_Start_Explanation')) %>>
+      <div class="label-col">
+        <label><%= _('String_Start') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_area :string_start, class: 'input string_start', maxlength: 255, autocomplete: 'disabled' %>
+      </div>
+    </div>
+    <div class="input-row" <%= tooltip(_('String_End'),_('String_End_Explanation'))%>>
+      <div class="label-col">
+        <label><%= _('String_End') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_area :string_end, class: 'input string_end', maxlength: 255, autocomplete: 'disabled' %>
+      </div>
+    </div>
+    <div class="input-row" <%= tooltip(_('Link_Pattern'),_('Link_Pattern_Explanation'))%>>
+      <div class="label-col">
+        <label><%= _('Link_Pattern') %></label>
+      </div>
+      <div class="input-col">
+        <%= f.text_field :link_pattern, class: 'input', maxlength: 255, autocomplete: 'disabled' %>
+      </div>
+    </div>
+  </div>
+</div>

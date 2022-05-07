@@ -1,0 +1,23 @@
+<% if @did_tag.did_tag_links.present? %>
+  <% content_for :additional_buttons do %>
+    <span>
+        <%= button_to _('Unassign_DIDs'), {action: :unassign_dids, id: @did_tag}, class: 'search-form-button', data: { confirm: _('Are_you_sure') } %>
+    </span>
+  <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('Edit_DID_Tag') %></h2>
+    <%= form_for @did_tag, url: {action: :update, id: @did_tag}, method: 'post', html: {class: 'details-form'} do |form| %>
+        <fieldset>
+          <%= render 'form', form: form, did_tag: @did_tag %>
+          <br/><br/>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/dids/tags'" %>
+            <%= submit_tag _('UPDATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

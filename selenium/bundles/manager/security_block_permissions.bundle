@@ -1,0 +1,10 @@
+# Creates permissions group
+manager/manager_16001/create_permission_group.sql
+# creates manager/manager1
+manager/manager_16001/create.sql
+# set weak passwords
+user/device_weak_password.sql
+actions/integrity_actions_errors.sql
+# alerts
+alerts/for_security_permissions.sql
+# bundle loaded

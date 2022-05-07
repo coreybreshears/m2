@@ -1,0 +1,98 @@
+<fieldset>
+  <br/><br/>
+  <div class="table-box">
+    <% if @op_devices.blank? %>
+        <h2><%= _('No_Origination_points') %></h2>
+    <% else %>
+        <h2><%= _('Origination_points') %></h2>
+        <div class="table-holder">
+          <table>
+            <tr>
+              <th class="acc-id desc"><span><%= _('acc-id') %></span></th>
+              <th class="ip-port"><%= _('ip-port') %></th>
+              <th class="tech-prefix"><%= _('tech_prefix') %></th>
+              <th class="tech-prefix"><%= _('Destination_Transformation') %></th>
+              <th class="tariff"><%= _('Tariff') %></th>
+              <th class="description"><%= _('Description') %></th>
+            </tr>
+            <% @op_devices.each_with_index do |device, i| %>
+                <tr>
+                  <td id="op_acc-id_<%= i %>" class="acc-id"><%= device.id.to_i %></td>
+                  <td id="op_ip-port_<%= i %>" class="ip-port"><%= "#{device.ipaddr.to_s}:#{device.port.to_s}" %></td>
+                  <td id="op_tech-prefix_<%= i %>" class="tech-prefix"><%= device.tech_prefix.to_s %></td>
+                  <td id="op_tech-prefix_<%= i %>" class="tech-prefix"><%= device.op_destination_transformation.to_s %></td>
+                  <td id="op_tariff_<%= i %>" class="tariff"><%= link_to(_('Tariff'), controller: 'tariffs', action: 'rates_list', id: device.op_tariff_id, st: 'A', device_id: device.id) %>
+                    <span class="download_rates">
+                      &nbsp;&nbsp;
+                      <%= link_to b_xlsx, '#', {class: "download_rates tariff_#{device.op_tariff_id}_#{device.id}"} %>
+                      <span class="xlsx_pending" hidden="">
+                        <%= b_xlsx + _('Generating_file_Please_wait') %> &nbsp;<%= image_tag('indicator.gif', border: 0) %>&nbsp;&nbsp;
+                      </span>
+                    </span>
+                  </td>
+                  <td id="op_description_<%= i %>" class="description"><%= device.description.to_s %></td>
+                </tr>
+            <% end %>
+          </table>
+        </div>
+    <% end %>
+  </div>
+  <br/><br/>
+  <div class="table-box">
+    <% if @tp_devices.blank? %>
+        <h2><%= _('No_Termination_points') %></h2>
+    <% else %>
+        <h2><%= _('Termination_points') %></h2>
+        <div class="table-holder">
+        <table>
+          <tr>
+            <th class="acc-id desc"><span><%= _('acc-id') %></span></th>
+            <th class="ip-port"><%= _('ip-port') %></th>
+            <th class="tech-prefix"><%= _('Destination_Transformation') %></th>
+            <th class="tariff"><%= _('Tariff') %></th>
+            <th class="description"><%= _('Description') %></th>
+          </tr>
+          <% @tp_devices.each_with_index do |device, i| %>
+              <tr>
+                <td id="tp_acc-id_<%= i %>" class="acc-id"><%= device.id.to_i %></td>
+                <td id="tp_ip-port_<%= i %>" class="ip-port"><%= "#{device.ipaddr.to_s}:#{device.port.to_s}" %></td>
+                <td id="tp_tech-prefix_<%= i %>" class="tech-prefix"><%= device.tech_prefix.to_s %></td>
+                <td id="tp_tariff_<%= i %>" class="tariff"><%=  link_to(_('Tariff'), controller: 'tariffs', action: 'rates_list', id: device.tp_tariff_id, st: 'A', device_id: device.id) %>
+                    <span class="download_rates">
+                      &nbsp;&nbsp;
+                      <%= link_to b_xlsx, '#', {class: "download_rates tariff_#{device.tp_tariff_id}_#{device.id}"} %>
+                      <span class="xlsx_pending" hidden="">
+                        <%= b_xlsx + _('Generating_file_Please_wait') %> &nbsp;<%= image_tag('indicator.gif', border: 0) %>&nbsp;&nbsp;
+                      </span>
+                    </span>
+                </td>
+                <td id="tp_description_<%= i %>" class="description"><%= device.description.to_s %></td>
+              </tr>
+          <% end %>
+        </table>
+        </div>
+    <% end %>
+  </div>
+</fieldset>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('a.download_rates').click(function(){
+      var link = $(this);
+      link.hide();
+      var id = link.attr('class').split(' ')[1].split('_')[1];
+      var device_id = link.attr('class').split(' ')[1].split('_')[2];
+      link.siblings().show();
+      $.fileDownload('<%= Web_Dir%>/tariffs/generate_personal_rates_xlsx?tariff_id=' + id + '&device_id=' + device_id, {
+        successCallback: function () {
+          link.show();
+          link.siblings().hide();
+        },
+        failCallback: function (html, url) {
+          link.show();
+          link.siblings().hide();
+          alert('Download failed');
+        }
+      });
+    });
+  });
+</script>

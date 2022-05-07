@@ -1,0 +1,53 @@
+<fieldset>
+  <div class="content-box">
+    <div class="table-box">
+      <h2>
+        <div>
+          <%= _('Rate_Details') %>
+          <% if can_edit && !m4_functionality? %>
+            <div class="floating-right">
+              <%= link_to _('Split_to_WDFD'), {action: 'ratedetails_manage', id: rate.id, rdaction: 'SPLIT'}, {class: 'important-button', method: :post} %>
+            </div>
+          <% end %>
+        </div>
+      </h2>
+      <div class="table-holder">
+        <table>
+          <tr>
+
+            <th><%= _('Start_Time') %></th>
+            <th><%= _('End_Time') %></th>
+            <th><%= _('Rate') %></th>
+            <th><%= _('Connection_Fee') %></th>
+            <th><%= _('Increment') %></th>
+            <th><%= _('Min_Time') %></th>
+            <th><%= _('Blocked') %></th>
+            <% if can_edit %>
+              <th></th>
+              <th></th>
+            <% end %>
+          </tr>
+          <% rate_details.to_enum.with_index(1) do |detail, index| %>
+            <tr>
+              <td id="start_time_<%= detail.id %>"><%= nice_time2(detail.start_time) %></td>
+              <td id="end_time_<%= detail.id %>"><%= nice_time2(detail.end_time) %></td>
+              <td id="rate_<%= detail.id %>"><%= check_if_rate_blocked detail.rate %></td>
+              <td id="connection_fee_<%= detail.id %>"><%= nice_number detail.connection_fee %></td>
+              <td id="increment_s_<%= detail.id %>"><%= detail.increment_s %></td>
+              <td id="min_time_<%= detail.id %>"><%= detail.min_time %></td>
+              <td id="blocked_<%= detail.id %>"><%= detail.blocked.to_i == 1 ? _('Yes'): _('No') %></td>
+              <% if can_edit == true %>
+                <td id="edit_<%= detail.id %>">
+                  <%= button_to 'EDIT', {action: 'ratedetail_edit', id: detail}, class: 'delete_button move-right', id: "ratedetail_edit_#{detail.id}" %>
+                </td>
+                <td id="destroy_<%= detail.id %>">
+                  <%= button_to 'DELETE', {action: 'ratedetail_destroy', id: detail, rate: rate.id}, data: { confirm: _('are_you_sure') }, class: 'delete_button move-right', method: :post, id: "ratedetail_destroy_#{detail.id}" if index == rate_details.size %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</fieldset>

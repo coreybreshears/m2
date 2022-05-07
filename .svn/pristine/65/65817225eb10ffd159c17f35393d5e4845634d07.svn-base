@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>email_variables</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">email_variables</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_body</td>
+	<td>Login URL: &lt;%= login_url %&gt; Username: &lt;%= login_username %&gt; Password: &lt;%= login_password %&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= server_ip %&gt; - server IP where your users should register their SIP/IAX2 devices.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= device_type %&gt; - shows the user's primary device type. (The device is set as the primary device after user registration).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= device_username %&gt; - shows the user's primary device username. (The device is set as the primary device after user registration).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= device_password %&gt; - shows the user's primary device password. (The device is set as the primary device after user registration).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= login_url %&gt; - GUI login url.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= login_username %&gt; - user's username to login to GUI.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= username %&gt; - same as login_username.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= first_name %&gt; - first name of the user.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= last_name %&gt; - last name of the user.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= full_name %&gt; - first name and last name of the user.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= balance %&gt; - user's balance.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= nice_balance %&gt; - formated user's balance.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= warning_email_balance %&gt; - amount below which user should be warned with email.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= nice_warning_email_balance %&gt; - formated amount below which user should be warned with email.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= currency %&gt; - default system currency's short name (USD).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= user_email %&gt; - user's email address.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= company_email %&gt; - company email address.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= email %&gt; - company email address.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= company %&gt; - company title.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= primary_device_pin %&gt; - PIN of user's default device. The fault device is created the moment the user registers, so this variable can be used universally.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= calldate %&gt; - used only from api request email_send.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= source %&gt; - used only from api request email_send.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= destination %&gt; - used only from api request email_send.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= billsec %&gt; - used only from api request email_send.&nbsp;&nbsp;After registration&nbsp;&nbsp;These variables are only available to email templates which are used to send emails after user's successful registration.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= login_password %&gt; - user's password to login to GUI.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= user_ip %&gt; - user's IP address.&nbsp;&nbsp;&nbsp;Cyberplat payment report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= currency %&gt; - payment currency.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= amount %&gt; - payment amount.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= date %&gt; - payment date.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= auth_code %&gt; - authorization code.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= transaction_id %&gt; - payment transaction ID provided by Cyberplat.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= customer_name %&gt; - payment customer name provided by Cyberplat.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= description %&gt; - payment details provided by Cyberplat.&nbsp;&nbsp;&nbsp;Calling Card purchase&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= cc_purchase_details %&gt; - cards list (Number, Pin, Price).&nbsp;&nbsp;Invoices are attached.&nbsp;&nbsp;&lt;%= username %&gt; &lt;%= first_name %&gt; &lt;%= last_name %&gt; &lt;%= full_name %&gt; &lt;%= balance %&gt; &lt;%= balance_range_min %&gt; &lt;%= balance_range_max %&gt; &lt;%= user_email %&gt; &lt;%= currency %&gt; &lt;%= email %&gt; &lt;%= company_email %&gt; &lt;%= invoice_price %&gt; &lt;%= invoice_price_with_tax %&gt; &lt;%= invoice_currency %&gt; &lt;%= invoice_period_start %&gt; &lt;%= invoice_period_end %&gt;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Email successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=/universal_bundles/email_settings2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--email siuntimas išjungtas-->
+<!--<tr>
+	<td>click</td>
+	<td>id=email_sending_enabled</td>
+	<td></td>
+</tr>-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>test@admin.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Personal details changed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>test@yahoo.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#confirm_without_message &gt; input[name=&quot;commit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User's settings successfully changed:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<!--patikrinti irasius gerus email, ar atsisiunte-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_body</td>
+	<td>Login URL: &lt;%= login_url %&gt; Username: &lt;%= login_username %&gt; Password: &lt;%= login_password %&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= server_ip %&gt; - server IP where your users should register their SIP/IAX2 devices.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= device_type %&gt; - shows the user's primary device type. (The device is set as the primary device after user registration).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= device_username %&gt; - shows the user's primary device username. (The device is set as the primary device after user registration).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= device_password %&gt; - shows the user's primary device password. (The device is set as the primary device after user registration).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= login_url %&gt; - GUI login url.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= login_username %&gt; - user's username to login to GUI.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= username %&gt; - same as login_username.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= first_name %&gt; - first name of the user.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= last_name %&gt; - last name of the user.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= full_name %&gt; - first name and last name of the user.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= balance %&gt; - user's balance.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= nice_balance %&gt; - formated user's balance.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= warning_email_balance %&gt; - amount below which user should be warned with email.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= nice_warning_email_balance %&gt; - formated amount below which user should be warned with email.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= currency %&gt; - default system currency's short name (USD).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= user_email %&gt; - user's email address.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= company_email %&gt; - company email address.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= email %&gt; - company email address.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= company %&gt; - company title.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= primary_device_pin %&gt; - PIN of user's default device. The fault device is created the moment the user registers, so this variable can be used universally.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= calldate %&gt; - used only from api request email_send.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= source %&gt; - used only from api request email_send.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= destination %&gt; - used only from api request email_send.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= billsec %&gt; - used only from api request email_send.&nbsp;&nbsp;After registration&nbsp;&nbsp;These variables are only available to email templates which are used to send emails after user's successful registration.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= login_password %&gt; - user's password to login to GUI.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= user_ip %&gt; - user's IP address.&nbsp;&nbsp;&nbsp;Cyberplat payment report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= currency %&gt; - payment currency.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= amount %&gt; - payment amount.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= date %&gt; - payment date.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= auth_code %&gt; - authorization code.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= transaction_id %&gt; - payment transaction ID provided by Cyberplat.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= customer_name %&gt; - payment customer name provided by Cyberplat.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= description %&gt; - payment details provided by Cyberplat.&nbsp;&nbsp;&nbsp;Calling Card purchase&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= cc_purchase_details %&gt; - cards list (Number, Pin, Price).&nbsp;&nbsp;Invoices are attached.&nbsp;&nbsp;&lt;%= username %&gt; &lt;%= first_name %&gt; &lt;%= last_name %&gt; &lt;%= full_name %&gt; &lt;%= balance %&gt; &lt;%= balance_range_min %&gt; &lt;%= balance_range_max %&gt; &lt;%= user_email %&gt; &lt;%= currency %&gt; &lt;%= email %&gt; &lt;%= company_email %&gt; &lt;%= invoice_price %&gt; &lt;%= invoice_price_with_tax %&gt; &lt;%= invoice_currency %&gt; &lt;%= invoice_period_start %&gt; &lt;%= invoice_period_end %&gt;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Email successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=icon_cross__disabled</td>
+	<td></td>
+</tr>
+<!--<tr> 	<td>clickAndWait</td> 	<td>css=img[alt=&quot;Email go&quot;]</td> 	<td></td> </tr> <tr> 	<td>click</td> 	<td>id=to_be_sent_2</td> 	<td></td> </tr>-->
+<!--<tr> 	<td>setTimeout</td> 	<td>90000</td> 	<td></td> </tr> <tr> 	<td>clickAndWait</td> 	<td>name=commit</td> 	<td></td> </tr> <tr> 	<td>assertTextPresent</td> 	<td>Email sent</td> 	<td></td> </tr>-->
+<!--patikrinti irasius gerus email, ar atsisiunte-->
+</tbody></table>
+</body>
+</html>

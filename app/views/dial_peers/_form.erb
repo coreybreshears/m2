@@ -1,0 +1,135 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'dial_peers_form' %>
+<% end %>
+
+<fieldset>
+  <div class="row">
+    <div class="col">
+      <h2><%= _('General') %></h2>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :active, _('Active') %>:</div>
+        <div class="checkbox-marg input-col"><%= f.check_box :active %></div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :name, _('Name') %>:</div>
+        <div class="input-col">
+          <%= f.text_field :name, class: 'input', size: 27, maxlength: 255 %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :stop_hunting, _('stop_hunting') %>:</div>
+        <div class="checkbox-marg input-col"><%= f.check_box :stop_hunting %></div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :skip_failover_routing_group, _('Skip_Failover_Routing_Group') %>:</div>
+        <div class="checkbox-marg input-col"><%= f.check_box :skip_failover_routing_group %></div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :minimal_rate_margin, _('Minimal_rate_margin') %>:</div>
+        <div class="input-col">
+          <div class="dial-peer input-col">
+            <%= f.text_field :minimal_rate_margin, value: default_margin_value(dp, session, :minimal_rate_margin), class: 'input', size: 12 %>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :minimal_rate_margin_percent, _('Minimal_rate_margin_percent') %>:</div>
+        <div class="input-col">
+          <div class="dial-peer input-col">
+            <%= f.text_field :minimal_rate_margin_percent, value: default_margin_value(dp, session, :minimal_rate_margin_percent),  class: 'input', size: 12 %>
+          </div>
+          <div class="label-col">&nbsp;%</div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :tp_priority, _('tp_priority') %>:</div>
+        <div class="input-col"><%= f.select :tp_priority, %w[weight percent price] %></div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :secondary_tp_priority, _('Secondary_TP_Priority') %>:</div>
+        <div class="input-col"><%= f.select :secondary_tp_priority, %w[none weight percent price] %></div>
+      </div>
+      <div class="input-row" id="no_follow">
+        <div class="label-col"><%= f.label :no_follow, _('no_follow') %>:</div>
+        <div class="checkbox-marg input-col"><%= f.check_box :no_follow %></div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col"><%= f.label :call_limit, _('Call_limit') %>:</div>
+        <div class="input-col">
+          <div class="dial-peer input-col">
+            <%= f.text_field :call_limit, class: 'input', size: 4 %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col">
+      <h2><%= _('Source') %></h2>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :src_regexp, _('source_regexp') %>:</div>
+        <div class="input-col">
+          <%= f.text_field :src_regexp, class: 'input', size: 27, maxlength: 1024 %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :src_deny_regexp, _('source_deny_regexp') %>:</div>
+        <div class="input-col">
+          <%= f.text_field :src_deny_regexp, class: 'input', size: 27, maxlength: 1024 %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2><%= _('Comment') %></h2>
+      <div class="general-form">
+        <%= f.text_area :comment, rows: 5, class: 'input', maxlength: 250, style: 'min-width: 340px' %>
+      </div>
+    </div>
+    <div class="col">
+      <h2><%= _('Destination') %></h2>
+      <div class="input-row">
+        <div class="label-col">
+          <%= f.label :destination_by, _('destination_by') %>:
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col pushed left">
+          <%= f.radio_button :destination_by, 'regexp', checked: dp.destination_by == 'regexp' %>
+          <%= f.label :destination_by_regexp, _('Regexp') %>
+        </div>
+        <div class="input-col">
+          <%= f.text_field :dst_regexp, class: 'input', size: 27, maxlength: 1024 %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col pushed left">
+          <%= f.radio_button :destination_by, 'tariff_id' %>
+          <%= f.label :destination_by_tariff, _('tariff') %>
+        </div>
+        <div class="input-col">
+          <%= f.select :tariff_id, options_for_select(
+                  prov_tariffs_device.map { |tariff| [tariff.name, tariff.id] }, dp.tariff_id.to_i
+          )
+          %>
+        </div>
+      </div>
+      <div class="input-row" id="destination-group-row">
+        <div class="label-col pushed">
+          <%= f.label :destination_group, _('Destinations_mask') %>
+        </div>
+        <div class="input-col" id="destination-groups-container">
+          <%= f.text_field :dst_mask, id: 'autocomplete', class: 'input', size: 27, maxlength: 255 %>
+          <span id="autocomplete-menu"></span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :dst_deny_regexp, _('destination_deny_regexp') %>:</div>
+        <div class="input-col">
+          <%= f.text_field :dst_deny_regexp, class: 'input', size: 27, maxlength: 1024 %>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

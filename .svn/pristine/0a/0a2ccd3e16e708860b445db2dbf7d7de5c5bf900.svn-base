@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>tariff_rate</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tariff_rate</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/2_items_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=T</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_223</td>
+	<td>Taiwan proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_233</td>
+	<td>Turkmenistan proper</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=T</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_474</td>
+	<td>Taiwan proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_484</td>
+	<td>Turkmenistan proper</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/50_items_per_page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--==Open link==-->
+<tr>
+	<td>open</td>
+	<td>billing/tariffs/rate_new_by_direction/6?dir_id=41&amp;st=C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tariff_name</td>
+	<td>test_aaaa</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tariff_purpose_user_wholesale</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_new/6?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate_2</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate_7</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate_8</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate_5</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate_9</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>rate_6</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/503</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=time12</td>
+	<td>23:59:59</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>370600</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.0255</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>370601</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.255</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=rate_prefix</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>370602</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.0255</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().jQuery.active == 0</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<!--DB detination yra 0-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_details/5200000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate was not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_user_rates_csv/4?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>{&quot;filename&quot;:&quot;Rates-USD.csv&quot;,&quot;file&quot;:&quot;Destination,Rate(USD),Round\n&quot;}</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/2?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body</td>
+	<td>{&quot;filename&quot;:&quot;TEST_TARIFF_FOR_USERS-USD.csv&quot;,&quot;file&quot;:&quot;Destination,Prefix,Rate(USD),Connection Fee(USD),Increment,Minimal Time,Start Time,End Time,Week Day,Effective from,Blocked\n\&quot;\&quot;,672,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;\&quot;,87,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Afghanistan proper\&quot;,93,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Albania proper\&quot;,355,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Algeria proper\&quot;,213,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;American Samoa proper\&quot;,1684,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Andorra proper\&quot;,376,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Angola proper\&quot;,244,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Anguilla proper\&quot;,1264,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Antigua \u0026 Barbuda proper\&quot;,1268,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Argentina proper\&quot;,54,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Armenia proper\&quot;,374,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Aruba proper\&quot;,297,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ascension isl proper\&quot;,247,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Australia proper\&quot;,61,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Austria proper\&quot;,43,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Azerbaijan proper\&quot;,994,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bahamas proper\&quot;,1242,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bahrain proper\&quot;,973,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bangladesh proper\&quot;,880,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Barbados proper\&quot;,1246,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Belarus proper\&quot;,375,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Belgium proper\&quot;,32,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Belize proper\&quot;,501,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Benin proper\&quot;,229,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bermuda proper\&quot;,1441,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bhutan proper\&quot;,975,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bolivia proper\&quot;,591,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bosnia \u0026 Herzegovina proper\&quot;,387,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Botswana proper\&quot;,267,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Brazil proper\&quot;,55,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;British Virgin isl proper\&quot;,1284,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Brunei Darussalam proper\&quot;,673,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Bulgaria proper\&quot;,359,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Burkina Faso proper\&quot;,226,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Burundi proper\&quot;,257,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cambodia proper\&quot;,855,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cameroon proper\&quot;,237,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Canada 204 Manitoba\&quot;,1204,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cape Verde proper\&quot;,238,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cayman isl proper\&quot;,1345,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Central African Rep proper\&quot;,236,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Chad proper\&quot;,235,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Chile proper\&quot;,56,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;China proper\&quot;,86,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Christmas isl proper\&quot;,61891006,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Christmas isl proper\&quot;,61891007,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Christmas isl proper\&quot;,61891008,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Christmas isl proper\&quot;,6189164,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cocos isl proper\&quot;,61891010,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cocos isl proper\&quot;,61891011,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cocos isl proper\&quot;,61891012,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cocos isl proper\&quot;,6189162,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Colombia proper\&quot;,57,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Comoros proper\&quot;,269,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Congo (Zaire) Dem Rep of proper\&quot;,243,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Congo proper\&quot;,242,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cook isl proper\&quot;,682,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Costa Rica proper\&quot;,506,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cote DIvoire proper\&quot;,225,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Croatia proper\&quot;,385,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cuba proper\&quot;,53,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Cyprus proper\&quot;,357,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Czech Rep proper\&quot;,420,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Denmark proper\&quot;,45,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Diego Garcia proper\&quot;,246,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Djibouti proper\&quot;,253,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Dominica proper\&quot;,1767,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Dominican Rep proper\&quot;,1809,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;East Timor proper\&quot;,670,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ecuador proper\&quot;,593,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Egypt proper\&quot;,20,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;El Salvador proper\&quot;,503,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ellipso Satellite\&quot;,8812,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ellipso Satellite\&quot;,8813,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ellipso Satellite\&quot;,88238,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Emsat Satellite\&quot;,88213,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Equatorial Guinea proper\&quot;,240,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Eritrea proper\&quot;,291,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Estonia proper\&quot;,372,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ethiopia proper\&quot;,251,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Falkland isl proper\&quot;,500,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Faroe isl proper\&quot;,298,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Fiji proper\&quot;,679,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Finland proper\&quot;,358,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;France proper\&quot;,33,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;French Guiana proper\&quot;,594,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;French Polynesia proper\&quot;,689,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Gabon proper\&quot;,241,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Gambia proper\&quot;,220,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Georgia proper\&quot;,995,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Germany proper\&quot;,49,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ghana proper\&quot;,233,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Gibraltar proper\&quot;,350,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Global Personal Number\&quot;,878,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Global Sat Satellite\&quot;,881,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Global Sat Satellite\&quot;,882,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Greece proper\&quot;,30,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Greenland proper\&quot;,299,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Grenada proper\&quot;,1473,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Guadeloupe proper\&quot;,590,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Guam proper\&quot;,1671,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Guatemala proper\&quot;,502,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Guinea proper\&quot;,224,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Guinea-Bissau proper\&quot;,245,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Guyana proper\&quot;,592,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Haiti proper\&quot;,509,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Honduras proper\&quot;,504,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Hong Kong proper\&quot;,852,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Hungary proper\&quot;,36,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Iceland proper\&quot;,354,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;India proper\&quot;,91,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Indonesia proper\&quot;,62,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Iran proper\&quot;,98,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Iraq proper\&quot;,964,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ireland proper\&quot;,353,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Iridium Satellite\&quot;,8816,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Iridium Satellite\&quot;,8817,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Israel proper\&quot;,972,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Italy proper\&quot;,39,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Jamaica proper\&quot;,1876,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Japan proper\&quot;,81,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Jordan proper\&quot;,962,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kazakhstan proper\&quot;,731,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kazakhstan proper\&quot;,732,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kazakhstan proper\&quot;,76,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kazakhstan proper\&quot;,77,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kenya proper\&quot;,254,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kiribati proper\&quot;,686,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Korea North proper\&quot;,850,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Korea South proper\&quot;,82,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kuwait proper\&quot;,965,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Kyrgyzstan proper\&quot;,996,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Laos proper\&quot;,856,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Latvia proper\&quot;,371,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lebanon proper\&quot;,961,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lesotho proper\&quot;,266,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Liberia proper\&quot;,231,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Libya proper\&quot;,218,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Liechtenstein proper\&quot;,423,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Lithuania proper\&quot;,370,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Luxembourg proper\&quot;,352,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Macau proper\&quot;,853,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Macedonia proper\&quot;,389,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Madagascar proper\&quot;,261,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Malawi proper\&quot;,265,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Malaysia proper\&quot;,60,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Maldives proper\&quot;,960,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mali proper\&quot;,223,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Malta proper\&quot;,356,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mariana isl proper\&quot;,1670,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Marshall isl proper\&quot;,692,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Martinique proper\&quot;,596,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mauritania proper\&quot;,222,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mauritius proper\&quot;,230,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mayotte isl proper\&quot;,262269,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mexico proper\&quot;,52,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Micronesia proper\&quot;,691,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Moldova proper\&quot;,373,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Monaco proper\&quot;,377,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mongolia proper\&quot;,976,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Montserrat proper\&quot;,1664,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Morocco proper\&quot;,212,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Mozambique proper\&quot;,258,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Myanmar proper\&quot;,95,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Namibia proper\&quot;,264,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Nauru proper\&quot;,674,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Nepal proper\&quot;,977,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Netherlands Antilles proper\&quot;,599,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Netherlands proper\&quot;,31,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;New Caledonia proper\&quot;,687,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;New Zealand proper\&quot;,64,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Nicaragua proper\&quot;,505,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Niger proper\&quot;,227,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Nigeria proper\&quot;,234,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Niue proper\&quot;,683,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Norfolk isl proper\&quot;,6723,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Norway proper\&quot;,47,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Oman proper\&quot;,968,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Pakistan proper\&quot;,92,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Palau proper\&quot;,680,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Palestine proper\&quot;,970,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Panama proper\&quot;,507,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Papua New Guinea proper\&quot;,675,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Paraguay proper\&quot;,595,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Peru proper\&quot;,51,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Philippines proper\&quot;,63,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Poland proper\&quot;,48,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Portugal proper\&quot;,351,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Puerto Rico proper\&quot;,1787,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Puerto Rico proper\&quot;,1939,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Qatar proper\&quot;,974,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Reunion isl proper\&quot;,262,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Romania proper\&quot;,40,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Russia proper\&quot;,7,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Rwanda proper\&quot;,250,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Samoa proper\&quot;,685,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;San Marino proper\&quot;,378,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Sao Tome \u0026 Principe proper\&quot;,239,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Saudi Arabia proper\&quot;,966,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Senegal proper\&quot;,221,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Serbia proper\&quot;,381,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Seychelles proper\&quot;,248,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Sierra Leone proper\&quot;,232,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Singapore proper\&quot;,65,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Slovakia proper\&quot;,421,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Slovenia proper\&quot;,386,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Solomon isl proper\&quot;,677,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Somalia proper\&quot;,252,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;South Africa proper\&quot;,27,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Spain proper\&quot;,34,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Sri Lanka proper\&quot;,94,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;St. Helena proper\&quot;,290,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;St. Kitts \u0026 Nevis proper\&quot;,1869,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;St. Lucia proper\&quot;,1758,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;St. Pierre \u0026 Miquelon proper\&quot;,508,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;St. Vincent \u0026 Grenadines proper\&quot;,1784,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Sudan proper\&quot;,249,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Suriname proper\&quot;,597,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Swaziland proper\&quot;,268,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Sweden proper\&quot;,46,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Switzerland proper\&quot;,41,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Syria proper\&quot;,963,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Taiwan proper\&quot;,886,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Tajikistan proper\&quot;,992,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Tanzania proper\&quot;,255,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Thailand proper\&quot;,66,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Togo proper\&quot;,228,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Tokelau proper\&quot;,690,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Tonga proper\&quot;,676,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Trinidad \u0026 Tobago proper\&quot;,1868,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Tunisia proper\&quot;,216,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Turkey proper\&quot;,90,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Turkmenistan proper\&quot;,993,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Turks \u0026 Caicos isl proper\&quot;,1649,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Tuvalu proper\&quot;,688,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Uganda proper\&quot;,256,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;UK proper\&quot;,44,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Ukraine proper\&quot;,380,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;United Arab Emirates proper\&quot;,971,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Uruguay proper\&quot;,598,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;USA proper\&quot;,1,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Uzbekistan proper\&quot;,998,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Vanuatu proper\&quot;,678,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Vatican City proper\&quot;,379,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Venezuela proper\&quot;,58,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Vietnam proper\&quot;,84,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Wallis \u0026 Futuna isl proper\&quot;,681,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Yemen proper\&quot;,967,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Zambia proper\&quot;,260,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n\&quot;Zimbabwe proper\&quot;,263,0.0000,0.0000,1,0,00:00:00,23:59:59,\&quot;\&quot;,\&quot;\&quot;,\&quot;\&quot;\n&quot;}</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>billing/tariffs/generate_providers_rates_csv/1?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>\&quot;Lithuania Mobile Tele2\&quot;,370600,0.0255,0.0000,1,0,00:00:00,23:59:59</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>\&quot;Lithuania Mobile Tele2\&quot;,370601,0.2550,0.0000,1,0,00:00:00,23:59:59</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>\&quot;Lithuania Mobile Tele2\&quot;,370602,0.0255,0.0000,1,0,00:00:00,23:59:59</td>
+	<td></td>
+</tr>
+<!--Turi būti paryškintos raidės, kurios turi reitų-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>test_aaaa</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.paging</td>
+	<td>A <br /> B <br /> C <br /> D <br /> E <br /> F <br /> G <br /> H <br /> I <br /> J <br /> K <br /> L <br /> M <br /> N <br /> O <br /> P <br /> Q <br /> R <br /> S <br /> T <br /> U <br /> V <br /> W <br /> X <br /> Y <br /> Z</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@class, 'bold_weight')]</td>
+	<td>A</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>//a[contains(@class, 'bold_weight')]</td>
+	<td>B</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>//a[contains(@style, 'color:grey')]</td>
+	<td>A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/a[contains(@style, 'color:grey')]</td>
+	<td>C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[4]/a[contains(@style, 'color:grey')]</td>
+	<td>D</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[5]/a[contains(@style, 'color:grey')]</td>
+	<td>E</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[6]/a[contains(@style, 'color:grey')]</td>
+	<td>F</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[7]/a[contains(@style, 'color:grey')]</td>
+	<td>G</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[8]/a[contains(@style, 'color:grey')]</td>
+	<td>H</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[9]/a[contains(@style, 'color:grey')]</td>
+	<td>I</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[10]/a[contains(@style, 'color:grey')]</td>
+	<td>J</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[11]/a[contains(@style, 'color:grey')]</td>
+	<td>K</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[12]/a[contains(@style, 'color:grey')]</td>
+	<td>L</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=create-form-button</td>
+	<td>Quick add new Rate</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=create-form-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_prefix</td>
+	<td>37060</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=rate_prefix</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=prefix-availability</td>
+	<td>37060 - Lithuania mobile-Tele2</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Ltu&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>id=add_rate</td>
+	<td>Add Rate</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_rate</td>
+	<td>0.255</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=add_rate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Rate successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[12]/a[contains(@class, 'bold_weight')]</td>
+	<td>L</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[13]/a[contains(@style, 'color:grey')]</td>
+	<td>M</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rate_new?id=6&amp;st=M</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_5860</td>
+	<td>0.3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_5875</td>
+	<td>1.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=rate_5914</td>
+	<td>6.0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[13]/a[contains(@class, 'bold_weight')]</td>
+	<td>M</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[14]/a[contains(@style, 'color:grey')]</td>
+	<td>N</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[15]/a[contains(@style, 'color:grey')]</td>
+	<td>O</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[16]/a[contains(@style, 'color:grey')]</td>
+	<td>P</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[17]/a[contains(@style, 'color:grey')]</td>
+	<td>Q</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[18]/a[contains(@style, 'color:grey')]</td>
+	<td>R</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[19]/a</td>
+	<td>S</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.paging</td>
+	<td>A <br /> B <br /> C <br /> D <br /> E <br /> F <br /> G <br /> H <br /> I <br /> J <br /> K <br /> L <br /> M <br /> N <br /> O <br /> P <br /> Q <br /> R <br /> S <br /> T <br /> U <br /> V <br /> W <br /> X <br /> Y <br /> Z</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@class, 'bold_weight')]</td>
+	<td>A</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>//a[contains(@class, 'bold_weight')]</td>
+	<td>Y</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@style, 'color:grey')]</td>
+	<td>X</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>//a[contains(@style, 'color:grey')]</td>
+	<td>Z</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/a[contains(@class, 'bold_weight')]</td>
+	<td>C</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[4]/a[contains(@class, 'bold_weight')]</td>
+	<td>D</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[5]/a[contains(@class, 'bold_weight')]</td>
+	<td>E</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[6]/a[contains(@class, 'bold_weight')]</td>
+	<td>F</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[7]/a[contains(@class, 'bold_weight')]</td>
+	<td>G</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[8]/a[contains(@class, 'bold_weight')]</td>
+	<td>H</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[9]/a[contains(@class, 'bold_weight')]</td>
+	<td>I</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[10]/a[contains(@class, 'bold_weight')]</td>
+	<td>J</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[11]/a[contains(@class, 'bold_weight')]</td>
+	<td>K</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[12]/a[contains(@class, 'bold_weight')]</td>
+	<td>L</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[13]/a[contains(@class, 'bold_weight')]</td>
+	<td>M</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[14]/a[contains(@class, 'bold_weight')]</td>
+	<td>N</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[15]/a[contains(@class, 'bold_weight')]</td>
+	<td>O</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1?st=O</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_178</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[15]/a[contains(@style, 'color:grey')]</td>
+	<td>O</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[16]/a[contains(@class, 'bold_weight')]</td>
+	<td>P</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[17]/a[contains(@class, 'bold_weight')]</td>
+	<td>Q</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[18]/a[contains(@class, 'bold_weight')]</td>
+	<td>R</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[19]/a[contains(@class, 'bold_weight')]</td>
+	<td>S</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[20]/a[contains(@class, 'bold_weight')]</td>
+	<td>T</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[21]/a[contains(@class, 'bold_weight')]</td>
+	<td>U</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[22]/a[contains(@class, 'bold_weight')]</td>
+	<td>V</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[23]/a[contains(@class, 'bold_weight')]</td>
+	<td>W</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[25]/a[contains(@class, 'bold_weight')]</td>
+	<td>Y</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[26]/a[contains(@class, 'bold_weight')]</td>
+	<td>Z</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!--[form:device]-->
+<table class="simple" width="100%">
+  <tr>
+    <td valign="top">
+      <table class="simple">
+        <%= render 'device_form_general',
+        device: device, sip_proxy_server: sip_proxy_server,
+        device_type: device_type, new_device: new_device,
+        default: default, devgroups: devgroups,
+        extension: extension, servers: servers, server_devices: server_devices,
+        sip_proxy_server_active: sip_proxy_server_active  %>
+
+        <% if default.to_i != 1 %>
+            <%= render 'device_form_authentication2',
+                       new_device: new_device, device_type: device_type, device: device,
+                       allow_dynamic_op_auth_with_reg: allow_dynamic_op_auth_with_reg, number_pools: number_pools
+            %>
+        <% end %>
+
+        <% if not new_device and params[:action] != "default_device" and ccl_active? %>
+            <%= render 'device_form_servers', servers: servers, server_devices: server_devices %>
+        <% end %>
+
+        <% if not new_device and params[:action] != 'default_device' and device_type == 'SIP' and (admin? || manager?) %>
+          <%= render 'device_form_op', device: device, tariffs: tariffs, custom_tariffs: custom_tariffs,
+               prov_tariffs: prov_tariffs, user_wholesale_tariffs: user_wholesale_tariffs,
+              routing_algorithms: routing_algorithms, qrs: qrs,
+              routing_groups: routing_groups %>
+        <% end %>
+
+        <% if not new_device and params[:action] != 'default_device' and device_type == 'SIP' and (admin? || manager?) %>
+          <%= render 'device_form_tp', device: device, tariffs: tariffs, custom_tariffs: custom_tariffs,
+               prov_tariffs: prov_tariffs, user_wholesale_tariffs: user_wholesale_tariffs,
+              routing_algorithms: routing_algorithms, qrs: qrs,
+              routing_groups: routing_groups %>
+        <% end %>
+
+        <% if (admin? || manager?) && (new_device || params[:action] == 'default_device') %>
+            <tr>
+              <td height="20"></td>
+            </tr>
+            <tr>
+              <td class="bottom_border">
+                <b><%= _('origination_point') %></b>
+              </td>
+            </tr>
+            <tr>
+              <td height="10"></td>
+            </tr>
+            <tr>
+              <td>
+                <table class="simple">
+                  <tr>
+                    <td style="min-width: 120px"><%= _('act_as_origination_point') %>:</td>
+                    <td>
+                      <%= radio_button_tag 'device[op]', '0', Confline.get_value('Default_device_op', 0).to_i == 0, onclick: 'toggle_op_settings_display(false);' %> <%= _('_No') %>
+                      <%= radio_button_tag 'device[op]', '1', Confline.get_value('Default_device_op', 0).to_i == 1, onclick: 'toggle_op_settings_display(true)' %> <%= _('_Yes') %>
+                    </td>
+                  </tr>
+                  <tr id='tr_create_rg_for_op' style="display: none;">
+                    <td><%= _('Automatically_create_Routing_Group_for_this_OP') %>:</td>
+                    <td>
+                      <%= radio_button_tag 'create_rg_for_op', '0', Confline.get_value('Default_device_create_rg_for_op', 0).to_i == 0 %> <%= _('_No') %>
+                      <%= radio_button_tag 'create_rg_for_op', '1', Confline.get_value('Default_device_create_rg_for_op', 0).to_i == 1 %> <%= _('_Yes') %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td height="10"></td>
+            </tr>
+            <tr>
+              <td class="bottom_border">
+                <b><%= _('termination_points') %></b>
+              </td>
+            </tr>
+            <tr>
+              <td height="10"></td>
+            </tr>
+            <tr>
+              <td>
+                <table class="simple">
+                  <tr>
+                    <td style="min-width: 120px"><%= _('act_as_termination_point') %>:</td>
+                    <td>
+                      <%= radio_button_tag 'device[tp]', '0', Confline.get_value('Default_device_tp', 0).to_i == 0 %> <%= _('_No') %>
+                      <%= radio_button_tag 'device[tp]', '1', Confline.get_value('Default_device_tp', 0).to_i == 1 %> <%= _('_Yes') %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                            toggle_op_settings_display(!!jQuery("input[id='device_op_1']:checked").val());
+                        }
+                );
+
+                function toggle_op_settings_display(visible) {
+                    if (visible == true) {
+                        jQuery('#tr_create_rg_for_op').show();
+                    } else {
+                        jQuery('#tr_create_rg_for_op').hide();
+                    }
+                }
+            </script>
+        <% end %>
+
+        <% if not new_device %>
+            <%= render 'device_form_callerid', cid_name: cid_name,
+            device_caller_id_number: device_caller_id_number,
+            device_cids: device_cids, device: device, cid_number: cid_number, number_pools: number_pools,
+            device_callerid_number_pool_type: device_callerid_number_pool_type,
+            device_callerid_number_pool_deviation: device_callerid_number_pool_deviation
+            %>
+        <% end %>
+
+      </table>
+    </td>
+
+    <td valign="top">
+      <table>
+        <% if not new_device and device_type != "Virtual" %>
+            <% unless device.is_dahdi? %>
+                <%= render 'device_form_codecs', device_type: device_type,
+                device: device, video_codecs: video_codecs, audio_codecs: audio_codecs %>
+            <% end %>
+        <% end %>
+        <% if not new_device %>
+            <%= render 'device_form_advance_op_tp', device: device,
+            device_type: device_type, default: default, sticky_contact: sticky_contact
+            %>
+        <% end %>
+        <% if not new_device %>
+            <%= render 'device_form_advance_op', device: device,
+            device_type: device_type, default: default, sticky_contact: sticky_contact
+            %>
+        <% end %>
+        <% if not new_device %>
+            <%= render 'device_form_advance_tp', device: device,
+            device_type: device_type, default: default, sticky_contact: sticky_contact
+            %>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
+<!--[eoform:device]-->
+<br/>

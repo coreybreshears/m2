@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>c_testavimas</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">c_testavimas</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/aggregates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=universal_bundles/email_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>rugile.ocean@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>rugile.ocean@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_smtp_server</td>
+	<td>mg-smtp.kava.lt</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--====== paleisti m2_invoices scriptą  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_invoices</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status_1</td>
+	<td>In process</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_start_1</td>
+	<td>2013-11-01 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_end_1</td>
+	<td>2013-11-30 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=issue_date_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=timezone_1</td>
+	<td>Vilnius (GMT +2)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_1</td>
+	<td>52440.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax_1</td>
+	<td>52440.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>52442.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price_with_tax</td>
+	<td>52442.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/th[4]</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=timezone_1</td>
+	<td>Vilnius (GMT +2)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>52440.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_1</td>
+	<td>52440.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_1</td>
+	<td>1.00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=m2_invoice_confirmed_to_send_to_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Invoice successfully updated</td>
+</tr>
+<tr>
+	<td></td>
+	<td>====== , susikurti xlsx: cd /tmp; mkdir m2;cd m2;mkdir invoices; touch /tmp/m2/invoices/INV1311011.xlsx , paleisti m2_invoices_report scriptą. Laiškas turėjo ateiti į paštą&nbsp;&nbsp;=======</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>tikrinti paštą</td>
+	<td></td>
+</tr>
+<!--====== paleisti m2_invoices_report scriptą  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_invoices_report</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Excel&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[9]/td</td>
+	<td>Sent by Email</td>
+</tr>
+<!--archyvavimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=hour</td>
+	<td>hour</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=minute</td>
+	<td>minute</td>
+</tr>
+<!--nusistatyti 5 min bėgyje laiką-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_hour</td>
+	<td>label=${hour}</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_minute</td>
+	<td>label=${minute}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--====== paleisti (arba turi suveikti per minutę pats) m2_background_tasks  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_background_tasks</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=task_2</td>
+	<td>Archive Old Calls</td>
+</tr>
+<!--====== paleisti mor_archive_old_calls  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_archive_old_calls</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/old_calls_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2011</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calldate_71</td>
+	<td>2012-11-30 19:16:26</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=src_71</td>
+	<td>40060 (40060)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dst_71</td>
+	<td>37093042422</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billsec_71</td>
+	<td>exact:00:02:36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=disposition_71</td>
+	<td>ANSWERED (16)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_name_71</td>
+	<td>SIP_device</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_rate_71</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=provider_price_71</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_71</td>
+	<td>User Resellers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_rate_71</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_price_71</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total calls: 0</td>
+	<td></td>
+</tr>
+<!--tariff generator-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/252</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time12</td>
+	<td>21:12:12</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_connection_fee</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_increment_s</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_min_time</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>65</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=time12</td>
+	<td>13:14:15</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_connection_fee</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_increment_s</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_min_time</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rate detail successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/tariff_generator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>c_script</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_1']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_4']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_2']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Tariff generation successfully sent to background tasks</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=task_3</td>
+	<td>Tariff Generation</td>
+</tr>
+<!--====== paleisti m2_tariff_generator  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_tariff_generator</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=tariff_import/for_import_with_effective_from_date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_12001</td>
+	<td>Rates (68/142)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_1</td>
+	<td>Rates (251/251)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_2</td>
+	<td>Rates (251/251)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_6</td>
+	<td>c_script</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_6</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (251/251)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_727</td>
+	<td>21.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_727</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=start_time_727</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=increment_s_727</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=end_time_727</td>
+	<td>exact:23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=day_type_727</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=effective_from_727</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Settings saved</td>
+</tr>
+<!--====== paleisti m2_delete_rates  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_delete_old_rates</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_12001</td>
+	<td>Rates (67/68)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_1</td>
+	<td>Rates (251/251)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_2</td>
+	<td>Rates (251/251)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/effective_rates.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Please confirm Column Separator and Decimal Separator for CSV file</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: File uploaded</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=Effective from</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=connection_fee_id</td>
+	<td>label=Connection Fee(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=increment_id</td>
+	<td>label=Increment</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=min_time_id</td>
+	<td>label=Minimal Time</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manual_ghost_percent</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 64</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_12001</td>
+	<td>Rates (67/131)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_1</td>
+	<td>Rates (251/251)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_2</td>
+	<td>Rates (251/251)</td>
+</tr>
+<!--====== paleisti m2_delete_rates  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_delete_old_rates</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/effective_rates_another_date_format.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: File uploaded</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=Effective from</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from_date_format</td>
+	<td>label=m/d/Y</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=connection_fee_id</td>
+	<td>label=Connection Fee(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=increment_id</td>
+	<td>label=Increment</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=min_time_id</td>
+	<td>label=Minimal Time</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manual_ghost_percent</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_4</td>
+	<td>01/01/2021 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_7</td>
+	<td>01-01-2021 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_13</td>
+	<td>01 01 2021 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_effective_from_11</td>
+	<td>01/01/2021 00:00:00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>13</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: New rates created: 13</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/effective_rates_same_rate.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: File uploaded</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Rate(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from</td>
+	<td>label=Effective from</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=effective_from_date_format</td>
+	<td>label=d/m/Y</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=connection_fee_id</td>
+	<td>label=Connection Fee(USD)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=increment_id</td>
+	<td>label=Increment</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=min_time_id</td>
+	<td>label=Minimal Time</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=manual_ghost_percent</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#r_to_update &gt; b</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 15</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_12002</td>
+	<td>Rates (13/28)</td>
+</tr>
+<!--====== paleisti m2_delete_rates  =======-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/launch_script</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=command</td>
+	<td>/usr/local/m2/m2_delete_old_rates</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>STATUS:0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_12002</td>
+	<td>Rates (13/26)</td>
+</tr>
+</tbody></table>
+</body>
+</html>

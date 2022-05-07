@@ -1,0 +1,1 @@
+UPDATE `mor`.`users` SET `main_email` = '' WHERE `users`.`id` =2 LIMIT 1 ;

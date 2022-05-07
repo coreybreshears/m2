@@ -1,0 +1,77 @@
+<% content_for :additional_buttons do %>
+  <span>
+    <%= button_tag _('Add_new'), class: 'create-form-button', onclick: "location.href='#{Web_Dir}/cdr_disputes/new'" %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('CDR_Disputes_List') %></h2>
+    <div id="cdr-disputes-list">
+      <div class="table-holder">
+        <table class="table-with-edit-and-delete">
+          <thead>
+            <tr>
+              <th style="min-width:30px;"><%= _('ID') %></th>
+              <th class="left"><%= "#{_('Client')}/#{_('Provider')}" %></th>
+              <th><%= _('Period_start') %></th>
+              <th><%= _('Period_end') %></th>
+              <th><%= _('External_Time_Zone') %></th>
+              <th><%= _('External_Time_Shift') %></th>
+              <th class="right"><%= _('Total_Local_Calls') %></th>
+              <th class="right"><%= _('Total_External_Calls') %></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @disputes.each do |dispute| %>
+              <tr <%= tooltip(_('Dispute_information'), dispute.info) %>>
+                <td id="<%= dispute.id%>-id"><%= dispute.id %></td>
+                <td id="<%= dispute.id%>-user" class="left">
+                  <%= nice_user(dispute.user) %>
+                </td>
+                <td id="<%= dispute.id%>-start"><%= nice_date_time(dispute.period_start, 0) %></td>
+                <td id="<%= dispute.id%>-end"><%= nice_date_time(dispute.period_end, 0) %></td>
+                <td id="<%= dispute.id%>-tz">
+                  <% if dispute.done? %>
+                    <%= "#{_('gmt')}#{dispute.time_zone >= 0 ? ' +' : ' -'}" %>
+                    <%= nice_time(dispute.time_zone.abs, show_zero: true, time_format: '%H:%M:%S') %>
+                  <% else %>
+                    -
+                  <% end %>
+                </td>
+                <td id="<%= dispute.id%>-time-shift">
+                  <% if dispute.done? %>
+                    <%= nice_time(dispute.time_shift, show_zero: true, time_format: @formatting[:time_format]) if dispute.completed? %>
+                  <% else %>
+                    -
+                  <% end %>
+                </td>
+                <td id="<%= dispute.id%>-total-local" class="right"><%= dispute.completed? ? dispute.total_local : '-' %></td>
+                <td id="<%= dispute.id%>-total-external" class="right"><%= dispute.completed? ? dispute.total_external : '-' %></td>
+                <td id="<%= dispute.id%>-details">
+                  <% if dispute.completed? %>
+                    <%= link_to _('Details'), action: :report, id: dispute.id %>
+                  <% else %>
+                    <% if dispute.waiting? %>
+                      <%= link_to _('Edit'), action: :edit, id: dispute.id %>
+                    <% else %>
+                      <%= dispute.status.to_s.upcase %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td id="<%= dispute.id%>-delete">
+                  <%= button_to _('Delete'), { action: :destroy, id: dispute.id },
+                        onclick: "return confirm(\"#{_('Are_you_sure')}\")",
+                        class: 'delete_button', method: :post, id: "delete_link_#{dispute.id}"
+                  %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<table class="simple">
+  <% if m2_invoice.manual_payment_invoice != 1 %>
+    <tr>
+    	<td>
+        <%= link_to _('INVOICE_DETAILS'), {action: :invoice_lines, id: m2_invoice.id}, {class: 'search-form-button-invoice-details', method: :post} %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>
+      <%= link_to _('DOWNLOAD_XLSX'), {action: :export_to_xlsx, id: m2_invoice.id}, {class: 'search-form-button-invoice-details', method: :post} %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= link_to _('DOWNLOAD_PDF'), {action: :export_to_xlsx, id: m2_invoice.id, as_pdf: 1}, {class: 'search-form-button-invoice-details', method: :post} %>
+    </td>
+  </tr>
+  <% if m2_invoice.manual_payment_invoice != 1 %>
+    <tr>
+      <td>
+        <%= link_to _('RECALCULATE'), {action: :recalculate_invoice, id: m2_invoice.id}, {class: 'search-form-button-invoice-details', method: :post} %>
+      </td>
+    </tr>
+  <% end %>
+</table>

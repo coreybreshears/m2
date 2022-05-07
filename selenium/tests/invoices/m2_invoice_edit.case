@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--enable x5_functionality_14-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/invoice_data</td>
+	<td></td>
+</tr>
+<!--STORE CURRENT YEAR-->
+<tr>
+	<td>runScript</td>
+	<td>javascript{storedVars['this_year'] = new Date().getFullYear();}</td>
+	<td></td>
+</tr>
+<!--VIEW TEST-->
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>xpath=(//a[contains(text(),'DETAILS')])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'DETAILS')])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Invoice Edit: number444</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>number444</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_start_4</td>
+	<td>2014-03-21 00:00:00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>${this_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>04</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>04</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>Accepted</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_4</td>
+	<td>22.22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_4</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=timezone_4</td>
+	<td>Kaunas</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Sent by Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=period_end_4</td>
+	<td>2014-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>59</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>${this_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>09</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_with_tax_4</td>
+	<td>22.50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_4</td>
+	<td>0.50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>Roger 12 - 55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>Kaunas</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>545552</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>8848484</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_comment</td>
+	<td>Ketvirtas ilgesnis už kitus komentaras</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>User settings: Test User #1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=INVOICE DETAILS</td>
+	<td>INVOICE DETAILS</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=INVOICE DETAILS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Invoice details</td>
+</tr>
+<!--UPDATE TEST-->
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_number</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>label=Lithuania</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details7</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>label=20</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>label=10</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>label=10</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>label=20??</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>label=April</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>label=10</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>label=10</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>label=40</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>label=20??</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>label=May</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>label=10</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>label=00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>label=15</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=m2_invoice_status</td>
+	<td>label=Protested</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_comment</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>${this_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>April</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>May</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>Protested</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_comment</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=user_admin</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>Save Changes</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>label=February</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Invoice successfully updated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=user_admin</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[3]/div</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[4]/div</td>
+	<td>Protested</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[5]/div</td>
+	<td>2014-03-21 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[6]/div</td>
+	<td>2014-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[7]/div</td>
+	<td>202?-02-10 00:15:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[8]/div</td>
+	<td>Kaunas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[9]/div</td>
+	<td>22.22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[10]/div</td>
+	<td>22.50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[11]/div</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'XLSX')])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//a[contains(text(),'DETAILS')])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_4</td>
+	<td></td>
+</tr>
+<!--TZ TEST-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/admin_0/tz_nuku_alofa</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=user_admin</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[3]/div</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[4]/div</td>
+	<td>Protested</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[5]/div</td>
+	<td>2014-03-21 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[6]/div</td>
+	<td>2014-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[7]/div</td>
+	<td>20??-02-10 00:15:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[8]/div</td>
+	<td>Kaunas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[9]/div</td>
+	<td>22.22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[10]/div</td>
+	<td>22.50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[11]/div</td>
+	<td>LTL</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details7</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>${this_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>April</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>10</td>
+</tr>
+<!--Tur būti 21-->
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>February</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>Protested</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_comment</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=user_admin</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>Save Changes</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>${this_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>April</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>February</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>15</td>
+</tr>
+<!--CURRENCY TEST-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Personal details changed</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>exact:Invoice Edit: 01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_number</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details2</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details3</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details4</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details6</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details7</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_client_details5</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_1i</td>
+	<td>${this_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_2i</td>
+	<td>March</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>April</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_1i</td>
+	<td>20??</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_2i</td>
+	<td>February</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_4i</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_5i</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=m2_invoice_status</td>
+	<td>Protested</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_comment</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=user_admin</td>
+	<td>user_admin</td>
+</tr>
+<!--pasiekiamumas-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

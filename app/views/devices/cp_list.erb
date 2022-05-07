@@ -1,0 +1,196 @@
+<style>
+    #main {
+        max-width: 100%;
+    }
+</style>
+
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsreorder.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.storage.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxcheckbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.edit.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+<% jqx_table1 = 'cp_list' %>
+
+<% content_for :search_form do %>
+    <%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+        <%= hidden_field_tag 'page', 1 %>
+        <fieldset>
+          <div class = "column source-col">
+            <%= label_tag 'description', _('Description') %>
+            <div class = "row">
+              <%= text_field_tag('s_description', @options[:s_description], class: 'input', size: 15, maxlength: 30) %>
+            </div>
+          </div>
+          <div class = "column source-col">
+            <%= label_tag 'ip', _('IP') %>
+            <div class = "row">
+              <%= text_field_tag 's_host', @options[:s_host], class: 'input', size: 15, maxlength: 30 %>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= clear_button_tag _('clear') %>
+              <%= submit_button_tag _('refine') %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<% @manage_button_name = 'Manage Table' %>
+
+<% content_for :manage_form do %>
+    <%= form_tag({}, { id: 'manage-form', class: 'calls-form', visible: show_manage }) do %>
+        <fieldset>
+          <div class="row">
+            <div class="column" style="width: 25%">
+              <%= label_tag 'column_visibility', _('Column_Visibility') %><br/>
+              <%= button_tag _('Show_All'), id: "#{jqx_table1}_column_visibility_check_all", class: 'manage-form-button', style: 'float: left;', type: 'button' %>
+              <%= button_tag _('Hide_All'), id: "#{jqx_table1}_column_visibility_uncheck_all", class: 'manage-form-button', style: 'float: left;', type: 'button' %>
+              <%= button_tag _('Apply'), id: "#{jqx_table1}_column_visibility_apply", class: 'manage-form-button', style: 'float: left;', type: 'button' %>
+              <div id="<%= jqx_table1 %>_column_visibility" style="background-color: #fcfcfc"></div>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<fieldset>
+  <div class="content-box">
+    <div class="table-box">
+      <h2><%= _('connection_points') %></h2>
+      <div id="<%= jqx_table1 %>_wrapper" style="visibility: hidden;"><div id="<%= jqx_table1 %>"></div></div>
+    </div>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        jQuery("#spinner2").show();
+
+        var linkrenderer_user = function (row, column, value) {
+            var user_id = source.localdata[row].user_id;
+            return '<div style="text-align: left; margin-top: 10px; margin-left: 4px; max-width: 15%">' + "<a href='/billing/users/edit/" + user_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_hide = function (row, column, value) {
+            var id = source.localdata[row]._id;
+            return '<div style="text-align: center; margin-top: 10px; margin-left: 2px">' + "<a href='/billing/devices/device_hide/" + id + "?action_from=cp_list&only_hidden=<%= params[:only_hidden].to_i == 1 ? 1 : 0 %>' onclick=\"return confirm('Are you sure?')\">" + '<%= 'UN' if params[:only_hidden].to_i == 1 %>' + "HIDE</a></div>";
+        };
+
+        var linkrenderer_edit = function (row, column, value) {
+            var id = source.localdata[row]._id;
+            return '<div style="text-align: center; margin-top: 10px; margin-left: 2px">' + "<a href='/billing/devices/device_edit/" + id + "'>EDIT</a></div>";
+        };
+
+        var linkrenderer_delete = function (row, column, value) {
+            var id = source.localdata[row]._id;
+            return '<form class="button_to" method="post" action="/billing/devices/destroy/' + id + '?action_from=cp_list&only_hidden=<%= params[:only_hidden].to_i == 1 ? 1 : 0 %>"><div style="text-align: center"><input id="delete_link_' + id + '" class="delete_button" style="text-align: center; margin-top: 9px; font: 13px/18px \'Open Sans\',Arial,Helvetica,sans-serif;" type="submit" value="DELETE" onclick="return confirm(\'Are you sure?\')"><input type="hidden" value="' + "<%= form_authenticity_token %>" + '" name="authenticity_token"></div></form>';
+        };
+
+        var table_data_json = <%= cp_list_json(@devices, @visible_columns) %>;
+
+        table_data_json['columns'].forEach(function (header_data) {
+            if (header_data['cellsrenderer']) {
+                try {
+                    header_data['cellsrenderer'] = eval(header_data['cellsrenderer']);
+                } catch (error) {
+                    // cellsrenderer does not exists
+                }
+            }
+        });
+
+        var source =
+        {
+            localdata: table_data_json['rows'],
+            datatype: 'json',
+            datafields: table_data_json['datafields'],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        // A simple clipboard selection handler
+        var copyText = '';
+        // Get the selected text
+        document.addEventListener('mouseup', function() {
+            if (window.getSelection) copyText = window.getSelection().toString();
+        }, false);
+        // On copy event put it on clipboard
+        document.addEventListener('copy', function(event) {
+            event.clipboardData.setData('text/plain', copyText.trim());
+            // Prevent from getting any other selections
+            event.preventDefault();
+        });
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+
+        $("#<%= jqx_table1 %>").jqxGrid(
+                {
+                    source: dataadapter,
+                    width: '100%',
+                    autoheight: true,
+                    rowsheight: 35,
+                    altrows: true,
+                    enablebrowserselection: 'true',
+                    sortable: true,
+                    pageable: true,
+                    columnsresize: true,
+                    columnsreorder: true,
+                    clipboard: false,
+                    pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                    ready: function () {
+                        session_sorting(
+                                '<%= jqx_table1 %>',
+                                '<%= Web_Dir %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}#{jqx_table1}"][:column].to_s %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}#{jqx_table1}"][:direction].to_s %>',
+                                '<%= params[:controller].to_s %>',
+                                '<%= params[:action].to_s %>'
+                        );
+
+                        jqx_table_settings(
+                                '<%= Web_Dir %>',
+                                <%= JqxTableSetting.select_table(current_user_id, "#{params[:controller]},#{params[:action]},#{jqx_table1}").to_json.html_safe %>,
+                                <%= @all_possible_columns.to_json.html_safe %>
+                        );
+
+                        document.getElementById('<%= jqx_table1 %>_wrapper').style.visibility='visible';
+
+                        fix_column_width_fast('<%= jqx_table1 %>');
+
+                        if(jQuery('.content-box').data('ResizeBox')) {
+                            jQuery('.content-box').data('ResizeBox').getResize();
+                        }
+                        jQuery("#spinner2").hide();
+                    },
+                    columns: table_data_json['columns']
+                });
+
+        function resizeCols(){
+            return fix_column_width_fast('<%= jqx_table1 %>');
+        }
+        var t_out;
+        window.onresize = function(){
+          clearTimeout(t_out);
+          t_out = setTimeout(resizeCols, 50);
+        };
+    });
+
+</script>

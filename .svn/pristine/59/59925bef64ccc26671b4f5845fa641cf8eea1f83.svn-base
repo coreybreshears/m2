@@ -1,0 +1,95 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= @m2_invoice.number.to_s %> <%= _('Details') %></h2>
+    <div class="table-holder">
+      <table class='user-invoice-details'>
+        <tr>
+          <td><%= _('invoice_number') %></td>
+          <td><%= @m2_invoice.number.to_s %></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= _('Period') %></td>
+          <td><%= "#{@m2_invoice.period_start.try(:strftime, '%Y-%m-%d')} - #{@m2_invoice.period_end.try(:strftime, '%Y-%m-%d')}" %></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= _('issue_date') %></td>
+          <td><%= @m2_invoice.issue_date.try(:strftime, '%Y-%m-%d') %></td>
+          <td><%= _('date_due') %></td>
+          <td><%= @m2_invoice.due_date.try(:strftime, '%Y-%m-%d') %></td>
+        </tr>
+        <tr>
+          <td><%= _('invoice_status') %></td>
+          <td><%= @m2_invoice.status.to_s %></td>
+          <td><%= _('status_changed_at') %></td>
+          <td><%= @m2_invoice.status_changed.try(:strftime, '%Y-%m-%d') %></td>
+        </tr>
+        <tr>
+          <td><%= _('Price') %></td>
+          <td><%= nice_currency(@m2_invoice.total_amount.to_d, @m2_invoice.exchange_rate) %> <%= @m2_invoice.currency.to_s.upcase %></td>
+          <td><%= _('price_with_tax') %></td>
+          <td><%= nice_currency(@m2_invoice.total_amount_with_taxes.to_d, @m2_invoice.exchange_rate) %> <%= @m2_invoice.currency.to_s.upcase %></td>
+        </tr>
+        <tr>
+          <td><%= @m2_invoice.mailed_to_user ? _('Sent_via_Email') : _('Not_sent_via_Email') %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <% if @user_invoice_lines.present? %>
+          <br/><br/>
+          <table>
+            <tr>
+              <th class="user-invoice_lines-destination">
+                <%= _('Destination') %>
+              </th>
+              <th class="user-invoice_lines-rate">
+                <%= "#{_('Rate')} (#{@m2_invoice.currency.to_s.upcase})" %>
+              </th>
+              <th class="user-invoice_lines-calls">
+                <%= _('Calls') %>
+              </th>
+              <th class="user-invoice_lines-time">
+                <%= _('Time') %>
+              </th>
+              <th class="user-invoice_lines-price">
+                <%= "#{_('Price')} (#{@m2_invoice.currency.to_s.upcase})" %>
+              </th>
+            </tr>
+            <% @user_invoice_lines.each do |invoice_line| %>
+              <tr>
+                <td id="destination_<%= invoice_line.id %>" class="user-invoice_lines-destination_list">
+                  <%= invoice_line.name_destination.to_s %>
+                </td>
+                <td id="rate_<%= invoice_line.id %>" class="user-invoice_lines-rate_list">
+                  <%= number_with_precision((invoice_line.rate.to_f * @m2_invoice.exchange_rate.to_f).round(2), precision: 2) %>
+                </td>
+                <td id="calls_<%= invoice_line.id %>" class="user-invoice_lines-calls_list">
+                  <%= invoice_line.calls.to_i %>
+                </td>
+                <td id="time_<%= invoice_line.id %>" class="user-invoice_lines-time_list">
+                  <%= nice_time(invoice_line.total_time.to_i) %>
+                </td>
+                <td id="price_<%= invoice_line.id %>" class="user-invoice_lines-price_list">
+                  <%= nice_currency(invoice_line.price.to_d, @m2_invoice.exchange_rate) %>
+                </td>
+              </tr>
+            <% end %>
+            <tr class="total">
+              <td class="total"><%= _('TOTAL') %></td>
+              <td colspan='1'></td>
+              <td class="amount" id="total_calls"><%= @totals[:calls] %></td>
+              <td class="amount" id="total_time"><%= nice_time(@totals[:time].to_i) %></td>
+              <td class="amount" id="total_amount"><%= nice_currency(@totals[:price].to_d) %></td>
+            </tr>
+          </table>
+          <br/>
+          <%= paginate(@user_invoice_lines, entry_name: 'entry') %>
+      <% end %>
+    </div>
+  </div>
+</div>

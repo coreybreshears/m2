@@ -1,0 +1,66 @@
+<%= raw _('statement_report_for', "<a href=\"#{Web_Dir}/users/edit/#{params[:id].to_i}\">#{nice_user_by_id(params[:id].to_i)}</a>") %>
+<br/><br/>
+<%= [_('Period'), _('From'), "#{session_from_datetime.to_s.truncate(10).sub('...', '')}", _('Till'), "#{session_till_datetime.to_s.truncate(10).sub('...', '')}"].join(' ') %>
+
+<br/><br/><br/>
+
+<table class='maintable' width='100%'>
+  <tr>
+    <th align='center'>
+      <%= _('Date') %>
+    </th>
+    <th align='right'>
+      <%= _('we_invoiced') %>
+    </th>
+    <th align='right'>
+      <%= _('paid_to_us') %>
+    </th>
+    <th align='right'>
+      <%= _('invoiced_to_us') %>
+    </th>
+    <th align='right'>
+      <%= _('we_paid') %>
+    </th>
+    <th align='left'>
+      <%= _('Comment') %>
+    </th>
+    <th align='right'>
+      <%= _('Balance') %>
+    </th>
+  </tr>
+  <% unless @user_statement_report.size.zero? %>
+      <% user_balance = 0 %>
+      <% @user_statement_report.each_with_index do |statement_report, i| %>
+          <tr class="row<%= (i % 2 + 1) %>">
+            <td id="date_<%= i+1 %>" align="center"><%= statement_report[:date] %></td>
+            <td id="we_invoiced_<%= i+1 %>" align="right"><%= statement_report[:we_invoiced].to_d == 0 ? '' : nice_currency(statement_report[:we_invoiced].to_d, @options[:exchange_rate]) %></td>
+            <td id="paid_to_us_<%= i+1 %>" align="right"><%= statement_report[:paid_to_us].to_d == 0 ? '' : nice_currency(statement_report[:paid_to_us].to_d, @options[:exchange_rate]) %></td>
+            <td id="invoiced_to_us_<%= i+1 %>" align="right"><%= statement_report[:invoiced_to_us].to_d == 0 ? '' : nice_currency(statement_report[:invoiced_to_us].to_d, @options[:exchange_rate]) %></td>
+            <td id="we_paid_<%= i+1 %>" align="right"><%= statement_report[:we_paid].to_d == 0 ? '' : nice_currency(statement_report[:we_paid].to_d, @options[:exchange_rate]) %></td>
+            <td id="comment_<%= i+1 %>" align="left"><%= statement_report[:comment] %></td>
+            <% user_balance += (statement_report[:balance].to_d * @options[:exchange_rate]) %>
+            <td id="balance_<%= i+1 %>" align="right"><%= nice_currency(user_balance) %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <tr>
+    <th>
+      <%= _('Total') %>:
+    </th>
+    <th id='total_we_invoiced' align='right'>
+      <%= nice_currency(@totals[:we_invoiced].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_paid_to_us' align='right'>
+      <%= nice_currency(@totals[:paid_to_us].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_invoiced_to_us' align='right'>
+      <%= nice_currency(@totals[:invoiced_to_us].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_we_paid' align='right'>
+      <%= nice_currency(@totals[:we_paid].to_d, @options[:exchange_rate]) %>
+    </th>
+    <th id='total_Balance' align='right' colspan='2'>
+      <%= nice_currency(@totals[:balance].to_d, @options[:exchange_rate]) %>
+    </th>
+  </tr>
+</table>

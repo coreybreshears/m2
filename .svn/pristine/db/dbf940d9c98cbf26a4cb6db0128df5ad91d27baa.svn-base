@@ -1,0 +1,110 @@
+<%= form_tag({action: :server_update, id: @server}, class: 'details-form') do %>
+
+     <div class="content-box">
+       <h2 style="visibility: hidden"></h2>
+       <div class="row">
+         <div class="col">
+            <h2><%= _('General') %></h2>
+
+           <div class="input-row">
+               <div class="label-col">
+                 <%= label_tag 'server_hostname', _('Hostname') %>
+               </div>
+
+               <div class="input-col">
+                 <%= text_field_tag('server_hostname', @server.hostname, class: 'input') %>
+               </div>
+           </div>
+
+           <div class="input-row">
+             <div class="label-col">
+               <%= label_tag 'server_ip', _('Server_IP') %>
+             </div>
+
+             <div class="input-col">
+               <%= text_field_tag('server_ip', @server.server_ip, class: 'input') %>
+             </div>
+           </div>
+
+           <div class="input-row">
+             <div class="label-col">
+               <%= label_tag 'server_url', _('Url') %>
+             </div>
+
+             <div class="input-col">
+               <%= text_field_tag('server_url', @server.stats_url, class: 'input') %>
+             </div>
+           </div>
+
+           <div class="input-row">
+             <div class="label-col">
+               <%= label_tag 'server_type', _('Type') %>
+             </div>
+
+             <div class="input-col">
+               <% if @server_type.present? && @server_type != 'sip_proxy' %>
+                   <%= select :server_type_edit, :server_type,
+                               options_for_select(@select_server_type.map { |serv_type| [_(serv_type.to_s), serv_type.to_s] },
+                                                 @server_type.to_s)
+                   %>
+
+               <% elsif @server_type.blank? %>
+                   <%= select :server_type_edit, :server_type,
+                              options_for_select(@select_server_type.map { |serv_type| [_(serv_type.to_s), serv_type.to_s] },
+                                                 @server_type.to_s), include_blank: true
+                   %>
+               <% else %>
+                    <%= @server_type %>
+               <% end %>
+             </div>
+           </div>
+
+           <div class="input-row">
+             <div class="label-col">
+               <%= label_tag 'server_comment', _('Comment') %>
+             </div>
+
+             <div class="input-col">
+               <%= text_field_tag('server_comment', @server.comment, class: 'input') %>
+             </div>
+           </div>
+
+           <div class="input-row">
+             <div class="label-col">
+               <%= label_tag 'server_ssh_username', _('Ssh_username') %>
+             </div>
+
+             <div class="input-col">
+               <%= text_field_tag('server_ssh_username', @server.ssh_username, class: 'input') %>
+             </div>
+           </div>
+
+           <div class="input-row">
+             <div class="label-col">
+               <%= label_tag 'server_ssh_port', _('Ssh_port') %>
+             </div>
+
+             <div class="input-col">
+               <%= text_field_tag('server_ssh_port', @server.ssh_port, class: 'input') %>
+             </div>
+           </div>
+           <br>
+           <div class="input-row">
+           <%= submit_tag _('Change') %>
+           </div>
+       </div>
+       </div>
+     </div>
+
+<% end %>
+<%= content_for :additional_buttons do %>
+  <% if !proxy_server_active? && !single_fs_server_active? && @server.server_type != 'other' %>
+     <%= button_to _('UNASSIGN_FROM_ALL_CONNECTION_POINTS'), {action: :unassign_from_all_connection_points, id: @server.id}, id: "unassign_from_all_connection_points_#{@server.id}", class: 'search-form-button'%>
+     <%= button_to _('ASSIGN_TO_ALL_CONNECTION_POINTS'), {action: :assign_to_all_connection_points, id: @server.id}, id: "assign_to_all_connection_points_#{@server.id}", class: 'search-form-button'%>
+  <% end %>
+<% end %>
+<style>
+  .details-form{
+      padding-top: 0px!important;
+  }
+</style>

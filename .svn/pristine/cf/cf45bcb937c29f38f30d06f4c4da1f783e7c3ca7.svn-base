@@ -1,0 +1,57 @@
+# Tariff Import v2 Tariff Job Analysis
+class TariffJobAnalysisController < ApplicationController
+  layout :determine_layout
+
+  before_filter :access_denied, if: -> { !admin? }
+  before_filter :check_post_method, only: [:confirm, :schedule_confirm, :cancel]
+  before_filter :find_tariff_job, only: [:list, :confirm, :schedule_confirm, :cancel]
+
+  def list
+    check_tariff_job_status(@tariff_job)
+    set_session_variables
+    results = @tariff_job.tariff_job_analysis_results(params)
+    @analysis_results = Kaminari.paginate_array(results.to_a).page(params[:page] ||= 1).per(session[:items_per_page])
+  end
+
+  def confirm
+    @tariff_job.confirm
+    flash[:status] = _('Tariff_Job_was_successfully_confirmed')
+    redirect_to(action: :list, id: @tariff_job.id) && (return false)
+  end
+
+  def schedule_confirm
+    @tariff_job.confirm("#{params[:date]} #{params[:time]}:00")
+    flash[:status] = _('Tariff_Job_was_successfully_confirmed_and_scheduled')
+    redirect_to(action: :list, id: @tariff_job.id) && (return false)
+  end
+
+  def cancel
+    @tariff_job.cancel
+    flash[:status] = _('Tariff_Job_was_successfully_cancelled')
+    redirect_to(action: :list, id: @tariff_job.id) && (return false)
+  end
+
+  private
+
+  def check_tariff_job_status(tariff_job)
+    unless %w[analyzed rejected cancelled importing imported failed_import].include?(tariff_job.status)
+      flash[:notice] = _('Tariff_Job_Analysis_results_does_not_exist')
+      redirect_to(controller: :tariff_jobs, action: :list) && (return false)
+    end
+  end
+
+  def find_tariff_job
+    @tariff_job = TariffJob.where(id: params[:id]).first
+
+    unless @tariff_job
+      flash[:notice] = _('Tariff_Job_was_not_found')
+      redirect_to(:root) && (return false)
+    end
+  end
+
+  def set_session_variables
+    session[:tariff_job_analysis_search] = params[:search] if params[:search].present?
+    session[:tariff_job_analysis_search] = { show_only: { rejected: 2 } } if params[:clear].present? || session[:tariff_job_analysis_search].blank?
+    params[:search] = session[:tariff_job_analysis_search] || {}
+  end
+end

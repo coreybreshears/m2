@@ -1,0 +1,242 @@
+<br/>
+<%= _('File_size') %>: <%= session[:file_size] %> <%= _('bytes') %><br />
+<br/>
+<b><%= _('First_file_lines') %>:</b>
+<br/>
+<% tl = 0 %>
+<% session[:file].split(/\r\n|\n/).each do |line| %>
+    <%= raw (line + "<br />").html_safe if tl < 5 %>
+    <% tl += 1 %>
+<% end %>
+<%= raw "....<br />".html_safe if tl > 5 %>
+<%- # session[:file_lines] = (tl - 1)  -%>
+<b><%= _('Total_file_lines') %>: <%= session[:file_lines] %> </b>
+<br/>
+<br/>
+<br/>
+<% action = params[:action] == 'import_csv' ? 'import_csv' : 'import_csv2' %>
+<%= form_tag :action => action, :step => "3" do %>
+    <div id="tariff_time_select">
+      <%= _("Rate_day_type") %>
+      : <%= select_tag("rate_day_type", options_for_select(rate_type, session[:rate_day_type].present? ? session[:rate_day_type] : nil), :onchange => "check_values();") %>
+      <%= _("From") %>:
+      <select id="time_from_hour" name="time_from[hour]" onchange="check_values();">
+        <% 24.times { |i| %>
+            <option value="<%= i < 10 ? "0#{i}" : i %>" <%= 'selected' if i.to_i == session[:time_from_hour].to_i %>><%= i < 10 ? "0#{i}" : i %></option>
+        <% } %>
+      </select>
+      <select id="time_from_minute" name="time_from[minute]" onchange="check_values();">
+        <% 60.times { |i| %>
+            <option value="<%= i < 10 ? "0#{i}" : i %>" <%= 'selected' if i.to_i == session[:time_from_minute].to_i %>><%= i < 10 ? "0#{i}" : i %></option>
+        <% } %>
+      </select>
+      <select id="time_from_second" name="time_from[second]" onchange="check_values();">
+        <% 60.times { |i| %>
+            <option value="<%= i < 10 ? "0#{i}" : i %>" <%= 'selected' if i.to_i == session[:time_from_second].to_i %>><%= i < 10 ? "0#{i}" : i %></option>
+        <% } %>
+      </select>
+
+      <%= _("Till") %>:
+      <select id="time_till_hour" name="time_till[hour]" onchange="check_values();">
+        <% 24.times { |i| %>
+            <option value="<%= i < 10 ? "0#{i}" : i %>" <%= 'selected' if i.to_i == (session[:time_till_hour].present? ? session[:time_till_hour].to_i : session[:time_till_hour] = 23) %>><%= i < 10 ? "0#{i}" : i %></option>
+        <% } %>
+      </select>
+      <select id="time_till_minute" name="time_till[minute]" onchange="check_values();">
+        <% 60.times { |i| %>
+            <option value="<%= i < 10 ? "0#{i}" : i %>" <%= 'selected' if i.to_i == (session[:time_till_minute].present? ? session[:time_till_minute].to_i : session[:time_till_minute] = 59) %>><%= i < 10 ? "0#{i}" : i %></option>
+        <% } %>
+      </select>
+      <select id="time_till_second" name="time_till[second]" onchange="check_values();">
+        <% 60.times { |i| %>
+            <option value="<%= i < 10 ? "0#{i}" : i %>" <%= 'selected' if i.to_i == (session[:time_till_second].present? ? session[:time_till_second].to_i : session[:time_till_second] = 59) %>><%= i < 10 ? "0#{i}" : i %></option>
+        <% } %>
+      </select>
+    </div>
+
+    <br/>
+    <% unless user? %>
+      <% if admin? || manager? %>
+        <%= _('Update_destinations_csv') %>: <%= check_box_tag("update_dest_names", 1, session[:update_dest_names].to_i == 1 ? true : false) %>
+      <% end %>
+      <!-- <br/>
+      <%= _('Update_directions_based_on_country_code') %>: <%= check_box_tag("update_directions", 1, false) %> -->
+      <br />
+      <%= _('delete_rates_for_prefixes_not_present_in_csv') %>: <%= check_box_tag('delete_unimported_prefix_rates', 1, session[:delete_unimported_prefix_rates].to_i == 1 ? true : false) %>
+      <br />
+      <%= _('Warn_about_Rates') %>:&nbsp;
+      <%= text_field_tag(:high_rate, Rate.high_rate, class: 'input', style: 'width:60px;margin-top:5px;') %>&nbsp;
+      <%= currency %>&nbsp;<%= b_info + _('High_Rate_info') %>
+      <br>
+      <%= _('Ignore_Effective_from_time') %>: <%= check_box_tag :ignore_effective_from_time, 1, session[:ignore_effective_from_time].to_i == 1 ? true : false %>
+      <br>
+      <%= _('Remove_effective_from_greater_than_in_CSV') %>: <%= check_box_tag :delete_effective_from, 1, session[:delete_effective_from].to_i == 1 ? true : false %>
+      <br>
+      <br>
+    <% end %>
+    <br/>
+    <table class="maintable painted_rows" width="100%">
+      <tr nowrap>
+        <th id="value_column" align="left"><%= _('Value') %></th>
+        <th id="select_from_csv_file_column" align="left"><%= _('Select_from_CSV_file') %></th>
+        <th id="enter_manually_column" align="left"><%= _('Enter_manually') %></th>
+        <th id="default_column" align="left"><%= _('Default') %></th>
+        <th id="additional_column" align="left"><%= _('Additional') %></th>
+      </tr>
+      <tr>
+        <td>   <%= _('Prefix') %>*  </td>
+        <%= render 'import_csv_step_2_select', :name => "prefix_id", :value => :imp_prefix, :lv_fl => fl, possible_headers: Regexp.union(/\Aprefix\z/) %>
+        <td></td>
+        <td id="prefix_value"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>   <%= _('Rate') %>*  </td>
+        <%= render 'import_csv_step_2_select', :name => "rate_id", :value => :imp_rate, :lv_fl => fl, possible_headers: Regexp.union(/\Arate/) %>
+        <td></td>
+        <td id="rate_value"></td>
+        <td></td>
+      </tr>
+      <% expected_row = 1 %>
+      <% if effective_from_active %>
+        <tr class="row<%= expected_row % 2%>" nowrap>
+          <td>   <%= _('Effective_from') %>  </td>
+          <%= render 'import_csv_step_2_select', :name => 'effective_from', :value => :imp_effective_from, :lv_fl => fl, possible_headers: Regexp.union(/\Aeffective from\z/) %>
+          <td align="left">
+            <%= select_datetime(effective_date_in_session(session[:import_manual_eff]), :use_month_numbers => false, include_blank: true,  prefix: 'date_from' ) %>
+            <%= submit_tag _('Now'), type: 'button', name: 'effective_date_now', id: 'effective_date_now' , onclick: 'date_now()' %>
+            <%= submit_tag _('Start_of_today'), type: 'button', name: 'effective_date_today', id: 'effective_date_today', onclick: 'date_today()' %>
+          </td>
+          <td align="left"><%= nice_date_time(session[:default_effective_from]) %></td>
+          <td><%= _('date_format') %>: <%= select_tag('effective_from_date_format', options_for_select(effective_from_date_formats, session[:effective_from_date_format].present? ? session[:effective_from_date_format] : guess_effective_from_format(session[:first_effective_from_value]))) %></td>
+        </tr>
+        <% expected_row += 1 %>
+      <% end %>
+      <tr class="row<%= expected_row % 2%>">
+        <% expected_row += 1 %>
+        <td>   <%= _('Connection_Fee') %>  </td>
+        <%= render 'import_csv_step_2_select', :name => "connection_fee_id", :value => :imp_connection_fee, :lv_fl => fl, possible_headers: Regexp.union(/\Aconnection fee/) %>
+        <td align="left"><%= text_field_tag 'manual_connection_fee', session[:manual_connection_fee].present? ? session[:manual_connection_fee].to_s : "", "class" => "input", :size => "8", :maxlength => "8" %></td>
+        <td id="connection_fee_value" align="left">0</td>
+      <td></td>
+      </tr>
+      <tr class="row<%= expected_row % 2%>">
+        <% expected_row += 1 %>
+        <td>   <%= _('Increment') %>  </td>
+        <%= render 'import_csv_step_2_select', :name => "increment_id", :value => :imp_inc, :lv_fl => fl, possible_headers: Regexp.union(/\Aincrement\z/) %>
+        <td align="left"><%= text_field_tag 'manual_increment', session[:manual_increment].present? ? session[:manual_increment].to_s : "", "class" => "input", :size => "8", :maxlength => "8" %></td>
+        <td id="increment_value" align="left">1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>   <%= _('Min_time') %>  </td>
+        <%= render 'import_csv_step_2_select', :name => "min_time_id", :value => :imp_mint, :lv_fl => fl, possible_headers: Regexp.union(/\Amin\. time\z/, /\Aminimal time\z/) %>
+        <td align="left"><%= text_field_tag 'manual_min_time', session[:manual_min_time].present? ? session[:manual_min_time].to_s : "", "class" => "input", :size => "8", :maxlength => "8" %></td>
+        <td id="min_time_value" align="left">0</td>
+        <td></td>
+      </tr>
+      <tr class="row<%= expected_row % 2%>">
+        <% expected_row += 1 %>
+        <td>   <%= _('Ghost_percent') %>  </td>
+        <%= render 'import_csv_step_2_select', :name => "ghost_percent_id", :value => :imp_ghost_percent, :lv_fl => fl, possible_headers: Regexp.union(/\Aghost percent\z/) %>
+        <td align="left"><%= text_field_tag 'manual_ghost_percent', session[:manual_ghost_percent].present? ? session[:manual_ghost_percent].to_s : "", "class" => "input", :size => "8", :maxlength => "8" %></td>
+        <td id="ghost_percent_value" align="left">0</td>
+        <td></td>
+      </tr>
+      <tr class="row<%= expected_row % 2%>" id="dest_row">
+        <% expected_row += 1 %>
+        <td  id='dest_cell' >   <%= _('Destination') %> </td>
+        <%= render 'import_csv_step_2_select', :name => "destination_id", :value => :imp_dst, :lv_fl => fl, possible_headers: Regexp.union(/\Adestination\z/) %>
+        <td></td>
+        <td id="destination_name_value"></td>
+        <td></td>
+      </tr>
+      <tr class="row<%= expected_row % 2%>" id="change_row">
+        <% expected_row += 1 %>
+        <td  id='change_cell' >   <%= _('Action') %> </td>
+        <%= render 'import_csv_step_2_select', name: 'change_action', value: :imp_change, lv_fl: fl, possible_headers: Regexp.union(/\Aaction\z/) %>
+        <td></td>
+        <td id="change_action_value"></td>
+        <td></td>
+      </tr>
+      <tr class="row<%= expected_row % 2%>" id="blocked_row">
+        <% expected_row += 1 %>
+        <td id='blocked_cell'><%= _('Blocked') %></td>
+        <%= render 'import_csv_step_2_select', name: 'blocked', value: :imp_blocked, lv_fl: fl, possible_headers: Regexp.union(/\A(unblock\/block|unblocked\/blocked|blocked)\z/i) %>
+        <td></td>
+        <td id="blocked_value"></td>
+        <td></td>
+      </tr>
+    </table>
+    <br/>
+    <%= submit_tag(_('Assign_columns'), :disable_with => _('Processing..'), :id => "submit_button") %>
+<% end %>
+<br/>
+<%= _('Next_step') + ": " + _('Column_confirmation') %>
+
+<script type='text/javascript'>
+    // Effective date preset handlers
+    function date_now() {
+      var currentTime = new Date();
+      document.getElementById("date_from_year").value = currentTime.getFullYear();
+      // Returns the month (from 0 to 11)
+      document.getElementById("date_from_month").value = currentTime.getMonth() + 1;
+      // Returns the day of the month (from 1 to 31)
+      document.getElementById("date_from_day").value = currentTime.getDate();
+      document.getElementById("date_from_hour").value = currentTime.getHours();
+      document.getElementById("date_from_minute").value = currentTime.getMinutes();
+    }
+    function date_today() {
+      date_now();
+      document.getElementById("date_from_hour").value = "00";
+      document.getElementById("date_from_minute").value = "00";
+    }
+
+    var required_options = ['prefix_id', 'rate_id'];
+    <% if admin? || manager? %>
+    function destinationCellHandler() {
+        var is_destination_required = $('update_dest_names').checked;
+
+        if (is_destination_required) {
+            $('dest_cell').innerHTML = '<%= "#{_('Destination')}*" %>';
+            required_options = ['prefix_id', 'rate_id', 'destination_id'];
+            submit_button_status();
+        } else {
+            $('dest_cell').innerHTML = '<%= "#{_('Destination')}" %>';
+            required_options = ['prefix_id', 'rate_id'];
+        }
+        submit_button_status();
+    }
+
+    destinationCellHandler();
+    Event.observe($('update_dest_names'), 'change', destinationCellHandler);
+    Event.observe($('destination_id'), 'change', destinationCellHandler);
+    <% end %>
+
+    Event.observe($('prefix_id'), 'change', submit_button_status);
+    Event.observe($('rate_id'), 'change', submit_button_status);
+
+    function submit_button_status() {
+        $('submit_button').disabled = !required_options_selected();
+    }
+
+    function required_options_selected() {
+        for (var index = 0, tot = required_options.length; index < tot; index++) {
+            if ($(required_options[index]).value == '-1') return false;
+        }
+
+        return true;
+    }
+
+    function disable_manually_effective_from() {
+      var effective_from_selected = $('effective_from').value != '-1';
+      var disable_options = ['date_from_year', 'date_from_month', 'date_from_day', 'date_from_hour', 'date_from_minute', 'effective_date_now', 'effective_date_today'];
+      for (var index = 0, tot = disable_options.length; index < tot; index++) {
+          $(disable_options[index]).disabled = effective_from_selected;
+      }
+    }
+
+    disable_manually_effective_from();
+    Event.observe($('effective_from'), 'change', disable_manually_effective_from);
+    submit_button_status();
+</script>

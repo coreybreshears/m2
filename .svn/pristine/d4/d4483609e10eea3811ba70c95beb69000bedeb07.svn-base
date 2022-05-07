@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>tariff_import_dst_groups_update</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tariff_import_dst_groups_update</td></tr>
+</thead><tbody>
+<!--#11399 - REVERTED-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_1</td>
+	<td>View (6)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_2</td>
+	<td>View (9)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_473</td>
+	<td>View (2)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_3</td>
+	<td>View (8)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_4</td>
+	<td>View (4)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_5</td>
+	<td>View (3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_6</td>
+	<td>View (13)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_235</td>
+	<td>View (2)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_243</td>
+	<td>View (1)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_249</td>
+	<td>View (13)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/edit/236</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dg_name</td>
+	<td>Laos proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/243</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>231</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/249</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>370527</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/235</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>370527</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>85620</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/destination_groups_update.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=update_destination_groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total file lines: 10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#dest_to_create &gt; b</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#dest_group_update &gt; b</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#r_to_update &gt; b</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Created destinations: 7<br />Destination Groups updated: 10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_created_destinations &gt; b</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Rates updated: 1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_rates_updated &gt; b</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>SUCCESS: New rates created: 8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_new_rates_created &gt; b</td>
+	<td>8</td>
+</tr>
+<!--turi būti vienu daugiau nei prieš importą-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_1</td>
+	<td>View (7)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_2</td>
+	<td>View (10)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_473</td>
+	<td>View (3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_3</td>
+	<td>View (9)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_4</td>
+	<td>View (5)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_5</td>
+	<td>View (4)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_6</td>
+	<td>View (14)</td>
+</tr>
+<!--čia iš dviejų išimta ir įdėta į kitą (+2, -1, -1)-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_235</td>
+	<td>View (4)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_243</td>
+	<td>View (0)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_249</td>
+	<td>View (12)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/243</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>231</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/249</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>370527</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/235</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>231</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>370527</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Liberia proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Lithuania Vilnius</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Laos proper</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Albania proper*3556</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Albania proper*35569</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>213</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2136</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>21361</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2135</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>2135</td>
+</tr>
+<!--ištrinam, kad updatetintų kitą grupę-->
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>2136</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#delete_img_2 &gt; img[alt=&quot;Delete&quot;][/billing/destination_groups/dg_destination_delete/34?dg_id=6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Destination deleted</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>2136 </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2135 </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>21350 </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>21361</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>2135</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/tariff/sell_tariff_a_12007/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--importas į sell tarifą-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/12007</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/full_tariff_info.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=update_destination_groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2020</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=March</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=15</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_hour</td>
+	<td>label=00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_minute</td>
+	<td>label=00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Analysis completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=file_lines</td>
+	<td>27</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=bad_lines</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#dest_to_create &gt; b</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#dest_group_update &gt; b</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#new_r_to_create &gt; b</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>SUCCESS: Created destinations: 11<br />Destination Groups updated: 3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>SUCCESS: New rates created: 21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_created_destinations &gt; b</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_updated_destinations &gt; b</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_rates_updated &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_new_rates_created &gt; b</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to Tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Rates (0/21)</td>
+	<td>Rates (0/21)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania proper*3556</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>35569</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/448</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>125 </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>130 </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>167 </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>187 </td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

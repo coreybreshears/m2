@@ -1,0 +1,733 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<% content_for :search_form do %>
+  <%= form_tag({ action: :active_calls_show, search_pressed: true }, { id: 'search-form', class: 'calls-form', visible: false }) do %>
+    <fieldset>
+      <%= hidden_field_tag(:search_on, 0) %>
+      <% if admin? || manager? %>
+        <div class="column user-col">
+          <div class="col">
+            <div class="row">
+              <%= label_tag 'from', _('Origination_User') %>
+              <%= render('shared/m2_live_search_field',
+                  object: @options[:s_user].to_s,
+                  object_id: @options[:s_user_id],
+                      object_name: 'User',
+                      action_url: {
+                          controller: :users, action: :get_users_map,
+                          options: { show_users_only: true, show_reseller_users: true }
+                      }
+                  )
+              %>
+            </div>
+            <div class="row">
+              <%= label_tag 's_server', _('Server') %>
+              <%= select_tag('s_server', options_for_select([[_('All'), '']] + @servers.map { |server| [server.nice_description, server.id]}, @options[:s_server]), style: 'min-width:100px', class: 'jcf-hidden') %>
+            </div>
+          </div>
+        </div>
+
+        <div class="column user-col" style="min-width:180px;">
+          <div class="row" <%= tooltip(_('Info'), _('Select_Origination_User_first_to_select_separate_Origination_Point')) %>>
+            <%= label_tag 's_device_op', _('Origination_points') %>
+            <%= select_tag('s_device_op', options_for_select([[_('All'), '']] + @origination_points.map{ |dev| [nice_device(dev, { image: false }), dev.id.to_s] }, @options[:s_device_op].to_s), style: 'min-width:100px', class: 'jcf-hidden') %>
+          </div>
+          <div class="row">
+            <%= label_tag 's_status', _('Status') %>
+            <%= select_tag('s_status', options_for_select(call_status_options, @options[:s_status]), style: 'min-width:100px', class: 'jcf-hidden')%>
+          </div>
+        </div>
+
+        <div class="column user-col">
+          <div class="row">
+            <%= label_tag 's_user_for_tp', "#{_('Termination_User')}" %>
+            <%= render 'shared/m2_live_search_field',
+                object: @options[:s_user_for_tp],
+                object_id: @options[:s_user_for_tp_id],
+                object_name: 'User_for_tp',
+                action_url: {
+                    controller: :users, action: :get_users_map,
+                    options: {
+                        show_users_only: true,
+                        show_reseller_users: true,
+                        users_to_get: 'terminators'
+                    }
+                 }
+            %>
+          </div>
+         <div class="row">
+            <%= label_tag 's_source', _('Source') %>
+            <%= text_field_tag("s_source", @options[:s_source]) %>
+          </div>
+        </div>
+
+        <div class="column user-col">
+          <div class="row" <%= tooltip(_('Info'), _('Select_Termination_User_first_to_select_separate_Termination_Point')) %>>
+            <%= label_tag 's_device', _('termination_point') %>
+            <%= select_tag('s_device', options_for_select([[_('All'), '']] + @termination_points.map{ |dev| [nice_device(dev, { image: false }), dev.id.to_s] }, @options[:s_device].to_s), style: 'min-width:100px', class: 'jcf-hidden') %>
+          </div>
+          <div class="row">
+            <%= label_tag 's_destination', _('Destination') %>
+            <%= text_field_tag("s_destination", @options[:s_destination]) %>
+          </div>
+        </div>
+
+        <div class="column user-col">
+          <div class="row">
+            <%= label_tag 's_country', _('Country') %>
+            <%= select_tag('s_country', options_for_select([[_('All'), '']] + @countries.map { |country|  country.name}, @options[:s_country]), style: 'min-width:100px', class: 'jcf-hidden')%>
+          </div>
+        </div>
+      <% else %>
+        <div class="column user-col">
+          <div class="row">
+            <%= label_tag 's_status', _('Status') %>
+            <%= select_tag('s_status', options_for_select(call_status_options, @options[:s_status]), style: 'min-width:100px', class: 'jcf-hidden')%>
+          </div>
+          <div class="row">
+            <%= label_tag 's_source', _('Source') %>
+            <%= text_field_tag("s_source", @options[:s_source]) %>
+          </div>
+        </div>
+        <div class="column user-col">
+          <div class="row">
+            <%= label_tag 's_country', _('Country') %>
+            <%= select_tag('s_country', options_for_select([[_('All'), '']] + @countries.map { |country|  country.name}, @options[:s_country]), style: 'min-width:100px', class: 'jcf-hidden')%>
+          </div>
+          <div class="row">
+            <%= label_tag 's_destination', _('Destination') %>
+            <%= text_field_tag("s_destination", @options[:s_destination]) %>
+          </div>
+        </div>
+      <% end %>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= submit_tag _('clear'), name: 'clear', id: 'clear_btn', class: 'clear', type: 'button' %>
+          <%= submit_tag _('refine'), id: 'search_btn' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Active_Calls') %></h2>
+      <div id="active_calls_info">
+        <span id="refresh_message"><%= _('Page_refreshes_every') %>:&nbsp;<%= @refresh_period %> s</span>
+        <span id="pause_toggle" >
+          <img id="pause_toggle_img"  src="<%= "#{Web_Dir}/images/icons/control_pause.png"  %>" />
+        </span>
+        <br/>
+        <%= _('Active_Calls') %>&nbsp;
+        <span id="active_calls_count" onmouseover="Tip('<%= active_calls_total_explanation %>', CLICKCLOSE, true);" onmouseout="UnTip()"></span>
+
+        <div class="legend">
+          <div class="item"><%= icon('bullet_yellow') %> <span><%= _('Ringing') %></span></div>
+          <div class="item"><%= icon('bullet_green') %> <span><%= _('Answered') %></span></div>
+        </div>
+        <div id="too_many_calls"></div>
+      </div>
+
+      <div id="active_calls" ></div>
+
+      <% if admin? %>
+        <%= form_tag({action: :truncate_active_calls}, {class: 'calls-form active-calls-reset', style: 'padding-bottom: 0px;'}) do %>
+          <%= submit_tag _('Delete_active_calls_information'), data: {disable_with: _('Processing..')} %>
+          <span style="line-height:29px;">
+            &nbsp;<%= _('This_action_would_only_delete_temporary_information_it_does_not_affect_any_calls') %>.
+          </span>
+        <% end %>
+        <%= form_tag({action: :hangup_refined_active_calls}, {class: 'calls-form active-calls-reset dangerous-button'}) do %>
+            <%= submit_tag _('HANGUP_ALL_CALLS'), data: {disable_with: _('Processing..'), confirm: _('Are_you_sure_you_want_all_selected_Calls_to_be_terminated')} %>
+            <span style="line-height:29px;">
+            &nbsp;<%= _('This_action_will_hangup_all_Active_Calls_selected_by_Search_filter') %>.
+          </span>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  <%= render 'shared/m2_js_helper.js.erb' %>
+  jQuery.noConflict();
+  jQuery(document).ready(function ($) {
+    // We need some ruby variables to be turned to JS for processing
+    var hideGuiDst = <%= hide_gui_dst? %>;
+    var user_id = parseInt("<%= @user_id %>");
+    var maActive = <%= @ma_active ? 1 : 0 %>
+    var showServer = <%= @show_server && !user? ? 1 : 0 %>;
+    var showHangup = <%= admin? || manager? %> || 0;
+    var manageUsers = <%= authorize_manager_permissions(controller: :users, action: :update, no_redirect_return: 1) %>;
+    var manageDevices = <%= authorize_manager_permissions(controller: :devices, action: :device_update, no_redirect_return: 1) %>;
+    var manageServers = <%= authorize_manager_permissions(controller: :servers, action: :server_update, no_redirect_return: 1) %>;
+    <% show_rates = Confline.get_value('show_rates_in_active_calls').to_i == 1 && (admin? || manager?) %>;
+    <% show_provider_rates = Confline.get_value('show_rates_in_active_calls').to_i == 1 && (admin? || (manager? && !authorize_manager_fn_permissions(fn: :reports_active_calls_hide_vendors_information))) %>;
+    var show_rates = <%= show_rates %>;
+    var show_provider_rates = <%= show_provider_rates %>;
+    // jqxGrid datafields
+    var source = {
+      datatype: 'json',
+      datafields: [
+        { name: 'status', type: 'string' },
+        { name: 'answer_time', type: 'time' },
+        { name: 'duration', type: 'time' },
+        { name: 'src', type: 'string' },
+        { name: 'user_rate', type: 'string' },
+        { name: 'dst', type: 'string' },
+        { name: 'provider_rate', type: 'string' },
+        { name: 'server_id', type: 'integer' },
+        { name: 'hangup', type: 'string' }
+      ],
+      pagesize: <%= session[:items_per_page] %>,
+      cache: true
+    };
+    // End of datafields
+
+    // Conditional column distribution
+    // based on the columns presence
+    if (show_rates && show_provider_rates){
+    var col_distr = {
+      status: '3%',
+      answer_time: '7%',
+      duration: '7%',
+      src: (!showServer * 2 + 31) + '%',
+      dst: (!showServer * 2 + 33 + !showHangup * 3) + '%',
+      user_rate: '6%',
+      provider_rate: '6%',
+      server_id: '4%',
+      hangup: showHangup * 3 + '%'
+    };
+  }
+  else if (show_rates && !show_provider_rates){
+    var col_distr = {
+      status: '3%',
+      answer_time: '7%',
+      duration: '7%',
+      src: (!showServer * 2 + 33) + '%',
+      dst: (!showServer * 2 + 37 + !showHangup * 3) + '%',
+      user_rate: '6%',
+      provider_rate: '0%',
+      server_id: '4%',
+      hangup: showHangup * 3 + '%'
+    };
+  }
+  else{
+  var col_distr = {
+      status: '3%',
+      answer_time: '7%',
+      duration: '7%',
+      src: (!showServer * 2 + 36) + '%',
+      dst: (!showServer * 2 + 40 + !showHangup * 3) + '%',
+      user_rate: '0%',
+      provider_rate: '0%',
+      server_id: '4%',
+      hangup: showHangup * 3 + '%'
+    };
+  }
+    // End of conditional distribution
+
+    // A simple clipboard selection handler
+    var copyText = '';
+    // Get the selected text
+    document.addEventListener('mouseup', function() {
+        if (window.getSelection) copyText = window.getSelection().toString();
+      copyText = copyText + getSelectionText();
+    }, false);
+    // On copy event put it on clipboard
+    document.addEventListener('copy', function(event) {
+
+      event.clipboardData.setData('text/plain', copyText);
+      // Prevent from getting any other selections
+      event.preventDefault();
+    });
+
+    function getSelectionText()
+    {
+       var textComponent = document.activeElement;
+       var selectedText = '';
+       if (!!(textComponent.value) && $(textComponent).attr('type') != 'submit' ){
+       var startPos = textComponent.selectionStart;
+       var endPos = textComponent.selectionEnd;
+       selectedText = textComponent.value.substring(startPos, endPos);
+     }
+       return selectedText;
+    }
+
+    // COLUMNS ARRAY
+    // We use helper M2 JS functions from ../shared/_mor_js_helper.js.erb
+    var columns = [
+      // Status column
+      { text: "", datafield: "status", align: "center", cellsalign: "center", sortable: false, width: col_distr.status,
+        cellsrenderer: function (row, column, value) {
+          var call = source.localdata[row];
+          var events = 'onmouseover="Tip(\'' + JSActiveCallsHelper.activeCallTooltip(call, maActive) + '\', CLICKCLOSE, true);" onmouseout="UnTip()"';
+          return '<div ' + events + ' style="text-align: center; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' +
+              JSActiveCallsHelper.activeCallBullet(call.status) + '</div>';
+        }
+      },
+      // Start time column
+      { text: "<%= _('Start_time') %>", datafield: "answer_time", align: "center", cellsalign: "center", width: col_distr.answer_time,
+        cellsrenderer: function (row, column, value) {
+          return '<div style="text-align: center; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' +
+              JSTimeHelper.niceTimeFromDate(JSTimeHelper.toUserTime(value)) + '</div>';
+        }
+      },
+      // Duration column
+      { text: "<%= _('Duration') %>", datafield: "duration", align: "center", cellsalign: "center", width: col_distr.duration,
+        cellsrenderer: function (row, column, value) {
+          var non_negative_duration = source.localdata[row].duration < 0 ? 0.1 : source.localdata[row].duration;
+          return '<div style="text-align: center; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' +
+              JSTimeHelper.niceTime(non_negative_duration) + '</div>';
+        }
+      },
+      // Source column
+      { text: "<%= "#{_('Source')} (#{_('Caller')})" %>", datafield: "src", align: "left", cellsalign: "left", width: col_distr.src,
+        // Big cellsrenderer callback (adjusts links ant texts due to current user and permissions)
+        cellsrenderer: function (row, column, value) {
+          var call = source.localdata[row];
+          var result = (call.src || "") + " ";
+          if (call.user_id != undefined && parseInt(call.user_id) >= 0) {
+            if (JSUsersHelper.isAdmin || (JSUsersHelper.isManager && manageUsers)) {
+              var show_link = true;
+              var link = call.user_owner_id == user_id && call.user_id != 0;
+              var assigned_users = <%= assigned_users %>;
+              if (link && assigned_users)
+              {
+                show_link = assigned_users.includes(parseInt(call.user_id));
+                link = show_link ? link : show_link;
+              }
+              result += JSUsersHelper.niceUser(call.user_username, call.user_first_name, call.user_last_name,
+                  {link: link, user_id: call.user_id});
+            } else if (JSUsersHelper.isManager) {
+              result += JSUsersHelper.niceUser(call.user_username, call.user_first_name, call.user_last_name);
+            }
+            result += " / ";
+            var link;
+            if (JSUsersHelper.isAdmin || (JSUsersHelper.isManager && manageDevices)) {
+              link = call.device_user_id == call.user_id && call.user_owner_id == user_id && call.user_id != 0;
+            } else {
+              link = false;
+            }
+            var assigned_users_devices = <%= assigned_users_devices %>;
+            if (link && assigned_users_devices)
+            {
+              var show_link = assigned_users_devices.includes(parseInt(call.device_id));
+              link = show_link ? link : show_link;
+            }
+            result += JSDevicesHelper.niceDeviceFromData(call.device_type, call.device_description, call.device_host,
+                call.user_username, call.user_first_name, call.user_last_name, {link: link, device_id: call.device_id});
+          }
+          return '<div style="text-align: left; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' + result + '</div>';
+        }
+      },
+      // user rate column
+      <% if show_rates %>
+      { text: "<%= _('User_rate') %>", datafield: "user_rate", align: "right", cellsalign: "center", width: col_distr.user_rate,
+        cellsrenderer: function (row, column, value) {
+          var call = source.localdata[row];
+          return '<div style="text-align: right; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' + JSNumberHelper.niceNumber(call.user_rate) + '</div>';
+        }
+      },
+      <% end %>
+      // Destination column
+      { text: "<%= "#{_('Destination')} (#{ _('Callee')})" %>", datafield: 'dst', align: 'left', cellsalign: 'center', width: col_distr.dst,
+        // Big cellsrenderer callback (adjusts links ant texts due to current user and permissions)
+        cellsrenderer: function (row, column, value) {
+          var call = source.localdata[row];
+          if (call.dst) {
+            var result = hideGuiDst && JSUsersHelper.devices.indexOf(call.device_id) > -1 ? call.dst.substring(0, call.dst.length - 3) + "XXX" : call.dst;
+            result += " " + JSDestinationsHelper.drawFlag(call.direction_code) + " " + (call.destination_name || "") + " (" + (call.prefix || "") + ") ";
+            var showVendorsInfo = <%= (manager? && !authorize_manager_fn_permissions(fn: :reports_active_calls_hide_vendors_information)) || !manager? %>;
+            if (call.dst_user_id != undefined && parseInt(call.dst_user_id) >= 0 && showVendorsInfo) {
+              if (JSUsersHelper.isAdmin || (JSUsersHelper.isManager && manageUsers)) {
+              var show_link = true;
+              var link = call.dst_user_owner_id == user_id;
+              var assigned_users = <%= assigned_users %>;
+              if (link && assigned_users)
+              {
+                show_link = assigned_users.includes(parseInt(call.dst_user_id));
+                link = show_link ? link : show_link;
+              }
+                result += JSUsersHelper.niceUser(call.dst_user_username, call.dst_user_first_name, call.dst_user_last_name,
+                    {link: link, user_id: call.dst_user_id});
+              } else if (JSUsersHelper.isManager) {
+                result += JSUsersHelper.niceUser(call.user_username, call.user_first_name, call.user_last_name);
+              }
+              var link;
+              if (JSUsersHelper.isAdmin || (JSUsersHelper.isManager && manageDevices)) {
+                link = call.dst_device_user_id == call.dst_user_id && call.dst_user_owner_id == user_id && call.dst_user_id != 0;
+              } else {
+                link = false;
+              }
+              var assigned_users_devices = <%= assigned_users_devices %>;
+              if (link && assigned_users_devices)
+              {
+                var show_link = assigned_users_devices.includes(parseInt(call.dst_device_id));
+                link = show_link ? link : show_link;
+              }
+              if (!JSUsersHelper.isUser) {
+                result += " / ";
+                result += JSDevicesHelper.niceDeviceFromData(call.dst_device_type, call.dst_device_description,
+                  call.dst_device_host, "", "", "", {link: link, device_id: call.dst_device_id});
+              }
+            }
+            return '<div style="text-align: left; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' + result + '</div>';
+          }
+        }
+      },
+      <% if show_provider_rates  %>
+      { text: "<%= _('Provider_rate') %>", datafield: "provider_rate", align: "right", cellsalign: "center", width: col_distr.provider_rate,
+        cellsrenderer: function (row, column, value) {
+          var call = source.localdata[row];
+          return '<div style="text-align: right; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' + JSNumberHelper.niceNumber(call.provider_rate) + '</div>';
+        }
+      },
+      <% end %>
+      <% if @show_server && !user? %>
+      // Server column
+      { text: "<%= _('Server') %>", datafield: 'server_id', align: 'left', cellsalign: 'left', width: col_distr.server_id,
+        cellsrenderer: function (row, column, value) {
+          var result = "";
+          if (JSUsersHelper.isAdmin || (JSUsersHelper.isManager && manageServers)) {
+            result = JSServersHelper.niceServer(value, {link: true, server_id: value});
+          } else {
+            result = JSServersHelper.niceServer(value, {link: false, server_id: value});
+          }
+          return '<div style="text-align: left; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' + result + '</div>';
+        }
+      },
+      <% end %>
+      <% if admin? || manager? %>
+      // Soft hangup column
+      { text: "", datafield: 'hangup', sortable: false, width: col_distr.hangup,
+        cellsrenderer: function (row, column, value) {
+          var call = source.localdata[row];
+          var result = JSUniversalHelper.softHangup(call);
+          return '<div style="text-align: center; margin: 3.5px; overflow: hidden; text-overflow: ellipsis;">' + result + '</div>';
+        }
+      }
+      <% end %>
+    ];
+    // END OF COLUMNS ARRAY
+
+    // Table container
+    var activeCallsGrid = $("#active_calls");
+    var tooManyCallsMessage = $("#too_many_calls");
+    // Counter container
+    var activeCallsCounter = $("#active_calls_count");
+    // Max calls from settings
+    var maxCalls = parseInt("<%= Confline.get_value('Active_Calls_Maximum_Calls').to_i %>") || 0;
+    // Request counter
+    var requestCount = 0;
+    // Track if the table has ever been rendered
+    var rendered = false;
+    // Too many calls indicator
+    var tooManyCalls = false;
+    // Request tracker
+    var pendingRequest = null;
+    // Search tracker
+    var searchOn = <%= @options[:search_on] == 'true' ? true : false %>;
+    // Worker timeout handle
+    var timeoutHandle;
+    // Clean search button
+    var cleanButton = $("#clear_btn");
+    // Submit search button
+    var submitButton = $("#search_btn");
+    var searchFrom = $("#search-form");
+    // Table refresh period
+    var refreshPeriod = parseInt("<%= @refresh_period %>") * 1000;
+    // pause flag
+    var pause_flag = false;
+
+    // Localization callback
+    var getLocalization = function () {
+      var localizationobj = {};
+      localizationobj.thousandsseparator = '';
+      localizationobj.emptydatastring = "<%= _('No_data_found_no_dots') %>";
+      return localizationobj;
+    };
+
+    // Counter updater callback
+    var getCallsCounter = function(calls) {
+      var total = calls.length;
+      var answered = $.grep(calls, function(e) { return e ? e.status != 0 : false }).length;
+      return total + " / " + answered;
+    };
+
+    // Update jqxGrid function
+    var updateTable = function(data) {
+      // Update the counter
+      activeCallsCounter.html(getCallsCounter(data));
+      // If data fits in a settings range show it
+      if (data.length <= maxCalls) {
+        source.localdata = data;
+        // We only draw a table for the first time
+        // this way it is more optimal. During other requests
+        // We will only update its data reference
+        if (requestCount == 0 || tooManyCalls) {
+          // Initialization
+          activeCallsGrid.show();
+          tooManyCallsMessage.empty();
+          tooManyCalls = false;
+          activeCallsGrid.jqxGrid({
+            source: new $.jqx.dataAdapter(source),
+            width: '100%',
+            autoheight: true,
+            rowsheight: 22,
+            altrows: true,
+            selectionmode: 'multiplecellsadvanced',
+            statusbarheight: 22,
+            sortable: true,
+            pageable: true,
+            enablebrowserselection: 'true',
+            pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+            localization: getLocalization(),
+            columns: columns,
+            handlekeyboardnavigation: function (event) {
+              var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+              // If you add a new text field into the search, add it's ID to this array.
+              var searchElements = ['s_source','s_user','s_destination'];
+              var selectedElement = document.activeElement.id;
+              if (key == 86 && event.ctrlKey == true && !searchElements.include(selectedElement)) return true;
+            },
+            ready: function () {
+              rendered = true;
+              // Default sort: duration
+              activeCallsGrid.jqxGrid("sortby", "duration", "desc");
+              // Adjust M2 Window size
+              $(window).resize();
+            }
+          });
+          if (rendered) {
+            activeCallsGrid.jqxGrid("sortby", "duration", "desc");
+            activeCallsGrid.jqxGrid({ pagesize: source.pagesize });
+          }
+        } else {
+          // For later requests we maintain settings and update the data
+          var sortColumnName = activeCallsGrid.jqxGrid("getsortcolumn");
+          var currentPage = activeCallsGrid.jqxGrid("getdatainformation").paginginformation.pagenum;
+          var sortOrder = activeCallsGrid.jqxGrid("getsortinformation").sortdirection.ascending == true ? "asc" : "desc";
+          activeCallsGrid.jqxGrid({ source: new $.jqx.dataAdapter(source)});
+          activeCallsGrid.jqxGrid("sortby", sortColumnName, sortOrder);
+          activeCallsGrid.jqxGrid("gotopage", currentPage);
+          // Update the table
+          activeCallsGrid.jqxGrid("updatebounddata", "sort");
+        }
+      } else {
+        activeCallsGrid.hide();
+        activeCallsGrid.jqxGrid("clear");
+        // If data does not fit in a settings range warn a client
+        tooManyCallsMessage.html("<%= _('Too_much_calls_to_show') %>");
+        tooManyCalls = true;
+      }
+    };
+
+    activeCallsGrid.on("pagesizechanged", function (event) {
+        // Adjust M2 Window size
+        $(window).resize();
+    });
+
+    // End of update jqxGrid function
+    // Worker sends periodic actions to server and
+    // updates the jqxGrid correspondingly due to the response
+    function worker() {
+      // For the first time we don't need to ask server
+      // because we already did
+      if (requestCount == 0) {
+        // Update the table
+        updateTable(<%= raw @active_calls_json %>);
+        requestCount++;
+        // Set time out for further iterations (here from we start countint time)
+        clearTimeoutAjax(timeoutHandle);
+        timeoutHandle = setTimeout(worker, refreshPeriod);
+      } else {
+        // > 1st iterations sends periodic requests to server
+        // Do not send periodic request if pause_flag = true
+        if(!pause_flag) sendRequest();
+      }
+    }
+    // End of worker
+
+    <% if admin? || manager? %>
+      updateDevicesList('op');
+      updateDevicesList();
+    <% end %>
+    // Start the worker
+    worker();
+
+    // Supervise a user's interactivity over user a search form
+    $("#s_user, #s_status, #s_country, #s_source, #s_destination, #s_device, #s_device_op, #s_user_for_tp, #s_server").on("click", function() {
+      killRequest();
+      timeoutHandle = setTimeout(worker, refreshPeriod);
+    });
+    $("#s_user, #s_source, #s_destination, #s_user_for_tp").on("keyup", function() {
+      killRequest();
+      timeoutHandle = setTimeout(worker, refreshPeriod);
+    });
+
+
+    $("#s_user_id").on("change", function() {
+      killRequest();
+      timeoutHandle = setTimeout(worker, refreshPeriod);
+      updateDevicesList('op');
+    });
+
+    $("#s_user_for_tp_id").on("change", function() {
+      killRequest();
+      timeoutHandle = setTimeout(worker, refreshPeriod);
+      updateDevicesList();
+    });
+
+
+    // Submit a search form
+    searchFrom.on("submit", function(event) {
+      event.preventDefault();
+      killRequest();
+      $("[name=search_on]").val('1');
+      sendRequest();
+      submitButton.attr("disabled", true);
+      return false;
+    });
+
+    // Clear a search form
+    cleanButton.on("click", function() {
+      killRequest();
+      $("[name=s_status]").val('');
+      $("[name=s_status]")[0].jcf.refreshState();
+
+      $("[name=s_country]").val('');
+      $("[name=s_country]")[0].jcf.refreshState();
+
+      $("[name=s_source]").val('');
+      $("[name=s_destination]").val('');
+
+      <% if admin? || manager? %>
+        $("[name=s_user]").val('');
+        $("[name=s_user_id]").val('');
+        $("[name=s_device_op]").val('');
+        $("[name=s_device_op]")[0].jcf.refreshState();
+        $("[name=s_device]").val('');
+        $("[name=s_device]")[0].jcf.refreshState();
+        $("[name=s_user_for_tp]").val('');
+        $("[name=s_user_for_tp_id]").val('');
+        $("[name=s_server]").val('');
+        $("[name=s_server]")[0].jcf.refreshState();
+        updateDevicesList('op');
+        updateDevicesList();
+      <% end %>
+
+      $("[name=search_on]").val('1');
+      sendRequest();
+      return false;
+    });
+
+    // Abort pending ajax requests and reset timeouts
+    function killRequest() {
+      clearTimeoutAjax(timeoutHandle);
+      if(pendingRequest){
+        pendingRequest.abort();
+      }
+    }
+
+    // More sophisticated clear timeout approach
+    function clearTimeoutAjax(handle) {
+      if (handle) clearTimeout(handle);
+    }
+
+    //$("#s_status").val("1");
+    // Update devices list with respect to termination point user id
+    function updateDevicesList(cp = "tp") {
+      var cp_dropdown = (cp == 'tp') ? "#s_device" : "#s_device_op";
+      var s_user_id = (cp == 'tp') ? $("#s_user_for_tp_id").val() : $("#s_user_id").val();
+      $.ajax({
+        // Request destination
+        url: "<%= Web_Dir %>" + "/devices/ajax_get_user_devices",
+        data: {
+          user_id: s_user_id == '-1' ? '-2' : s_user_id,
+          all: true,
+          fax: true,
+          type: cp,
+          field_id: (cp == 'tp') ? 's_device' : 's_device_op',
+        },
+        // Type of request
+        type: "GET",
+        dataType: "html",
+        // Update the table with a json response
+        success: function (data) {
+          $(cp_dropdown).replaceWith(data);
+          // We need this one live, so select each time
+          $(cp_dropdown).siblings("span").remove();
+          jcf.customForms.replaceAll();
+        },
+        // Clean up and get ready for a successor request
+        complete: function () {
+          clearTimeoutAjax(timeoutHandle);
+          $(cp_dropdown).val((cp == 'tp') ? "<%= @options[:s_device] || '' %>" : "<%= @options[:s_device_op] || '' %>");
+          $(cp_dropdown)[0].jcf.refreshState();
+          timeoutHandle = setTimeout(worker, refreshPeriod);
+        }
+      });
+    }
+
+    // Perform an ajax call
+    function sendRequest(data) {
+      pendingRequest = $.ajax({
+        // Request destination
+        url: "<%= Web_Dir %>" + "/stats/active_calls_show",
+        // Serialize the form
+        data: data || searchFrom.serialize(),
+        // Type of request
+        type: "POST",
+        dataType: "json",
+        beforeSend: function (xhr) {
+          // Security concerns
+          xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"));
+        },
+        // Update the table with a json response
+        success: function (data) { updateTable(data); },
+        // Clean up and get ready for a successor request
+        complete: function() {
+          pendingRequest = null;
+          requestCount++;
+          submitButton.attr("disabled", false);
+          submitButton.val("<%= _('Refine') %>");
+          clearTimeoutAjax(timeoutHandle);
+          timeoutHandle = setTimeout(worker, refreshPeriod);
+        }
+      });
+    }
+     // click pause/play btn
+    $("#pause_toggle").on("click", function() {
+        var img_src = $('#pause_toggle_img').attr('src');
+        if(img_src == "<%= "#{Web_Dir}/images/icons/control_pause.png" %>"){
+            $('#pause_toggle_img').attr('src', "<%= "#{Web_Dir}/images/icons/control_play.png" %>");
+            $('#refresh_message').html('<%= _('Page_refresh_is_stopped') %>');
+            pause_flag = true;
+       }else{
+            pause_flag = false;
+            worker();
+            $('#pause_toggle_img').attr('src', "<%= "#{Web_Dir}/images/icons/control_pause.png" %>");
+            $('#refresh_message').html('<%= "#{_('Page_refreshes_every')}: #{@refresh_period}" %> s');
+       }
+    });
+
+  });
+</script>

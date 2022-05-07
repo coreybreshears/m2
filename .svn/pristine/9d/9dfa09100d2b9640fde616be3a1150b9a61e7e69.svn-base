@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col">
+       <%= raw settings_group_number(_('Maximum_Active_Calls'), 'active_calls_max', 'Active_Calls_Maximum_Calls', {}, {class: 'number'}) %>
+       <%= raw settings_group_number(_('Active_Calls_Refresh_Interval'), 'active_calls_interval', 'Active_Calls_Refresh_Interval', {}, {class: 'number'}) %>
+       <%= raw setting_group_boolean(_('Show_Active_Calls_for_Users'), 'show_active_calls_for_users', 'Show_Active_Calls_for_Users') %>
+       <%= raw setting_group_boolean(_('Active_Calls_Show_Server'), 'active_calls_show_server', 'Active_Calls_Show_Server') %>
+       <%= raw setting_boolean(_('show_rates_in_active_calls'), 'show_rates_in_active_calls', 'show_rates_in_active_calls') %>
+  </div>
+</div>

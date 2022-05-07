@@ -1,0 +1,353 @@
+<%= javascript_include_tag 'google_charts/loader.js' %>
+
+<% content_for :search_form do %>
+  <%= form_tag({action: :user_stats}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <fieldset>
+      <div class="column date-col calendar-holder">
+        <%= label_tag 'from', _('From') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_from', formatted_date_as_given(@options[:from]), class: 'checkin default', id: 'from' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+           <div class="time-col">
+            <%= text_field_tag 'time_from', formatted_time_as_given(@options[:from]), disabled: 1 %>
+            <%= hidden_field_tag 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <%= label_tag 'till', _('Till') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_till', formatted_date_as_given(@options[:till]), class: 'checkout default' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_till', formatted_time_as_given(@options[:till]), disabled: 1 %>
+            <%= hidden_field_tag 'time2' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <%= label_tag 'user', _('User') %>
+        <div class="row">
+          <div class="input-col">
+            <%= render 'shared/m2_live_search_field',
+                        object: nice_user(@options[:user]),
+                        object_id: @options[:user_id],
+                        object_name: 'User',
+                        action_url: {
+                          controller: :users, action: :get_users_map,
+                          options: {
+                            show_users_only: true
+                          }
+                        }
+            %>
+          </div>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row" style="margin-top:160px;">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<br>
+
+<div id="user_stats_container">
+
+  <div class="user_stats_box" id="disposition_stats">
+
+    <div class="user_stats_box_header">
+      <span style="width: 58%;">
+        <span class="user_stats_box_line_disp">
+          <%= _('Calls') %>
+        </span>
+        <span class="user_stats_box_line_number">
+          <strong><%= @disp_table['Total'][0] %></strong>
+        </span>
+        <span class="user_stats_box_line_percent"></span>
+        <span id="user_stats_box_header_icon"></span>
+        <span class="arrow-down"></span>
+      </span>
+    </div>
+
+    <div id="disposition_piechart"></div>
+
+    <div id="disposition_table">
+      <% @disp_table.except('Total').each do |disp, data| %>
+        <div id="<%= disp.downcase %>_calls_line" class="user_stats_box_line">
+          <div class="user_stats_box_line_disp">
+            <%= _(disp) %>
+          </div>
+          <div class="user_stats_box_line_number">
+            <strong><%= data[0] %></strong>
+          </div>
+          <div class="user_stats_box_line_percent">
+            <%= data[1].round(1) %>&nbsp;%
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="user_stats_box" id="metrics_stats">
+
+    <div class="user_stats_box_hist_header">
+      <div class="user_stats_box_tab tab_active" id="tab_calls" data-tab="calls_chart">
+        <span><%= @daily_stats.totals[:calls] %></span><br>
+        <%= _('Calls') %>
+      </div>
+      <div class="user_stats_box_tab" id="tab_duration" data-tab="duration_chart">
+        <span>
+          <%= nice_time(@daily_stats.totals[:duration], show_zero: true, time_format: @options[:time_format]) %>
+        </span><br>
+        <%= _('Duration') %>
+      </div>
+      <div class="user_stats_box_tab" id="tab_acd" data-tab="acd_chart">
+        <span>
+          <%= nice_time(@daily_stats.totals[:acd], show_zero: true, time_format: @options[:time_format]) %>
+        </span><br>
+        <%= _('ACD') %>
+      </div>
+    </div>
+
+    <div id="calls_chart" class="user_stats_chart"></div>
+    <div id="duration_chart" class="user_stats_chart hidden"></div>
+    <div id="acd_chart" class="user_stats_chart hidden"></div>
+
+  </div>
+
+</div>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= "#{_('Detailed_stats_for')} #{@options[:user] ? nice_user(@options[:user]) : _('Users')}" %></h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= _('Date') %></th>
+          <th class="right"><%= _('Calls') %></th>
+          <th><%= _('Duration') %></th>
+          <th><%= _('ACD') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @daily_stats.days_list.count > 0 %>
+          <% @daily_stats.days_list.each do |day| %>
+            <tr>
+              <td id="<%= day[0] %>-day">
+                <%= formatted_date_as_given(day[0]) %>
+              </td>
+              <td id="<%= day[0] %>-calls" class="right">
+                <%= day[1] %>
+              </td>
+              <td id="<%= day[0] %>-duration">
+                <%= nice_time(day[2].ceil, show_zero: true, time_format: @options[:time_format]) %>
+              </td>
+              <td id="<%= day[0] %>-avg-duration">
+                <%= nice_time(day[3].ceil, show_zero: true, time_format: @options[:time_format]) %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="4">
+              <div class='no_data'><%= _('No_data_found_no_dots') %></div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    </br>
+    <%= paginate @daily_stats.days_list, entry_name: _('days') %>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".checkin").datepicker("option", "showTimepicker", false);
+    $(".checkout").datepicker("option", "showTimepicker", false);
+
+    //  Load a little older library since the current one is buggy
+    google.charts.load('42', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawCharts);
+
+    // Callback that creates and populates the data tables,
+    //  instantiates the charts, passes in the data, and draws charts
+    function drawCharts() {
+      // Data formatters
+      var dateFormat = "<%= js_date_format %>";
+      var dateFormatter = new google.visualization.DateFormat({
+        pattern: dateFormat,
+      });
+      var numberFormatter = new google.visualization.NumberFormat({
+        pattern: "#",
+        fractionDigits: 0
+      });
+
+      // Pie chart options
+      var optionsPie = {
+        pieHole: 0.4,
+        colors: ["#459248", "#B2B2B2", "#D4A134", "#A72515"],
+        sliceVisibilityThreshold: 0,
+        chartArea: {
+          width: "90%",
+          height: "80%",
+          top: 20
+        },
+        backgroundColor: "transparent",
+        legend: {
+          position: "none"
+        }
+      };
+
+      // Histogram chart options
+      var optionsHisto = {
+        height: 200,
+        colors: ["#B9C8E1"],
+        chartArea: {
+          top: 30,
+          bottom: 20,
+          left: 70,
+          width: "85%"
+        },
+        backgroundColor: "transparent",
+        legend: { "position": "none" },
+        vAxis: {
+          gridlines: { color: "#EBEDF0" },
+          format: "#.#"
+        },
+        hAxis : {
+          format: dateFormat,
+          gridlines: { color: "#fff", count: 5 }
+        }
+      };
+
+      // Create and format a data table for calls by disposition
+      var dataPie = new google.visualization.DataTable();
+      dataPie.addColumn("string", "Disposition");
+      dataPie.addColumn("number", "Calls");
+      dataPie.addRows(<%= raw @piechart %>);
+
+      numberFormatter.format(dataPie, 1);
+
+      // Create and format a data table for calls per day
+      var dataCallsHisto = new google.visualization.DataTable();
+      dataCallsHisto.addColumn("date", "Call date");
+      dataCallsHisto.addColumn("number", "Calls");
+
+      <% @daily_stats.calls_colchart.each do |col| %>
+        dataCallsHisto.addRow([new Date("<%= raw col[0] %>"), <%= col[1] %>]);
+      <% end %>
+
+      numberFormatter.format(dataCallsHisto, 1);
+      dateFormatter.format(dataCallsHisto, 0);
+      if (dataCallsHisto.getNumberOfRows() === 1) {
+        optionsHisto["hAxis"]["ticks"] = [dataCallsHisto.getValue(0, 0)];
+      }
+
+      // Create and format a data table for calls per day
+      var dataDurHisto = new google.visualization.DataTable();
+      dataDurHisto.addColumn("date", "Call date");
+      dataDurHisto.addColumn("number", "Duration");
+
+      <% @daily_stats.duration_colchart.each do |col| %>
+        dataDurHisto.addRow([new Date("<%= raw col[0] %>"), <%= col[1] %>]);
+      <% end %>
+
+      numberFormatter.format(dataDurHisto, 1);
+      dateFormatter.format(dataDurHisto, 0);
+
+      // Create and format a data table for acd
+      var dataAcdHisto = new google.visualization.DataTable();
+      dataAcdHisto.addColumn("date", "Call date");
+      dataAcdHisto.addColumn("number", "ACD");
+
+      <% @daily_stats.acd_colchart.each do |col| %>
+        dataAcdHisto.addRow([new Date("<%= raw col[0] %>"), <%= col[1] %>]);
+      <% end %>
+
+      numberFormatter.format(dataAcdHisto, 1);
+      dateFormatter.format(dataAcdHisto, 0);
+
+      // Instantiate and draw our charts, passing in some options
+      var dispChart = new google.visualization.PieChart(
+        document.getElementById("disposition_piechart")
+      );
+      var callsChart = new google.visualization.ColumnChart(
+        document.getElementById('calls_chart')
+      );
+      var durChart = new google.visualization.ColumnChart(
+        document.getElementById('duration_chart')
+      );
+      var acdChart = new google.visualization.ColumnChart(
+        document.getElementById('acd_chart')
+      );
+
+      var dataExists = <%= @disp_table['Total'][0].zero? ? 0 : 1 %>;
+      // Plots all charts
+      function plot() {
+        var noData = "<div class='no_data'><%= _('No_data_found_no_dots') %></div>";
+        if (dataExists) {
+          dispChart.draw(dataPie, optionsPie);
+          callsChart.draw(dataCallsHisto, optionsHisto);
+          durChart.draw(dataDurHisto, optionsHisto);
+          acdChart.draw(dataAcdHisto, optionsHisto);
+        } else {
+          $("#disposition_piechart, #calls_chart, #duration_chart, #acd_chart").html(noData);
+        }
+      }
+
+      // Plots a selected chart
+      function redrawChart(name) {
+        if (!dataExists) {
+          return;
+        }
+        switch (name) {
+          case "calls_chart":
+            callsChart.draw(dataCallsHisto, optionsHisto);
+            break;
+          case "duration_chart":
+            durChart.draw(dataDurHisto, optionsHisto);
+            break;
+          case "acd_chart":
+            acdChart.draw(dataAcdHisto, optionsHisto);
+            break;
+          default:
+            break;
+        }
+      }
+
+      // Tabs handler
+      $(".user_stats_box_tab").on("click", function() {
+        // Toggle active/inactive tabs
+        $(".user_stats_box_tab").removeClass("tab_active");
+        $(this).addClass("tab_active");
+        $(".user_stats_chart").hide();
+
+        // Draw a visible chart
+        var tabName = $(this).data("tab");
+        $("#" + tabName).show();
+        redrawChart(tabName);
+      });
+
+      // In order to make Google Charts responsive we
+      //   need to redraw them on resize
+      $(window).resize(function(){
+        plot();
+      });
+
+      plot();
+    }
+  });
+</script>

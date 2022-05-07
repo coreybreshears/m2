@@ -1,0 +1,48 @@
+<div class="quick-stats-row">
+  <div class="title-col"><%= _('Technical_Info') %>:</div>
+</div>
+
+<% @servers.each_with_index do |server, index| %>
+    <div class="quick-stats-row" <%= tooltip(_('Server_information'), server[:tooltip_description]) %>>
+      <div class="label-col">
+        <%= "#{_('System_Uptime')} - #{server[:id]}" %>
+      </div><div class="value-col" id="server_<%= index %>"><%= server[:uptime] %></div>
+    </div>
+    <% if server[:core_uptime].present? %>
+        <div class="quick-stats-row">
+          <div class="label-col">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= _('Core_Uptime') %>:
+          </div><div class="value-col" id="server_core_<%= index %>"><%= server[:core_uptime] %></div>
+        </div>
+    <% end %>
+<% end %>
+
+<div class="quick-stats-row" <%= tooltip(_('Elasticsearch_Sync_Status'), @es_sync[:tooltip]) %>>
+  <% es_status_color = if @es_sync[:status] == '-' || @es_sync[:status] <= 90
+                         'red'
+                       elsif @es_sync[:status] < 95
+                         'orange'
+                       else
+                         'green'
+                       end
+  %>
+  <div class="label-col">
+    <%= _('ES_Sync_Status') %>:
+  </div><div class="value-col" id="es_sync_status" style="color: <%= es_status_color %>;"><%= @es_sync[:status] == '-' ? _('Broken') : "#{@es_sync[:status]} %" %></div>
+</div>
+
+<% if @db_replication.to_i > 0 %>
+    <% db_replication_status_color = (@db_replication == 1 ? 'green' : 'red') %>
+    <% db_replication_status_text = (@db_replication == 1 ? _('ON_') : _('Broken')) %>
+    <div class="quick-stats-row">
+      <div class="label-col">
+        <%= _('DB_Replication') %>:
+      </div><div class="value-col" id="db_replication_status_status" style="color: <%= db_replication_status_color %>;"><%= db_replication_status_text %></div>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(function() {
+        $('.content-box').data('ResizeBox').getResize();
+    });
+</script>

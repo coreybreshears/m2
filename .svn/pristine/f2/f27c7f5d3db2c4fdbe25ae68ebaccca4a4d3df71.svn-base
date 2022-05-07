@@ -1,0 +1,1747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/security_block_permissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Destination Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Calls Dashboard</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_REPORTS_Destination_Groups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=manager_time_zone</td>
+	<td>label=(GMT+0?:00) Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<!--!!! skambučiai iš elasticsearch 192.168.0.34-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Destination Groups Stats</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=csvExport</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>8.8267</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Chart pie&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>8.8267</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats?date_from[year]=2011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:42:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:01:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>22.7173</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>17.6533</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[@id='hgc_stats_250']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>Russian Federation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[3]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[4]/div</td>
+	<td>00:06:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>0.1365</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>0.3578</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>0.2213</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#hgc_stats_354 &gt; img[alt=&quot;Chart pie&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[3]/div</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[4]/div</td>
+	<td>00:12:30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[6]/div</td>
+	<td>105.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[7]/div</td>
+	<td>75.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[8]</td>
+	<td>-30.0000</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#hgc_stats_448 &gt; img[alt=&quot;Chart pie&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div/b</td>
+	<td>36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:01:01:33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>110.2005</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>98.0751</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>-12.1254</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>3.7399</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>16.7775</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>13.0375</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>Russian Federation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>0.1008</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>0.2642</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>0.1634</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[6]/div</td>
+	<td>77.5458</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[7]/div</td>
+	<td>55.3898</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[8]/div</td>
+	<td>-22.1559</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>81.3865</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>72.4315</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div</td>
+	<td>-8.9550</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>REPORTS &gt; Destination Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_REPORTS_Destination_Groups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_REPORTS_Destination_Groups_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/managers/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Destination Groups Stats</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=csvExport</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>8.8267</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Chart pie&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>2.5320</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div</td>
+	<td>11.3587</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>8.8267</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats?date_from[year]=2011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:42:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:01:42</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>5.0640</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>22.7173</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>17.6533</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[@id='hgc_stats_250']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>Russian Federation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[3]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[4]/div</td>
+	<td>00:06:51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:02:17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>0.1365</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>0.3578</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>0.2213</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#hgc_stats_354 &gt; img[alt=&quot;Chart pie&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[3]/div</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[4]/div</td>
+	<td>00:12:30</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[6]/div</td>
+	<td>105.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[7]/div</td>
+	<td>75.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[8]</td>
+	<td>-30.0000</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#hgc_stats_448 &gt; img[alt=&quot;Chart pie&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div/b</td>
+	<td>36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:01:01:33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>110.2005</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>98.0751</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>-12.1254</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>3.7399</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>16.7775</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>13.0375</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>Russian Federation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>0.1008</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>0.2642</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>0.1634</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[6]/div</td>
+	<td>77.5458</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[7]/div</td>
+	<td>55.3898</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[8]/div</td>
+	<td>-22.1559</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>81.3865</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>72.4315</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div</td>
+	<td>-8.9550</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/visual/set_7_digits</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>2.5320000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>2.5320000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>8.8266650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>8.8266650</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats?date_from[year]=2011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>5.0640000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>22.7173300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>17.6533300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[6]/div</td>
+	<td>105.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[7]/div</td>
+	<td>75.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[8]/div</td>
+	<td>-30.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>110.2004810</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div</td>
+	<td>98.0751040</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>-12.1253770</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:42:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]</td>
+	<td>5.0640000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>22.7173300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>17.6533300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[3]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>7.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>5.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>-2.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:43:02</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>12.0640000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div</td>
+	<td>27.7173300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>15.6533300</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>3.7399212</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>16.7774534</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>13.0375322</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>5.1697173</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>3.6926552</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>-1.4770621</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>8.9096385</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>20.4701086</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>11.5604701</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:21:06</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:21:06</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:20</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>2.5320000</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>8.8266650</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>2.5320000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>2.5320000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>8.8266650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>8.8266650</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats?date_from[year]=2011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>5.0640000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>22.7173300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>17.6533300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[6]/div</td>
+	<td>105.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[7]/div</td>
+	<td>75.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2country_stats_es']/div[8]/div</td>
+	<td>-30.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>110.2004810</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div</td>
+	<td>98.0751040</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>-12.1253770</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:42:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]</td>
+	<td>5.0640000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>22.7173300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>17.6533300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[3]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>7.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>5.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>-2.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:43:02</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>12.0640000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div</td>
+	<td>27.7173300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>15.6533300</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>3.7399212</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[7]/div</td>
+	<td>16.7774534</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[8]/div</td>
+	<td>13.0375322</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>5.1697173</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[7]/div</td>
+	<td>3.6926552</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[8]/div</td>
+	<td>-1.4770621</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>8.9096385</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[7]/div/b</td>
+	<td>20.4701086</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[8]/div/b</td>
+	<td>11.5604701</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/country_stats?date_from[year]=2011</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>18</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:42:12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>22.7173300</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[2]/div</td>
+	<td>United States</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[3]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[5]/div</td>
+	<td>00:00:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1country_stats_es']/div[6]/div</td>
+	<td>5.0000000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>19</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:43:02</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div</td>
+	<td>27.7173300</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[4]/div</td>
+	<td>00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[5]/div</td>
+	<td>00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[3]/div</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[4]/div/b</td>
+	<td>exact:00:21:06</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[5]/div/b</td>
+	<td>exact:00:02:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>11.3586650</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0country_stats_es']/div[2]/div</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0country_stats_es']/div[6]/div</td>
+	<td>8.3887267</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcountry_stats_es']/div[6]/div/b</td>
+	<td>8.3887267</td>
+</tr>
+</tbody></table>
+</body>
+</html>

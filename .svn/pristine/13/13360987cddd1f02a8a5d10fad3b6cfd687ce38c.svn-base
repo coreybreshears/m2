@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>api_email_send</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">api_email_send</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/enable_api</td>
+	<td></td>
+</tr>
+<!--#hash1-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=callerid_blocked&amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/email/enable_sending</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=callerid_blocked&amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Email not found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>logged in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>test@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Personal details changed</td>
+	<td></td>
+</tr>
+<!--#hash2-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=callerid_blocked&amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07&amp;balance=10&amp;firstname=labas&amp;lastname=vakaras</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>logged in</td>
+	<td></td>
+</tr>
+<!--#hash3-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=callerid_blocked&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash3</td>
+</tr>
+<!--#hash4-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash4</td>
+</tr>
+<!--#hash5-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=blabla&amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash5</td>
+</tr>
+<!--#hash6-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=callerid_blocked&amp;user_id=1000&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash6</td>
+</tr>
+<!--#hash7-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=callerid_blocked&amp;user_id=0&amp;device_id=400&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash7</td>
+</tr>
+<!--#hash8-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=registration_confirmation_for_user &amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash8</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=user_admin&amp;email_name=registration_confirmation_for_user &amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07&amp;test=1&amp;hash=${hash8}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<!--#hash9-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/test_api?email_name=registration_confirmation_for_user&amp;user_id=0&amp;email_to_user_id=2&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=html</td>
+	<td>hash9</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=registration_confirmation_for_user&amp;email_to_user_id=2&amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;date=2012-07-07&amp;test=1&amp;hash=${hash9}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Email not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=main_email</td>
+	<td>email4@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#confirm_without_message &gt; input[name=&quot;commit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>changed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/disable_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<!--test=1-->
+<!--test=1 ir test_body=1-->
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=registration_confirmation_for_user&amp;server_ip=127.0.0.1&amp;device_type=SIP&amp;device_username=1004&amp;device_password=eyg564fydx&amp;login_url=/billing/images/callc/login?id=hfttv7bcqt&amp;login_username=newuser&amp;login_password=newuser1&amp;test=1&amp;test_body=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=error</td>
+	<td>Email not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=invoices&amp;test=1&amp;test_body=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Invoices are attached.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=calling_cards_data_to_paypal&amp;cc_purchase_details=some details of the purchase&amp;test=1&amp;test_body=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=email_sending_status</td>
+	<td>some details of the purchase</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=warning_balance_email&amp;balance=17&amp;test=1&amp;test_body=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=email_sending_status</td>
+	<td>exact:Balance: 17</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=block_when_no_balance&amp;full_name=Serious Guy&amp;balance=65480&amp;test=1&amp;test_body=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=email_sending_status</td>
+	<td>Account was blocked because of insufficient balance User: Serious Guy Balance: 65480</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=password_reminder&amp;login_url=/billing/images/callc/login?id=hfttv7bcqt&amp;login_username=user_admin&amp;login_password=user_admin1&amp;test=1&amp;test_body=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=email_sending_status</td>
+	<td>exact:Settings to login to MOR interface: Login URL: /billing/images/callc/login?id=hfttv7bcqt Username: user_admin Password: user_admin1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?u=admin&amp;email_name=warning_balance_email_local&amp;full_name=Test User %231&amp;balance=17&amp;currency=EUR&amp;test=1&amp;test_body=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=email_sending_status</td>
+	<td>User Test User #1 will run out of balance soon. Current balance: 17 EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/disallow_get</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/api/email_send?email_name=callerid_blocked&amp;user_id=0&amp;device_id=4&amp;caller_id=55555555&amp;now=2012-07-07&amp;test=1&amp;hash=${hash1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>GET Requests are disabled</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

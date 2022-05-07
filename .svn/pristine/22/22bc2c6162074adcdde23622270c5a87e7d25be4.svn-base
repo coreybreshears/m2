@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/server/servers_data.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_1</td>
+	<td>Main System ID:1 Freeswitch</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_2</td>
+	<td>Test Server ID:2 Other</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_3</td>
+	<td>Test Server ID:3 Freeswitch</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_4</td>
+	<td>Test Server ID:4 Other</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_5</td>
+	<td>Test Server ID:5 Freeswitch</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_6</td>
+	<td>Test Server ID:6 Other</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_2</td>
+	<td>Connection Point OP #2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_3</td>
+	<td>Connection Point TP #3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_4</td>
+	<td>Connection Point OP+TP #4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_5</td>
+	<td>Connection Point #5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_8</td>
+	<td>Connection Point OP #8</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_9</td>
+	<td>Connection Point TP #9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_10</td>
+	<td>Connection Point OP+TP #10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=description_11</td>
+	<td>Connection Point #11</td>
+</tr>
+<!--# Show settings only for Freeswitch type servers-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=assign_to_all_connection_points_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=unassign_from_all_connection_points_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=assign_to_all_connection_points_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=unassign_from_all_connection_points_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=assign_to_all_connection_points_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=unassign_from_all_connection_points_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=add_to_servers_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=add_to_servers_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=add_to_servers_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--# Server ID:5 Assign To All Connection Points-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign_to_all_connection_points_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server was successfully assigned to all Connection Points</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<!--# Server ID:1 Unassign From All Connection Points-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=unassign_from_all_connection_points_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server was successfully unassigned from all Connection Points</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_3</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_5</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>label=proxy</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=server_comment</td>
+	<td>Test Server ID:6 Proxy</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#active_6 &gt; a</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=type_6</td>
+	<td>proxy</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_6</td>
+	<td>Test Server ID:6 Proxy</td>
+</tr>
+<!--# Do not show settings when the Proxy server is active-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>other</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=server_type_edit_server_type</td>
+	<td>proxy</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=assign_to_all_connection_points_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unassign_from_all_connection_points_6</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

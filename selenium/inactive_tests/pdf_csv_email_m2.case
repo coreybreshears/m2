@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/calls_old</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/invoice_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/aggregates</td>
+	<td></td>
+</tr>
+<!--įjungiami visi setingai, nes pasitaikė, kad crashino dėl vieno nustatymo-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_sending_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>test@ocean-tel.uk</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=disallow_email_editing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=disallow_details_editing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=change_if_hgc_not_equal_to_16_for_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_hour</td>
+	<td>label=13</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_minute</td>
+	<td>label=20</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_minute</td>
+	<td>label=20</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_hour</td>
+	<td>label=18</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_usernames_on_pdf_csv_export_files_in_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax2active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax3active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax4active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2name</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3name</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4name</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2value</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3value</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4value</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=shedule</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=allow_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=allow_get_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=api_secret_key</td>
+	<td>secret</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=xml_api_extension</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=api_login_redirect_to_main</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=api_allow_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=devices_check_ballance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=api_disable_hash_checking</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=active_calls_show_server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=date_format</td>
+	<td>label=Y,m,d H:M:S</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=items_per_page</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=time_format</td>
+	<td>label=M:S</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_number_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=hide_device_passwords_for_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=inv_user_billsec</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>label=,</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_device_and_cid_in_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/cdr/rerating</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2009; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2009; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2009</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/call_list_to_pdf/2?call_type=answered&amp;date_from=2009-02-01+00%3A00%3A00&amp;date_till=2014-04-30+23%3A59%3A59</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/call_list_to_csv/2?call_type=answered&amp;date_from=2009-02-01+00%3A00%3A00&amp;date_till=2014-04-30+23%3A59%3A59</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_providers_rates_csv/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/generate_user_rates_csv/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2011&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list?csv=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/old_calls_stats?csv=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/generate_profit_pdf?user_id=-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/destinations_csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2009&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?csv=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?pdf=1</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/destinations_first_import.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=use_suggestion_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--# isjungtas destinations names update from csv file-->
+<tr>
+	<td>assertValue</td>
+	<td>id=update_dest_names</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=effective_date_today</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_9</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to Tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (11)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=a.bold_weight</td>
+	<td>A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.active &gt; a.bold_weight</td>
+	<td>L</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_513</td>
+	<td>Lithuania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_513</td>
+	<td>37067199</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_512</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_512</td>
+	<td>370</td>
+</tr>
+<!--#negali atvaizduoti tuscio dst name-->
+<tr>
+	<td>assertNotText</td>
+	<td>id=destination_513</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>id=destination_512</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_509</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_509</td>
+	<td>937500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_510</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_510</td>
+	<td>937501</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_511</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_511</td>
+	<td>937502</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>Afghanistan Cdma</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_507</td>
+	<td>9375</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Afghanistan mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>9370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>Afghanistan mobile-Areeba</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_506</td>
+	<td>9377</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>Afghanistan mobile-Etisa</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_505</td>
+	<td>9378</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_508</td>
+	<td>Afghanistan mobile-Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_508</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_503</td>
+	<td>Afghanistan proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_503</td>
+	<td>93</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/destinations_second_import.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--# ijungiamas destinations names update from csv file-->
+<tr>
+	<td>check</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_9</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_11</td>
+	<td>ggg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_create</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_update</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_rates_updated</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to Tariffs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_5</td>
+	<td>Rates (22)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=a.bold_weight</td>
+	<td>A</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=G</td>
+	<td>G</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.active &gt; a.bold_weight</td>
+	<td>L</td>
+</tr>
+<!--# Lithuania pakeistas destination name: ggg, turi atvaizduoti prie G raides-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>37067199</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_512</td>
+	<td>370</td>
+</tr>
+<!--#negali atvaizduoti tuscio dst name-->
+<tr>
+	<td>assertNotText</td>
+	<td>id=destination_512</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_509</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_509</td>
+	<td>937500</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_510</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_510</td>
+	<td>937501</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_511</td>
+	<td>Afghanistan - Mobile WASEL</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_511</td>
+	<td>937502</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_522</td>
+	<td>Afghanistan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>Afghanistan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_507</td>
+	<td>9375</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_521</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>9370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_526</td>
+	<td>Afghanistan - Mobile MTN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>Afghanistan - Mobile MTN</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_506</td>
+	<td>9377</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_527</td>
+	<td>Afghanistan - Mobile Etisalat</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_527</td>
+	<td>Afghanistan - Mobile Etisalat</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_505</td>
+	<td>9378</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_528</td>
+	<td>Afghanistan - Mobile Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_508</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_503</td>
+	<td>93</td>
+</tr>
+<!--# dst names pakeisti į esančius faile, todel siu turi nerodyti-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan Cdma</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan mobile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan mobile-Areeba</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan mobile-Etisa</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan mobile-Roshan</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Afghanistan proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/5?st=G</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_519</td>
+	<td>ggg</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_513</td>
+	<td>ggg</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_519</td>
+	<td>37067199</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_513</td>
+	<td>37067199</td>
+</tr>
+<tr>
+	<td>assertNotText</td>
+	<td>id=destination_513</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

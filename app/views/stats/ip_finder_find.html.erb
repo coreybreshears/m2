@@ -1,0 +1,24 @@
+<table>
+  <% if @devices.present? %>
+      <% @devices.each_with_index do |device, index| %>
+          <tr>
+            <td nowrap>
+              <%= "<b>#{_('connection_point_s')}:</b>".html_safe if index == 0 %>
+            </td>
+            <td nowrap>
+              <%= @users_scope.include?(device.user_id) ? link_nice_device(device) : device_with_owner(device) %>
+            </td>
+            <td nowrap>
+              <%= device.op_tech_prefix.to_s %>
+            </td>
+            <td nowrap>
+              <%= device.tp_tech_prefix.to_s %>
+            </td>
+          </tr>
+      <% end %>
+<% elsif params[:ip].present? %>
+      <tr>
+        <td nowrap valign=top><%= _('No_Connection_Points_found') %></td>
+      </tr>
+  <% end %>
+</table>

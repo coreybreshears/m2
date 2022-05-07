@@ -1,0 +1,66 @@
+<%= form_tag(action: 'create', m2_payment: @payment.attributes) do%>
+<table>
+  <tr>
+    <td><%= _('Add_manual_payment_notice2') %></td>
+  </tr>
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td><%= b_user %></td>
+          <td><b><%= _('User') %></b>:</td>
+          <td id="payment_user_link"><%= link_nice_user(@payment.user) %></td>
+        </tr>
+        <tr>
+          <td><%= b_money %></td>
+          <td><b><%= _('Amount') %></b>:</td>
+          <td id="payment_amount"><%= nice_number_with_sep(@payment.amount) %> <%= payment_currency %></td>
+        </tr>
+        <tr>
+          <td><%= b_money %></td>
+          <td><b><%= _('Amount_with_VAT') %></b>:</td>
+          <td id="payment_amount_with_tax"><%= nice_number_with_sep(@payment.amount_with_tax) %> <%= payment_currency %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td><hr></td>
+  </tr>
+  <tr>
+    <td>
+      <table class='simple'>
+        <tr>
+          <td><%= _('Current_balance') %>:</td>
+          <td id="payment_user_balance"><%= nice_number_with_sep(@payment.user.raw_balance) %> <%= default_currency %> </td>
+        </tr>
+        <% if default_currency != payment_currency %>
+            <tr>
+              <td><%= _('Exchange_rate') %> <%= default_currency %>/<%= payment_currency %>:</td>
+              <td id="payment_exchange_rate"><%= nice_separator @payment.exchange_rate %> </td>
+            </tr>
+            <tr>
+              <td><%= _('Amount_with_VAT_converted_to') %> <%= default_currency %>:</td>
+              <td id="payment_amount_with_tax_def_cur"><%= nice_number_with_sep(@payment.amount_with_tax_default_currency) %> <%= default_currency %></td>
+            </tr>
+            <tr>
+              <td><%= _('Amount_without_VAT') %>:</td>
+              <td id="payment_amount_def_cur"><%= nice_number_with_sep(@payment.amount_default_currency) %> <%= default_currency %></td>
+            </tr>
+        <% end %>
+        <tr>
+          <td><%= _('New_user_balance') %>:</td>
+          <td id="payment_user_new_balance"><%= nice_number_with_sep(@payment.user.raw_balance.to_d + @payment.amount_default_currency) %> <%= default_currency %></td>
+        </tr>
+        <tr>
+          <td>   <%= _('Description') %>:</td>
+          <td id="payment_comment"> <%= @payment.comment %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td><%= submit_tag _('Confirm'), disable_with: _('Processing..') %></td>
+  </tr>
+</table>
+<% end %>

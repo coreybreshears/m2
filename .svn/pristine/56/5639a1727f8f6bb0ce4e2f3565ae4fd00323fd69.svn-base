@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>call_info</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">call_info</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--call info su reliais duomenimis -->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/calls2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/3539604</td>
+	<td></td>
+</tr>
+<!-------------------------------------------------------------------------------------------------------------->
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Call Info</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Calldate</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.input-col</td>
+	<td>2014-06-04 19:06:50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/div/div/div/div/div[2]/div/label</td>
+	<td>Answer Time</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/div/div/div/div/div[3]/div/label</td>
+	<td>End Time</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'ID: 1 / IP: 127.0.0.1')]</td>
+	<td>ID: 1 / IP: 127.0.0.1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Hangup Cause</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ANSWERED (16)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[5]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>16 - Normal call clearing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//div[5]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/div/div/div/div/div[6]/div/label</td>
+	<td>Terminated by</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Unique ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1401898010.128629</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billsec*167 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Duration*177 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Real Billsec*166.1530 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Real Duration*176.7750 s</td>
+	<td></td>
+</tr>
+<!-------------------------------------------------------------------------------------------------------------->
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; h2</td>
+	<td>Source</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Source (CallerID)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0656823857</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CLID (CallerID Name/Number)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;INCC&quot; &lt;0656823857&gt;</td>
+	<td></td>
+</tr>
+<!-------------------------------------------------------------------------------------------------------------->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number dialed*0033625714144</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Localized Destination*33625714144</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Prefix used*3362</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination Details*France mobile-SFR</td>
+	<td></td>
+</tr>
+<!-------------------------------------------------------------------------------------------------------------->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>IP*91.121.144.55</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User*Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Origination Point*Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billsec*167 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>PDD*0.0000 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate (USD)*0.0259</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Price (USD)*0.0721*(Profit: 0.0208 USD)</td>
+	<td></td>
+</tr>
+<!-------------------------------------------------------------------------------------------------------------->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>IP*sip.voicetrading.com</td>
+	<td></td>
+</tr>
+<!--dėl duomenų apsaugos testiniai duomenys čia neatvaizduojami-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Termination Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billsec</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate (USD)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Price (USD)</td>
+	<td></td>
+</tr>
+<!-------------------------------------------------------------------------------------------------------------->
+<tr>
+	<td>assertText</td>
+	<td>css=div.row.full-width &gt; h2</td>
+	<td>PCAP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td>RETRIEVE PCAP FILE</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td>RETRIEVE PCAP FILE</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<!----------------------------------------------------------------------------------------->
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/div/div/div[5]/h2</td>
+	<td>Logs</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>RETRIEVE LOG FILES</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>RETRIEVE LOG FILES</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td></td>
+</tr>
+<!-------------------------------------------------------------------------------------------------------------->
+<!--tikrinimi skirtingi skambuciai-->
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/3536316</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Calldate*2014-06-04 09:57:10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=exact:ID: 1 / IP: 127.0.0.1</td>
+	<td>exact:ID: 1 / IP: 127.0.0.1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Hangup Cause*ANSWERED (16)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Unique ID*1401865030.122948</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billsec*89 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Duration*97 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Real Billsec*88.5150 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Real Duration*96.1210 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; h2</td>
+	<td>Source</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Source (CallerID)*1549</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CLID (CallerID Name/Number)*&quot;zaheer 4&quot; &lt;1549&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number dialed*0040737762746</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Localized Destination*40737762746</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Prefix used*4073</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination Details*Romania - Romania mobile-Vodafone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=37.59.3.29</td>
+	<td>37.59.3.29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=66.33.147.149</td>
+	<td>66.33.147.149</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td>RETRIEVE PCAP FILE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>RETRIEVE LOG FILES</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/3536254</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Call Info</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Calldate*2014-06-04 03:29:44</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server*ID: 1 / IP: 127.0.0.1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Hangup Cause*FAILED (309)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[5]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>309 - No Dial Peer is available by regexp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOut</td>
+	<td>//div[5]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Unique ID*1401841784.122882</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billsec*0 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Duration*1 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Source (CallerID)*+31756533000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CLID (CallerID Name/Number)*&quot;Spreekkamer 2 Zaanstreek&quot; &lt;+31756533000&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number dialed*3106285</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Localized Destination*3106285</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Prefix used*31</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination Details*Netherlands - Netherlands proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>IP*85.17.156.180</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td>RETRIEVE PCAP FILE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>RETRIEVE LOG FILES</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/3536318</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Calldate*2014-06-04 10:03:41</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server*ID: 1 / IP: 127.0.0.1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Hangup Cause*FAILED (1)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Unique ID*1401865421.122951</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Source (CallerID)*31743575473</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CLID (CallerID Name/Number)*&quot;31743575473&quot; &lt;31743575473&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number dialed*31348487707</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>IP*85.17.156.180</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>IP*216.53.4.1</td>
+	<td></td>
+</tr>
+<!--tikrina linkus -->
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/3539604</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/tariffs/rates_list/2')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Tariff for Users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/3536318</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(@href, '/billing/servers/list')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Servers</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(@href, '/billing/devices/device_edit/4')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(@href, '/billing/users/edit/2')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>User settings: Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<!--keiciam valiuta-->
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/3536254</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Calldate*2014-06-04 03:29:44</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server*ID: 1 / IP: 127.0.0.1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Unique ID*1401841784.122882</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate (EUR) </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Rate (USD)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td>RETRIEVE PCAP FILE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>RETRIEVE LOG FILES</td>
+</tr>
+<!--Call info su NErealiais duomenimis-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<!--Tikrinam tarifus (turi nerodyti call info tarifų)-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/13?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>terminator_tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_822</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_822</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_822</td>
+	<td>0.3000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_824</td>
+	<td>Lithuania freephone</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_824</td>
+	<td>3708</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_824</td>
+	<td>0.3500</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/14?st=L</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>originator_tariff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_823</td>
+	<td>Lithuania proper</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_823</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_823</td>
+	<td>0.9000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_825</td>
+	<td>Lithuania Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_825</td>
+	<td>37068</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rate_825</td>
+	<td>0.2200</td>
+</tr>
+<!--call info laukų atvaizdavimas OP IR TP TVARKINGI-->
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/382</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Calldate*2014-06-26 12:04:35</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server*ID: 1 / IP: 127.0.0.1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Unique ID</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Source (CallerID)*37064640097</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CLID (CallerID Name/Number)*&quot;37064640097&quot; &lt;37064640097&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number dialed*37064641122</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Localized Destination*37064641122</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Prefix used*370</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination Details*Lithuania - Lithuania proper</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>IP*192.168.0.150</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=dummy</td>
+	<td>dummy</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=m2</td>
+	<td>m2</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billsec*1 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate (EUR)*0.6647</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Price (EUR)*0.0111</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=192.168.0.221</td>
+	<td>192.168.0.221</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Provider</td>
+	<td>Provider</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=geras</td>
+	<td>geras</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate (EUR)*0.2216</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Price (EUR)*0.0037</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Real Billsec*0.9862 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Real Duration*2.2343 s</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.row.full-width &gt; h2</td>
+	<td>PCAP</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td>RETRIEVE PCAP FILE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='main']/div[2]/div/div/div/div[5]/h2</td>
+	<td>Logs</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>RETRIEVE LOG FILES</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>originator_tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(text(),'originator_tariff')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/calls/call_info/409</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Source (CallerID)*37064640097</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CLID (CallerID Name/Number)*&quot;37064640097&quot; &lt;37064640097&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ANSWERED (16)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Ricardas</td>
+	<td>Ricardas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=mano laptopas</td>
+	<td>mano laptopas</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>originator_tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(text(),'originator_tariff')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate (EUR)*0.6647</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Provider</td>
+	<td>Provider</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=geras</td>
+	<td>geras</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>terminator_tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(text(),'terminator_tariff')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Rate (EUR)*0.2216</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; button[name=&quot;button&quot;]</td>
+	<td>RETRIEVE PCAP FILE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[3]</td>
+	<td>RETRIEVE LOG FILES</td>
+</tr>
+<!--triname tarifus-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Tariff was not deleted<br /> * It is used by some Origination Point(s): Ricardas_2 - Mano device<br /> * It is used by some Termination Point(s): Provider - Mano provideris, Provider - dima, Provider - ervinas, Provider - zoiper, Provider - geras, Provider - fake</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Tariff was not deleted<br /> * It is used by some Origination Point(s): Ricardas - mano laptopas, Ricardas - x5 device, Ricardas - x3 device, Ricardas_2 - Mano device 2, Ricardas_2 - asdasd, Ricardas_2 - asdfasdf, dummy - m2<br /> * It is used by some Termination Point(s): dummy - sdfsdf</td>
+</tr>
+</tbody></table>
+</body>
+</html>

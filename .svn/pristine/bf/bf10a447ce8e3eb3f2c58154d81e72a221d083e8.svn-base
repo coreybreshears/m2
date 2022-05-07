@@ -1,0 +1,226 @@
+<%= form_tag :action => 'action_log' do %>
+    <br/>
+    <%= hidden_field_tag 'search_on', 1 %>
+    <%= hidden_field_tag 'page', 1 %>
+    <table class="bordered">
+      <tr>
+        <td>
+          <table id="search_details" class="simple">
+            <tr>
+              <td><%= _('From') %>:</td>
+              <td nowrap="true" colspan=4><%= select_datetime(Time.mktime(session[:year_from], session[:month_from], session[:day_from], session[:hour_from], session[:minute_from]), :end_year => Date.today.year+1, :prefix => "date_from", :use_month_numbers => false) %></td>
+              <td><%= link_to b_cross + _('Clear_search'), :action => 'action_log', :clean => 1 if @options[:search_on].to_i == 1 %></td>
+            </tr>
+            <tr>
+              <td><%= _('Till') %>:</td>
+              <td nowrap="true" colspan=4><%= select_datetime(Time.mktime(session[:year_till], session[:month_till], session[:day_till], session[:hour_till], session[:minute_till]), :end_year => Date.today.year+1, :prefix => "date_till", :use_month_numbers => false) %></td>
+              <td><%= link_to b_check + _('Mark_all_as_reviewed'), :action => 'action_log_mark_reviewed' if @not_reviewed_actions %></td>
+            </tr>
+            <tr>
+              <td><%= _('User') %>:</td>
+              <td nowrap="true">
+               <% nice_user_name = nice_user(User.where(id: params[:user_id]).first) if params[:user_id].present? && User.check_responsability(params[:user_id])  %>
+                <%= render('shared/live_search_field',
+                           object: nice_user_name || @options[:s_user_name].to_s,
+                           object_id: params[:user_id] || @options[:s_user] || -2,
+                           object_name: 'User',
+                           action_url: {controller: :users, action: :get_users_map, options: {show_admin: true, show_managers: true}}
+                    )
+                %>
+              </td>
+            </tr>
+            <tr>
+              <td><%= _('Action_type') %>:</td>
+              <td nowrap="true"><%= select_tag("action_type", options_for_select([["All", "all"]] + @res.map { |action| [action['action'].to_s, action['action'].to_s] }, @options[:s_type].to_s)) %></td>
+              <td><%= _('Reviewed') %>:</td>
+              <td nowrap="true"><%= select_tag("processed", options_for_select(@reviewed_labels, @options[:s_processed].to_i)) %></td>
+            </tr>
+            <tr>
+              <td><%= submit_tag _('Search'), :disable_with => _('Processing..') %></td>
+              <td>
+                <script type="text/javascript">
+                    new Form.Element.EventObserver('s_user',
+                            function(element, value) {
+                                if ($('s_user_id').value >= 0){
+                                    new Ajax.Updater('s_device_span',
+                                            '<%= Web_Dir %>/devices/get_devices_for_search',
+                                            {
+                                                evalScripts: true,
+                                                onComplete: function(request){Element.hide('spinner');},
+                                                onLoading: function(request){Element.show('spinner');},
+                                                parameters:'user_id=' + encodeURIComponent(value)
+                                            }
+                                    )
+                                }
+                            }
+                    )
+                </script>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <% unless @searching %>
+        <%= b_info + _('press_search_button_to_show_data') %>
+    <% end %>
+
+    <% unless @options[:s_target_id].blank? && @options[:s_target_type].blank? %>
+        <br/>
+        <br/>
+        <strong><%= _('Showing') %></strong> <%= @options[:s_target_type] %> (<%= @options[:s_target_id] %>)
+    <% end %>
+<% end %>
+<br/>
+<br/>
+<% if @actions %>
+    <%= page_select_header(@options[:page], @total_pages, @options).html_safe %>
+    <table width="100%" class="maintable last_calls">
+      <tr>
+        <th align="left" width="9%"><%= sortable_list_header("date", _('Date'), @options) %></th>
+        <th align="left"><%= sortable_list_header("user", _('User'), @options) %></th>
+        <th align="left"><%= sortable_list_header("type", _('Action_type'), @options) %></th>
+        <th align="left"><%= sortable_list_header("target", _('Target'), @options) %> </th>
+        <th align="left"><%= sortable_list_header("data", _('Action_data'), @options) %></th>
+        <th align="left"><%= sortable_list_header("data2", _('Action_data_2'), @options) %></th>
+        <th align="left"><%= sortable_list_header("data3", _('Action_data_3'), @options) %></th>
+        <th align="left"><%= sortable_list_header("data4", _('Action_data_4'), @options) %></th>
+        <th align="center"><%= sortable_list_header("processed", _('Reviewed'), @options) %></th>
+      </tr>
+      <% @actions.each_with_index { |action, i| %>
+          <tr class= <%= action['action'].to_s == "error" ? "red" : "row#{(i % 2 + 1).to_s}" %>>
+            <td id="date_<%= action['id'] %>" align="left" nowrap style="font-size:11px"><%= nice_date_time(action['date']) %></td>
+            <td align="left" id="user_<%= action['id'] %>" style="font-size:11px">
+              <% if action['nice_user'].present? %>
+                <%= link_to action['nice_user'].to_s, controller: :users, action: :edit, id: action['user_id'] %>
+              <% else %>
+                <%= _('No_user') %>
+              <% end %>
+            </td>
+            <% if action['action'].to_s == 'hacking_attempt' %>
+                <td id="type_<%= action['id'] %>" <%= tooltip(_('Hacking_Attempt'), _('Hacking_Attempt_Explanation')) %> style="font-size:11px">
+                  <%= b_help %>
+                  <a href="http://wiki.ocean-tel.uk/index.php/Action_log#hacking_attempt"><%= h(action['action'].to_s) %></a>
+                </td>
+            <% else %>
+                <td id="type_<%= action['id'] %>" style="font-size:11px">
+                  <%= h(action['action'].to_s) %>
+                </td>
+            <% end %>
+
+            <td align="left" id="target_<%= action['id'] %>" style="font-size:11px">
+              <% case action['target_type'].to_s
+                 when "user" %>
+                  <% if (user = User.where(:id => action['target_id'].to_i).first) == nil %>
+                    <%= action_with_type(action) %>
+                  <% else %>
+                    <%= link_nice_user(user) %>
+                  <% end %>
+              <% when 'manager' %>
+                  <% if (manager = Manager.where(id: action['target_id'].to_i).first).blank? %>
+                      <%= action_with_type(action) %>
+                  <% else %>
+                      <%= link_to(manager.first_name.to_s, {controller: :managers, action: :edit, id: manager.id}) %>
+                  <% end %>
+              <% when "device" %>
+                  <% if (device = Device.where(:id => action['target_id'].to_i).first) == nil %>
+                      <%= _("Device_was_not_found") %>
+                  <% else %>
+                      <%= link_nice_device(device) %>
+                  <% end %>
+              <% when /@/ %>
+                  <%= action['target_type'].to_s + ' ' %>
+                  <% if user = User.where(:id => action['target_id'].to_i).first %>
+                      <%= raw '(' + link_to(user.usertype.to_s, {:controller => :users, :action => :edit, :id => action['target_id'].to_i}) + ')' %>
+                  <% else %>
+                      <%= '(' + _('User_was_not_found') + ')' %>
+                  <% end %>
+              <% when 'alert' %>
+                  <%= action['target_type'].to_s + ' ' %>
+                  <% if alert = Alert.where(id: action['target_id'].to_i).first %>
+                      <%= raw "(#{action['target_id']} - #{link_to(alert.name.to_s, {controller: :alerts, action: :alert_edit, id: action['target_id'].to_i})})" %>
+                  <% else %>
+                      <%= "(#{action['target_id']} - #{_('alert_was_not_found')})" %>
+                  <% end %>
+              <% when 'rate' %>
+                  <% msg = "#{_('Rate')}(#{action['target_id']})" %>
+                  <% if (rate = Rate.find_by(id: action['target_id'].to_i)) == nil %>
+                    <%= msg %>
+                  <% else %>
+                    <% if (admin? || @permissions[:manage_tariffs]) && rate.tariff.owner_id.zero? %>
+                      <%= link_to(msg, {controller: :tariffs, action: :rate_details, id: action['target_id'].to_i}) %>
+                    <% else %>
+                      <%= msg %>
+                    <% end %>
+                  <% end %>
+              <% when 'tariff' %>
+                  <% msg = "#{_('Tariff')}(#{action['target_id']})" %>
+                  <% if Tariff.find_by(id: action['target_id'].to_i) && (admin? || @permissions[:manage_tariffs]) %>
+                      <%= link_to(msg, {controller: :tariffs, action: :edit, id: action['target_id'].to_i}) %>
+                  <% else %>
+                      <%= msg %>
+                  <% end %>
+              <% when 'tp_dial_peer'%>
+                  <% msg = "#{_('termination_points_list')}(#{action['target_id']})" %>
+                  <% if DialPeer.where(id: action['target_id'].to_i).first.present? && (admin? || @permissions[:manage_tariffs]) %>
+                      <%= link_to(msg, {controller: :dial_peers, action: :termination_points_list, id: action['target_id'].to_i}) %>
+                  <% else %>
+                      <%= msg %>
+                  <% end %>
+              <% else %>
+                  <%= action_with_type(action) %>
+              <% end %>
+            </td>
+
+            <td id="data_<%=action['id'] %>" style="font-size:11px">
+
+
+                  <% case action['action'].to_s
+                     when 'payment_created', 'Device sent to Asterisk', 'manual_payment_created', 'warning_balance_send' %>
+                      <% if User.where(:id => action['data'].to_i).first %>
+                          <%= link_nice_user_by_id(h(action['data'].to_s)) %>
+                      <% else %>
+                          <%= _('User_was_not_found') %>
+                      <% end %>
+                  <% else %>
+                      <%=  h(action['data'].to_s) %>
+                  <% end %>
+
+            </td>
+
+
+
+              <td id="data2_<%=action['id'] %>" style="font-size:11px">
+
+                <% case action['action'].to_s
+                   when 'warning_balance_send' %>
+                    <% if Email.where(:id => action['data2'].to_i).first %>
+                        <%= link_to(action['data2'].to_s, {:controller => :emails, :action => :edit, :id => action['data2'].to_i}) %>
+                    <% else %>
+                        <%= _('Email_was_not_found') %>
+                    <% end %>
+                <% when 'alerts' %>
+                    <%= action_data2_alerts(action['data2'].to_s).html_safe %>
+                <% else %>
+                    <%=  h(action['data2'].to_s) %>
+                <% end %>
+
+              </td>
+
+
+              <td id="data3_<%= action['id'] %>" style="font-size:11px"> <%= h(action['data3'].to_s) %> </td>
+              <%= hidden_field_tag 'search_on', 1 %>
+              <td id="data4_<%= action['id'] %>" style="font-size:11px"> <%= h(action['data4'].to_s) %> </td>
+
+              <td align="center" id="processed_<%= action['id'] %>" style="font-size:11px">
+                <%= form_tag :action => 'action_processed', :id => action['id'].to_i, :s_action => @action, :user => @user_id, :procc => @processed do %>
+                    <%= image_submit_tag 'icons/cross.png', :title => _('Reviewed'), :id => "cross_#{action['id']}" if action['processed'].to_i == 0 %>
+                    <%= image_submit_tag 'icons/check.png', :title => _('Not_reviewed'), :id => "check_#{action['id']}" if action['processed'].to_i == 1 %>
+                <% end %>
+              </td>
+              </tr>
+      <% } %>
+    </table>
+    <br/>
+    <%= page_select_header(@options[:page], @total_pages, @options).html_safe %>
+<% end %>

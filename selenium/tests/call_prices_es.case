@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>call_prices</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">call_prices</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/es_remote_33.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/aggregates_es</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/change_acc_usertype</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list?date_from[year]=2008&amp;search_on=1</td>
+	<td></td>
+</tr>
+<!--Setting EUR not to update and making its exchange rate to 2-->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(@href, '/billing/currencies/currencies_change_update_status/2')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>exchange_rate</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@type='image']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Currency details updated</td>
+	<td></td>
+</tr>
+<!--check now everything x2-->
+<!--==============================-->
+<!--CHECKING GRAPH-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/all_users_detailed?date_from[year]=2016&amp;date_from[month]=1&amp;date_from[day]=1&amp;date_till[year]=2016&amp;date_till[month]=12&amp;date_till[day]=31&amp;search_on=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_calls</td>
+	<td>468</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=all_calls</td>
+	<td>468</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=outgoing_calls_perc</td>
+	<td>100 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=all_calls_perc</td>
+	<td>100%</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=answered_o</td>
+	<td>134</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=no_answer_o</td>
+	<td>120</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=failed_o</td>
+	<td>214</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=all_calls_o</td>
+	<td>468</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='table']/table/tbody/tr/td[2]/table/tbody/tr[2]/td[2]</td>
+	<td>29 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='table']/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]</td>
+	<td>26 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='table']/table/tbody/tr/td[2]/table/tbody/tr[5]/td[2]</td>
+	<td>46 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='table']/table/tbody/tr/td[2]/table/tbody/tr[6]/td[2]</td>
+	<td>100%</td>
+</tr>
+<!--bottom-->
+<tr>
+	<td>assertText</td>
+	<td>id=total_calls</td>
+	<td>134</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_billsec</td>
+	<td>exact:06:16:44</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_avg_billsec</td>
+	<td>exact:00:02:48</td>
+</tr>
+<!--checking whether data in /billing/stats/show_user_stats  is equal in /billing/stats/user_stats/xxx-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/show_user_stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='pagercalls_by_user']/div/div[3]</td>
+	<td>1-13 of 13</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row1calls_by_user']/div/div</td>
+	<td>Test User 110</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[3]/div</td>
+	<td>27</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[2]/div</td>
+	<td>10.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[4]/div</td>
+	<td>27</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[5]/div</td>
+	<td>exact:57:56</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[6]/div</td>
+	<td>exact:02:08</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[8]/div</td>
+	<td>100.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[9]/div</td>
+	<td>5.7933</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[10]/div</td>
+	<td>5.7933</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[11]/div</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[12]/div</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[13]/div</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1calls_by_user']/div[7]/div</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div/div</td>
+	<td>Test User 127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[2]/div</td>
+	<td>10.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[3]/div</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[4]/div</td>
+	<td>110</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[5]/div</td>
+	<td>exact:01:56</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[6]/div</td>
+	<td>exact:00:16</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[7]/div</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[8]/div</td>
+	<td>6.36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[9]/div</td>
+	<td>0.0325</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[10]/div</td>
+	<td>0.0749</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[11]/div</td>
+	<td>-0.0424</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[12]/div</td>
+	<td>-130.34</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row7calls_by_user']/div[13]/div</td>
+	<td>-56.59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[2]/div/b</td>
+	<td>130.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[3]/div/b</td>
+	<td>134</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[4]/div/b</td>
+	<td>468</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[5]/div/b</td>
+	<td>exact:06:16:44</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[6]/div/b</td>
+	<td>exact:00:02:48</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[7]/div/b</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[8]/div/b</td>
+	<td>28.63</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[9]/div/b</td>
+	<td>34.3554</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[10]/div/b</td>
+	<td>23.7526</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[11]/div/b</td>
+	<td>10.6028</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[12]/div/b</td>
+	<td>30.86</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcalls_by_user']/div[13]/div/b</td>
+	<td>44.64</td>
+</tr>
+<!--Test user-->
+<!--assert values in separe pages for each user-->
+<!--user-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/user_stats?s_user_id=108</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Detailed statistics for Test User 108</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_disp</td>
+	<td>NO ANSWER</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_number &gt; strong</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#no_answer_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>10.0 %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_disp</td>
+	<td>FAILED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_number</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#failed_calls_line &gt; div.user_stats_box_line_percent</td>
+	<td>90.0 %</td>
+</tr>
+</tbody></table>
+</body>
+</html>

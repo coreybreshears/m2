@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col extended">
+    <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'agreement_number_length', _('Agreement_Number_Length') %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('agreement_number_length', Confline.get_value("Agreement_Number_Length"), class: 'number') %>
+        </div>
+    </div>
+
+     <%= raw setting_boolean(_('Disallow_Email_Editing'), 'disallow_email_editing', "Disallow_Email_Editing") %>
+     <%= raw setting_boolean(_('Disallow_Details_Editing'), 'disallow_details_editing', "Disallow_Details_Editing") %>
+     <%= raw setting_boolean(_('Change_ANSWER_to_FAILED_if_HGC_not_equal_to_16_for_Users'), 'change_if_hgc_not_equal_to_16_for_users', "Change_ANSWER_to_FAILED_if_HGC_not_equal_to_16_for_Users") %>
+
+    <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'server_free_space_limit', _('Server_free_space_limit')  %>
+        </div>
+        <div class="input-col">
+          <%= text_field_tag('server_free_space_limit', server_free_space_limit, class: 'number') %>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'call_tracing_server', _('Call_Tracing_Server')  %>
+        </div>
+        <div class="input-col">
+          <% if servers.count > 0 %>
+              <%= select_tag('call_tracing_server', options_for_select([[_('Local_Server'), 0]] + servers.map { |ser| [ser.server_ip + (ser.comment == '' ? '' : ' (' + ser.comment + ')'), ser.id] }, Confline.get_value("call_tracing_server").to_i), class: 'larger') %>
+          <% else %>
+              <%= select_tag('call_tracing_server', options_for_select([[_('No_active_servers'), '']]), class: 'larger') %>
+          <% end %>
+        </div>
+    </div>
+    <%= raw settings_group_number(_('delete_not_actual_rates_after'), 'delete_not_actual_rates_after', 'delete_not_actual_rates_after', {sufix: ' days'}, {size: '4', class: 'number'}) %>
+    <%= raw setting_boolean(_('tariff_currency_in_csv_export'), 'tariff_currency_in_csv_export', "tariff_currency_in_csv_export") %>
+
+    <div <%= tooltip("#{_('WARNING')}:", _('Allow_Dynamic_Origination_Point_Authentication_with_Registration_popup_warning')) %>>
+      <%= raw setting_boolean(_('Allow_Dynamic_Origination_Point_Authentication_with_Registration'), 'allow_dynamic_origination_point_authentication_with_registration', 'Allow_Dynamic_Origination_Point_Authentication_with_Registration') %>
+    </div>
+
+    <%= raw settings_group_number(_('Delete_Tariff_Jobs_older_than'), 'delete_tariff_jobs_older_than', 'Delete_Tariff_Jobs_older_than', {default_value: 30, sufix: ' days'}, {size: '4', class: 'number'}) %>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+                allow_dynamic_op_auth_with_reg_warning();
+            }
+    );
+
+    // Warning for Allow Dynamic Origination Point Authentication with Registration setting
+    // Function checks whether (when page loaded) this settings was enabled
+    //   if so, then when user unchecks (disables) this setting, an alert warning is shown for user.
+    function allow_dynamic_op_auth_with_reg_warning() {
+        var checkbox = $('#allow_dynamic_origination_point_authentication_with_registration');
+        var is_checkbox_initial_value_checked = checkbox.is(':checked');
+
+        if (is_checkbox_initial_value_checked) {
+            checkbox.change(function() {
+                if (!this.checked) {
+                    if (!confirm('<%= _('Allow_Dynamic_Origination_Point_Authentication_with_Registration_alert_warning').html_safe %>')) {
+                        checkbox.parent().addClass("input-checked-parent");
+                        checkbox.parent().children('.jcf-unselectable').removeClass("chk-unchecked").addClass("chk-checked");
+                        checkbox.prop('checked', true);
+                    }
+                }
+            });
+        }
+    }
+</script>

@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col extended">
+      <%= raw settings_string(_('Items_Per_Page'), 'items_per_page', "Items_Per_Page", 0, html: {class: 'number'}) %>
+
+      <div class="input-row">
+        <div class="label-col">
+            <%= label_tag 'date_format', _('Default_Date_Format') %>
+        </div>
+        <div class="input-col">
+         <select name='date_format'>
+          <% sdf = Confline.get_value('Date_format', 0).to_s %>
+          <% for df in $date_formats %>
+              <option value='<%= df %>' <%= 'selected' if df == sdf %>>
+                <%= h df.to_s.delete('%') %>
+              </option>
+          <% end %>
+          </select>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'time_format', _('Default_Time_Format') %>
+        </div>
+        <div class="input-col">
+          <select name='time_format'>
+            <% sdt = Confline.get_value('time_format', 0).to_s %>
+            <% for dt in $time_formats %>
+                <option value='<%= dt %>' <%= 'selected' if dt == sdt %>>
+                  <%= h dt.to_s.delete('%') %>
+                </option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <%= raw settings_string(_('Nice_Number_Digits') + " (#{_('Decimal_Places')})", 'nice_number_digits', "Nice_Number_Digits", 0, html: {class: 'number'}) %>
+      <%= raw settings_string("#{_('Currency_Amount_Number_Digits')} (#{_('Decimal_Places')})", 'nice_currency_digits', 'Nice_Currency_Digits', 0, html: {class: 'number'}, default: 2) %>
+
+      <div class="input-row">
+        <div class="label-col">
+          <%= label_tag 'global_number_decimal', _('Default_Number_Decimal') %>
+        </div>
+        <div class="input-col">
+          <select name='global_number_decimal' class="number">
+            <% sdf = Confline.get_value('Global_Number_Decimal', 0).to_s %>
+            <% for df in $decimal_formats %>
+                <option value='<%= df %>' <%= 'selected' if df == sdf %>>
+                  <%= h df.to_s %>
+                </option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <%= raw setting_boolean(_('Hide_device_passwords_for_users'), 'hide_device_passwords_for_users', "Hide_Device_Passwords_For_Users") %>
+      <%= raw setting_boolean(_('Show_Full_Src'), 'show_full_src', "Show_Full_Src") %>
+      <%= raw setting_boolean(_('Instead_billsec_show_user_billsec'), 'invoice_user_billsec_show', "Invoice_user_billsec_show", 0, {id: 'inv_user_billsec', tip: tooltip(_('billsec_and_user_billsec'), _('billsec_and_user_billsec_explanation'))}) %>
+      <%= raw settings_group_number(_('show_calls_stats_to_user_for_last'), 'show_calls_stats_to_user_for_last', "Show_Calls_statistics_to_User_for_last", {sufix: " days"}, { size: '4', class: 'number' } ) %>
+      <%= raw setting_boolean(_('Show_detailed_quick_stats'), 'detailed_quick_stats_active', 'Show_detailed_quick_stats') %>
+      <%= raw settings_group_number(_('Cache_ES_Sync_Status_for_last'), 'cache_es_sync_status_for_last', 'Cache_ES_Sync_Status_for_last', {default_value: 10, sufix: ' minutes'}, { size: '4', class: 'number' } ) %>
+    </div>
+</div>

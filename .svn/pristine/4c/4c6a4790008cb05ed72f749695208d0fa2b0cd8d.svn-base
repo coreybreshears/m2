@@ -1,0 +1,38 @@
+<br/>
+<table>
+  <tr>
+    <td><%= _('Name') %>:</td>
+    <td><%= text_field 'tariff', 'name', "class" => "input", :size => "50" %></td>
+  </tr>
+  <tr>
+    <td><%= _('Currency') %>:</td>
+    <td>
+      <select name="tariff[currency]">
+        <% currs.each do |curr| %>
+          <option value="<%= curr.name %>" <%= "selected" if tariff.currency == curr.name %>><%= curr.name %></option>
+        <% end %>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<% unless no_edit_purpose %>
+    <% if allow_manage_providers? %>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <%= b_info + _('Terminator_tariffs_explained').html_safe %>
+        <br/>
+        <br/>
+        <%= radio_button_tag('tariff[purpose]', 'provider', true) %> <%= _('Terminator') %>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <%= b_info + _('Originator_tariffs_explained').html_safe %>
+    <% end %>
+    <br/>
+    <br/>
+    <%= radio_button_tag('tariff[purpose]', 'user_wholesale', checked = false) %> <%= _('Originator') %>
+<% end %>

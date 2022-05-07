@@ -1,0 +1,51 @@
+<% content_for :additional_buttons do %>
+    <span>
+      <%= button_to _('Delete_all_DONE'), {action: :background_tasks_delete_all_done}, class: 'search-form-button',
+                    data: {confirm: _('Are_you_sure_you_want_to_Delete_all_Done_Background_Tasks')}, disable_with: _('Processing..'), method: :post
+      %>
+  </span>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Background_tasks') %></h2>
+
+    <div class="table-holder table-holder-without-margin">
+      <table width="100%" class="table-with-edit-and-delete">
+        <tr>
+          <%= sortable_header(_('User'), 'user_id', id: 'user_id', class: 'no-wrap left-align padding-left-10') %>
+          <%= sortable_header(_('Task'), 'task_id', id: 'task_id', class: 'no-wrap left-align') %>
+          <%= sortable_header(_('Status'), 'status', id: 'status', class: 'no-wrap') %>
+          <%= sortable_header(_('Completed_percent'), 'percent_completed', id: 'percent_completed', class: 'no-wrap') %>
+          <%= sortable_header(_('Created_at'), 'created_at', id: 'created_at', class: 'no-wrap') %>
+          <%= sortable_header(_('Updated_at'), 'updated_at', id: 'updated_at', class: 'no-wrap') %>
+          <%= sortable_header(_('Expected_to_finish_at'), 'expected_to_finish_at', id: 'expected_to_finish_at', class: 'no-wrap') %>
+          <%= sortable_header(_('Finished_at'), 'finished_at', id: 'finished_at', class: 'no-wrap') %>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% if @tasks.present? %>
+            <% @tasks.each do |task| %>
+                <tr>
+                  <td nowrap style="text-align: left; padding-left: 10px!important;" id="user_<%= task.id %>"><%= task.user.blank? ? _('All') : link_to(nice_user(task.user), controller: 'users', action: 'edit', id: task.user.id) %></td>
+                  <td nowrap style="text-align: left;" id="task_<%= task.id %>"><%= @nice_task[task] %></td>
+                  <td nowrap style="text-align: center;" id="status_<%= task.id %>"><%= task.status %></td>
+                  <td nowrap style="text-align: center;" id="percent_<%= task.id %>"><%= nice_number_round(task.percent_completed, 0) %></td>
+                  <td nowrap style="text-align: center;" id="created_<%= task.id %>"><%= nice_date_time task.created_at %></td>
+                  <td nowrap style="text-align: center;" id="updated_<%= task.id %>"><%= nice_date_time task.updated_at %></td>
+                  <td nowrap style="text-align: center;" id="expected_<%= task.id %>"><%= nice_date_time(task.expected_to_finish_at) if task.percent_completed.to_d >= 3.5 %></td>
+                  <td nowrap style="text-align: center;" id="finish_<%= task.id %>"><%= nice_date_time task.finished_at %></td>
+                  <td nowrap style="text-align: right;"><%= link_to(_('DELETE'), {action: :task_delete, id: task.id, params: @options}, id: "delete_link_#{task.id}", data: {confirm: _('Are_you_sure')}, method: :post) if @show_delete.call(task) %></td>
+                  <td nowrap style="text-align: center;"><%= link_to(_('REFRESH'), {action: :task_restart, id: task.id, params: @options}, id: "restart_link_#{task.id}") if @show_restart.call(task) && task.task_id != 5 %></td>
+                </tr>
+            <% end %>
+        <% end %>
+      </table>
+    </div>
+
+    <% if @total_pages > 1 %>
+        <%= page_select_header(@options[:page], @total_pages, @options) if @total_pages > 1 %>
+    <% end %>
+  </div>
+</div>

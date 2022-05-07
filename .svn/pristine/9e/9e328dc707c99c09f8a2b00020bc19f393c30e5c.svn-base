@@ -1,0 +1,5 @@
+<%= link_rgroup_dpeers(@routing_group, @rgroup_dpeers_count).html_safe %>
+<%= form_tag(:action => 'update', :id => @routing_group.id) do %>
+  <%= render 'form', failover_routing_groups: @failover_routing_groups, routing_group: @routing_group, is_rg_failover_possible: @is_rg_failover_possible %>
+  <%= submit_tag _('Save_changes'), :disable_with => _('Processing..') %>
+<% end %>

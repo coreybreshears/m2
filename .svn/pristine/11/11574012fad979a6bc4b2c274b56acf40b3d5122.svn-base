@@ -1,0 +1,80 @@
+<tr>
+  <td colspan="2" height="20"></td>
+</tr>
+<tr <%= tooltip(_('Advanced_Settings'), _('Advanced_Options_Notice')) %>>
+  <td colspan="2" class="bottom_border">
+    <b><%= _('Advanced_Settings') %></b>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" height="10"></td>
+</tr>
+
+<% if device_type == "SIP" %>
+         <tr <%= tooltip(_('Grace_Time'), _('Grace_Time_Explanation')) %>>
+          <td><%= _('Grace_Time') %>:</td>
+          <td><%= text_field_tag 'grace_time', device.grace_time, "class" => "input", :size => "3", :maxlength => "4" %> <%= _('seconds') %></td>
+        </tr>
+        <% unless m4_functionality? %>
+          <tr>
+            <td> <%= _('Custom_SIP_Header') %>:</td>
+            <td> <%= text_field_tag 'custom_sip_header', device.custom_sip_header, 'class' => 'input' %>  </td>
+          </tr>
+        <% end %>
+<% end %>
+<% lang = device.language.to_s.blank? ? 'en' : device.language %>
+
+<% if ['SIP'].include? device_type %>
+    <tr>
+      <% if m4_functionality? %>
+        <td>
+          <%= _('Limit_up_to') %> <%= text_field_tag 'device[cps_call_limit]', device.cps_call_limit, :size => 3, 'class' => 'input' %> <%= _('calls') + ', ' + _('during') %>
+        </td>
+        <td>
+          <%= text_field_tag 'device[cps_period]', device.cps_period, :size => 3, 'class' => 'input' %> <%= _('seconds') %>
+        </td>
+      <% else %>
+        <td colspan="2">
+          <%= _('Limit_up_to') %> <%= text_field_tag 'device[cps_call_limit]', device.cps_call_limit, :size => 3, 'class' => 'input' %> <%= _('calls') + ', ' + _('during') %> <%= text_field_tag 'device[cps_period]', device.cps_period, :size => 3, 'class' => 'input' %> <%= _('seconds') %>
+        </td>
+      <% end %>
+    </tr>
+<% end %>
+
+<% unless m4_functionality? %>
+  <tr>
+    <td><%=  _('Disable_Q850_Reason') %>:</td>
+    <td>
+      <%= radio_button_tag('device[disable_q850]', '0', device.disable_q850 == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[disable_q850]', '1', device.disable_q850 == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+  <tr>
+    <td><%=  _('Forward_RPID') %>:</td>
+    <td>
+      <%= radio_button_tag('device[forward_rpid]', '0', device.forward_rpid == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[forward_rpid]', '1', device.forward_rpid == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+  <tr>
+    <td><%=  _('Forward_PAI') %>:</td>
+    <td>
+      <%= radio_button_tag('device[forward_pai]', '0', device.forward_pai == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[forward_pai]', '1', device.forward_pai == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+  <tr>
+    <td><%=  _('Bypass_Media') %>:</td>
+    <td>
+      <%= radio_button_tag('device[bypass_media]', '0', device.bypass_media == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[bypass_media]', '1', device.bypass_media == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+  <tr>
+    <td><%=  _('Ignore_SIP_183_without_SDP') %>:</td>
+    <td>
+      <%= radio_button_tag('device[ignore_183nosdp]', '0', device.ignore_183nosdp == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[ignore_183nosdp]', '1', device.ignore_183nosdp == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+<% end %>

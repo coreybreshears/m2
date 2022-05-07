@@ -1,0 +1,11 @@
+<div class="content-box">
+  <%= form_for :blank, url: {:action => 'create', id: @blank.id}, html: {class: 'details-form'} do |f| %>
+      <fieldset>
+        <%= render 'form', :f => f, :blank => @blank %>
+        <div class="buttons-row">
+          <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/blanks/list'" %>
+          <%= submit_tag _('CREATE'), :disable_with => _('Processing..') %>
+        </div>
+      </fieldset>
+  <% end %>
+</div>

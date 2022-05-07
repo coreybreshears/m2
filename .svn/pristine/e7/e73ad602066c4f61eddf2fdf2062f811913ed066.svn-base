@@ -1,0 +1,55 @@
+<!-- header of the page -->
+<header id="header">
+	<div class="header-holder">
+		<!-- page logo -->
+      <!-- <strong class="logo"><a href="#">M2SWITCH</a></strong> -->
+        <strong><div class="logo-picture"><a id='m2switch' href="<%= Web_Dir %>/"></a></div><div class="logo-version">1.<%= m2_version? %></div></strong>
+		<!-- main navigation of the page -->
+      <nav id="nav" class="open-close">
+        <a class="opener" href="#">Menu</a>
+        <ul class="slide">
+          <li <%= check_active('stats', 'menu', parent) %>>
+            <% if Confline.get_value('Show_Active_Calls_for_Users').to_i == 1 %>
+                <a href="#" class="calls_user"><%= _('CALLS') %></a>
+                <ul>
+                  <li><a href="<%= Web_Dir %>/stats/calls_list"><%= _('calls_list') %></a></li>
+                  <li><a href="<%= Web_Dir %>/stats/active_calls"><%= _('Active_Calls') %></a></li>
+                </ul>
+            <% else %>
+                <a href="<%= Web_Dir %>/stats/calls_list" class="calls_user"><%= _('CALLS') %></a>
+            <% end %>
+          </li>
+          <li <%= check_active('payments', 'personal_payments', parent) %>>
+            <a href="<%= Web_Dir %>/payments/personal_payments" class="payments_user"><%= _('PAYMENTS') %></a>
+          </li>
+          <li <%= check_active('devices', 'user_devices', parent) %>>
+            <a href="<%= Web_Dir %>/devices/user_devices" class="devices_user"><%= _('CONNECTION POINTS') %></a>
+          </li>
+          <li <%= check_active('m2_invoices', 'user_invoices', parent) %>>
+            <a href="<%= Web_Dir %>/m2_invoices/user_invoices" class="invoices_user"><%= _('INVOICES') %></a>
+          </li>
+          <li <%= check_active('stats', 'country_stats', parent) %>>
+            <a href="<%= Web_Dir %>/stats/country_stats" class="destination_groups_user"><%= _('DESTINATION_GROUPS') %></a>
+          </li>
+        </ul>
+      </nav>
+
+		<ul class="lang-list">
+      <li>
+        <a id="active-currency" href="#" class="currency-link"><%= session[:show_currency] %></a>
+        <ul class="currency-drop">
+           <% Currency.get_active.each do |currency| %>
+             <li><%= link_to currency.name, controller: 'callc', action: 'change_currency', url: currency_change_url, currency: currency.name %></li>
+           <% end %>
+        </ul>
+      </li>
+			<li>
+				<a href="#"><div><%= nice_user(current_user) %></div></a>
+				<ul>
+					<li><a href="<%= Web_Dir %>/users/personal_details"><%= _('Personal_Details') %></a></li>
+					<li><a href="<%= Web_Dir %>/callc/logout"><%= _('Logout') %></a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</header>

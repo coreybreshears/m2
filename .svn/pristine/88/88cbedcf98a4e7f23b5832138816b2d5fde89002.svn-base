@@ -1,0 +1,175 @@
+<% content_for :additional_buttons do %>
+  <span>
+    <%= button_tag _('export_destinations_to_csv'), class: "search-form-button",
+                   onclick: "location.href = '#{Web_Dir}/tariffs/destinations_csv'" %>
+  </span>
+  <span>
+    <%= button_tag _('change_tariff_for_connection_points'), class: "search-form-button",
+                   onclick: "location.href = '#{Web_Dir}/tariffs/change_tariff_for_connection_points'" %>
+  </span>
+  <span>
+    <%= button_tag _('generate_new_tariff'), class: "search-form-button",
+                   onclick: "location.href = '#{Web_Dir}/tariffs/tariff_generator'" %>
+  </span>
+  <span>
+    <%= button_tag _('tariff_add'), class: "search-form-button",
+                   onclick: "location.href = '#{Web_Dir}/tariffs/new'" %>
+  </span>
+<% end %>
+<% @create_button_name = _('compare_tariffs') %>
+<% content_for :create_form do %>
+  <%= form_tag({action: :compare_tariffs}, {id: 'create-form', class: 'calls-form', visible: show_create}) do %>
+    <fieldset>
+      <div class = "column cause-col">
+        <%= label_tag 'tariff_1', _('First_tarrif') %>
+        <div class = "row">
+          <%= select_tag(:tariff_1, options_for_select((@prov_tariffs.map { |tariff| [tariff.name, tariff.id] } +
+            @user_wholesale_tariffs.map { |tariff| [tariff.name, tariff.id] }).sort, params[:tariff_1])) %>
+        </div>
+        <%= label_tag 'tariff_2', _('Second_tariff') %>
+        <div class = "row">
+          <%= select_tag(:tariff_2, options_for_select((@prov_tariffs.map { |tariff| [tariff.name, tariff.id] } +
+            @user_wholesale_tariffs.map { |tariff| [tariff.name, tariff.id] }).sort, params[:tariff_2])) %>
+        </div>
+      </div>
+      <div class="column cause-col">
+        <%= label_tag 'name', _('email') %>
+        <div class='row'>
+          <%= text_field_tag :email, @email, type: :text %>
+        </div>
+        <%= label_tag 'currency', _('Currency') %>
+        <div class='row'>
+            <%= select_tag(:currency,
+                           options_for_select(Currency.get_active.collect { |t| [t.name] }, params[:currency]),
+                           { class: 'currency' }
+                ) %>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= submit_tag _('Cancel'), type: :reset,
+                onClick: "$(\"#create-form\").toggle();pressed_create('#{Web_Dir}/callc/toggle_create', '#{params[:controller]}', '#{params[:action]}');"
+          %>
+          <%= submit_button_tag _('compare'), id: 'Add_Tariff' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+ <%# temporary, for clients to be able to work without crashing their servers %>
+ <% action = 'import_csv2' %>
+
+
+  <br/><br/>
+  <div class="table-box">
+    <% if @prov_tariffs.blank? %>
+        <h2><%= _('No_buy_tariffs') %></h2>
+    <% else %>
+        <h2>
+          <div><%= _('Buy_tariffs_list') %></div>
+          <div style="float: right; margin: -28px -14px;"><%= link_to "<button class=\"search-form-button\">#{_('Rate_Check')}</button>".html_safe, {:action => 'rate_check', who: 'providers'}, :disable_with => _('Processing..'), :id => "rate_check_button_prov"  %>
+          </div>
+        </h2>
+        <div class="table-holder">
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <th class="tariff-name"><%= _('name') %></th>
+              <th class="tariff-currency"><%= _('currency') %></th>
+              <th class="tariff-rates" colspan="5"><%= _('rates') %></th>
+              <th class="tariff-usage"><%= _('usage') %></th>
+              <th class="tariff-edit"></th>
+              <th class="tariff-delete"></th>
+            </tr>
+            <% @prov_tariffs.each_with_index do |tariff, i| %>
+                <tr>
+                  <td nowrap id="name_<%= tariff.id %>" class="tariff-name"><%= link_to tariff.name, {:action => 'edit', :id => tariff.id, rates: @tr[tariff.id]}, style: 'text-transform: none; font-size: 13px;' %></td>
+                  <td id="currency_<%= tariff.id %>" class="tariff-currency"><%= tariff.currency %></td>
+                  <td id="rates_<%= tariff.id %>" class="tariff-info_rates left-item" nowrap>
+                    <%= link_to "#{_('Rates')} (#{count_of_rates(@tr[tariff.id])})", action: 'rates_list', id: tariff %>
+                  </td>
+                  <td id="import_csv_<%= tariff.id %>" class="tariff-import_csv">
+                    <%= link_to _('Import_CSV'), :action => action, :id => tariff %>
+                  </td>
+                  <td id="update_rates_<%= tariff.id %>" class="tariff-update_rates">
+                    <%= link_to _('Update_rates'), action: 'update_rates', id: tariff if  count_of_rates(@tr[tariff.id]) > 0 %>
+                  </td>
+                  <td id="delete_rates_<%= tariff.id %>" class="tariff-delete_rates">
+                    <%= button_to _('Delete_all_rates'), {:action => 'delete_all_rates', :id => tariff}, :onclick => "return confirm('Are you sure?')", :class=>"delete_button", :method => :post, :id => "delete_all_link_"+ tariff.id.to_s  if  count_of_rates(@tr[tariff.id]) > 0 %></td>
+                  </td>
+                  <td id="rates_csv_<%= tariff.id %>" class="tariff-rates_csv">
+                    <%= link_to _('csv'), :action => 'generate_providers_rates_csv', :id => tariff %>
+                  </td>
+                  <td id="usage_<%= tariff.id %>" class="tariff-data-usage">
+                    <%= link_to "#{tariff.tp_count.to_i}/#{tariff.op_count.to_i}", {:controller => 'devices', :action => 'devices_all'} %>
+                  </td>
+                    <td id="edit_<%= tariff.id %>"><%= link_to 'EDIT', {:action => 'edit', :id => tariff.id, rates: @tr[tariff.id]} %></td>
+                    <td id="destroy_<%= tariff.id %>"><%= button_to 'DELETE', {:action => 'destroy', :id => tariff.id}, :onclick => "return confirm('Are you sure?')", :class=>"delete_button", :method => :post, :id => "delete_link_"+ tariff.id.to_s %></td>
+                </tr>
+            <% end %>
+          </table>
+        </div>
+        <br/>
+    <% end %>
+  </div>
+  <br/><br/>
+  <div class="table-box">
+    <% if @user_wholesale_tariffs.blank? %>
+        <h2><%= _('No_sell_tariffs') %></h2>
+    <% else %>
+        <h2>
+          <div><%= _('Sell_tariffs_list') %></div>
+          <div style="float: right; margin: -28px -14px;"><%= link_to "<button class=\"search-form-button\">#{_('Rate_Check')}</button>".html_safe, {:action => 'rate_check', who: 'users'}, :disable_with => _('Processing..'), :id => "rate_check_button_users"  %>
+          </div>
+        </h2>
+        <div class="table-holder">
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <th class="tariff-name"><%= _('name') %></th>
+              <th class="tariff-currency"><%= _('currency') %></th>
+              <th class="tariff-rates" colspan="5"><%= _('rates') %></th>
+              <th class="tariff-usage"><%= _('usage') %></th>
+              <th class="tariff-edit"></th>
+              <th class="tariff-delete"></th>
+            </tr>
+            <% @user_wholesale_tariffs.each_with_index do |tariff, i| %>
+                <tr>
+                  <td nowrap id="name_<%= tariff.id %>" class="tariff-name"><%= link_to tariff.name, {:action => 'edit', :id => tariff.id, rates: @tr[tariff.id]}, style: 'text-transform: none; font-size: 13px;' %></td>
+                  <td id="currency_<%= tariff.id %>" class="tariff-currency"><%= tariff.currency %></td>
+                  <td id="rates_<%= tariff.id %>" class="tariff-info_rates left-item" nowrap>
+                    <%= link_to "#{_('Rates')} (#{count_of_rates(@tr[tariff.id])})", action: 'rates_list', id: tariff %>
+                  </td>
+                  <td id="import_csv_<%= tariff.id %>" class="tariff-import_csv">
+                    <%= link_to _('Import_CSV'), :action => action, :id => tariff %>
+                  </td>
+                  <td id="update_rates_<%= tariff.id %>" class="tariff-update_rates">
+                    <%= link_to _('Update_rates'), action: 'update_rates', id: tariff if  count_of_rates(@tr[tariff.id]) > 0 %>
+                  </td>
+                  <td id="delete_rates_<%= tariff.id %>" class="tariff-delete_rates">
+                    <%= button_to _('Delete_all_rates'), {:action => 'delete_all_rates', :id => tariff}, :onclick => "return confirm('Are you sure?')", :class=>"delete_button", :method => :post, :id => "delete_all_link_"+ tariff.id.to_s  if  count_of_rates(@tr[tariff.id]) > 0 %></td>
+                  </td>
+                  <td id="rates_csv_<%= tariff.id %>" class="tariff-rates_csv">
+                    <%= link_to _('csv'), :action => 'generate_providers_rates_csv', :id => tariff %>
+                  </td>
+                  <td id="usage_<%= tariff.id %>" class="tariff-data-usage">
+                    <%= link_to "#{tariff.tp_count.to_i}/#{tariff.op_count.to_i}", {:controller => 'devices', :action => 'devices_all'} %>
+                  </td>
+                  <td id="edit_<%= tariff.id %>"><%= link_to 'EDIT', {:action => 'edit', :id => tariff.id, rates: @tr[tariff.id]} %></td>
+                  <td id="destroy_<%= tariff.id %>"><%= button_to 'DELETE', {:action => 'destroy', :id => tariff.id}, :onclick => "return confirm('Are you sure?')", :class=>"delete_button", :method => :post, :id => "delete_link_"+ tariff.id.to_s %></td>
+                </tr>
+            <% end %>
+          </table>
+        </div>
+        <br/>
+    <% end %>
+  </div>
+<style>
+    .table-with-edit-and-delete.td, .table-with-edit-and-delete.th, .table-with-edit-and-delete {
+        white-space: nowrap;
+    }
+    .table-holder{
+        overflow: auto;
+    }
+    .table-box table .even td, .table-box table td{
+        padding: 6px 10px 7px 1%;
+    }
+</style>

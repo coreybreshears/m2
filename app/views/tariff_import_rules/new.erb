@@ -1,0 +1,15 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= _('New_Tariff_Import_Rules') %></h2>
+    <%= form_for @tariff_import_rule, url: {action: :create, id: @tariff_import_rule}, html: {class: 'details-form'} do |f| %>
+        <fieldset>
+          <%= render 'form', f: f, tariff_import_rule: @tariff_import_rule, jobs_present: false %>
+          <br/><br/>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariff_import_rules/list'" %>
+            <%= submit_tag _('CREATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>

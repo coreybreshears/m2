@@ -1,0 +1,417 @@
+<div class="content-box">
+  <div class="table-box">
+  	<h2><%= _('Permissions') %></h2>
+    <%= form_for :permissions, url: {action: :update,  id: @manager_group.id}, html: {class: 'details-form'} do |group| %>
+      <div class="input-row">
+        <div class="label-col smaller table-alignment">
+          <label><%= _('Group_name') %></label>
+        </div>
+        <div class="input-col">
+          <%= text_field 'manager_group', 'name', class: 'input' %>
+        </div>
+      </div>
+      <div class="input-line">
+        <div id='period_time' class="label-col smaller table-alignment">
+          <label><%= _('Description') %></label>
+        </div>
+        <div class="input-area">
+          <div class="large"><%= text_area_tag 'manager_group[comment]', @manager_group.try(:comment).to_s, :rows => '5', :class => "input large" %></div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col smaller table-alignment">
+          <label><%= _('Show_only_assigned_Users') %></label>
+        </div>
+        <div class="input-col checkbox-marg">
+          <%= group.check_box :show_only_assigned_users, {checked: (@rights.select { |right| right[:name].to_s == 'Show_only_assigned_Users' }.first[:value].to_i) == 2}, 2, 0 %>
+        </div>
+      </div>
+      <div style="clear: both;"/>
+      <br/>
+      <div class="table-holder permissions-holder">
+    		<table>
+    			<tbody>
+	    		<tr>
+		    		<th nowrap><%= _('Target') %></th>
+                    <th></th>
+		    		<th><%= _('No Access') %></th>
+		    		<th><%= _('Can Manage') %></th>
+		    		<th style="width: 610px"/>
+	    		</tr>
+
+                <tr>
+                  <td nowrap><%= _('ACCOUNTING_Balance_Report') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :ACCOUNTING_Balance_Report, 0, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Balance_Report' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :ACCOUNTING_Balance_Report, 2, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Balance_Report' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('ACCOUNTING_Customer_Invoices') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :ACCOUNTING_Customer_Invoices, 0, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Customer_Invoices' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :ACCOUNTING_Customer_Invoices, 2, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Customer_Invoices' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('ACCOUNTING_Financial_Status') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :ACCOUNTING_Financial_Status, 0, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Financial_Status' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :ACCOUNTING_Financial_Status, 2, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Financial_Status' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('ACCOUNTING_Payments') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :ACCOUNTING_Payments, 0, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Payments' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :ACCOUNTING_Payments, 2, checked: (@rights.select { |right| right[:name].to_s == 'ACCOUNTING_Payments' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('BILLING_CDR_Import') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :BILLING_CDR_Import, 0, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_CDR_Import' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :BILLING_CDR_Import, 2, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_CDR_Import' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('BILLING_CDR_Rerating') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :BILLING_CDR_Rerating, 0, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_CDR_Rerating' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :BILLING_CDR_Rerating, 2, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_CDR_Rerating' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('BILLING_Custom_Tariffs') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :BILLING_Custom_Tariffs, 0, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_Custom_Tariffs' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :BILLING_Custom_Tariffs, 2, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_Custom_Tariffs' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('BILLING_Tariffs') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :BILLING_Tariffs, 0, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_Tariffs' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :BILLING_Tariffs, 2, checked: (@rights.select { |right| right[:name].to_s == 'BILLING_Tariffs' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap class='sub-permission'><%= _('Users_Tariffs') %></td>
+                  <td style="width: 280px"><%= group.select :BILLING_Tariffs_Users_Tariffs, options_for_select([[_('Show_All'), 0], [_('Show_only_used_by_Assigned_Users'), 1], [_('Hide_All'), 2]], @rights.select { |right| right[:name].to_s == 'BILLING_Tariffs_Users_Tariffs' }.first[:value].to_i), style: 'width:259px;' %></td>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap class='sub-permission'><%= _('Vendors_Tariffs') %></td>
+                  <td style="width: 280px"><%= group.select :BILLING_Tariffs_Vendors_Tariffs, options_for_select([[_('Show_All'), 0], [_('Show_only_used_by_Assigned_Users'), 1], [_('Hide_All'), 2]], @rights.select { |right| right[:name].to_s == 'BILLING_Tariffs_Vendors_Tariffs' }.first[:value].to_i), style: 'width:259px;' %></td>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('DASHBOARD_Quick_Stats') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :DASHBOARD_Quick_Stats, 0, checked: (@rights.select { |right| right[:name].to_s == 'DASHBOARD_Quick_Stats' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :DASHBOARD_Quick_Stats, 2, checked: (@rights.select { |right| right[:name].to_s == 'DASHBOARD_Quick_Stats' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Background_Tasks') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Background_Tasks, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Background_Tasks' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Background_Tasks, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Background_Tasks' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Backups') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Backups, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Backups' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Backups, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Backups' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Currencies') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Currencies, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Currencies' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Currencies, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Currencies' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Default_Device') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Default_Device, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Default_Device' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Default_Device, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Default_Device' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Default_User') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Default_User, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Default_User' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Default_User, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Default_User' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Directions') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Directions, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Directions' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Directions, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Directions' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Directions_Groups') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Directions_Groups, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Directions_Groups' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Directions_Groups, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Directions_Groups' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Emails') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Emails, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Emails' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Emails, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Emails' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Number_Pools') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Number_Pools, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Number_Pools' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Number_Pools, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Number_Pools' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Servers') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Servers, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Servers' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Servers, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Servers' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('MAINTENANCE_Settings') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :MAINTENANCE_Settings, 0, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Settings' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :MAINTENANCE_Settings, 2, checked: (@rights.select { |right| right[:name].to_s == 'MAINTENANCE_Settings' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Action_log') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Action_log, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Action_log' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Action_log, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Action_log' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Active_Calls') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Active_Calls, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Active_Calls' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Active_Calls, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Active_Calls' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap class='sub-permission'><%= _('Hide_Vendors_Information') %></td>
+                  <td><%= group.check_box :REPORTS_Active_Calls_Hide_Vendors_Information, {checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Active_Calls_Hide_Vendors_Information' }.first[:value].to_i) == 2}, 2, 0 %></td>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Aggregate_Auto_Export') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Aggregate_Auto_Export, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Aggregate_Auto_Export' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Aggregate_Auto_Export, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Aggregate_Auto_Export' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Aggregate_Templates') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Aggregate_Templates, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Aggregate_Templates' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Aggregate_Templates, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Aggregate_Templates' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Aggregates') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Aggregates, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Aggregates' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Aggregates, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Aggregates' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Calls_by_Clients') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Calls_by_Clients, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_by_Clients' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Calls_by_Clients, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_by_Clients' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Calls_Dashboard') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Calls_Dashboard, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_Dashboard' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Calls_Dashboard, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_Dashboard' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Calls_List') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Calls_List, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_List' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Calls_List, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_List' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap class='sub-permission'><%= _('Hide_Vendors_Rate') %></td>
+                  <td><%= group.check_box :REPORTS_Calls_List_Hide_Vendors_Rate, {checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_List_Hide_Vendors_Rate' }.first[:value].to_i) == 2}, 2, 0 %></td>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap class='sub-permission'><%= _('Hide_Vendors_Price') %></td>
+                  <td><%= group.check_box :REPORTS_Calls_List_Hide_Vendors_Price, {checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_List_Hide_Vendors_Price' }.first[:value].to_i) == 2}, 2, 0 %></td>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Calls_List_Archived_Calls') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Calls_List_Archived_Calls, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_List_Archived_Calls' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Calls_List_Archived_Calls, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_List_Archived_Calls' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Calls_Per_Hour') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Calls_Per_Hour, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_Per_Hour' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Calls_Per_Hour, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Calls_Per_Hour' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Destination_Groups') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Destination_Groups, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Destination_Groups' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Destination_Groups, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Destination_Groups' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Hangup_Cause') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Hangup_Cause, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Hangup_Cause' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Hangup_Cause, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Hangup_Cause' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Load_Stats') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Load_Stats, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Load_Stats' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Load_Stats, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Load_Stats' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_Search') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_Search, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Search' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_Search, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_Search' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('REPORTS_TP_Deviations') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :REPORTS_TP_Deviations, 0, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_TP_Deviations' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :REPORTS_TP_Deviations, 2, checked: (@rights.select { |right| right[:name].to_s == 'REPORTS_TP_Deviations' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('ROUTING_Dial_Peers') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :ROUTING_Dial_Peers, 0, checked: (@rights.select { |right| right[:name].to_s == 'ROUTING_Dial_Peers' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :ROUTING_Dial_Peers, 2, checked: (@rights.select { |right| right[:name].to_s == 'ROUTING_Dial_Peers' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('ROUTING_Routing_Groups') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :ROUTING_Routing_Groups, 0, checked: (@rights.select { |right| right[:name].to_s == 'ROUTING_Routing_Groups' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :ROUTING_Routing_Groups, 2, checked: (@rights.select { |right| right[:name].to_s == 'ROUTING_Routing_Groups' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('SECURITY_Alerts') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :SECURITY_Alerts, 0, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :SECURITY_Alerts, 2, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('SECURITY_Alerts_Contacts') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :SECURITY_Alerts_Contacts, 0, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts_Contacts' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :SECURITY_Alerts_Contacts, 2, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts_Contacts' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('SECURITY_Alerts_Groups') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :SECURITY_Alerts_Groups, 0, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts_Groups' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :SECURITY_Alerts_Groups, 2, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts_Groups' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('SECURITY_Alerts_Schedules') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :SECURITY_Alerts_Schedules, 0, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts_Schedules' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :SECURITY_Alerts_Schedules, 2, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Alerts_Schedules' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('SECURITY_Blocked_IPs') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :SECURITY_Blocked_IPs, 0, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Blocked_IPs' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :SECURITY_Blocked_IPs, 2, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Blocked_IPs' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('SECURITY_Integrity_Check') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :SECURITY_Integrity_Check, 0, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Integrity_Check' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :SECURITY_Integrity_Check, 2, checked: (@rights.select { |right| right[:name].to_s == 'SECURITY_Integrity_Check' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('USERS_Connection_Points') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :USERS_Connection_Points, 0, checked: (@rights.select { |right| right[:name].to_s == 'USERS_Connection_Points' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :USERS_Connection_Points, 2, checked: (@rights.select { |right| right[:name].to_s == 'USERS_Connection_Points' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap class='sub-permission'><%= _('Deny_Tariff_change') %></td>
+                  <td><%= group.check_box :USERS_Connection_Points_Deny_Tariff_change, {checked: (@rights.select { |right| right[:name].to_s == 'USERS_Connection_Points_Deny_Tariff_change' }.first[:value].to_i) == 2}, 2, 0 %></td>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap class='sub-permission'><%= _('Deny_Routing_Group_change') %></td>
+                  <td><%= group.check_box :USERS_Connection_Points_Deny_Routing_Group_change, {checked: (@rights.select { |right| right[:name].to_s == 'USERS_Connection_Points_Deny_Routing_Group_change' }.first[:value].to_i) == 2}, 2, 0 %></td>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 610px"/>
+                </tr>
+                <tr>
+                  <td nowrap><%= _('USERS_Users') %></td>
+                  <td></td>
+                  <td><%= group.radio_button :USERS_Users, 0, checked: (@rights.select { |right| right[:name].to_s == 'USERS_Users' }.first[:value].to_i) == 0 %></td>
+                  <td><%= group.radio_button :USERS_Users, 2, checked: (@rights.select { |right| right[:name].to_s == 'USERS_Users' }.first[:value].to_i) == 2 %></td>
+                  <td style="width: 610px"/>
+                </tr>
+
+    			</tbody>
+    		</table>
+    		<hr style="margin-right: 20px">
+      </div>
+      <div class="buttons-row">
+        <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/manager_groups/list'", name: 'reset' %>
+        <%= submit_tag _('UPDATE'), :disable_with => _('Processing..'), name: 'commit' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,1831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>aggregate_new_gui</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">aggregate_new_gui</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/aggregates/list')]</td>
+	<td>Calls Aggregate</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/es_remote_33.sql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/aggregates_es</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+0?:00) Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Calls Aggregate</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/aggregates/list')]</td>
+	<td>Aggregate</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Calls Aggregate</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Total Records:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Export to CSV</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Press Generate Report button to show data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Destination Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=total_billsec_orig</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>INTERNAL ERROR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2012; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2012; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='columntableaggregates_data']/div[17]/div/span</td>
+	<td>Billed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableaggregates_data']/div[8]/div/div/span</td>
+	<td>Terminator</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<!--sesijoje issaugome data-->
+<tr>
+	<td>open</td>
+	<td>/billing/stats/calls_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2013</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=October</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=16</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_hour</td>
+	<td>label=17</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_minute</td>
+	<td>label=15</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2014; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2014; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2014</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=July</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=14</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_hour</td>
+	<td>label=13</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_minute</td>
+	<td>label=50</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/time</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=year</td>
+	<td>current_year</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>id=day</td>
+	<td>current_day</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>2013</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_month</td>
+	<td>October</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td>16</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td>17</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>2014</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_month</td>
+	<td>July</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_day</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_hour</td>
+	<td>13</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_originator</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_originator_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_terminator_id').value='none'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_dst</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>Aruba%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst</td>
+	<td>370</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=billed_time_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=duration_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=calls_answered_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=calls_total_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=price_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=price_term_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=billed_time_term_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=acd_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=asr_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=pdd_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=use_real_billsec_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=from_user_perspective_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td>${current_day}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_day</td>
+	<td>${current_day}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_hour</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_originator</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_originator_id').value='any'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_terminator</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_terminator_id').value='any'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dst_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=dst</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_real_billsec_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=from_user_perspective_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Press Generate Report button to show data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_orig_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=duration_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_answered_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=calls_total_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=price_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=billed_time_term_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=acd_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=asr_show</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2011; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2011; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2012; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2012; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2011</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=June</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=November</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_hour</td>
+	<td>label=02</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_hour</td>
+	<td>label=18</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<!--prisiloginus ir atsiloginus turi buti defaultine data-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_day</td>
+	<td>${current_day}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_from_hour</td>
+	<td>00</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_year</td>
+	<td>${current_year}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_day</td>
+	<td>${current_day}</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=date_till_hour</td>
+	<td>23</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Clear search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2015; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2015; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2015</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].text = 2012; this.browserbot.getCurrentWindow().document.getElementById('date_till_year').getElementsBySelector('option')[0].value = 2012; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2012</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Date from is greater than date till</td>
+</tr>
+<!--Direction stulpelis iskaidytas i country ir prefix - turi reaguoti i Destination Group checkboxa-->
+<!--Tarp Billed orig ir billed term reikalingas papildomas stulpelis Originator with TAX, kuris reaguoja ir Orig. Price checkbox'ą-->
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2013</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2016</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=September</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=17</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=November</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=28</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='columntableaggregates_data']/div[5]/div/div/span</td>
+	<td>Originator with TAX (USD)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableaggregates_data']/div[17]/div/span</td>
+	<td>Billed</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=price_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Originator Price with Tax</td>
+	<td></td>
+</tr>
+<!--Destination name Mask testavimas-->
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>%mobile%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row8aggregates_data']/div/div</td>
+	<td>Ukraine - Mobile TWO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row8aggregates_data']/div[2]/div</td>
+	<td>Test User 120</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row8aggregates_data']/div[3]/div</td>
+	<td>Test User 108</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2aggregates_data']/div/div</td>
+	<td>Iran - Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2aggregates_data']/div[2]/div</td>
+	<td>Test User 127</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2aggregates_data']/div[3]/div</td>
+	<td>Test User 105</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>%fixed%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0aggregates_data']/div/div</td>
+	<td>Armenia - Fixed Nagorno Karabakh</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>%fixed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0aggregates_data']/div/div</td>
+	<td>Turkey - Fixed</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>%f%ed</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0aggregates_data']/div/div</td>
+	<td>Turkey - Fixed</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td>t%d</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0aggregates_data']/div/div</td>
+	<td>Turkey - Fixed</td>
+</tr>
+<!--rūšiavimas, puslapiavimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_year</td>
+	<td>label=2016</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_month</td>
+	<td>label=November</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_till_day</td>
+	<td>label=13</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=price_orig_show</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_dst</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst</td>
+	<td>%3%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='columntableaggregates_data']/div[17]/div/span</td>
+	<td>Customer</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.jqx-grid-column-header.jqx-widget-header &gt; div &gt; div &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.jqx-grid-column-header.jqx-widget-header &gt; div &gt; div &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0aggregates_data']/div/div</td>
+	<td>Ukraine - Mobile TWO</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[2]/div</td>
+	<td>38097</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[3]/div</td>
+	<td>Test User 120</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[4]</td>
+	<td>Test User 108</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[5]</td>
+	<td>0.6707</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[6]/div</td>
+	<td>0.6707</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[7]/div</td>
+	<td>0.4860</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[8]/div</td>
+	<td>exact:00:06:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[9]</td>
+	<td>exact:00:08:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[10]/div</td>
+	<td>exact:00:06:20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[11]</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[12]/div</td>
+	<td>21</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[13]/div</td>
+	<td>19.05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[14]/div</td>
+	<td>exact:00:01:35</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[5]/div/b</td>
+	<td>28.5600</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[6]/div/b</td>
+	<td>28.5600</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[7]/div/b</td>
+	<td>17.9352</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[8]/div/b</td>
+	<td>exact:04:39:58</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[9]/div/b</td>
+	<td>exact:05:19:38</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[10]/div/b</td>
+	<td>exact:04:39:58</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[11]/div/b</td>
+	<td>108</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[12]/div/b</td>
+	<td>171</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[13]/div/b</td>
+	<td>63.16</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[14]/div/b</td>
+	<td>exact:00:02:35</td>
+</tr>
+<!--ištestuoti rūšiavimą-->
+<tr>
+	<td>click</td>
+	<td>css=div.jqx-grid-column-header.jqx-widget-header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div/div</td>
+	<td>Armenia - Fixed Nagorno Karabakh</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div/div</td>
+	<td>Armenia - Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2aggregates_data']/div/div</td>
+	<td>Armenia - Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3aggregates_data']/div/div</td>
+	<td>Armenia - Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row4aggregates_data']/div/div</td>
+	<td>Belarus - Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row13aggregates_data']/div/div</td>
+	<td>Ukraine - Mobile ONE</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[2]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[2]/div</td>
+	<td>37443</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[2]/div</td>
+	<td>37491</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2aggregates_data']/div[2]/div</td>
+	<td>37496</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3aggregates_data']/div[2]/div</td>
+	<td>37499</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row4aggregates_data']/div[2]/div</td>
+	<td>375293</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row16aggregates_data']/div[2]/div</td>
+	<td>791</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[2]/div</td>
+	<td>79150</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[3]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[3]/div</td>
+	<td>Test User 110</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row4aggregates_data']/div[3]/div</td>
+	<td>Test User 111</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row6aggregates_data']/div[3]/div</td>
+	<td>Test User 113</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row12aggregates_data']/div[3]/div</td>
+	<td>Test User 120</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row16aggregates_data']/div[3]/div</td>
+	<td>Test User 127</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[4]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[4]/div</td>
+	<td>Test User 105</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2aggregates_data']/div[4]/div</td>
+	<td>Test User 105</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[4]/div</td>
+	<td>Test User 108</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[5]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[5]/div</td>
+	<td>0.0003</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[5]/div</td>
+	<td>0.0053</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row15aggregates_data']/div[5]/div</td>
+	<td>0.6707</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[5]/div</td>
+	<td>2.1074</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[6]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[6]/div</td>
+	<td>0.0003</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row16aggregates_data']/div[6]/div</td>
+	<td>1.3397</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[6]/div</td>
+	<td>2.1074</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[7]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[7]/div</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3aggregates_data']/div[7]/div</td>
+	<td>0.0291</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row9aggregates_data']/div[7]/div</td>
+	<td>0.1822</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[7]/div</td>
+	<td>0.9429</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[8]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[8]/div</td>
+	<td>exact:00:00:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row6aggregates_data']/div[8]/div</td>
+	<td>exact:00:01:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row14aggregates_data']/div[8]/div</td>
+	<td>exact:00:06:33</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[9]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[9]/div</td>
+	<td>exact:00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row5aggregates_data']/div[9]/div</td>
+	<td>exact:00:01:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row14aggregates_data']/div[9]/div</td>
+	<td>exact:00:08:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[9]/div</td>
+	<td>exact:00:18:00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[10]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[10]/div</td>
+	<td>exact:00:00:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3aggregates_data']/div[10]/div</td>
+	<td>exact:00:00:29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[10]/div</td>
+	<td>exact:00:17:02</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[11]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[11]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row12aggregates_data']/div[11]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[11]/div</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[12]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[12]/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row13aggregates_data']/div[12]/div</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row16aggregates_data']/div[12]/div</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[13]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[13]/div</td>
+	<td>14.29</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row4aggregates_data']/div[13]/div</td>
+	<td>45.45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row9aggregates_data']/div[13]/div</td>
+	<td>100.00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[14]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[14]/div</td>
+	<td>exact:00:00:01</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row6aggregates_data']/div[14]/div</td>
+	<td>exact:00:00:36</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row17aggregates_data']/div[14]/div</td>
+	<td>exact:00:03:01</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='columntableaggregates_data']/div[15]/div/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[15]/div</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row12aggregates_data']/div[15]/div</td>
+	<td>0.0000</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row21aggregates_data']/div[15]/div</td>
+	<td>0.0000</td>
+</tr>
+<!--Laiko atvaizdavimas kitu formatu-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=time_format</td>
+	<td>label=M:S</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2013</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=October</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row0aggregates_data']/div[8]/div</td>
+	<td>exact:05:38</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[9]/div</td>
+	<td>exact:07:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0aggregates_data']/div[10]/div</td>
+	<td>exact:05:38</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row4aggregates_data']/div[8]/div</td>
+	<td>exact:01:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[9]/div</td>
+	<td>exact:78:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[10]/div</td>
+	<td>exact:66:23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[8]/div/b</td>
+	<td>exact:279:58</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[9]/div/b</td>
+	<td>exact:319:38</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowaggregates_data']/div[10]/div/b</td>
+	<td>exact:279:58</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/login_as_execute?user=105</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/aggregates/list')]</td>
+	<td>Calls Aggregate</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list?csv=1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--users dropdowne turi atvaizduoti tik not hidden userius-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/hide/105</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Hidden users</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_105</td>
+	<td>105</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/aggregates/change_aggregate_1_user_to_user_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_originator</td>
+	<td>Test User 105</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_originator</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>No value found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=originator_list</td>
+	<td>No value found</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_terminator</td>
+	<td>Test User 105</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_terminator</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>No value found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=terminator_list</td>
+	<td>No value found</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=October</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_day</td>
+	<td>label=1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2013; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2013; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2013</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_dst_group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row5aggregates_data']/div/div</td>
+	<td>Test User 127</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test User 105</td>
+	<td></td>
+</tr>
+<!--tas pats su terminatoriumi-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/hide/108</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User hidden: Test User 108</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/aggregates/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_originator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=group_by_terminator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='row1aggregates_data']/div/div</td>
+	<td>Test User 108</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[3]/div</td>
+	<td>16.7476</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[3]/div</td>
+	<td>16.7476</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[4]/div</td>
+	<td>exact:257:39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[5]/div</td>
+	<td>exact:299:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[6]/div</td>
+	<td>exact:257:39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[7]/div</td>
+	<td>87</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[8]/div</td>
+	<td>253</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[9]/div</td>
+	<td>34.39</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row1aggregates_data']/div[10]/div</td>
+	<td>exact:02:57</td>
+</tr>
+</tbody></table>
+</body>
+</html>

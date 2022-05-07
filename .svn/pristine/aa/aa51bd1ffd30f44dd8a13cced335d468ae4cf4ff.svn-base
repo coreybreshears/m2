@@ -1,0 +1,1 @@
+UPDATE conflines SET value='0' WHERE name='Disallow_Email_Editing' AND owner_id = 0;

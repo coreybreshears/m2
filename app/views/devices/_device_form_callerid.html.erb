@@ -1,0 +1,107 @@
+<tr>
+  <td height="20"></td>
+</tr>
+<tr <%= tooltip(_('CallerID'), _('Device_CallerID_Explanation')) %>>
+  <td class="bottom_border"><b><%= _('CallerID') %></b></td>
+</tr>
+<tr>
+  <td height="10"></td>
+</tr>
+<tr>
+  <td valign="top">
+    <table class="simple">
+      <tr>
+        <td id="cid_name_name"><%= _('Name') %>:</td>
+        <td id="cid_name_value"><%= text_field_tag 'cid_name', cid_name, "class" => "input" %></td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr id='id_device_caller_id_number_1'>
+        <td><%= radio_button_tag('device_caller_id_number', 1, device_caller_id_number.to_i == 1, :onchange => 'disable_radio_buttons(this.id)') %></td>
+        <td><%= _('Number') %>: <%= text_field_tag 'cid_number', cid_number, "class" => "input", :onchange => 'disable_3(this.value)' %></td>
+      </tr>
+
+      <% if params[:action].to_s != 'default_device' %>
+          <% if (admin? || manager?) %>
+              <tr id='id_device_caller_id_number_7' >
+                <td><%= radio_button_tag('device_caller_id_number', 7, device_caller_id_number.to_i == 7, disabled: number_pools.blank?, onchange: 'disable_radio_buttons(this.id)') %></td>
+                <td><%= _('Random_Number_from_Number_Pool') %>: <%= select_tag 'callerid_number_pool_id', options_for_select(number_pools, device.callerid_number_pool_id.to_i) %></td>
+              </tr>
+              <tr id="id_device_caller_id_number_7_random_type" style="display: <%= device_caller_id_number.to_i == 2 ? 'show' : 'none' %>;">
+                <td colspan="2" style="padding-left: 35px;">
+                  <table>
+                    <tr>
+                      <td>
+                        <%= radio_button_tag('callerid_number_pool_type', 'random', device_callerid_number_pool_type.to_s != 'pseudorandom') %>&nbsp;<%= _('Random') %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <%= radio_button_tag('callerid_number_pool_type', 'pseudorandom', device_callerid_number_pool_type.to_s == 'pseudorandom') %>&nbsp;<%= _('Pseudorandom_with_Deviation') %>:&nbsp;
+                        <%= text_field_tag 'callerid_number_pool_deviation', device_callerid_number_pool_deviation.blank? ? 5 : device_callerid_number_pool_deviation.to_i, class: 'input', size: 8, disabled: device_callerid_number_pool_type.to_s != 'pseudorandom' %>
+                      </td>
+                    </tr>
+                  </table>
+                  <script type='text/javascript'>
+                      Event.observe(window, 'load', function() {
+                          ['callerid_number_pool_type_random', 'callerid_number_pool_type_pseudorandom'].each(function(radio_button){
+                              Event.observe(radio_button, 'change', function(event) {
+                                  if (event.target.checked && event.target.value == 'random') {
+                                      $('callerid_number_pool_deviation').disabled = true
+                                  } else {
+                                      $('callerid_number_pool_deviation').disabled = false
+                                  }
+                              });
+                          });
+                      });
+                  </script>
+                </td>
+              </tr>
+          <% end %>
+
+        <script type='text/javascript'>
+            function disable_radio_buttons(id) {
+                if (id == 'device_caller_id_number_6') {
+                    $('cid_number').readOnly = true;
+                }
+                <% if admin? || manager? %>
+                  if (id == 'device_caller_id_number_7') {
+                    $('callerid_number_pool_id').disabled = false;
+                    $('cid_number').readOnly = true;
+                  }
+                <% end %>
+                if (id == 'device_caller_id_number_4') {
+                    $('control_callerid_by_cids').disabled = false;
+                    <% if admin? || manager? %>
+                      $('callerid_number_pool_id').disabled = true;
+                    <% end %>
+                    $('cid_number').readOnly = true;
+                }
+                if (id == 'device_caller_id_number_1') {
+                    <% if admin? || manager? %>
+                      $('callerid_number_pool_id').disabled = true;
+                    <% end %>
+                    $('cid_number').readOnly = false;
+                }
+                if (id != 'device_caller_id_number_7' && id != 'device_caller_id_number_4' && id !== 'device_caller_id_number_2' && id !== 'device_caller_id_number_1') {
+                    <% if admin? || manager? %>
+                      $('callerid_number_pool_id').disabled = true;
+                    <% end %>
+                    $('cid_number').readOnly = true;
+                }
+                if (id == 'device_caller_id_number_7') {
+                    $('id_device_caller_id_number_7_random_type').style.display = '';
+                } else {
+                    $('id_device_caller_id_number_7_random_type').style.display = 'none';
+                }
+            }
+            function change_cid_value(val) {
+                $('cid_number').value = val;
+            }
+            disable_radio_buttons('device_caller_id_number_<%= device_caller_id_number %>');
+        </script>
+    <% end %>
+    </table>
+  </td>
+</tr>

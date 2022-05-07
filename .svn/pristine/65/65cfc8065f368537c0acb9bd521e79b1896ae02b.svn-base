@@ -1,0 +1,234 @@
+<div class="table-holder">
+  <% if emails.present? %>
+    <table style="table-layout: fixed; min-width: 1024px; height: 100%;">
+      <tr>
+        <td class="left-item" style="width: 2%; height: 100%;">
+          <div class="check-box-wrapper">
+          <%= check_box_tag 'email', -1, false, {class: 'all-emails'} %>&nbsp;
+          </div>
+        </td>
+        <th class="left-item" style="width: 35%"><%= _('Email') %></th>
+        <th class="left-item" style="width: 19%"><%= _('Attachments') %></th>
+        <th class="left-item" style="width: 5%"><%= _('Type') %></th>
+        <th class="left-item" style="width: 15%"><%= _('Import_Job') %></th>
+        <th class="left-item" style="width: 14%"><%= _('Status') %></th>
+        <th class="left-item nowrap" style="width: 10%"><%= _('Processing_Note') %></th>
+      </tr>
+      <% emails.each do |email| %>
+        <tr>
+          <td class="left-item" valign="bottom" style="height: 100%;">
+            <div class="check-box-wrapper">
+            <%= check_box_tag 'email', email.id, false, {class: 'single-email'} %>&nbsp;
+          </div>
+          </td>
+          <td class="left-item">
+            <div class="email-detail" id="email_body_<%=email.id%>" status="up">
+              <div class='nowrap email-detail-text'>
+                <span>
+                  <% if email.from_name.present? %>
+                    "<%= email.from_name.strip %>"&nbsp;
+                  <% end %>
+                  <%= "<#{email.from_email.strip}>" %>
+                </span>
+                <br/>
+                <% if email.subject.present? %>
+                  <span <%= tooltip(_('Subject'), email.subject.strip)%> ><b><%= email.subject.strip %></b></span>
+                <% else %>
+                  <br/>
+                <% end %>
+              </div>
+            </div>
+          </td>
+          <% if email.tariff_attachments.present? %>
+            <td class="left-item" nowrap >
+              <div class="email-detail-text">
+                  <%= attachment_item(email, 'file_name', _('Attachments')) %>
+              </div>
+            </td>
+            <td class="left-item" nowrap>
+              <%= attachment_item(email, 'file_extension', _('Type')) %>
+            </td>
+            <td class="left-item" nowrap>
+             <% email.tariff_attachments.each do |attachment| %>
+              <% if attachment.tariff_jobs.present? %>
+                <% if attachment.tariff_jobs.size == 1 %>
+                  <div id="job_body_<%=attachment.id%>">
+                    <span><%= link_to "#{_('Import_Job')} #{attachment.tariff_jobs.first.id}", controller: :tariff_jobs, action: :list %> </span><br/>
+                  </div>
+                <% else %>
+                  <div class="job-detail" id="job_body_<%=attachment.id%>" status="up">
+                    <span class="job_title"><%= _('Jobs_List') %></span>
+                    <div class="job_body_<%=attachment.id%>" style="display: none;">
+                      <%  attachment.tariff_jobs.each do |job| %>
+                        <span><%= link_to "#{_('Import_Job')} #{job.id}", controller: :tariff_jobs, action: :list %> </span><br/>
+                      <% end %>
+                      <script type="text/javascript">
+                        $(document).ready(function(){
+                          $('.<%= "attachment_spacing#{attachment.id}" %>').html('<%= ("<br/>" * (attachment.tariff_jobs.size - 1)).html_safe  %>');
+                          $('#job_body_<%= attachment.id %>').click(function(){
+                            $('.<%= "attachment_spacing#{attachment.id}" %>').toggle();
+                          });
+                        });
+                      </script>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <br/>
+              <% end %>
+             <% end %>
+            </td>
+            <td class="left-item" nowrap>
+              <div class="email-detail-text">
+                <%= attachment_item(email, 'status', _('Status'), true) %>
+              </div>
+            </td>
+            <td nowrap></td>
+          <% else %>
+            <td class="left-item" nowrap >
+              <div class="email-detail-text">
+                  <%= _('No_Attachments') %>
+              </div>
+            </td>
+            <td class="left-item" nowrap ></td>
+            <td class="left-item" nowrap ></td>
+            <td class="left-item" nowrap ></td>
+            <td class="left-item" nowrap ></td>
+          <% end %>
+        </tr>
+        <tr></tr>
+        <tr class="email_body email_body_<%=email.id%>" style="display: none;">
+          <td colspan="7">
+            <div class="row email-content">
+              <div class="col left-item">
+                <h3><%=_('Email_Details')%></h3>
+                <table class="email-details">
+                    <tr>
+                      <td class="left-item text-top"><%= _('ID') %></td>
+                      <td class="left-item" nowrap><%= email.id %></td>
+                    </tr>
+                    <tr>
+                      <td class="left-item text-top "><%= _('Received') %></td>
+                      <td class="left-item" nowrap><%= nice_date_time(email.received) %></td>
+                    </tr>
+                    <tr>
+                      <td class="left-item text-top"><%= _('From') %></td>
+                      <td class="left-item" nowrap><%= "#{email.from_name.strip} <#{email.from_email}>" %></td>
+                    </tr>
+                    <tr>
+                      <td class="left-item text-top"><%= _('Sender') %></td>
+                      <td class="left-item" nowrap><%= email.from_name%></td>
+                    </tr>
+                    <tr>
+                      <td class="left-item text-top"><%= _('Subject') %></td>
+                      <td class="left-item"><%= email.subject %></td>
+                    </tr>
+                    <tr>
+                      <td class="left-item text-top"><%= _('To') %></td>
+                      <td class="left-item"><%= email.delivered_to %></td>
+                    </tr>
+                    <tr>
+                      <td class="left-item text-top"><%= _('Reply_To') %></td>
+                      <td class="left-item" nowrap><%= email.reply_to %></td>
+                    </tr>
+                    <tr>
+                      <td class="left-item text-top"><%= _('CC') %></td>
+                      <td class="left-item"><%= email.cc %></td>
+                    </tr>
+                </table>
+              </div>
+              <div class="col left-item">
+                <h3><%=_('Message')%></h3>
+                <p class="email-message"><%= sanitize(email.message_plain) if email.message_plain.present? %></p>
+              </div>
+            </div>
+            <div class="row email-content">
+              <div class="col left-item">
+                <h3><%= _('Attachments')%></h3>
+                <% if email.tariff_attachments.present? %>
+                  <table id="email_attachments_<%= email.id %>" style="table-layout: fixed;">
+                    <tr>
+                      <th class="left-item" style="width: 35%"><%= _('File_Name') %></th>
+                      <th class="left-item" style="width: 45%"><%= _('Tariff_Import_Rules') %></th>
+                      <th style="width: 20%"></th>
+                    </tr>
+                    <% email.tariff_attachments.each do |attachment| %>
+                      <tr id="email_attachment_<%= attachment.id %>">
+                        <%= form_tag action: :assign_import_settings, attachment_id: attachment.id do %>
+                        <td class="left-item assign_import_settings_file_name" nowrap <%= tooltip(_('File_Name'), attachment.file_full_name)%>>
+                          <%= link_to attachment.file_full_name, action: :download_attachment, attachment_id: attachment.id %>
+                        </td>
+                        <% import_rules = TariffImportRule.tariff_import_rule_select %>
+                        <% cant_assign = attachment.tariff_jobs.present? || type != 'inbox' || import_rules.blank? %>
+                        <td class="left-item" nowrap>
+                          <%= select_tag "assign_tariff_import_rule_#{attachment.id}", options_for_select(import_rules.present? ? import_rules : [[_('None'), -1]], attachment.get_tariff_import_rule_id), disabled: cant_assign, class: 'assign_import_settings_select' %>
+                        </td>
+                        <td nowrap>
+                          <%= submit_tag _('Assign_Import_Settings'), class: 'assign-import-rule-button', disabled: cant_assign %>
+                        </td>
+                        <% end %>
+                      </tr>
+                    <% end %>
+                  </table>
+                <% else %>
+                    <%= _('No_Attachments') %>
+                <% end %>
+              </div>
+            </div>
+            <div class="email-content row email-buttons">
+                <%= link_to _('View_Source'), {action: :show_source,  email_id: email.id}, {class: 'search-form-button'} %>
+                <% if import_rules_remapable?(email.id) %>
+                  <%= link_to _('Retry_Rules_mapping'), '#', {class: 'search-form-button disabled'}%>
+                <% else %>
+                  <%= link_to _('Retry_Rules_mapping'), {action: :retry_rules_mapping,  email_id: email.id}, {class: 'search-form-button', method: :post} %>
+                <% end %>
+                <%= link_to _('Delete'), {action: :delete_email,  email_id: email.id}, {class: 'search-form-button', onclick: "return confirm('Are you sure?')"} %>
+            </div>
+            <br/><br/>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <span style="margin-left: 10px;"><%= _('No_Emails') %></span>
+  <% end %>
+  <br/>
+  <%= page_select_header(pagination[:options][:page], pagination[:total_pages], {type: type}, pagination[:options]) %>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.email-detail').click(function(){
+      $('.' + this.id).toggle();
+      $(this).attr('status', $(this).attr('status') == 'up' ? 'down' : 'up');
+
+      dropdowns = $('.' + this.id).find('.assign_import_settings_select');
+
+      for(i = 0; i < dropdowns.length; i++){
+        dropdowns[i].jcf.buildDropdown();
+        dropdowns[i].jcf.refreshState();
+        dropdowns[i].jcf.hideDropdown();
+      }
+    });
+
+    $('.select-options .options-hidden .drop-assign_import_settings_select')
+    $('.job-detail').click(function(){
+      $('.' + this.id).toggle();
+      $('.job_title', this).toggle();
+      $('.spacing').toggle();
+      $(this).attr('status', $(this).attr('status') == 'up' ? 'down' : 'up');
+    });
+
+    $('.email_body').removeClass('even');
+    $('.email-content tr').removeClass('even');
+
+    change_email_body();
+
+    $(window).resize(function(){
+      change_email_body();
+    });
+
+    function change_email_body(){
+      $(window).width() < 1000 ? $('.email-content').width($('.table-holder').width()) : $('.email-content').width($('.table-holder').width()-50);
+    }
+  });
+</script>

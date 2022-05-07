@@ -1,0 +1,8 @@
+<%= select_tag('template', options_for_search_template(-1)) %>
+<script type="text/javascript">
+  var template_element = jQuery('#template');
+  template_element.on('change', function () {
+     var template_id = this.value;
+     getDataFromAjax(template_id);
+   });
+</script>

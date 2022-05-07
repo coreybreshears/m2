@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--# Pradiniai duomenys-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/unassigned_destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/108</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>962</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_prefix</td>
+	<td>962745</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_name</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_prefix</td>
+	<td>9627555</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_name</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_prefix</td>
+	<td>96277</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_name</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_dgname</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_prefix</td>
+	<td>962772</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_name</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_dgname</td>
+	<td>Not assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_prefix</td>
+	<td>96278</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_name</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_dgname</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_prefix</td>
+	<td>96279</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_name</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_dgname</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Orange</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Umniah</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Zain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Others</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Fastlink</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Mobilecom</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/destination_groups/destinations_to_dg')]</td>
+	<td>Unassigned Destinations</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?962745?Jordan - Mobile Others</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?9627555?Jordan - Mobile Fastlink</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?962772?Jordan - Mobile Mobilecom</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Orange</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Umniah</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Zain</td>
+	<td></td>
+</tr>
+<!--------------------------------------------------------------------->
+<!--# Fix all Unassigned Destinations-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=page_title</td>
+	<td>Fix all Unassigned Destinations</td>
+</tr>
+<!--# Skip (and assign later manually for higher precision) [RECOMMENDED]-->
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=fixed_unassigned_destination_prefix_difference</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.nb &gt; p</td>
+	<td>All destinations are assigned</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Unassigned Destinations were not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Orange</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Umniah</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Zain</td>
+	<td></td>
+</tr>
+<!--# Sukuriamos naujos grupės, sugrupuojami prefixai-->
+<tr>
+	<td>assertText</td>
+	<td>id=name_604</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_604</td>
+	<td>View (3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_605</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_605</td>
+	<td>View (4)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_606</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_606</td>
+	<td>View (6)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/604</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>962745</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>962746</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>962747</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/605</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>9627555</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>9627556</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>9627557</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_3</td>
+	<td>9627558</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/606</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>962772</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>962775</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>962776</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_3</td>
+	<td>962777</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_4</td>
+	<td>962778</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_5</td>
+	<td>962779</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/108</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>962</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_prefix</td>
+	<td>962745</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_name</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_dgname</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_prefix</td>
+	<td>9627555</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_name</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_dgname</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_prefix</td>
+	<td>96277</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_name</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_dgname</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_prefix</td>
+	<td>962772</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_name</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_dgname</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_prefix</td>
+	<td>96278</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_name</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_dgname</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_prefix</td>
+	<td>96279</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_name</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_dgname</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<!--# Pradiniai duomenys-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/unassigned_destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#destroy_img604 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#destroy_img605 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#destroy_img606 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_604</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_605</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_606</td>
+	<td></td>
+</tr>
+<!--------------------------------------------------------------------->
+<!--# Fix all Unassigned Destinations-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?962745?Jordan - Mobile Others</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?9627555?Jordan - Mobile Fastlink</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?962772?Jordan - Mobile Mobilecom</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Orange</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Umniah</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Zain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<!--# Create new Destination Group with it's nam-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/assign_all_unassigned_destinations_configuration</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=individual_destinations_action_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_0</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_2</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=fixed_unassigned_destination_prefix_difference</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.nb &gt; p</td>
+	<td>All destinations are assigned</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Unassigned Destinations were not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Orange</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Umniah</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Zain</td>
+	<td></td>
+</tr>
+<!--# Sukuriamos naujos grupės, sugrupuojami prefixai-->
+<tr>
+	<td>assertText</td>
+	<td>id=name_607</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_607</td>
+	<td>View (3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_608</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_608</td>
+	<td>View (4)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_609</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_609</td>
+	<td>View (6)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/607</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>962745</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>962746</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>962747</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/608</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>9627555</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>9627556</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>9627557</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_3</td>
+	<td>9627558</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/609</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>962772</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>962775</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>962776</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_3</td>
+	<td>962777</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_4</td>
+	<td>962778</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_5</td>
+	<td>962779</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/108</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>962</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_prefix</td>
+	<td>962745</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_name</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_dgname</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_prefix</td>
+	<td>9627555</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_name</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_dgname</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_prefix</td>
+	<td>96277</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_name</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_dgname</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_prefix</td>
+	<td>962772</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_name</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_dgname</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_prefix</td>
+	<td>96278</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_name</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_dgname</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_prefix</td>
+	<td>96279</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_name</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_dgname</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<!--# Pradiniai duomenys-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/unassigned_destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#destroy_img607 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#destroy_img608 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#destroy_img609 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_607</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_608</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_609</td>
+	<td></td>
+</tr>
+<!--------------------------------------------------------------------->
+<!--# Fix all Unassigned Destinations-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?962745?Jordan - Mobile Others</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?9627555?Jordan - Mobile Fastlink</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan?962772?Jordan - Mobile Mobilecom</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Orange</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Umniah</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Jordan - Mobile Zain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<!--# Assign to Destination's (with most fitting prefix) Destination Group-->
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/assign_all_unassigned_destinations_configuration</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=individual_destinations_action_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_0</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=individual_destinations_action_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=fixed_unassigned_destination_prefix_difference</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Automatic assigning Unassigned Destinations to Destination Groups was successfully completed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.nb &gt; p</td>
+	<td>All destinations are assigned</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total Unassigned Destinations: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Fix all Unassigned Destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Unassigned Destinations were not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/list?st=J</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Fixed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Orange</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Umniah</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Jordan - Mobile Zain</td>
+	<td></td>
+</tr>
+<!--# Sukuriamos naujos grupės, sugrupuojami prefixai-->
+<tr>
+	<td>assertText</td>
+	<td>id=name_610</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_610</td>
+	<td>View (3)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_611</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_611</td>
+	<td>View (4)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_612</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_612</td>
+	<td>View (6)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/610</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>962745</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>962746</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>962747</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/611</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>9627555</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>9627556</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>9627557</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_3</td>
+	<td>9627558</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations/612</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_group_info</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_0</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_0</td>
+	<td>962772</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_1</td>
+	<td>962775</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_2</td>
+	<td>962776</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_3</td>
+	<td>962777</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_4</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_4</td>
+	<td>962778</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_5</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_5</td>
+	<td>962779</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destinations/list/108</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_prefix</td>
+	<td>962</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_name</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20070_dgname</td>
+	<td>Jordan - Fixed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_prefix</td>
+	<td>962745</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_name</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20071_dgname</td>
+	<td>Jordan - Mobile Others</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_prefix</td>
+	<td>9627555</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_name</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20074_dgname</td>
+	<td>Jordan - Mobile Fastlink</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_prefix</td>
+	<td>96277</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_name</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20078_dgname</td>
+	<td>Jordan - Mobile Orange</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_prefix</td>
+	<td>962772</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_name</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20079_dgname</td>
+	<td>Jordan - Mobile Mobilecom</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_prefix</td>
+	<td>96278</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_name</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20085_dgname</td>
+	<td>Jordan - Mobile Umniah</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_prefix</td>
+	<td>96279</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_name</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=20086_dgname</td>
+	<td>Jordan - Mobile Zain</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/destination_groups/destinations_to_dg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+</tbody></table>
+</body>
+</html>

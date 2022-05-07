@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>rates_with_tax</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">rates_with_tax</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/252</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/253</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>0.2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/254</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_connection_fee</td>
+	<td>0.3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/ratedetail_edit/255</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_rate</td>
+	<td>3.99</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ratedetail_connection_fee</td>
+	<td>3.99</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_name</td>
+	<td>Tax1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1_value</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_name</td>
+	<td>Tax2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax2_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2_value</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3_name</td>
+	<td>Tax3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax3_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3_value</td>
+	<td>13</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4_name</td>
+	<td>Tax4</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=tax4_enabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4_value</td>
+	<td>14</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=compound_tax</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Amount with Compound tax = (((SUBTOTAL + 11%) + 12%)+13%)+14%-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2?st=A</td>
+	<td></td>
+</tr>
+<!--0.160149024 = (((0.1 + 11%) + 12%)+13%)+14%-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_252</td>
+	<td>0.1601</td>
+</tr>
+<!--0.320298048 = (((0.2 + 11%) + 12%)+13%)+14%-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_253</td>
+	<td>0.3203</td>
+</tr>
+<!--0.480447072 = (((0.3 + 11%) + 12%)+13%)+14%-->
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_254</td>
+	<td>0.4804</td>
+</tr>
+<!--1.60149024 = (((1 + 11%) + 12%)+13%)+14%-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_254</td>
+	<td>1.6015</td>
+</tr>
+<!--6.3899460576 = (((3.99 + 11%) + 12%)+13%)+14%-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_255</td>
+	<td>6.3899</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_255</td>
+	<td>6.3899</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Amount with Simple tax = SUBTOTAL + (TAX1 + TAX2)-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=compound_tax</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2?st=A</td>
+	<td></td>
+</tr>
+<!--0.15 = 0.1 + (11% + 12% + 13% +14% ) = 0.1 +50%-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_252</td>
+	<td>0.1500</td>
+</tr>
+<!--0.3 = 0.2 + (11% + 12%+13%+14% )-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_253</td>
+	<td>0.3000</td>
+</tr>
+<!--0.45 = 0.3 + (11% + 12%+13%+14% )-->
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_254</td>
+	<td>0.4500</td>
+</tr>
+<!--1.5 = 1 + (11% + 12%+13%+14% )-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_254</td>
+	<td>1.5000</td>
+</tr>
+<!--5.985 = 3.99 + (11% + 12%+13%+14% )-->
+<tr>
+	<td>assertText</td>
+	<td>id=rate_255</td>
+	<td>5.9850</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=connection_fee_255</td>
+	<td>5.9850</td>
+</tr>
+</tbody></table>
+</body>
+</html>

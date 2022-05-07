@@ -1,0 +1,631 @@
+<%= javascript_include_tag 'google_charts/loader.js' %>
+
+<% content_for :search_form do %>
+  <%= form_tag({action: :server_load}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <fieldset>
+      <%= hidden_field_tag 'search_on', 1 %>
+
+      <div class="column date-col calendar-holder">
+        <%= label_tag 'from', _('Date') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_from', formatted_date_as_given(@options[:date_from] || DateTime.now), class: 'checkin default', id: 'from' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col" style="visibility: hidden">
+            <%= text_field_tag 'time_from', '23:59', class: 'default', id: 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= clear_button_tag _('clear'), onClick_prefix: "$('#spinner2').show();" %>
+          <%= submit_tag _('refine'), onclick: "jQuery('#spinner2').show()" %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<div class="content-box">
+
+  <div class="titled-box" style="min-width: 880px;">
+    <h2>
+      <div style="position: relative;">
+        <% header_date = @options[:date_from] || DateTime.now %>
+
+        <% previous_day = formatted_date_as_given(header_date.to_time - 1.day) %>
+        <% next_day = formatted_date_as_given(header_date.to_time + 1.day) %>
+
+        <span><%= "#{_('server_load_stats')} #{_('for')}"%></span>
+
+          <div class="m2-tooltip no-icon">
+            <i class="arrow left"></i>
+            <div class="m2-tooltip-content content-reverse tooltip-date">
+              <span><%= previous_day %></span>
+            </div>
+          </div>
+
+          <span id="h_date"><%= "#{formatted_date_as_given(header_date)}" %></span>
+
+          <style>
+            #h_date:hover{
+                cursor: pointer;
+            }
+          </style>
+
+          <%= form_tag({action: :server_load}, {id: 'header_date_form'}) do %>
+              <fieldset>
+                  <%= text_field_tag 'date_from', header_date, id: 'header_date_from' %>
+                  <%= text_field_tag 'time_from', '23:59', class: 'default', id: 'time1' %>
+                  <%= submit_tag 'refine', id: 'header_date_form_submit' %>
+              </fieldset>
+           <% end %>
+
+           <% load_stats_for_today = (formatted_date_as_given(DateTime.now) == formatted_date_as_given(header_date)) %>
+           <% unless load_stats_for_today %>
+              <div class="m2-tooltip no-icon" style="left:0px;">
+                <i class="arrow right"></i>
+                <div class="m2-tooltip-content content-reverse tooltip-date right-tooltip" style="left: -14px">
+                  <span><%= next_day %></span>
+                </div>
+              </div>
+          <% end %>
+
+          <div class="m2-tooltip">
+            <div class="m2-tooltip-content content-reverse" style="width: 270px;">
+              <span><%= _('Server_load_stats_tooltip') %></span>
+            </div>
+          </div>
+
+          <div class="server_details">
+            <% link_text = "<span>Server #{_('ID')}: #{@server.id}</span> <span>#{_('IP')}: #{@server.server_ip}</span>"%>
+            <% comment = @server.comment if @server.comment.present?  %>
+            <% if comment.try(:length).to_i > 30 %>
+                <% link_text += "<span #{tooltip(_('Comment'), comment)}>#{comment[0..30]}...</span>" if comment  %>
+            <% else %>
+                <% link_text += "<span>#{comment}</span>" if comment  %>
+            <% end %>
+            <%= link_to link_text.html_safe, controller: 'servers', action: 'edit', id: @server.id %>
+          </div>
+      </div>
+    </h2>
+    <div class="server_load_stats_info">
+      <table>
+        <tr>
+          <td rowspan="2" style="width: 50%" valign="middle">
+            <% if load_stats_for_today %>
+              <%= _('Page_refreshes_every') %>:&nbsp;60&nbsp;<%= _('s') %>
+            <% end %>
+          </td>
+          <td style="width: 20%;">
+          </td>
+          <td style="width: 20%; text-align: right;" valign="middle">
+            <% if @server.es == 1 %>
+              <%= _('ES_CONNECTION_FROM_GUI') %>:&nbsp;
+            <% end %>
+          </td>
+          <td style="width: 3%;" valign="middle">
+            <% if @server.es == 1 %>
+              <%= show_status(Confline.get_value('ES_Status').to_i) %>
+            <% end %>
+          </td>
+          <td style="width: 7%;" valign="middle">
+            <% if @server.es == 1 %>
+              <%= link_to _('recheck'), {action: :check_es_status, id: @server.id}, class: 'search-form-button recheck-btn' if Confline.get_value('ES_Status').to_i == 2 %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 20%; text-align: right;" valign="bottom">
+            <%= "#{_('FREE_HDD_SPACE')}: #{@server.hdd_free_space} %" %>
+          </td>
+          <td style="width: 20%; text-align: right;" valign="middle">
+            <% if @server.core == 1 %>
+              <%= _('RADIUS_CONNECTION_FROM_GUI') %>:&nbsp;
+            <% end %>
+          </td>
+          <td style="width: 3%;" valign="middle">
+            <% if @server.core == 1 %>
+              <%= show_status(@server.radius_status) %>
+            <% end %>
+          </td>
+          <td style="width: 7%;" valign="middle">
+            <% if @server.core == 1 %>
+                <%= link_to _('recheck'), {action: :check_radius_status, id: @server.id }, class: 'search-form-button recheck-btn' if @server.radius_status == 2 %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="server-load-charts" class="details-form noselect">
+      <div class="row">
+        <div class="col tripple">
+          <h2><%= _('hdd_util') %></h2>
+          <div id="hdd_util" style="height: 300px;"></div>
+        </div>
+        <div class="col tripple">
+          <h2><%= _('cpu_general_load') %></h2>
+          <div id="cpu_general_load" style="height: 300px;"></div>
+        </div>
+        <div class="col tripple">
+          <h2><%= _('cpu_loadstats1') %></h2>
+          <div id="cpu_loadstats1" style="height: 300px;"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="width:99%">
+          <h2><%= _('Service_load') %></h2>
+          <div id="service_load" style="height: 350px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .server_details{
+        position: absolute;
+        display: inline-block;
+        right: 23px;
+    }
+    .server_details span{
+        margin-left: 15px;
+    }
+
+    .content-box{
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
+    i {
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 4px;
+    }
+
+    .arrow.right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        margin-right: 5px;
+    }
+
+    .arrow.left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+        margin-left: 5px;
+    }
+    .arrow:hover{
+        border-color: #565759;
+        cursor: pointer;
+    }
+   #header_date_form{
+       display: none;
+   }
+   .m2-tooltip.no-icon{
+       background: none!important;
+       top: 0px;
+   }
+</style>
+
+<script>
+    jQuery(document).ready(function ($) {
+        var datas = [
+            <%= raw @stats[:hdd_util] %>,
+            <%= raw @stats[:cpu_general_load] %>,
+            <%= raw @stats[:cpu_loadstats1] %>,
+            <%= raw @stats[:service_load] %>
+        ];
+        datas = initDate(datas);
+        // Disable time pickers
+        $(".checkin").datepicker("option", "showTimepicker", false);
+        $(".checkout").datepicker("option", "showTimepicker", false);
+        var globalGridlineCount = 5;
+
+        //max date
+        $(".checkin").datepicker("option", "maxDate", '+0D');
+
+        // Loads and draws charts
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(function () {
+            drawCharts(datas);
+        });
+        setTimeout(executeQuery, 60000);
+
+        // Draws charts or displays 'No data found' chart data is empty
+        function drawCharts(allData) {
+            var noData = "<div class='no_data'><%= _('No_data_found_no_dots') %></div>";
+
+            if (allData[0].length > 1) {
+                drawSingleSeriesChart(
+                        allData[0], 'hdd_util', '<%= _('hdd_util') %>', 100, ' %'
+                );
+            } else {
+                $('#hdd_util').css('height', '50px').html(noData);
+            }
+
+            if (allData[1].length > 1) {
+                drawSingleSeriesChart(
+                        allData[1], 'cpu_general_load', '<%= _('cpu_general_load') %>', 100, ' %'
+                );
+            } else {
+                $('#cpu_general_load').css('height', '50px').html(noData);
+            }
+
+            if (allData[2].length > 1) {
+                drawSingleSeriesChart(
+                        allData[2], 'cpu_loadstats1', '<%= _('cpu_loadstats1') %>', 1
+                );
+            } else {
+                $('#cpu_loadstats1').css('height', '50px').html(noData);
+            }
+            var titles = [];
+            if (allData[3].length > 1) {
+                var requiredDataIndexes = filterLoad(allData[3]);
+                allData[3] = newLoad(allData[3], requiredDataIndexes);
+                titles = getTitles(requiredDataIndexes);
+            }
+            if (titles.length > 0) {
+                drawThreeSeriesChart(
+                        allData[3], 'service_load',
+                        titles,
+                        100, ' %'
+                );
+            } else {
+                $('#service_load').css('height', '50px').html(noData);
+            }
+        }
+        function initDate(data) {
+            for (var i = 0; i < data.length; i++) {
+                for (var j = 0; j < data[i].length; j++) {
+                    var date = new Date(data[i][j][0][0], data[i][j][0][1], data[i][j][0][2], data[i][j][0][3], data[i][j][0][4]);
+                    data[i][j][0] = date;
+                }
+            }
+            return data;
+        }
+
+        // Get indexes of needed data columns
+        function filterLoad(chardata) {
+            var i = 0, j;
+            var indexes = [0]; // date index
+            var tmp_indexes = [1, 2, 3, 4, 5, 6, 7, 8]; // mysql, ruby, fs, elasticsearch, b2bua, media, kamailio, radius load indexes
+
+            // If load has at least one positive value then we need to return its index for displaying it
+            while (i < tmp_indexes.length) {
+                j = 0;
+
+                while (j < chardata.length) {
+                    // If value is found then:
+                    //   put index into array that will be returned
+                    //   break from loop, because we wont need to search positive value at that index anymore
+                    if (parseFloat(chardata[j][tmp_indexes[i]]) > 0) {
+                        indexes.push(tmp_indexes[i]);
+                        break;
+                    }
+                    j++;
+                }
+
+                i++;
+            }
+            return indexes;
+        }
+
+        // Put chartdata by needed indexes into new array
+        function newLoad(chardata, indexes) {
+            var data = [];
+            // If all data is needed then return old array
+            // Else make new array
+            if (indexes.length == chardata[0].length) {
+                data = chardata;
+            } else {
+                for (var i = 0; i < chardata.length; i++) {
+                    data.push([]);
+                    for (var j = 0; j < indexes.length; j++) {
+                        data[i].push(chardata[i][indexes[j]]);
+                    }
+                }
+            }
+
+            return data;
+        }
+
+        // Get titles by indexes
+        function getTitles(indexes) {
+            <% if m4_functionality? %>
+                var titles = ['<%= _('cpu_mysql_load') %>', '<%= _('cpu_ruby_load') %>', '<%= _('cpu_freeswitch_load') %>', '<%= _('cpu_java_load') %>', '<%= _('SEMS') %>', '<%= _('RTPEngine') %>', '<%= _('cpu_kamailio_load') %>', '<%= _('cpu_radius_load') %>'];
+            <% else %>
+                var titles = ['<%= _('cpu_mysql_load') %>', '<%= _('cpu_ruby_load') %>', '<%= _('cpu_freeswitch_load') %>', '<%= _('cpu_java_load') %>', '<%= _('cpu_b2bua_load') %>', '<%= _('cpu_media_load') %>', '<%= _('cpu_kamailio_load') %>', '<%= _('cpu_radius_load') %>'];
+            <% end %>
+            var result = [];
+
+            for (var i = 1; i < indexes.length; i++) {
+                result.push(titles[indexes[i] - 1]);
+            }
+            return result;
+        }
+
+        // Returns an array of n ticks fro 0 to max
+        function generateTicks(data, n) {
+            var max = Math.ceil(Math.max.apply(null, data));
+            max = max < 1 ? 1 : max;
+            var ticks = [], step = max / parseFloat(n), prec = 2;
+            for (var i = 0; i <= max; i += step) {
+                var presicion =
+                        ticks.push({
+                            v: i, f: i.toFixed(prec).toString().replace('.', '<%= @options[:sep] %>')
+                        });
+            }
+            return ticks;
+        }
+
+        // Custom interpolation for missing data
+        function interpolateData(data, placeholder) {
+            for (var i = 0; i < data.length - 1; i++) {
+                // If a pair differs in time by one minute, skip it
+                var dt = (data[i + 1][0] - data[i][0]) / 60000 - 1;
+                if (!dt) continue;
+
+                // If delta is bigger fill in the missing stats with placeholder
+                var missing = [];
+                for (var j = 0; j < dt; j++) {
+                    // [Date + delta minute, *placeholder]
+                    missing.push(
+                            [new Date(data[i][0].getTime() + (j + 1) * 60000)].concat(placeholder)
+                    );
+                }
+                // Insert missing data and skip it
+                if(missing.length > 0) {
+                    Array.prototype.splice.apply(data, [i + 1, 0].concat(missing));
+                    i += missing.length;
+                }
+            }
+        }
+
+        // Returns an object with common chart options
+        function commonOptions() {
+            return {
+                focusTarget: 'category',
+                legend: 'none',
+                vAxis: {
+                    viewWindow: { min: 0 },
+                    minValue: 0,
+                    textStyle: { fontSize: 11 }
+                },
+                hAxis: {
+                    slantedText: true,
+                    slantedTextAngle: 90,
+                    textStyle: { fontSize: 11 },
+                    format: 'HH:mm',
+                    gridlines: {
+                        count: -1,
+                        units: {
+                            hours: { format: ['HH:mm'] },
+                            minutes: { format: ['HH:mm'] },
+                            seconds: { format: ['HH:mm:ss'] }
+                        }
+                    },
+                    minorGridlines: {
+                        units: {
+                            minutes: {format: ['HH:mm']},
+                            seconds: {format: ['HH:mm:ss']}
+                        }
+                    }
+                },
+                tooltip: { textStyle: { fontSize: 12 } },
+                explorer: {
+                    actions: [ 'dragToZoom', 'rightClickToReset' ],
+                    axis: 'horizontal',
+                    keepInBounds: true,
+                    maxZoomIn: 10.0
+                },
+                crosshair: {
+                    orientation: 'vertical',
+                    trigger: 'both',
+                    color: '#565759'
+                }
+            };
+        }
+
+        // Draws a single series chart from chart data and renders it in a container
+        function drawSingleSeriesChart(chartdata, container, title, max, suffix) {
+            interpolateData(chartdata, [0]);
+            // Creates a data schema
+            var data = new google.visualization.DataTable();
+
+            data.addColumn('datetime', 'date');
+            data.addColumn('number', title);
+            data.addRows(chartdata);
+
+            // Extends common options
+            var options =
+                    $.extend(
+                            commonOptions(),
+                            {
+                                chartArea: {
+                                    height: '75%',
+                                    top: '2%', left: '55', right: '35',
+                                    backgroundColor: { stroke: '#dce0e3' }
+                                },
+                                series: { 0: { color: '#558ED5' } },
+                                legend: 'none'
+                            }
+                    );
+
+            // Format the chart axis and labels
+            if (max) options.vAxis.maxValue = max;
+            if (suffix) options.vAxis.format = '# ' + '\'' + suffix;
+            // Custom ticks for CPU load stats
+            if (container === 'cpu_loadstats1') {
+                options.vAxis.ticks = generateTicks(chartdata.map(function (o) {
+                    return o[1];
+                }), 4);
+            }
+
+            var numberFormatter =
+                    new google.visualization.NumberFormat({
+                        decimalSymbol: '<%= @options[:sep] %>',
+                        fractionDigits: <%= @options[:pre] %>,
+                        suffix: suffix
+                    });
+            numberFormatter.format(data, 1);
+
+            var dateFormatter =
+                    new google.visualization.DateFormat({
+                        pattern: 'HH:mm'
+                    });
+            dateFormatter.format(data, 0);
+
+            var chart =
+                    new google.visualization.AreaChart(
+                            document.getElementById(container)
+                    );
+            chart.draw(data, options);
+        }
+
+        // Draws a three series chart from chart data and renders it in a container
+        function drawThreeSeriesChart(chartdata, container, titles, max, suffix) {
+            var placeHolder = [];
+            for(var i = 0; i < titles.length; i++) {
+                placeHolder.push(0);
+            }
+            interpolateData(chartdata, placeHolder);
+            // Creates a data schema
+            var data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'date');
+            for (var i = 0; i < titles.length; i++) {
+                data.addColumn('number', titles[i]);
+            }
+            data.addRows(chartdata);
+
+            // Extends common options
+            var options =
+                    $.extend(
+                            commonOptions(),
+                            {
+                                chartArea: {
+                                    height: '72%',
+                                    top: '7%', left: '55', right: '35',
+                                    backgroundColor: {
+                                        stroke: '#dce0e3'
+                                    }
+                                },
+                                series: {
+                                    0: { color: '#459248' },
+                                    1: { color: '#558ED5' },
+                                    2: { color: '#D07C7A' },
+                                    3: { color: '#FFE999' },
+                                    4: { color: '#40E0D0' },
+                                    5: { color: '#FF7F50' },
+                                    6: { color: '#FF50D0' }
+                                },
+                                legend: {
+                                    position: 'top',
+                                    textStyle: {
+                                        fontSize: 12
+                                    }
+                                }
+                            }
+                    );
+
+            // Format the chart axis and labels
+            if (max) options.vAxis.maxValue = max;
+            if (suffix) options.vAxis.format = '# ' + '\'' + suffix;
+
+            var numberFormatter =
+                    new google.visualization.NumberFormat({
+                        decimalSymbol: '<%= @options[:sep] %>',
+                        fractionDigits: <%= @options[:pre] %>,
+                        suffix: suffix
+                    });
+
+            for (var i = 0; i < titles.length; i++) {
+                numberFormatter.format(data, i + 1);
+            }
+
+            var dateFormatter =
+                    new google.visualization.DateFormat({
+                        pattern: 'HH:mm'
+                    });
+            dateFormatter.format(data, 0);
+
+            var chart =
+                    new google.visualization.AreaChart(
+                            document.getElementById(container)
+                    );
+            chart.draw(data, options);
+        }
+
+        $(window).resize(function () {
+            drawCharts(datas);
+        });
+
+        function changeHeaderDate(direction) {
+            var date = '';
+
+            if (direction == 'left') date = '<%= previous_day %>';
+            if (direction == 'right') date = '<%= next_day %>';
+
+            if (date != '') {
+                $('#header_date_from').val(date);
+                document.getElementById('header_date_form_submit').click();
+            }
+
+        }
+
+        $('.arrow.left').click(function () {
+            jQuery('#spinner2').show();
+            changeHeaderDate('left');
+        });
+
+        $('.arrow.right').click(function () {
+            jQuery('#spinner2').show();
+            changeHeaderDate('right');
+        });
+
+        $("#h_date").click(function () {
+            jQuery("#search-form").toggle();
+            pressed('<%= Web_Dir %>/callc/toggle_search', 'stats', 'server_load');
+            jQuery("#create-form").hide();
+            jcf.customForms.destroyAll();
+            jcf.customForms.replaceAll();
+
+            if ($(".calls-form").is(':visible')) {
+                $(".checkin").datepicker("show");
+            }
+            else {
+                $(".checkin").datepicker("hide");
+            }
+        });
+        function executeQuery() {
+            $.ajax({
+                type: "GET",
+                url: "<%= Web_Dir %>/stats/update_server_load/<%= params[:id] %>",
+                dataType: "json",
+                success: function (data, status, xhrs) {
+                    var datas = [
+                        data.data.hdd_util,
+                        data.data.cpu_general_load,
+                        data.data.cpu_loadstats1,
+                        data.data.service_load
+                        ];
+                    datas = initDate(datas);
+                    drawCharts(datas);
+                },
+                complete: function () {
+                    // Schedule the next request when the current one's complete
+                    <% if load_stats_for_today %>
+                    setTimeout(executeQuery, 60000);
+                    <% end %>
+                }
+            });
+        }
+
+        <% if session[:radius_con_failed] || session[:es_con_failed] %>
+             window.open('<%= "#{Web_Dir}/stats/debug_log" %>','_blank')
+        <% end %>
+    });
+</script>

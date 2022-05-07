@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--x5_functionality_14-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/m2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Generate Invoices automatically:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Generate Invoices manually:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billing Period:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Grace Period (Payment Terms):</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=user[generate_invoice]</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billing_period</td>
+	<td>Weekly (mon-sun) Bi-weekly (1-15, 16-end) Monthly (1-end) Bimonthly (1-end) Quarterly (1-end) Half-yearly (1-end) Dynamic</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=user[generate_invoice]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=billing_period</td>
+	<td>label=Bi-weekly (1-15, 16-end)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=user[generate_invoice]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=billing_period</td>
+	<td>Bi-weekly (1-15, 16-end)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>fdgdfgdfg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>fdgdfgdfg</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>400</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>65,64</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>65,64</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>65.36146</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>65.36146</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Generate Invoices automatically:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Generate Invoices manually:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Billing Period:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Grace Period (Payment Terms):</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=user[generate_invoice]</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=billing_period</td>
+	<td>Weekly (mon-sun) Bi-weekly (1-15, 16-end) Monthly (1-end) Bimonthly (1-end) Quarterly (1-end) Half-yearly (1-end) Dynamic</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=user[generate_invoice]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=billing_period</td>
+	<td>label=Bi-weekly (1-15, 16-end)</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Default User saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=user[generate_invoice]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=billing_period</td>
+	<td>Bi-weekly (1-15, 16-end)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>fdgdfgdfg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>fdgdfgdfg</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>400</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>65,64</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>65,64</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>65.36146</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Grace Period must be integer between 0 and 365</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>65.36146</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_grace_period</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Default User saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_grace_period</td>
+	<td>5</td>
+</tr>
+<!--paslepti laukai: credit ir postpaid-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=credit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unlimited</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Unlimited?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Create Invoices on Manual Payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Postpaid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: Test User #1</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=credit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unlimited</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Unlimited?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Create Invoices on Manual Payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Postpaid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=credit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unlimited</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Unlimited?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Create Invoices on Manual Payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Postpaid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Default User saved</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=credit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unlimited</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Unlimited?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Create Invoices on Manual Payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Postpaid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=credit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unlimited</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Unlimited?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Create Invoices on Manual Payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Postpaid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=credit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=unlimited</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Unlimited?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Create Invoices on Manual Payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Postpaid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_postpaid_1</td>
+	<td></td>
+</tr>
+<!--**tikrinu-->
+<tr>
+	<td>assertText</td>
+	<td>id=user_currency_id</td>
+	<td>USD EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active-currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User's settings successfully changed: testuser</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active-currency</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/callc/change_currency?currency=USD&amp;url%5Baction%5D=main&amp;url%5Bcontroller%5D=callc')]</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/callc/change_currency?currency=EUR&amp;url%5Baction%5D=main&amp;url%5Bcontroller%5D=callc')]</td>
+	<td>EUR</td>
+</tr>
+</tbody></table>
+</body>
+</html>

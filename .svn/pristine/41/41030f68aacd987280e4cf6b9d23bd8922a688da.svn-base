@@ -1,0 +1,100 @@
+<% @create_button_name = 'Add_Disconnect_Codes' %>
+<% content_for :create_form do %>
+    <%= form_tag({action: :disconnect_code_changes_create, id: @device.id}, {id: 'create-form', class: 'calls-form', visible: show_create}) do %>
+        <fieldset>
+          <div class="column cause-col">
+            <%= label_tag 'name', _('Incoming_Disconnect_Code') %>
+            <div class="row">
+              <%= select :new_disconnect_code, :hgc_incoming_id,
+                         options_for_select(@select_hgc_type.map { |hgc_type| [nice_hgc(hgc_type), hgc_type.id.to_i] },
+                                            params[:new_disconnect_code].try(:[], :hgc_incoming_id).to_i)
+              %>
+            </div>
+          </div>
+          <div class="column cause-col">
+            <%= label_tag 'description', _('Outgoing_Disconnect_Code') %>
+            <div class="row">
+              <%= select :new_disconnect_code, :hgc_outgoing_id,
+                         options_for_select(@select_hgc_type.map { |hgc_type| [nice_hgc(hgc_type), hgc_type.id.to_i] if hgc_type.id != -1 }.compact,
+                                            params[:new_disconnect_code].try(:[], :hgc_outgoing_id).to_i)
+              %>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+                <%= submit_tag _('Cancel'), type: :reset,
+                               onClick: "$('#new_disconnect_code_hgc_incoming_id').prop('selectedIndex', 0);
+					 $('#new_disconnect_code_hgc_outgoing_id').prop('selectedIndex', 0);
+					 $(\"#create-form\").toggle();
+                                         $('#new_disconnect_code_hgc_incoming_id')[0].jcf.buildDropdown();
+                                         $('#new_disconnect_code_hgc_outgoing_id')[0].jcf.buildDropdown();
+					 $('#new_disconnect_code_hgc_incoming_id')[0].jcf.refreshState();
+                                         $('#new_disconnect_code_hgc_outgoing_id')[0].jcf.refreshState();"
+                %>
+                  <%= submit_tag _('Create'), :disable_with => 'Processing...', id: 'create-button', title: "#{(@disconnect_code_changes.first && @disconnect_code_changes.first.incoming_hgc == '-1 - All failed Codes') ? "Additional Disconnect Code cannot be added if All failed Codes are selected" : ''}" %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<script type="text/javascript">
+
+    function EnableDisable() {
+        if ($('#new_disconnect_code_hgc_incoming_id').val() == $('#new_disconnect_code_hgc_outgoing_id').val() || <%= @disconnect_code_changes.first.present? && @disconnect_code_changes.first.incoming_hgc == '-1 - All failed Codes' %> ) {
+            Disable()
+        } else {
+            Enable()
+        }
+    }
+
+    EnableDisable();
+
+    $('#new_disconnect_code_hgc_incoming_id').on("change", function() {
+        EnableDisable();
+    })
+    $('#new_disconnect_code_hgc_outgoing_id').on("change", function() {
+        EnableDisable();
+    })
+
+    function Enable() {
+        $('#create-button').removeAttr('disabled');
+    }
+    function Disable() {
+        $('#create-button').attr('disabled', true);
+    }
+</script>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= link_nice_device(@device) %> <%= _('Disconnect_Code_Changes') %></h2>
+    <div class="table-holder">
+      <% if @disconnect_code_changes.present? %>
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <th class="disconnect-code-changes-incoming"><%= _('Incoming_Disconnect_Code') %></th>
+              <th class="disconnect-code-changes-outgoing"><%= _('Outgoing_Disconnect_Code') %></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @disconnect_code_changes.each do |disconnect_code| %>
+                <tr>
+                  <td id="incoming_disconnect_code_<%= disconnect_code.id %>" class="disconnect-code-changes-incoming_list" <%= tooltip(_('Hangup_cause_description'), (disconnect_code.try(:incoming_hgc).to_s)) %>>
+                    <%= nice_hgc_description(disconnect_code.try(:incoming_hgc).to_s) %>
+                  </td>
+                  <td id="outgoing_disconnect_code_<%= disconnect_code.id %>" class="disconnect-code-changes-outgoing_list" <%= tooltip(_('Hangup_cause_description'), (disconnect_code.try(:outgoing_hgc).to_s)) %>>
+                    <%= nice_hgc_description(disconnect_code.try(:outgoing_hgc).to_s) %>
+                  </td>
+                  <td></td>
+                  <td id="destroy_<%= disconnect_code.id %>">
+                    <%= button_to 'DELETE', {action: :disconnect_code_changes_destroy, id: disconnect_code.id, device_id: @device.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: 'delete_link_' + disconnect_code.id.to_s %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Disconnect_Code_Changes') %>
+      <% end %>
+    </div>
+  </div>
+</div>

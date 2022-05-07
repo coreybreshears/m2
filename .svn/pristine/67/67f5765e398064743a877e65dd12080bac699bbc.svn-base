@@ -1,0 +1,2289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/connection_points</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/dial_peer/dial_peer_17001/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=add_to_servers_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeers_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=priority</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_ROUTING_Dial_Peers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_ROUTING_Routing_Groups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Dial_Peers_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Routing_Groups_0</td>
+	<td></td>
+</tr>
+<!--Del viso pikto paupdeitintu, kad tikrai netycia neuzdetu active-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Routing Groups-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeers_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/destroy/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeer_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--Dial Peers-->
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/destroy/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/remove_termination_point/17001?tp_id=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<!--ROUTING GROUPS - can change, DIAL PEERS - no access-->
+<tr>
+	<td>click</td>
+	<td>permissions_ROUTING_Routing_Groups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Dial_Peers_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Routing_Groups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Routing Groups-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Routing Groups Refine Results Add new Routing Group</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Routing Groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12001</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dial_peers_12001</td>
+	<td>LIST*(1)</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LIST*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name1</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=active_1</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=priority_1</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=dial_peer_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=create-form-button</td>
+	<td>ASSIGN DIAL PEER</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully unassigned</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=priority</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name2</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Routing Group edit</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_name</td>
+	<td>Test RG</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>Test RG edited</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>new comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12001</td>
+	<td>Test RG edited</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12001</td>
+	<td>new comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group is used in Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12001</td>
+	<td>Test RG edited</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>New RG</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>manager created</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12002</td>
+	<td>New RG</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12002</td>
+	<td>manager created</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeers_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Routing Group edit</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/destroy/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeer_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--Dial Peers-->
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/destroy/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/remove_termination_point/17001?tp_id=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--ROUTING GROUPS - no access, DIAL PEERS - can change-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ROUTING_Dial_Peers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ROUTING_Routing_Groups_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Dial_Peers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Routing_Groups_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Routing Groups-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeers_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/destroy/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeer_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--Dial Peers-->
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Dial Peers Refine Results Add new Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Dial Peers</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_17001</td>
+	<td>17001</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_17001</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dst_regexp_17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stop_hounting_17001</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tp_priority_17001</td>
+	<td>weight</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=LIST (0)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LIST (0)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Dial Peer: Test Dial Peer - Termination Points TP PRIORITY: weight</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_termination_point_tp_percent</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_termination_point_tp_weight</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point successfully assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Test User #1 / termination</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#name_1 &gt; a</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[@id='name_1']/a[2]</td>
+	<td>termination</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=percent_1</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=weight_1</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Test User #1 / termination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point successfully removed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=create-form-button</td>
+	<td>Assign Termination Point</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>New DP</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_comment</td>
+	<td>by manager</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_17002</td>
+	<td>New DP</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_17002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>New DP - edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully updated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_17002</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully deleted</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Dial Peer was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Dial Peer is used in Routing Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Dial Peers New</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Dial Peers Dial Peer Settings Termination points list</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/destroy/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Dial Peer: Test Dial Peer - Termination Points TP PRIORITY: weight</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/remove_termination_point/17001?tp_id=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<!--ROUTING GROUPS - can change, DIAL PEERS - can change-->
+<tr>
+	<td>click</td>
+	<td>permissions_ROUTING_Routing_Groups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Dial_Peers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ROUTING_Routing_Groups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Routing Groups-->
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Routing Groups Refine Results Add new Routing Group</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Routing Groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td>Add new Routing Group</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12001</td>
+	<td>Test RG edited</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12001</td>
+	<td>new comment</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dial_peers_12001</td>
+	<td>LIST*(1)</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=edit_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(@href, '/billing/routing_groups/rgroup_dpeers_list/12001')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name2</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully unassigned</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=priority</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name3</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Routing Group edit</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12001</td>
+	<td>Test RG edited</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12001</td>
+	<td>new comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Routing Group is used in Connection Point</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12001</td>
+	<td>Test RG edited</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>New RG 2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_12003</td>
+	<td>New RG 2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12003</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeers_list/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Assigned Dial Peers</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Routing Group edit</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/destroy/12001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeer_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--Dial Peers-->
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Dial Peers Refine Results Add new Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Dial Peers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td>Add new Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_17001</td>
+	<td>17001</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_17001</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dst_regexp_17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=stop_hounting_17001</td>
+	<td>YES</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=tp_priority_17001</td>
+	<td>weight</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=LIST (0)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=LIST (0)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Assigned Termination Points</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point successfully assigned</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1 / termination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Termination Point successfully removed</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>New DP</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_17003</td>
+	<td>New DP</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=edit_link_17003</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>New DP - edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully updated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_17003</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully deleted</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Dial Peer was not deleted</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Dial Peer is used in Routing Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Dial Peers New</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/edit/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Dial Peers Dial Peer Settings Termination points list</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/destroy/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Assigned Termination Points</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/remove_termination_point/17001?tp_id=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<!--RG Assigned Manager-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/m2_good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/call_tracing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_show_only_assigned_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_show_only_assigned_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>Manager Non Viewable Group</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>Nematoma, nes priskirta kitam Useriui</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>Manager Viewable RG</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>Viewable, nes Assigned</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_12004</td>
+	<td>Manager Non Viewable Group</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_12005</td>
+	<td>Manager Viewable RG</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12004</td>
+	<td>Nematoma, nes priskirta kitam Useriui</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12005</td>
+	<td>Viewable, nes Assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>label=Manager Non Viewable Group</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_responsible_accountant_id</td>
+	<td>label=Test Manager</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sbmt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User's settings successfully changed: test_customer_2</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_group_id</td>
+	<td>label=Manager Viewable RG</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_12005</td>
+	<td>Manager Viewable RG</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12005</td>
+	<td>Viewable, nes Assigned</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Manager Non Viewable Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Nematoma, nes priskirta kitam Useriui</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12005?rgdp=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Routing Group edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.nb &gt; b</td>
+	<td>Dial Peers List:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Manager Viewable RG (0)</td>
+	<td>Manager Viewable RG (0)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_comment</td>
+	<td>Viewable, nes Assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeers_list/12005</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Assigned Dial Peers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2 &gt; div</td>
+	<td>Manager Viewable RG Dial Peers List</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.table-holder</td>
+	<td>No Dial Peers</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12004?rgdp=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/rgroup_dpeers_list/12004</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_name</td>
+	<td>Manager created not-assigned new RG</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=routing_group_comment</td>
+	<td>Should be Viewable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=routing_group_parent_routing_group_id</td>
+	<td>None Manager Viewable RG</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=routing_group_parent_routing_group_id</td>
+	<td>label=Manager Viewable RG</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=edit_link_12006</td>
+	<td>Manager created not-assigned new RG</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_12006</td>
+	<td>Should be Viewable</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=LIST (0)</td>
+	<td>LIST (0)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/edit/12006?rgdp=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Routing Group edit</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.nb &gt; b</td>
+	<td>Dial Peers List:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Manager created not-assigned new RG (0)</td>
+	<td>Manager created not-assigned new RG (0)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_name</td>
+	<td>Manager created not-assigned new RG</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=routing_group_comment</td>
+	<td>Should be Viewable</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=routing_group_parent_routing_group_id</td>
+	<td>Manager Viewable RG</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/routing_groups/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_12005</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Routing Group was not deleted<br /> * Routing Group is used in Connection Point</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_12006</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Routing Group successfully deleted</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Manager created not-assigned new RG</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Should be Viewable</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

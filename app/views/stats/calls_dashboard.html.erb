@@ -1,0 +1,383 @@
+<%= javascript_include_tag "jqwidgets/jqxdata.js" %>
+<%= javascript_include_tag "jqwidgets/jqxbuttons.js" %>
+<%= javascript_include_tag "jqwidgets/jqxscrollbar.js" %>
+<%= javascript_include_tag "jqwidgets/jqxmenu.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.selection.js" %>
+<%= javascript_include_tag "jqwidgets/jqxgrid.columnsresize.js" %>
+<%= javascript_include_tag "jqwidgets/jqxpanel.js" %>
+<%= javascript_include_tag "jqwidgets/jqxlistbox.js" %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<div class="content-box calls-dashboard" id="op-dashboard">
+  <div class="table-box">
+    <h2><%= _('Customers') %></h2>
+    <div id="op-spinner"><%= image_tag 'ajax-loader_line2.gif', style: 'padding: 50px 0 0 47%;position:absolute' %></div>
+    <div id="op-stats" style="visibility:hidden;"></div>
+  </div>
+</div>
+
+<div class="content-box calls-dashboard" id="tp-dashboard">
+  <div class="table-box">
+    <h2><%= _('Vendors') %></h2>
+    <div id="tp-spinner"><%= image_tag 'ajax-loader_line2.gif', style: 'padding: 50px 0 0 47%;position:absolute' %></div>
+    <div id="tp-stats" style="visibility:hidden;"></div>
+  </div>
+</div>
+
+<script>
+  jQuery.noConflict();
+  jQuery(document).ready(function($) {
+    $("#main").css({
+      "max-width": "100%",
+      "padding": 0
+    });
+    $(".head-section").css("padding-left", "14px");
+
+    var JQXTables = function() {
+      var time_format = "<%= @options[:time_fromat] %>";
+      var percent_format = "f0";
+
+      var apply_asr_color = "<%= @options[:bad_asr] %>" !== "" || "<%= @options[:good_asr] %>" !== "";
+      var bad_asr = parseInt("<%= @options[:bad_asr] %>");
+      var good_asr = parseInt("<%= @options[:good_asr] %>");
+
+      var apply_acd_color = "<%= @options[:bad_acd] %>" !== "" || "<%= @options[:good_acd] %>" !== "";
+      var bad_acd = parseInt("<%= @options[:bad_acd] %>");
+      var good_acd = parseInt("<%= @options[:good_acd] %>");
+
+      var apply_margin_color = "<%= @options[:bad_margin] %>" !== "" || "<%= @options[:good_margin] %>" !== "";
+      var bad_margin = parseInt("<%= @options[:bad_margin] %>");
+      var good_margin = parseInt("<%= @options[:good_margin] %>");
+
+      var color_asr = function(asr) {
+        if (asr === "" || !apply_asr_color) return "";
+        asr = Math.round(asr);
+        if (asr < bad_asr) {
+          return 'bad-cell';
+        } else if (asr > good_asr) {
+          return 'good-cell';
+        } else if (bad_asr <= good_asr) {
+          return 'ok-cell';
+        }
+        return "";
+      };
+
+      var color_acd = function(acd) {
+        if (acd === "" || !apply_acd_color) return "";
+        if (acd < bad_acd) {
+          return 'bad-cell';
+        } else if (acd > good_acd) {
+          return 'good-cell';
+        } else if (bad_acd <= good_acd) {
+          return 'ok-cell';
+        }
+        return "";
+      };
+
+      var color_margin = function(margin) {
+        if (margin === "" || !apply_margin_color) return "";
+        margin = Math.round(margin);
+        if (margin < bad_margin) {
+          return 'bad-cell';
+        } else if (margin > good_margin) {
+          return 'good-cell';
+        } else if (bad_margin <= good_margin) {
+          return 'ok-cell';
+        }
+        return "";
+      };
+
+      // A hack. Could not find any other solution
+      var adjustEmptyRow = function(grid, data){
+        if ($.isEmptyObject(data)) {
+          // Delete first empty row to show no data message
+          grid.jqxGrid("deleterow", grid.jqxGrid("getrowid", 0));
+        }
+      }
+
+      var opStatsGrid = $("#op-stats");
+      var tpStatsGrid = $("#tp-stats");
+
+      var datafields = [
+          { name: "user", type: "string" },
+          { name: "calls_last_hour", type: "integer" },
+          { name: "answered_last_hour", type: "integer" },
+          { name: "asr_last_hour", type: "float" },
+          { name: "acd_last_hour", type: "time" },
+          { name: "margin_last_hour", type: "float" },
+
+          { name: "calls_last_day", type: "integer" },
+          { name: "answered_last_day", type: "integer" },
+          { name: "asr_last_day", type: "float" },
+          { name: "acd_last_day", type: "time" },
+          { name: "margin_last_day", type: "float" }
+      ];
+
+      var columns = [
+        { text: "<%= _('Name') %>", datafield: "user", align: "left", cellsalign: "left", width: '14%', columngroup: "empty",
+          renderer: function (defaultText, alignment, height) {
+            return '<div style="padding:0 0 2px 8.5px;overflow:hidden;text-overflow:ellipsis;text-align:left;margin:4px;">' + defaultText + "</div>"
+          },
+          cellsrenderer: function(row, column, value) {
+            var split = value.split("\n");
+            var responsible_accounts = <%= assigned_users %>;
+            var show_links = <%= admin? || (manager? && authorize_manager_permissions({controller: :users, action: :edit, no_redirect_return: 1})) %>;
+            if (responsible_accounts && show_links) {
+              show_links = responsible_accounts.includes(parseInt(split[1]));
+            }
+            var link = '<a target="_blank" href="<%= Web_Dir %>/users/edit/' + split[1] + '">' + split[0] + "</a>";
+            return '<div style="text-align:left;margin:3.5px;overflow:hidden;text-overflow:ellipsis;padding-left:8px;">' +
+              (show_links ? link : split[0]) + "</a></div>";
+          }
+        },
+        { text: "<%= _('Attempts') %>", datafield: "calls_last_hour", align: "right", cellsalign: "right", columngroup: "calls_last_hour" },
+        { text: "<%= _('Answered') %>", datafield: "answered_last_hour", align: "right", columngroup: "calls_last_hour",
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:right;padding:3.5px;overflow:hidden;text-overflow:ellipsis;">' + (value === "" ? "" : value) + "</div>";
+          }
+        },
+        { text: "<%= _('ASR') %> %", datafield: "asr_last_hour", align: "right", columngroup: "calls_last_hour", width: "7%",
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:right;padding:3.5px;overflow:hidden;text-overflow:ellipsis;" class="' + color_asr(value) + '">' +
+              (value === "" ? "" : $.jqx.dataFormat.formatnumber(value, percent_format)) + "</div>";
+          }
+        },
+        { text: "<%= _('ACD') %>", datafield: "acd_last_hour", align: "center", columngroup: "calls_last_hour", width: "8%",
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:center;padding:3.5px;overflow:hidden;text-overflow:ellipsis;" class="' + color_acd(value) + '">' +
+              (value === "" ? "" : nice_billsec(value, time_format)) + "</div>";
+          }
+        },
+        { text: "<%= _('Margin') %> %", datafield: "margin_last_hour", align: "right", columngroup: "calls_last_hour",width: "9%",
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:right;padding:3.5px;overflow:hidden;text-overflow:ellipsis;" class="side ' + color_margin(value) + '">' +
+              (value === "" ? "" : $.jqx.dataFormat.formatnumber(value, percent_format, {thousandsseparator: ""})) + "</div>";
+          }
+        },
+
+
+        { text: "<%= _('Attempts') %>", datafield: "calls_last_day", align: "right", cellsalign: "right", columngroup: "calls_last_day" },
+        { text: "<%= _('Answered') %>", datafield: "answered_last_day", align: "right", columngroup: "calls_last_day",
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:right;padding:3.5px;overflow:hidden;text-overflow:ellipsis;">' +
+              (value === "" ? "" : value) + "</div>";
+          }
+        },
+        { text: "<%= _('ASR') %> %", datafield: "asr_last_day", align: "right", cellsalign: "right", columngroup: "calls_last_day", width: "7%",
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:right;padding:3.5px 10px 3.5px 3.5px;overflow:hidden;text-overflow:ellipsis;" class="' + color_asr(value) + '">' +
+              (value === "" ? "" : $.jqx.dataFormat.formatnumber(value, percent_format)) + "</div>";
+          }
+        },
+        { text: "<%= _('ACD') %>", datafield: "acd_last_day", align: "center", columngroup: "calls_last_day", width: "8%",
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:center;padding:3.5px;overflow:hidden;text-overflow:ellipsis;" class="' + color_acd(value) + '">' +
+              (value === "" ? "" : nice_billsec(value, time_format)) + "</div>";
+          }
+        },
+        { text: "<%= _('Margin') %> %", datafield: "margin_last_day", columngroup: "calls_last_day", width: "9%",
+          renderer: function (defaultText, alignment, height) {
+            return '<div style="padding:0 7px 2px 0;overflow:hidden;text-overflow:ellipsis;text-align:right;margin:4px;">' + defaultText + "</div>"
+          },
+          cellsrenderer: function(row, column, value) {
+            return '<div style="text-align:right;padding:3.5px 10px 3.5px 3.5px;overflow:hidden;text-overflow:ellipsis;" class="' + color_margin(value) + '">' +
+              (value === "" ? "" : $.jqx.dataFormat.formatnumber(value, percent_format, {thousandsseparator: ""})) + "</div>";
+          }
+        }
+      ];
+
+      var columngroups = [
+        { text: " ", align: "center", name: "empty" },
+        { text: "<%= _('Last_Hour') %>", align: "center", name: "calls_last_hour" },
+        { text: "<%= _('Today') %>", align: "center", name: "calls_last_day" }
+      ];
+
+      this.opTable = function() {
+        this.source = {
+          datatype: "json",
+          datafields: datafields
+        };
+        // Updates the JQXGrid table
+        this.update = function(data, requestCount) {
+          this.source.localdata = data.length > 0 || requestCount > 0 ? data : {};
+          if (requestCount == 0) {
+            opStatsGrid.jqxGrid({
+              source: new $.jqx.dataAdapter(this.source),
+              width: "100%",
+              autoheight: true,
+              rowsheight: 22,
+              altrows: true,
+              statusbarheight: 22,
+              sortable: true,
+              columnsresize: true,
+              showemptyrow: true,
+              selectionmode: "none",
+              enablebrowserselection: true,
+              localization: {
+                thousandsseparator: "",
+                emptydatastring: "<%= _('No_data_found_no_dots') %>"
+              },
+              columns: columns,
+              columngroups: columngroups,
+              handlekeyboardnavigation: function (event) {
+                var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                if (key == 86 && event.ctrlKey == true) {
+                  return true;
+                }
+              },
+              ready: function() {
+                adjustEmptyRow(opStatsGrid, data);
+                // Default sort: nice user
+                opStatsGrid.jqxGrid("sortby", "user", "asc");
+                session_sorting(
+                  'op-stats',
+                  '<%= Web_Dir %>',
+                  '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}op-stats"].try(:[], :column).to_s %>',
+                  '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}op-stats"].try(:[], :direction).to_s %>',
+                  '<%= params[:controller].to_s %>',
+                  '<%= params[:action].to_s %>'
+                );
+                $(window).resize();
+                opStatsGrid.css("visibility", "visible");
+              }
+            });
+          } else {
+            // For later requests we maintain settings and update the data
+            var sortColumnName = opStatsGrid.jqxGrid("getsortcolumn");
+            var sortOrder = opStatsGrid.jqxGrid("getsortinformation").sortdirection.ascending == true ? "asc" : "desc";
+            opStatsGrid.jqxGrid({ source: new $.jqx.dataAdapter(this.source)});
+            // Update the table
+            opStatsGrid.jqxGrid("updatebounddata");
+            opStatsGrid.jqxGrid("sortby", sortColumnName, sortOrder);
+          }
+        };
+      };
+
+      this.tpTable = function() {
+        this.source = {
+          datatype: "json",
+          datafields: datafields
+        };
+        // Updates the JQXGrid table
+        this.update = function(data, requestCount) {
+          this.source.localdata = data.length > 0 || requestCount > 0 ? data : {};
+          if (requestCount == 0) {
+            tpStatsGrid.jqxGrid({
+              source: new $.jqx.dataAdapter(this.source),
+              width: "100%",
+              autoheight: true,
+              rowsheight: 22,
+              altrows: true,
+              statusbarheight: 22,
+              sortable: true,
+              showemptyrow: true,
+              columnsresize: true,
+              selectionmode: "none",
+              enablebrowserselection: true,
+              localization: {
+                thousandsseparator: "",
+                emptydatastring: "<%= _('No_data_found_no_dots') %>"
+              },
+              columns: columns,
+              columngroups: columngroups,
+              handlekeyboardnavigation: function (event) {
+                var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                if (key == 86 && event.ctrlKey == true) {
+                  return true;
+                }
+              },
+              ready: function() {
+                adjustEmptyRow(tpStatsGrid, data);
+                // Default sort: nice user
+                tpStatsGrid.jqxGrid("sortby", "user", "asc");
+                session_sorting(
+                  'tp-stats',
+                  '<%= Web_Dir %>',
+                  '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}tp-stats"].try(:[], :column).to_s %>',
+                  '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}tp-stats"].try(:[], :direction).to_s %>',
+                  '<%= params[:controller].to_s %>',
+                  '<%= params[:action].to_s %>'
+                );
+                $(window).resize();
+                $("#tp-spinner").hide();
+                tpStatsGrid.css("visibility", "visible");
+              }
+            });
+          } else {
+            // For later requests we maintain settings and update the data
+            var sortColumnName = tpStatsGrid.jqxGrid("getsortcolumn");
+            var sortOrder = tpStatsGrid.jqxGrid("getsortinformation").sortdirection.ascending == true ? "asc" : "desc";
+            tpStatsGrid.jqxGrid({ source: new $.jqx.dataAdapter(this.source)});
+            // Update the table
+            tpStatsGrid.jqxGrid("updatebounddata");
+            tpStatsGrid.jqxGrid("sortby", sortColumnName, sortOrder);
+          }
+        };
+      };
+    };
+
+    // Data receiver class
+    //   Periodically receives data from server and
+    //   performs all the work
+    var DataReceiver = function() {
+      // PRIVATE ATTRIBUTES
+      var tables = new JQXTables();
+      var opTable = new tables.opTable();
+      var tpTable = new tables.tpTable();
+      var refreshPeriod = parseInt("<%= @options[:refresh_interval] %>") * 60000;
+      var requestCount = 0;
+      // Loading indicator
+
+      function worker() {
+        // For the first time we do not need to ask the server
+        if (requestCount == 0) {
+          // Updates the tables
+          var data = <%= raw @data %>;
+          opTable.update(data.op, requestCount);
+          tpTable.update(data.tp, requestCount);
+          requestCount++;
+          setTimeout(worker, refreshPeriod);
+        } else {
+          // Other iterations send periodic requests to the server
+          sendRequest();
+        }
+      }
+
+      // Performs an ajax call
+      var sendRequest = function() {
+        $.ajax({
+          // Request destination
+          url: "<%= Web_Dir %>" + "/stats/calls_dashboard",
+          type: "GET",
+          dataType: "json",
+          // Updates the tables with a json response
+          success: function (data) {
+            opTable.update(data.op, requestCount);
+            tpTable.update(data.tp, requestCount);
+          },
+          // Cleans up and get ready for a successor request
+          complete: function() {
+            setTimeout(worker, refreshPeriod);
+            requestCount++;
+          }
+        });
+      };
+
+      // PUBLIC ATTRIBUTES
+      // Starts the periodic worker
+      this.start = function() {
+        worker();
+      }
+    };
+    // End of data receiver class
+
+    // Main part
+    DS = new DataReceiver();
+    // Start the work
+    DS.start();
+    // End of Main part
+
+  });
+</script>

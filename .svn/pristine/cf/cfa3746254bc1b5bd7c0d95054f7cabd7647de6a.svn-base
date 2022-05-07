@@ -1,0 +1,11 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><div class="show-source-subject"><%= _('Source')%>:&nbsp;<span <%= tooltip(_('Subject'), @email.subject) %>><%= @email.subject %></span></div></h2>
+    <div class="details-form">
+      <div class="row show_source">
+        <code><%= @email.source %></code>
+      <div class="email-buttons"><%= link_to _('Back_to_inbox'), {action: :inbox}, {class: 'search-form-button'} %></div>
+      </div>
+    </div>
+  </div>
+</div>

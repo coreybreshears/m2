@@ -1,0 +1,6351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Settings_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Default_User_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Default_Device_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Currencies_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Emails_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Backups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Background_Tasks_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Servers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Number_Pools_2</td>
+	<td></td>
+</tr>
+<!--update, kad tikrai neužsetintų-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=(GMT+0?:00) Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Settings permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>MAINTENANCE &gt; Settings</td>
+	<td>MAINTENANCE &gt; Settings</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Settings_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Settings</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2.heading2</td>
+	<td>Invoices Click to expand</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=invoice_number_type_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_number_length</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=invoice_number_type_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=send_email_notice</td>
+	<td>label=Do not send</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_from</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_from</td>
+	<td>manager@manager.com</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Various Click to expand</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=agreement_number_length</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=disallow_email_editing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=disallow_details_editing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=change_if_hgc_not_equal_to_16_for_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>012</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>صبا</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=show_usernames_on_pdf_csv_export_files_in_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=tax2active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=tax3active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=tax4active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax1value</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax2value</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax3value</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tax4value</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=shedule</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>CSV Settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv_separator</td>
+	<td>564634</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv_decimal</td>
+	<td>kyuiyi</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv_file_size</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>699</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>699</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>1010010</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>1010010</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_server_load_stats</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_server_load_stats</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=archive_when</td>
+	<td>345</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=invoice_number_type_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=do_not_generate_invoices_for_blocked_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=inv_do_not_include_currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=invoice_email_notice_manager_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=invoice_number_length</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=send_email_notice</td>
+	<td>label=At once when generated</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=call_tracing_server</td>
+	<td>label=127.0.0.1 (main system)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=convert_xlsx_to_pdf</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=exclude_archived_calls_table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=active_calls_max</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=active_calls_interval</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_active_calls_for_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=active_calls_show_server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_rates_in_active_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cd_refresh_interval</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=bad_asr</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=good_asr</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=bad_acd</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=good_acd</td>
+	<td>44</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=bad_margin</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=good_margin</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>45.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>88</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_general_load</td>
+	<td>333</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>33.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>666</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_server_load_stats</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=agreement_number_length</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=allow_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=allow_get_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=api_secret_key</td>
+	<td>managersecretkey</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=xml_api_extension</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=api_login_redirect_to_main</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=api_allow_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=devices_check_ballance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=api_disable_hash_checking</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=archive_only_answered_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_calls_instead_of_archiving</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=archive_calls_to_csv_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_hour</td>
+	<td>label=01</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_at_minute</td>
+	<td>label=05</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_hour</td>
+	<td>label=02</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=archive_till_minute</td>
+	<td>label=25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=delete_archived_calls_older_than</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=items_per_page</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=date_format</td>
+	<td>label=m.d.Y H:M:S</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=time_format</td>
+	<td>label=M:S</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_number_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=hide_device_passwords_for_users</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=inv_user_billsec</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>label=;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=show_calls_stats_to_user_for_last</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_device_and_cid_in_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_answer_time_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_end_time_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_PDD_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_terminated_by_last_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Settings saved</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number_start</td>
+	<td>INV</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number_length</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number_type_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=do_not_generate_invoices_for_blocked_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=inv_do_not_include_currencies</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_admin_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_manager_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=send_email_notice</td>
+	<td>At once when generated</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=convert_xlsx_to_pdf</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_smtp_server</td>
+	<td>randomserver</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_port</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_from</td>
+	<td>manager@manager.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=agreement_number_length</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_email_editing</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=change_if_hgc_not_equal_to_16_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_strong_passwords_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_usernames_on_pdf_csv_export_files_in_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_free_space_limit</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=call_tracing_server</td>
+	<td>127.0.0.1 (main system)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=total_tax</td>
+	<td>Tax</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=compound_tax</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1value</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2value</td>
+	<td>6.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3value</td>
+	<td>7.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4value</td>
+	<td>8.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=exclude_archived_calls_table</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=shedule</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=backup_number</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=backup_disk_space</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=allow_api</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=allow_get_api</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_secret_key</td>
+	<td>managersecretkey</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=xml_api_extension</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_login_redirect_to_main</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_allow_payments</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=devices_check_ballance</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_disable_hash_checking</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=csv_separator</td>
+	<td>564634</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=csv_decimal</td>
+	<td>kyuiyi</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=csv_file_size</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=active_calls_max</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=active_calls_interval</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_active_calls_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=active_calls_show_server</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_rates_in_active_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>699</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cd_refresh_interval</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=bad_asr</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=good_asr</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=bad_acd</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=good_acd</td>
+	<td>44</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=bad_margin</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=good_margin</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>345</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_only_answered_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_hour</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_minute</td>
+	<td>05</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_hour</td>
+	<td>02</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_minute</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_calls_instead_of_archiving</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_archived_calls_older_than</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=items_per_page</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=date_format</td>
+	<td>m.d.Y H:M:S</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=time_format</td>
+	<td>M:S</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=nice_number_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=hide_device_passwords_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_full_src</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=inv_user_billsec</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=global_number_decimal</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_calls_stats_to_user_for_last</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_device_and_cid_in_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_answer_time_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_end_time_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_PDD_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_terminated_by_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>45.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>88</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_general_load</td>
+	<td>333</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>33.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>666</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_server_load_stats</td>
+	<td>123</td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number_start</td>
+	<td>INV</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number_length</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_number_type_2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=do_not_generate_invoices_for_blocked_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=inv_do_not_include_currencies</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_admin_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=invoice_email_notice_manager_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=send_email_notice</td>
+	<td>At once when generated</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=convert_xlsx_to_pdf</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_smtp_server</td>
+	<td>randomserver</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_port</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=email_from</td>
+	<td>manager@manager.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=agreement_number_length</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_email_editing</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=disallow_details_editing</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=change_if_hgc_not_equal_to_16_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=use_strong_passwords_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_usernames_on_pdf_csv_export_files_in_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=server_free_space_limit</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=call_tracing_server</td>
+	<td>127.0.0.1 (main system)</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=total_tax</td>
+	<td>Tax</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=compound_tax</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax1value</td>
+	<td>5.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax2value</td>
+	<td>6.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax3value</td>
+	<td>7.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4active</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4name</td>
+	<td>صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tax4value</td>
+	<td>8.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=exclude_archived_calls_table</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=shedule</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=backup_number</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=backup_disk_space</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=allow_api</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=allow_get_api</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_secret_key</td>
+	<td>managersecretkey</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=xml_api_extension</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_login_redirect_to_main</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_allow_payments</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=devices_check_ballance</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=api_disable_hash_checking</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=csv_separator</td>
+	<td>564634</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=csv_decimal</td>
+	<td>kyuiyi</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=csv_file_size</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=active_calls_max</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=active_calls_interval</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_active_calls_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=active_calls_show_server</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_rates_in_active_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_not_actual_rates_after</td>
+	<td>699</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cd_refresh_interval</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=bad_asr</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=good_asr</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=bad_acd</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=good_acd</td>
+	<td>44</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=bad_margin</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=good_margin</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_calls_to_csv_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_when</td>
+	<td>345</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=archive_only_answered_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_hour</td>
+	<td>01</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_at_minute</td>
+	<td>05</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_hour</td>
+	<td>02</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=archive_till_minute</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_calls_instead_of_archiving</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_archived_calls_older_than</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=items_per_page</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=date_format</td>
+	<td>m.d.Y H:M:S</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=time_format</td>
+	<td>M:S</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=nice_number_digits</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=hide_device_passwords_for_users</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_full_src</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=inv_user_billsec</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>name=global_number_decimal</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_calls_stats_to_user_for_last</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_device_and_cid_in_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_answer_time_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_end_time_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_PDD_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=show_terminated_by_last_calls</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_utilisation</td>
+	<td>55</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_general_load</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_loadstats</td>
+	<td>45.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_ruby_process</td>
+	<td>88</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_asterisk_process</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=gui_hdd_freeswitch_process</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_utilisation</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_general_load</td>
+	<td>333</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_loadstats</td>
+	<td>33.0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_mysql_process</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_asterisk_process</td>
+	<td>666</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=db_hdd_freeswitch_process</td>
+	<td>777</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_server_load_stats</td>
+	<td>123</td>
+</tr>
+<!--įjungiamas MAINTENANCE > Default User permissionas-->
+<tr>
+	<td>select</td>
+	<td>name=date_format</td>
+	<td>label=Y-m-d H:M:S</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Default_User_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Default_User_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Settings_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>call_list_link_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Default User</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username_length</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=username_length</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_length</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=password_length</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password_length</td>
+	<td>8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_balance</td>
+	<td>2.2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_call_limit</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>warning_email_active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=warning_email_balance</td>
+	<td>5.5</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>sound_file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>user_warning_balance_sound_file_id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=sound_file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_first_name</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_last_name</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_clientid</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_agreement_number</td>
+	<td>kompanija</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_language</td>
+	<td>busmenu</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>user[taxation_country]</td>
+	<td>label=Barbados</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_vat_number</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>user_accounting_number</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tax1_value</td>
+	<td>2.1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_address</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_postcode</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_city</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_county</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_state</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>address[direction_id]</td>
+	<td>label=Barbados</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_phone</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_mob_phone</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_fax</td>
+	<td>asd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address_email</td>
+	<td>default@example.com</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>user_warning_email_hour_-1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>user_warning_email_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>date_user_warning_email_hour</td>
+	<td>label=09</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Default User saved</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Default Device permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Default_User_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Default_Device_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Default_Device_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Manager Group successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>device[works_not_logged]_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cid_name</td>
+	<td>01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=cid_name</td>
+	<td>exact:01232ąčęė!@#$%^*()?сти́льную صباح الخير</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=add_to_servers_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>device_timeout</td>
+	<td>61</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=codec_ulaw</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=codec_g723</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=codec_g726</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=codec_gsm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=codec_speex</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_insecure_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=codec_alaw</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=codec_g729</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_call_limit</td>
+	<td>aeee</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_period</td>
+	<td>-ytrt&amp;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_call_limit</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_period</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_call_limit</td>
+	<td>-75787</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=device_cps_period</td>
+	<td>52782578</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Settings saved</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_call_limit</td>
+	<td>-75787</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=device_cps_period</td>
+	<td>52782578</td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Currencies permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Currencies_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Currencies_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Default_Device_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Currencies</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>icon_chech_curr_upd_disable_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>icon_cross_curr_upd_enable_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>icon_chech_curr_upd_disable_19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>icon_cross_curr_upd_enable_19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>USD_exchange_rate</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>GBP_exchange_rate</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>BRL_exchange_rate</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>icon_chech_curr_upd_disable_18</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>icon_cross_curr_upd_enable_19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>icon_cross_curr_upd_enable_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Currency update disabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Currency edit</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=full_name</td>
+	<td>Armenian Dram</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=exchange_rate</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=full_name</td>
+	<td>Armenian Dram1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=exchange_rate</td>
+	<td>1.0111</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;image&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Currency details updated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Update all Currencies from Kolmisoft</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Currencies rates updated</td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Emails permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_MAINTENANCE_Emails_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Emails_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Currencies_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/email/enable_sending</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Emails</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_invoices</td>
+	<td>invoices</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EDIT</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_subject</td>
+	<td>MANAGER</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email_body</td>
+	<td>Manager</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>email_format_plain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Email successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=subject_invoices</td>
+	<td>MANAGER</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Email sent to users: invoices</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Email sent to users: invoices</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.0</td>
+	<td>Date</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.1</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.2</td>
+	<td>Username</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.3</td>
+	<td>User Type</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.0.4</td>
+	<td>Email</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Email was not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_name</td>
+	<td>New email</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_subject</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email_body</td>
+	<td>Hey!<br />Test test test!</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_format_plain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=email_format_plain</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Email successfully created</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Email go&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Send email: New email</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=sbu_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=shu_1</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=shu_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=sbu_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=username_16001</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usertype_16001</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=firstname_16001</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='users_list']/table/tbody/tr/th[5]</td>
+	<td>Email</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=email_16001</td>
+	<td>manager_email@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>No users selected</td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Backups permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Emails_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Backups_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th</td>
+	<td>Date</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Backup Manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//th[2]</td>
+	<td>Type</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//th[3]</td>
+	<td>Comment</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//th[4]</td>
+	<td>Download</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//th[5]</td>
+	<td>Restore</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=comment</td>
+	<td>Hey! This is comment ;)</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Backup creation may be very slow. Are you sure to do this?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Backup created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You do not have enough disk space</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/bg_tasks</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Background Tasks permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Backups_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Background_Tasks_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Background Tasks</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test Reseller</td>
+	<td>Test Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=task_204</td>
+	<td>Rerating</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status_205</td>
+	<td>IN PROGRESS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#user_202 &gt; a</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=updated_202</td>
+	<td>2013-05-27 1?:42:41</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_203</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=task_203</td>
+	<td>Unknown</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Arrow refresh&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Arrow refresh&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Cron Task restarted</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Cron Task deleted</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Test Reseller</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Servers permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Background_Tasks_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Servers_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=maintenance</td>
+	<td>Maintenance</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Servers</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Servers List</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=ip_1</td>
+	<td>127.0.0.1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=type_1</td>
+	<td>freeswitch</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_1</td>
+	<td>main system</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=YES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=YES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>There should be at least one GUI Server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#db_1 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>There should be at least one DB Server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#core_1 &gt; a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>There should be at least one Core Server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=YES</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server disabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Server Load Stats</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Server Load Stats for*Information is displayed in Server's Time zone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_2</td>
+	<td>Edit</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=server_hostname</td>
+	<td>127.0.0.111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=server_ip</td>
+	<td>127.0.0.111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=server_url</td>
+	<td>www.google.com</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>freeswitch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=server_maxcalllimit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=server_ami_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=server_ami_secret</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=server_port</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=server_ssh_port</td>
+	<td>225</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--NO Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--įjungiamas MAINTENANCE > Number Pools permissionas-->
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Servers_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_MAINTENANCE_Number_Pools_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--NO Settings permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default User permissions-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/default_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Default Device permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/devices/default_device</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Currencies permission -->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/149</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Emails permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/destroy/5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list_users/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/show_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/send_emails/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Backups permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/backups/backup_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Download</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Restore</td>
+	<td></td>
+</tr>
+<!--NO Background Tasks permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/background_tasks</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<!--NO Servers permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/stats/server_load/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<!--Number Pools permission-->
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Number Pools</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;Number pool&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Add new Number Pool</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Add new Number Pool</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;Add&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>New Number Pool</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=number_pool_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=number_pool_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td>Number Pool</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_comment</td>
+	<td>for testing</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully created</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Add new Number Pool</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_3</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Number Pool</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Details&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=(0)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#edit_2 &gt; a &gt; img[alt=&quot;Edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td>Number Pool contains numbers</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_comment</td>
+	<td>for testing edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Number Pool contains numbers</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully deleted</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td> </td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Number Pool successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td>Number Pool contains numbers</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Details&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Number Pools</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;Details&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Import new Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Import new Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.nb &gt; b</td>
+	<td>Number Pool:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Number import</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/many_numbers.csv</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=file</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>15 out of 19 numbers were imported</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Number Pool: Number Pool contains numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File size: 189 bytes </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Numbers imported: 15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Total numbers: 19</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Click here to see bad numbers (4)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Back to Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Click here to see bad numbers (4)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>asdasgdfg</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div/table/tbody/tr[2]/td</td>
+	<td>629sdfs17</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div/table/tbody/tr[3]/td</td>
+	<td>34d353223</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td</td>
+	<td>654 6645</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Bad Numbers from file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_list/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Import new Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Delete all Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; #number_33</td>
+	<td>887833985</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_43</td>
+	<td>301884893</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_47</td>
+	<td>526891976</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#delete_link_37 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#delete_link_43 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#delete_link_47 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_link_43 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>301884893</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Delete all Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>All Numbers successfully deleted</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Delete all Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>526891976</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>887833985</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/many_numbers.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>15 out of 19 numbers were imported</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/2</td>
+	<td></td>
+</tr>
+<!--negalima įkelti tų pačių-->
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/many_numbers.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>0 out of 19 numbers were imported</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Cross&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/many_numbers.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>15 out of 19 numbers were imported</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_77</td>
+	<td>526891976</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_63</td>
+	<td>887833985</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=(15)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=number_pool_name</td>
+	<td>Number Pool different name</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/number_import/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=file</td>
+	<td>/home/mor/selenium/files/csv/numbers_with_zeros.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Numbers successfully imported</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Numbers imported: 10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to Numbers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_78</td>
+	<td>00000001</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_85</td>
+	<td>0000000008</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_81</td>
+	<td>000004</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=number_87</td>
+	<td>00000000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/number_pools/pool_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

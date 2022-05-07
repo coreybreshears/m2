@@ -1,0 +1,70 @@
+<% no_load = load_ok? %>
+<% flash_present = flash[:notice].present? || flash[:status].present? || flash[:first_login].present? %>
+
+<div class="content-box">
+  <div class="hello-box">
+    <%= _('hello') %>, <%= @username %>
+  </div>
+  <div class="quick-stats-box">
+  <% persmision = manager? && authorize_manager_permissions({controller: :callc, action: :show_quick_stats, no_redirect_return: 1}) && authorize_manager_permissions({controller: :callc, action: :quick_stats_technical_info, no_redirect_return: 1}) && authorize_manager_permissions({controller: :callc, action: :quick_stats_active_calls, no_redirect_return: 1}) %>
+      <% if admin? || persmision %>
+          <div id="quick_stats">
+            <b><%= _('Quick_stats') %></b>&nbsp;<%= link_to(b_refresh + _('Refresh'), '#', id: 'qs_refresh') if flash_present %>
+            <br/>
+            <% if no_load %>
+                <div id='quick_stat'>
+                  <div id='show_quick_stats'></div>
+                  <div id='quick_stats_active_calls'></div>
+                  <div id='quick_stats_technical_info'></div>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    if (<%= !flash_present %>) {
+        $('#show_quick_stats').load('<%= Web_Dir %>/callc/show_quick_stats', function() {
+            active_calls_refresh();
+            $('#quick_stats_technical_info').load('<%= Web_Dir %>/callc/quick_stats_technical_info');
+        });
+    } else {
+        $('#qs_refresh').click(function () {
+            $('#show_quick_stats').load('<%= Web_Dir %>/callc/show_quick_stats', function() {
+                active_calls_refresh();
+                $('#quick_stats_technical_info').load('<%= Web_Dir %>/callc/quick_stats_technical_info');
+            });
+        });
+    }
+
+    <% if no_load %>
+    setInterval(function(){
+        $.ajax({
+            url: '<%= Web_Dir %>/callc/show_quick_stats',
+            type: 'get',
+            cache: false,
+            success: function(returnData) {
+                $("#show_quick_stats").html(returnData);
+            }
+        });
+    }, 10000);
+    <% end %>
+
+    function active_calls_refresh() {
+        if (<%= no_load && allow_manage_providers? %>) {
+            $('#quick_stats_active_calls').load('<%= Web_Dir %>/callc/quick_stats_active_calls');
+
+            setInterval(function() {
+                $.ajax({
+                    url: '<%= Web_Dir %>/callc/quick_stats_active_calls',
+                    type: 'get',
+                    cache: false,
+                    success: function(returnData) {
+                        $('#quick_stats_active_calls').html(returnData);
+                    }
+                });
+            }, <%= (session[:active_calls_refresh_interval].to_i < 3 ? 3 : session[:active_calls_refresh_interval].to_i) * 1000 %>);
+        }
+    }
+</script>

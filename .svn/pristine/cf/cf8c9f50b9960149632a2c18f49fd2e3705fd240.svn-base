@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>tariff_generator</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tariff_generator</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/main</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/dial_peer/dial_peer_17001/create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=device_tp_active_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_tp_tariff_id</td>
+	<td>Provider_admin_tariff</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/termination_points_list/17001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Test User #1 - Test Device #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=assign-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#name_1 &gt; a</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>Test User #1 / Test Device #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_12</td>
+	<td>Rates (6)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_13</td>
+	<td>Rates (6)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_6</td>
+	<td>Rates (6)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_15</td>
+	<td>Rates (6)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_8</td>
+	<td>Rates (6)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=rates_7</td>
+	<td>Rates (6)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[4]</td>
+	<td>Generate new Tariff</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/tariff_generator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Name</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Currency</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>tariff_currency_id</td>
+	<td>USD EUR</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_profit_margin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Profit Margin at least</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_profit_margin_at_least</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>% on</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_cheapest_rate</td>
+	<td>2nd</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Select from which Dial Peers new Tariff will be generated:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.label</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Effective from</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=time2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>css=span.label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Provider_admin_tariff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>css=span.label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Select from which Tariffs new Tariff will be generated:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_index_12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_index_13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_index_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_index_15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_index_8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=tariff_index_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='main']/div[2]/div/div/form/fieldset/div[12]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Use Prefixes from selected Tariffs/DPs and assigned to Destination Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Profit Margin cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>At least one Dial Peer must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='main']/div[2]/div/div/form/fieldset/div[12]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Use Prefixes from selected Tariffs/DPs and assigned to Destination Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/div/form/fieldset/div[8]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Profit Margin cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>At least one Tariff must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='main']/div[2]/div/div/form/fieldset/div[12]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Use Prefixes from selected Tariffs/DPs and assigned to Destination Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/tariff_generator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_12']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>//div[@id='tariff_index_12']/div</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_13']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Tariff Profit Margin cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>At least one Tariff must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/tariff_generator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>Labas</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Tariff Name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Profit Margin cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>At least one Dial Peer must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Tariff Profit Margin cannot be lower than -100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/div/form/fieldset/div[8]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Tariff Name cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Profit Margin cannot be blank</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>At least one Tariff must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/tariff_generator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin</td>
+	<td>-200</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_12']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>//div[@id='tariff_index_12']/div</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Profit Margin cannot be lower than -100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>At least one Tariff must be selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_profit_margin</td>
+	<td>-200</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_12']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin</td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=notice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff was not generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Tariff Profit Margin cannot be higher than 200</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_profit_margin</td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>New Tariff EUR</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=tariff_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin</td>
+	<td>50.36598652554558</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_12']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_13']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_7']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='tariff_index_15']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_name</td>
+	<td>New Tariff EUR</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=tariff_currency_id</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=tariff_profit_margin</td>
+	<td>50.36598652554558</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='main']/div[2]/div/div/form/fieldset/div[8]/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>css=span.label</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff generation successfully sent to background tasks</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_2</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=task_2</td>
+	<td>Tariff Generation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status_2</td>
+	<td>WAITING</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=percent_2</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=expected_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=restart_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/tariff_generator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_name</td>
+	<td>From Dial&nbsp;&nbsp;Peers tariff</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin_at_least</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=tariff_profit_margin</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=till</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=time2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.label</td>
+	<td>Test Dial Peer</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>dial_peer_id_</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>dial_peer_id_</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='commit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Tariff generation successfully sent to background tasks</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#user_3 &gt; a</td>
+	<td>System Admin</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=task_3</td>
+	<td>Tariff Generation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status_3</td>
+	<td>WAITING</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=percent_3</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=expected_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=delete_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=restart_3</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

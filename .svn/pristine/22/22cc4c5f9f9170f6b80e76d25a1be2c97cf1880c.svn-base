@@ -1,0 +1,54 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2>
+      <span><%= _('Sell_Tariffs_Rate_Notifications_List') %></span>
+    </h2>
+    <%= form_tag({action: :new}, {class: 'calls-form', style: 'background:none;padding-top:0;border-bottom:none;'}) do %>
+        <div class="table-holder">
+          <% if @tariffs_users.present? %>
+              <table>
+                <tr>
+                  <th class="tariff-rate-notification-checkbox" id="chk-col"><%= check_box_tag 'mark_all', 1, false %></th>
+                  <th class="tariff-rate-notification-tariff-name"><%= _('Tariff') %></th>
+                  <th class="tariff-rate-notification-user-name"><%= _('User') %></th>
+                </tr>
+                <% @tariffs_users.each do |tariff_user| %>
+                    <tr>
+                      <td id="checkbox_<%= tariff_user['uniq_assoc'] %>" class="tariff-rate-notification-checkbox">
+                        <%= check_box_tag "tariff_user_ids[#{tariff_user['uniq_assoc']}]", 1, false, class: 'state' %>
+                      </td>
+                      <td nowrap id="tariff_name_<%= tariff_user['uniq_assoc'] %>" class="tariff-rate-notification-tariff-name">
+                        <%= tariff_user['aggr_tariff_name'] %>
+                      </td>
+                      <td nowrap id="user_name_<%= tariff_user['uniq_assoc'] %>" class="tariff-rate-notification-user-name">
+                        <%= tariff_user['aggr_user_nicename'] %>
+                      </td>
+                    </tr>
+                <% end %>
+              </table>
+              <br/>
+              <%= submit_tag _('Set'), style: 'margin:0;' %>
+          <% else %>
+              <%= _('No_data') %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $("#chk-col .chk-area span").hide();
+
+        $("#chk-col .chk-area").on("click", function() {
+            var mark_all = $(this).hasClass("chk-checked");
+
+            $(".state").prop('checked', !mark_all);
+
+            var cbx = jcf.lib.getElementsBySelector(".state");
+            for (var i = 0; i < cbx.length; i++){
+                jcf.customForms.refreshElement(cbx[i]);
+            }
+        });
+    });
+</script>

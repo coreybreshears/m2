@@ -1,0 +1,115 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'rgroup_dpeers' %>
+<% end %>
+
+<% @create_button_name = 'Assign_dial_peer' %>
+<% content_for :create_form do %>
+  <%= form_for @new_dial_peer, url: {action: :rgroup_dpeer_add, id: @routing_group.id}, html: {id: 'create-form', class: 'calls-form', visible: show_create} do |f| %>
+    <fieldset>
+      <div class="column cause-col">
+        <%= f.label 'dial_peer', _('dial_peer') %>
+        <div class="row">
+          <%= select_tag 'dial_peer_id', options_for_select(@free_dial_peers.blank? ? [[_('None'), -1]] : @free_dial_peers.map { |dp| [dp.name, dp.id] }, params[:dial_peer_id].to_i) %>
+        </div>
+      </div>
+      <div class="column cause-col-quarter">
+        <%= f.label 'priority', _('Priority') %>
+        <div class="row">
+          <%= text_field_tag :priority, params[:priority]='1', :onclick => 'if($(this).val()=="1"){$(this).val(params[:priority]);};', type: 'text', :placeholder => '1', size: 5 %>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= submit_tag _('Cancel'), type: :reset,
+               onClick: "$('#dial_peer_id').prop('selectedIndex', 0);
+                         $(\"#create-form\").toggle();
+                         $('#dial_peer_id')[0].jcf.buildDropdown();
+                         $('#dial_peer_id')[0].jcf.refreshState(); " %>
+          <%= f.submit _('Assign'), id: 'assign-button', onClick: "this.disabled=true; this.value='Processing'; this.form.submit();" %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+<% content_for :search_form do %>
+  <%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form', visible: show_search}) do %>
+    <%= hidden_field_tag 'page', 1 %>
+      <fieldset>
+        <div class="column source-col">
+          <%= label_tag 'name', _('Name') %>
+          <div class="row">
+            <%= text_field_tag 's_name', @options[:s_name]%>
+          </div>
+        </div>
+        <div class="column buttons-col">
+          <div class="row payment-buttons-row">
+            <%= clear_button_tag _('clear') %>
+            <%= submit_button_tag _('refine') %>
+          </div>
+        </div>
+      </fieldset>
+  <% end %>
+<% end %>
+<fieldset>
+  <div class="content-box">
+    <div class="table-box">
+      <h2><div><%= link_to(@routing_group.name, {controller: :routing_groups, action: :edit, id: @routing_group}) + ' ' + _('Dial_peers_list') %></div></h2>
+      <div class="table-holder">
+        <% if  @rgroup_dpeers.present? %>
+            <table class="maintable">
+              <tr>
+                <%= sortable_header(_('Active_in_routing_group'), 'active', class: 'dial_peer-active2', id: 'active_in_routing_group') %>
+                <%= sortable_header(_('Active'), 'dp_active', class: 'dial_peer-active', id: 'active') %>
+                <%= sortable_header(_('Name'), 'name', class: 'dial_peer-name', id: 'name') %>
+                <%= sortable_header(_('destination_regexp'), 'dst_regexp', class: 'dial_peer-dst_regexp', id: 'dst_regexp') %>
+                <%= sortable_header(_('stop_hunting'), 'stop_hunting', class: 'dial_peer-stop_hunting', id: 'stop_hunting') %>
+                <%= sortable_header(_('tp_priority'), 'tp_priority', class: 'dial_peer-tp_priority', id: 'tp_priority') %>
+                <%= sortable_header(_('tp_list'), 'tp_list', class: 'dial_peer-tp_list', id: 'tp_list') %>
+                <%= sortable_header(_('Priority'), 'dial_peer_priority', class: 'left_item', id: 'priority') %>
+                <th></th>
+              </tr>
+
+            <% @rgroup_dpeers.each do |rgdp| %>
+              <tr>
+                <td id="active_in_rgroup_<%= rgdp.id %>" class="dial_peer-active_list2">
+                  <%= link_to(_('_Yes').upcase, {action: :rgroup_dpeer_status_change, id: rgdp}) if rgdp.active == 1 %>
+                  <%= link_to(_('_No').upcase, {action: :rgroup_dpeer_status_change, id: rgdp}, {style: 'color:#D8D8D8;'}) if rgdp.active == 0 %>
+                </td>
+                <td id="active_<%= rgdp.id %>" class = "dial_peer-active_list">
+                  <%= _('No').upcase if rgdp.dp_active.zero? %>
+                  <%= _('Yes').upcase unless rgdp.dp_active.zero? %>
+                </td>
+                <td id="name<%= rgdp.id %>" class="dial_peer-name_list"><%= link_to rgdp.name, {controller: :dial_peers, action: :edit, id: rgdp.dial_peers_id} %></td>
+                <td id="dst_regexp_<%= rgdp.id %>" class = "dial_peer-dst_regexp_list" align = "left" style="word-wrap: break-word; word-break: break-all">
+                  <%= rgdp.dst_mask.present? ? "#{_('By_Tariff').upcase} (#{rgdp.dst_mask})" : rgdp.dst_regexp %>
+                </td>
+                <td id="stop_hunting_<%= rgdp.id %>" class = "dial_peer-stop_hunting_list">
+                  <%= link_to(_('No').upcase, {action: :stop_hunting_status_change, id: rgdp.dial_peers_id, routing_group_id: rgdp.routing_group_id}, style: 'color:#D8D8D8;') if rgdp.stop_hunting.zero? %>
+                  <%= link_to(_('Yes').upcase, action: :stop_hunting_status_change, id: rgdp.dial_peers_id, routing_group_id: rgdp.routing_group_id) unless rgdp.stop_hunting.zero? %>
+                </td>
+                <td id="tp_priority_<%= rgdp.id %>" class = "dial_peer-tp_priority_list">
+                  <%= rgdp.tp_priority.to_s %>
+                </td>
+                <td id="tp_list_<%= rgdp.id %>" class = "dial_peer-tp_list_list">
+                  <%= link_to _('LIST') + ' (' + rgdp.tp_list.to_s + ')', {controller: :dial_peers, action: :termination_points_list, id: rgdp.dial_peers_id} %>
+                </td>
+                <td>
+                  <%= text_field_tag "priority", rgdp.dial_peer_priority, class: 'dptp-priority_imput', id: "priority_#{rgdp.id}" %>
+                </td>
+                <td class="left-item small-col" id = "unassign_<%= rgdp.id %>">
+                  <%= button_to 'REMOVE',  {:action => 'rgroup_dpeer_destroy', :id => rgdp.id},
+                                    onclick: "return confirm('Are you sure?')", class: 'delete_button',
+                                    method: :post, id: 'delete_link_' + rgdp.id.to_s %>
+                </td>
+
+              </tr>
+            <% end %>
+          </table>
+          <%= page_select_header(@options[:page], @total_pages, @options) if @total_pages > 1 %>
+        <% else %>
+          <%= _('no_dial_peers') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</fieldset>

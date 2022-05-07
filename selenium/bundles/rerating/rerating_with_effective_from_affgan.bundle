@@ -1,0 +1,10 @@
+#bundle skirtas rerating_with_effective_from.case testui
+#tarifai
+/tariff/make_provider_tariffs_user_wholesale.sql
+#50 viename psl
+/settings/visual/50_items_per_page.sql
+#daugiau efffective from
+/tariff/provider_12001/create_rates_with_effective_from_date_for_afghanistan_fourth.sql
+#skambuciai i afganistana
+/calls/calls_to_affganistan.sql
+# bundle loaded

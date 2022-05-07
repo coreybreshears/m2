@@ -1,0 +1,505 @@
+<% show_data = @quick_stats[0].present? # If done by Elasticsearch, first value will be 'false' when it is not possible to connect to Elasticsearch %>
+<% if Confline.get_value('Show_detailed_quick_stats', 0).to_i == 1 %>
+  <table width="100%" class="maintable" id="quick-stats-table">
+    <br/>
+    <tr>
+      <th align="center" rowspan="2" id="first-row"></th>
+      <th align="center" rowspan="2" id="first-row"><%= _('This_day') %></th>
+      <th align="center" rowspan="2" id="first-row"><%= _('This_month') %></th>
+      <th align="center" colspan="3" id="end-row"><%= _('For_last') %></th>
+    </tr>
+    <tr>
+      <th align="center" id="first-row"><%= _('24hours') %></th>
+      <th align="center" id="first-row"><%= _('14days') %></th>
+      <th align="center" id="end-row"><%= _('6months') %></th>
+    </tr>
+    <tr class="border-bottom" id="row1">
+      <td><b>
+        <%= _('Calls') %>
+      </b></td>
+      <td align="center" id="day_calls">
+        <% if show_data && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+      <%= link_to @quick_stats[0], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('day_from'), date_till: date_for_last_calls('day_till'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: ''%>
+    <% elsif show_data %>
+      <%= @quick_stats[0] %>
+    <% end %>
+      </td>
+      <td align="center" id="month_calls">
+        <% if show_data && @quick_stats[6] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[6], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('month_from'), date_till: date_for_last_calls('month_till'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[6] %>
+   <%= @quick_stats[6] %>
+   <% end %>
+      </td>
+      <td align="center" id="24hours_calls">
+        <% if show_data && @quick_stats[12] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[12], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('from_24hours'), date_till: date_for_last_calls('till_24hours'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[12] %>
+   <%= @quick_stats[12] %>
+   <% end %>
+      </td>
+      <td align="center" id="14days_calls">
+        <% if show_data && @quick_stats[18] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[18], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('from_14days'), date_till: date_for_last_calls('till_14days'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[18] %>
+   <%= @quick_stats[18] %>
+   <% end %>
+      </td>
+      <td align="center" id="6months_calls">
+        <% if show_data && @quick_stats[24] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[24], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('from_6months'), date_till: date_for_last_calls('till_6months'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[24] %>
+   <%= @quick_stats[24] %>
+    <% end %>
+      </td>
+    </tr>
+    <tr class="border-bottom">
+      <td><b>
+        <%= _('Duration') %>
+      </b></td>
+      <td align="center" id="day_duration">
+        <%= nice_time(@quick_stats[1], show_zero: true, nice_number_digits: 2) if show_data %>
+      </td>
+      <td align="center" id="month_duration">
+        <%= nice_time(@quick_stats[7], show_zero: true, nice_number_digits: 2) if show_data %>
+      </td>
+      <td align="center" id="24hours_duration">
+        <%= nice_time(@quick_stats[13], show_zero: true, nice_number_digits: 2) if show_data %>
+      </td>
+      <td align="center" id="14days_duration">
+        <%= nice_time(@quick_stats[19], show_zero: true, nice_number_digits: 2) if show_data %>
+      </td>
+      <td align="center" id="6month_duratrion">
+        <%= nice_time(@quick_stats[25], show_zero: true, nice_number_digits: 2) if show_data %>
+      </td>
+    </tr>
+    <% if admin? || manager? %>
+      <tr class="border-bottom" id="row1">
+        <td><b>
+          <%= _('Revenue') %>
+        </b></td>
+        <td align="center" id="day_cost">
+          <%= nice_currency(@quick_stats[3].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="month_cost">
+          <%= nice_currency(@quick_stats[9].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="24hours_cost">
+          <%= nice_currency(@quick_stats[15].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="14days_cost">
+          <%= nice_currency(@quick_stats[21].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="6months_cost">
+          <%= nice_currency(@quick_stats[27].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+      </tr>
+      <tr class="border-bottom">
+        <td><b>
+          <%= _('Selfcost') %>
+        </b></td>
+        <td align="center" id="day_selfcost">
+          <%= nice_currency(@quick_stats[2].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="month_selfcost">
+          <%= nice_currency(@quick_stats[8].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="24hours_selfcost">
+          <%= nice_currency(@quick_stats[14].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="14days_selfcost">
+          <%= nice_currency(@quick_stats[20].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="6months_selfcost">
+          <%= nice_currency(@quick_stats[26].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+      </tr>
+      <tr class="border-bottom" id="row1">
+        <td><b>
+          <%= _('Profit') %>
+        </b></td>
+        <td align="center" id="day_profit">
+          <%= nice_currency(@quick_stats[4].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="month_profit">
+          <%= nice_currency(@quick_stats[10].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="24hours_profit">
+          <%= nice_currency(@quick_stats[16].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="14days_profit">
+          <%= nice_currency(@quick_stats[22].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="6months_profit">
+          <%= nice_currency(@quick_stats[28].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+      </tr>
+      <tr class="border-bottom">
+        <td><b>
+          <%= _('Margin') %>
+        </b></td>
+        <td align="center" id="day_margin">
+          <%= "#{@quick_stats[5]} %" if show_data %>
+        </td>
+        <td align="center" id="month_margin">
+          <%= "#{@quick_stats[11]} %" if show_data %>
+        </td>
+        <td align="center" id="24hours_margin">
+          <%= "#{@quick_stats[17]} %" if show_data %>
+        </td>
+        <td align="center" id="14days_margin">
+          <%= "#{@quick_stats[23]} %" if show_data %>
+        </td>
+        <td align="center" id="6months_margin">
+          <%= "#{@quick_stats[29]} %" if show_data %>
+        </td>
+      </tr>
+    <% end %>
+    <% if user? %>
+      <tr class="border-bottom">
+        <td><b>
+          <%= _('Price') %>
+        </b></td>
+        <td align="center" id="day_price">
+          <%= nice_currency(@quick_stats[3].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="month_price">
+          <%= nice_currency(@quick_stats[9].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="24hours_price">
+          <%= nice_currency(@quick_stats[15].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="14days_price">
+          <%= nice_currency(@quick_stats[21].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+        <td align="center" id="6months_price">
+          <%= nice_currency(@quick_stats[27].to_d, @ex, show_symb: 1) if show_data %>
+        </td>
+      </tr>
+    <% end %>
+    <br/>
+  </table>
+
+
+  <!--for smartphones -->
+  <div id="quick-stats-table-for-phones">
+  <div class="quick-stats-row">
+    <div class="title-col"><%= _('For_last_6months') %>:</div>
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Calls') %>:</div>
+    <div class="value-col" id="month_calls">
+    <% if show_data && @quick_stats[24] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[24], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('from_6months'), date_till: date_for_last_calls('till_6months'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[24] %>
+   <%= @quick_stats[24] %>
+   <% end %>
+    &nbsp;</div>
+
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Duration') %>:</div>
+    <div class="value-col" id="month_duration"><%= nice_time(@quick_stats[25]) if show_data %>&nbsp;</div>
+  </div>
+  <% if admin? || manager? %>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Revenue') %>:</div>
+        <div class="value-col" id="month_cost"><%= nice_currency(@quick_stats[27].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Selfcost') %>:</div>
+        <div class="value-col" id="month_selfcost"><%= nice_currency(@quick_stats[26].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Profit') %>:</div>
+        <div class="value-col" id="month_profit"><%= nice_currency(@quick_stats[28].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Margin') %>:</div>
+        <div class="value-col" id="month_margin"><%= "#{@quick_stats[29]} %" if show_data %>&nbsp;</div>
+      </div>
+  <% end %>
+
+  <% if user? %>
+    <div class="quick-stats-row">
+      <div class="label-col"><%= _('Price') %>:</div>
+      <div class="value-col" id="month_price"><%= nice_currency(@quick_stats[26].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+    </div>
+  <% end %>
+
+  <div class="quick-stats-row">
+    <div class="title-col"><%= _('For_last_14days') %>:</div>
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Calls') %>:</div>
+    <div class="value-col" id="month_calls">
+    <% if show_data && @quick_stats[18] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[18], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('from_14days'), date_till: date_for_last_calls('till_14days'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[18] %>
+   <%= @quick_stats[18] %>
+   <% end %>
+    &nbsp;</div>
+
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Duration') %>:</div>
+    <div class="value-col" id="month_duration"><%= nice_time(@quick_stats[19]) if show_data %>&nbsp;</div>
+  </div>
+  <% if admin? || manager? %>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Revenue') %>:</div>
+        <div class="value-col" id="month_cost"><%= nice_currency(@quick_stats[21].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Selfcost') %>:</div>
+        <div class="value-col" id="month_selfcost"><%= nice_currency(@quick_stats[20].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Profit') %>:</div>
+        <div class="value-col" id="month_profit"><%= nice_currency(@quick_stats[22].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Margin') %>:</div>
+        <div class="value-col" id="month_margin"><%= "#{@quick_stats[23]} %" if show_data %>&nbsp;</div>
+      </div>
+  <% end %>
+
+  <% if user? %>
+    <div class="quick-stats-row">
+      <div class="label-col"><%= _('Price') %>:</div>
+      <div class="value-col" id="month_price"><%= nice_currency(@quick_stats[20].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+    </div>
+  <% end %>
+
+  <div class="quick-stats-row">
+    <div class="title-col"><%= _('For_last_24hours') %>:</div>
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Calls') %>:</div>
+    <div class="value-col" id="month_calls">
+    <% if show_data && @quick_stats[12] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[12], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('from_24hours'), date_till: date_for_last_calls('till_24hours'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[12] %>
+   <%= @quick_stats[12] %>
+   <% end %>
+    &nbsp;</div>
+
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Duration') %>:</div>
+    <div class="value-col" id="month_duration"><%= nice_time(@quick_stats[13]) if show_data %>&nbsp;</div>
+  </div>
+  <% if admin? || manager? %>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Revenue') %>:</div>
+        <div class="value-col" id="month_cost"><%= nice_currency(@quick_stats[15].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Selfcost') %>:</div>
+        <div class="value-col" id="month_selfcost"><%= nice_currency(@quick_stats[14].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Profit') %>:</div>
+        <div class="value-col" id="month_profit"><%= nice_currency(@quick_stats[16].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Margin') %>:</div>
+        <div class="value-col" id="month_margin"><%= "#{@quick_stats[17]} %" if show_data %>&nbsp;</div>
+      </div>
+  <% end %>
+
+  <% if user? %>
+    <div class="quick-stats-row">
+      <div class="label-col"><%= _('Price') %>:</div>
+      <div class="value-col" id="month_price"><%= nice_currency(@quick_stats[14].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+    </div>
+  <% end %>
+
+  <div class="quick-stats-row">
+    <div class="title-col"><%= _('This_month') %>:</div>
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Calls') %>:</div>
+    <div class="value-col" id="month_calls">
+    <% if show_data && @quick_stats[6] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[6], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('month_from'), date_till: date_for_last_calls('month_till'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[6] %>
+   <%= @quick_stats[6] %>
+   <% end %>
+    &nbsp;</div>
+
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Duration') %>:</div>
+    <div class="value-col" id="month_duration"><%= nice_time(@quick_stats[7]) if show_data %>&nbsp;</div>
+  </div>
+  <% if admin? || manager? %>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Revenue') %>:</div>
+        <div class="value-col" id="month_cost"><%= nice_currency(@quick_stats[9].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Selfcost') %>:</div>
+        <div class="value-col" id="month_selfcost"><%= nice_currency(@quick_stats[8].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Profit') %>:</div>
+        <div class="value-col" id="month_profit"><%= nice_currency(@quick_stats[10].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Margin') %>:</div>
+        <div class="value-col" id="month_margin"><%= "#{@quick_stats[11]} %" if show_data %>&nbsp;</div>
+      </div>
+  <% end %>
+
+  <% if user? %>
+    <div class="quick-stats-row">
+      <div class="label-col"><%= _('Price') %>:</div>
+      <div class="value-col" id="month_price"><%= nice_currency(@quick_stats[9].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+    </div>
+  <% end %>
+
+  <div class="quick-stats-row">
+    <div class="title-col"><%= _('This_day') %>:</div>
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Calls') %>:</div>
+    <div class="value-col" id="day_calls">
+    <% if show_data && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+      <%= link_to @quick_stats[0], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('day_from'), date_till: date_for_last_calls('day_till'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: ''%>
+    <% elsif show_data %>
+      <%= @quick_stats[0] %>
+    <% end %>
+      &nbsp;
+    </div>
+
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Duration') %>:</div>
+    <div class="value-col" id="day_duration"><%= nice_time(@quick_stats[1]) if show_data %>&nbsp;</div>
+  </div>
+  <% if admin? || manager? %>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Revenue') %>:</div>
+        <div class="value-col" id="day_cost"><%= nice_currency(@quick_stats[3].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Selfcost') %>:</div>
+        <div class="value-col" id="day_selfcost"><<%= nice_currency(@quick_stats[2].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Profit') %>:</div>
+        <div class="value-col" id="day_profit"><%= nice_currency(@quick_stats[4].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Margin') %>:</div>
+        <div class="value-col" id="day_margin"><%= "#{@quick_stats[5]} %" if show_data %>&nbsp;</div>
+      </div>
+  <% end %>
+
+  <% if user? %>
+    <div class="quick-stats-row">
+      <div class="label-col"><%= _('Price') %>:</div>
+      <div class="value-col" id="day_price"><%= nice_currency(@quick_stats[3].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+    </div>
+  <% end %>
+  </div>
+<% else %>
+<div id="quick-stats-table-basic">
+    <div class="quick-stats-row">
+    <div class="title-col"><%= _('This_month') %>:</div>
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Calls') %>:</div>
+    <div class="value-col" id="month_calls">
+    <% if show_data && @quick_stats[6] && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+    <%= link_to @quick_stats[6], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('month_from'), date_till: date_for_last_calls('month_till'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: '' %>
+   <% elsif show_data && @quick_stats[6] %>
+   <%= @quick_stats[6] %>
+   <% end %>
+    &nbsp;</div>
+
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Duration') %>:</div>
+    <div class="value-col" id="month_duration"><%= nice_time(@quick_stats[7]) if show_data %>&nbsp;</div>
+  </div>
+  <% if admin? || manager? %>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Revenue') %>:</div>
+        <div class="value-col" id="month_cost"><%= nice_currency(@quick_stats[9].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Selfcost') %>:</div>
+        <div class="value-col" id="month_selfcost"><%= nice_currency(@quick_stats[8].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Profit') %>:</div>
+        <div class="value-col" id="month_profit"><%= nice_currency(@quick_stats[10].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Margin') %>:</div>
+        <div class="value-col" id="month_margin"><%= "#{@quick_stats[11]} %" if show_data %>&nbsp;</div>
+      </div>
+  <% end %>
+
+  <% if user? %>
+    <div class="quick-stats-row">
+      <div class="label-col"><%= _('Price') %>:</div>
+      <div class="value-col" id="month_price"><%= nice_currency(@quick_stats[9].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+    </div>
+  <% end %>
+
+  <div class="quick-stats-row">
+    <div class="title-col"><%= _('This_day') %>:</div>
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Calls') %>:</div>
+    <div class="value-col" id="day_calls">
+    <% if show_data && (!manager? || authorize_manager_permissions({controller: :stats, action: :calls_list, no_redirect_return: 1})) %>
+      <%= link_to @quick_stats[0], controller: :stats, action: :calls_list, search_on: '1', date_from: date_for_last_calls('day_from'), date_till: date_for_last_calls('day_till'), s_user: '', s_user_id: '-2', s_origination_point: 'all', s_call_type: 'all', s_hgc: '0', s_termination_point: '0', s_source: '', s_destination: ''%>
+    <% elsif show_data %>
+      <%= @quick_stats[0] %>
+    <% end %>
+      &nbsp;
+    </div>
+
+  </div>
+  <div class="quick-stats-row">
+    <div class="label-col"><%= _('Duration') %>:</div>
+    <div class="value-col" id="day_duration"><%= nice_time(@quick_stats[1]) if show_data %>&nbsp;</div>
+  </div>
+  <% if admin? || manager? %>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Revenue') %>:</div>
+        <div class="value-col" id="day_cost"><%= nice_currency(@quick_stats[3].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Selfcost') %>:</div>
+        <div class="value-col" id="day_selfcost"><%= nice_currency(@quick_stats[2].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Profit') %>:</div>
+        <div class="value-col" id="day_profit"><%= nice_currency(@quick_stats[4].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+      </div>
+      <div class="quick-stats-row">
+        <div class="label-col"><%= _('Margin') %>:</div>
+        <div class="value-col" id="day_margin"><%= "#{@quick_stats[5]} %" if show_data %>&nbsp;</div>
+      </div>
+  <% end %>
+
+  <% if user? %>
+    <div class="quick-stats-row">
+      <div class="label-col"><%= _('Price') %>:</div>
+      <div class="value-col" id="day_price"><%= nice_currency(@quick_stats[3].to_d, @ex, show_symb: 1) if show_data %>&nbsp;</div>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<script type="text/javascript">
+    $(function() {
+        $('.content-box').data('ResizeBox').getResize();
+    });
+</script>

@@ -1,0 +1,73 @@
+<tr class='tp_setting'>
+  <td colspan="2" height="20"></td>
+</tr>
+<tr <%= tooltip(_('Advanced_TP'), _('Advanced_Options_Notice')) %> class='tp_setting'>
+  <td colspan="2" class="bottom_border">
+    <b><%= _('Advanced_TP') %></b>
+  </td>
+</tr>
+<tr class='tp_setting'>
+  <td colspan="2" height="10"></td>
+</tr>
+<% if params[:action] != 'default_device' %>
+  <tr class='tp_setting'>
+    <td> <%= _('Interpret_NO_ANSWER_as_FAILED') %>:</td>
+    <td>
+      <%= radio_button_tag('device[interpret_noanswer_as_failed]', '0', device.interpret_noanswer_as_failed == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[interpret_noanswer_as_failed]', '1', device.interpret_noanswer_as_failed == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+  <tr class='tp_setting'>
+    <td> <%= _('Interpret_BUSY_as_FAILED') %>:</td>
+    <td>
+      <%= radio_button_tag('device[interpret_busy_as_failed]', '0', device.interpret_busy_as_failed == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[interpret_busy_as_failed]', '1', device.interpret_busy_as_failed == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+<% end %>
+<tr id="periodic-check" class='tp_setting'>
+  <td><%=  _('periodic_check') %>:</td>
+  <td>
+    <%= radio_button_tag('device[periodic_check]', 0, (device.periodic_check == 0)) %> <%= _('_No') %>
+    <%= radio_button_tag('device[periodic_check]', 1, (device.periodic_check == 1)) %> <%= _('_Yes') %>
+  </td>
+</tr>
+<% unless m4_functionality? %>
+  <tr id='sticky_contact' class='tp_setting'>
+      <td><%= _('sticky_contact') %>:</td>
+      <td><%= check_box_tag 'sticky_contact', 1 , sticky_contact.to_i == 1 %></td>
+  </tr>
+  <tr class='tp_setting'>
+    <td><%=  _('Disable_SIP_URI_encoding') %>:</td>
+    <td>
+      <%= radio_button_tag('device[disable_sip_uri_encoding]', '0', device.disable_sip_uri_encoding == 0) %> <%= _('_No') %>
+      <%= radio_button_tag('device[disable_sip_uri_encoding]', '1', device.disable_sip_uri_encoding == 1) %> <%= _('_Yes') %>
+    </td>
+  </tr>
+  <% if params[:action].to_s != 'default_device' %>
+    <tr class='tp_setting'>
+      <td><%=  _('Use_PAI_if_CallerID_is_anonymous') %>:</td>
+      <td>
+        <%= radio_button_tag('device[use_pai_if_cid_anonymous]', '0', device.use_pai_if_cid_anonymous == 0) %> <%= _('_No') %>
+        <%= radio_button_tag('device[use_pai_if_cid_anonymous]', '1', device.use_pai_if_cid_anonymous == 1) %> <%= _('_Yes') %>
+      </td>
+    </tr>
+  <% end %>
+  <tr class='tp_setting'>
+    <td colspan="2">
+      <br/>
+      <div class='link_to'>
+        <%= link_to b_rules + _('Disconnect_Code_Changes'), {action: :disconnect_code_changes, id: device.id} %>
+      </div>
+    </td>
+  </tr>
+<% end %>
+<% if m4_functionality? %>
+  <tr class='tp_setting'>
+    <td><%=  _('TP_Allows_Media_from_any_IP_address') %>:</td>
+    <td>
+      <span <%= tooltip(_('TP_Allows_Media_from_any_IP_address'), _('Force_Proxy_Media'))%>><%= radio_button_tag('device[bypass_media_tp]', '0', device.bypass_media_tp == 0) %> <%= _('_No') %></span>
+      <span <%= tooltip(_('TP_Allows_Media_from_any_IP_address'), _('Bypass_Media_will_be_enabled_if_OP_has_Bypass_Media_enabled'))%>><%= radio_button_tag('device[bypass_media_tp]', '1', device.bypass_media_tp == 1) %> <%= _('_Yes') %></span>
+    </td>
+  </tr>
+<% end %>

@@ -1,0 +1,272 @@
+<fieldset id="dispute_form" style="visibility:hidden;padding-bottom:20px;">
+  <div class="row">
+    <div class="col">
+      <h2><%= _('General') %></h2>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :direction, _('Direction') %>:</div>
+        <div class="input-col">
+          <%= f.radio_button :direction, 0, class: 'dispute_direction' %>
+          <%= f.label :direction, _('Origination'), style:'padding-right:15px;'%>
+
+          <%= f.radio_button :direction, 1, class: 'dispute_direction' %>
+          <%= f.label :direction, _('Termination') %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :user, _('User') %>:
+          <div class="m2-tooltip">
+            <div class="m2-tooltip-content" style="width: 200px;">
+              <span><%= _('Dispute_Users_Tooltip') %></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-col" id="originators_col" style="display:none">
+          <%= render 'shared/m2_live_search_field',
+                object: nice_user(dispute.user),
+                object_id: dispute.user_id,
+                object_name: 'Originator',
+                action_url: {
+                    controller: :users, action: :get_users_map,
+                    options: {
+                        show_users_only: true,
+                        users_to_get: 'originators'
+                    }
+                }
+          %>
+        </div>
+        <div class="input-col" id="terminators_col">
+          <%= render 'shared/m2_live_search_field',
+                object: nice_user(dispute.user),
+                object_id: dispute.user_id,
+                object_name: 'Terminator',
+                action_url: {
+                    controller: :users, action: :get_users_map,
+                    options: {
+                        show_users_only: true,
+                        users_to_get: 'terminators'
+                    }
+                }
+          %>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="column date-col calendar-holder">
+          <div class="label-col"><%= label_tag 'period_start', _('Period_start') %>:</div>
+          <div class="input-col">
+            <div class="calendar-col input-col" style="width:55%;margin:0;">
+              <%= text_field_tag 'period_start_date', formatted_date_as_given(dispute.period_start), class: 'checkin default', id: 'from' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col input-col" style="width:42%;margin-left:3%;">
+              <%= text_field_tag 'period_start_time', formatted_time_as_given(dispute.period_start), class: 'default', id: 'time1' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="column date-col calendar-holder">
+          <div class="label-col"><%= label_tag 'period_end', _('Period_end') %>:</div>
+          <div class="input-col">
+            <div class="calendar-col input-col" style="width:55%;margin:0;">
+              <%= text_field_tag 'period_end_date', formatted_date_as_given(dispute.period_end), class: 'checkout default', id: 'till' %>
+              <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+            </div>
+            <div class="time-col input-col" style="width:42%;margin-left:3%;">
+              <%= text_field_tag 'period_end_time', formatted_time_as_given(dispute.period_end), class: 'default', id: 'time2' %>
+              <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-row" id="template_row" style="display:<%= templates.size > 1 ? '' : 'none'%>;">
+        <div class="label-col"><%= f.label :dispute_template_id, _('Template') %>:</div>
+        <div class="input-col">
+          <%= f.select :dispute_template_id, options_for_select(templates, dispute.dispute_template_id) %>
+        </div>
+      </div>
+      <span class="template_new_rows">
+        <div class="input-row" id="template_new_row" style="display:<%= 'none' if dispute.dispute_template_id.to_i > 0 %>;">
+          <div class="label-col"><%= f.label :new_template, _('Save_as_Template') %>:
+            <div class="m2-tooltip">
+            <div class="m2-tooltip-content" style="width: 200px;">
+              <span><%= _('Dispute_Template_Tooltip') %></span>
+            </div>
+          </div>
+          </div>
+          <div class="input-col checkbox-marg">
+            <%= f.check_box :new_template, id: 'new_template' %>
+          </div>
+        </div>
+        <div class="input-row" id="template_name" style="display:none;">
+          <div class="label-col"><%= f.label :template_name, _('Template_name') %>:</div>
+          <div class="input-col">
+            <%= f.text_field :template_name, id: 'template_name' %>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div class="col">
+      <h2><%= _('Tolerance_Options') %></h2>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :billsec_tolerance, _('Billsec') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :billsec_tolerance, class: 'input', size: 20 %>
+          </div>
+          <div class="label-col">&nbsp;s</div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :cost_tolerance, _('Price') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :cost_tolerance, class: 'input', maxlength: 20 %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2><%= _('Dispute_Options') %></h2>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :cmp_last_src_digits, _('Compare_last_SRC_digits') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :cmp_last_src_digits, class: 'input', maxlength: 2 %>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :cmp_last_dst_digits, _('Compare_last_DST_digits') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :cmp_last_dst_digits, class: 'input', maxlength: 2 %>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :currency_id, _('External_Currency') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.select :currency_id, options_for_select(currencies, dispute.currency_id) %>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :exchange_rate, _('Exchange_rate') %>:</div>
+        <div class="input-col">
+          <div class="input-col">
+            <%= f.text_field :exchange_rate, class: 'input', maxlength: 20 %>
+          </div>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="label-col"><%= f.label :check_only_answered_calls, _('Check_only_ANSWERED_Calls') %>:</div>
+        <div id="div_check_only_answered_calls" class="input-col checkbox-marg">
+          <%= f.check_box :check_only_answered_calls, class: 'input' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+    // Toggles an input field for a dispute template name
+    function toggleTemplateName() {
+      if (this.attr("checked")) {
+        $("#template_name").show();
+      } else {
+        $("#template_name").hide();
+      }
+    }
+
+    // Togles the input field and a checkbox for a dispute template
+    function toggleTemplateForm() {
+      if (this.val() == "") {
+        $(".template_new_rows").show();
+        $("#template_new_row").show();
+      } else {
+        $(".template_new_rows").hide();
+        $("#template_name").hide();
+      }
+      toggleTemplateName.call($("#new_template"));
+    }
+
+    // Retrieves the dispute template and populates the form
+    function applyTemplate(id) {
+      $.get( "<%= Web_Dir %>/cdr_disputes/template_data?template_id=" + id,
+      function( data ) {
+        if (!data) return;
+        $.each(data, function(key, val) {
+          $("#dispute_" + key).val(val);
+          if (key == "currency_id") {
+            $("#dispute_currency_id")[0].jcf.refreshState();
+            $("#dispute_currency_id")[0].dispatchEvent(new Event("change"));
+          }
+          if (key == "check_only_answered_calls") {
+              if (val == 1) {
+                  $("#div_check_only_answered_calls").addClass("input-checked-parent");
+                  $("#div_check_only_answered_calls > div").removeClass("chk-unchecked").addClass("chk-checked");
+                  $("#dispute_check_only_answered_calls").prop('checked', true);
+              } else {
+                  $("#div_check_only_answered_calls").removeClass("input-checked-parent");
+                  $("#div_check_only_answered_calls > div").removeClass("chk-checked").addClass("chk-unchecked");
+                  $("#dispute_check_only_answered_calls").prop('checked', false);
+              }
+          }
+        });
+      });
+    }
+
+    // Handles the user live search adjustments for directions
+    function toggleDirection(fromEvent) {
+      // Reset the users on direction change
+      if (fromEvent) {
+        $("#s_originator, #s_terminator, #s_originator_id, #s_terminator_id").val("");
+      }
+      if (this.val() == 1) {
+        $("#terminators_col").show();
+        $("#originators_col").hide();
+      } else {
+        $("#terminators_col").hide();
+        $("#originators_col").show();
+      }
+    }
+
+    // Handles a dispute direction change
+    $(".dispute_direction").on("change", function() {
+      toggleDirection.call($(this), 1);
+    });
+
+    // Handles a dispute template change
+    var disputeSelect = $("#dispute_dispute_template_id");
+    disputeSelect.on("change", function() {
+      toggleTemplateForm.call($(this));
+      applyTemplate($(this).val());
+    });
+
+    // Handles a new template checkbox change
+    $("#new_template").on("change", function() {
+      toggleTemplateName.call($(this));
+    });
+
+    // Handles a currency change
+    $("#dispute_currency_id").on("change", function() {
+      $.get( "<%= Web_Dir %>/cdr_disputes/compute_exchange_rate?currency_id=" + $(this).val(),
+      function( data ) {
+        $("#dispute_exchange_rate").val(data);
+      });
+    });
+
+    // Initialization of a page
+    toggleDirection.call($(".dispute_direction:checked"));
+    toggleTemplateName.call($("#new_template"));
+    toggleTemplateForm.call(disputeSelect);
+
+    // Let the page load and then show a form
+    $("#dispute_form").css("visibility", "visible");
+  });
+</script>

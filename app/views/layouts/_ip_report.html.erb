@@ -1,0 +1,66 @@
+<% if ip_info.present? %>
+  <div id="ip-info">
+    <table width="100%">
+      <tr>
+        <td colspan="2"><h2><%= show_login == 0 ? _('Your_IP_has_been_registered') : _('Your_IP_has_been_registered_and_reported') %></h2></td>
+      </tr>
+
+      <% if ip_info.ip.present? %>
+        <tr>
+          <td class="right-gray"><%= _('IP') %>:&nbsp;</td>
+          <td><%= ip_info.ip %></td>
+        </tr>
+      <% end %>
+
+      <% if ip_info.hostname.present? %>
+        <tr>
+          <td class="right-gray"><%= _('Hostname') %>:&nbsp;</td>
+          <td><%= ip_info.hostname %></td>
+        </tr>
+      <% end %>
+
+      <% if ip_info.isp.present? %>
+        <tr>
+          <td class="right-gray"><%= _('ISP') %>:&nbsp;</td>
+          <td><%= ip_info.isp %></td>
+        </tr>
+      <% end %>
+      <tr><td colspan="2"><br></td></tr>
+      <% if ip_info.continent.present? %>
+        <tr>
+          <td class="right-gray"><%= _('Continent') %>:&nbsp;</td>
+          <td><%= ip_info.continent %></td>
+        </tr>
+      <% end %>
+
+      <% if ip_info.country.present? %>
+        <tr>
+          <td class="right-gray"><%= _('Country') %>:&nbsp;</td>
+          <% country = ip_info.country.to_s.sub(/Republic Of /, '') %>
+          <td><%= draw_flag(ip_info.direction_code country) %>&nbsp;<%= country %></td>
+        </tr>
+      <% end %>
+
+      <% if ip_info.state.present? %>
+        <tr>
+          <td class="right-gray"><%= _('State_Region') %>:&nbsp;</td>
+          <td><%= ip_info.state %></td>
+        </tr>
+      <% end %>
+
+      <% if ip_info.city.present? %>
+        <tr>
+          <td class="right-gray"><%= _('City') %>:&nbsp;</td>
+          <td><%= ip_info.city %></td>
+        </tr>
+      <% end %>
+
+      <% if ip_info.postal_code.present? %>
+        <tr>
+          <td class="right-gray"><%= _('Postal_Code') %>:&nbsp;</td>
+          <td><%= ip_info.postal_code %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>

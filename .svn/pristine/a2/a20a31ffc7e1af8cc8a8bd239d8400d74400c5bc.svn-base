@@ -1,0 +1,223 @@
+/* setting container(titled-box) */
+.heading2:hover .toggle-tab{
+    color: #fff;
+}
+.titled-box .heading2:hover {
+    background: none repeat scroll 0 0 #303233;
+    color: #EDF0F2;
+    cursor: pointer;
+
+}
+/* exapand-collapse */
+.toggle-tab{
+    float: right;
+    font-size: 12px;
+    color: #9ca2a6;
+}
+
+/* larger column */
+.col.extended{
+    padding-right: 35%;
+    width: 100%;
+}
+/* default column */
+.col{
+    overflow: auto;
+
+}
+.col h2{
+    background-color: #E6F3FC;
+}
+.col .input-col{
+    width: 43%!important;
+}
+.col .label-col{
+    width: 55%!important;
+}
+.col.extended .input-col{
+    width: 36%!important;
+}
+.col.extended .label-col{
+    width: 62%!important;
+}
+
+/* input-row */
+.input-row{
+    max-width: none!important;
+    white-space: nowrap;
+
+}
+
+ /* inputs */
+.details-form input[type="text"],.details-form input[type="password"]{
+    width: 55%;
+}
+
+.col.extended input[type="text"],
+.col.extended input[type="password"]{
+    width: 40%;
+
+}
+.col.extended input[type="text"].email,
+.col.extended input[type="password"].email{
+    width: 100%;
+}
+.col.extended .api-key input[type="text"]{
+    width: 65%;
+}
+/* number input */
+.number, .cd-number{
+    width: 60px!important;
+    display: inline-block !important;
+}
+.col.col-bigger{
+    width: 55.5%;
+}
+.col.col-smaller{
+    width: 44.5%;
+}
+.select-area{
+    float:left;
+    width:114px!important;
+}
+/* display radio buttons in one line */
+.radio-row{
+    display: inline-block;
+    margin-right: 20px!important;
+}
+/* extend select-area to fit larger text in one line */
+.select-larger{
+    width: 100%!important;
+}
+
+/* tax */
+.tax-active{
+    width: 15%!important;
+
+}
+.tax-name{
+    width: 40%!important;
+}
+.tax-value{
+    width: 60px!important;
+}
+.tax-active, .tax-value, .tax-name{
+    float: left;
+    margin-right: 3%!important;
+}
+/* calls dashboard label*/
+.cd_label{
+    float: right!important;
+}
+.select-area.select-hour-disable, .select-area.select-hour-longer{
+    float: left;
+    width: 80px!important;
+}
+
+/* form */
+.details-form{
+    padding: 15px 1px;
+}
+
+.col.col-smaller .file-area .jcf-upload-button{
+    width: 25.5%;
+}
+
+.col.col-smaller .file-area .jcf-fake-input{
+    width: 71.5%;
+}
+@media screen and (min-width:1261px) and (max-width:1600px){
+
+    .input-col > :first-child{
+       margin-left: 4%!important;
+    }
+    .col.col-smaller .input-col > :first-child{
+        margin-left: 0%!important;
+    }
+    .col.col-bigger .input-col > :first-child{
+        margin-left: 0%!important;
+    }
+
+
+
+
+
+
+}
+@media only screen and (max-width:1290px){
+    .col.col-bigger, .col.col-smaller{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:1260px){
+
+    .label-col{
+        width: 58%!important;
+    }
+    .input-col{
+        width: 37%!important;
+    }
+
+    .col.extended{
+        padding-right: 0%;
+    }
+
+
+}
+
+@media only screen and (max-width: 767px){
+
+
+    .cd_label{
+        float:none!important;
+    }
+    .details-form input[type="text"].half-smaller, .cd-number, .select-hour-disable .select-area{
+        width: 35%!important;
+    }
+
+    .select-area,.info, .select-hour-longer{
+        width: 100%!important;
+    }
+
+    .select-hour-disable{
+        width: 47%!important;
+    }
+
+
+    .col .label-col, .col .input-col, .col.extended, .col.extended .label-col, .col.extended .input-col, .col.col-bigger,
+    .col.col-smaller{
+        width: 100%!important;
+    }
+
+
+    .details-form input[type="text"], .details-form input[type="password"],
+    .col.extended input[type="text"],
+    .col.extended input[type="password"],
+    .col.extended .api-key input[type="text"]{
+        width: 100%;
+    }
+
+    /* space between overflown text/elements and titled-box container */
+    .row{
+        padding-right: 2%;
+    }
+
+    /* enable scroll to see overflown elements */
+    form{
+        overflow-x: scroll;
+        -webkit-overflow-scroll: touch;
+    }
+
+    /* centers radio buttons */
+    .radio-container {
+        text-align: center;
+        width: 80%;
+        margin: 0 auto!important;
+    }
+
+    .number{
+        width:100%!important;
+    }
+
+}
+

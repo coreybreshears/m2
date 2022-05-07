@@ -1,0 +1,101 @@
+<br/>
+<%= form_tag(:action => 'reconfigure_globals', :type => "devices") do %>
+    <%= submit_tag _('change_all_phone_extlines'), :disable_with => _('Processing..') %>
+<% end %>
+
+<!--
+<%= form_tag(:action => 'reconfigure_globals', :type => "outgoing_extensions") do %>
+    <%= submit_tag _('change_extlines_for_calling_out'), :disable_with => _('Processing..') %>
+<% end %>
+-->
+
+<br/>
+<br/>
+
+<%= link_to b_cog + _('Permissions'), :controller => "functions", :action => "permissions" %><br />
+
+<br/>
+<%= form_tag(:controller => "functions", :action => "get_not_translated") do %>
+    <select name="language">
+      <% @translations.each do |item| %>
+          <option value="<%= item.short_name %>" <%= "selected" if item.short_name == "en" %>> <%= item.name %> </option>
+      <% end %>
+    </select>
+    <br/>
+    <%= submit_tag _('Translations'), :disable_with => _('Processing..') %>
+<% end %>
+
+<!--
+<br /><br />
+<%= form_tag(:action => 'exchange_user_to_reseller_calls_table_values') do %>
+    <%= submit_tag _('Exchange_user_to_reseller_calls_table_values'), :onclick => "return confirm('#{_('Are_you_sure')}');", :confirm => _("Are you sure?"), :disable_with => _('Processing..') %>
+<% end %>
+-->
+<br/>
+<br/>
+<%= form_tag(:controller => "callc", :action => "global_settings_save") do %>
+    <b><%= _('Mysql_On_Remote_Server') %>
+      :</b><%= check_box_tag 'load_csv_from_remote_mysql', "1", Confline.get_value("Load_CSV_From_Remote_Mysql").to_i == 1 %>
+    <br/>
+    <%= submit_tag(_('Update'), :disable_with => _('Processing..')) %>
+<% end %>
+<br/>
+<br/>
+<%= form_tag(:controller => :callc, :action => :global_change_timeout) do %>
+    <table>
+      <tr>
+        <td>TIMEOUT(response)</td>
+        <td> <%= text_field_tag("timeout_response", @timeout_response.to_i) %></td>
+      </tr>
+      <tr>
+        <td>TIMEOUT(digit)</td>
+        <td> <%= text_field_tag("timeout_digit", @timeout_digit.to_i) %></td>
+      </tr>
+    </table>
+    <%= submit_tag(_('Update'), :disable_with => _('Processing..')) %>
+<% end %>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<%= form_tag(:controller => :callc, :action => :global_change_confline) do %>
+    <b><%= _('HeartbeatIP') %>
+      :</b><%= text_field_tag("heartbeat_ip", Confline.get_value('Heartbeat_IP').to_s, :size => "30", :maxlength => "50") %>
+    <br/>
+    <%= submit_tag(_('Update'), :disable_with => _('Processing..')) %>
+<% end %>
+
+
+<br/>
+<br/>
+<%= form_tag(:action => :global_set_tz) do %>
+    <%= submit_tag _('Change_Time_zone_to_default_system'), :onclick => "return confirm('#{_('Are_you_sure')}');", :confirm => _("Are you sure?"), :disable_with => _('Processing..') %>
+<% end %>
+
+<br/>
+<% form_tag(:action => :set_tz_to_users) do %>
+    <b><%= _('add_time_to_tz') %>:</b><%= text_field_tag("add_time", 0, :size => "30", :maxlength => "50") %>
+    <br/>
+    <%= submit_tag _('Change_Time_zone_to_all_users'), :onclick => "return confirm('#{_('Are_you_sure')}');", :confirm => _("Are you sure?"), :disable_with => _('Processing..') %>
+<% end %>
+
+<%= form_tag(action: :disable_replication_check) do %>
+  <b><%= _('Disable_Replication_check') %>:</b>
+  <%= check_box_tag :disable_replication_check, 1, Confline.get_value('disable_replication_check').to_i == 1 %>
+  <span style="position:relative;top:2px">
+    <%= b_info %>
+  </span>
+  <%= _('Affects_only_new_logins') %>
+  <br>
+  <%= submit_tag(_('Update'), data: {disable_with: _('Processing')}) %>
+<% end %>
+
+<br/>
+<%= link_to b_edit + _('Default_currency'), :controller => :currencies, :action => 'change_default' %>
+
+<%= form_tag(action: :m4_functionality) do %>
+  <b><%= _('M4_Functionality') %>:</b>
+  <%= check_box_tag :m4_functionality, 1, Confline.get_value('M4_Functionality').to_i == 1 %>
+  <%= submit_tag(_('Update'), data: {disable_with: _('Processing')}) %>
+<% end %>

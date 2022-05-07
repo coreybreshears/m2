@@ -1,0 +1,68 @@
+<% @create_button_name = 'Add_New_Group' %>
+<% content_for :create_form do %>
+    <% visibility = flash[:redirected_from] == 'manager_list' || show_create %>
+    <%= form_tag({action: :create}, {id: 'create-form', class: 'calls-form', visible: visibility}) do %>
+        <fieldset>
+          <div class="column cause-col">
+            <%= label_tag 'name', _('Name') %>
+            <div class="row">
+              <%= text_field :new_manager_group, :name,
+                             type: :text, size: 15,
+                             value: params[:new_manager_group].try(:[], :name).to_s
+              %>
+            </div>
+          </div>
+          <div class="column cause-col">
+            <%= label_tag 'description', _('Description') %>
+            <div class="row">
+              <%= text_field :new_manager_group, :comment,
+                             type: :text, size: 60,
+                             value: params[:new_manager_group].try(:[], :comment).to_s
+              %>
+            </div>
+          </div>
+          <div class="column buttons-col">
+            <div class="row payment-buttons-row">
+              <%= submit_tag _('Cancel'), type: :reset, onClick: "$(\"#create-form\").toggle();" %>
+              <%= submit_button_tag _('Create') %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+<% end %>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Manager_Groups_list') %></h2>
+    <div class="table-holder">
+      <% if @manager_groups.present? %>
+          <table class="table-with-edit-and-delete">
+            <tr>
+              <th class="manager-group-name"><%= _('Name') %></th>
+              <th class="manager-group-description"><%= _('Description') %></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @manager_groups.each do |manager_group| %>
+                <tr>
+                  <td id="name_<%= manager_group.id %>" class="manager-group-name_list">
+                    <%= manager_group.try(:name).to_s %>
+                  </td>
+                  <td id="description_<%= manager_group.id %>" class="manager-group-description_list">
+                    <%= manager_group.try(:comment).to_s %>
+                  </td>
+                  <td id="edit_<%= manager_group.id %>">
+                    <%= link_to 'EDIT/PERMISSIONS', {action: :edit, id: manager_group.id}, id: 'edit_link_' + manager_group.id.to_s %>
+                  </td>
+                  <td id="destroy_<%= manager_group.id %>">
+                    <%= button_to 'DELETE', {action: :destroy, id: manager_group.id}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: 'delete_link_' + manager_group.id.to_s %>
+                  </td>
+                </tr>
+            <% end %>
+          </table>
+      <% else %>
+          <%= _('No_Manager_Groups') %>
+      <% end %>
+    </div>
+  </div>
+</div>

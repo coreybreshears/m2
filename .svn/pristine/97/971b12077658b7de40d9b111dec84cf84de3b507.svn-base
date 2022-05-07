@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>mor_12_generate_hash</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">mor_12_generate_hash</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/generate_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Generate hash</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=link</td>
+	<td>user_id=2&amp;price=20&amp;comment=labas vakaras&amp;issue_date=1330594129&amp;number=5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Hash cannot be generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* API must have Secret Key</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=api_tests/enable_api</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/delete_api_secret_key</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/generate_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=link</td>
+	<td>/billing/api/user_calls_get?u=admin&amp;s_user=2&amp;period_start=1204883298&amp;period_end=1331113561&amp;s_call_type=all&amp;s_origination_point=4</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Hash cannot be generated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* API must have Secret Key</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=api_key</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=generate_hash</td>
+	<td>Generated hash</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=secret_key</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=system_hash</td>
+	<td>da39a3ee5e6b4b0d3255bfef95601890afd80709</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/api/set_secret_key</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/generate_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=link</td>
+	<td>user_id=2&amp;price=20&amp;comment=labas vakaras&amp;issue_date=1330594129&amp;number=5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=link</td>
+	<td>id=1&amp;quantity=2&amp;email=email@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Failed to parse uri id=1&amp;quantity=2&amp;email=email@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=link</td>
+	<td>http://127.0.0.1/billing/api/user_calls_get?u=admin&amp;s_user=2&amp;period_start=1204883298&amp;period_end=1331113561&amp;s_call_type=all&amp;s_origination_point=4</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_period_start</td>
+	<td>1204883298</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_period_end</td>
+	<td>1331113561</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_s_user</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_s_call_type</td>
+	<td>all</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_s_origination_point</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=secret_key</td>
+	<td>secret</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=secret_key</td>
+	<td>secret</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=system_hash</td>
+	<td>53465f83e25cdf8dc5eead4a43497d0a0d613e15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_period_end</td>
+	<td>period_end</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_s_user</td>
+	<td>s_user</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_s_call_type</td>
+	<td>s_call_type</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_s_origination_point</td>
+	<td>s_origination_point</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=api_key</td>
+	<td>API key</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=generate_hash</td>
+	<td>Generated hash</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Failed to parse uri id=1&amp;quantity=2&amp;email=email@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=link</td>
+	<td>http://127.0.0.1/billing/api/user_calls_get?u=admin&amp;s_user=2&amp;period_start=1204883298&amp;period_end=1331113561&amp;s_origination_point=4</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_period_start</td>
+	<td>period_start</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_period_end</td>
+	<td>period_end</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_s_user</td>
+	<td>s_user</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_s_origination_point</td>
+	<td>s_origination_point</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=api_key</td>
+	<td>API key</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=generate_hash</td>
+	<td>Generated hash</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_period_start</td>
+	<td>1204883298</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_period_end</td>
+	<td>1331113561</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_s_user</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=param_value_s_origination_point</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=secret_key</td>
+	<td>secret</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>accountant</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>accountant1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/generate_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/generate_hash</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

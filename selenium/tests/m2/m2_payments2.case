@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>m2_payments2</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">m2_payments2</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Ar rodoma lentelė Latest Payments, kai nėra paymentų-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/personal_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Payments in selected period found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Payments List</td>
+</tr>
+<tr>
+	<td>assertNotTable</td>
+	<td>css=table.0.0</td>
+	<td>DATE-TIME</td>
+</tr>
+<tr>
+	<td>assertNotTable</td>
+	<td>css=table.0.1</td>
+	<td>Amount</td>
+</tr>
+<tr>
+	<td>assertNotTable</td>
+	<td>css=table.0.2</td>
+	<td>Amount with Tax</td>
+</tr>
+<tr>
+	<td>assertNotTable</td>
+	<td>css=table.0.3</td>
+	<td>Currency</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=user_currency_id</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2';this.browserbot.getCurrentWindow().document.getElementById('submit').enable()}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>199</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=m2_payment_currency_id</td>
+	<td>label=EUR</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=m2_payment_exchange_rate</td>
+	<td>0.73853104</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_amount</td>
+	<td>199.0000 EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_amount_with_tax</td>
+	<td>199.0000 EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_amount_with_tax_def_cur</td>
+	<td>269.4538 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_amount_def_cur</td>
+	<td>269.4538 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_new_balance</td>
+	<td>269.4538 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_exchange_rate</td>
+	<td>0.73853104</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_system_1</td>
+	<td>269.45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_system_1</td>
+	<td>269.45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_1</td>
+	<td>199.00 EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_1</td>
+	<td>199.00 EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_1</td>
+	<td>0.7385 USDEUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>269.45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>269.45</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance</td>
+	<td>$ 269.45</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=balance</td>
+	<td>199.00 €</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=USD</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/personal_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_1</td>
+	<td>199.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_1</td>
+	<td>199.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=currency_1</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>269.45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>269.45</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_currency</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--useriui be email diseiblintas Confirmation email siuntimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_value</td>
+	<td>199.0000 EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=status</td>
+	<td>Payment successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_value</td>
+	<td>0.0000 EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=USD</td>
+</tr>
+<tr>
+	<td>waitForSelectedLabel</td>
+	<td>id=user_currency_id</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2';this.browserbot.getCurrentWindow().document.getElementById('submit').enable()}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=confirm_payment_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_2/set_main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2';this.browserbot.getCurrentWindow().document.getElementById('submit').enable()}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Vis dar nėra mygtuko, nes emailai išjungti-->
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=confirm_payment_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_2/delete_main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=universal_bundles/email_settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2';this.browserbot.getCurrentWindow().document.getElementById('submit').enable()}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Emailai įjungti, bet mygtukas disabled, nes useris neturi emailo-->
+<tr>
+	<td>assertNotEditable</td>
+	<td>id=confirm_payment_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/user/user_2/set_main_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2';this.browserbot.getCurrentWindow().document.getElementById('submit').enable()}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>555</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Emailai įjungti, useris turi emailą - mygtukas editable-->
+<tr>
+	<td>assertEditable</td>
+	<td>id=confirm_payment_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/emails/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=emails_payment_confirmation</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2';this.browserbot.getCurrentWindow().document.getElementById('submit').enable()}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<!--Kada default currency kitoks-->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/change_default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Cross&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Currencies rates updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=cur_name_1</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=icon_cross_curr_active_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=icon_chech_curr_upd_disable_2</td>
+	<td></td>
+</tr>
+<!--kad būtų stabilus exchange rate teste-->
+<tr>
+	<td>open</td>
+	<td>/billing/currencies/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=exchange_rate</td>
+	<td>1.3592</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;image&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Currency details updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_value</td>
+	<td>50.0000 EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2';this.browserbot.getCurrentWindow().document.getElementById('submit').enable()}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=m2_payment_currency_id</td>
+	<td>label=USD</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_payment_exchange_rate</td>
+	<td>1.3592</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_balance</td>
+	<td>50.0000 EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_exchange_rate</td>
+	<td>1.3592</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_amount_with_tax_def_cur</td>
+	<td>73.5727 EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_amount_def_cur</td>
+	<td>73.5727 EUR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_new_balance</td>
+	<td>123.5727 EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_3</td>
+	<td>100.00 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_3</td>
+	<td>100.00 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Amount (EUR)</td>
+	<td>Amount (EUR)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Amount with TAX (EUR)</td>
+	<td>Amount with TAX (EUR)</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_value</td>
+	<td>123.5727 EUR</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Ar rodoma lentelė Latest Payments-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/personal_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=div.table-holder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Payments List</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.0.0</td>
+	<td>DATE-TIME</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.0.3</td>
+	<td>Amount</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.0.4</td>
+	<td>Amount with Tax</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.0.5</td>
+	<td>Currency</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>123.57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_before_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_after_2</td>
+	<td>50.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_before_3</td>
+	<td>50.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_balance_after_3</td>
+	<td>123.57</td>
+</tr>
+</tbody></table>
+</body>
+</html>

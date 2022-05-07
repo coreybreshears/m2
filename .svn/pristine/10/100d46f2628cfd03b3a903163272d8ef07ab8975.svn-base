@@ -1,0 +1,1 @@
+$("#disconnect_code_<%= @code.code %>").html("<%= escape_javascript(render 'disconnect_codes_list_row', code: @code, dc_group_id: @dc_group_id) %>");

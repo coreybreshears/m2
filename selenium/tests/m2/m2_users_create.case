@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--Users balance min/max-->
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Balance range:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[2]</td>
+	<td>exact:MIN:&nbsp;&nbsp;MAX:&nbsp;&nbsp;USD</td>
+</tr>
+<!--min/max input validation-->
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>qwerrtyuiop</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal Balance must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>qwerrtyuiop</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>asdfghjkl</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal Balance must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Maximal Balance must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>asdfghjkl</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>0</td>
+</tr>
+<!--stripinimas-->
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>&nbsp;&nbsp;&nbsp;45.23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>&nbsp;&nbsp;&nbsp;89.98&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>45.2300</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>89.9800</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>!@#$%^*()?</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>!@#$%^*()?</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal Balance must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Maximal Balance must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>-12.6589</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>12.6598</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>-12.6589</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>12.6598</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>teuser1A</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>-10.123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>-15.789</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal balance must be grater than Maximal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>User was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Minimal balance must be grater than Maximal</td>
+	<td></td>
+</tr>
+<!--other separators in input-->
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10,123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10,456</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10.1230</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>10.4560</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10;123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10;456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10.1230</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>10.4560</td>
+</tr>
+<!--Default separators-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>,</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10.123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10.456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10,1230</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>10,4560</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10,123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10,456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/11</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10,1230</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>10,4560</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10;123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10;456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10,1230</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>10,4560</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>;</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser8</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10.123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10.456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/13</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10;1230</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>10;4560</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10,123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>10,456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/14</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10;1230</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>10;4560</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_min</td>
+	<td>10;00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=balance_max</td>
+	<td>20;00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/edit/15</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>10;0000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>20;0000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=global_number_decimal</td>
+	<td>.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<!--Currencies-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/update_currencies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details/0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user_username</td>
+	<td>testuser101</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password_password</td>
+	<td>testuser1Aw3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[2]</td>
+	<td>exact:MIN:&nbsp;&nbsp;MAX:&nbsp;&nbsp;EUR</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_currency_id</td>
+	<td>label=ALL</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>User successfully created</td>
+</tr>
+<!--simbolių po kablelio testavimas-->
+<tr>
+	<td>open</td>
+	<td>/billing/functions/settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nice_number_digits</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_min</td>
+	<td>0.000000000</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=balance_max</td>
+	<td>0.000000000</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>quality</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">quality</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/servers/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=NO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Server enabled</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/sql/m2_good_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/calls/call_tracing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=permissions_REPORTS_Calls_List_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_USERS_Connection_Points_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>LCR Weight Percent By Dial Peer Quality</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>label=Quality</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=qr-warning</td>
+	<td>Please Create Quality Routing Rules</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;Exclamation&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Connection Point was not updated<br /> * Routing Rules need to be created in order to use Routing by Quality Algorithm</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Quality Routing▶</td>
+	<td>Quality Routing▶</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Stats</td>
+	<td>Stats</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=routing</td>
+	<td>Routing</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Quality Routing</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td>Add new</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=button</td>
+	<td>Quality Routing Statistics</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Dial Peers or Quality Routing Rules were not found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>No Quality Routing Rules found</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Dial Peers or Quality Routing Rules were not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=quality routing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Quality Routing Quality Routing Statistics Add new</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Quality Routing New</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>New Quality Routing Rule</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col &gt; h2</td>
+	<td>General</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#qr-parameters &gt; h2</td>
+	<td>Quality Index Parameters</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Name</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[2]/div/label</td>
+	<td>Quality Index Formula</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#qr-parameters &gt; div.input-row &gt; div.label-col &gt; label</td>
+	<td>ASR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[2]/div/label</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[3]/div/label</td>
+	<td>Total Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[4]/div/label</td>
+	<td>Total Answered</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[5]/div/label</td>
+	<td>Total Failed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[6]/div/label</td>
+	<td>Total Billsec</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=span.qr-suffix</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[2]/div[2]/span</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[3]/div[2]/span</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[4]/div[2]/span</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[5]/div[2]/span</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='qr-parameters']/div[6]/div[2]/span</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=quality_routing_asr_calls</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=quality_routing_acd_calls</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=quality_routing_total_calls</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=quality_routing_total_answered_calls</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=quality_routing_total_failed_calls</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=quality_routing_total_billsec_calls</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#qr-parameters &gt; div.qr-info &gt; p</td>
+	<td>exact:Note: Quality Index Parameter value represents for how many last Calls each Parameter is calculated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/h2[2]</td>
+	<td>Information on Formula's Parameters</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.qr-info &gt; p</td>
+	<td>The below listed Parameters can be placed in a Quality Index Formula.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=b</td>
+	<td>ASR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[3]/b</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[4]/b</td>
+	<td>TOTAL_CALLS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[5]/b</td>
+	<td>TOTAL_ANSWERED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[6]/b</td>
+	<td>TOTAL_FAILED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[7]/b</td>
+	<td>TOTAL_BILLSEC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[8]/b</td>
+	<td>PRICE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[9]/b</td>
+	<td>WEIGHT</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[10]/b</td>
+	<td>PERCENT</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[2]</td>
+	<td>ASR - Answer Seizure Ratio (%)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[3]</td>
+	<td>ACD - Average Call Duration (seconds)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[4]</td>
+	<td>TOTAL_CALLS - Total Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[5]</td>
+	<td>TOTAL_ANSWERED - Total Answered Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[6]</td>
+	<td>TOTAL_FAILED - Total Failed Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[7]</td>
+	<td>TOTAL_BILLSEC - Total Billsec (seconds)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[8]</td>
+	<td>PRICE - Terminator Rate</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[9]</td>
+	<td>WEIGHT - Terminator's Weight in Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_quality_routing']/fieldset/div/div/div[3]/p[10]</td>
+	<td>PERCENT - Terminator's Percent in Dial Peer (%)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=cancel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_name</td>
+	<td>first</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=formula</td>
+	<td>(aSr + (((AcD - total_CALLS) * bad (TOTAL_answered / total_failed)) + ((TOTAL_BILLSEC - pRicE) * (weight / PerCENT))))</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_asr_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_acd_calls</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_calls</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_answered_calls</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_failed_calls</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_billsec_calls</td>
+	<td>60</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Quality Routing Rule was not created<br /> * Quality Index Formula is not correct</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_asr_calls</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_acd_calls</td>
+	<td>300</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_calls</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_answered_calls</td>
+	<td>600</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_failed_calls</td>
+	<td>700</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_billsec_calls</td>
+	<td>800</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Quality Routing Rule was not created<br /> * Quality Routing Rule name must be provided<br /> * Quality Index Parameters must fit in a range from 1 to 200<br /> * Quality Index Formula is not correct</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_name</td>
+	<td>first</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=formula</td>
+	<td>(aSr + (((AcD - total_CALLS) * (TOTAL_answered / total_failed)) + ((TOTAL_BILLSEC - pRicE) * (weight / PerCENT))))</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Quality Routing Rule was not created<br /> * Quality Index Parameters must fit in a range from 1 to 200</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_asr_calls</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_acd_calls</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_calls</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_answered_calls</td>
+	<td>133</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_failed_calls</td>
+	<td>166</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_billsec_calls</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Quality Routing Rule created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.qr-name</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.qr-formula</td>
+	<td>Quality Index Formula</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.qr-usage</td>
+	<td>Used</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_1</td>
+	<td>first</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=formula1</td>
+	<td>(ASR + (((ACD - TOTAL_CALLS) * (TOTAL_ANSWERED / TOTAL_FAILED)) + ((TOTAL_BILLSEC - PRICE) * (WEIGHT / PERCENT))))</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=EDIT</td>
+	<td>EDIT</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=delete_link_1</td>
+	<td>DELETE</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_name</td>
+	<td>&nbsp;&nbsp;&nbsp;first</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=formula</td>
+	<td>bad</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_asr_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_acd_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_answered_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_failed_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_billsec_calls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Quality Routing Rule was not created<br /> * Quality Routing Rule name must be unique<br /> * Quality Index Parameters must fit in a range from 1 to 200<br /> * Quality Index Formula is not correct</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_name</td>
+	<td>second</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=formula</td>
+	<td>asr</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_asr_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_acd_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_answered_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_failed_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quality_routing_total_billsec_calls</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Quality Routing Rule created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>second</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=formula2</td>
+	<td>ASR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage2</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#edit_2 &gt; a</td>
+	<td>EDIT</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Dial Peers or Quality Routing Rules were not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/dial_peers/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dial_peer_name</td>
+	<td>Test DP</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Dial Peer successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Routing Quality Routing Stats Refine Results</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label</td>
+	<td>Dial Peer</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='search-form']/fieldset/div[2]/div/label</td>
+	<td>Quality Routing Rule</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#dst-col &gt; div.row &gt; label</td>
+	<td>Destination</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#formula-col &gt; div.row &gt; label</td>
+	<td>Quality Index Formula</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.select-opener</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Test DP</td>
+	<td>Test DP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//form[@id='search-form']/fieldset/div[2]/div/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=first</td>
+	<td>first</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=second</td>
+	<td>second</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=dst</td>
+	<td>37066666666</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=qr-stats-formula</td>
+	<td>(ASR + (((ACD - TOTAL_CALLS) * (TOTAL_ANSWERED / TOTAL_FAILED)) + ((TOTAL_BILLSEC - PRICE) * (WEIGHT / PERCENT))))</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2</td>
+	<td>Quality Routing Statistics</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#qr_stats &gt; p</td>
+	<td>Please Select Dial Peer, Quality Routing Rule and click on Refine</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.jqx-grid-cell.jqx-grid-empty-cell &gt; span</td>
+	<td>No data found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.jqx-grid-column-header.jqx-widget-header &gt; div &gt; div</td>
+	<td>TERMINATOR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[2]/div/div</td>
+	<td>ASR %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[3]/div/div</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[4]/div/div</td>
+	<td>TOTAL CALLS</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[5]/div/div/span</td>
+	<td>TOTAL ANSWERED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[6]/div/div/span</td>
+	<td>TOTAL FAILED</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[7]/div/div/span</td>
+	<td>TOTAL BILLSEC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[8]</td>
+	<td>WEIGHT</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[9]/div/div/span</td>
+	<td>PERCENT %</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[10]/div/div</td>
+	<td>PRICE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='columntableqr_stats']/div[11]/div/div</td>
+	<td>QUALITY INDEX</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#index-params &gt; h2</td>
+	<td>Quality Index Parameters</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=th.qr-parameter</td>
+	<td>Parameter</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='index-params']/table/tbody/tr/th[2]</td>
+	<td>ASR</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='index-params']/table/tbody/tr/th[3]</td>
+	<td>ACD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='index-params']/table/tbody/tr/th[4]</td>
+	<td>Total Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='index-params']/table/tbody/tr/th[5]</td>
+	<td>Total Answered</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='index-params']/table/tbody/tr/th[6]</td>
+	<td>Total Failed</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='index-params']/table/tbody/tr/th[7]</td>
+	<td>Total Billsec</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>Calls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=asr_1</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=acd_1</td>
+	<td>66</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_calls_1</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_answered_1</td>
+	<td>133</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_failed_1</td>
+	<td>166</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_billsec_1</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#index-params &gt; p</td>
+	<td>Note: Quality Index Parameter value represents for how many last Calls each Parameter is calculated</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=clear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#qr_stats &gt; p</td>
+	<td>Please Select Dial Peer, Quality Routing Rule and click on Refine</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=qr_id</td>
+	<td>label=second</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=qr-stats-formula</td>
+	<td>ASR</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_btn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.jqx-grid-cell.jqx-grid-empty-cell &gt; span</td>
+	<td>No data found</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=asr_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=acd_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_calls_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_answered_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_failed_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_billsec_2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>label=Quality</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=device_quality_routing_id</td>
+	<td>first second</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_quality_routing_id</td>
+	<td>label=second</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=device_quality_routing_id</td>
+	<td>second</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>label=Quality</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_op_routing_algorithm</td>
+	<td>label=Quality</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage1</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage2</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=notice</td>
+	<td>Quality Routing Rule was not deleted<br /> * It is used by some Originators</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Quality Routing Rule was not deleted<br /> * It is used by some Originators</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/devices/device_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=device_quality_routing_id</td>
+	<td>label=first</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Connection Point's settings updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage1</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=usage2</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Quality Routing Rule deleted</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=delete_link_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Quality Routing Rule was not deleted<br /> * It is used by some Originators</td>
+</tr>
+<!--Manager-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<!--simple useris-->
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/quality_routings/stats</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Access Denied</td>
+</tr>
+</tbody></table>
+</body>
+</html>

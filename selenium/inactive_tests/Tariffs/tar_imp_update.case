@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>tar_imp_update_old_method</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">tar_imp_update_old_method</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SUCCESS: Successfully logged in</td>
+	<td></td>
+</tr>
+<!--WITH DESTINATIONS-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/1?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import3.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File uploaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Update Destination Names from CSV: Yes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Columns assigned</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania Tirane</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ALBANIA MOBILE VODAFONE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.1670</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.2500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Confirm columns']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Analysis completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 5&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating destinations</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SUCCESS: Created destinations: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination names updated: 7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_to_update</td>
+	<td>Destination names to update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_update</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_update_step</td>
+	<td>Step 5.2(Press here to get the list)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr[2]/td</td>
+	<td>Destination names updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/dst_to_update_from_csv?csv2=1&amp;tariff_id=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[2]</td>
+	<td>Afghanistan mobile-Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[3]</td>
+	<td>Afghanistan Mobile Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row2 &gt; td</td>
+	<td>35568</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]</td>
+	<td>Albania mobile-AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[3]</td>
+	<td>ALBANIA MOBILE AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td</td>
+	<td>35567</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[2]</td>
+	<td>Albania mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[3]</td>
+	<td>Albania Mobile Eagle</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 6&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Updating rates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr[2]/td</td>
+	<td>Destination names updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr[3]/td</td>
+	<td>Rates updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_rates_updated</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_to_update</td>
+	<td>Destination names to update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_update</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 12</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_503</td>
+	<td>Afghanistan Mobile Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_503</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Albania Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>35538</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>Albania Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_505</td>
+	<td>3556</td>
+</tr>
+<!--į kitą tarifą importuojami reitai su kitokiais vardais ir žiūrima, ar updeitinami jie -->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import3_different_names.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File uploaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Update Destination Names from CSV: Yes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Columns assigned</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_3</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_4</td>
+	<td>ALBANIA</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_7</td>
+	<td>Albania Proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Confirm columns']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Analysis completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_update</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/dst_to_update_from_csv?csv2=1&amp;tariff_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[2]</td>
+	<td>Afghanistan Mobile Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]</td>
+	<td>Albania Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[2]</td>
+	<td>ALBANIA MOBILE AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[5]/td[2]</td>
+	<td>Albania Mobile Eagle</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[6]/td[2]</td>
+	<td>ALBANIA MOBILE VODAFONE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[3]</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[3]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[3]</td>
+	<td>ALBANIA</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[5]/td[3]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[6]/td[3]</td>
+	<td>ALBANIA</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 5&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating destinations</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>SUCCESS: Created destinations: 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Destination names updated: 6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_update</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=id_updated_destinations</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/dst_to_update_from_csv?csv2=2&amp;tariff_id=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[2]</td>
+	<td>Afghanistan Mobile Roshan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]</td>
+	<td>Albania Mobile</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[2]</td>
+	<td>ALBANIA MOBILE AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[5]/td[2]</td>
+	<td>Albania Mobile Eagle</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[6]/td[2]</td>
+	<td>ALBANIA MOBILE VODAFONE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[3]</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[3]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td[3]</td>
+	<td>ALBANIA</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[5]/td[3]</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[6]/td[3]</td>
+	<td>ALBANIA</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 7&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Creating new rates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: New rates created: 7</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_518</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_518</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_519</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_519</td>
+	<td>35538</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_520</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_520</td>
+	<td>3556</td>
+</tr>
+<!--Kiti vardai pasikeitę-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_503</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_503</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_504</td>
+	<td>35538</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_505</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_505</td>
+	<td>3556</td>
+</tr>
+<!--keliu tą patį - nebeturi būti updeitinimo žingsnių-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import3_different_names.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File uploaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Columns assigned</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Update Destination Names from CSV: Yes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Columns assigned</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_1</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_3</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_4</td>
+	<td>ALBANIA</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=imp_dst_7</td>
+	<td>Albania Proper</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Confirm columns']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Analysis completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=dest_to_update</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Import from CSV&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Step: 6&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Updating rates</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 7</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[6]/tbody/tr[2]/td</td>
+	<td>Destination names updated</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#id_updated_destinations &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destinations_to_update</td>
+	<td>Destination names to update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#dest_to_update &gt; b</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/2?st=A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_518</td>
+	<td>Afghanistan</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_518</td>
+	<td>9379</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_519</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_519</td>
+	<td>35538</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_520</td>
+	<td>Albania</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=prefix_520</td>
+	<td>3556</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/1?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import4.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File uploaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania Cha</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania Chi</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ALBANIA Mobile FONE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Columns assigned</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.1870</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.2560</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.1230</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Confirm columns']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Analysis completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Destination names updated: 8</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 12</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<!--turejo kazka pakeisti-->
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania Tirane</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_509</td>
+	<td>Albania Cha</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_511</td>
+	<td>Albania Chi</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>ALBANIA Mobile AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_508</td>
+	<td>ALBANIA Mobile FONE</td>
+</tr>
+<!--DO NOT SELECT DESTINATION-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/1?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import3.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File uploaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please select a destination column</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_509</td>
+	<td>Albania Cha</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_511</td>
+	<td>Albania Chi</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>ALBANIA Mobile AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_508</td>
+	<td>ALBANIA Mobile FONE</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>Albania Mobile Eagle</td>
+</tr>
+<!--Destinations, tikrina ar atsinaujina destination names-->
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/1?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import5.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File uploaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Columns assigned</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania vienas </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania trys Eagle</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ALBANIA du AMC </td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Confirm columns']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Analysis completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: <br />Destination names updated: 8</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 13</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>13</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_507</td>
+	<td>Albania trys Eagle</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>ALBANIA du AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_504</td>
+	<td>Albania vienas</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_509</td>
+	<td>Albania penki</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_506</td>
+	<td>ALBANIA du AMC</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_508</td>
+	<td>ALBANIA keturi</td>
+</tr>
+<!--!!!!!!!!!!!!!-->
+<!--WITHOUT DESTINATION-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/destination_groups/delete_destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/1?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import4.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>File uploaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Columns assigned</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.1870</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.2560</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania Cha</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ALBANIA Mobile FONE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Confirm columns']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Analysis completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=r_to_update</td>
+	<td>12</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_r_to_create</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: <br />Destination names updated: 6</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>exact:SUCCESS: Rates updated: 12</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<!--BAD DESTINATION-->
+<!--istrina destinations ir rates-->
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/tests/tariffs/delete_all_destinations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/import_csv2/1?step=0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>file</td>
+	<td>/home/mor/selenium/files/csv/tariff_import2.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please confirm Column Separator and Decimal Separator for CSV file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=update_dest_names</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>prefix_id</td>
+	<td>label=Prefix</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>rate_id</td>
+	<td>label=Price</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>destination_id</td>
+	<td>label=Destination</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Columns assigned</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.1670</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>0.2500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania Tirane</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Albania Mobile Eagle</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Confirm columns']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Step: 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Analysis completed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Congratulations, successfully imported CSV file!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/tariffs/rates_list/1</td>
+	<td></td>
+</tr>
+<!--nieko neikele nes bad destination-->
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxcheckbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.edit.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+
+<% content_for :additional_buttons do %>
+    <span>
+      <%= button_to _('Delete_all_Imported'), {action: :delete_all_imported}, class: 'search-form-button',
+                    data: {confirm: _('Are_you_sure_you_want_to_Delete_all_Imported_Tariff_Jobs')}, disable_with: _('Processing..'), method: :post
+      %>
+  </span>
+<% end %>
+
+<style type="text/css">
+    .confirm_status  { background-color: #FFEEC4; }
+    div:hover > .confirm_status { background-color: #e8e8e8; }
+    div[status=active] > .confirm_status { background-color: #d1d1d1; }
+</style>
+
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Tariff_Jobs') %></h2>
+    <div id="tariff_jobs_list"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        var table_data_json = <%= tariff_jobs_json(@tariff_jobs) %>;
+        var source =
+        {
+            localdata: table_data_json,
+            datatype: 'json',
+            datafields: [
+                { name: 'id', type: 'integer'},
+                { name: 'created_at', type: 'date' },
+                { name: 'status', type: 'string' },
+                { name: 'status_raw', type: 'string' },
+                { name: 'status_reason', type: 'string' },
+                { name: 'status_waiting_for_job_id', type: 'string' },
+                { name: 'tariff_import_rule_id', type: 'integer' },
+                { name: 'tariff_import_rule_name', type: 'string' },
+                { name: 'target_tariff_id', type: 'integer' },
+                { name: 'target_tariff_name', type: 'string' },
+                { name: 'import_type', type: 'string' },
+                { name: 'auto', type: 'string' },
+                { name: 'trigger_received_email_notification_sent', type: 'string' },
+                { name: 'rate_changes', type: 'integer' },
+                { name: 'alerted', type: 'integer' },
+                { name: 'rejected', type: 'integer' },
+                { name: 'delete', type: 'string' },
+                { name: 'tariff_attachment_file_name', type: 'string' },
+                { name: 'tariff_rate_import_rule_id', type: 'id' },
+                { name: 'tariff_rate_import_rule_name', type: 'string' },
+                { name: 'schedule_import_at', type: 'string' },
+                { name: 'show_loading_indicator', type: 'integer' }
+            ],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        // A simple clipboard selection handler
+        var copyText = '';
+        // Get the selected text
+        document.addEventListener('mouseup', function() {
+            if (window.getSelection) copyText = window.getSelection().toString();
+        }, false);
+        // On copy event put it on clipboard
+        document.addEventListener('copy', function(event) {
+            event.clipboardData.setData('text/plain', copyText);
+            // Prevent from getting any other selections
+            event.preventDefault();
+        });
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+        var date_time_format = "<%= session[:date_time_format].present? ? session[:date_time_format].gsub('%Y', 'yyyy').gsub('%m', 'MM').gsub('%d', 'dd').gsub('%H', 'HH').gsub('%M', 'mm').gsub('%S', 'ss') : 'yyyy-MM-dd' %>";
+
+        var cellclass = function (row, column, value){
+            var status = source.localdata[row].status;
+            var reviewed = source.localdata[row].reviewed;
+            if (reviewed == 0 && status == 'Import in Progress'){
+                return 'confirm_status'
+            }
+        };
+        var renderer_status = function (row, column, value) {
+            var status = source.localdata[row].status;
+            var status_raw = source.localdata[row].status_raw;
+            var reviewed = source.localdata[row].reviewed;
+            var status_reason = source.localdata[row].status_reason;
+            var status_waiting_for_job_id = source.localdata[row].status_waiting_for_job_id;
+            var schedule_import_at = source.localdata[row].schedule_import_at;
+            var events = '';
+            var loading_indicator = '';
+            if (source.localdata[row].show_loading_indicator == 1) {
+                loading_indicator = '<%= image_tag('indicator.gif', border: 0) %>  ';
+            }
+
+            if (!!status_reason) {
+                status_reason = '<br/>' + status_reason;
+            } else {
+                status_reason = '';
+            }
+
+            if (reviewed == 0 && status_raw == 'analyzed') {
+                events = 'onmouseover="Tip(\'<%= _('Waiting_for_confirmation') %>' + status_reason + '\', WIDTH, -600, TITLE, \'Status Reason\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+                return '<div ' + events + ' style="text-align: center; margin-top: 10px;  width: 100%">' + '<%= _('Waiting_for_confirmation') %></div>';
+            } else if (reviewed == 1 && status_raw == 'analyzed' && schedule_import_at) {
+                events = 'onmouseover="Tip(\'<%= _('Importing_will_begin_from') %>: ' + schedule_import_at + status_reason + '\', WIDTH, -600, TITLE, \'Status Reason\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+                return '<div ' + events + ' style="text-align: center; margin-top: 10px;  width: 100%">' + '<%= _('Scheduled_Import') %></div>';
+            } else if (status_raw == 'temp_imported' && !!status_waiting_for_job_id) {
+                events = 'onmouseover="Tip(\'Waiting for Job #' + source.localdata[row].status_waiting_for_job_id + ' to finish' + status_reason + '\', WIDTH, -600, TITLE, \'Status Reason\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+                return '<div ' + events + ' style="text-align: center; margin-top: 10px;  width: 100%">' + loading_indicator + 'Waiting for Job #' + source.localdata[row].status_waiting_for_job_id + ' to finish' + '</div>';
+            } else {
+                events = 'onmouseover="Tip(\'' + source.localdata[row].status + status_reason + '\', WIDTH, -600, TITLE, \'Status Reason\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+                return '<div ' + events + ' style="text-align: center; margin-top: 10px;  width: 100%">' + loading_indicator + source.localdata[row].status + '</div>';
+            }
+
+        };
+
+        var linkrenderer_import_rules = function (row, column, value) {
+            var import_rules_id = source.localdata[row].tariff_import_rule_id;
+            var tooltip = 'onmouseover="Tip(\'' + value + '\', WIDTH, -600, TITLE, \'<%= _('Import_Rules') %>\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+
+            return '<div ' + tooltip + ' style="overflow: hidden;text-overflow: ellipsis;text-align: left; margin-top: 10px; margin-left: 4px; max-width: 100%">' + "<a href='/billing/tariff_import_rules/edit/" + import_rules_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_rate_import_rules = function (row, column, value) {
+            var rate_import_rules_id = source.localdata[row].tariff_rate_import_rule_id;
+            var tooltip = 'onmouseover="Tip(\'' + value + '\', WIDTH, -600, TITLE, \'<%= _('Rate_Import_Rules') %>\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+
+            return '<div ' + tooltip + ' style="overflow: hidden;text-overflow: ellipsis;text-align: left; margin-top: 10px; margin-left: 4px; max-width: 100%">' + "<a href='/billing/tariff_rate_import_rules/edit/" + rate_import_rules_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_target_tariff = function (row, column, value) {
+            var target_tariff_id = source.localdata[row].target_tariff_id;
+            var tooltip = 'onmouseover="Tip(\'' + value + '\', WIDTH, -600, TITLE, \'<%= _('Tariff') %>\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+
+            return '<div ' + tooltip + ' style="overflow: hidden;text-overflow: ellipsis;text-align: left; margin-top: 10px; margin-left: 4px; max-width: 100%">' + "<a href='/billing/tariffs/edit/" + target_tariff_id + "'>" + value + '</a></div>';
+        };
+
+        var linkrenderer_attachment = function (row, column, value) {
+            var tooltip = 'onmouseover="Tip(\'' + value + '\', WIDTH, -600, TITLE, \'<%= _('Attachment') %>\', TITLEBGCOLOR, \'#494646\', FADEIN, 200, FADEOUT, 200);" onmouseout="UnTip()"';
+
+            return '<div ' + tooltip + ' style="overflow: hidden;text-overflow: ellipsis;text-align: left; margin-top: 10px; margin-left: 4px; max-width: 100%">' + value + '</div>';
+        };
+
+        var linkrenderer_delete = function (row, column, value) {
+            var id = source.localdata[row].id;
+            return '<form class="button_to" method="post" action="/billing/tariff_jobs/destroy/' + id + '"><div><input id="delete_link_' + id + '" class="delete_button" style="text-align: center; margin-top: 9px; font: 13px/18px \'Open Sans\',Arial,Helvetica,sans-serif;" type="submit" value="DELETE" onclick="return confirm(\'Are you sure?\')"><input type="hidden" value="' + "<%= form_authenticity_token %>" + '" name="authenticity_token"></div></form>';
+        };
+
+        var linkrenderer_analysis_results = function (row, column, value) {
+            var id = source.localdata[row].id;
+            var statuses = ['Analyzed', 'Import in Progress', 'Rejected', 'Cancelled', 'Importing', 'Imported', 'Failed Import'];
+            if (statuses.indexOf(source.localdata[row].status) > -1){
+                return '<div style="margin-top: 10px; text-align: center;"><a class="delete_button" style="font: 13px/18px \'Open Sans\',Arial,Helvetica,sans-serif;"href="/billing/tariff_job_analysis/list/' + id + '">Analysis</a></div>';
+            }
+        };
+
+        var griddata;
+        $("#tariff_jobs_list").jqxGrid(
+                {
+                    source: dataadapter,
+                    width: '100%',
+                    autoheight: true,
+                    rowsheight: 35,
+                    altrows: true,
+                    enablebrowserselection: 'true',
+                    sortable: true,
+                    pageable: true,
+                    columnsresize: true,
+                    pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                    ready: function () {
+                        griddata = $('#tariff_jobs_list').jqxGrid('getrows');
+                        $('#tariff_jobs_list').jqxGrid('sortby', 'id', 'desc');
+                        session_sorting(
+                                'tariff_jobs_list',
+                                '<%= Web_Dir %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}tariff_jobs_list"][:column].to_s %>',
+                                '<%= session["jqxgrid_sort_#{params[:controller]}_#{params[:action]}tariff_jobs_list"][:direction].to_s %>',
+                                '<%= params[:controller].to_s %>',
+                                '<%= params[:action].to_s %>'
+                        );
+
+                        $('[role=row]').click(function(){
+                            $(this).find('.confirm_status').length > 0 ? $(this).attr('status', 'active') : $('[status=active]').attr('status', '');
+                        });
+
+                    },
+                    columns: [
+                        { text: "<%= _('ID') %>", datafield: 'id', width: '3.5%', align: 'center', cellsalign: 'center', cellclassname: cellclass },
+                        { text: "<%= _('Created_at') %>", datafield: 'created_at', width: '10%', align: 'left', cellsformat: date_time_format, cellsalign: 'left', cellclassname: cellclass },
+                        { text: "<%= _('Status') %>", datafield: 'status', width: '15%', align: 'center', cellsalign: 'center', cellsrenderer:  renderer_status, cellclassname: cellclass},
+                        { text: "<%= _('Import_Rules') %>", datafield: 'tariff_import_rule_name', width: '9%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_import_rules, cellclassname: cellclass },
+                        { text: "<%= _('Rate_Import_Rules') %>", datafield: 'tariff_rate_import_rule_name', width: '9%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_rate_import_rules, cellclassname: cellclass },
+                        { text: "<%= _('Tariff') %>", datafield: 'target_tariff_name', width: '11%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_target_tariff, cellclassname: cellclass},
+                        { text: "<%= _('Attachment') %>", datafield: 'tariff_attachment_file_name', width: '8%', align: 'left', cellsalign: 'left', cellsrenderer: linkrenderer_attachment, cellclassname: cellclass},
+                        { text: "<%= _('Import_Type') %>", datafield: 'import_type', width: '6%', align: 'center', cellsalign: 'center', cellclassname: cellclass },
+                        { text: "<%= _('Auto') %>", datafield: 'auto', width: '3%', align: 'center', cellsalign: 'center', cellclassname: cellclass },
+                        { text: "<%= _('Email') %>", datafield: 'trigger_received_email_notification_sent', width: '3%', align: 'center', cellsalign: 'center', cellclassname: cellclass },
+                        { text: "<%= _('Total') %>", datafield: 'rate_changes', width: '5%', align: 'right', cellsalign: 'right', cellclassname: cellclass },
+                        { text: "<%= _('Alerts') %>", datafield: 'alerted', width: '4%', align: 'right', cellsalign: 'right', cellclassname: cellclass },
+                        { text: "<%= _('Rejected') %>", datafield: 'rejected', width: '4%', align: 'right', cellsalign: 'right', cellclassname: cellclass },
+                        { text: " ", datafield: 'analysis_results', width: '5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_analysis_results, cellclassname: cellclass },
+                        { text: " ", datafield: 'delete', width: '4.5%', align: 'center', cellsalign: 'center', cellsrenderer: linkrenderer_delete, cellclassname: cellclass }
+                    ]
+                });
+
+    });
+</script>

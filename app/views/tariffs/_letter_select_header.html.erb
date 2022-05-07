@@ -1,0 +1,31 @@
+<% action = params[:action].to_s %>
+<% action = 'rates_list' if action == 'custom_tariffs' %>
+
+<div align="center" style="border-bottom:1px solid #d7d9db;">
+  <div class="paging-box" style="position:relative;">
+    <div class="paging" style="position:absolute; right:20%; left:20%" >
+      <% pages = ('A'..'Z').to_a %>
+      <% pages.push('#') if action == 'rates_list' %>
+        <% pages.each do |letter| %>
+          <%= "<div class='#{'active' if letter == st}'>".html_safe %>
+
+          <% if !defined?(directions_first_letters) || directions_first_letters.compact.map(&:upcase).include?(letter) %>
+            <% parameters = {action: action, id: letter_select_header_id, st: letter}; style = {} %>
+          <% elsif defined?(directions_defined) && !directions_defined.map(&:upcase).include?(letter) %>
+            <% parameters = {}; style = {} %>
+          <% else %>
+            <% parameters = {action: action, id: letter_select_header_id, st: letter}; style = {style: 'color:grey'} %>
+          <% end %>
+
+          <% parameters.merge!({device_id: params[:device_id], order_by: params[:order_by], order_desc: params[:order_desc]}) %>
+
+          <% style[:class] = 'bold_weight' if defined?(letters_to_bold) && letters_to_bold.try(:include?, letter) %>
+
+          <%= link_to(letter, parameters, style) %>
+
+          <%= '</div>'.html_safe %>
+        <% end %>
+    </div>
+  </div>
+  <div style="height:12px;"></div>
+</div>

@@ -1,0 +1,257 @@
+<div class="content-box" style="overflow:auto;">
+  <div class="table-box" style="min-width: 1024px;">
+    <h2 class="disconnect-codes-header">
+      <span class="disconnect-codes-header-element"><%= _('DC_Group') %>:</span>&nbsp;
+      <span class="dc-group-dropdown disconnect-codes-header-element"><%= select_tag(:dc_group, options_for_select(dc_groups(true), @dc_group_id)) %></span>
+      &nbsp;
+      &nbsp;
+      <span class="disconnect-codes-header-element reset-button-wrapper">
+        <%= button_to (@dc_group_id <= 2 ? _('Reset_to_Default') : _('Reset_to_Global')), {action: :reset_to_defaults, id:  @dc_group_id }, class: 'disconnect-codes-button-left reset-button search-form-button', disabled: @dc_group_id == 1 || (@dc_group_id == 2 && default_codes_not_exist?), disable_with: _('Processing..') %>
+      </span>
+      <span class="disconnect-codes-header-element-right delete-button-wrapper">
+        <%= button_to _('Delete_Group'), {action: :delete_group, id:  @dc_group_id }, data: { confirm: _('Are_you_sure') }, class: 'settings-submit delete-button', disabled: @dc_group_id == 1 || @dc_group_id == 2, disable_with: _('Processing..') %>
+      </span>
+
+      <span class="disconnect-codes-header-element-right">
+        <%= button_to _('Edit_Group'), '', class: 'search-form-button edit-button', disabled: @dc_group_id == 1 ||  @dc_group_id == 2 %>
+      </span>
+
+      <span class="disconnect-codes-header-element-right">
+        <%= button_to _('Add_New_Group'), '', class: 'search-form-button add-button' %>
+      </span>
+    </h2>
+
+    <div class="disconnect-codes-new_group" <%= 'style="display: none;"'.html_safe if @new_group.blank? %>>
+      <%= form_tag({action: :add_new_group}, {class: 'details-form'}) do %>
+        <div class="row">
+          <div class="input-row" style="display: inline-block; width: 450px;">
+            <div class="label-col" style="width: 23%;">
+              <%= label_tag 'group_name', _('group_name') %>
+            </div>
+            <div class="input-col" style="width: 75.2%;">
+              <%= text_field_tag :group_name, @new_group.try(:name).to_s %>
+            </div>
+          </div>
+          <div class="input-row" style="display: inline-block;">
+            <%= submit_tag _('Add'), disable_with: _('Processing..'), class: 'search-form-button' %>
+            <%= submit_tag _('CANCEL'), type: :reset, class: 'settings-submit cancel-button' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="disconnect-codes-update_group" <%= 'style="display: none;"'.html_safe if @group.blank? %>>
+      <%= form_tag({action: :update_group, id: @dc_group_id}, {class: 'dc-update-form details-form'}) do %>
+        <div class="row">
+          <div class="input-row" style="display: inline-block; width: 450px;">
+            <div class="label-col" style="width: 23%;">
+              <%= label_tag 'group_name', _('group_name') %>
+            </div>
+            <div class="input-col" style="width: 75.2%;">
+              <%= text_field_tag :group_name, '', class: 'update-group-name' %>
+            </div>
+          </div>
+          <div class="input-row" style="display: inline-block;">
+            <%= submit_tag _('UPDATE'), disable_with: _('Processing..'), class: 'search-form-button' %>
+            <%= submit_tag _('CANCEL'), type: :reset, class: 'settings-submit update-cancel-button' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="disconnect_codes_table">
+      <%= render 'disconnect_codes', disconnect_codes:  @list_data, dc_group_id: @dc_group_id %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.add-button').click(function(e){ e.preventDefault();
+      $('.disconnect-codes-new_group').show();
+      $('.disconnect-codes-update_group').hide();
+    });
+    $('.cancel-button').click(function(){ $('.disconnect-codes-new_group').hide() });
+
+    $('.edit-button').click(function(e){ e.preventDefault();
+      $('.disconnect-codes-update_group').show();
+       $('.disconnect-codes-new_group').hide();
+    });
+
+    $('.reset-button').click(function(e){
+      var con = confirm('<%= _('Are_you_sure') %>');
+      if(con) {
+        $("#spinner2").show();
+      }else{
+        e.preventDefault();
+      }
+    });
+
+    $('.update-cancel-button').click(function(){ $('.disconnect-codes-update_group').hide() });
+
+    $('.update-group-name').val($('#dc_group option:selected').text().split('[')[0].trim());
+
+    $('.dc-group-dropdown').change(function(){
+      var group_id = $('#dc_group').val();
+      var requestData = {dc_group_id: $('#dc_group').val()};
+      update_disconnect_codes_table(requestData);
+
+      $('.reset-button').prop('disabled', group_id == 1 || (group_id == 2 && <%= default_codes_not_exist? %>));
+      $('.edit-button').prop('disabled', group_id == 1 ||  group_id == 2);
+      $('.delete-button').prop('disabled', group_id == 1 ||  group_id == 2);
+
+      $('.reset-button').val(group_id <= 2 ? '<%= _('Reset_to_Default') %>' : '<%= _('Reset_to_Global') %>');
+      // update reset and delete button actions
+      var splitted_reset = $('.reset-button-wrapper .button_to').attr('action').split('/');
+      splitted_reset[splitted_reset.length-1] = group_id;
+      $('.reset-button-wrapper .button_to').attr('action', splitted_reset.join('/'));
+
+      var splitted_delete = $('.delete-button-wrapper .button_to').attr('action').split('/');
+      splitted_delete[splitted_delete.length-1] = group_id;
+      $('.delete-button-wrapper .button_to').attr('action', splitted_delete.join('/'));
+
+
+      var splitted_update_form = $('.dc-update-form').attr('action').split('/');
+      splitted_update_form[splitted_update_form.length-1] = group_id;
+      $('.dc-update-form').attr('action', splitted_update_form.join('/'));
+
+      $('.update-group-name').val($('#dc_group option:selected').text().split('[')[0].trim());
+      if($('.disconnect-codes-update_group').is(':visible') && (group_id == 1 || group_id == 2)) $('.disconnect-codes-update_group').hide();
+    });
+
+    $(document).change(function(e){
+      var target = $(e.target);
+      if(target.hasClass('dc_code_reason') || target.hasClass('dc_q850')){
+        var requestData = {
+          dc_group_id: $('#dc_group').val(),
+          code: target.attr('class').split(' ')[1].replace('code_', ''),
+          data: {}
+        };
+
+        if(target.hasClass('dc_code_reason')){
+          requestData['data'] = {
+            changed_code: target.val().split(' ')[0],
+            changed_reason: target.val().split(' ').slice(1).join(' '),
+          }
+          $('.drop-dc_code_reason').hide();
+        }
+
+        if(target.hasClass('dc_q850')){
+          requestData['data'] = {
+            q850_code: target.val().split(' ')[0],
+          }
+          $('.drop-dc_q850').hide();
+        }
+
+        ajax_request("/disconnect_codes/update_code_data_ajax", requestData, 'POST', false);
+      }
+    });
+
+    function ajax_request(url, requestData, type, show_spinner){
+      $.ajax({
+          url: Web_Dir + url,
+          data: requestData,
+          async: true,
+          type: type,
+          beforeSend: function(xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+              if(show_spinner) $("#spinner2").show();
+          },
+          error: function(response, error, full_error){
+              console.log('Ajax Error:');
+              console.log(response);
+              console.log(error);
+              console.log(full_error);
+          },
+          success: function(response) {
+              console.log('Ajax Success:');
+          },
+          complete: function(xhr) {
+              if(show_spinner) $("#spinner2").hide();
+          }
+      });
+    }
+
+    function update_disconnect_codes_table(requestData){
+      ajax_request("/disconnect_codes/get_codes_ajax", requestData, 'GET', true)
+    }
+
+    $(document).click(function(e){
+      var target = $(e.target);
+
+      if(!(target).hasClass('select-opener')){
+        var form_wrapper = $('.form-wrapper');
+        form_wrapper.children('span:nth-child(2)').hide();
+        form_wrapper.children('span:nth-child(1)').show();
+      }
+
+
+      if((target).hasClass('form-wrapper')){
+        target.children('span:nth-child(1)').hide();
+        var drop_existing = target.children('span:nth-child(2)').find('select')[0];
+        if(drop_existing == undefined){
+          var dropdown = $.parseHTML(target.children('span:nth-child(2)').text());
+          target.children('span:nth-child(2)').html(dropdown);
+          var drop_new = target.children('span:nth-child(2)').find('select')[0];
+          replaceDropdown(drop_new);
+        }
+        target.children('span:nth-child(2)').show();
+      }
+
+      if((target).hasClass('code-item')){
+        target.hide();
+        var drop_existing = target.siblings().find('select')[0];
+        if(drop_existing == undefined){
+          var dropdown = $.parseHTML(target.siblings().text());
+          target.siblings().html(dropdown);
+          var drop_new = target.siblings().find('select')[0];
+          replaceDropdown(drop_new);
+        }
+        target.siblings().show();
+      }
+
+      if((target).hasClass('disconnect-codes-changable_btn')){
+        var data = target.attr('class').split(' ');
+        var requestData = {
+          dc_group_id: data[3].replace('group_', ''),
+          code: data[2].replace('code_', ''),
+          data: {
+            field_name: target.parent().attr('class').split(' ')[1].split('-')[1],
+            value: parse_request_value(data[0]),
+          }
+        };
+
+        ajax_request("/disconnect_codes/update_code_data_ajax", requestData, 'POST', false)
+      }
+    });
+
+    function replaceDropdown(element){
+        if(element.jcf) {
+            element.jcf.refreshState();
+        } else {
+          new jcf.modules['select']({
+                replaces:element
+          });
+        }
+    }
+
+    function parse_request_value(value){
+      result = value.split('-')[2];
+      if(result == 'no') return 0;
+      if(result == 'yes') return 1;
+      if(result == 'generate_if_missing') return 2;
+      if(result == 'overwrite') return 3;
+    }
+
+    $(document).on('keyup',function(e){
+      var target = $(e.target);
+      if((target).hasClass('update_code_field')){
+        if (target.is(":visible") && e.key == 'Escape'){
+          target.parent().parent().hide();
+          target.parent().parent().siblings().show();
+        }
+      }
+    });
+
+  });
+</script>

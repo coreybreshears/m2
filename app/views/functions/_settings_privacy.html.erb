@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col extended">
+      <% if admin? %>
+          <%= raw setting_boolean(_('GDPR_Activated'), 'gdpr_activated', 'GDPR_Activated') %>
+      <% end %>
+    </div>
+</div>

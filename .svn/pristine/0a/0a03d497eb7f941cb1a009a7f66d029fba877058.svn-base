@@ -1,0 +1,320 @@
+<div class="row">
+  <div class="col col-bigger">
+    <h2>Settings</h2>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'invoice_number_start', _('Invoice_Number_Start') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('invoice_number_start', Confline.get_value("Invoice_Number_Start"), class: 'input', size: '35', maxlength: '50') %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'invoice_number_length', _('Invoice_Number_Length') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('invoice_number_length', Confline.get_value("Invoice_Number_Length"), class: 'number', size: '35', maxlength: '50') %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'invoice_number_type', _('Invoice_Number_Type') %>
+      </div>
+      <% inv_num_type = Confline.get_value("Invoice_Number_Type").to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_number_type', '1', (inv_num_type == 1)) %> INV000000001
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_number_type', '2', (inv_num_type == 2)) %> INV070601
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <%= raw setting_boolean(_('Do_not_generate_Invoices_for_blocked_Users'), 'do_not_generate_invoices_for_blocked_users', "Do_not_generate_Invoices_for_blocked_Users", 0, {id: 'do_not_generate_invoices_for_blocked_users'}) %>
+    <%= raw setting_boolean(_('Do_not_include_currencies'), 'do_not_include_currencies', 'Do_not_include_currencies', 0, {id: 'inv_do_not_include_currencies'}) %>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag  'send_email_notice_about_generated_invoices_to', _('send_email_notice_about_generated_invoices_to')  %>
+      </div>
+      <div class="input-col">
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'invoice_email_notice_admin', _('administrator'), style: 'margin-left:47px;' %>
+      </div>
+      <% admin_type = Confline.get_value("Invoice_email_notice_admin").to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_email_notice_admin', '0', (admin_type == 0)) + _('_No') %>
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_email_notice_admin', '1', (admin_type == 1)) + _('_Yes') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'invoice_email_notice_manager', _('Responsible_Manager'), style: 'margin-left:47px;' %>
+      </div>
+      <% resp_account_type = Confline.get_value("Invoice_email_notice_manager").to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_email_notice_manager', '0', (resp_account_type == 0)) + _('_No') %>
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_email_notice_manager', '1', (resp_account_type == 1)) + _('_Yes') %>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag  'send_email_notice', _('how_often_to_send_email_notice') %>
+      </div>
+
+      <div class="input-col">
+        <% email_notice_selected = Confline.get_value("How_often_to_send_email_notice").to_i %>
+        <%= select_tag 'send_email_notice', options_for_select([[_('Do_not_send'), 0]]+Confline.send_email_notice, email_notice_selected), class: 'larger' %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'invoice_group_by', _('Invoice_Group_By') %>
+      </div>
+      <% group_by = Confline.get_value('Invoice_Group_By').to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_group_by', '0', (group_by == 0)) + _('Prefix') %>
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_group_by', '1', (group_by == 1)) + _('Destination') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row invoice_group_by_dst" style="<%= 'display: none;' if Confline.get_value('Invoice_Group_By').to_i == 0 %>">
+      <div class="label-col">
+      </div>
+      <div class="input-col">
+          <%= select_tag 'invoice_group_by_destination', options_for_select([[_('Destination_Name'), 0], [_('Destination_Group'), 1]], Confline.get_value('Invoice_Group_By_Destination').to_i), class: 'larger' %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'invoice_show_rates', _('Show_Rates') %>
+      </div>
+      <% show_rates = Confline.get_value('Show_Rates').to_i %>
+      <div class="input-col">
+        <div class="radio-container">
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_show_rates', '0', (show_rates == 0)) + _('_No') %>
+          </div>
+          <div class="radio-row">
+            <%= radio_button_tag('invoice_show_rates', '1', (show_rates == 1)) + _('_Yes') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag  'duration_format', _('Duration_Format') %>
+      </div>
+
+      <div class="input-col">
+         <% format_value = Confline.get_value('Duration_Format').to_s.present? ?  Confline.get_value('Duration_Format').to_s : 'H:M:S' %>
+         <% format_value_min_pre = Confline.get_value('Duration_Format_Minute_Precision').present? ?  Confline.get_value('Duration_Format_Minute_Precision').to_i : 2 %>
+         <%= select_tag(:duration_format, options_for_select(['H:M:S', 'M:S', 'M'], format_value))%>
+         <div id= 'dur_format_precision_wrapper'>
+            <style> .select-smaller-select{ width: 75px!important; margin-left: 5px;}</style>
+            <%= select_tag(:duration_format_minute_precision, options_for_select((0..6).to_a, format_value_min_pre), class: 'smaller-select' ) %>
+
+            <span style="line-height: 30px; vertical-align: middle;">&nbsp;<%= _('Decimal_Places') %></span>
+         </div>
+         <script type="text/javascript">
+            jQuery(document).ready(function($){
+               show_hide_precision_input($('#duration_format'), $('#dur_format_precision_wrapper'));
+               function show_hide_precision_input(value, element){ value.val() == 'M' ? element.show() : element.hide(); }
+               $('#duration_format').change(function(){ show_hide_precision_input($(this), $('#dur_format_precision_wrapper')); });
+             });
+         </script>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag 'manual_payment_line', _('Manual_Payment_Line') %>
+      </div>
+      <div class="input-col">
+        <%= text_field_tag('manual_payment_line', Confline.get_value('Manual_Payment_Line').to_s, style: 'width: 100%;') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-smaller">
+    <h2>XLSX</h2>
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag  'file', _('XLSX_Template') %>
+      </div>
+
+      <div class="input-col">
+        <%= file_field_tag 'file'  %>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag  'new_xlsx_template_apply_for_old_invoices', _('Clear_Invoice_Cache_Remove_Old_Files') %>
+      </div>
+
+      <div class="input-col checkbox-marg">
+        <%= check_box_tag 'new_xlsx_template_apply_for_old_invoices', 1, false %>
+      </div>
+    </div>
+
+    <%= raw setting_boolean(_('Send_XLSX_Invoices_Converted_to_PDF'), 'convert_xlsx_to_pdf', 'convert_xlsx_to_pdf', manager? ? 0 : session[:user_id]) %>
+    <%= raw setting_boolean(_('Show_Username_instead_of_Client_full_Name'), 'invoices_show_username', 'invoices_show_username', session[:user_id]) %>
+
+    <div class="input-row">
+      <div class="label-col">
+        <%= label_tag  'addresses_of_cells', _('addresses_of_cells') %>
+      </div>
+    </div>
+
+    <% M2Invoice.xlsx_template_cells.each do |name_of_cell| %>
+        <div class="input-row">
+          <% if name_of_cell.to_s.match(/invoice_client_details[2-6]/) %>
+              <div class="label-col">
+                <%= label_tag name_of_cell, _(name_of_cell), style: "padding-left: 40px;" %>
+              </div>
+              <div class="input-col" id="div_<%= name_of_cell %>" style="padding-top: 5px;">
+                <%= hidden_field_tag(name_of_cell, Confline.get_value("Cell_m2_#{name_of_cell}")) %>
+                <span id="span_<%= name_of_cell %>" style="padding-left: 9px; font-size: 14px;"></span>
+              </div>
+          <% else %>
+              <div class="label-col">
+                <%= label_tag name_of_cell, _(name_of_cell) %>
+              </div>
+              <div class="input-col" id="div_<%= name_of_cell %>">
+                <%= text_field_tag(name_of_cell, Confline.get_value("Cell_m2_#{name_of_cell}"), class: 'number', size: '4') %>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+
+    <script type="text/javascript">
+        var address_inputs = jQuery('input[id^="invoice_client_details"]').slice(0, 6);
+        var address_spans = jQuery('span[id^="span_invoice_client_details"]');
+        var address_first_input = jQuery('input[id^="invoice_client_details1"]');
+        var invoice_lines_inputs = jQuery('input[id^="invoice_lines_"]');
+        var invoice_lines_inputs_div = jQuery('div[id^="div_invoice_lines_"]');
+        var onmouseover_warning_tooltip = "<%= raw link_tooltip(_('Warning'), _('These_values_should_be_on_the_same_row'))[:onmouseover] %>";
+        var invoice_group_by_0 = jQuery('#invoice_group_by_0');
+        var invoice_group_by_1 = jQuery('#invoice_group_by_1');
+
+        address_first_input.change(function() {
+            var value = this.value;
+            if (value.length > 1) {
+                var column = value[0];
+                var row = parseInt(value.slice(1));
+                if (!isNaN(row)) {
+                    address_inputs.each(function(index, address_invoice) {
+                        var address_invoice_row = row + index;
+                        address_invoice.value = column + address_invoice_row;
+                    });
+                    change_spans_text();
+                }
+            }
+        });
+
+        window.onload = change_spans_text();
+
+        function change_spans_text() {
+            address_spans.each(function(index, address_span) {
+                address_span.textContent = address_inputs[index + 1].value;
+            });
+        }
+
+        function check_invoice_lines_inputs () {
+            var all_input_rows_match = true;
+            var input_value, previous_value;
+
+            invoice_lines_inputs.each(function(index, invoice_lines_input) {
+                input_value = String(invoice_lines_input.value).replace(/\D/g,'');
+
+                // Ignore empty values
+                if (!input_value) {
+                    return true;
+                }
+
+                if (previous_value && previous_value != input_value) {
+                    all_input_rows_match = false;
+                    return false;
+                }
+
+                previous_value = input_value;
+            });
+
+            return all_input_rows_match;
+        }
+
+        function show_hide_invoice_lines_inputs_warnings(value) {
+            if (value) {
+                invoice_lines_inputs_div.attr({
+                    onmouseover: 'UnTip();',
+                    onmouseout: 'UnTip();'
+                });
+
+                invoice_lines_inputs.attr({
+                    class: 'number'
+                });
+            } else {
+                invoice_lines_inputs_div.attr({
+                    onmouseover: onmouseover_warning_tooltip,
+                    onmouseout: 'UnTip();'
+                });
+
+                invoice_lines_inputs.attr({
+                    class: 'number warning'
+                });
+            }
+        }
+
+        jQuery(document).ready(function () {
+            show_hide_invoice_lines_inputs_warnings(check_invoice_lines_inputs());
+
+            invoice_lines_inputs.on('change', function() {
+                show_hide_invoice_lines_inputs_warnings(check_invoice_lines_inputs());
+            });
+
+            invoice_group_by_0.on('change', function(){
+              jQuery('.invoice_group_by_dst').hide();
+            });
+
+            invoice_group_by_1.on('change', function(){
+              jQuery('.invoice_group_by_dst').show();
+            });
+        });
+    </script>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+UPDATE `dial_peers` SET changes_present = 0;

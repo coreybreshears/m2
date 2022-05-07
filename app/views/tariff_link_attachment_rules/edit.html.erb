@@ -1,0 +1,15 @@
+<div class="content-box">
+  <div class="table-box">
+    <h2><%= _('Edit_Tariff_Link_Attachment_Rule') %></h2>
+    <%= form_for @tariff_link_attachment_rule, url: {action: :update, id: @tariff_link_attachment_rule }, html: {class: 'details-form'}, method: :post do |f| %>
+    <fieldset>
+      <%= render 'form', f: f %>
+      <br/><br/>
+      <div class="buttons-row">
+        <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariff_link_attachment_rules/list'" %>
+        <%= submit_tag _('UPDATE'), disable_with: _('Processing..') %>
+      </div>
+     </fieldset>
+    <% end %>
+  </div>
+ </div>

@@ -1,0 +1,49 @@
+<%= link_to(b_back + " #{_('Back')}", controller: :destination_groups, action: :destinations_to_dg) %>
+<br/><br/>
+<div style="width: 750px">
+  <%= form_tag(action: :assign_all_unassigned_destinations) do %>
+      <table>
+        <tr>
+          <td colspan="2"><b><%= _('What_to_do_with_Unassigned_Destinations_where_Destination_Group_could_not_be_identified_an_have_unique_Name') %>:</b></td>
+        </tr>
+        <tr>
+          <td colspan="2" height="15px"></td>
+        </tr>
+        <tr>
+          <td class="border_disabled indented_form_row small_cell">
+            <label for="individual_destinations_action_0"><%= _('Skip_and_assign_later_manually_for_higher_precision_RECOMMENDED') %>:</label>
+          </td>
+          <td class="border_disabled"><%= radio_button_tag('individual_destinations_action', 0, true) %></td>
+        </tr>
+        <tr>
+          <td class="border_disabled indented_form_row small_cell">
+            <label for="individual_destinations_action_1"><%= _('Create_new_Destination_Group_with_its_name') %>:</label>
+          </td>
+          <td class="border_disabled"><%= radio_button_tag('individual_destinations_action', 1) %></td>
+        </tr>
+        <tr>
+          <td class="border_disabled indented_form_row small_cell">
+            <label for="individual_destinations_action_2"><%= _('Assign_to_Destinations_with_most_fitting_prefix_Destination_Group') %>:</label>
+          </td>
+          <td class="border_disabled"><%= radio_button_tag('individual_destinations_action', 2) %></td>
+        </tr>
+        <tr>
+          <td colspan="2" height="15px"></td>
+        </tr>
+        <tr>
+          <td class="border_disabled">
+            <label for="fixed_unassigned_destination_prefix_difference"><%= _('fixed_unassigned_destination_prefix_difference') %>:</label>
+          </td>
+          <td class="border_disabled">
+            <%= number_field_tag('fixed_unassigned_destination_prefix_difference', 1, min: 1, max: 99) %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" height="15px"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= submit_tag _('Proceed'), onclick: "return confirm('#{_('are_you_sure')}');", data: {disable_with: _('Processing..')} %></td>
+        </tr>
+      </table>
+  <% end %>
+</div>

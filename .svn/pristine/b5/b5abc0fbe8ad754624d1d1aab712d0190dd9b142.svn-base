@@ -1,0 +1,265 @@
+<%= javascript_include_tag 'jqwidgets/jqxcore.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdata.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxbuttons.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxscrollbar.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxmenu.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.aggregates.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.columnsresize.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.export.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.filter.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.pager.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.selection.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxgrid.sort.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxpanel.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxlistbox.js' %>
+<%= javascript_include_tag 'jqwidgets/jqxdropdownlist.js' %>
+<%= javascript_include_tag 'jqxGrid_helper.js' %>
+<!-- GOOGLE CHARTS -->
+<%= javascript_include_tag 'google_charts/loader.js' %>
+
+<% content_for :search_form do %>
+  <%= form_tag({ action: :country_stats, search_pressed: true }, { id: 'search-form', class: 'calls-form', visible: show_search }) do %>
+    <%= hidden_field_tag 'page', 1 %>
+    <fieldset>
+      <div class="column date-col calendar-holder">
+        <%= label_tag 'from', _('From') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_from', formatted_date_as_given(@options[:from]), class: 'checkin default', id: 'from' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_from', formatted_time_as_given(@options[:from]), class: 'default', id: 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <%= label_tag 'till', _('Till') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_till', formatted_date_as_given(@options[:till]), class: 'checkout default', id: 'till' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_till', formatted_time_as_given(@options[:till]), class: 'default', id: 'time2' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <% if !user? %>
+            <%= label_tag 'from', _('User') %>
+            <div class="row">
+              <div class="col">
+                <tr><td>
+                  <%= render('shared/m2_live_search_field',
+                             object: @options[:user].to_s,
+                             object_id: @options[:user_id].to_i,
+                             object_name: 'User',
+                             action_url: {
+                                     controller: :users, action: :get_users_map,
+                                     options: { show_users_only: true }
+                             }
+                      )
+                  %>
+                </td></tr>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <div class="column buttons-col">
+        <div style="padding-top:160px;">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+</br>
+
+<div class="content-box">
+  <div class="table-box"><br/>
+    <!-- <div id="regions_div" style="width: 100%; height: 400px;"></div> -->
+    <!-- <br/> -->
+    <div id="country_stats_es_spinner" style="display: show;"><%= image_tag 'ajax-loader_line2.gif', style: 'padding-left: 45%; padding-top: 50px;' %></div>
+    <div id='country_stats_es' style="visibility: hidden;"></div>
+  </div>
+    &nbsp;<input type="button" value="<%= _('Export_to_csv') %>" id='csvExport' style="margin-top:5px;"/>
+
+</div>
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        var table_data_json = <%= raw @data[:table_rows].to_json %>;
+        var time_format = '<%= @data[:options][:time_format].present? ? @data[:options][:time_format] : '%H:%M:%S' %>';
+        var country_stats_es_grid = $("#country_stats_es");
+
+        // google.charts.load('current', {'packages':['geochart']});
+        // google.charts.setOnLoadCallback(drawRegionsMap);
+        // var aggregated = {};
+        // $.each(table_data_json, function(){
+        //     var dst = this.destination_group_name.split(' - ')[0];
+        //     if (aggregated[dst] >= 0) {
+        //         aggregated[dst] += parseInt(this.calls);
+        //     } else {
+        //         aggregated[dst] = parseInt(this.calls) || 0;
+        //     }
+        // });
+
+        // dt = [['Country', 'Calls']];
+        // for (var key in aggregated) {
+        //     dt.push([key, aggregated[key]]);
+        // }
+
+        // function drawRegionsMap() {
+        //     var data = google.visualization.arrayToDataTable(dt);
+
+        //     var options = {
+        //         //magnifyingGlass: {enable: true, zoomFactor: 7.5}
+        //     };
+
+        //     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        //     var formatter = new google.visualization.NumberFormat({
+        //             pattern: '# #'
+        //         });
+        //     formatter.format(data, 1);
+        //     chart.draw(data, options);
+        // }
+
+        var source =
+        {
+            localdata: table_data_json,
+            datatype: 'json',
+            datafields: [
+                { name: 'flag', type: 'string' },
+                { name: 'destination_group_name', type: 'string' },
+                { name: 'calls', type: 'int' },
+                { name: 'time', type: 'int' },
+                { name: 'acd', type: 'int' },
+                { name: 'price', type: 'float' },
+                { name: 'user_price', type: 'float' },
+                { name: 'profit', type: 'float' },
+                { name: 'destination_group_id', type: 'string' }
+            ],
+            pagesize: <%= session[:items_per_page] %>
+        };
+
+        var dataadapter = new $.jqx.dataAdapter(source);
+
+        var cellsrenderer_flag = function (row, column, value) {
+            return '<div style="text-align: center; margin: 5px 3px 0 0">' + render_flag(value, '<%= Web_Dir %>') + '</div>';
+        };
+
+        var cellsrenderer_time = function (row, column, value) {
+            return '<div style="text-align: right; margin-top: 3.5px;">' + nice_billsec(value, time_format) + '</div>';
+        };
+
+        var cellsrenderer_hgc_url = function (row, column, value) {
+            return '<div style="text-align: center; margin-top: 5px;">' + '<a href="<%= Web_Dir %>/stats/hangup_cause_codes_stats?dg_id=' + value + '" id="hgc_stats_' + value + '"> <img alt="Chart pie" src="<%= Web_Dir %>/images/icons/chart_pie.png"> </a>' + '</div>';
+        };
+
+
+        var float_digits = 'f<%= @data[:options][:number_digits] %>';
+
+        var getLocalization = function () {
+            var localizationobj = {};
+            localizationobj.decimalseparator = '<%= @data[:options][:number_decimal] %>';
+            localizationobj.thousandsseparator = '';
+            return localizationobj;
+        };
+
+        country_stats_es_grid.jqxGrid(
+                {
+                    source: dataadapter,
+                    width: '100%',
+                    autoheight: true,
+                    rowsheight: 22,
+                    altrows: true,
+                    selectionmode: 'multiplecellsadvanced',
+                    handlekeyboardnavigation: function (event) {
+                        var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+                        if (key == 86 && event.ctrlKey == true) {
+                            return true;
+                        }
+                    },
+                    showaggregates: true,
+                    showstatusbar: true,
+                    statusbarheight: 22,
+                    sortable: true,
+                    pageable: true,
+                    pagesizeoptions: <%= [5, 10, 20].include?(session[:items_per_page]) ? [5, 10, 20] : [5, 10, 20, session[:items_per_page]].sort %>,
+                    localization: getLocalization(),
+                    ready: function () {
+                        if (<%= user? %>) {
+                            country_stats_es_grid.jqxGrid('hidecolumn', 'user_price');
+                            country_stats_es_grid.jqxGrid('hidecolumn', 'profit');
+                            country_stats_es_grid.jqxGrid('hidecolumn', 'destination_group_id');
+                        }
+                        fix_column_width('country_stats_es');
+                        country_stats_es_grid.jqxGrid('sortby', 'destination_group_name', 'asc');
+
+                        $("#country_stats_es_spinner").hide();
+                        country_stats_es_grid.css('visibility', 'visible');
+                    },
+                    columns: [
+                        { text: " ", datafield: 'flag', cellsrenderer: cellsrenderer_flag, width: '2%', sortable: false },
+                        { text: "<%= _('Destination_Group') %>", datafield: 'destination_group_name', width: '13%',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px; overflow: hidden;"><b><%= _('Total') %>:</b></div>';
+                            }
+                        },
+                        { text: "<%= _('Calls') %>", datafield: 'calls', width: '10%', align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:calls] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('Time') %>", datafield: 'time', align: 'right', cellsrenderer: cellsrenderer_time, width: '14%',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:time] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('ACD') %>", datafield: 'acd', align: 'right', cellsrenderer: cellsrenderer_time, width: '14%',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="text-align: right; position: relative; margin: 2px; overflow: hidden;"><b><%= @data[:table_totals][:acd] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('Price') %>", datafield: 'price', width: '14%', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:price] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('User_price') %>", datafield: 'user_price', width: '14%', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:user_price] %></b></div>';
+                            }
+                        },
+                        { text: "<%= _('Profit') %>", datafield: 'profit', width: '14%', cellsformat: float_digits, align: 'right', cellsalign: 'right',
+                            aggregatesrenderer: function (aggregates) {
+                                return '<div style="position: relative; margin: 2px 2px 0 0; overflow: hidden; text-align: right;"><b><%= @data[:table_totals][:profit] %></b></div>';
+                            }
+                        },
+                        { text: "  ", datafield: 'destination_group_id', cellsrenderer: cellsrenderer_hgc_url, width: '5%', sortable: false }
+                    ]
+                });
+
+        $("#csvExport").jqxButton();
+        $("#csvExport").click(function () {
+
+            var table_content = $("#country_stats_es").jqxGrid('exportdata', 'json');
+
+            $.fileDownload('<%= Web_Dir%>/stats/country_stats_download_table_data', {
+                httpMethod: 'POST',
+                data: {
+                    authenticity_token: '<%= form_authenticity_token %>',
+                    table_content: table_content,
+                    search_time: {from: '<%= @options[:start] %>', till: '<%= @options[:end] %>'}
+                },
+                failCallback: function (html, url) {
+
+                    alert('Download failed, please contact System Administrator if this problem persists.');
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,2396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_bundle_sql/?path=manager/create_manager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td># bundle loaded</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/payments/m2_payments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ACCOUNTING &gt; Financial Status</td>
+	<td>ACCOUNTING &gt; Financial Status</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ACCOUNTING &gt; Payments</td>
+	<td>ACCOUNTING &gt; Payments</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>ACCOUNTING &gt; Balance Report</td>
+	<td>ACCOUNTING &gt; Balance Report</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_ACCOUNTING_Financial_Status_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_ACCOUNTING_Payments_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_ACCOUNTING_Balance_Report_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>permissions_ACCOUNTING_Customer_Invoices_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ACCOUNTING_Financial_Status_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ACCOUNTING_Payments_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ACCOUNTING_Balance_Report_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>permissions_ACCOUNTING_Customer_Invoices_0</td>
+	<td></td>
+</tr>
+<!--Del viso pikto paupdeitintu, kad tikrai netycia neuzdetu active-->
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.breadcrumbs-col</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(text(),'ACCOUNTING')]</td>
+	<td>ACCOUNTING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/financial_statuses/list')]</td>
+	<td>Financial Status</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/payments/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/m2_invoices/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/financial_statuses/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<!--bus bendras ticket visiems useriams-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/destroy/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/destroy/1?number=number1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Financial_Status_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/financial_statuses/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>AllTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=s_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_16001</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'ACCOUNTING')]</td>
+	<td>ACCOUNTING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, '/billing/financial_statuses/list')]</td>
+	<td>Financial Status</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/payments/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/m2_invoices/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Financial Status</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_min_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_max_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_warning_email_balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_list</td>
+	<td>AllTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_accountant</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_accountant</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=accountant_list</td>
+	<td>AllTest Manager</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=min_balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=max_balance</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_min_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance_min</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance_max</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_max_2</td>
+	<td>0.00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//th[2]</td>
+	<td>Current Balance (EUR)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=clear_search</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_3</td>
+	<td>Test Reseller</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/create?m2_payment%5Bamount%5D=40.0&amp;m2_payment%5Bamount_with_tax%5D=40.0&amp;m2_payment%5Bcomment%5D=&amp;m2_payment%5Bcurrency_id%5D=1&amp;m2_payment%5Bdate%5D=2014-07-22+13%3A18%3A48+%2B0300&amp;m2_payment%5Bexchange_rate%5D=1.0&amp;m2_payment%5Bid%5D=&amp;m2_payment%5Buser_id%5D=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/destroy/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/destroy/1?number=number1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Financial_Status_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Payments_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/users/personal_details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=user_time_zone</td>
+	<td>label=*Vilnius</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/financial_statuses/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'ACCOUNTING')]</td>
+	<td>ACCOUNTING</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/financial_statuses/list')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/payments/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/m2_invoices/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Add new Payment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2009; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2009; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2009</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_16</td>
+	<td>2013-10-15 13:20:05</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_16</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_system_16</td>
+	<td>30.67</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=exchange_rate_17</td>
+	<td>1.7540 USDEUR</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=img[alt=&quot;Comment edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=payment_comment_tag_16</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=ok_16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=img[alt=&quot;Comment edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=#delete_link_17 &gt; img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully deleted</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=user_17</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount</td>
+	<td>15.58</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_amount_with_tax</td>
+	<td>30.67</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_system_16</td>
+	<td>30.67</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_system_16</td>
+	<td>15.58</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<!--bus bendras ticket visiems useriams-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Add Payment</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=amount</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_payment_comment</td>
+	<td>manager payment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Add Payment</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_balance</td>
+	<td>15.5840 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_user_new_balance</td>
+	<td>65.5840 USD</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=payment_comment</td>
+	<td>manager payment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_18</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/destroy/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/destroy/1?number=number1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Financial_Status_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Payments_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Balance_Report_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/financial_statuses/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<!--bus bendras ticket visiems useriams-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/destroy/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>AllTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]/td</td>
+	<td>Client:</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=name_16001</td>
+	<td>Test Manager</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'ACCOUNTING')]</td>
+	<td>ACCOUNTING</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/financial_statuses/list')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/payments/list')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/m2_invoices/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>AllTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2009; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2009; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2009</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=time_zone_time_zone</td>
+	<td>label=(GMT+02:00) Athens</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=show_hidden_users_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>80.67</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>-23.69</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>28.75</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>21.23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_balance</td>
+	<td>21.23</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_debt</td>
+	<td>-17.49</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_1</td>
+	<td>22.65</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_1</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_paid_to_us</td>
+	<td>59.57</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_Balance</td>
+	<td>59.57</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/1&amp;test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/destroy/1?number=number1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Financial_Status_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Payments_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'ACCOUNTING')]</td>
+	<td>ACCOUNTING</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'Financial Status')]</td>
+	<td>Financial Status</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/payments/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//a[contains(@href, '/billing/m2_invoices/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/destroy/16</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/balance_reports/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>AllTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].text = 2009; this.browserbot.getCurrentWindow().document.getElementById('date_from_year').getElementsBySelector('option')[0].value = 2009; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2009</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User&nbsp;&nbsp;#1</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>80.67</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=date_1</td>
+	<td>2013-10-15</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_1</td>
+	<td>30.67</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_1</td>
+	<td>comment</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_1</td>
+	<td>30.67</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=paid_to_us_2</td>
+	<td>50.00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=comment_2</td>
+	<td>manager payment</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=balance_2</td>
+	<td>80.67</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/payments/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Add new Payment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=date_from_year</td>
+	<td>label=2009</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_16</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=amount_with_tax_system_16</td>
+	<td>30.67</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<!--bus bendras ticket visiems useriams-->
+<tr>
+	<td>open</td>
+	<td>/billing/payments/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Add Payment</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('s_user_id').value='2'}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0</td>
+	<td>15000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=amount</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Add Payment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Payment successfully created</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_19</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/financial_statuses/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_user</td>
+	<td>%</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>id=s_user</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=user_list</td>
+	<td>AllTest AccountantTest ResellerTest User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Financial Status</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_2</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/1?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/destroy/1?number=number1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/manager_groups/edit/16001</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>permissions_ACCOUNTING_Customer_Invoices_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Manager Group successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/x5_functionality/invoice_data</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>manager</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>manager1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'ACCOUNTING')]</td>
+	<td>ACCOUNTING</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/balance_reports/list')]</td>
+	<td>Balance Report</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(text(),'Financial Status')]</td>
+	<td>Financial Status</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/payments/list')]</td>
+	<td>Payments</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[contains(@href, '/billing/m2_invoices/list')]</td>
+	<td>Customer Invoices</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_1</td>
+	<td>Customer Invoices</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2customer_invoices_list']/div[3]/div</td>
+	<td>number3</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2customer_invoices_list']/div[4]/div</td>
+	<td>Sent Manually</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2customer_invoices_list']/div[5]/div</td>
+	<td>2011-03-21 00:00:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2customer_invoices_list']/div[6]/div</td>
+	<td>2011-03-25 23:59:59</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[7]/div</td>
+	<td>2014-03-20 04:04:04</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[9]/div</td>
+	<td>22.22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row0customer_invoices_list']/div[9]/div</td>
+	<td>11.11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div/b</td>
+	<td>236.94</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row4customer_invoices_list']/div[10]/div</td>
+	<td>167.97</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=b</td>
+	<td>233.31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[11]/div/b</td>
+	<td>USD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=EUR</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[11]/div/b</td>
+	<td>EUR</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='statusrowcustomer_invoices_list']/div[10]/div/b</td>
+	<td>292.93</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=b</td>
+	<td>288.86</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row2customer_invoices_list']/div[9]</td>
+	<td>33.33</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row3customer_invoices_list']/div[10]/div</td>
+	<td>22.50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='row5customer_invoices_list']/div[10]/div</td>
+	<td>66.99</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_nice_user</td>
+	<td>Test User%</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Test User #1</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/list</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_nice_user</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_status</td>
+	<td>label=Accepted</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_min_amount</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_max_amount</td>
+	<td>99999</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=s_currency</td>
+	<td>label=LTL</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=DETAILS</td>
+	<td>DETAILS</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=DETAILS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Invoice Edit: number444</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=user_4</td>
+	<td>Test User #1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Test User #1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>You are not authorized to view this page</td>
+</tr>
+<tr>
+	<td>goBackAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>label=26</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>label=4</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>label=04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>label=04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>label=40</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>label=04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>label=4</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>label=April</td>
+</tr>
+<tr>
+	<td>runScript</td>
+	<td>javascript{this.browserbot.getCurrentWindow().document.getElementById('due_date_due_date_1i').getElementsBySelector('option')[0].text = 2025; this.browserbot.getCurrentWindow().document.getElementById('due_date_due_date_1i').getElementsBySelector('option')[0].value = 2025; }</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>label=2025</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_comment</td>
+	<td>Ketvirtas ilgesnis už kitus komentaras edited</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>user_admin ed</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>Roger 12 - 55 ed </td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Invoice successfully updated</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/edit/4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_comment</td>
+	<td>Ketvirtas ilgesnis už kitus komentaras edited</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_name</td>
+	<td>user_admin ed</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=m2_invoice_client_details1</td>
+	<td>Roger 12 - 55 ed</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=issue_date_issue_date_3i</td>
+	<td>26</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_3i</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_4i</td>
+	<td>04</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=status_changed_status_changed_5i</td>
+	<td>04</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_5i</td>
+	<td>40</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_4i</td>
+	<td>04</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_3i</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_2i</td>
+	<td>April</td>
+</tr>
+<tr>
+	<td>assertSelectedLabel</td>
+	<td>id=due_date_due_date_1i</td>
+	<td>2025</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=INVOICE DETAILS</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Invoice details</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/export_to_xlsx/1?test=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>&quot;A1&quot;=&gt;&quot;Vilnius&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/destroy/1?number=number1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/update/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=notice</td>
+	<td>Access Denied</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/m2_invoices/invoice_lines/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>You are not authorized to view this page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Invoice details</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=s_prefix</td>
+	<td>35567</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=destination_1</td>
+	<td>Albania mobile (35567)</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=calls_1</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=time_1</td>
+	<td>exact:00:14:14</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=price_1</td>
+	<td>1.10</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=total_price</td>
+	<td>11.11 (USD)</td>
+</tr>
+</tbody></table>
+</body>
+</html>

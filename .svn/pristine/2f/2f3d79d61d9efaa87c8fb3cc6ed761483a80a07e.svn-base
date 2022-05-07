@@ -1,0 +1,152 @@
+<% content_for :search_form do %>
+  <%= form_tag({action: params[:action]}, {id: 'search-form', class: 'calls-form customer-invoice', visible: show_search}) do %>
+    <%= hidden_field_tag 'page', 1 %>
+    <fieldset>
+      <div class="column date-col calendar-holder">
+        <%= label_tag 'from', _('From') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_from', formatted_date_in_user_tz(options[:from]), class: 'checkin default', id: 'from' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_from', formatted_time_in_user_tz(options[:from]), class: 'default', id: 'time1' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <%= label_tag 'to', _('To') %>
+        <div class="row">
+          <div class="calendar-col">
+            <%= text_field_tag 'date_till', formatted_date_in_user_tz(options[:till]), class: 'checkout default', id: 'till' %>
+            <%= link_to 'calendar', {}, class: 'calendar-link', href: '#' %>
+          </div>
+          <div class="time-col">
+            <%= text_field_tag 'time_till', formatted_time_in_user_tz(options[:till]), class: 'default', id: 'time2' %>
+            <%= link_to 'clock', {}, class: 'clock-link', href: '#' %>
+          </div>
+        </div>
+        <div class="row" style="white-space:nowrap;">
+          <br/>
+          <%= submit_tag _('Yesterday'), class: 'calls-list-date-btn', id: 'yesterday', name: 'date-btn', type: 'button' %>
+          <%= submit_tag _('Today'), class: 'calls-list-date-btn', id: 'today', name: 'date-btn', type: 'button' %>
+          <%= submit_tag _('Last_Hour'), class: 'calls-list-date-btn', id: 'last_hour', name: 'date-btn', type: 'button' %>
+          <%= submit_tag _('Last_10_min'), class: 'calls-list-date-btn', id: 'last_10_min', name: 'date-btn', type: 'button' %>
+        </div>
+      </div>
+      <div class="column user-col">
+        <%= label_tag 'device', _('origination_point') %>
+        <div class="row">
+          <%= select_tag 's_origination_point', options_for_select([[_('All'), "all"]] + origination_points.map{|dev| [nice_device(dev, {:image => false}) ,dev.id.to_s ]}, options[:s_origination_point]), id: 'origination_point', disabled: origination_points.empty? %>
+        </div>
+        <%= label_tag 'tp_device', _('termination_point') %>
+        <div class="row">
+          <%= select_tag 's_termination_point', options_for_select([[_('All'), 'all']] + termination_points.map { |dev| [nice_device(dev, {image: false}), dev.id.to_s] }, options[:s_termination_point]), id: 'termination_point', disabled: termination_points.empty? %>
+        </div>
+      </div>
+      <div class="column source-col">
+        <%= label_tag 'source', _('source') %>
+        <div class="row">
+          <%= text_field_tag 's_source', options[:s_source]%>
+        </div>
+        <%= label_tag 'destination', _('destination') %>
+        <div class="row">
+          <%= text_field_tag 's_destination', options[:s_destination] %>
+        </div>
+      </div>
+      <div class="column source-col">
+        <%= label_tag 'status', _('Status') %>
+        <div class="row">
+          <%= select_tag 's_call_type', options_call_type_select(options[:s_call_type]) %>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row buttons-row">
+          <%= clear_button_tag _('clear') %>
+          <%= submit_button_tag _('refine') %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+<div class="content-box">
+  <div class="table-box">
+    <h2>Calls List</h2>
+    <div class="table-holder">
+      <% if calls and calls.size > 0 %>
+      <% @export_csv = {:action => :calls_list, :id => user.id} %>
+        <table>
+          <tr>
+            <%= sortable_header(_('Time'), 'time', id: 'date', class: 'date') %>
+            <%= sortable_header(_('source'), 'src', id: 'source', class: 'date') %>
+            <%= sortable_header(_('destination'), 'dst', id: 'destination', class: 'date') %>
+            <%= sortable_header(_('Duration'), 'nice_billsec', id: 'duration', class: 'date') %>
+            <%= sortable_header(_('hangup_cause'), 'hgc', id: 'disposition', class: 'date') %>
+            <%= sortable_header(_('Price'), 'u_price', id: 'price', class: 'date') %>
+          </tr>
+          <% calls.each do |call| %>
+          <tr class="<%= cycle('even', 'odd', name: 'row_class') %>">
+            <td id="date_<%= call.id %>" class="date"><%= nice_date_time call.calldate %></td>
+            <td id="source_<%= call.id %>"class="source"><%= h(nice_src(call)) %></td>
+            <% if show_destination %>
+            <%= show_call_dst(call, 'destination') %>
+            <% end %>
+            <%= call_duration(call, 'duration', '', show_user_billsec?) %>
+            <td id="disposition_<%= call.id %>" class="disposition" <%= tooltip('', get_hangup_cause_message(call.hangupcause)) if call.hangupcause %>><%= call.user_disposition %></td>
+            <td id="price_<%= call.id %>" class="price <%= 'zero-price' if call.user_price_exrate == 0 %>"><%= nice_number(call.user_price_exrate.to_d) if call.disposition == 'ANSWERED' %></td>
+          </tr>
+          <% end %>
+          <tr class='total'>
+            <td class='total'><%= _("Total") %></td>
+            <td></td>
+            <td></td>
+            <td class="duration" id="total-duration"><%= nice_time(total_calls_stats[:total_billsec]) %></td>
+            <td></td>
+            <td class="price <%= 'zero-price' if total_calls_stats[:total_user_price] == 0 %>" id="total-price"><%= nice_number(total_calls_stats[:total_user_price]) %></td>
+          </tr>
+        </table>
+        <% paginate_data = Kaminari.paginate_array((1..total_calls).to_a, total_count: total_calls).page(options[:page].to_i).per(options[:items_per_page].to_i) %>
+        <%= paginate paginate_data, entry_name: _('Call') %>
+      <% else %>
+        <br/>
+        <%= _('No_calls') %>...
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+ $(document).ready(function(){
+    $('.calls-list-date-btn').click(function(e){
+      var date = new Date();
+      var client_offset = date.getTimezoneOffset();
+      var user_offset = <%= Time.zone.now.utc_offset / 60 %>;
+      date = new Date(date.getTime() + (1000 * 60 * client_offset) + (1000 * 60 * user_offset));
+      // date.setDate(date.getTime() - )
+      if ($(this).attr('id') == 'yesterday'){
+        date.setDate(date.getDate() - 1);
+        updateDatePicker('#from', '#time1', date, '00', '00');
+        updateDatePicker('#till', '#time2', date, '23', '59');
+      }else if ($(this).attr('id') == 'today'){
+        updateDatePicker('#from', '#time1', date, '00', '00');
+        updateDatePicker('#till', '#time2', date, '23', '59');
+      }else if ($(this).attr('id') == 'last_hour'){
+        var last_hour = new Date(date.getTime() - (1000*60*60));
+        updateDatePicker('#from', '#time1', last_hour, last_hour.getHours(), last_hour.getMinutes());
+        updateDatePicker('#till', '#time2', date, date.getHours(), date.getMinutes());
+      }else if ($(this).attr('id') == 'last_10_min'){
+        var last_10_min = new Date(date.getTime() - (1000*60*10));
+        updateDatePicker('#from', '#time1', last_10_min, last_10_min.getHours(), last_10_min.getMinutes());
+        updateDatePicker('#till', '#time2', date, date.getHours(), date.getMinutes());
+      }
+      e.preventDefault();
+    });
+
+    function updateDatePicker(prefix, time_prefix, date, hour = '00', minute = '00'){
+      $(prefix).val($.datepicker.formatDate(date_format, date));
+
+      var hour = parseInt(hour) < 10 ? '0' + parseInt(hour) : hour;
+      var minute = parseInt(minute) < 10 ? '0' + parseInt(minute) : minute;
+      $(time_prefix).val(hour + ':' + minute);
+    }
+
+ });
+</script>

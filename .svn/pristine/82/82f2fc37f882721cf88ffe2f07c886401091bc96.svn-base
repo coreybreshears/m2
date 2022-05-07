@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>alert_contacts</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">alert_contacts</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<!--contact list-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title</td>
+	<td>Alert Contacts</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_contact_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=new_contact_timezone</td>
+	<td>(GMT-11:00) American Samoa (GMT-11:00)*</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_contact_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_contact_max_emails_per_hour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_contact_max_emails_per_day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=new_contact_comment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name=commit</td>
+	<td>Save New contact</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Contact was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Contact name must be provided</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>* Invalid e-mail address. Valid e-mail can contain only latin letters, numbers, '@' and '.'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_email</td>
+	<td>wrong format</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_name</td>
+	<td>646464</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_max_emails_per_day</td>
+	<td>vgdfg</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_max_emails_per_hour</td>
+	<td>gdfg</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_comment</td>
+	<td>6464644$$(*#^(*@%$</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_phone_number</td>
+	<td>+123456789</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Contact was not created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Max Emails/Day must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Max Emails/Hour must be numerical</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Invalid e-mail address. Valid e-mail can contain only latin letters, numbers, '@' and '.'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> * Invalid Number for SMS. Valid Number can contain only numbers 0-9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_email</td>
+	<td>good@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_max_emails_per_hour</td>
+	<td>2.2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_max_emails_per_day</td>
+	<td>5.6</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_phone_number</td>
+	<td>37067123456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Contact successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_id_1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Check&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_name_1</td>
+	<td>646464</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_timezone_1</td>
+	<td>GMT +02:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_email_1</td>
+	<td>good@email.com</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_max_emails_per_hour_1</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_emails_this_hour_1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_max_emails_per_day_1</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_emails_this_day_1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_comment_1</td>
+	<td>exact:6464644$$(*#^(*@%$</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//img[contains(@title, 'Contact will be used')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Check&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Cross&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//img[contains(@title, 'Contact will not be used')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contact_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.breadcrumbs &gt; li</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_name_1</td>
+	<td>646464</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Contact successfully deleted</td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>id=_name_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_name</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_contact_timezone</td>
+	<td>label=(GMT+07:00) Bangkok</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_email</td>
+	<td>good@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_max_emails_per_hour</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_max_emails_per_day</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_comment</td>
+	<td>good comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Contact successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Check&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Check&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Cross&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_name_2</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_timezone_2</td>
+	<td>GMT +07:00</td>
+</tr>
+<!--Contact edit-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Edit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=page_title_icon</td>
+	<td>Alerts Contact edit</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Contact: name </td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;User&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=contact_status</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=contact_status</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>id=contact_status</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=contact_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=contact_name</td>
+	<td>name-edited</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=contact_timezone</td>
+	<td>label=(GMT+04:00) Yerevan</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=contact_email</td>
+	<td>good-edited@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=contact_max_emails_per_hour</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=contact_max_emails_per_day</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=contact_comment</td>
+	<td>good comment edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Contact successfully updated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Check&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_name_2</td>
+	<td>name-edited</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_timezone_2</td>
+	<td>GMT +04:00</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_email_2</td>
+	<td>good-edited@email.com</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_max_emails_per_hour_2</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_emails_this_hour_2</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_max_emails_per_day_2</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_emails_this_day_2</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_name</td>
+	<td>second contact</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_contact_email</td>
+	<td>email@email.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Contact successfully created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;Check&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=_max_emails_per_hour_3</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>id=_max_emails_per_day_3</td>
+	<td>0</td>
+</tr>
+<!--rūšiavimas-->
+<tr>
+	<td>clickAndWait</td>
+	<td>id=id_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.0</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>second contact</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>name-edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=id_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.0</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.0</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>name-edited</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>second contact</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=name_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>second contact</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>name-edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=name_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.2</td>
+	<td>name-edited</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.2</td>
+	<td>second contact</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=timezone_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.3</td>
+	<td>GMT +04:00</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.3</td>
+	<td>GMT +02:00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=timezone_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.3</td>
+	<td>GMT +02:00</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.3</td>
+	<td>GMT +04:00</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=email_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.4</td>
+	<td>good-edited@email.com</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.4</td>
+	<td>email@email.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=email_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.4</td>
+	<td>email@email.com</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.4</td>
+	<td>good-edited@email.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=max_emails_per_hour_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.5</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.5</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=max_emails_per_hour_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.5</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.5</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=max_emails_per_day_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.7</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.7</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=max_emails_per_day_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.7</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.7</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=comment_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.10</td>
+	<td>good comment edited</td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=comment_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.1.10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>css=table.maintable.2.10</td>
+	<td>good comment edited</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contact_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.breadcrumbs &gt; li</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contact_update/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.breadcrumbs &gt; li</td>
+	<td>Dashboard</td>
+</tr>
+<!--Nesiuntė email, nes alerts nežinojo kam siųsti. Taip nutiko dėl to, kad klientas pirma sukūrė alertą ir alert group, o tik poto į tą alert group pridėjo kontaktą.-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/schedules</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_schedule_name</td>
+	<td>schedule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Schedule successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=new_group_name</td>
+	<td>test group</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_group_email_schedule_id</td>
+	<td>label=schedule</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert Group successfully created</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/alert_new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_alert_groups_id</td>
+	<td>label=test group</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=alert_check_type</td>
+	<td>label=Destination group</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=alert_alert_if_more</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Alert successfully created</td>
+</tr>
+<!--Reikia padaryti, kad jeigu pridedam/pašalinam kontaktą į/iš alert group, tuomet į conflines būtų įrašoma: alerts_need_update = 1-->
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/group_contacts/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_group_contact_alert_contact_id</td>
+	<td>label=name-edited</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Contact successfully assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=conflines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>150005</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_value</td>
+	<td>alerts_need_update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/delete_alerts_need_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=conflines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>150005</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body &gt; p</td>
+	<td>Not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/group_contacts/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=new_group_contact_alert_contact_id</td>
+	<td>label=second contact</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Contact successfully assigned</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=conflines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>150006</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_value</td>
+	<td>alerts_need_update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/delete_alerts_need_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=conflines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>150006</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body &gt; p</td>
+	<td>Not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/group_contacts/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//img[@alt='Delete'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Contact successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=conflines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>150007</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_value</td>
+	<td>alerts_need_update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/load_delta_sql/sqls/settings/conflines/delete_alerts_need_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Not Found</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=conflines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>150007</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=body &gt; p</td>
+	<td>Not found</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/group_contacts/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img[alt=&quot;Delete&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=status</td>
+	<td>Contact successfully deleted</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/test/make_select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=table</td>
+	<td>label=conflines</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id</td>
+	<td>150008</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=search_devices_all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=name_value</td>
+	<td>alerts_need_update</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=value_value</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/callc/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>user_admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login_psw</td>
+	<td>user_admin1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contact_destroy/1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contact_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contact_update/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/billing/alerts/contact_edit/2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Access Denied</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

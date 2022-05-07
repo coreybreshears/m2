@@ -1,0 +1,98 @@
+<% @create_button_name = _('tariff_add') %>
+
+<% content_for :create_form do %>
+  <%= form_tag({action: :create_custom_tariff}, {id: 'create-form', class: 'calls-form', visible: show_create}) do %>
+    <fieldset>
+      <div class="column cause-col">
+        <%= label_tag 'name', _('Name') %>
+        <div class='row'>
+          <%= text_field_tag :name, params[:name], type: :text %>
+        </div>
+        <%= label_tag 'currency', _('Currency') %>
+        <div class='row'>
+            <%= select_tag(:currency,
+                           options_for_select(Currency.get_active.collect { |t| [t.name] }),
+                           { class: 'currency' }
+                ) %>
+        </div>
+      </div>
+      <div class="column buttons-col">
+        <div class="row payment-buttons-row">
+          <%= submit_tag _('Cancel'), type: :reset,
+                onClick: "$(\"#create-form\").toggle();pressed('#{Web_Dir}/callc/toggle_create', '#{params[:controller]}', '#{params[:action]}');"
+          %>
+          <%= submit_button_tag _('Add_Tariff'), id: 'Add_Tariff' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+  <br/><br/>
+  <div class="table-box">
+    <% if @tariffs.present? %>
+      <h2>
+        <div><%= _('Custom_Tariffs_List') %></div>
+      </h2>
+      <div class="table-holder">
+        <table class="table-with-edit-and-delete">
+          <tr>
+            <th class="tariff-name"><%= _('name') %></th>
+            <th class="tariff-currency"><%= _('currency') %></th>
+            <th class="tariff-rates" colspan="5"><%= _('rates') %></th>
+            <th class="tariff-usage"><%= _('usage') %></th>
+            <th class="tariff-edit"></th>
+            <th class="tariff-delete"></th>
+          </tr>
+          <% @tariffs.each do |tariff| %>
+              <% tariff_id = tariff.id %>
+              <% tariff_rates_count = count_of_rates(@tr[tariff_id]) > 0 %>
+              <tr>
+                <td nowrap id="name_<%= tariff_id %>" class="tariff-name">
+                  <%= h tariff.name %>
+                </td>
+                <td id="currency_<%= tariff_id %>" class="tariff-currency">
+                  <%= tariff.currency %>
+                </td>
+                <td id="rates_<%= tariff_id %>" class="tariff-info_rates" nowrap>
+                  <%= link_to "#{_('Rates')} (#{count_of_rates(@tr[tariff_id])})", action: :rates_list, id: tariff %>
+                </td>
+                <td id="import_csv_<%= tariff_id %>" class="tariff-import_csv">
+                  <%= link_to _('Import_CSV'), action: :import_csv2, id: tariff %>
+                </td>
+                <td id="update_rates_<%= tariff_id %>" class="tariff-update_rates">
+                  <%= link_to _('Update_rates'), action: 'update_rates', id: tariff if tariff_rates_count %>
+                </td>
+                <td id="delete_rates_<%= tariff_id %>" class="tariff-delete_rates">
+                  <%= button_to _('Delete_all_rates'), {action: 'delete_all_rates', id: tariff, redirect_link: :custom_tariffs}, onclick: "return confirm('Are you sure?')", class: 'delete_button', method: :post, id: "delete_all_link_#{tariff_id}" if tariff_rates_count %>
+                </td>
+                <td id="rates_csv_<%= tariff_id %>" class="tariff-rates_csv">
+                  <%= link_to _('csv'), action: :generate_providers_rates_csv, id: tariff %>
+                </td>
+                <td id="usage_<%= tariff_id %>" class="tariff-data-usage">
+                  <%= link_to "#{tariff.op_count.to_i}", {controller: :devices, action: :devices_all} %>
+                </td>
+                <td id="edit_<%= tariff_id %>">
+                  <%= link_to 'EDIT', {action: :edit, id: tariff, redirect_link: :custom_tariffs} %>
+                </td>
+                <td id="destroy_<%= tariff_id %>">
+                  <%= button_to 'DELETE', {action: :destroy, id: tariff, redirect_link: :custom_tariffs}, onclick: "return confirm('Are you sure?')", class: "delete_button", method: :post, id: "delete_link_#{tariff_id}" %>
+                </td>
+              </tr>
+          <% end %>
+        </table>
+      </div>
+    <% else %>
+      <h2><%= _('No_Custom_Tariffs') %></h2>
+    <% end %>
+  </div>
+<style>
+    .table-with-edit-and-delete.td, .table-with-edit-and-delete.th, .table-with-edit-and-delete {
+        white-space: nowrap;
+    }
+    .table-holder{
+        overflow: auto;
+    }
+    .table-box table .even td, .table-box table td{
+        padding: 6px 10px 7px 1%;
+    }
+</style>

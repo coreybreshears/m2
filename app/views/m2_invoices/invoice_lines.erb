@@ -1,0 +1,60 @@
+<%= form_tag :action => 'invoice_lines', :search_pressed => true do %>
+  <%= hidden_field_tag 'page', 1 %>
+    <table>
+      <tr>
+        <td>
+          <%= _('Prefix') %>:
+        </td>
+        <td>
+          <%= text_field_tag 's_prefix', @options[:s_prefix], "class" => "input", :size => "15", :maxlength => "30" %>
+        </td>
+        <td>
+          <%= submit_tag _('Search'), :disable_with => _('Processing..') %>
+        </td>
+        <td nowrap align="right">
+          <%= (link_to b_cross + _('Clear_search'), :action => 'invoice_lines', :clear => 1) if @clear_search %>
+        </td>
+        <td width="100%" style="text-align: right">
+          <%= link_to _('Back_to_Invoice'), {action: 'edit', id: params[:id]}, class: 'search-form-button-invoice-details' %>
+        </td>
+      </tr>
+    </table>
+<% end %>
+
+<br/><br/>
+
+<% if @total_pages > 1 %>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>
+
+<table class="maintable" width="100%">
+  <tr>
+    <th align="left"><%= sortable_list_header("name", _('Destination'), @options) %></th>
+    <th align="right"><%= sortable_list_header("calls", _('Calls'), @options) %></th>
+    <th align="right"><%= sortable_list_header("total_time", _('Time'), @options) %></th>
+    <th align="right"><%= sortable_list_header("rate", _('Rate'), @options) %></th>
+    <th align="right"><%= sortable_list_header("price", _('Price'), @options) + " (#{@m2_invoice.currency.try(:upcase)})" %></th>
+  </tr>
+<% unless @m2_invoice_lines_in_page.count.zero? %>
+  <% @m2_invoice_lines_in_page.each_with_index do |m2_invoice_line, i| %>
+      <tr class="row<%= (i % 2 + 1).to_s %>">
+        <td id="destination_<%= m2_invoice_line.id %>" align="left"><%= m2_invoice_line.name.to_s + " (" + m2_invoice_line.destination.to_s + ")" %></td>
+        <td id="calls_<%= m2_invoice_line.id %>" align="right"><%= m2_invoice_line.calls.to_i %></td>
+        <td id="time_<%= m2_invoice_line.id %>" align="right"><%= inv_nice_total_time(m2_invoice_line.total_time) %></td>
+        <td id="rate_<%= m2_invoice_line.id %>" align="right"><%= nice_number(m2_invoice_line.rate) %></td>
+        <td id="price_<%= m2_invoice_line.id %>" align="right"><%= nice_currency(nice_invoice_amount(m2_invoice_line.price.to_d, @m2_invoice, @m2_invoice.currency_exchange_rate)) %></td>
+      </tr>
+  <% end %>
+<% end %>
+  <tr>
+    <th id="total" align="left"><%= _('Total') %>:</th>
+    <th id="total_calls" align="right"><%= @m2_invoice_lines_all.to_a.sum {|m2_invoice_line|  m2_invoice_line.calls} %></th>
+    <th id="total_time" align="right"><%= inv_nice_total_time(@m2_invoice_lines_all.to_a.sum {|m2_invoice_line|  m2_invoice_line.total_time}) %></th>
+    <th id="total_price" align="right" colspan="2"> <%= nice_currency(@m2_invoice.total_amount, @m2_invoice.currency_exchange_rate) %> (<%= @m2_invoice.currency.try(:upcase) %>)</th>
+  </tr>
+</table>
+
+<% if @total_pages > 1 %>
+    </br>
+    <%= page_select_header(@options[:page], @total_pages, nil, @options) %>
+<% end %>

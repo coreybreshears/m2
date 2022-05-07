@@ -1,0 +1,50 @@
+<% if defined?(user) and !user.new_record? and params[:action] != "default_user" %>
+    <td id="logged_<%= user.id %>" align="center">
+      <% if user.blocked.to_i == 0 || user.logged == 1 %>
+          <% if user.logged == 1 %>
+            <% if current_user.is_admin? %>
+              <%= link_to(b_online, {controller: :users, action: :logout_user, id: user.id }, id: "kick_" + user.id.to_s, data: { confirm: 'Kick/Block ' + user.nice_user + '?' }, method: :post) %>
+            <% else %>
+              <%= b_online %>
+            <% end %>
+          <% else %>
+            <%= b_offline %>
+          <% end %>
+      <% else %>
+          <%= image_tag('icons/exclamation.png', :title => _('User_is_blocked')) %>
+      <% end %>
+    </td>
+
+    <td id="call_list_<%= user.id %>" align="center">
+      <%= link_to(_('CALLS'), {:controller => "stats", :action => "calls_list", :s_user => nice_user(user), :s_user_id => user.id}, :id => "call_list_link_"+user.id.to_s) %>
+    </td>
+    <td id="login_as_<%= user.id %>" align="center"><%= link_to(b_login_as, { controller: :functions, action: 'login_as_execute', user: user }, id: "login_as_link_#{user.id}", data: { confirm: _('are_you_sure') }, method: :post) unless [0, current_user.id].member?(user.id) %></td>
+    <td id="show_devices_<%= user.id %>" align="center"><%= link_to(b_device + ("(#{user.devices.visible.size})" if params[:action] == 'list'), {:controller => 'devices', :action => 'show_devices', :id => user.id}, :id => "show_devices_link_"+user.id.to_s) if user.is_user? %></td>
+
+    <% if ["admin", "manager"].include?(session[:usertype]) %>
+        <td id="m2_payment_<%= user.id %>" align="center"><%= link_to(b_money, {:controller => 'payments', :action => 'new', :user_id => user.id}, :id => "m2_payment_link_"+user.id.to_s) %></td>
+    <% end %>
+
+    <% if admin? || manager? %>
+        <td id="user_log_<%= user.id %>" align="center">
+          <%= link_to(b_user_log, {:controller => "stats", :action => "action_log", :user_id => user}, :id => "user_log_link_"+user.id.to_s) %>
+        </td>
+    <% end %>
+
+    <% if admin? || manager? %>
+        <td id="user_custom_invoice_xlsx_template_<%= user.id%>" align="center">
+          <%= link_to(b_xlsx({title: _('Custom_Invoice_XLSX_Template')}), {controller: :users, action: :custom_invoice_xlsx_template, id: user}, id: "user_custom_invoice_xlsx_template_#{user.id}") %>
+        </td>
+    <% end %>
+
+    <% unless (params[:controller] == "users" and params[:action] == "edit") %>
+      <td id="edit_<%= user.id %>" align="center"><%= link_to _('EDIT'), {:action => 'edit', :id => user}, :id => "edit_link_"+user.id.to_s unless user.usertype == "admin" and session[:usertype] != "admin" %></td>
+    <% end %>
+
+    <% if admin? || manager? %>
+        <% user.hidden.to_i == 1 ? img = b_unhide : img = b_hide %>
+        <td id="hide_<%= user.id %>" align="center"><%= link_to(_('HIDE'), {action: :hide, id: user}, { id: "hide_link_#{user.id}", data: { confirm: _('are_you_sure') }, method: :post }) unless user.usertype == 'admin'  and session[:usertype] != 'admin' %></td>
+    <% end %>
+
+    <td id="delete_<%= user.id %>" align="center"><%= link_to _('DELETE'), {action: :destroy, id: user}, id: "delete_link_#{user.id}", data: { confirm: _('are_you_sure') }, method: :post unless (user.usertype == 'admin') and session[:usertype] != 'admin' %></td>
+<% end %>

@@ -1,0 +1,15 @@
+<div class="content-box">
+  <div class="titled-box">
+    <h2><%= "#{_('Rate_Import_Rules')} - #{@tariff_rate_import_rule.try(:name)}" %></h2>
+    <%= form_for :tariff_rate_import_rule, url: {action: :update, id: @tariff_rate_import_rule}, html: {class: 'details-form'} do |f| %>
+        <fieldset>
+          <%= render 'form', f: f, tariff_rate_import_rule: @tariff_rate_import_rule %>
+          <br/><br/>
+          <div class="buttons-row">
+            <%= submit_tag _('CANCEL'), type: :reset, onclick: "location.href = '#{Web_Dir}/tariff_rate_import_rules/list'" %>
+            <%= submit_tag _('UPDATE'), disable_with: _('Processing..') %>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+</div>
